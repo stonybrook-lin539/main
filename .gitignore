@@ -22,6 +22,7 @@
 !*.tex
 !*.tikz
 !doc/
+!exercises/
 !filters/
 !jupyter/
 !jupyter/**/
