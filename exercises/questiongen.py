@@ -11,15 +11,15 @@ SETSYMS = {"union": "∪",
            "intersect": "∩",
            "difference": "\\"}
 
-SET_FOOD = ("apple", "bread", "cheese", "donut", "eggs",
-            "fish", "granola", "honey")
+SET_FRUIT = ("apple", "banana", "grape", "kiwi", "lemon", "persimmon",
+             "strawberry", "watermelon")
 
 
 def _set_to_str(inset):
     return f"{{{', '.join(inset)}}}"
 
 
-def set_op_result(domain=SET_FOOD):
+def set_op_result(domain=SET_FRUIT):
     """
     Generate question about result of a set operation.
     """
@@ -39,7 +39,7 @@ def set_op_result(domain=SET_FOOD):
     return question.FreeInputQuestion(prompt, answer, "stringlist")
 
 
-def set_2op_result(domain=SET_FOOD):
+def set_2op_result(domain=SET_FRUIT):
     """
     Generate question about result of two union and/or intersection operations.
     """
@@ -61,7 +61,7 @@ def set_2op_result(domain=SET_FOOD):
     return question.FreeInputQuestion(prompt, answer, "stringlist")
 
 
-def which_set_op(domain=SET_FOOD):
+def which_set_op(domain=SET_FRUIT):
     """
     Generate question asking student to fill in the correct set operation.
 
@@ -97,7 +97,7 @@ def which_set_op(domain=SET_FOOD):
     return question.FreeInputQuestion(prompt, answers, "stringlist")
 
 
-def which_set_relation(domain=SET_FOOD):
+def which_set_relation(domain=SET_FRUIT):
     """
     Generate question asking student to fill in the correct set relationship.
     """
