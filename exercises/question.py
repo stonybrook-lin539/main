@@ -23,18 +23,42 @@ class FreeResponseQuestion:
             f"\nPrompt: {self.prompt}"
             f"\nAnswer: {self.answer}")
 
-    def check_answer(self, userinput):
+    def check_answer(self, studentanswer):
         if self.answertype == "string":
-            if not isinstance(userinput, str):
+            if not isinstance(studentanswer, str):
                 raise ValueError(
                     f"Expecting input of type 'str'.")
-            cleaninput = userinput.strip().lower()
+            cleaninput = studentanswer.strip().lower()
             return cleaninput == self.answer
         elif self.answertype == "integer":
-            if not isinstance(userinput, int):
+            if not isinstance(studentanswer, int):
                 raise ValueError(
                     f"Expecting input of type 'int'.")
             return cleaninput == self.answer
+
+
+class ListResponseQuestion:
+
+    def __init__(self, prompt, answer):
+        if (not isinstance(answer, list)
+                or not all(isinstance(e, str) for e in answer)):
+            raise ValueError(
+                "Parameter 'answer' must be a list of strings.")
+        self.prompt = prompt
+        self.answer = answer
+
+    def __str__(self):
+        return (
+            f"<ListReponseQuestion>"
+            f"\nPrompt: {self.prompt}"
+            f"\nAnswer: {self.answer}")
+
+    def check_answer(self, studentanswer):
+        if (not isinstance(studentanswer, list)
+                or not all(isinstance(e, str) for e in studentanswer)):
+            raise ValueError(
+                "Expecting a list of strings.")
+        return studentanswer == self.answer
 
 
 class MultipleChoiceQuestion:
@@ -43,7 +67,7 @@ class MultipleChoiceQuestion:
         if (not isinstance(choices, list)
                 or not all(isinstance(e, str) for e in choices)):
             raise ValueError(
-                f"Parameter 'choices' is not a list of strings, as specified.")
+                "Parameter 'choices' must be a list of strings.")
         self.prompt = prompt
         self.choices = choices
         self.answeridx = answeridx
@@ -67,7 +91,7 @@ class MultipleAnswerQuestion:
         if (not isinstance(choices, list)
                 or not all(isinstance(e, str) for e in choices)):
             raise ValueError(
-                f"Parameter 'choices' is not a list of strings, as specified.")
+                "Parameter 'choices' must be a list of strings.")
         self.prompt = prompt
         self.choices = choices
         self.answeridxlst = answeridxlst
