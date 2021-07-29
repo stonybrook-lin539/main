@@ -23,6 +23,7 @@
 !*.tikz
 !doc/
 !exercises/
+!exercises/**/
 !filters/
 !jupyter/
 !jupyter/**/

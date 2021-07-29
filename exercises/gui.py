@@ -9,7 +9,7 @@ class Gui(ttk.Frame):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self.qgen = qgen.which_set_relation
+        self.qgen = qgen.sets.which_set_relation
         self.currquestion = self.qgen()
         self._init_ui()
 
