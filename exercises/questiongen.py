@@ -5,10 +5,10 @@ import question
 
 
 SETOPS = {"union": set.union,
-          "intersect": set.intersection,
+          "intersection": set.intersection,
           "difference": set.difference}
 SETSYMS = {"union": "∪",
-           "intersect": "∩",
+           "intersection": "∩",
            "difference": "\\"}
 
 SET_FRUIT = ("apple", "banana", "grape", "kiwi", "lemon", "persimmon",
@@ -19,11 +19,20 @@ def _set_to_str(inset):
     return f"{{{', '.join(inset)}}}"
 
 
+def test_q():
+    return question.FreeResponseQuestion(
+        "What is the answer?",
+        "lizard",
+        "string")
+
+
 def set_op_result(domain=SET_FRUIT):
     """
     Generate question about result of a set operation.
+
+    The student selects all elements of the resulting set.
     """
-    opname = random.choice(["union", "intersect", "difference"])
+    opname = random.choice(["union", "intersection", "difference"])
     op = SETOPS[opname]
     opsym = SETSYMS[opname]
 
@@ -35,15 +44,18 @@ def set_op_result(domain=SET_FRUIT):
               f"\n  A = {_set_to_str(set_a)}"
               f"\n  B = {_set_to_str(set_b)}"
               f"\nWhat is the result of A {opsym} B?")
-    answer = list(set_result)
-    return question.FreeInputQuestion(prompt, answer, "stringlist")
+    choices = list(domain)
+    answer = sorted(domain.index(e) for e in set_result)
+    return question.MultipleAnswerQuestion(prompt, choices, answer)
 
 
 def set_2op_result(domain=SET_FRUIT):
     """
     Generate question about result of two union and/or intersection operations.
+
+    The student selects all elements in the resulting set.
     """
-    opnames = random.choices(["union", "intersect"], k=2)
+    opnames = random.choices(["union", "intersection"], k=2)
     op1, op2 = (SETOPS[op] for op in opnames)
     opsym1, opsym2 = (SETSYMS[op] for op in opnames)
 
@@ -57,8 +69,9 @@ def set_2op_result(domain=SET_FRUIT):
               f"\n  B = {_set_to_str(set_b)}"
               f"\n  C = {_set_to_str(set_c)}"
               f"\nWhat is the result of A {opsym1} B {opsym2} C?")
-    answer = list(set_result)
-    return question.FreeInputQuestion(prompt, answer, "stringlist")
+    choices = list(domain)
+    answer = sorted(domain.index(e) for e in set_result)
+    return question.MultipleAnswerQuestion(prompt, choices, answer)
 
 
 def which_set_op(domain=SET_FRUIT):
@@ -68,7 +81,8 @@ def which_set_op(domain=SET_FRUIT):
     Because it's possible for more than one operation to have the same result,
     this function returns a multiple answer question.
     """
-    opname = random.choice(["union", "intersect", "difference"])
+    oplist = ["union", "intersection", "difference"]
+    opname = random.choice(oplist)
     op = SETOPS[opname]
 
     set_a = set(random.sample(domain, k=random.randint(0, 4)))
@@ -81,11 +95,11 @@ def which_set_op(domain=SET_FRUIT):
 
     answers = []
     if is_union:
-        answers.append("union")
+        answers.append(oplist.index("union"))
     if is_intersection:
-        answers.append("intersection")
+        answers.append(oplist.index("intersection"))
     if is_difference:
-        answers.append("difference")
+        answers.append(oplist.index("difference"))
 
     prompt = (f"Let A, B, and C be sets such that C is the result of"
               " some operation between A and B. In other words,"
@@ -94,7 +108,8 @@ def which_set_op(domain=SET_FRUIT):
               f"\n  B = {_set_to_str(set_b)}"
               f"\n  C = {_set_to_str(set_c)}"
               f"\nWhat is the operation? There may be more than one answer.")
-    return question.FreeInputQuestion(prompt, answers, "stringlist")
+    choices = oplist
+    return question.MultipleAnswerQuestion(prompt, choices, answers)
 
 
 def which_set_relation(domain=SET_FRUIT):
@@ -105,6 +120,9 @@ def which_set_relation(domain=SET_FRUIT):
 
     set_a = set(random.sample(domain, k=random.randint(0, 3)))
     set_b = set(random.sample(domain, k=random.randint(0, 3)))
+
+    choices = ["proper subset", "proper superset", "identical",
+               "disjoint", "incomparable"]
 
     answer = None
     if set_a < set_b:
@@ -117,6 +135,7 @@ def which_set_relation(domain=SET_FRUIT):
         answer = "disjoint"
     else:
         answer = "incomparable"
+    answeridx = choices.index(answer)
 
     prompt = (f"What is the relationship between sets A and B?"
               f"\n  A = {_set_to_str(set_a)}"
@@ -124,14 +143,18 @@ def which_set_relation(domain=SET_FRUIT):
               f"\nChoose from among the following relationships:"
               "\n  proper subset, proper superset, identical, disjoint,"
               " incomparable")
-    return question.FreeInputQuestion(prompt, answer, "string")
+    return question.MultipleChoiceQuestion(prompt, choices, answeridx)
 
 
 if __name__ == "__main__":
-    # print(set_op_result())
-    # print(set_2op_result())
+    print(set_op_result())
+    print()
+    print(set_2op_result())
+    print()
     print(which_set_op())
+    print()
     print(which_set_relation())
+    print()
 
     # import collections
     # testresults = [q.answer
