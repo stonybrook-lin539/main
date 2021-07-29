@@ -112,6 +112,9 @@ class MultipleAnswerQuestion:
                 raise ValueError("Index out of range.")
         return sorted(inputidxlst) == sorted(self.answeridxlst)
 
+    def correct_answer(self):
+        return str(self.answeridxlst)
+
 
 if __name__ == "__main__":
     frq = FreeResponseQuestion(

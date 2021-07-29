@@ -9,7 +9,7 @@ import question as qu
 import questiongen as qgen
 
 
-question_types = {
+question_categories = {
     "sets": {
         "Set Op Result": qgen.sets.set_op_result,
         "Set Two Op Result": qgen.sets.set_2op_result,
@@ -27,20 +27,43 @@ class Gui(ttk.Frame):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self.qgen = qgen.sets.which_set_relation
+        self.qgen = None
+        self.qtypevar = tk.StringVar()
         self._init_ui()
 
     def _init_ui(self):
-        # topwindow = self.winfo_toplevel()
-        # self.menubar = tk.Menu(topwindow)
-        # topwindow["menu"] = self.menubar
-        # for i in range(5):
-        #     self.menubar.add_command(label='Show Answer', command=self._show_answer)
+        topwindow = self.winfo_toplevel()
+        self.menubar = tk.Menu(topwindow)
+        topwindow["menu"] = self.menubar
 
-        qwidgettype = question_widgets[type(self.qgen())]
-        self.questionwidget = qwidgettype(self, self.qgen)
+        # setmenu = tk.Menu()
+        # stringmenu = tk.Menu()
+        # self.menubar.add_cascade(label="Sets", menu=setmenu)
+        # self.menubar.add_cascade(label="Strings", menu=stringmenu)
+
+        for qcat in question_categories:
+            catmenu = tk.Menu(self.menubar, tearoff=False)
+            self.menubar.add_cascade(label=qcat, menu=catmenu)
+            qtypes = question_categories[qcat]
+            for qtype in qtypes:
+                catmenu.add_radiobutton(
+                    label=qtype,
+                    command=self._select_qtype,
+                    variable=self.qtypevar,
+                    value=f"{qcat}/{qtype}")
+
+        self.questionwidget = ttk.Label(self, text="Please select a question type.")
 
         self.pack(fill="both", expand=True)
+        self.questionwidget.pack()
+
+    def _select_qtype(self):
+        qcat, qtype = self.qtypevar.get().split('/')
+        qgen = question_categories[qcat][qtype]
+        qwidgettype = question_widgets[type(qgen())]
+
+        self.questionwidget.pack_forget()
+        self.questionwidget = qwidgettype(self, qgen)
         self.questionwidget.pack()
 
 
@@ -79,8 +102,11 @@ class QuestionWidget(ttk.Frame):
         self.show_btn.pack(side=tk.LEFT)
         self.next_btn.pack(side=tk.LEFT)
 
+    def _is_correct_answer(self):
+        return self.question.check_answer(self.val.get())
+
     def _check_answer(self):
-        if self.question.check_answer(self.val.get()):
+        if self._is_correct_answer():
             self.response["text"] = "Correct!"
         else:
             self.response["text"] = "Incorrect."
@@ -92,7 +118,6 @@ class QuestionWidget(ttk.Frame):
         self.question = self.qgen()
         self.prompt["text"] = self.question.prompt
         self.val.set("")
-        self.response["text"] = "Enter your answer."
 
 
 class FreeResponseWidget(QuestionWidget):
@@ -105,6 +130,7 @@ class FreeResponseWidget(QuestionWidget):
     def _init_answer_ui(self):
         self.entry = ttk.Entry(self.answerwidget, textvariable=self.val)
         self.entry.pack()
+        self.response["text"] = "Enter your answer."
 
     def _show_answer(self):
         self.response["text"] = f"The correct answer is {self.question.answer}."
@@ -134,6 +160,7 @@ class MultipleChoiceWidget(QuestionWidget):
             for idx, text in enumerate(self.question.choices)]
         for b in self.radio_btns:
             b.pack(anchor=tk.W)
+        self.response["text"] = "Select your answer."
 
     def _show_answer(self):
         answer = f"({self.question.answeridx + 1}) {self.question.correct_answer()}"
@@ -147,7 +174,32 @@ class MultipleChoiceWidget(QuestionWidget):
 
 
 class MultipleAnswerWidget(QuestionWidget):
-    pass
+
+    def __init__(self, parent, qgen):
+        super().__init__(parent, qgen)
+        self._init_answer_ui()
+
+    def _init_answer_ui(self):
+        choices = [f"({idx + 1}) {text}"
+                   for idx, text in enumerate(self.question.choices)]
+        self.val = tk.Variable(value=choices)
+        self.listbox = tk.Listbox(self.answerwidget,
+                                  listvariable=self.val,
+                                  selectmode=tk.MULTIPLE)
+        self.listbox.pack()
+        self.response["text"] = "Select each item that applies."
+
+    def _is_correct_answer(self):
+        return self.question.check_answer(self.listbox.curselection())
+
+    def _show_answer(self):
+        answer = str([idx + 1 for idx in self.question.answeridxlst])
+        self.response["text"] = f"The correct answer is {answer}."
+
+    def _load_question(self):
+        super()._load_question()
+        self.listbox.pack_forget()
+        self._init_answer_ui()
 
 
 question_widgets = {
