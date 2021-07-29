@@ -84,6 +84,9 @@ class MultipleChoiceQuestion:
             raise ValueError("Index out of range.")
         return inputidx == self.answeridx
 
+    def correct_answer(self):
+        return self.choices[self.answeridx]
+
 
 class MultipleAnswerQuestion:
 
