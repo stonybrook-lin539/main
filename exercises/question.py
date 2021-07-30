@@ -58,7 +58,7 @@ class ListResponseQuestion:
                 or not all(isinstance(e, str) for e in studentanswer)):
             raise ValueError(
                 "Expecting a list of strings.")
-        return studentanswer == self.answer
+        return sorted(studentanswer) == sorted(self.answer)
 
 
 class MultipleChoiceQuestion:
