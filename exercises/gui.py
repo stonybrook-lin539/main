@@ -24,6 +24,9 @@ question_categories = {
 
 
 class Gui(ttk.Frame):
+    """
+    Parent application. Controls question type selection.
+    """
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -35,11 +38,6 @@ class Gui(ttk.Frame):
         topwindow = self.winfo_toplevel()
         self.menubar = tk.Menu(topwindow)
         topwindow["menu"] = self.menubar
-
-        # setmenu = tk.Menu()
-        # stringmenu = tk.Menu()
-        # self.menubar.add_cascade(label="Sets", menu=setmenu)
-        # self.menubar.add_cascade(label="Strings", menu=stringmenu)
 
         for qcat in question_categories:
             catmenu = tk.Menu(self.menubar, tearoff=False)
@@ -69,6 +67,10 @@ class Gui(ttk.Frame):
 
 
 class QuestionWidget(ttk.Frame):
+    """
+    Base class for widget that displays a question and accepts user input.
+    Each question type must be implemented as a subclass.
+    """
 
     instruction_text = "Enter your answer."
 
@@ -104,19 +106,26 @@ class QuestionWidget(ttk.Frame):
         self.show_btn.pack(side=tk.LEFT)
         self.next_btn.pack(side=tk.LEFT)
 
-    def _is_correct_answer(self):
-        raise NotImplementedError("Method must be implemented by subclass.")
-
     def _check_answer(self):
-        if self._is_correct_answer():
+        """Inform user whether the current answer is correct."""
+        if self._answer_is_correct():
             self.response["text"] = "Correct!"
         else:
             self.response["text"] = "Incorrect."
 
+    def _answer_is_correct(self):
+        """Process user input and compare to correct answer.
+        Must be implemented by subclass."""
+        raise NotImplementedError("Method must be implemented by subclass.")
+
     def _show_answer(self):
+        """Show correct answer for the current question.
+        Must be implemented by subclass."""
         raise NotImplementedError("Method must be implemented by subclass.")
 
     def _load_question(self):
+        """Generate and display a new question of the same type.
+        Should be extended by subclass to reinitialize answer widget."""
         self.question = self.qgen()
         self.prompt["text"] = self.question.prompt
         self.response["text"] = self.instruction_text
@@ -126,22 +135,22 @@ class FreeResponseWidget(QuestionWidget):
 
     def __init__(self, parent, qgen):
         super().__init__(parent, qgen)
-        self.val = tk.StringVar()
+        self.answervar = tk.StringVar()
         self._init_answer_ui()
 
     def _init_answer_ui(self):
-        self.entry = ttk.Entry(self.answerwidget, textvariable=self.val)
+        self.entry = ttk.Entry(self.answerwidget, textvariable=self.answervar)
         self.entry.pack()
 
-    def _is_correct_answer(self):
-        return self.question.check_answer(self.val.get().strip())
+    def _answer_is_correct(self):
+        return self.question.check_answer(self.answervar.get().strip())
 
     def _show_answer(self):
         self.response["text"] = f"The correct answer is {self.question.answer}."
 
     def _load_question(self):
         super()._load_question()
-        self.val.set("")
+        self.answervar.set("")
 
 
 class ListResponseWidget(QuestionWidget):
@@ -150,15 +159,15 @@ class ListResponseWidget(QuestionWidget):
 
     def __init__(self, parent, qgen):
         super().__init__(parent, qgen)
-        self.val = tk.StringVar()
+        self.answervar = tk.StringVar()
         self._init_answer_ui()
 
     def _init_answer_ui(self):
-        self.entry = ttk.Entry(self.answerwidget, textvariable=self.val)
+        self.entry = ttk.Entry(self.answerwidget, textvariable=self.answervar)
         self.entry.pack()
 
-    def _is_correct_answer(self):
-        anslist = [e.strip() for e in self.val.get().split(',')]
+    def _answer_is_correct(self):
+        anslist = [e.strip() for e in self.answervar.get().split(',')]
         return self.question.check_answer(anslist)
 
     def _show_answer(self):
@@ -166,7 +175,7 @@ class ListResponseWidget(QuestionWidget):
 
     def _load_question(self):
         super()._load_question()
-        self.val.set("")
+        self.answervar.set("")
 
 
 class MultipleChoiceWidget(QuestionWidget):
@@ -175,21 +184,21 @@ class MultipleChoiceWidget(QuestionWidget):
 
     def __init__(self, parent, qgen):
         super().__init__(parent, qgen)
-        self.val = tk.IntVar()
+        self.answervar = tk.IntVar()
         self._init_answer_ui()
 
     def _init_answer_ui(self):
         self.radio_btns = [
             ttk.Radiobutton(self.answerwidget,
                             text=f"({idx + 1}) {text}",
-                            variable=self.val,
+                            variable=self.answervar,
                             value=idx)
             for idx, text in enumerate(self.question.choices)]
         for b in self.radio_btns:
             b.pack(anchor=tk.W, padx=20)
 
-    def _is_correct_answer(self):
-        return self.question.check_answer(self.val.get())
+    def _answer_is_correct(self):
+        return self.question.check_answer(self.answervar.get())
 
     def _show_answer(self):
         answer = f"({self.question.answeridx + 1}) {self.question.correct_answer()}"
@@ -213,14 +222,14 @@ class MultipleAnswerWidget(QuestionWidget):
     def _init_answer_ui(self):
         choices = [f"({idx + 1}) {text}"
                    for idx, text in enumerate(self.question.choices)]
-        self.val = tk.Variable(value=choices)
+        self.answervar = tk.Variable(value=choices)
         self.listbox = tk.Listbox(self.answerwidget,
-                                  listvariable=self.val,
+                                  listvariable=self.answervar,
                                   selectmode=tk.MULTIPLE,
                                   height=len(choices))
         self.listbox.pack()
 
-    def _is_correct_answer(self):
+    def _answer_is_correct(self):
         return self.question.check_answer(self.listbox.curselection())
 
     def _show_answer(self):

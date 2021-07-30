@@ -1,8 +1,10 @@
+"""
+Question generators for sets.
+"""
+
 import random
-# from pprint import pprint
 
 import question
-
 
 SETOPS = {"union": set.union,
           "intersection": set.intersection,
@@ -29,8 +31,7 @@ def test_q():
 def set_op_result(domain=SET_FRUIT):
     """
     Generate question about result of a set operation.
-
-    The student selects all elements of the resulting set.
+    Asks student to select all elements of the resulting set.
     """
     opname = random.choice(["union", "intersection", "difference"])
     op = SETOPS[opname]
@@ -52,8 +53,7 @@ def set_op_result(domain=SET_FRUIT):
 def set_2op_result(domain=SET_FRUIT):
     """
     Generate question about result of two union and/or intersection operations.
-
-    The student selects all elements in the resulting set.
+    Asks student to select all elements of the resulting set.
     """
     opnames = random.choices(["union", "intersection"], k=2)
     op1, op2 = (SETOPS[op] for op in opnames)

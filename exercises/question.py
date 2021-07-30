@@ -1,6 +1,14 @@
+"""
+Data structures for question formats.
+"""
 
 
 class FreeResponseQuestion:
+    """
+    A free response question provides no answer choices. The student enters
+    the answer using the keyboard.
+    """
+
     answertypes = ("string", "integer")
 
     def __init__(self, prompt, answer, answertype="string"):
@@ -28,16 +36,19 @@ class FreeResponseQuestion:
             if not isinstance(studentanswer, str):
                 raise ValueError(
                     f"Expecting input of type 'str'.")
-            cleaninput = studentanswer.strip().lower()
-            return cleaninput == self.answer
+            return studentanswer == self.answer
         elif self.answertype == "integer":
             if not isinstance(studentanswer, int):
                 raise ValueError(
                     f"Expecting input of type 'int'.")
-            return cleaninput == self.answer
+            return studentanswer == self.answer
 
 
 class ListResponseQuestion:
+    """
+    A list response question is similar to a free response question. The
+    student is asked to enter all answers that apply, e.g. separated by commas.
+    """
 
     def __init__(self, prompt, answer):
         if (not isinstance(answer, list)
@@ -62,6 +73,10 @@ class ListResponseQuestion:
 
 
 class MultipleChoiceQuestion:
+    """
+    A multiple choice question provides several answer choices and asks the
+    student to select one.
+    """
 
     def __init__(self, prompt, choices, answeridx):
         if (not isinstance(choices, list)
@@ -89,6 +104,10 @@ class MultipleChoiceQuestion:
 
 
 class MultipleAnswerQuestion:
+    """
+    A multiple answer question is similar to a multiple choice question. The
+    student is asked to select all answers that apply.
+    """
 
     def __init__(self, prompt, choices, answeridxlst):
         if (not isinstance(choices, list)
