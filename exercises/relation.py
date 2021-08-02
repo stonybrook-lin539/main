@@ -2,6 +2,7 @@
 Class representing a mathematical relation.
 """
 
+import pydot
 
 class Relation:
 
@@ -19,6 +20,15 @@ class Relation:
         return ("<Relation>"
                 f"\nDomain: {self.domain}"
                 f"\nMapping: {self.mapping}")
+
+    def to_pydot(self):
+        g = pydot.Dot("relation", graph_type="digraph", rankdir="LR")
+        g.set_node_defaults(shape="circle")
+        for node in self.domain:
+            g.add_node(pydot.Node(node))
+        for edge in self.mapping:
+            g.add_edge(pydot.Edge(*edge))
+        return g
 
     def is_reflexive(self):
         return all((y, x) in self.mapping for (x, y) in self.mapping)
