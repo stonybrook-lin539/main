@@ -31,10 +31,10 @@ class Relation:
         return g
 
     def is_reflexive(self):
-        return all((y, x) in self.mapping for (x, y) in self.mapping)
+        return all((x, x) in self.mapping for x in self.domain)
 
     def is_irreflexive(self):
-        return not self.is_reflexive()
+        return not any((x, x) in self.mapping for x in self.domain)
 
     def is_transitive(self):
         return all((a, d) in self.mapping
@@ -54,7 +54,7 @@ class Relation:
 
 
 if __name__ == "__main__":
-    r1 = Relation(set("abcd"), [("a","a"), ("b","b"), ("c","c")])
+    r1 = Relation(set("abcd"), [("a","a"), ("b","b"), ("c","c"), ("d", "d")])
     r2 = Relation(set("abcd"), [("a","a"), ("b","b"), ("c","d")])
     r3 = Relation(set("abcd"), [("a","b"), ("b","c"), ("c","d"),
                                 ("a","c"), ("b","d"), ("a","d")])
