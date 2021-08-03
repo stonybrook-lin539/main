@@ -55,17 +55,14 @@ class Relation:
 
     def make_reflexive(self):
         """Add elements to mapping to make the relation reflexive."""
-        for x in self.domain:
-            if not (x, x) in self.mapping:
-                self.mapping.append((x, x))
-        print(self)
+        self.add_reflexive_pairs()
         assert self.is_reflexive()
 
     def make_irreflexive(self):
         """
         Remove elements from mapping to make the relation irreflexive.
         """
-        self._eliminate_reflexive_pairs()
+        self.remove_reflexive_pairs()
         assert self.is_irreflexive()
 
     def make_transitive(self):
@@ -78,18 +75,16 @@ class Relation:
 
     def make_symmetric(self):
         """Add elements to mapping to make the relation symmetric."""
-        for (x, y) in self.mapping:
-            if not (y, x) in self.mapping:
-                self.mapping.append((y, x))
+        self.add_symmetric_pairs()
         assert self.is_symmetric()
 
     def make_antisymmetric(self):
         """
         Remove elements from mapping to make the relation antisymmetric. When
         there is a pair of elements (x, y) and (y, x), remove the element that
-        is ordered last by sorting
+        is ordered last by sorting.
         """
-        self._eliminate_symmetric_pairs()
+        self.remove_symmetric_pairs()
         assert self.is_antisymmetric()
 
     def make_asymmetric(self):
@@ -98,20 +93,32 @@ class Relation:
         there is a pair of elements (x, y) and (y, x), remove the element that
         is ordered last by sorting.
         """
-        self._eliminate_reflexive_pairs()
-        self._eliminate_symmetric_pairs()
+        self.remove_reflexive_pairs()
+        self.remove_symmetric_pairs()
         assert self.is_asymmetric()
 
-    def _eliminate_reflexive_pairs(self):
+    def add_reflexive_pairs(self):
+        """Add (x, x) to mapping for every element x in the domain."""
+        for x in self.domain:
+            if not (x, x) in self.mapping:
+                self.mapping.append((x, x))
+
+    def remove_reflexive_pairs(self):
         """
-        Remove all elements (x, x) in the mapping. Iterate
-        over a copy, since we are removing elements while iterating.
+        Remove all elements (x, x) in the mapping. Iterate over a copy, since
+        we are removing elements while iterating.
         """
         for (x, y) in self.mapping[:]:
             if x == y:
                 self.mapping.remove((x, x))
 
-    def _eliminate_symmetric_pairs(self):
+    def add_symmetric_pairs(self):
+        """Add (y, x) to for every (x, y) in the mapping, if not present."""
+        for (x, y) in self.mapping:
+            if not (y, x) in self.mapping:
+                self.mapping.append((y, x))
+
+    def remove_symmetric_pairs(self):
         """
         When there is a pair of elements (x, y) and (y, x) in the mapping,
         remove the element that is ordered last by sorting.
@@ -147,7 +154,7 @@ if __name__ == "__main__":
     #     print("asymmetric", r.is_asymmetric())
     #     print()
 
-    print(r5)
+    # print(r5)
 
     # r5.make_reflexive()
     # print(r5)

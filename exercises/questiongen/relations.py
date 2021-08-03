@@ -10,19 +10,22 @@ from relation import Relation
 import question
 
 
+def null_op(relation):
+    return relation
+
+
 def relation_props(size=4, edge_ratio=0.5):
     """
     Generate question asking which properties hold of the given relation.
 
     We take a randomly generated relation and randomly select zero or more
-    properties to adjust.
-    - First, we may add symmetry, antisymmetry, or asymmetry.
-    - Next, if not antisymmetric, we may add transitivity, since this is
-      likely to undo antisymmetry (and asymmetry).
-    - Finally, if not symmetric or antisymmetric (or asymmetric), we may
-      add reflexivity or irreflexity, since this would interfere with those
-      properties, but not transitivity.
-    This procedure ensures a good mix of resulting properties.
+    properties to adjust. Rather than adding symmetry, antisymmetry, or
+    asymmetry directly, we modify the presence and absence of self loops and
+    pair loops. This procedure ensures even distribution of answer
+    combinations.
+
+    We add transitivity only if the current relation is not antisymmetric,
+    since this is likely to undo antisymmetry.
     """
     domain = string.ascii_lowercase[:size]
     max_n_edges = 2 ** size
@@ -31,25 +34,16 @@ def relation_props(size=4, edge_ratio=0.5):
     mapping = random.sample(all_pairs, n_edges)
     myrel = Relation(domain, mapping)
 
-    func1 = random.choice([Relation.make_symmetric,
-                           Relation.make_antisymmetric,
-                           Relation.make_asymmetric,
-                           None])
-    if func1 is not None:
-        func1(myrel)
+    random.choice([Relation.add_reflexive_pairs,
+                   Relation.remove_reflexive_pairs,
+                   null_op])(myrel)
+
+    random.choice([Relation.add_symmetric_pairs,
+                   Relation.remove_symmetric_pairs,
+                   null_op])(myrel)
 
     if not myrel.is_antisymmetric():
-        func2 = random.choice([Relation.make_transitive,
-                               None])
-        if func2 is not None:
-            func2(myrel)
-
-    if not myrel.is_symmetric() and not myrel.is_antisymmetric():
-        func3 = random.choice([Relation.make_reflexive,
-                               Relation.make_irreflexive,
-                               None])
-        if func3 is not None:
-            func3(myrel)
+        random.choice([Relation.make_transitive, null_op])(myrel)
 
     choices = ["reflexive", "irreflexive", "transitive", "symmetric",
                "antisymmetric", "asymmetric"]
