@@ -2,8 +2,29 @@
 Data structures for question formats.
 """
 
+class Question:
+    """
+    Abstract base class for question.
+    """
 
-class FreeResponseQuestion:
+    def __init__(self, prompt, promptfigure=None):
+        """
+        prompt - string, possibly multiline
+        promptfigure - png image
+        """
+        self.prompt = prompt
+        self.promptfigure = promptfigure
+
+    def check_answer(self, answer):
+        """Return True if answer matches correct answer."""
+        raise NotImplementedError("Method must be implemented by subclass.")
+
+    # def formatted_answer(self):
+    #     """Return string form of correct answer."""
+    #     raise NotImplementedError("Method must be implemented by subclass.")
+
+
+class FreeResponseQuestion(Question):
     """
     A free response question provides no answer choices. The student enters
     the answer using the keyboard.
@@ -11,7 +32,8 @@ class FreeResponseQuestion:
 
     answertypes = ("string", "integer")
 
-    def __init__(self, prompt, answer, answertype="string"):
+    def __init__(self, prompt, answer, answertype="string", promptfigure=None):
+        super().__init__(prompt, promptfigure)
         if answertype not in self.answertypes:
             raise ValueError(
                 f"Parameter 'answertype' must be one of {self.answertypes}.")
@@ -44,13 +66,14 @@ class FreeResponseQuestion:
             return studentanswer == self.answer
 
 
-class ListResponseQuestion:
+class ListResponseQuestion(Question):
     """
     A list response question is similar to a free response question. The
     student is asked to enter all answers that apply, e.g. separated by commas.
     """
 
-    def __init__(self, prompt, answer):
+    def __init__(self, prompt, answer, promptfigure=None):
+        super().__init__(prompt, promptfigure)
         if (not isinstance(answer, list)
                 or not all(isinstance(e, str) for e in answer)):
             raise ValueError(
@@ -72,13 +95,14 @@ class ListResponseQuestion:
         return sorted(studentanswer) == sorted(self.answer)
 
 
-class MultipleChoiceQuestion:
+class MultipleChoiceQuestion(Question):
     """
     A multiple choice question provides several answer choices and asks the
     student to select one.
     """
 
-    def __init__(self, prompt, choices, answeridx):
+    def __init__(self, prompt, choices, answeridx, promptfigure=None):
+        super().__init__(prompt, promptfigure)
         if (not isinstance(choices, list)
                 or not all(isinstance(e, str) for e in choices)):
             raise ValueError(
@@ -103,13 +127,14 @@ class MultipleChoiceQuestion:
         return self.choices[self.answeridx]
 
 
-class MultipleAnswerQuestion:
+class MultipleAnswerQuestion(Question):
     """
     A multiple answer question is similar to a multiple choice question. The
     student is asked to select all answers that apply.
     """
 
-    def __init__(self, prompt, choices, answeridxlst):
+    def __init__(self, prompt, choices, answeridxlst, promptfigure=None):
+        super().__init__(prompt, promptfigure)
         if (not isinstance(choices, list)
                 or not all(isinstance(e, str) for e in choices)):
             raise ValueError(

@@ -4,6 +4,7 @@ Prototype GUI for LIN 539 interactive exercises.
 
 import tkinter as tk
 from tkinter import ttk
+import PIL.ImageTk
 
 import question as qu
 import questiongen as qgen
@@ -19,7 +20,9 @@ question_categories = {
     "strings": {
         "List Substrings": qgen.strings.list_substr_length_k,
         "List Subsequences": qgen.strings.list_subseq_length_k
-    }
+    },
+    "relations": {
+        "Relation Properties": qgen.relations.relation_props}
 }
 
 
@@ -62,7 +65,7 @@ class Gui(ttk.Frame):
         qwidgettype = question_widgets[type(qgen())]
 
         self.questionwidget.pack_forget()
-        self.questionwidget = qwidgettype(self, qgen)
+        self.questionwidget = qwidgettype(self, qtype, qgen)
         self.questionwidget.pack(fill="x", expand=True, padx=10, pady=10)
 
 
@@ -74,17 +77,20 @@ class QuestionWidget(ttk.Frame):
 
     instruction_text = "Enter your answer."
 
-    def __init__(self, parent, qgen):
+    def __init__(self, parent, qtype, qgen):
         super().__init__(parent)
+        self.qtype = qtype
         self.qgen = qgen
-        self.question = qgen()
         self._init_ui()
+        self._load_question()
 
     def _init_ui(self):
-        self.heading = ttk.Label(self, text="Set Question")
-        self.prompt = ttk.Label(self, text=self.question.prompt, wraplength=480)
+        """Create widgets and configure layout."""
+        self.heading = ttk.Label(self, text=self.qtype)
+        self.prompt = ttk.Label(self, wraplength=480)
+        self.promptfigure = ttk.Label(self)
         self.answerwidget = ttk.Frame(self)
-        self.response = ttk.Label(self, text=self.instruction_text)
+        self.response = ttk.Label(self)
 
         self.buttongrid = ttk.Frame(self)
         self.check_btn = ttk.Button(self.buttongrid,
@@ -99,6 +105,7 @@ class QuestionWidget(ttk.Frame):
 
         self.heading.pack()
         self.prompt.pack(anchor=tk.W, pady=10)
+        self.promptfigure.pack()
         self.answerwidget.pack(anchor=tk.W, fill="x", pady=10)
         self.response.pack(anchor=tk.W, expand=True, pady=10)
         self.buttongrid.pack()
@@ -124,21 +131,24 @@ class QuestionWidget(ttk.Frame):
         raise NotImplementedError("Method must be implemented by subclass.")
 
     def _load_question(self):
-        """Generate and display a new question of the same type.
-        Should be extended by subclass to reinitialize answer widget."""
+        """
+        Generate and display a question. Called at initialization, and whenever
+        a new question of the same type is to be loaded. Should be extended by
+        subclass to (re)initialize answer widget.
+        """
         self.question = self.qgen()
         self.prompt["text"] = self.question.prompt
         self.response["text"] = self.instruction_text
+        if self.question.promptfigure is not None:
+            self.image = PIL.ImageTk.PhotoImage(data=self.question.promptfigure)
+            self.promptfigure["image"] = self.image
 
 
 class FreeResponseWidget(QuestionWidget):
 
-    def __init__(self, parent, qgen):
-        super().__init__(parent, qgen)
+    def _init_ui(self):
+        self._init_ui()
         self.answervar = tk.StringVar()
-        self._init_answer_ui()
-
-    def _init_answer_ui(self):
         self.entry = ttk.Entry(self.answerwidget, textvariable=self.answervar)
         self.entry.pack()
 
@@ -157,12 +167,9 @@ class ListResponseWidget(QuestionWidget):
 
     instruction_text = "Enter your answers separated by commas."
 
-    def __init__(self, parent, qgen):
-        super().__init__(parent, qgen)
+    def _init_ui(self):
+        super()._init_ui()
         self.answervar = tk.StringVar()
-        self._init_answer_ui()
-
-    def _init_answer_ui(self):
         self.entry = ttk.Entry(self.answerwidget, textvariable=self.answervar)
         self.entry.pack()
 
@@ -182,20 +189,10 @@ class MultipleChoiceWidget(QuestionWidget):
 
     instruction_text = "Select your answer."
 
-    def __init__(self, parent, qgen):
-        super().__init__(parent, qgen)
+    def _init_ui(self):
+        super()._init_ui()
         self.answervar = tk.IntVar()
-        self._init_answer_ui()
-
-    def _init_answer_ui(self):
-        self.radio_btns = [
-            ttk.Radiobutton(self.answerwidget,
-                            text=f"({idx + 1}) {text}",
-                            variable=self.answervar,
-                            value=idx)
-            for idx, text in enumerate(self.question.choices)]
-        for b in self.radio_btns:
-            b.pack(anchor=tk.W, padx=20)
+        self.radio_btns = []
 
     def _answer_is_correct(self):
         return self.question.check_answer(self.answervar.get())
@@ -208,25 +205,26 @@ class MultipleChoiceWidget(QuestionWidget):
         super()._load_question()
         for b in self.radio_btns:
             b.pack_forget()
-        self._init_answer_ui()
+        self.radio_btns = [
+            ttk.Radiobutton(self.answerwidget,
+                            text=f"({idx + 1}) {text}",
+                            variable=self.answervar,
+                            value=idx)
+            for idx, text in enumerate(self.question.choices)]
+        for b in self.radio_btns:
+            b.pack(anchor=tk.W, padx=20)
 
 
 class MultipleAnswerWidget(QuestionWidget):
 
     instruction_text = "Select each item that applies."
 
-    def __init__(self, parent, qgen):
-        super().__init__(parent, qgen)
-        self._init_answer_ui()
-
-    def _init_answer_ui(self):
-        choices = [f"({idx + 1}) {text}"
-                   for idx, text in enumerate(self.question.choices)]
-        self.answervar = tk.Variable(value=choices)
+    def _init_ui(self):
+        super()._init_ui()
+        self.answervar = tk.Variable()
         self.listbox = tk.Listbox(self.answerwidget,
                                   listvariable=self.answervar,
-                                  selectmode=tk.MULTIPLE,
-                                  height=len(choices))
+                                  selectmode=tk.MULTIPLE)
         self.listbox.pack()
 
     def _answer_is_correct(self):
@@ -238,8 +236,10 @@ class MultipleAnswerWidget(QuestionWidget):
 
     def _load_question(self):
         super()._load_question()
-        self.listbox.pack_forget()
-        self._init_answer_ui()
+        choices = [f"({idx + 1}) {text}"
+                   for idx, text in enumerate(self.question.choices)]
+        self.answervar.set(choices)
+        self.listbox["height"] = len(choices)
 
 
 question_widgets = {
