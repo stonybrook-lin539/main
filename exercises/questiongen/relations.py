@@ -13,6 +13,16 @@ import question
 def relation_props(size=4, edge_ratio=0.5):
     """
     Generate question asking which properties hold of the given relation.
+
+    We take a randomly generated relation and randomly select zero or more
+    properties to adjust.
+    - First, we may add symmetry, antisymmetry, or asymmetry.
+    - Next, if not antisymmetric, we may add transitivity, since this is
+      likely to undo antisymmetry (and asymmetry).
+    - Finally, if not symmetric or antisymmetric (or asymmetric), we may
+      add reflexivity or irreflexity, since this would interfere with those
+      properties, but not transitivity.
+    This procedure ensures a good mix of resulting properties.
     """
     domain = string.ascii_lowercase[:size]
     max_n_edges = 2 ** size
@@ -20,6 +30,26 @@ def relation_props(size=4, edge_ratio=0.5):
     all_pairs = list(product(domain, repeat=2))
     mapping = random.sample(all_pairs, n_edges)
     myrel = Relation(domain, mapping)
+
+    func1 = random.choice([Relation.make_symmetric,
+                           Relation.make_antisymmetric,
+                           Relation.make_asymmetric,
+                           None])
+    if func1 is not None:
+        func1(myrel)
+
+    if not myrel.is_antisymmetric():
+        func2 = random.choice([Relation.make_transitive,
+                               None])
+        if func2 is not None:
+            func2(myrel)
+
+    if not myrel.is_symmetric() and not myrel.is_antisymmetric():
+        func3 = random.choice([Relation.make_reflexive,
+                               Relation.make_irreflexive,
+                               None])
+        if func3 is not None:
+            func3(myrel)
 
     choices = ["reflexive", "irreflexive", "transitive", "symmetric",
                "antisymmetric", "asymmetric"]
