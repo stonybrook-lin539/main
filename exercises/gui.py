@@ -223,13 +223,12 @@ class MultipleAnswerWidget(QuestionWidget):
     def _init_ui(self):
         super()._init_ui()
         self.answervar = tk.Variable()
-        self.listbox = tk.Listbox(self.answerwidget,
-                                  listvariable=self.answervar,
-                                  selectmode=tk.MULTIPLE)
-        self.listbox.pack()
+        self.answervars = []
+        self.check_btns = []
 
     def _answer_is_correct(self):
-        return self.question.check_answer(self.listbox.curselection())
+        return self.question.check_answer(
+            [i for i, var in enumerate(self.answervars) if var.get() == 1])
 
     def _show_answer(self):
         answer = str([idx + 1 for idx in self.question.answeridxlst])
@@ -237,10 +236,16 @@ class MultipleAnswerWidget(QuestionWidget):
 
     def _load_question(self):
         super()._load_question()
-        choices = [f"({idx + 1}) {text}"
-                   for idx, text in enumerate(self.question.choices)]
-        self.answervar.set(choices)
-        self.listbox["height"] = len(choices)
+        for b in self.check_btns:
+            b.pack_forget()
+        self.answervars = [tk.IntVar() for c in self.question.choices]
+        self.check_btns = [
+            ttk.Checkbutton(self.answerwidget,
+                            text=f"({idx + 1}) {text}",
+                            variable=self.answervars[idx])
+            for idx, text in enumerate(self.question.choices)]
+        for b in self.check_btns:
+            b.pack(anchor=tk.W)
 
 
 question_widgets = {
@@ -258,5 +263,6 @@ if __name__ == "__main__":
     style.theme_use("clam")
     style.configure('.', padding="0 5")
     style.configure('TRadiobutton', padding="20 0")
+    style.configure('TCheckbutton', padding="20 0")
     app = Gui(root)
     root.mainloop()
