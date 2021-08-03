@@ -104,10 +104,10 @@ class QuestionWidget(ttk.Frame):
                                    command=self._load_question)
 
         self.heading.pack()
-        self.prompt.pack(anchor=tk.W, pady=10)
-        self.promptfigure.pack()
-        self.answerwidget.pack(anchor=tk.W, fill="x", pady=10)
-        self.response.pack(anchor=tk.W, expand=True, pady=10)
+        self.prompt.pack(anchor=tk.W)
+        # don't place promptfigure unless needed
+        self.answerwidget.pack(anchor=tk.W, fill="x")
+        self.response.pack(anchor=tk.W)
         self.buttongrid.pack()
         self.check_btn.pack(side=tk.LEFT)
         self.show_btn.pack(side=tk.LEFT)
@@ -142,6 +142,7 @@ class QuestionWidget(ttk.Frame):
         if self.question.promptfigure is not None:
             self.image = PIL.ImageTk.PhotoImage(data=self.question.promptfigure)
             self.promptfigure["image"] = self.image
+            self.promptfigure.pack(after=self.prompt)
 
 
 class FreeResponseWidget(QuestionWidget):
@@ -212,7 +213,7 @@ class MultipleChoiceWidget(QuestionWidget):
                             value=idx)
             for idx, text in enumerate(self.question.choices)]
         for b in self.radio_btns:
-            b.pack(anchor=tk.W, padx=20)
+            b.pack(anchor=tk.W)
 
 
 class MultipleAnswerWidget(QuestionWidget):
@@ -255,5 +256,7 @@ if __name__ == "__main__":
     root.minsize(480, 320)
     style = ttk.Style()
     style.theme_use("clam")
+    style.configure('.', padding="0 5")
+    style.configure('TRadiobutton', padding="20 0")
     app = Gui(root)
     root.mainloop()
