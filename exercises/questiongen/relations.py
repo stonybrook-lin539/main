@@ -5,6 +5,9 @@ Question generators for relations.
 import random
 import string
 from itertools import product
+import io
+
+import PIL.Image
 
 from relation import Relation
 import question
@@ -62,9 +65,10 @@ def relation_props(size=4, edge_ratio=0.5):
         answers.append(choices.index("asymmetric"))
 
     prompt = "What properties hold of the relation depicted in the image below?"
-    promptfigure = myrel.to_pydot().create_png()
+    buffer = myrel.to_pydot().create_png()
+    img = PIL.Image.open(io.BytesIO(buffer))
     return question.MultipleAnswerQuestion(prompt, choices, answers,
-                                           promptfigure=promptfigure)
+                                           promptfigure=img)
 
 
 if __name__ == "__main__":
@@ -73,7 +77,7 @@ if __name__ == "__main__":
     import tkinter as tk
     import PIL.ImageTk
     root = tk.Tk()
-    image = PIL.ImageTk.PhotoImage(data=q.promptfigure)
+    image = PIL.ImageTk.PhotoImage(q.promptfigure)
     label = tk.Label(root, image=image)
     label.pack()
     root.mainloop()

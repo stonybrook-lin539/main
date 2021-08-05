@@ -17,6 +17,9 @@ question_categories = {
         "Which Set Op": qgen.sets.which_set_op,
         "Which Set Relation": qgen.sets.which_set_relation
     },
+    "functions": {
+        "Monotonicity": qgen.functions.monotonicity
+    },
     "relations": {
         "Relation Properties": qgen.relations.relation_props
     },
@@ -144,7 +147,7 @@ class QuestionWidget(ttk.Frame):
         self.prompt["text"] = self.question.prompt
         self.response["text"] = self.instruction_text
         if self.question.promptfigure is not None:
-            self.image = PIL.ImageTk.PhotoImage(data=self.question.promptfigure)
+            self.image = PIL.ImageTk.PhotoImage(self.question.promptfigure)
             self.promptfigure["image"] = self.image
             self.promptfigure.pack(after=self.prompt)
 
