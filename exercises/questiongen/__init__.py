@@ -1,3 +1,4 @@
+from . import functions
 from . import ngrams
 from . import sets
 from . import strings
