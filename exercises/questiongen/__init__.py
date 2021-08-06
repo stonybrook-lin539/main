@@ -1,3 +1,4 @@
+from . import fsas
 from . import functions
 from . import ngrams
 from . import sets

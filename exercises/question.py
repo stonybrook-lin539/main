@@ -2,6 +2,7 @@
 Data structures for question formats.
 """
 
+
 class Question:
     """
     Abstract base class for question.
