@@ -13,25 +13,28 @@ import questiongen as qgen
 
 
 question_categories = {
-    "sets": {
+    "Sets": {
         "Set Op Result": qgen.sets.set_op_result,
         "Set Two Op Result": qgen.sets.set_2op_result,
         "Which Set Op": qgen.sets.which_set_op,
         "Which Set Relation": qgen.sets.which_set_relation
     },
-    "functions": {
+    "Functions": {
         "Monotonicity": qgen.functions.monotonicity
     },
-    "relations": {
+    "Relations": {
         "Relation Properties": qgen.relations.relation_props
     },
-    "strings": {
+    "Strings": {
         "List Substrings": qgen.strings.list_substr_length_k,
         "List Subsequences": qgen.strings.list_subseq_length_k
     },
-    "ngrams": {
+    "N-grams": {
         "Matching Strings": qgen.ngrams.choose_matching_strings
     },
+    "FSAs": {
+        "Language of FSA": qgen.fsas.language_of_fsa
+    }
 }
 
 
