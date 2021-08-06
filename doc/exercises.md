@@ -2,7 +2,7 @@
 
 ## Usage
 
-A test GUI program written with Tkinter is available. The program is intended primarily for testing question generation and display, but is basically usable as is. To use it, run the file `gui.py` from the exercises directory.
+A test GUI program written with Tkinter is available. The program is intended primarily for testing question generation and display, but is basically usable as is. To use it, run the file `gui.py` from the exercises directory, either directly (`./gui.py`) or with the Python interpreter (`python3 gui.py`).
 
 The program allows the user to select any question type directly from the top menu. It displays randomly generated questions only. It is not necessary to input an answer before showing the correct answer or moving to the next question.
 

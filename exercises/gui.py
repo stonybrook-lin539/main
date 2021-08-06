@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Prototype GUI for LIN 539 interactive exercises.
 """
