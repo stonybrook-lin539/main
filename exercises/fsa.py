@@ -9,11 +9,12 @@ import copy
 from itertools import product
 import operator
 
-from prettytable import PrettyTable
+# from prettytable import PrettyTable
+import pydot
 
 
-class StringDFA:
-    """Deterministic finite-state acceptors for strings.
+class FSA:
+    """Deterministic finite-state acceptor for strings.
 
     Parameters
     ----------
@@ -40,12 +41,30 @@ class StringDFA:
             self.transitions = transitions
 
     def __str__(self):
-        return ("<StringDFA>\n"
+        return ("<FSA>\n"
                 f"states: {self.states}\n"
                 f"alphabet: {self.alphabet}\n"
                 f"initial: {self.initial}\n"
                 f"finals: {self.finals}\n"
                 f"transitions: {self.transitions}")
+
+    def to_pydot(self):
+        g = pydot.Dot("fsa", graph_type="digraph", rankdir="LR")
+        # g.set_node_defaults(shape="circle")
+        for state in self.states:
+            shape = "doublecircle" if state in self.finals else "circle"
+            g.add_node(pydot.Node(state, shape=shape))
+
+        # merge edges between same pair of node into one edge with compound label
+        edges = {}
+        for ((state, sym), nextstate) in self.transitions.items():
+            if (state, nextstate) not in edges:
+                edges[state, nextstate] = [sym]
+            else:
+                edges[state, nextstate].append(sym)
+        for ((state, nextstate), syms) in edges.items():
+            g.add_edge(pydot.Edge(state, nextstate, label='\\,'.join(syms)))
+        return g
 
     def _delta_dict(self, transitions):
         """Convert transition list of form (state, symbol, nextstate)
@@ -118,7 +137,7 @@ class StringDFA:
             for state, symbol, nextstate in product(states, alphabet, states)
             if ((state[0], symbol), nextstate[0]) in self.transitions.items()
             and ((state[1], symbol), nextstate[1]) in other.transitions.items()]
-        return StringDFA(states, alphabet, initial, finals, transitions)
+        return FSA(states, alphabet, initial, finals, transitions)
 
     def intersect(self, other):
         """Return the intersection of this DFA with another. Assumes same
@@ -149,7 +168,7 @@ if __name__ == "__main__":
           (1, 'b', 1),
           (0, 'c', 0),
           (1, 'c', 1)}
-    even_a = StringDFA(qs, xs, q0, fs, ts)
+    even_a = FSA(qs, xs, q0, fs, ts)
 
     # exact2bs
     qs2 = {0, 1, 2}
@@ -162,13 +181,13 @@ if __name__ == "__main__":
            (0, 'c', 0),
            (1, 'c', 1),
            (2, 'c', 2)}
-    exact2bs = StringDFA(qs2, xs, q0, fs2, ts2)
+    exact2bs = FSA(qs2, xs, q0, fs2, ts2)
 
     # invalid
     qs3 = {}
-    invalid1 = StringDFA(qs3, xs, q0, fs, ts)
+    invalid1 = FSA(qs3, xs, q0, fs, ts)
     xs4 = {'a', 'b'}
-    invalid2 = StringDFA(qs, xs4, q0, fs, ts)
+    invalid2 = FSA(qs, xs4, q0, fs, ts)
 
     totale2bs = exact2bs.complete()
     intersect = even_a.intersect(totale2bs)
@@ -186,14 +205,14 @@ if __name__ == "__main__":
     test_words = ['aba', 'abaa', 'bb', 'ccacc', 'bcccbaa', 'aabcbcbcbc',
                   'aaaabaaaabccccc', 'ababa']
 
-    table = PrettyTable()
-    table.field_names = ["Sequence", "Even-a accepts?", "Exactly2bs?",
-                         "Int?", "Union?", "Comp of even-a?"]
-    for w in test_words:
-        a = even_a.recognizes(w)
-        b = totale2bs.recognizes(w)
-        c = intersect.recognizes(w)
-        d = union.recognizes(w)
-        e = comp.recognizes(w)
-        table.add_row([w, a, b, c, d, e])
-    print(table)
+    # table = PrettyTable()
+    # table.field_names = ["Sequence", "Even-a accepts?", "Exactly2bs?",
+    #                      "Int?", "Union?", "Comp of even-a?"]
+    # for w in test_words:
+    #     a = even_a.recognizes(w)
+    #     b = totale2bs.recognizes(w)
+    #     c = intersect.recognizes(w)
+    #     d = union.recognizes(w)
+    #     e = comp.recognizes(w)
+    #     table.add_row([w, a, b, c, d, e])
+    # print(table)
