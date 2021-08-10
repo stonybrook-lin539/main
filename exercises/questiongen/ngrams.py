@@ -38,8 +38,8 @@ def choose_matching_strings(alpha_size=3, ngram_size=3, ngram_num=6,
     random.shuffle(choices)
 
     prompt = (
-        "Select all strings that conform to given n-gram grammar."
-        f"\n{mygrammar}")
+        "Select all strings that conform to the following n-gram grammar:"
+        f"\n  {mygrammar}")
     answers = [i for i, c in enumerate(choices) if mygrammar.match(c)]
     return question.MultipleAnswerQuestion(prompt, choices, answers)
 

@@ -8,7 +8,7 @@ import question
 from fsagen import *
 
 
-def language_of_fsa(n_choices=4):
+def fsa_to_language(n_choices=4):
     """
     Generate question about language of a given FSA.
     """
@@ -26,7 +26,7 @@ def language_of_fsa(n_choices=4):
                                            promptfigure=img)
 
 
-def fsa_for_language(n_choices=4):
+def language_to_fsa(n_choices=4):
     """
     Generate question about FSA for a given language.
     """
@@ -76,7 +76,7 @@ FSA_SETS = [FSAS_2SYM, FSAS_3SYM]
 
 
 if __name__ == "__main__":
-    q = language_of_fsa()
+    q = fsa_to_language()
     print(q)
 
     # import tkinter as tk
@@ -87,5 +87,5 @@ if __name__ == "__main__":
     # label.pack()
     # root.mainloop()
 
-    q = fsa_for_language()
+    q = language_to_fsa()
     print(q)

@@ -33,8 +33,8 @@ question_categories = {
         "Matching Strings": qgen.ngrams.choose_matching_strings
     },
     "FSAs": {
-        "Language of FSA": qgen.fsas.language_of_fsa,
-        "FSA for Language": qgen.fsas.fsa_for_language
+        "FSA to Language": qgen.fsas.fsa_to_language,
+        "Language to FSA": qgen.fsas.language_to_fsa
     }
 }
 
@@ -166,6 +166,8 @@ class QuestionWidget(ttk.Frame):
 
 class FreeResponseWidget(QuestionWidget):
 
+    instruction_text = "Enter your answer in the text box."
+
     def _init_ui(self):
         self._init_ui()
         self.answervar = tk.StringVar()
@@ -251,7 +253,7 @@ class MultipleChoiceWidget(QuestionWidget):
 
 class MultipleAnswerWidget(QuestionWidget):
 
-    instruction_text = "Select each item that applies."
+    instruction_text = "Select all answers that apply."
 
     def _init_ui(self):
         super()._init_ui()
