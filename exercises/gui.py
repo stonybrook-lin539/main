@@ -20,7 +20,8 @@ question_categories = {
         "Which Set Relation": qgen.sets.which_set_relation
     },
     "Functions": {
-        "Monotonicity": qgen.functions.monotonicity
+        "Function to Monotonicity": qgen.functions.func_to_monotonicity,
+        "Monotonicity to Function": qgen.functions.monotonicity_to_function
     },
     "Relations": {
         "Relation Properties": qgen.relations.relation_props
