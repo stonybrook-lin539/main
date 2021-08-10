@@ -90,6 +90,10 @@ class QuestionWidget(ttk.Frame):
     instruction_text = "Enter your answer."
 
     def __init__(self, parent, qtype, qgen):
+        """
+        qtype -- string, used to create heading
+        qgen -- question generator function
+        """
         super().__init__(parent)
         self.qtype = qtype
         self.qgen = qgen
@@ -115,9 +119,10 @@ class QuestionWidget(ttk.Frame):
                                    text="Next Question",
                                    command=self._load_question)
 
+        # place everything except promptfigure, which is only needed for
+        #   questions with a figure
         self.heading.pack()
         self.prompt.pack(anchor=tk.W)
-        # don't place promptfigure unless needed
         self.answerwidget.pack(anchor=tk.W, fill="x")
         self.response.pack(anchor=tk.W)
         self.buttongrid.pack()
@@ -152,6 +157,8 @@ class QuestionWidget(ttk.Frame):
         self.prompt["text"] = self.question.prompt
         self.response["text"] = self.instruction_text
         if self.question.promptfigure is not None:
+            # we must hold on to a reference to the image in Python to
+            #   prevent garbage collection
             self.image = PIL.ImageTk.PhotoImage(self.question.promptfigure)
             self.promptfigure["image"] = self.image
             self.promptfigure.pack(after=self.prompt)
@@ -268,13 +275,22 @@ question_widgets = {
 }
 
 
+def set_style():
+    """Must be called after creating root widget."""
+    style = ttk.Style()
+    style.theme_use("clam")
+
+    # add a little vertical space between widgets
+    style.configure('.', padding="0 5")
+
+    # add moderate indentation to radio buttons and checkboxes
+    style.configure('TRadiobutton', padding="10 0")
+    style.configure('TCheckbutton', padding="10 0")
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.minsize(480, 320)
-    style = ttk.Style()
-    style.theme_use("clam")
-    style.configure('.', padding="0 5")
-    style.configure('TRadiobutton', padding="20 0")
-    style.configure('TCheckbutton', padding="20 0")
+    set_style()
     app = Gui(root)
     root.mainloop()
