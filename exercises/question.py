@@ -2,6 +2,8 @@
 Data structures for question formats.
 """
 
+from PIL.Image import Image
+
 
 class Question:
     """
@@ -102,15 +104,25 @@ class MultipleChoiceQuestion(Question):
     student to select one.
     """
 
-    def __init__(self, prompt, choices, answeridx, promptfigure=None):
+    answertypes = ("string", "image")
+
+    def __init__(self, prompt, choices, answeridx, answertype="string",
+                 promptfigure=None):
         super().__init__(prompt, promptfigure)
-        if (not isinstance(choices, list)
-                or not all(isinstance(e, str) for e in choices)):
-            raise ValueError(
-                "Parameter 'choices' must be a list of strings.")
+        if answertype == "string":
+            if (not isinstance(choices, list)
+                    or not all(isinstance(e, str) for e in choices)):
+                raise ValueError(
+                    "Parameter 'choices' must be a list of strings.")
+        elif answertype == "image":
+            if (not isinstance(choices, list)
+                    or not all(isinstance(e, Image) for e in choices)):
+                raise ValueError(
+                    "Parameter 'choices' must be a list of strings.")
         self.prompt = prompt
         self.choices = choices
         self.answeridx = answeridx
+        self.answertype = answertype
 
     def __str__(self):
         return (
@@ -134,15 +146,25 @@ class MultipleAnswerQuestion(Question):
     student is asked to select all answers that apply.
     """
 
-    def __init__(self, prompt, choices, answeridxlst, promptfigure=None):
+    answertypes = ("string", "image")
+
+    def __init__(self, prompt, choices, answeridxlst, answertype="string",
+                 promptfigure=None):
         super().__init__(prompt, promptfigure)
-        if (not isinstance(choices, list)
-                or not all(isinstance(e, str) for e in choices)):
-            raise ValueError(
-                "Parameter 'choices' must be a list of strings.")
+        if answertype == "string":
+            if (not isinstance(choices, list)
+                    or not all(isinstance(e, str) for e in choices)):
+                raise ValueError(
+                    "Parameter 'choices' must be a list of strings.")
+        elif answertype == "image":
+            if (not isinstance(choices, list)
+                    or not all(isinstance(e, Image) for e in choices)):
+                raise ValueError(
+                    "Parameter 'choices' must be a list of strings.")
         self.prompt = prompt
         self.choices = choices
         self.answeridxlst = answeridxlst
+        self.answertype = answertype
 
     def __str__(self):
         return (

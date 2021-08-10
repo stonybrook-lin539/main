@@ -50,7 +50,9 @@ class FSA:
 
     def to_pydot(self):
         g = pydot.Dot("fsa", graph_type="digraph", rankdir="LR")
-        # g.set_node_defaults(shape="circle")
+        g.set_graph_defaults(nodesep=0.15)
+        g.set_node_defaults(height=.3, fontsize=10, margin="0.0,0.0")
+        g.set_edge_defaults(fontsize=10, arrowsize=0.5)
         for state in self.states:
             shape = "doublecircle" if state in self.finals else "circle"
             g.add_node(pydot.Node(state, shape=shape))

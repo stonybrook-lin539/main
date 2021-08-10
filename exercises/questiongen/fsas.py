@@ -14,7 +14,6 @@ def language_of_fsa(n_choices=4):
     """
     fsa_set = random.choice(FSA_SETS)
     fsas = random.sample(fsa_set, n_choices)
-    # fsas = [func() for func in myfuncs]
 
     answeridx = random.randrange(n_choices)
     target_fsa = fsas[answeridx][0]
@@ -25,6 +24,24 @@ def language_of_fsa(n_choices=4):
     choices = [desc for fsa, desc in fsas]
     return question.MultipleChoiceQuestion(prompt, choices, answeridx,
                                            promptfigure=img)
+
+
+def fsa_for_language(n_choices=4):
+    """
+    Generate question about FSA for a given language.
+    """
+    fsa_set = random.choice(FSA_SETS)
+    fsas = random.sample(fsa_set, n_choices)
+
+    answeridx = random.randrange(n_choices)
+    target_fsa_desc = fsas[answeridx][1]
+
+    prompt = ("Choose the FSA corresponding to the following language:"
+              f"\n  {target_fsa_desc}")
+    buffers = [fsa.to_pydot().create_png() for fsa, desc in fsas]
+    choices = [PIL.Image.open(io.BytesIO(b)) for b in buffers]
+    return question.MultipleChoiceQuestion(prompt, choices, answeridx,
+                                           answertype="image")
 
 
 FSAS_2SYM = [
@@ -62,10 +79,13 @@ if __name__ == "__main__":
     q = language_of_fsa()
     print(q)
 
-    import tkinter as tk
-    import PIL.ImageTk
-    root = tk.Tk()
-    image = PIL.ImageTk.PhotoImage(q.promptfigure)
-    label = tk.Label(root, image=image)
-    label.pack()
-    root.mainloop()
+    # import tkinter as tk
+    # import PIL.ImageTk
+    # root = tk.Tk()
+    # image = PIL.ImageTk.PhotoImage(q.promptfigure)
+    # label = tk.Label(root, image=image)
+    # label.pack()
+    # root.mainloop()
+
+    q = fsa_for_language()
+    print(q)

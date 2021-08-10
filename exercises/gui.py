@@ -33,7 +33,8 @@ question_categories = {
         "Matching Strings": qgen.ngrams.choose_matching_strings
     },
     "FSAs": {
-        "Language of FSA": qgen.fsas.language_of_fsa
+        "Language of FSA": qgen.fsas.language_of_fsa,
+        "FSA for Language": qgen.fsas.fsa_for_language
     }
 }
 
@@ -157,8 +158,7 @@ class QuestionWidget(ttk.Frame):
         self.prompt["text"] = self.question.prompt
         self.response["text"] = self.instruction_text
         if self.question.promptfigure is not None:
-            # we must hold on to a reference to the image in Python to
-            #   prevent garbage collection
+            # keep reference to the PhotoImage to prevent garbage collection
             self.image = PIL.ImageTk.PhotoImage(self.question.promptfigure)
             self.promptfigure["image"] = self.image
             self.promptfigure.pack(after=self.prompt)
@@ -218,19 +218,33 @@ class MultipleChoiceWidget(QuestionWidget):
         return self.question.check_answer(self.answervar.get())
 
     def _show_answer(self):
-        answer = f"({self.question.answeridx + 1}) {self.question.correct_answer()}"
+        if self.question.answertype == "string":
+            answer = f"({self.question.answeridx + 1}) {self.question.correct_answer()}"
+        elif self.question.answertype == "image":
+            answer = f"({self.question.answeridx + 1})"
         self.response["text"] = f"The correct answer is {answer}."
 
     def _load_question(self):
         super()._load_question()
         for b in self.radio_btns:
             b.pack_forget()
-        self.radio_btns = [
-            ttk.Radiobutton(self.answerwidget,
-                            text=f"({idx + 1}) {text}",
-                            variable=self.answervar,
-                            value=idx)
-            for idx, text in enumerate(self.question.choices)]
+        if self.question.answertype == "string":
+            self.radio_btns = [
+                ttk.Radiobutton(self.answerwidget,
+                                text=f"({idx + 1}) {text}",
+                                variable=self.answervar,
+                                value=idx)
+                for idx, text in enumerate(self.question.choices)]
+        elif self.question.answertype == "image":
+            # keep references to the PhotoImages to prevent garbage collection
+            self.answer_images = [PIL.ImageTk.PhotoImage(img)
+                                  for img in self.question.choices]
+            self.radio_btns = [
+                ttk.Radiobutton(self.answerwidget,
+                                image=img,
+                                variable=self.answervar,
+                                value=idx)
+                for idx, img in enumerate(self.answer_images)]
         for b in self.radio_btns:
             b.pack(anchor=tk.W)
 
@@ -258,11 +272,21 @@ class MultipleAnswerWidget(QuestionWidget):
         for b in self.check_btns:
             b.pack_forget()
         self.answervars = [tk.IntVar() for c in self.question.choices]
-        self.check_btns = [
-            ttk.Checkbutton(self.answerwidget,
-                            text=f"({idx + 1}) {text}",
-                            variable=self.answervars[idx])
-            for idx, text in enumerate(self.question.choices)]
+        if self.question.answertype == "string":
+            self.check_btns = [
+                ttk.Checkbutton(self.answerwidget,
+                                text=f"({idx + 1}) {text}",
+                                variable=self.answervars[idx])
+                for idx, text in enumerate(self.question.choices)]
+        elif self.question.answertype == "image":
+            # keep references to the PhotoImages to prevent garbage collection
+            self.answer_images = [PIL.ImageTk.PhotoImage(img)
+                                  for img in self.question.choices]
+            self.check_btns = [
+                ttk.Checkbutton(self.answerwidget,
+                                image=img,
+                                variable=self.answervars[idx])
+                for idx, img in enumerate(self.answer_images)]
         for b in self.check_btns:
             b.pack(anchor=tk.W)
 
