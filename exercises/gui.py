@@ -84,7 +84,7 @@ class Gui(ttk.Frame):
 
         self.questionwidget.pack_forget()
         self.questionwidget = qwidgettype(self, qtype, qgen)
-        self.questionwidget.pack(fill="x", expand=True, padx=10, pady=10)
+        self.questionwidget.pack(fill="both", padx=10, pady=10)
 
 
 class QuestionWidget(ttk.Frame):
@@ -109,29 +109,31 @@ class QuestionWidget(ttk.Frame):
     def _init_ui(self):
         """Create widgets and configure layout."""
         self.heading = ttk.Label(self, text=self.qtype)
+        # self.helpbutton = ttk.Button(self, text="Help", padding=0, width=0)
         self.prompt = ttk.Label(self, wraplength=480)
         self.promptfigure = ttk.Label(self)
         self.answerwidget = ttk.Frame(self)
         self.response = ttk.Label(self)
 
-        self.buttongrid = ttk.Frame(self)
-        self.check_btn = ttk.Button(self.buttongrid,
+        self.buttonlayout = ttk.Frame(self)
+        self.check_btn = ttk.Button(self.buttonlayout,
                                     text="Check Answer",
                                     command=self._check_answer)
-        self.show_btn = ttk.Button(self.buttongrid,
+        self.show_btn = ttk.Button(self.buttonlayout,
                                    text="Show Answer",
                                    command=self._show_answer)
-        self.next_btn = ttk.Button(self.buttongrid,
+        self.next_btn = ttk.Button(self.buttonlayout,
                                    text="Next Question",
                                    command=self._load_question)
 
         # place everything except promptfigure, which is only needed for
         #   questions with a figure
         self.heading.pack()
+        # self.helpbutton.place(relx=1.0, rely=0.0, anchor=tk.NE)
         self.prompt.pack(anchor=tk.W)
         self.answerwidget.pack(anchor=tk.W, fill="x")
         self.response.pack(anchor=tk.W)
-        self.buttongrid.pack()
+        self.buttonlayout.pack()
         self.check_btn.pack(side=tk.LEFT)
         self.show_btn.pack(side=tk.LEFT)
         self.next_btn.pack(side=tk.LEFT)
