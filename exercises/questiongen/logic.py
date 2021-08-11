@@ -19,19 +19,20 @@ LOGIC_SYMS = {"and": '∧',
               "biconditional": '↔'}
 
 
-def truth_table():
+def logic_op_result():
     """
     Generate question asking student to select which values of P and Q for
-    which the given operation evaluates to True.
+    which the given operation evaluates to the given boolean value.
     """
     opname = random.choice(LOGIC_OPNAMES)
     myop = LOGIC_OPS[opname]
     mysym = LOGIC_SYMS[opname]
+    myresult = random.randint(0, 1)
 
-    prompt = (f"Select all values of P and Q such that P {mysym} Q = 1.")
+    prompt = (f"Select all values of P and Q such that P {mysym} Q = {myresult}.")
     boolpairs = [(1,1), (1,0), (0,1), (0,0)]
     choices = [f"P={p}  Q={q}" for p, q in boolpairs]
-    answers = [idx for idx, (p, q) in enumerate(boolpairs) if myop(p, q) == 1]
+    answers = [idx for idx, (p, q) in enumerate(boolpairs) if myop(p, q) == myresult]
     return question.MultipleAnswerQuestion(prompt, choices, answers)
 
 
