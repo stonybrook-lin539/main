@@ -15,6 +15,7 @@ import questiongen as qgen
 question_categories = {
     "Logic": {
         "Logic Op Result": qgen.logic.logic_op_result,
+        "Logic Two Op Result": qgen.logic.logic_2op_result,
         "Which Logic Op": qgen.logic.which_logic_op
     },
     "Sets": {
