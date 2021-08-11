@@ -13,6 +13,10 @@ import questiongen as qgen
 
 
 question_categories = {
+    "Logic": {
+        "Truth Table": qgen.logic.truth_table,
+        "Which Logic Op": qgen.logic.which_logic_op
+    },
     "Sets": {
         "Set Op Result": qgen.sets.set_op_result,
         "Set Two Op Result": qgen.sets.set_2op_result,
