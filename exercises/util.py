@@ -8,11 +8,11 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 
-# def partition(pred, iterable):
-#     "Use a predicate to partition entries into true and false entries"
-#     # partition(is_odd, range(10)) --> 0 2 4 6 8   and  1 3 5 7 9
-#     t1, t2 = tee(iterable)
-#     return list(filter(pred, t1)), list(filterfalse(pred, t2))
+def partition(pred, iterable):
+    "Use a predicate to partition entries into true and false entries"
+    # partition(is_odd, range(10)) --> 0 2 4 6 8   and  1 3 5 7 9
+    t1, t2 = tee(iterable)
+    return list(filter(pred, t1)), list(filterfalse(pred, t2))
 
 
 # def window(iterable, n=2):

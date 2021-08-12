@@ -16,7 +16,8 @@ question_categories = {
     "Logic": {
         "Logic Op Result": qgen.logic.logic_op_result,
         "Logic Two Op Result": qgen.logic.logic_2op_result,
-        "Which Logic Op": qgen.logic.which_logic_op
+        "Which Logic Op": qgen.logic.which_logic_op,
+        "Equivalent Formulas": qgen.logic.equivalent_formulas
     },
     "Sets": {
         "Set Op Result": qgen.sets.set_op_result,
