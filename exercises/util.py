@@ -50,20 +50,15 @@ def language_sigma_up_to_k(alphabet, k):
         language_sigma_k(alphabet, i) for i in range(k + 1)))
 
 
-def language_random_subset(alphabet, k, n):
+def random_string(alphabet, k):
+    return ''.join(random.choice(alphabet) for i in range(k))
+
+
+def random_language(alphabet, k, n):
     """
     Return at most n randomly generated strings in the language of strings
-    over sigma^k. May be slow for large k. Raises value error if n is smaller
-    than the size of sigma^k.
+    over sigma^k. Fewer strings may be returned if n is smaller than than
+    the size of sigma^k, or if several identical strings are generated.
     """
-    return random.sample(language_sigma_k(alphabet, k), n)
-
-
-# def language_random_subset_fast(alphabet, k, n):
-#     """
-#     Return at most n randomly generated strings in the language of strings
-#     over sigma^k. Fewer strings may be returned if n is smaller than than
-#     the size of sigma^k, or if several identical strings are generated.
-#     """
-#     return list(set(''.join(random.choice(alphabet) for i in range(k))
-#                     for j in range(n)))
+    return list(set(random_string(alphabet, random.randrange(k + 1))
+                    for j in range(n)))
