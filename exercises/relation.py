@@ -2,8 +2,10 @@
 Class representing a mathematical relation.
 """
 
-import pydot
 from itertools import combinations
+
+import pydot
+
 
 class Relation:
 

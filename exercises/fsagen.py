@@ -1,3 +1,17 @@
+"""
+Factory functions for FSAs.
+
+Each function returns a tuple containing an FSA followed by a verbal description.
+
+Most functions take an argument `alphsize` for "alphabet size". The alphabet is
+created using the given number of symbols from the beginning of
+`string.ascii_lowercase`.
+
+Some functions take an argument `i` for "index". This is used to select the
+symbol that will be targeted. So, `even_a` will produce an FSA for an even
+number of 'a's if `i` is 0, but 'b' for 1, etc.
+"""
+
 import string
 
 from fsa import FSA

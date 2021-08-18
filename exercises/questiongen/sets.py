@@ -21,13 +21,6 @@ def _set_to_str(inset):
     return f"{{{', '.join(inset)}}}"
 
 
-def test_q():
-    return question.FreeResponseQuestion(
-        "What is the answer?",
-        "lizard",
-        "string")
-
-
 def set_op_result(domain=SET_FRUIT):
     """
     Generate question about result of a set operation.
@@ -139,25 +132,22 @@ def which_set_relation(domain=SET_FRUIT):
 
     prompt = (f"What is the relationship between sets A and B?"
               f"\n  A = {_set_to_str(set_a)}"
-              f"\n  B = {_set_to_str(set_b)}"
-              f"\nChoose from among the following relationships:"
-              "\n  proper subset, proper superset, identical, disjoint,"
-              " incomparable")
+              f"\n  B = {_set_to_str(set_b)}")
     return question.MultipleChoiceQuestion(prompt, choices, answeridx)
 
 
-if __name__ == "__main__":
-    print(set_op_result())
-    print()
-    print(set_2op_result())
-    print()
-    print(which_set_op())
-    print()
-    print(which_set_relation())
-    print()
+def test():
+    print(set_op_result(), end="\n\n")
+    print(set_2op_result(), end="\n\n")
+    print(which_set_op(), end="\n\n")
+    print(which_set_relation(), end="\n\n")
 
     # import collections
     # testresults = [q.answer
     #                for q in (which_set_relation()
     #                          for i in range(100))]
     # print(collections.Counter(testresults))
+
+
+if __name__ == "__main__":
+    test()

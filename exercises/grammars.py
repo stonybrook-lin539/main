@@ -6,14 +6,7 @@ from functools import partial
 from itertools import islice, chain
 import random
 
-from util import substrings_len_k_of, language_sigma_up_to_k
-
-
-def pad(string, left, right, n):
-    """
-    Pad `string` with `n` copies each of `left` and `right`.
-    """
-    return f"{left * n}{string}{right * n}"
+from util import substrings_len_k_of, language_sigma_up_to_k, padlr
 
 
 class NGramGrammar:
@@ -64,7 +57,7 @@ class NGramGrammar:
         Return string padded with the appropriate number of edge symbols.
         """
         n_edge_syms = self.n - 1
-        return pad(s, self.l_edge_sym, self.r_edge_sym, n_edge_syms)
+        return padlr(s, self.l_edge_sym, self.r_edge_sym, n_edge_syms)
 
     def match(self, string):
         """
@@ -109,7 +102,7 @@ class PosNGramGrammar(NGramGrammar):
         Return smallest grammar that accepts all strings in the given corpus.
         """
         n_edge_syms = n - 1
-        padn = partial(pad, left=cls.l_edge_sym, right=cls.r_edge_sym,
+        padn = partial(padlr, left=cls.l_edge_sym, right=cls.r_edge_sym,
                        n=n_edge_syms)
         ngrams = set(chain.from_iterable(substrings_len_k_of(padn(s), n)
                                          for s in corpus))

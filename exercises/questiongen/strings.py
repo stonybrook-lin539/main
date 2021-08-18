@@ -47,6 +47,13 @@ def list_subseq_length_k(alphabet="abcd", stringsize=5):
     return question.ListResponseQuestion(prompt, answer)
 
 
-if __name__ == "__main__":
-    for i in range(10):
+def test():
+    for i in range(3):
+        print(list_substr_length_k(), end="\n\n")
+
+    for i in range(3):
         print(list_subseq_length_k(), end="\n\n")
+
+
+if __name__ == "__main__":
+    test()

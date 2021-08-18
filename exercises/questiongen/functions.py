@@ -88,7 +88,7 @@ ANSWERS_STR_NSTR = {
     "dec-nonstrict": FUNCS_DEC_NONSTR}
 
 
-def func_to_monotonicity():
+def function_to_monotonicity():
     """
     Generate question asking student to choose whether the given function is
     increasing, decreasing, both, or neither.
@@ -124,6 +124,9 @@ def monotonicity_to_function():
 
 
 def _func_to_image(func, figsize=(3, 2)):
+    """
+    Plot function with matplotlib and store in PIL image.
+    """
     x = np.linspace(-2, 2, 100)
     y = func(x)
     fig = Figure(figsize=figsize, dpi=96)
@@ -139,14 +142,17 @@ def _func_to_image(func, figsize=(3, 2)):
     return img
 
 
-if __name__ == "__main__":
-    q = monotonicity_to_function()
-    print(q)
+def test():
+    q1 = function_to_monotonicity()
+    print(q1)
 
-    # import tkinter as tk
-    # import PIL.ImageTk
-    # root = tk.Tk()
-    # image = PIL.ImageTk.PhotoImage(q.promptfigure)
-    # label = tk.Label(root, image=image)
-    # label.pack()
-    # root.mainloop()
+    q2 = monotonicity_to_function()
+    print(q2)
+
+    # from util import tk_show_image
+    # tk_show_image(q1.promptfigure)
+    # tk_show_image(*q2.choices)
+
+
+if __name__ == "__main__":
+    test()

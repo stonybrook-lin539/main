@@ -9,7 +9,6 @@ import copy
 from itertools import product
 import operator
 
-# from prettytable import PrettyTable
 import pydot
 
 
@@ -207,6 +206,7 @@ if __name__ == "__main__":
     test_words = ['aba', 'abaa', 'bb', 'ccacc', 'bcccbaa', 'aabcbcbcbc',
                   'aaaabaaaabccccc', 'ababa']
 
+    # from prettytable import PrettyTable
     # table = PrettyTable()
     # table.field_names = ["Sequence", "Even-a accepts?", "Exactly2bs?",
     #                      "Int?", "Union?", "Comp of even-a?"]

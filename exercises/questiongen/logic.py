@@ -140,8 +140,8 @@ def logic_2op_result():
     which the given operation evaluates to the given boolean value.
     """
     opnames = random.choices(LOGIC_OPNAMES_BINARY, k=2)
-    op1, op2 = (LOGIC_OPS[op] for op in opnames)
-    sym1, sym2 = (LOGIC_SYMS[op] for op in opnames)
+    op1, op2 = (LOGIC_OPS[opname] for opname in opnames)
+    sym1, sym2 = (LOGIC_SYMS[opname] for opname in opnames)
     myfunc = _boolfunc(op1, op2)
 
     prompt = ("Select all values of P and Q such that"
@@ -167,7 +167,8 @@ def which_logic_op():
     prop_c = myop(prop_a, prop_b)
 
     answers = []
-    for opname, opfunc in LOGIC_OPS.items():
+    for opname in LOGIC_OPNAMES_BINARY:
+        opfunc = LOGIC_OPS[opname]
         if opfunc(prop_a, prop_b) == prop_c:
             answers.append(LOGIC_OPNAMES_BINARY.index(opname))
 
@@ -206,7 +207,7 @@ def equivalent_formulas(n_choices=6):
     return question.MultipleAnswerQuestion(prompt, choicetext, answeridxlist)
 
 
-if __name__ == "__main__":
+def test():
     print("One variable formulas")
     print(f"{'formula':10}", "a=1", "a=0", sep=' | ')
     for formula in _formulas_1var:
@@ -225,5 +226,11 @@ if __name__ == "__main__":
               f"{f(0,0):3}", sep=' | ')
     print()
 
-    q = equivalent_formulas()
-    print(q)
+    print(logic_op_result(), end="\n\n")
+    print(logic_2op_result(), end="\n\n")
+    print(which_logic_op(), end="\n\n")
+    print(equivalent_formulas(), end="\n\n")
+
+
+if __name__ == "__main__":
+    test()

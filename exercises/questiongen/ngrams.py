@@ -5,7 +5,7 @@ Question generators for strings.
 import string
 import random
 
-from util import random_string, random_language, language_sigma_k
+from util import random_string, language_sigma_k
 import question
 import grammars
 
@@ -42,7 +42,7 @@ def choose_matching_strings(alpha_size=3, ngram_size=3, ngram_num=6,
     return question.MultipleAnswerQuestion(prompt, choices, answers)
 
 
-def random_positive_grammar(alphabet, ngram_size, ngram_num, str_size):
+def _random_positive_grammar(alphabet, ngram_size, ngram_num, str_size):
     """
     Randomly generate some strings, then build grammar from this corpus.
     """
@@ -53,7 +53,7 @@ def random_positive_grammar(alphabet, ngram_size, ngram_num, str_size):
     return grammars.PosNGramGrammar.from_corpus(alphabet, ngram_size, corpus)
 
 
-def random_negative_grammar(alphabet, ngram_size, ngram_num, str_size):
+def _random_negative_grammar(alphabet, ngram_size, ngram_num, str_size):
     """
     Randomly generate some n-grams, then build grammar from these.
     """
@@ -61,12 +61,13 @@ def random_negative_grammar(alphabet, ngram_size, ngram_num, str_size):
     return grammars.NegNGramGrammar(alphabet, ngram_size, ngrams)
 
 
-GRAMMAR_TYPES = {"positive": random_positive_grammar,
-                 "negative": random_negative_grammar}
+GRAMMAR_TYPES = {"positive": _random_positive_grammar,
+                 "negative": _random_negative_grammar}
 
 
 def test():
-    print(choose_matching_strings())
+    q = choose_matching_strings()
+    print(q)
 
 
 if __name__ == "__main__":
