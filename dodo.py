@@ -68,8 +68,9 @@ BOOK_CHAPS = ["01_intro", "02_n-grams", "03_universals", "04_representations",
 BOOK_CHAPS += [f"background/{subch}" for subch in
                ["algebra", "functions", "general", "graphs", "logic", "multisets",
                 "posets", "relations", "sets", "strings", "tuples"]]
-# BOOK_CHAPS += ["solutions/01_intro", "solutions/02_n-grams", "solutions/03_universals", "solutions/04_representations",
-#               "solutions/05_automata"]
+# BOOK_CHAPS += ["solutions/01_intro", "solutions/02_n-grams",
+#                "solutions/03_universals", "solutions/04_representations",
+#                "solutions/05_automata"]
 # BOOK_CHAPS += [f"solutions/background/{subch}" for subch in
 #                ["functions", "general", "graphs", "logic", "multisets",
 #                 "posets", "relations", "sets", "strings", "tuples"]]
@@ -118,7 +119,7 @@ def task_pdf_book():
     """
     Build entire book as PDF.
 
-    If intermediate LaTeX is needed, use "latex_all" instead.
+    If intermediate LaTeX is needed, use "latex_book" instead.
     """
     srcsubdirs = [SRCDIR / ch for ch in BOOK_CHAPS]
     infiles = sorted(str(f)
@@ -193,15 +194,14 @@ def task_html_chaps():
     Build HTML chapters using Pandoc.
 
     MODCMDS is inserted in the HTML body so that Pandoc will correctly add
-    MATHJAX delimiters (it will not change included headers).
+    MathJax delimiters (it will not change included headers).
 
-    There is a problem with the --mathjax command, which performs
-    preprocessing, then inserts the Mathjax script *only if* LaTeX math is
-    detected. This means that in a file with no math, the custom commands that
-    we insert will appear as raw text. The author of Pandoc has refused to
-    change this. As a workaround, we use -Vmath='' to manually clear the
-    internal variable where Pandoc records whether math was detected, and
-    insert the script ourselves.
+    Problem: the --mathjax command performs preprocessing, then inserts the
+    MathJax script *only if* LaTeX math is detected. This means that in a file
+    with no math, the custom commands that we insert will appear as raw text.
+    The author of Pandoc has refused to change this. As a workaround, we
+    use -Vmath='' to manually clear the internal variable where Pandoc records
+    whether math was detected, and insert the script ourselves.
     """
     for ch in BOOK_CHAPS:
         infiles = sorted(str(f)
