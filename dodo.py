@@ -5,12 +5,12 @@ Doit task definition file for LIN 539 course notes.
 from pathlib import Path
 from itertools import chain
 
-DOIT_CONFIG = {"default_tasks": ["pdf_chaps", "html_chaps"]}
+DOIT_CONFIG = {"default_tasks": ["test_chapter"]}
 # DOIT_CONFIG = {"action_string_formatting": "new"}
 
 TIKZ2SVG = "scripts/tikz2svg.sh"
 
-LATEX_TEMPLATE = "templates/custom.tex"
+LATEX_TEMPLATE = "templates/newcustom.tex"
 
 CSTM_BLKS = "filters/custom-blocks.lua"
 INCL_FILE = "filters/include-file.lua"
@@ -62,6 +62,8 @@ HTML_OPTS = (
     f" --mathjax -Vmath='' -H {MATHJAXCALL}"
     f" {MODCMDS}")
 
+# BOOK_OPTIONS = "--toc-depth"
+
 # source directories
 BOOK_CHAPS = ["01_intro", "02_n-grams", "03_universals", "04_representations",
               "05_automata"]
@@ -74,6 +76,27 @@ BOOK_CHAPS += [f"background/{subch}" for subch in
 # BOOK_CHAPS += [f"solutions/background/{subch}" for subch in
 #                ["functions", "general", "graphs", "logic", "multisets",
 #                 "posets", "relations", "sets", "strings", "tuples"]]
+
+
+def task_test_chapter():
+    """Compile just one chapter to PDF."""
+    chname = "02_n-grams"
+    srcsubdir = SRCDIR / chname
+    infiles = sorted(str(f) for f in srcsubdir.glob("*.md"))
+    outfile = f"{PDFDIR}/{chname}.pdf"
+    cmd = (
+        f"TEXINPUTS=.:{srcsubdir}:"
+        f" pandoc --verbose -s -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
+        " --toc --toc-depth 1"
+        # " --template templates/single-chapter.tex"
+        # f" --metadata-file={srcsubdir}/metadata.yaml"
+        f" {' '.join(infiles)} -o {outfile}"
+    )
+    return {
+        "targets": [outfile],
+        "file_dep": [*infiles, *LATEX_DEPS],
+        "actions": [f"mkdir -p $(dirname {outfile})", cmd],
+        "clean": True}
 
 
 def task_modcommands():
