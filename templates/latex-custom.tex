@@ -3,13 +3,32 @@
 % At present, still includes some extraneous content from the
 %   default Pandoc tempalte
 %
+% Use variable `singlechapter` when compiling individual chapters
+%
 
-\documentclass[11pt]{article}
+\documentclass[11pt,oneside]{book}
 \usepackage[hmargin=1.5in, vmargin=1in, letterpaper]{geometry}
-\usepackage{charter}
 \usepackage[T1]{fontenc}
+\usepackage{charter}
 
-\usepackage{amssymb,amsmath}
+\usepackage{titletoc}
+\contentsmargin{2em}
+\dottedcontents{section}[2.5em]{}{2.5em}{8pt}
+\dottedcontents{subsection}[5em]{}{3em}{8pt}
+\dottedcontents{subsubsection}[8.5em]{}{3.5em}{8pt}
+
+% \titlecontents{section}
+% [3.8em] % left margin
+% {} % above code
+% {\contentslabel{2.3em}} % numbered format
+% {\hspace*{-2.3em}} % numberless format
+% {\titlerule*[6pt]{.}\contentspage} % filler format
+
+% \usepackage{tikz}
+% \usetikzlibrary{external}
+% \tikzexternalize[prefix=cache/]
+
+% \usepackage{amssymb,amsmath}
 
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -17,10 +36,6 @@
   \usepackage[$for(microtypeoptions)$$microtypeoptions$$sep$,$endfor$]{microtype}
   \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-
-$if(verbatim-in-note)$
-\usepackage{fancyvrb}
-$endif$
 
 \usepackage{xcolor}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -52,10 +67,8 @@ $else$
 $endif$
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-$if(verbatim-in-note)$
-\VerbatimFootnotes % allow verbatim text in footnotes
-$endif$
 
+% Pandoc-supplied macros for code highlighting
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
@@ -103,22 +116,23 @@ $endif$
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-$if(numbersections)$
-\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
-$else$
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-$endif$
-
-$if(pagestyle)$
-\pagestyle{$pagestyle$}
-$endif$
-
+% Pandoc include-in-header
 $for(header-includes)$
 $header-includes$
 $endfor$
 
+% Code for selective inclusion of answers
+%   Variable "showanswers" controls collection
+%   Macro \exranswerlist contains answers
+$if(showanswers)$
+\usepackage{etoolbox}
+\providebool{showanswers}
+\setbool{showanswers}{$showanswers$}
+$endif$
+
+% Code for document metadata
 $if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+\title{$title$}
 $endif$
 
 $if(subtitle)$
@@ -134,68 +148,43 @@ $endif$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
-% ---------------
-% custom additions
-$if(showanswers)$
-\usepackage{etoolbox}
-\providebool{showanswers}
-\setbool{showanswers}{$showanswers$}
-$endif$
-% end custom additions
-% --------------
-
+%----------------------------------------------------------------------------
 \begin{document}
 
-$if(has-frontmatter)$
-\frontmatter
+$if(singlechapter)$
+% Use chapter number and title from metadata to simulate title
+$if(chapter-title)$
+$if(chapter-number)$
+\setcounter{chapter}{$chapter-number$}
+{\noindent\LARGE\bfseries Chapter $chapter-number$ \par\bigskip}
 $endif$
-
-$if(title)$
+{\noindent\Huge\bfseries $chapter-title$ \par\bigskip}
+$endif$
+$elseif(title)$
 \maketitle
-$if(abstract)$
-\begin{abstract}
-$abstract$
-\end{abstract}
-$endif$
 $endif$
 
+% Pandoc include-before-body
 $for(include-before)$
 $include-before$
 $endfor$
 
 $if(toc)$
-$if(toc-title)$
-\renewcommand*\contentsname{$toc-title$}
-$endif$
 {
-$if(colorlinks)$
-\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
-$endif$
+$if(singlechapter)$
+% Format contents with section heading and no page break
+\section*{Contents}
+\startcontents
+\printcontents{}{1}[$toc-depth$]{}
+$else$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
+$endif$
 }
-$endif$
-
-$if(lot)$
-\listoftables
-$endif$
-
-$if(lof)$
-\listoffigures
-$endif$
-
-$if(linestretch)$
-\setstretch{$linestretch$}
-$endif$
-
-$if(has-frontmatter)$
-\mainmatter
 $endif$
 
 $body$
 
-% ---------------
-% custom additions
 $if(showanswers)$
 \ifdefvoid{\exranswerlist}{}{
   \pagebreak
@@ -204,15 +193,10 @@ $if(showanswers)$
 }
 $else$
 $endif$
-% end custom additions
-% --------------
 
-$if(has-frontmatter)$
-\backmatter
-$endif$
-
+% Pandoc include-after-body
 $for(include-after)$
 $include-after$
-
 $endfor$
+
 \end{document}

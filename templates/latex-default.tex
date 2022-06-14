@@ -1,3 +1,7 @@
+%
+% Dump of default LaTeX template from Pandoc 2.9.2.1
+%
+
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
@@ -399,15 +403,7 @@ $if(logo)$
 \logo{\includegraphics{$logo$}}
 $endif$
 $endif$
-% ---------------
-% custom additions
-$if(showanswers)$
-\usepackage{etoolbox}
-\providebool{showanswers}
-\setbool{showanswers}{$showanswers$}
-$endif$
-% end custom additions
-% --------------
+
 \begin{document}
 $if(has-frontmatter)$
 \frontmatter
@@ -463,18 +459,6 @@ $if(has-frontmatter)$
 \mainmatter
 $endif$
 $body$
-% ---------------
-% custom additions
-$if(showanswers)$
-\ifdefvoid{\exranswerlist}{}{
-  \pagebreak
-  \section*{Answers to Exercises}
-  \exranswerlist
-}
-$else$
-$endif$
-% end custom additions
-% --------------
 
 $if(has-frontmatter)$
 \backmatter

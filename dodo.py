@@ -5,12 +5,15 @@ Doit task definition file for LIN 539 course notes.
 from pathlib import Path
 from itertools import chain
 
-DOIT_CONFIG = {"default_tasks": ["test_chapter"]}
+DOIT_CONFIG = {"default_tasks": ["test_chapter"],
+               "check_file_uptodate": "timestamp"}
 # DOIT_CONFIG = {"action_string_formatting": "new"}
 
 TIKZ2SVG = "scripts/tikz2svg.sh"
 
-LATEX_TEMPLATE = "templates/newcustom.tex"
+LATEX_TEMPLATE = "templates/latex-custom.tex"
+# LATEX_BOOK_TEMPLATE = "templates/full-book.tex"
+# LATEX_CH_TEMPLATE = "templates/single-chapter.tex"
 
 CSTM_BLKS = "filters/custom-blocks.lua"
 INCL_FILE = "filters/include-file.lua"
@@ -50,9 +53,8 @@ PANDOC_OPTS = (
 
 # options for LaTeX/PDF only
 LATEX_OPTS = (
-    f"--template {LATEX_TEMPLATE}"
-    f" --metadata-file={YAMLHEADER}"
     f" -H {LATEX_PREAMBLE} -H {MODCMDS}"
+    f" --template {LATEX_TEMPLATE}"
     f" -L {LATEX_TIPA}"
     f" -L {EDGEMARKERS}")
 
@@ -83,13 +85,17 @@ def task_test_chapter():
     chname = "02_n-grams"
     srcsubdir = SRCDIR / chname
     infiles = sorted(str(f) for f in srcsubdir.glob("*.md"))
-    outfile = f"{PDFDIR}/{chname}.pdf"
+    outfile = f"{PDFDIR}/test/{chname}.pdf"
     cmd = (
         f"TEXINPUTS=.:{srcsubdir}:"
         f" pandoc --verbose -s -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
         " --toc --toc-depth 1"
-        # " --template templates/single-chapter.tex"
-        # f" --metadata-file={srcsubdir}/metadata.yaml"
+        # " --shift-heading-level-by=-1"
+        # f" --template {LATEX_CH_TEMPLATE}"
+        " -M singlechapter"
+        f" --metadata-file={SRCDIR}/metadata.yaml"
+        f" --metadata-file={srcsubdir}/metadata.yaml"
+        " --verbose"
         f" {' '.join(infiles)} -o {outfile}"
     )
     return {
@@ -146,12 +152,16 @@ def task_pdf_book():
     """
     srcsubdirs = [SRCDIR / ch for ch in BOOK_CHAPS]
     infiles = sorted(str(f)
-                     for f in chain.from_iterable(subdir.glob("*.md")
-                                                  for subdir in srcsubdirs))
+                     for subdir in srcsubdirs
+                     for f in chain(subdir.glob("*.md"),
+                                    subdir.glob("*.tex")))
     outfile = f"{PDFDIR}/full-book.pdf"
     cmd = (
         f"TEXINPUTS=.:{':'.join(str(sd) for sd in srcsubdirs)}:"
-        f" pandoc -s -t pdf --toc {PANDOC_OPTS} {LATEX_OPTS}"
+        f" pandoc -s -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
+        " --toc --toc-depth 1"
+        f" --metadata-file={SRCDIR}/metadata.yaml"
+        " --verbose"
         f" {' '.join(infiles)} -o {outfile}"
     )
     return {
@@ -181,7 +191,7 @@ def task_latex_chaps():
             "clean": True}
 
 
-def task_pdf_chaps(single_chapter=False):
+def task_pdf_chaps(test=True):
     """
     Build PDF chapters directly from source using Pandoc.
 
@@ -189,27 +199,53 @@ def task_pdf_chaps(single_chapter=False):
     """
     for ch in BOOK_CHAPS:
         srcsubdir = SRCDIR / ch
-        infiles = [str(f)
-                   for f in sorted(Path(f"{SRCDIR}/{ch}").glob("*.md"))]
-        if single_chapter:
-            infiles = [' '.join(infiles)]
-        for infile in infiles:
-            if single_chapter:
-                outfile = f"{PDFDIR}/{ch}.pdf"
-            else:
-                infile_name = Path(infile).stem
-                outfile = f"{PDFDIR}/{ch}/{infile_name}.pdf"
-            cmd = (
-                f"TEXINPUTS=.:{srcsubdir}:"
-                f" pandoc -s -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
-                f" {infile} -o {outfile}"
-            )
-            yield {
-                "name": outfile,
-                "targets": [outfile],
-                "file_dep": [*infiles, *LATEX_DEPS],
-                "actions": [f"mkdir -p $(dirname {outfile})", cmd],
-                "clean": True}
+        infiles = sorted(str(f) for f in srcsubdir.glob("*.md"))
+        outfile = f"{PDFDIR}/chapters/{ch}.pdf"
+        cmd = (
+            f"TEXINPUTS=.:{srcsubdir}:"
+            f" pandoc -s -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
+            " --toc --toc-depth 1"
+            # f" --template {LATEX_CH_TEMPLATE}"
+            f" --metadata-file={srcsubdir}/metadata.yaml"
+            f" {' '.join(infiles)} -o {outfile}"
+        )
+        yield {
+            "name": outfile,
+            "targets": [outfile],
+            "file_dep": [*infiles, *LATEX_DEPS],
+            "actions": [f"mkdir -p $(dirname {outfile})", cmd],
+            "clean": True}
+
+
+# def task_pdf_chaps(single_chapter=False):
+#     """
+#     Build PDF chapters directly from source using Pandoc.
+
+#     If intermediate LaTeX is needed, use "latex_chaps" instead.
+#     """
+#     for ch in BOOK_CHAPS:
+#         srcsubdir = SRCDIR / ch
+#         infiles = [str(f)
+#                    for f in sorted(Path(f"{SRCDIR}/{ch}").glob("*.md"))]
+#         if single_chapter:
+#             infiles = [' '.join(infiles)]
+#         for infile in infiles:
+#             if single_chapter:
+#                 outfile = f"{PDFDIR}/{ch}.pdf"
+#             else:
+#                 infile_name = Path(infile).stem
+#                 outfile = f"{PDFDIR}/{ch}/{infile_name}.pdf"
+#             cmd = (
+#                 f"TEXINPUTS=.:{srcsubdir}:"
+#                 f" pandoc -s -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
+#                 f" {infile} -o {outfile}"
+#             )
+#             yield {
+#                 "name": outfile,
+#                 "targets": [outfile],
+#                 "file_dep": [*infiles, *LATEX_DEPS],
+#                 "actions": [f"mkdir -p $(dirname {outfile})", cmd],
+#                 "clean": True}
 
 
 def task_html_chaps():
