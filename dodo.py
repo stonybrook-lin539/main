@@ -23,7 +23,7 @@ EDGEMARKERS = "filters/edgemarkers.lua"
 
 MYCOMMANDS = Path("includes/mathcommands.md")
 LATEX_PREAMBLE = Path("includes/preamble.tex")
-YAMLHEADER = Path("includes/format.yaml")
+# YAMLHEADER = Path("includes/format.yaml")
 WEBCSS = Path("includes/web-custom.css").resolve()  # must be absolute to load locally
 MATHJAXCALL = Path("includes/include-mathjax.html")
 
@@ -41,7 +41,7 @@ HTMLDIR = BUILDDIR / "html"
 MODCMDS = BUILDDIR / "mathcommands-preproc.md"
 
 LATEX_DEPS = [CSTM_BLKS, INCL_FILE, LATEX_TIPA, EDGEMARKERS,
-              LATEX_TEMPLATE, YAMLHEADER, LATEX_PREAMBLE, MODCMDS]
+              LATEX_TEMPLATE, LATEX_PREAMBLE, MODCMDS]
 HTML_DEPS = [CSTM_BLKS, INCL_FILE,
              WEBCSS, MATHJAXCALL, MODCMDS]
 
