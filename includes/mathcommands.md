@@ -1,3 +1,7 @@
+% Custom math commands are kept separately to allow conversion for
+% each output format. Jupyter requires dollar signs, while LaTeX requires
+% them *not* to be included.
+
 $\newcommand{\card}[1]{\left | #1 \right |}$
 $\newcommand{\counts}[2]{\card{#2}_{#1}}$
 $\newcommand{\domsymbol}{\triangleleft}$
