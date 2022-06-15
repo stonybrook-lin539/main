@@ -21,7 +21,7 @@ LATEX_TIPA = "filters/latex-tipa.lua"
 STRIP_CODE = "filters/remove_code.lua"
 EDGEMARKERS = "filters/edgemarkers.lua"
 
-MYCOMMANDS = Path("includes/mycommands.mdown")
+MYCOMMANDS = Path("includes/mathcommands.md")
 LATEX_PREAMBLE = Path("includes/preamble.tex")
 YAMLHEADER = Path("includes/format.yaml")
 WEBCSS = Path("includes/web-custom.css").resolve()  # must be absolute to load locally
@@ -38,7 +38,7 @@ IMGDIR = BUILDDIR / "images"
 TEXDIR = BUILDDIR / "latex"
 PDFDIR = BUILDDIR / "pdf"
 HTMLDIR = BUILDDIR / "html"
-MODCMDS = BUILDDIR / "mycommands-preproc.mdown"
+MODCMDS = BUILDDIR / "mathcommands-preproc.md"
 
 LATEX_DEPS = [CSTM_BLKS, INCL_FILE, LATEX_TIPA, EDGEMARKERS,
               LATEX_TEMPLATE, YAMLHEADER, LATEX_PREAMBLE, MODCMDS]
@@ -105,7 +105,7 @@ def task_test_chapter():
         "clean": True}
 
 
-def task_modcommands():
+def task_mathcommands():
     """
     Preprocess custom command file for PDF (LaTeX) and HTML conversion.
 
