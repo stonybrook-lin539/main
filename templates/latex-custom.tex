@@ -162,10 +162,14 @@ $if(singlechapter)$
 % Use chapter number and title from metadata to simulate title
 $if(chapter-title)$
 $if(chapter-number)$
-\setcounter{chapter}{$chapter-number$}
-{\noindent\LARGE\bfseries Chapter $chapter-number$ \par\bigskip}
+% \setcounter{chapter}{$chapter-number$}
+% {\noindent\LARGE\bfseries Chapter $chapter-number$ \par\bigskip}
+\setcounter{chapter}{\numexpr $chapter-number$ - 1 \relax}
+\chapter{$chapter-title$}
+$else$
+% {\noindent\Huge\bfseries $chapter-title$ \par\bigskip}
+\chapter*{$chapter-title$}
 $endif$
-{\noindent\Huge\bfseries $chapter-title$ \par\bigskip}
 $endif$
 $elseif(title)$
 \maketitle
