@@ -33,7 +33,9 @@
 !pdf/
 !pdf/**/
 !includes/
+!includes/**/
 !scripts/
+!scripts/**/
 !source/
 !source/**/
 !templates/
