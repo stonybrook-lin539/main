@@ -1,3 +1,6 @@
+% This file contains code specific to the content of the book.
+% General formatting (font, page style) is in the LaTeX template.
+
 \usepackage[subpreambles=true]{standalone}
 % \usepackage[charter]{mathdesign} % requires package ly1 for texnansi.enc
 \usepackage[notext]{stix2} % provides \sqsubsetneq
@@ -9,6 +12,10 @@
 \usepackage[linguistics]{forest}
 \usepackage{etoolbox}
 \usepackage{environ}
+
+%
+% Exercises
+%
 
 \newcounter{exercise}
 \def\theexercise{\arabic{exercise}}
@@ -24,22 +31,24 @@
       breakable,
       overlay unbroken and first={%
         \node[inner sep=0pt,outer sep=0pt,text width=0.15\textwidth,
-          align=left,
-          below right]
+          align=left,below right]
           at ([xshift=-0.15\textwidth]frame.north west)
-      {%
-        \noindent%
-        \bfseries\color[HTML]{2D68A2}
-        #1%
-        Exercise\\
-        \smallskip
-        \LARGE\theexercise%
-      };}]%
-}%
-{%
+          {%
+            \noindent%
+            \bfseries\color[HTML]{2D68A2}
+            #1%
+            Exercise\\
+            \smallskip
+            \LARGE\theexercise%
+          };}]%
+}{%
     \end{tcolorbox}%
     % \smallskip\noindent%
 }
+
+%
+% Exercise Solutions
+%
 
 \newenvironment{solution}[1][\unskip]{%
     \bigskip%
@@ -51,17 +60,15 @@
       breakable,
       overlay unbroken and first={%
         \node[inner sep=0pt,outer sep=0pt,text width=0.15\textwidth,
-          align=left,
-          below right]
+          align=left,below right]
           at ([xshift=-0.15\textwidth]frame.north west)
-      {%
-        \noindent%
-        \bfseries\color[HTML]{8A2194}
-        #1%
-        Solution\\
-      };}]%
-}%
-{%
+          {%
+            \noindent%
+            \bfseries\color[HTML]{8A2194}
+            #1%
+            Solution\\
+          };}]%
+}{%
     \end{tcolorbox}%
     % \smallskip\noindent%
 }
@@ -70,6 +77,10 @@
 \newcommand{\exranswerlist}{}
 \NewEnviron{exranswer}{\ifbool{showanswers}{%
   \xappto\exranswerlist{\theexercise . \BODY}}{}}
+
+%
+% Examples
+%
 
 \newcounter{example}
 \def\theexample{\arabic{example}}
@@ -85,22 +96,24 @@
       breakable,
       overlay unbroken and first={%
         \node[inner sep=0pt,outer sep=0pt,text width=0.15\textwidth,
-          align=left,
-          below right]
+          align=left,below right]
           at ([xshift=-0.15\textwidth]frame.north west)
-      {%
-        \noindent%
-        \bfseries\color[HTML]{1A933D}%
-        #1%
-        Example\\
-        \smallskip
-        \LARGE\theexample%
-      };}]%
-}
-{%
+          {%
+            \noindent%
+            \bfseries\color[HTML]{1A933D}%
+            #1%
+            Example\\
+            \smallskip
+            \LARGE\theexample%
+          };}]%
+}{%
     \end{tcolorbox}%
     % \smallskip\par\noindent%
 }
+
+%
+% Advice Block
+%
 
 \newenvironment{advice}[1][\unskip]{%
     \bigskip%
@@ -112,17 +125,15 @@
       breakable,
       overlay unbroken and first={%
         \node[inner sep=0pt,outer sep=0pt,text width=0.15\textwidth,
-          align=left,
-          below right]
+          align=left, below right]
           at ([xshift=-0.15\textwidth]frame.north west)
-      {%
-        \noindent%
-        \bfseries\color[HTML]{D425A7}%
-        #1%
-        Advice
-      };}]%
-}
-{%
+          {%
+            \noindent%
+            \bfseries\color[HTML]{D425A7}%
+            #1%
+            Advice
+          };}]%
+}{%
     \end{tcolorbox}%
     % \smallskip\par\noindent%
 }
@@ -141,6 +152,9 @@
 %     \medskip\par\noindent\ignorespacesafterend%
 % }
 
+%
+% Theorems, etc.
+%
 
 \theoremstyle{plain}
 \theoremheaderfont{\normalfont\bfseries}
