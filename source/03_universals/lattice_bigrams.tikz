@@ -1,5 +1,6 @@
 \documentclass[tikz]{standalone}
-\usepackage[charter]{mathdesign}
+% \usepackage[charter]{mathdesign}
+\usepackage[notext,notextcomp]{stix2}
 \usetikzlibrary{positioning}
 \providecommand{\emptystring}{\ensuremath{\varepsilon}}
 \providecommand{\setof}[1]{\ensuremath{\left \{ #1 \right \}}}
