@@ -3,7 +3,7 @@
 
 \usepackage[subpreambles=true]{standalone}
 % \usepackage[charter]{mathdesign} % requires package ly1 for texnansi.enc
-\usepackage[notext]{stix2} % provides \sqsubsetneq
+\usepackage[notext,notextcomp]{stix2} % provides \sqsubsetneq
 \usepackage{mathtools}	% revised version of amsmath
 \usepackage{tipa}
 \usepackage[amsmath,hyperref,thmmarks]{ntheorem}
@@ -181,8 +181,7 @@
 \theoremheaderfont{\normalfont\itshape}
 \theoremprework{}
 \theorempostwork{}
-\newcommand{\myQED}{\ensuremath{\blacksquare}} % avoid clash with stix
-\qedsymbol{\myQED}
+\qedsymbol{\ensuremath{\blacksquare}}
 \theoremsymbol{\ensuremath{\Box}}
 \newtheorem{proof}{Proof}
 
