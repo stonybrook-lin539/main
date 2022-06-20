@@ -4,7 +4,7 @@ Doit task definition file for LIN 539 course notes.
 
 from pathlib import Path
 from itertools import chain
-from doit.tools import title_with_actions
+# from doit.tools import title_with_actions
 
 DOIT_CONFIG = {"default_tasks": ["test_chapter"],
                "check_file_uptodate": "timestamp"}
@@ -12,30 +12,33 @@ DOIT_CONFIG = {"default_tasks": ["test_chapter"],
 
 TIKZ2SVG = "scripts/tikz2svg.sh"
 
-LATEX_TEMPLATE = "templates/latex-custom.tex"
-# LATEX_BOOK_TEMPLATE = "templates/full-book.tex"
-# LATEX_CH_TEMPLATE = "templates/single-chapter.tex"
-
+# custom Pandoc filters
 CSTM_BLKS = "filters/custom-blocks.lua"
 INCL_FILE = "filters/include-file.lua"
 LATEX_TIPA = "filters/latex-tipa.lua"
 STRIP_CODE = "filters/remove_code.lua"
 EDGEMARKERS = "filters/edgemarkers.lua"
 
-MYCOMMANDS = Path("includes/mathcommands.md")
+# Pandoc templates and includes
+LATEX_TEMPLATE = "templates/latex-custom.tex"
+# LATEX_BOOK_TEMPLATE = "templates/full-book.tex"
+# LATEX_CH_TEMPLATE = "templates/single-chapter.tex"
+MATHCMDS = Path("includes/mathcommands.md")
 LATEX_PREAMBLE = Path("includes/preamble.tex")
 # YAMLHEADER = Path("includes/format.yaml")
 WEBCSS = Path("includes/web-custom.css").resolve()  # must be absolute to load locally
 MATHJAXCALL = Path("includes/include-mathjax.html")
 
+# source files/directories
 SRCDIR = Path("source")
 MD_EXTS = (".mdown", ".md")
 SRC_MD = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in MD_EXTS
                 and "old" not in f.parts
-                and "solutions" not in f.parts)
+                and "solutions" not in f.parts)  # omit solutions for now
 TIKZ_EXTS = (".tikz", ".forest")
 SRC_TIKZ = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in TIKZ_EXTS)
 
+# output files/directories
 BUILDDIR = Path("build")
 IMGDIR = BUILDDIR / "images"
 TEXDIR = BUILDDIR / "latex"
@@ -47,30 +50,37 @@ MODCMDS = BUILDDIR / "mathcommands-preproc.md"
 TEX_BOOK = TEXDIR / "full-book.tex"
 PDF_BOOK = PDFDIR / "full-book.pdf"
 
+# Pandoc shared dependencies
 LATEX_DEPS = [CSTM_BLKS, INCL_FILE, LATEX_TIPA, EDGEMARKERS,
               LATEX_TEMPLATE, LATEX_PREAMBLE, MODCMDS]
 HTML_DEPS = [CSTM_BLKS, INCL_FILE,
              WEBCSS, MATHJAXCALL, MODCMDS]
 
-# options shared by all Pandoc commands
+# Pandoc shared options
 PANDOC_OPTS = (
     "-f markdown-implicit_figures"
     f" --metadata-file={SRCDIR}/metadata.yaml"
     # " -V showanswers"
-    f" -L {CSTM_BLKS} -L {INCL_FILE}")
+    f" -L {CSTM_BLKS}"
+    f" -L {INCL_FILE}"
+)
 
-# options for LaTeX/PDF only
 LATEX_OPTS = (
-    f" -H {LATEX_PREAMBLE} -H {MODCMDS}"
-    f" --template {LATEX_TEMPLATE}"
+    f"--template {LATEX_TEMPLATE}"
+    f" -H {LATEX_PREAMBLE}"
+    f" -H {MODCMDS}"
     f" -L {LATEX_TIPA}"
-    f" -L {EDGEMARKERS}")
+    f" -L {EDGEMARKERS}"
+)
 
-# options for HTML only
 HTML_OPTS = (
     f"--shift-heading-level-by=1 -c {WEBCSS}"
-    f" --mathjax -Vmath='' -H {MATHJAXCALL}"
-    f" {MODCMDS}")
+    f" --mathjax -Vmath='' -H {MATHJAXCALL}"  # see task def for details
+    f" {MODCMDS}"
+)
+
+# pdflatex engine and shared options
+LATEX = "pdflatex -interaction=nonstopmode -halt-on-error"
 
 # BOOK_OPTIONS = "--toc-depth"
 
@@ -147,11 +157,11 @@ def task_mathcommands():
     """
     return {
         "targets": [MODCMDS],
-        "file_dep": [MYCOMMANDS],
+        "file_dep": [MATHCMDS],
         "actions": [
             f"mkdir -p $(dirname {MODCMDS})",
             ("sed -e 's/\\(^\\$\\|\\$$\\)//g' -e '/^%%/d'"
-             f" {MYCOMMANDS} > {MODCMDS}")],
+             f" {MATHCMDS} > {MODCMDS}")],
             "clean": True}
 
 
@@ -177,7 +187,7 @@ def task_latex_book():
     return {
         "targets": [outfile],
         "file_dep": [*infiles, *LATEX_DEPS],
-        "actions": [f"mkdir -p $(dirname {outfile})", cmd],
+        "actions": [f"mkdir -p {outfile.parent}", cmd],
         "clean": True}
 
 
@@ -193,14 +203,13 @@ def task_pdf_book():
     buildfile = PDFBUILDDIR / outfile.relative_to(PDFDIR)
     cmd = (
         f"TEXINPUTS=.:{':'.join(str(sd) for sd in srcsubdirs)}:"
-        f" pdflatex -interaction nonstopmode"
-        f" -output-directory $(dirname {buildfile}) {infile}"
+        f" {LATEX} -output-directory {buildfile.parent} {infile}"
         f" && mv {buildfile} {outfile}"
     )
     return {
         "targets": [outfile],
         "file_dep": [infile],
-        "actions": [f"mkdir -p $(dirname {outfile})", cmd],
+        "actions": [f"mkdir -p {buildfile.parent} {outfile.parent}", cmd],
         "clean": True}
 
 
@@ -212,9 +221,9 @@ def task_latex_chaps():
         srcsubdir = SRCDIR / ch
         infiles = [str(f)
                    for f in sorted(srcsubdir.glob("*.md"))]
-        outfile = f"{TEXDIR}/chapters/{ch}.tex"
+        outfile = TEXDIR / f"chapters/{ch}.tex"
         cmd = (
-            f"pandoc -t latex {PANDOC_OPTS} {LATEX_OPTS}"
+            f"pandoc -s -t latex {PANDOC_OPTS} {LATEX_OPTS}"
             " -M singlechapter"
             f" --metadata-file={srcsubdir}/metadata.yaml"
             f" {' '.join(infiles)} -o {outfile}"
@@ -223,7 +232,7 @@ def task_latex_chaps():
             "name": outfile,
             "targets": [outfile],
             "file_dep": [*infiles, *LATEX_DEPS],
-            "actions": [f"mkdir -p $(dirname {outfile})", cmd],
+            "actions": [f"mkdir -p {outfile.parent}", cmd],
             "clean": True}
 
 
@@ -234,20 +243,18 @@ def task_pdf_chaps(test=True):
     for ch in BOOK_CHAPS:
         srcsubdir = SRCDIR / ch
         infile = f"{TEXDIR}/chapters/{ch}.tex"
-        buildfile = f"{PDFBUILDDIR}/chapters/{ch}.pdf"
-        outfile = f"{PDFDIR}/chapters/{ch}.pdf"
+        buildfile = PDFBUILDDIR / f"chapters/{ch}.pdf"
+        outfile = PDFDIR / f"chapters/{ch}.pdf"
         cmd = (
             f"TEXINPUTS=.:{srcsubdir}:"
-            f" pdflatex -interaction nonstopmode"
-            f" -output-directory $(dirname {buildfile}) {infile}"
+            f" {LATEX} -output-directory {buildfile.parent} {infile}"
             f" && mv {buildfile} {outfile}"
         )
         yield {
             "name": outfile,
             "targets": [outfile],
             "file_dep": [infile],
-            "actions": [f"mkdir -p $(dirname {buildfile}) $(dirname {outfile})",
-                        cmd],
+            "actions": [f"mkdir -p {buildfile.parent} {outfile.parent}", cmd],
             "clean": True}
 
 
@@ -255,14 +262,15 @@ def task_latex_sections():
     for infile in SRC_MD:
         outfile = TEXDIR / "sections" / infile.relative_to(SRCDIR).with_suffix(".tex")
         cmd = (
-            f"pandoc -s -f markdown -t latex {PANDOC_OPTS} {LATEX_OPTS}"
+            f"pandoc -s -t latex {PANDOC_OPTS} {LATEX_OPTS}"
+            " -M singlesection"
             f" {infile} -o {outfile}"
         )
         yield {
             "name": outfile,
             "targets": [outfile],
             "file_dep": [infile, *LATEX_DEPS],
-            "actions": [f"mkdir -p $(dirname {outfile})", cmd],
+            "actions": [f"mkdir -p {outfile.parent}", cmd],
             "clean": True}
 
 
@@ -274,15 +282,14 @@ def task_pdf_sections():
         outfile = PDFDIR / infile.relative_to(TEXDIR).with_suffix(".pdf")
         cmd = (
             f"TEXINPUTS=.:{srcsubdir}:"
-            f" pdflatex -interaction nonstopmode"
-            f" -output-directory $(dirname {buildfile}) {infile}"
+            f" {LATEX} -output-directory {buildfile.parent} {infile}"
             f" && mv {buildfile} {outfile}"
         )
         yield {
             "name": outfile,
             "targets": [outfile],
             "file_dep": [infile, *LATEX_DEPS],
-            "actions": [f"mkdir -p $(dirname {buildfile}) $(dirname {outfile})",
+            "actions": [f"mkdir -p {buildfile.parent} {outfile.parent}",
                         cmd],
             "clean": True}
 
