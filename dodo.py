@@ -85,17 +85,22 @@ LATEX = "pdflatex -interaction=nonstopmode -halt-on-error"
 # BOOK_OPTIONS = "--toc-depth"
 
 # source directories
-BOOK_CHAPS = ["01_intro", "02_n-grams", "03_universals", "04_representations",
-              "05_automata"]
-BOOK_CHAPS += [f"background/{subch}" for subch in
-               ["algebra", "functions", "general", "graphs", "logic", "multisets",
-                "posets", "relations", "sets", "strings", "tuples"]]
+MAIN_CHAPS = [f"main/{ch}" for ch in
+              ["01_intro", "02_n-grams", "03_universals", "04_representations",
+               "05_automata"]]
+BG_CHAPS = [f"background/{ch}" for ch in
+            ["algebra", "functions", "general", "graphs", "logic", "multisets",
+             "posets", "relations", "sets", "strings", "tuples"]]
+BOOK_CHAPS = MAIN_CHAPS + BG_CHAPS
 # BOOK_CHAPS += ["solutions/01_intro", "solutions/02_n-grams",
 #                "solutions/03_universals", "solutions/04_representations",
 #                "solutions/05_automata"]
 # BOOK_CHAPS += [f"solutions/background/{subch}" for subch in
 #                ["functions", "general", "graphs", "logic", "multisets",
 #                 "posets", "relations", "sets", "strings", "tuples"]]
+# MAIN_CH_DIRS = sorted(d for d in Path("source/main").iterdir() if d.is_dir())
+# BG_CH_DIRS = sorted(d for d in Path("source/background").iterdir() if d.is_dir())
+# ALL_CH_DIRS = MAIN_CH_DIRS + BG_CH_DIRS
 
 
 def task_test_chapter():
