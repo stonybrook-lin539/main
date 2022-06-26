@@ -6,11 +6,13 @@ from pathlib import Path
 from itertools import chain
 # from doit.tools import title_with_actions
 
-DOIT_CONFIG = {"default_tasks": ["test_chapter"],
+DOIT_CONFIG = {"default_tasks": ["pdf_book", "pdf_chaps", "pdf_sections"],
                "check_file_uptodate": "timestamp"}
 # DOIT_CONFIG = {"action_string_formatting": "new"}
 
+# external programs
 TIKZ2SVG = "scripts/tikz2svg.sh"
+LATEX = "latexmk -pdf -interaction=nonstopmode -halt-on-error"
 
 # custom Pandoc filters
 CSTM_BLKS = "filters/custom-blocks.lua"
@@ -26,27 +28,47 @@ LATEX_TEMPLATE = "templates/latex-custom.tex"
 MATHCMDS = Path("includes/mathcommands.md")
 LATEX_PREAMBLE = Path("includes/preamble.tex")
 # YAMLHEADER = Path("includes/format.yaml")
-WEBCSS = Path("includes/web-custom.css").resolve()  # must be absolute to load locally
+# CSS path must be absolute to load locally
+WEBCSS = Path("includes/web-custom.css").resolve()
 MATHJAXCALL = Path("includes/include-mathjax.html")
 
 # source files/directories
-SRCDIR = Path("source")
 MD_EXTS = (".mdown", ".md")
+TIKZ_EXTS = (".tikz", ".forest")
+SRCDIR = Path("source")
 SRC_MD = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in MD_EXTS
                 and "old" not in f.parts
-                and "solutions" not in f.parts)  # omit solutions for now
-TIKZ_EXTS = (".tikz", ".forest")
+                and "solutions" not in f.parts)
+SRC_TEX = sorted(f for f in SRCDIR.glob('**/*') if f.suffix == ".tex")
 SRC_TIKZ = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in TIKZ_EXTS)
+
+# source directories
+MAIN_CHAPS = [f"main/{ch}" for ch in
+              ["01_intro", "02_n-grams", "03_universals", "04_representations",
+               "05_automata"]]
+BG_CHAPS = [f"background/{ch}" for ch in
+            ["algebra", "functions", "general", "graphs", "logic", "multisets",
+             "posets", "relations", "sets", "strings", "tuples"]]
+ALL_CHAPS = MAIN_CHAPS + BG_CHAPS
+# ALL_CHAPS += ["solutions/01_intro", "solutions/02_n-grams",
+#                "solutions/03_universals", "solutions/04_representations",
+#                "solutions/05_automata"]
+# ALL_CHAPS += [f"solutions/background/{subch}" for subch in
+#                ["functions", "general", "graphs", "logic", "multisets",
+#                 "posets", "relations", "sets", "strings", "tuples"]]
+# MAIN_CH_DIRS = sorted(d for d in Path("source/main").iterdir() if d.is_dir())
+# BG_CH_DIRS = sorted(d for d in Path("source/background").iterdir() if d.is_dir())
+# ALL_CH_DIRS = MAIN_CH_DIRS + BG_CH_DIRS
 
 # output files/directories
 BUILDDIR = Path("build")
 IMGDIR = BUILDDIR / "images"
 TEXDIR = BUILDDIR / "latex"
 PDFDIR = BUILDDIR / "pdf"
-PDFBUILDDIR = BUILDDIR / "pdfbuild"
 HTMLDIR = BUILDDIR / "html"
 MODCMDS = BUILDDIR / "mathcommands-preproc.md"
 
+MD_BOOK = SRCDIR / "full-book.md"
 TEX_BOOK = TEXDIR / "full-book.tex"
 PDF_BOOK = PDFDIR / "full-book.pdf"
 
@@ -79,39 +101,20 @@ HTML_OPTS = (
     f" {MODCMDS}"
 )
 
-# pdflatex engine and shared options
-LATEX = "pdflatex -interaction=nonstopmode -halt-on-error"
 
-# BOOK_OPTIONS = "--toc-depth"
-
-# source directories
-MAIN_CHAPS = [f"main/{ch}" for ch in
-              ["01_intro", "02_n-grams", "03_universals", "04_representations",
-               "05_automata"]]
-BG_CHAPS = [f"background/{ch}" for ch in
-            ["algebra", "functions", "general", "graphs", "logic", "multisets",
-             "posets", "relations", "sets", "strings", "tuples"]]
-BOOK_CHAPS = MAIN_CHAPS + BG_CHAPS
-# BOOK_CHAPS += ["solutions/01_intro", "solutions/02_n-grams",
-#                "solutions/03_universals", "solutions/04_representations",
-#                "solutions/05_automata"]
-# BOOK_CHAPS += [f"solutions/background/{subch}" for subch in
-#                ["functions", "general", "graphs", "logic", "multisets",
-#                 "posets", "relations", "sets", "strings", "tuples"]]
-# MAIN_CH_DIRS = sorted(d for d in Path("source/main").iterdir() if d.is_dir())
-# BG_CH_DIRS = sorted(d for d in Path("source/background").iterdir() if d.is_dir())
-# ALL_CH_DIRS = MAIN_CH_DIRS + BG_CH_DIRS
-
+#
+# Tasks to build just part of the book for faster testing
+#
 
 def task_test_chapter():
     """Compile just one chapter to PDF."""
     chname = "02_n-grams"
-    srcsubdir = SRCDIR / chname
+    srcsubdir = SRCDIR / "main" / chname
     infiles = sorted(str(f) for f in srcsubdir.glob("*.md"))
     outfile = f"{PDFDIR}/test/{chname}.pdf"
     cmd = (
         f"TEXINPUTS=.:{srcsubdir}:"
-        f" pandoc -s -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
+        f" pandoc -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
         " --toc --toc-depth 1"
         " -M singlechapter"
         f" --metadata-file={srcsubdir}/metadata.yaml"
@@ -129,14 +132,14 @@ def task_test_section():
     """Compile just one section to PDF."""
     chname = "02_n-grams"
     secname = "00_ngrams"
-    srcsubdir = SRCDIR / chname
-    infile = f"{SRCDIR}/{chname}/{secname}.md"
+    srcsubdir = SRCDIR / "main" / chname
+    infile = f"{srcsubdir}/{secname}.md"
     outfile = f"{PDFDIR}/test/{chname}/{secname}.pdf"
     cmd = (
         f"TEXINPUTS=.:{srcsubdir}:"
-        f" pandoc -s -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
-        " --shift-heading-level-by=-1"
+        f" pandoc -t pdf {PANDOC_OPTS} {LATEX_OPTS}"
         " -M singlesection"
+        " --shift-heading-level-by=-1"
         f" --metadata-file={srcsubdir}/metadata.yaml"
         " --verbose"
         f" {infile} -o {outfile}"
@@ -171,21 +174,21 @@ def task_mathcommands():
 
 
 #
-# PDF/LaTeX build path
+# PDF/LaTeX build path -- full book
 #
 
 def task_latex_book():
     """
     Build entire book as LaTeX using Pandoc.
     """
-    srcsubdirs = [SRCDIR / ch for ch in BOOK_CHAPS]
-    infiles = sorted(str(f)
-                     for f in chain.from_iterable(subdir.glob("*.md")
-                                                  for subdir in srcsubdirs))
+    srcsubdirs = [SRCDIR / ch for ch in ALL_CHAPS]
+    infiles = [str(f) for f in chain.from_iterable(
+               sorted(subdir.glob("*")) for subdir in srcsubdirs)
+               if f.suffix in (".tex", ".md")]
     outfile = TEX_BOOK
     cmd = (
-        f"TEXINPUTS=.:{':'.join(str(sd) for sd in srcsubdirs)}:"
-        f" pandoc -s -t latex {PANDOC_OPTS} {LATEX_OPTS}"
+        f" pandoc -t latex {PANDOC_OPTS} {LATEX_OPTS}"
+        # f" --template {LATEX_TEMPLATE}"
         " --toc --toc-depth 1"
         f" {' '.join(infiles)} -o {outfile}"
     )
@@ -198,37 +201,37 @@ def task_latex_book():
 
 def task_pdf_book():
     """
-    Build entire book as PDF.
-
-    If intermediate LaTeX is needed, use "latex_book" instead.
+    Compile PDF book from LaTeX generated by Pandoc.
     """
-    srcsubdirs = [SRCDIR / ch for ch in BOOK_CHAPS]
+    srcsubdirs = [SRCDIR / ch for ch in ALL_CHAPS]
     infile = TEX_BOOK
     outfile = PDF_BOOK
-    buildfile = PDFBUILDDIR / outfile.relative_to(PDFDIR)
     cmd = (
         f"TEXINPUTS=.:{':'.join(str(sd) for sd in srcsubdirs)}:"
-        f" {LATEX} -output-directory {buildfile.parent} {infile}"
-        f" && mv {buildfile} {outfile}"
+        f" {LATEX} -output-directory={outfile.parent} {infile}"
     )
     return {
         "targets": [outfile],
         "file_dep": [infile],
-        "actions": [f"mkdir -p {buildfile.parent} {outfile.parent}", cmd],
+        "actions": [f"mkdir -p {outfile.parent}", cmd],
         "clean": True}
 
+
+#
+# PDF/LaTeX build path -- standalone chapters
+#
 
 def task_latex_chaps():
     """
     Build LaTeX standalone chapters with Pandoc.
     """
-    for ch in BOOK_CHAPS:
+    for ch in ALL_CHAPS:
         srcsubdir = SRCDIR / ch
         infiles = [str(f)
                    for f in sorted(srcsubdir.glob("*.md"))]
         outfile = TEXDIR / f"chapters/{ch}.tex"
         cmd = (
-            f"pandoc -s -t latex {PANDOC_OPTS} {LATEX_OPTS}"
+            f"pandoc -t latex {PANDOC_OPTS} {LATEX_OPTS}"
             " -M singlechapter"
             f" --metadata-file={srcsubdir}/metadata.yaml"
             f" {' '.join(infiles)} -o {outfile}"
@@ -245,30 +248,36 @@ def task_pdf_chaps(test=True):
     """
     Build PDF chapters from LaTeX generated by Pandoc.
     """
-    for ch in BOOK_CHAPS:
+    for ch in ALL_CHAPS:
         srcsubdir = SRCDIR / ch
         infile = f"{TEXDIR}/chapters/{ch}.tex"
-        buildfile = PDFBUILDDIR / f"chapters/{ch}.pdf"
         outfile = PDFDIR / f"chapters/{ch}.pdf"
         cmd = (
             f"TEXINPUTS=.:{srcsubdir}:"
-            f" {LATEX} -output-directory {buildfile.parent} {infile}"
-            f" && mv {buildfile} {outfile}"
+            f" {LATEX} -output-directory={outfile.parent} {infile}"
         )
         yield {
             "name": outfile,
             "targets": [outfile],
             "file_dep": [infile],
-            "actions": [f"mkdir -p {buildfile.parent} {outfile.parent}", cmd],
+            "actions": [f"mkdir -p {outfile.parent}", cmd],
             "clean": True}
 
 
+#
+# PDF/LaTeX build path -- individual units
+#
+
 def task_latex_sections():
+    """
+    Build LaTeX standalone sections with Pandoc.
+    """
     for infile in SRC_MD:
         outfile = TEXDIR / "sections" / infile.relative_to(SRCDIR).with_suffix(".tex")
         cmd = (
             f"pandoc -s -t latex {PANDOC_OPTS} {LATEX_OPTS}"
             " -M singlesection"
+            " --shift-heading-level-by=-1"
             f" {infile} -o {outfile}"
         )
         yield {
@@ -280,27 +289,27 @@ def task_latex_sections():
 
 
 def task_pdf_sections():
+    """
+    Build PDF sections from LaTeX generated by Pandoc.
+    """
     for srcfile in SRC_MD:
         srcsubdir = srcfile.parent
         infile = TEXDIR / "sections" / srcfile.relative_to(SRCDIR).with_suffix(".tex")
-        buildfile = PDFBUILDDIR / infile.relative_to(TEXDIR).with_suffix(".pdf")
         outfile = PDFDIR / infile.relative_to(TEXDIR).with_suffix(".pdf")
         cmd = (
             f"TEXINPUTS=.:{srcsubdir}:"
-            f" {LATEX} -output-directory {buildfile.parent} {infile}"
-            f" && mv {buildfile} {outfile}"
+            f" {LATEX} -output-directory={outfile.parent} {infile}"
         )
         yield {
             "name": outfile,
             "targets": [outfile],
             "file_dep": [infile, *LATEX_DEPS],
-            "actions": [f"mkdir -p {buildfile.parent} {outfile.parent}",
-                        cmd],
+            "actions": [f"mkdir -p {outfile.parent}", cmd],
             "clean": True}
 
 
 #
-# HTML Build Path
+# HTML build path
 #
 
 def task_html_chaps():
@@ -317,7 +326,7 @@ def task_html_chaps():
     use -Vmath='' to manually clear the internal variable where Pandoc records
     whether math was detected, and insert the script ourselves.
     """
-    for ch in BOOK_CHAPS:
+    for ch in ALL_CHAPS:
         infiles = sorted(str(f)
                          for f in Path(f"{SRCDIR}/{ch}").glob("*.md"))
         incl_images = sorted(HTMLDIR / img.relative_to(SRCDIR).with_suffix(".svg")
