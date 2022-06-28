@@ -51,8 +51,8 @@ MAIN_CHAPS = [f"main/{ch}" for ch in
               ["01_intro", "02_n-grams", "03_universals", "04_representations",
                "05_automata"]]
 BG_CHAPS = [f"background/{ch}" for ch in
-            ["algebra", "functions", "general", "graphs", "logic", "multisets",
-             "posets", "relations", "sets", "strings", "tuples"]]
+            ["general", "logic", "sets", "multisets", "strings", "tuples",
+             "functions", "relations", "posets", "graphs", "algebra"]]
 ALL_CHAPS = MAIN_CHAPS + BG_CHAPS
 # ALL_CHAPS += ["solutions/01_intro", "solutions/02_n-grams",
 #                "solutions/03_universals", "solutions/04_representations",
