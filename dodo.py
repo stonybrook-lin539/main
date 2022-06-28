@@ -43,8 +43,8 @@ SRC_MD = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in MD_EXTS
 # SRC_TEX = sorted(f for f in SRCDIR.glob('**/*') if f.suffix == ".tex")
 SRC_TIKZ = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in TIKZ_EXTS)
 
-# TESTDIR = Path("test")
-# TEST_MD = sorted(f for f in SRCDIR.glob('buildsystem/*') if f.suffix in MD_EXTS)
+TESTDIR = Path("test/demo")
+TEST_MD = sorted(f for f in TESTDIR.glob('*') if f.suffix in MD_EXTS)
 
 # source directories
 MAIN_CHAPS = [f"main/{ch}" for ch in
@@ -126,6 +126,25 @@ HTML_OPTS = (
 #
 # Tasks to build just part of the book for faster testing
 #
+
+def task_test_docs():
+    """Compile test documents."""
+    for infile in TEST_MD:
+        srcsubdir = infile.parent
+        outfile = infile.with_suffix(".pdf")
+        cmd = (
+            f"TEXINPUTS=.:{srcsubdir}:"
+            f" pandoc -t pdf {PANDOC_OPTS} {LATEX_OPTS} {LATEX_SEC_OPTS}"
+            f" --resource-path=.:{srcsubdir}"
+            f" {infile} -o {outfile}"
+        )
+        yield {
+            "name": outfile,
+            "targets": [outfile],
+            "file_dep": [infile, *LATEX_DEPS],
+            "actions": [f"mkdir -p {outfile.parent}", cmd],
+            "clean": True}
+
 
 def task_test_chapter():
     """Compile just one chapter to PDF."""

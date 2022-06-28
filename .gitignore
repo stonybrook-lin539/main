@@ -15,6 +15,7 @@
 !*.lua
 !*.md
 !*.mdown
+!*.png
 !*.py
 !*.sed
 !*.sh
