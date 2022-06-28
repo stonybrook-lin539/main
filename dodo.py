@@ -33,27 +33,44 @@ WEBCSS = Path("includes/web-custom.css").resolve()
 MATHJAXCALL = Path("includes/include-mathjax.html")
 
 # source files/directories
+
 MD_EXTS = (".mdown", ".md")
 TIKZ_EXTS = (".tikz", ".forest")
+TEX_EXT = ".tex"
+
 SRCDIR = Path("source")
+MAIN_SRCDIR = SRCDIR / "main"
+BG_SRCDIR = SRCDIR / "background"
+
 SRC_MD = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in MD_EXTS
                 and "old" not in f.parts
                 and "solutions" not in f.parts
-                and "test" not in f.parts)
-# SRC_TEX = sorted(f for f in SRCDIR.glob('**/*') if f.suffix == ".tex")
+                and "syllabus" not in f.parts)
+# SRC_TEX = sorted(f for f in SRCDIR.glob('**/*') if f.suffix == TEX_EXT)
 SRC_TIKZ = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in TIKZ_EXTS)
+
+MAIN_CHAPS = sorted(d.relative_to(SRCDIR)
+                    for d in MAIN_SRCDIR.glob("*") if d.is_dir())
+BG_CHAPS = sorted(d.relative_to(SRCDIR)
+                  for d in BG_SRCDIR.glob("*") if d.is_dir())
+ALL_CHAPS = MAIN_CHAPS + BG_CHAPS
+
+MAIN_SRCFILES = sorted(f for f in MAIN_SRCDIR.glob("**/*")
+                       if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
+BG_SRCFILES = sorted(f for f in BG_SRCDIR.glob("**/*")
+                     if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
 
 TESTDIR = Path("test/demo")
 TEST_MD = sorted(f for f in TESTDIR.glob('*') if f.suffix in MD_EXTS)
 
 # source directories
-MAIN_CHAPS = [f"main/{ch}" for ch in
-              ["01_intro", "02_n-grams", "03_universals", "04_representations",
-               "05_automata"]]
-BG_CHAPS = [f"background/{ch}" for ch in
-            ["general", "logic", "sets", "multisets", "strings", "tuples",
-             "functions", "relations", "posets", "graphs", "algebra"]]
-ALL_CHAPS = MAIN_CHAPS + BG_CHAPS
+# MAIN_CHAPS = [f"main/{ch}" for ch in
+#               ["01_intro", "02_n-grams", "03_universals", "04_representations",
+#                "05_automata"]]
+# BG_CHAPS = [f"background/{ch}" for ch in
+#             ["general", "logic", "sets", "multisets", "strings", "tuples",
+#              "functions", "relations", "posets", "graphs", "algebra"]]
+# ALL_CHAPS = MAIN_CHAPS + BG_CHAPS
 # ALL_CHAPS += ["solutions/01_intro", "solutions/02_n-grams",
 #                "solutions/03_universals", "solutions/04_representations",
 #                "solutions/05_automata"]
@@ -214,10 +231,7 @@ def task_latex_book():
     """
     Build entire book as LaTeX using Pandoc.
     """
-    srcsubdirs = [SRCDIR / ch for ch in ALL_CHAPS]
-    infiles = [str(f) for f in chain.from_iterable(
-               sorted(subdir.glob("*")) for subdir in srcsubdirs)
-               if f.suffix in (".tex", ".md")]
+    infiles = [str(f) for f in chain(MAIN_SRCFILES, BG_SRCFILES)]
     outfile = TEX_BOOK
     cmd = (
         f" pandoc -t latex {PANDOC_OPTS} {LATEX_OPTS} {LATEX_BOOK_OPTS}"
