@@ -158,8 +158,8 @@ Consider once more the word
 Which one of the following is among its bigrams (with edge markers):
 
 
-- fr: yes
-- z: no
+- fr
+- z
 - {{{L}}}{{{R}}}
 - {{{L}}}s
 - s{{{R}}}{{{R}}}
