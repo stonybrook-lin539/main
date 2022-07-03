@@ -158,8 +158,8 @@ Consider once more the word
 Which one of the following is among its bigrams (with edge markers):
 
 
-- fr: yes
-- z: no
+- fr
+- z
 - {{{L}}}{{{R}}}
 - {{{L}}}s
 - s{{{R}}}{{{R}}}
@@ -365,7 +365,7 @@ So whereas an English speaker will happily pronounce *woods* with a *z* at the e
 Alright, no big deal, we just forbid *z{{{R}}}* too.
 Or do we?
 
-We now have a forbidden trigram  and a forbidden bigram *z{{{R}}}*.
+We now have a forbidden trigram *{{{L}}}rb* and a forbidden bigram *z{{{R}}}*.
 Are we allowed to mix bigrams and trigrams this way?
 More generally, can every negative $n$-gram grammar also contain $k$-grams, where $k < n$?
 Could this create inconsistencies, or make negative $n$-gram grammars more powerful?
@@ -393,7 +393,6 @@ aca,
 bca,
 cca,
 cba*
-
 :::
 :::
 
