@@ -58,6 +58,11 @@ Write the following as a set:
 - the colors of the rainbow,
 - all prime numbers between 1 and 10 (remember, 1 is not a prime number!)
 
+::: solution
+- $\setof{Viggo, Tom, Leonardo}$
+- $\setof{red, orange, yellow, green, blue, indigo, violet}$
+- $\setof{2, 3, 5, 7}
+:::
 :::
 
 ## Elements and set membership
@@ -89,6 +94,13 @@ Put $\in$, $\ni$, $\notin$, $\not\ni$ in the gaps below as appropriate:
 - $\setof{5} \_ \setof{1,2,4,5,8}$
 - $5 \_ \setof{1,2,4,5,8} \_ 6$
 
+::: solution
+- $\in$
+- $\notin$
+- $\notin$
+- $\in$, $\not\ni$ 
+
+:::
 :::
 
 ## Lack of order
@@ -131,6 +143,11 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 - $\setof{b,a} \_ \setof{a,b}$
 - $\setof{b,a,c,d} \_ \setof{e,a,b,d}$
 
+::: solution
+- $=$
+- $=$
+- $\neq$
+:::
 :::
 
 ## Lack of duplicates/Idempotency
@@ -178,6 +195,12 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 - $\setof{c,b,a,a,d,c} \_ \setof{a,a,b,d,c,c,c}$
 - $\setof{a} \_ \setof{a,a,a,a,a,a,c,a,a,a,a,a,a}$
 
+::: solution
+- $=$
+- $=$
+- $=$
+- $\neq$
+:::
 :::
 
 ::: exercise
@@ -188,6 +211,15 @@ So we might want to annotate the string as follows:
 *If police[N] police[V] police[N], then police[N] police[V] police[N]*.
 Assume that words are annotated with their part of speech in this fashion.
 Then what would be the corresponding set of words?
+
+::: solution
+$\setof{
+\text{if},
+\text{police[N]},
+\text{police[V]},
+\text{then}
+}$.
+:::
 :::
 
 ## Recap

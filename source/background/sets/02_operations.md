@@ -34,6 +34,13 @@ Compute the union of the following:
 - $\setof{0,1} \cup \emptyset$
 - $\setof{1,2,3} \cup \setof{0,1}$
 
+::: solution
+- $\setof{0,1,2,3}
+- $\setof{0,1,2,3}
+- $\setof{0,1}
+- $\setof{0,1}
+- $\setof{0,1,2,3}
+:::
 :::
 
 Union is **associative**, which means that $(A \cup B) \cup C = A \cup (B \cup C)$.

@@ -94,6 +94,15 @@ For each one of the following, say whether it is a bigram of the word.
 - co
 - super
 
+::: solution
+- fr: yes
+- z: no
+- doci: no
+- pail: no
+- sit: no
+- co: no
+- super: no
+:::
 :::
 
 ### Adding edge markers
@@ -149,12 +158,19 @@ Consider once more the word
 Which one of the following is among its bigrams (with edge markers):
 
 
-- fr
-- z
+- fr: yes
+- z: no
 - {{{L}}}{{{R}}}
 - {{{L}}}s
 - s{{{R}}}{{{R}}}
 
+::: solution
+- fr: yes
+- z: no
+- {{{L}}}{{{R}}}: no
+- {{{L}}}s: yes
+- s{{{R}}}{{{R}}}: no
+:::
 :::
 
 ## Bigram grammars
@@ -317,12 +333,26 @@ For each one of the following, say whether it is a bigram of the word (with edge
 - sit
 - cious
 - {{{L}}}sup
+
+::: solution
+- {{{L}}}fr: none of any n-grams
+- z: none of any n-grams
+- do{{{R}}}c: none of any n-grams
+- s{{{R}}}{{{R}}}{{{R}}}: 4-gram of the word
+- sit: none of any n-grams
+- cious:: not a bi-gram, trigram, or 4-gram.
+- {{{L}}}sup: 4-gram
+:::
 :::
 
 ::: exercise
 Suppose a language has the vowels *a* and *u*, the voiced consonants *z* and *v*, and the voiceless consonants *s* and *f*.
 The language also has intervocalic voicing, which means that no voiceless consonants may occur between vowels.
 Write an $n$-gram grammar that expresses this fact.
+
+::: solution
+As mentioned in Example 5, the phonotactics of natural languages can be described as a set of forbidden $n$-grams.Thintervocalication could be expressed by a set of forbiden trigrams: *asa, asu, usa, usu, afa, afu, ufa, ufu*
+:::
 :::
 
 ## A look at German
@@ -335,7 +365,7 @@ So whereas an English speaker will happily pronounce *woods* with a *z* at the e
 Alright, no big deal, we just forbid *z{{{R}}}* too.
 Or do we?
 
-We now have a forbidden trigram *{{{L}}}rb* and a forbidden bigram *z{{{R}}}*.
+We now have a forbidden trigram  and a forbidden bigram *z{{{R}}}*.
 Are we allowed to mix bigrams and trigrams this way?
 More generally, can every negative $n$-gram grammar also contain $k$-grams, where $k < n$?
 Could this create inconsistencies, or make negative $n$-gram grammars more powerful?
@@ -349,5 +379,21 @@ Consider the formal language where all strings are sequences of *a*, *b*, and *c
 - *a* and *c* are always separated by at least two symbols.
 
 Write a negative $n$-gram grammar for this language such that all $n$-grams have the same length.
+
+::: solution
+*{{{L}}}{{L}}}b, 
+{{{L}}}{{L}}}c, 
+c{{{R}}}{{R}}}, 
+{{{L}}}ac, 
+aac,
+bac,
+cac,
+abc,
+aca,
+bca,
+cca,
+cba*
+
+:::
 :::
 

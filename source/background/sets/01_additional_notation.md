@@ -26,6 +26,11 @@ For each one of the statements below, say whether it is true or false.
 - $\emptyset \in \setof{a}$
 - $\setof{a,b} \neq \emptyset$
 
+::: solution
+- True
+- True
+- True 
+:::
 :::
 
 ## Set-builder notation
@@ -114,6 +119,11 @@ For each one of the following, put $=$ or $\neq$ in the gap as appropriate:
 - $\emptyset \_ \setof{ x \mid x \text{ is both a square and circle}}$
 - $\setof{2,3,5,7} \_ \setof{n + 1 \mid n \text{ is a prime number between 0 and 10}}$
 
+::: solution
+- $=$
+- $=$
+- $neq$
+:::
 :::
 
 ::: exercise
@@ -122,6 +132,10 @@ Express the following in terms of set-builder notation:
 - $\setof{\text{George Washington}, \text{John Adams}, \text{Thomas Jefferson}}$
 - $\setof{\text{a}, \text{e}, \text{i}, \text{o}, \text{u}}$
 
+::: solution
+- $\setof{x \mid x is a name of first three presidents of the United States}
+- $\setof{x \mid x is a vowel letter in English}
+:::
 :::
 
 ## Summary
