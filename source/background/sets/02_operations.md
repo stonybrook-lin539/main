@@ -33,7 +33,6 @@ Compute the union of the following:
 - $\setof{0,1} \cup \setof{0,1}$
 - $\setof{0,1} \cup \emptyset$
 - $\setof{1,2,3} \cup \setof{0,1}$
-:::
 
 ::: solution
 - $\setof{0,1,2,3}
@@ -41,6 +40,7 @@ Compute the union of the following:
 - $\setof{0,1}
 - $\setof{0,1}
 - $\setof{0,1,2,3}
+:::
 :::
 
 Union is **associative**, which means that $(A \cup B) \cup C = A \cup (B \cup C)$.
@@ -56,6 +56,10 @@ Compute the union of the following in a step-wise fashion:
 - $\setof{0,1} \cup \setof{2,3} \cup \emptyset$
 - $\setof{0,1} \cup \emptyset \cup \setof{2,3}$
 
+::: solution
+- $\setof{0,1} \cup \setof{2,3} \cup \emptyset = \setof{0,1,2,3} \cup \emptyset = \setof{0,1,2,3}$
+- $\setof{0,1} \cup \emptyset \cup \setof{2,3} = \setof {0,1} \cup \setof{2,3} = \setof{0,1,2,3}$
+:::
 :::
 
 ## Intersection
@@ -77,6 +81,13 @@ Compute the intersection of the following:
 - $\setof{0,1} \cap \emptyset$
 - $\setof{1,2,3} \cap \setof{0,1}$
 
+::: solution
+- $\emptyset$
+- $\setof{1}$
+- $\setof{0,1}$
+- $\emptyset$
+- $\setof{1}$
+:::
 :::
 
 Note that $A \cap \emptyset = \emptyset$ no matter what the set $A$ looks like.
@@ -113,6 +124,14 @@ Commutativity does not hold for relative complement either, as is shown by $\set
 ::: exercise
 Give a concrete example where $A - B = B - A$.
 Then make a single change to $A$ such that $A - B \neq B - A$.
+
+::: solution
+When $ A = B = \emptyset$, $A - B = \emptyset - \emptyset = \emptyset = B - A$.
+Now if A is not an emptyset, for example, $A = \setof {1}$, 
+then $A - B = \setof {1}$ - \emptyset = \setof {1}$,
+$B - A = \emptyset - \setof {1} = \emptyset.
+Therefore, $A - B \neq B - A$.
+:::
 :::
 
 ## Summary
