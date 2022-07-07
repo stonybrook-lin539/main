@@ -78,13 +78,13 @@ This is witnessed by our example set $\setof{1,2,3}$, the powerset of which has 
 For each set $A$ in the previous exercise, verify that $\card{\wp(A)} = 2^{\card{A}}$.
 
 ::: solution
-1. $\card{\setof{a,b}} = 2, \card{\wp(\setof{a,b})} = 4 = 2^2$
-1. $\card{\setof{a,b,c,d}} = 4, \card{\wp(\setof{a,b,c,d})} = 12 = 2^4$
-1. $\card{\setof{\setof{a}}} = 1, \card{\wp(\setof{\setof{a}})} = 2 = 2^1$
-1. $\card{\emptyset} = 0, \card{\wp(\emptyset)} = 1 = 2^0$
-1. $\card{setof{\emptyset}} = 1, \card{\wp(\setof{\emptyset})} = 2 = 2^1$
-1. $\card{\wp(\setof{\setof{a}})} = \card{\setof{\setof{\setof{a}}},\emptyset} = 2, \card{\wp(\wp(\setof{\setof{a}}))} = 4 = 2^2$
-1. $\card{\wp(\wp(\emptyset))}= $ 
+1. Yes, $2^2 = 4$
+1. Yes, $2^4 = 16$
+1. Yes, $2^1 = 2$
+1. Yes, $2^0 = 1$
+1. Yes, $2^1 = 2$
+1. Yes, $2^{2^1} = 4$
+1. Yes, $2^{2^{2^0}} = 4$
 :::
 :::
 
