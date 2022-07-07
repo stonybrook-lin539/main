@@ -49,6 +49,19 @@ For each one of the following sets, compute its powerset.
 1. $\wp(\setof{\setof{a}})$
 1. $\wp(\wp(\emptyset))$
 
+::: solution
+1. $\wp(\setof{a,b}) = \setof{\setof{a,b}, \setof{a}, \setof {b}, \emptyset)}$
+1. $\wp(\setof{a,b,c,d}) = \setof{\setof{a,b,c,d},
+    \setof{a,b,c}, \setof{b,c,d}, \setof{a,c,d}, \setof{a,b,d},
+    \setof {a,b}, \setof {a,c}, \setof {a,d},\setof{b,c}, \setof{b,d}, \setof{c,d},
+    \setof{a}, \setof {b}, \setof {c}, \setof {d},
+    \emptyset)}$
+1. $\wp(\setof{\setof{a}}) = \setof{\setof{\setof{a}},\emptyset}$
+1. $\wp(\emptyset) = \setof{\emptyset}$
+1. $\wp(\setof{\emptyset}) = \setof{\setof{\emptyset}, \emptyset}$
+1. $\wp(\wp(\setof{\setof{a}})) = \wp(\setof{\setof{\setof{a}},\emptyset}) = \setof{\setof{\setof{a}},\setof{\emptyset}, \setof{\setof{\setof{a}},\emptyset}, \emptyset}$
+
+:::
 :::
 
 ## Powerset notation
@@ -67,6 +80,16 @@ This is witnessed by our example set $\setof{1,2,3}$, the powerset of which has 
 
 ::: exercise
 For each set $A$ in the previous exercise, verify that $\card{\wp(A)} = 2^{\card{A}}$.
+
+::: solution
+1. $\card{\setof{a,b}} = 2, \card{\wp(\setof{a,b})} = 4 = 2^2$
+1. $\card{\setof{a,b,c,d}} = 4, \card{\wp(\setof{a,b,c,d})} = 12 = 2^4$
+1. $\card{\setof{\setof{a}}} = 1, \card{\wp(\setof{\setof{a}})} = 2 = 2^1$
+1. $\card{\emptyset} = 0, \card{\wp(\emptyset)} = 1 = 2^0$
+1. $\card{setof{\emptyset}} = 1, \card{\wp(\setof{\emptyset})} = 2 = 2^1$
+1. $\card{\wp(\setof{\setof{a}})} = \card{\setof{\setof{\setof{a}}},\emptyset} = 2, \card{\wp(\wp(\setof{\setof{a}}))} = 4 = 2^2$
+1. $\card{\wp(\wp(\emptyset))}= $ 
+:::
 :::
 
 <!-- But the $2^A$ notation for powersets has a deeper meaning that goes beyond mere numbers. -->

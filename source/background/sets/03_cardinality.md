@@ -14,7 +14,7 @@ Each set has fewer members than $A \cup X$, which contains $6$ elements, whereas
 
 This is commonly called the **size** of a set, but the more accurate term is **cardinality**.
 The cardinality of a set $A$ is denoted $\card{A}$.
-We say that $\card{A} \leq B$ iff there is a function $f$ such that every element of $A$ is mapped to some element of $B$ and every element of $B$ has at most one element of $A$ mapped to it.
+We say that $\card{A} \leq \card{B}$ iff there is a function $f$ such that every element of $A$ is mapped to some element of $B$ and every element of $B$ has at most one element of $A$ mapped to it.
 
 ::: example
 Suppose that $A \is \setof{a,b,c}$ and $D \is \setof{d,e,f,g}$.
@@ -62,7 +62,21 @@ Hence $A$ and $B$ must have distinct cardinality.
 
 ::: exercise
 Show that
-$\card{\setof{ 0 \leq n < 10 \mid n \text{ is odd}} = \card{\setof{ 0 \leq n < 10 \mid n \text{ is even}}}}$.
+$\card{\setof{ 0 \leq n < 10 \mid n \text{ is odd}}} = \card{\setof{ 0 \leq n < 10 \mid n \text{ is even}}}$.
+
+::: solution
+First, \setof{0 \leq n < 10 \mid n \text{is odd}} = \setof {1,3,5,7,9};
+\setof{0 \leq n < 10 \mid n \text{is even}} = \setof {0,2,4,6,8}.
+We could define a function where $f = x + 1 | x \in \setof{0 \leq n < 10 \mid n \text{is even}}$
+The function maps every element of the even-number set to each element of the odd-number set:
+$0 \mapsto 1$,
+$2 \mapsto 3$,
+$4 \mapsto 5$,
+$6 \mapsto 7$,
+$8 \mapsto 9$.
+At the same time, the two sets have exactly same number of elements and every element in one set has exactly one element correspondnet in the other set. 
+Therefore, $\card{\setof{ 0 \leq n < 10 \mid n \text{ is odd}}} = \card{\setof{ 0 \leq n < 10 \mid n \text{ is even}}}$.
+:::
 :::
 
 For finite sets, our intuitive notion of size closely matches the technical term of cardinality.
@@ -77,6 +91,13 @@ Hence $\card{\mathbb{N}} = \card{\mathbb{N}_+}$ even though intuitively the two 
 
 ::: exercise
 Show that the set of natural numbers has the same cardinality as the set of all even natural numbers.
+
+::: solution 
+Consider the set $\mathbb{N} \is \setof{0,1,2,\ldots}$ of all natural numbers 
+and the set $\mathbb{N}_even \is \setof{2,4,\ldots}$ of all natrual even numbers.
+There could be a function $f: \mathbb{N} \rightarrow \mathbb{N}_even$ with $n \mapsto n+2$ is a bijection.
+Hence, $\card{\mathbb{N}} = \card{\mathbb{N}_even}$.
+:::
 :::
 
 In a later unit, we will see that our definition of cardinality entails that there are different "sizes" of infinity, and that we want one specific infinity size to talk about language.
