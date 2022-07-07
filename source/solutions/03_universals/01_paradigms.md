@@ -49,6 +49,7 @@ if one assumes the hierarchy $\text{positive} < \text{comparative} < \text{super
 Explain why this is an intuitively plausible hierarchy.
 :::
 
+
 ::: solution
 In the pattern *good*-*better*-*goodest*, the positive and superlative are A-forms, whereas the comparative is a B-form.
 Hence we have $f(\text{good}) = f(\text{goodest}) \neq f(\text{better})$.

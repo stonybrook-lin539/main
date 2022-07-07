@@ -84,6 +84,18 @@ Highlight the cells that are syncretic (if any).
 
 Unless you're a native speaker of one of those languages, you will have to do some research to find out how their case system works.
 Try your local library, or an online resource like Wikipedia.
+
+::: solution
+I will give a boring example from German.
+German *Mann* 'man' inflects s follows:
+
+1. Nominative: *Mann*
+1. Accusative: *Mann*
+1. Genitive: *Mannes*
+1. Dative: *Mann*
+
+Nominative, accusative, and dative are syncretic to the exclusion of genitive.
+:::
 :::
 
 
@@ -112,6 +124,12 @@ But since these cases do not occur between nominative and accusative in Blake's 
 The paradigm for *rex* also has syncretism of dative and ablative in the plural.
 Can a monotonic function produce this pattern from Blake's case hierarchy?
 Justify your answer.
+
+::: solution
+Ablative falls under the *others* category.
+There is no other case between *Dat* and *others*.
+A monotonic function may always map two cases to the same form as long as there is no other case between the two that gets mapped to a different form.
+:::
 :::
 
 There is a problem with the monotonicity account, though.
@@ -143,11 +161,19 @@ $\text{Nom} <
 \text{Acc} <
 \text{Dat} <
 \text{others}$.
+
+::: solution
+This hierarchy predicts that nominative and accusative can never be syncretic to the exclusion of genitive, but we find tons of languages that do that, including the German example of *Mann*.
+:::
 :::
 
 ::: exercise
 Icelandic also has some nouns where nominative and genitive are syncretic to the exclusion of dative and accusative.
 Which variants of Blake's hierarchy does this rule out?
+
+::: solution
+This argues against any variant of the hierarchy where accusative or dative occur between nominative and genitive.
+:::
 :::
 
 
@@ -160,6 +186,15 @@ Perhaps monotonicity provides a way out?
 
 ::: exercise
 Pick one of the problematic syncretisms pointed out above and explain why it is also problematic if we replace the $^*$ABA generalization with the requirement that the mapping from the Blake hierarchy to surface forms must be a monotonic function.
+
+
+::: solution
+Consider the Icelandic case of syncretism of Accusative and Dative.
+We have $f(\text{Acc}) = f(\text{Dat}) = A \neq B = f(\text{Gen})$.
+Suppose w.l.o.g. that $A < B$.
+The $f$ is not monotonically increasing because $\text{Gen} < \text{Dat}$ yet $f(\text{Gen}) > f(\text{Dat})$.
+But $f$ is not monotonically decreasing either because $\text{Acc} < \text{Gen}$ yet $f(\text{Acc}) < f(\text{Gen})$.
+:::
 :::
 
 Well, monotonicity by itself doesn't really help.
@@ -221,6 +256,13 @@ Justify your answer.
 - Syncretism of nominative, accusative, and genitive to the exclusion of dative
 - Syncretism of accusative and genitive to the exclusion of nominative and dative
 
+::: solution
+1. Yes, because accusative does not occur between nominative and genitive.
+1. No, because accusative occurs between nominative and dative.
+1. No, because genitive occurs between nominative and dative (this might suggest that German dative does indeed always have an *e* which is removed for phonological reasons, so we don't have true syncretism of all three cases there).
+1. Yes, because nominative, accusative, and genitive are all less than dative.
+1. Yes. Suppose $f(\text{Nom}) = A$, $f(\text{Acc}) = f(\text{Gen}) = B$, and $f(\text{Dat}) = C$. This is a monotonic map if $A < B < C$.
+::: 
 :::
 
 It seems, then, that monotonicity does a lot of work even in the richer domain of case syncretisms.
