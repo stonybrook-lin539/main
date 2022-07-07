@@ -35,11 +35,11 @@ Compute the union of the following:
 - $\setof{1,2,3} \cup \setof{0,1}$
 
 ::: solution
-- $\setof{0,1,2,3}
-- $\setof{0,1,2,3}
-- $\setof{0,1}
-- $\setof{0,1}
-- $\setof{0,1,2,3}
+- $\setof{0,1,2,3}$
+- $\setof{0,1,2,3}$
+- $\setof{0,1}$
+- $\setof{0,1}$
+- $\setof{0,1,2,3}$
 :::
 :::
 
