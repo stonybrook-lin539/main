@@ -44,6 +44,15 @@ For each one of the gaps below, enter $\sqsubseteq$, $\sqsubsetneq$, or $\not\sq
 - $\String{bc} \_ \String{abbbca}$
 - $\String{cb} \_ \String{abbbca}$
 
+::: solution
+- $\String{a} \sqsubsetneq \String{aaaa}$
+- $\String{a} \not\sqsubseteq \String{b}$
+- $\emptystring \sqsubsetneq \String{b}$
+- $\emptystring \sqsubseteq \emptystring$
+- $\String{aa} \not\sqsubseteq \String{abbbca}$
+- $\String{bc} \sqsubsetneq \String{abbbca}$
+- $\String{cb} \not\sqsubseteq \String{abbbca}$
+:::
 :::
 
 ## Subsequence
@@ -88,10 +97,23 @@ For each one of the gaps below, enter $\sqsubseteq$, $\sqsubsetneq$, or $\not\sq
 - $\String{bc} \_ \String{abbbca}$
 - $\String{cb} \_ \String{abbbca}$
 
+::: solution
+- $\String{a} \sqsubsetneq \String{aaaa}$
+- $\String{a} \not\sqsubseteq \String{b}$
+- $\emptystring \sqsubsetneq \String{b}$
+- $\emptystring \sqsubseteq \emptystring$
+- $\String{aa} \sqsubsetneq \String{abbbca}$
+- $\String{bc} \sqsubsetneq \String{abbbca}$
+- $\String{cb} \not\sqsubseteq \String{abbbca}$
+:::
 :::
 
 ::: exercise
 Say whether the following is True or False:
 Every substring of some string $s$ is also a subsequence of $s$, but not the other way round.
 Justify your answer.
+
+::: solution
+True. See Example 1 and 3.
+:::
 :::

@@ -173,6 +173,26 @@ We can list them all:
 ::: exercise
 For $n \geq 2$, no grammar ever needs to contain every member of $\Sigma_E^n$.
 Explain why.
+
+::: solution
+When $n = 2$, no matter how large our alphabet is, the grammar will inevitably contain $2^2=4$ combinations that only have edge markers:
+1. {{{L}}}{{{L}}}
+1. {{{L}}}{{{R}}}
+1. {{{R}}}{{{R}}}
+1. {{{R}}}{{{L}}}
+
+When $n = 3$, the edge markers combinations will expand to $2^3=8$ possibilities:
+1. {{{L}}}{{{L}}}{{{L}}}
+1. {{{L}}}{{{L}}}{{{R}}}
+1. {{{L}}}{{{R}}}{{{R}}}
+1. {{{L}}}{{{R}}}{{{L}}}
+1. {{{R}}}{{{L}}}{{{L}}}
+1. {{{R}}}{{{L}}}{{{R}}}
+1. {{{R}}}{{{R}}}{{{R}}}
+1. {{{R}}}{{{R}}}{{{L}}}
+
+Since no grammar needs to contain all possible combinations of edge markers (some of them are obviously illicit), when $n \geq 2$, no grammar ever needs to contain every member of $\Sigma_E^n$.
+:::
 :::
 
 This insight provides us with a fixed upper bound for any given choice of $\Sigma$ and $n$ such that no grammar can be bigger than that.

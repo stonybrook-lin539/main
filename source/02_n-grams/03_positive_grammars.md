@@ -27,6 +27,12 @@ For some of them, you have to rephrase the phenomenon as a phonotactic constrain
 - **local dissimilation**: *rVr* becomes *lVr*, where *V* is *a*, *i*, or *u*
 - **penultimate stress**: in words with at least two syllables, stress falls on the last but one syllable (assume that words are strings of stress syllables ($\acute{\sigma}$) and unstressed syllables ($\sigma$))
 
+::: solution
+- **intervocalic voicing**: $\setof{asa, asi, asu, afa, afi, afu, isa, isi, isf, ifi, ifa, ifu, usa, usi, usu, ufa, ufu, ufi}$
+- **local assimilation**: $\setof{nb, np}$
+- **local dissimilation**: $\setof{rar, rir, ror, rur}$
+- **penultimate stress** $\setof{$\acute{\sigma}$ {{{L}}} {{{L}}}, $\sigma$ $\sigma$ {{{L}}}, $\sigma$ $\acute{\sigma}$ $\acute{\sigma}$, $\acute{\sigma}$ $\acute{\sigma}$ $\sigma$, $\acute{\sigma}$ $\sigma$ $\acute{\sigma}$}$
+:::
 :::
 
 Since the model seems to work well for phonotactics, it is tempting to expand it to other domains of language.
@@ -65,6 +71,11 @@ Not all choice may be appropriate in each case.
 - *mpi*
 - *John likes Mary*
 
+::: solution
+- *de-*: the $n$-gram can be the morpheme (*-de*) itself or the characters (*d,e*)
+- *mpi*: the $n$-gram can only be characters (*m, p, i*) since there is no such a morpheme
+- *John likes Mary*: $n$-gram can be the words (*John, likes, Mary*) or the morphemes (*John, like, -s, Mary*)
+:::
 :::
 
 With each morpheme as a separate symbol, it should be straight-forward to design a negative grammar to generate *de-nature-al-ize-ation* but none of the other orders.
@@ -176,6 +187,12 @@ It depends on the specific phenomenon.
 Write both a positive and a negative grammar that each allow only strings of the form *ab*, *abab*, *ababab*, *abababab*, and so on (assume that all symbols are either *a* or *b*).
 Is one of the two grammars more succinct or general than the other?
 What if the set of symbols is larger, e.g. *a*, *b*, *c*, and *d*?
+
+::: solution
+- **positive grammar**: $\setof{${{{L}}}{{{L}}}a, b{{{R}}}{{{R}}}, aba, bab, {{{L}}}ab, ab{{{R}}}$}$
+- **negative grammar***: $\setof{{{{L}}}b, a{{{R}}}, aa, bb}$
+- The negative grammar appears to be more succinct since the postive grammar is a set of trigrams and the negative grammar is bigrams and less then the positive grammar. However, when the set of symbols gets larger, the positive grammar stays the same but the negative grammar will need more bigrams to rule out the illicit combinations.
+:::
 :::
 
 ::: exercise
@@ -189,6 +206,13 @@ For some of them, you have to rephrase the phenomenon as a phonotactic constrain
 
 Once you're done, contrast the positive grammars against the negative ones from an earlier exercise.
 Can you identify some general guidelines for when a positive grammar is preferable to a negative one?
+
+::: solution
+- **intervocalic voicing**: the positive grammar will consist of $5^3$ - 18 = 107 trigrams 
+- **local assimilation**: {bb, bp, bm, bn, pb, pp, pn, pm, nn, nm, mn, mm, mp, mb}
+- **local disimilation**: {aaa, aau, aai, aar, aal,aua,auu,aui,aur,aul,aia,aiu,aii,air,ail,ara,aru,ari,arr,arl,ala,alu,ali,alr,all,uaa,uau,uai,uar,ual,uua,uuu,uui,uur,uul,uia,uiu,uii,uir,uil,ura,uru,uri,urr,url,ula,ulu,uli,ulr,ull,iaa,iau,iai,iar,ial,iua,iuu,iui,iur,iul,iia,iiu,iii,iir,iil,ira,iru,iri,irr,irl,ila,ilu,ili,ilr,ill,raa,rau,rai,ral,rua,ruu,rui,rul,ria,riu,rii,ril,rra,rru,rri,rrr,rrl,rla,rlu,rli,rlr,rll,laa,lau,lai,lar,lal,lua,luu,lui,lur,lul,lia,liu,lii,lir,lil,lra,lru,lri,lrr,lrl,lla,llu,lli,llr,lll}
+- **penultimate stress**: $\acute{\sigma}$ $\sigma${{{{R}}}}
+:::
 :::
 
 ## ...and back: Translating between positive and negative grammars

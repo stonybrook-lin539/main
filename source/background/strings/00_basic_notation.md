@@ -19,7 +19,14 @@ Fill in $=$ or $\neq$ as appropriate for each pair of strings below.
 - $10$ \_ $5 + 5$
 - $\setof{m,a,d} \_ \setof{d,a,m}$
 
+
 Caution: $\{$ and $\}$ can be symbols just like $m$, $a$, or $d$.
+
+::: solution
+- $\mathit{abba}$ $\neq$ $\mathit{ABBA}$
+- $10$ $\neq$ $5 + 5$
+- $\setof{m,a,d} $=$ \setof{d,a,m}$
+:::
 :::
 
 ## Alphabet
@@ -62,6 +69,16 @@ Justify your answer.
 - all natural numbers less than 1000
 - the nucleobases of DNA: adenine, cytosine, guanine, thymine 
 
+::: solution
+Defination of "a valid alphabet" is one that is *finite* and *a string can be built up* over it, therefore:
+
+- $\setof{a}$ is valid
+- $\setof{0,1}$ is valid
+- the set of all English words that are spelled with at most 5 characters is invalid
+- all natural numbers less than 1000 is valid
+- the nucleobases of DNA is valid
+
+:::
 :::
 
 ## String length
@@ -106,10 +123,17 @@ Which one of the following are members of $\setof{a,b}^4$, i.e. $\Sigma^4$ where
 - $\mathit{b}$
 - $\mathit{abca}$
 
+::: solution
+- $\mathit{aaab}$
+:::
 :::
 
 ::: exercise
 List all members of $\setof{k,o,z}^2$.
+
+::: solution
+$\setof{kk,ko,kz,ok,oo,oz,zk,zo,zz}$
+:::
 :::
 
 Very often expressions like $a^n$ are used as a shorthand for $\setof{a}^n$.
@@ -125,6 +149,14 @@ Write each one of the following in a more compact fashion using exponents.
 - loool
 - aardvark
 
+::: solution
+
+- $\mathit{A B^2 A}$
+- $\mathit{l o^3 l}$
+- $\mathit{a^2 rdvark}$
+
+
+:::
 :::
 
 ## Infinite string sets over $\Sigma$
@@ -175,6 +207,14 @@ And $+$ is a common abbreviation for positive (just think of batteries).
 
 ::: exercise
 Enumerate the five shortest members of $\setof{a}^*$.
+
+::: solution
+- $\emptystring$,
+- $\mathit{a}$,
+- $\mathit{aa}$,
+- $\mathit{aaa}$,
+- $\mathit{aaaa}$
+:::
 :::
 
 ## Concatenation
@@ -217,11 +257,16 @@ Sometimes concatenation is not explicitly indicated, so that instead of $u \stri
 
 ::: exercise
 Give an example of distinct $u$ and $v$ such that $u \stringcat v = v \stringcat u$ and neither $u$ nor $v$ is the empty string.
+
 :::
 
 ::: exercise
 Is the following true or false?
 If $u \neq v$, then $u \stringcat v \neq v \stringcat u$?
+
+::: solution
+False. The statement is true unless neither $v$ and $u$ is an empty string.
+:::
 :::
 
 ## Recap
