@@ -88,6 +88,13 @@ The largest overlap is with the second website--- or in more mathematical terms,
 This model is hopelessly olibvious about the connections between words.
 Give two examples of important connections that this model missed.
 Would this have changed which website is a better fit?
+
+::: solution
+1. The model ignores the logical relations between words (subject vs. object).
+1. The model fails to capture the frequency of words.
+1. The model cannot identify same words(stems) with morphological variations 
+1. Some words should be considered as more important than others.
+:::
 :::
 
 The general idea of the model is simple enough, and as you can see even the implementation in a programming language is straight-forward.
