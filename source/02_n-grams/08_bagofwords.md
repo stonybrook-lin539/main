@@ -44,6 +44,11 @@ Consider the two sentences below.
 
 Are their sets identical?
 Are their multisets identical?
+
+::: solution
+- sets: identical 
+- multisets: not identical
+:::
 :::
 
 ::: exercise
@@ -129,6 +134,10 @@ $$
 ::: exercise
 Construct the trigram multiset for
 *if police police police police police then police police police police police*.
+
+::: solution
+\setof{\text{if police police}: 1, \text{police police police}: 6, \text{police police then}: 1, \text{police then police}: 1, \text{then police police}: 1}.
+:::
 :::
 
 Since multisets aren't limited to invididual words in language-related applications, one often encounters the term **type** instead for the members of the multiset.
@@ -214,6 +223,16 @@ It is up to you to decide what should be treated as different words.
 You do not have to ignore capitalization in every case if you think that keeping capitalization gives a better result.
 Similarly, you may posit words that contain spaces.
 But take the opportunity to reflect on whether a computer program could easily make the linguistic distinctions you are making.
+
+::: solution
+- $\setof{\text{John}: 1, \text{misses}: 1, \text{Mary}: 1}.$ When we computer the relative frequency of each word, it becomes $\setof{\text{John}: \frac{1}{3}, \text{misses}: \frac{1}{3}, \text{Mary}: \frac{1}{3}}$
+
+- $\setof{\text{Mary}: 1, \text{misses}: 2, \text{chives}: 1}.$ When we computer the relative frequency of each word, it becomes $\setof{\text{Mary}: \frac{1}{4}, \text{misses}: \frac{1}{2}, \text{chives}: \frac{1}{4}}$
+
+- $\setof{\text{I}: 1, \text{hate}: 1, \text{chives}: 1, \text{with}: 1, \text{a}: 1, \text{passion}:1}.$ When we computer the relative frequency of each word, it becomes $\setof{\text{I}: \frac{1}{6}, \text{hate}: \frac{1}{6}, \text{chives}: \frac{1}{6}, \text{with}:\frac{1}{6}, \text{a}: \frac{1}{6}, \text{passion}:\frac{1}{6}}$
+
+- $\setof{\text{I}: 1, \text{love}: 1, \text{passion}: 1, \text{fruit}:1}.$ When we computer the relative frequency of each word, it becomes $\setof{\text{I}: \frac{1}{4}, \text{love}: \frac{1}{4}, \text{passion}: \frac{1}{4}, \text{fruit}: \frac{1}{4}}$
+:::
 :::
 
 Counts and frequency information can be used in various ways, for example for search engines.
@@ -235,7 +254,13 @@ If the query were *only john*, the score would be $0.625$.
 Suppose the sentence were
 *Only John thinks he thinks he thinks he likes himself*.
 What would be the score of *john* in this case?
-Is that a problem?
+Is that a problems?
+
+::: solution
+$$_MS \is \setof{\text{only}: 1, \text{john}: 1, \text{thinks}: 3, \text{he}: 3,  \text{likes}: 1, \text[himself]:1}.$$
+With frequencies instead of counts this is
+$$_MS \is \setof{\text{only}: 0.1, \text{john}: 0.1, \text{thinks}: 0.3, \text{he}: 0.3,  \text{likes}: 0.1, \text[himself]:0.1}.$$
+:::
 :::
 
 For practical purposes, both absolute counts and relative frequency can provide important information.
@@ -291,6 +316,15 @@ $$_MA \is \setof{w_i: w_i(\text{Aristotle}) \mid w_i \text{ is in the search eng
 
 ::: exercise
 Construct similar multisets for *ethics* and *Plato*.
+
+::: solution
+$$
+\begin{array}{rl}
+    _ME & \is \setof{w_1: 3, w_2: 0, w_3: 9, w_4: 7}\\
+    _MP & \is \setof{w_1: 6, w_2: 5, w_3: 8, w_4: 9}\\
+\end{array}
+$$
+:::
 :::
 
 At this point we have two multisets over websites that tell us how well each website fits the individual terms *Aristotle* and *metaphysics*.
@@ -303,7 +337,7 @@ Here are the multisets $_MA$ and $_MP$ that we computed before.
 $$
 \begin{array}{rl}
     _MA & \is \setof{w_1: 9, w_2: 1, w_3: 4, w_4: 0}\\
-    _MP & \is \setof{w_1: 0, w_2: 9, w_3: 5, w_4: 3}\\
+    _MP & \is \setof{w_1: 0, w_2: 9, w_3: 5, w_4: 3}\\+
 \end{array}
 $$
 Their multiset sum is
@@ -318,6 +352,23 @@ The best match according to this measure is the website $w_2$, closely followed 
 
 ::: exercise
 Calculate the multiset sum of the two multisets you constructed for *ethics* and *Plato* in the previous exercise.
+
+::: solution
+The two multisets *ethos* and *Plato* are:
+$$
+\begin{array}{rl}
+    _ME & \is \setof{w_1: 3, w_2: 0, w_3: 9, w_4: 7}\\
+    _MP & \is \setof{w_1: 6, w_2: 5, w_3: 8, w_4: 9}\\
+\end{array}
+$$
+
+Their multiset sum is
+
+\begin{align*}
+    _ME \multisum _MP & = \setof{w_1: 3+6, w_2: 0+5, w_3: 9+8, w_4: 7+9}\\
+                      & = \setof{w_1: 9, w_2: 5, w_3: 17, w_4: 16}\\
+\end{align*}
+:::
 :::
 
 While multiset sum offers an easy way to convert the multisets produced according to the query into a single score for each website, it is also a bit too simplistic.
