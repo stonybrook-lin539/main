@@ -124,6 +124,20 @@ plt.show()
 Suppose you have a text with 20,000 words where the most frequent word occurs 1068 times.
 Assuming a distribution that is exactly Zipfian, calculate the frequencies for rank 2, 3, 5, 15, 50, 100, 200, 500, and 1000.
 Give a rough estimate how many of the top ranks jointly make up at least 50\% of the text.
+
+::: solution
+$f_2 = 1068 * \frac{1}{2} = 534$ 
+$f_3 = 1068 * \frac{1}{3} = 356$
+$f_5 = 1068 * \frac{1}{5} = 214$  
+$f_15 = 1068 * \frac{1}{15} = 71$
+$f_50 = 1068 * \frac{1}{50} = 21$ 
+$f_100 = 1068 * \frac{1}{100} = 11$
+$f_200 = 1068 * \frac{1}{200} = 5$
+$f_500 = 1068 * \frac{1}{500} = 2$
+$f_1000 = 1068 * \frac{1}{1000} = 1$ 
+
+Since the 50\% of the whole text is 10000 words which is the sum of frequencies of top 5 ranks.
+:::
 :::
 
 Zipf's law is more than an interesting curiosity, it has noticeable repercussions in practice.
@@ -223,6 +237,17 @@ Igoring capitalization, what do the following strings look like after stop word 
 
 Are there any sentences whose original meaning can still inferred after stop word removal?
 If so, why might that be?
+
+::: solution
+After we delete the stop words, the above strings will look like this:
+- Hi
+- much wood woodchuck chuck woodchuck chuck wood
+- kick ass chew bubblegum gum
+- spoon
+- John loves Peter
+- student hates professor
+- student hates professor
+:::
 :::
 
 ## Stop word removal as a function
@@ -331,6 +356,13 @@ Whether your answer is correct is less important than whether you can justify it
 - $\in$
 - the US laws for assigning children to schools
 
+::: solution 
+- Yes
+- Yes
+- Yes
+- It depends.
+- Yes
+- It depends. If the same child could be assigned to several different schools, then this is not a function; but if the law assigns a child at a certain should or should not go to school, then this is a function.
 :::
 
 Given this very general understanding of functions, we can define stop word removal as a function $\mathit{del}$ that takes as its input a string $s$ and a set $S$ of stop words.
@@ -366,3 +398,6 @@ Then the frequency $f$ of a word in $t$ is inversely proportional to its rank $r
 - These **stop words** must be removed in order for bag of words models to perform well.
 
 - Stop word removal can be regarded as a mathematical function that takes as its input a string $s$ and a set $S$ of symbols and returns a string that is identical to $s$ except that all symbols that belong to $S$ have been deleted.
+
+
+
