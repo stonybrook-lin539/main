@@ -88,6 +88,10 @@ $$
 
 What does this function do?
 Is there a commonly used name for it?
+
+::: solution
+The function calculate the product of $x$ and $y$. The function is commonly known as *multiplication*.
+:::
 :::
 
 ::: exercise
@@ -98,6 +102,18 @@ Draw a diagram like the one above for $f(5,4)$.
 ::: exercise
 Give a recursive definition of a function that takes two arguments: a string $u \is u_1 \cdots u_n$ over alphabet $\Sigma$, and a set $S$ of symbols drawn from $\Sigma$.
 The function returns $1$ if at least one member of $S$ occurs in $u$, and $0$ otherwise.
+
+::: solution
+$$
+\mathit{f}(u_1 \cdots u_n,S)
+    \is
+    \begin{cases}
+    \emptystring & \text{if } u_1 \cdots u_n = \emptystring\\
+    1 & \text{if } u_1 \in S\\
+    \mathit{f}(u_2 \cdots u_n) & \text{otherwise}\\
+    \end{cases}
+$$
+:::
 :::
 
 ::: exercise
