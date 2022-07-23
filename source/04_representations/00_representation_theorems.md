@@ -41,12 +41,22 @@ Write
 - the characteristic function for the union of the two sets.
 
 Define each function by explicitly writing down the values, e.g. $\text{John} \mapsto 1$.
+
+::: solution
+1. The set of a female students' name $\is \setof{Sue, Mary}$ The characteristic function will map $\text{John} \mapsto 0, \text{Sue} \mapsto 1,\text{Mary} \mapsto 1$.
+1. The set of a four-letter name $\is \setof{John, Mary}$. Therefore we have $\f(John) \mapsto 1, \f(Sue) \mapsto 0,\text(Mary)} \mapsto 1$.
+1. The set of a four-letter female name $\is \setof{Mary}$. Therefore we have $\text{John} \mapsto 0, \text{Sue} \mapsto 1,\text{Mary} \mapsto 1$.
+:::
 :::
 
 ::: exercise
 Continuing the previous exercise, can you give a general definition for union that uses the values 0 and 1 assigned by characteristic functions?
 
 *Hint*: Check out the **max** function in the backgrounds section.
+
+::: solution
+
+:::
 :::
 
 ::: exercise
@@ -72,10 +82,25 @@ From this it follows that $a = c$, wherefore $\setof{a,b} = \setof{c,d}$ implies
 
 ::: exercise
 Explain why the equivalence also holds in the other direction: if $a = c$ and $b = d$, then $\setof{\setof{a}, \setof{a,b}} = \setof{\setof{c}, \setof{c,d}}$ (and thus $\tuple{a,b} = \tuple{c,d}$).
+
+::: solution
+If $a = c$, then $\setof{a} = \setof{c}$; 
+if $b = d$, then $\setof{b} = \setof{d}$.
+Then it holds that $\setof{a,b} = \setof{c,b} = \setof {c,d}$. 
+Since we have $\setof{a} = \setof{c}$ and $\setof{a,b} = \setof {c,d}$, 
+ thus $\setof{\setof{a}, \setof{a,b}} = \setof{\setof{c},\setof{c,d}}$(and thus $\tuple{a,b} = \tuple{c,d}$.
+:::
 :::
 
 ::: exercise
 Under Kuratovsky's definition, what set corresponds to the pair $\tuple{a,a}$?
+
+::: solution
+Under Kuratovsky's definition, $\tuple {a,b}$ corresponds to $\setof{\setof{a},\setof{a,b}}$.
+Then it follows $\tuple {a,a}$ corresponds to $\setof{\setof{a},\setof{a,a}}$.
+Since $\setof{a,a} = \setof{a}$, $\setof{\setof{a},\setof{a,a}} = \setof{\setof{a},\setof{a}} = \setof{\setof{a}}$.
+Therefore, $\tuple {a,a}$ corresponds to $\setof{\setof{a}}$.
+:::
 :::
 
 ::: exercise
@@ -84,6 +109,12 @@ So $\tuple{a,b} \neq \tuple{b,a}$ ("order matters") and $\tuple{a} \neq \tuple{a
 But now we only checked that $\tuple{a,b} = \tuple{c,d}$ iff $a = c$ and $b = d$.
 This biconditional actually entails that pairs are ordered and not idempotent, as desired.
 Explain why!
+
+::: solution
+The biconditional $\tuple{a,b} = \tuple{c,d}$ iff $a = c$ and $b = d$ indicates two things:
+1. the first element in the first tuple should align to the element of the same position in the second tuple. This indicates the order matters;
+1. the number of two elements in the tuples should be the same for the equation to hold. This indicates the idemotence.
+:::
 :::
 
 ::: exercise
@@ -97,6 +128,16 @@ To see this, try to represent the following two triples in terms of these sets:
 
 
 What is the problem?
+
+::: solution
+If the above tuples can be represented under Kuratowski definitaion, we have:
+- $\tuple{a, a, b}$ = $\setof{\setof{a},\setof{a,a},\setof{a,a,b}}$. Since a set does not have duplicate elements, this set will equal to $\setof{\setof{a},\setof{a,b}}$. According to the Kuratowski definiation, $\setof{\setof{a},\setof{a,b}}$ =  $\tuple{a, b}$. Since a tuple is not idempotent, $\tuple{a,a,b} \neq \tuple{a,b}$. Therefore, the Kuratowski definition does not hold for $\tuple{a, a, b}$.
+
+- $\tuple{a, b, b} = $\setof{\setof{a},\setof{a,b},\setof{a,b,b}} = \setof{\setof{a},\setof{a,b}} = \tuple{a,b}$
+The equation does not hold either. 
+
+Based on these two examples, the problem seems to lie in the duplicates in the tuples. 
+:::
 :::
 
 Alright, so mathematically the sky is the limit when it comes to representations.
