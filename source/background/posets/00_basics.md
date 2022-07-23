@@ -68,6 +68,12 @@ Take the set $\mathbb{Z} \is \setof{0, -1, 1, -2, 2, -3, 3, \ldots}$ of integers
 Let $x \prec y$ iff $x^2 \leq y^2$.
 Sketch a figure of the poset $\tuple{\mathbb{Z}, \prec}$.
 Avoid all arrows that can be inferred from the general properties of $\prec$.
+
+::: solution
+~~~ {.include-tikz size=mid}
+fixme: put the file here later
+~~~
+:::
 :::
 
 ::: exercise
@@ -77,4 +83,10 @@ Draw the strict poset $\tuple{S, \sqsubset}$, where $\sqsubset$ is the proper su
 
 Now suppose that we used $\sqsubseteq$ instead: $x \sqsubseteq y$ iff there is some (possibly empty) $z$ such that $x \stringcat z = y$.
 Do you have to change anything about your figure?
+
+::: solution
+~~~ {.include-tikz size=mid}
+poset_substring.tikz
+~~~
+:::
 :::
