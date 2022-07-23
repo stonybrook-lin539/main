@@ -1,0 +1,35 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows,arrows.meta,positioning}
+\begin{document}
+\begin{tikzpicture}[%
+    every node/.style = {circle, fill=blue!25, minimum size = 2em}]
+    \node (p) at (-0.32,0) {p};
+    \foreach \n [remember=\n as \lastn (initially p)] in {po,pos,pose,poset}
+        {
+        \node (\n) [right=2em of \lastn] {\n};
+        \draw[-Latex] (\lastn) to (\n);
+        }
+        
+    \node (o) at (-0.32,-1) {o};
+    \foreach \n [remember=\n as \lastn (initially o)] in {os,ose,oset}
+        {
+        \node (\n) [right=2em of \lastn] {\n};
+        \draw[-Latex] (\lastn) to (\n);
+        }
+        
+    \node (s) at (-0.32,-2) {s};
+    \foreach \n [remember=\n as \lastn (initially s)] in {se,set}
+        {
+        \node (\n) [right=2em of \lastn] {\n};
+        \draw[-Latex] (\lastn) to (\n);
+        }
+    
+    \node (e) at (-0.32,-3) {e};
+    \foreach \n [remember=\n as \lastn (initially e)] in {et}
+        {
+        \node (\n) [right=2em of \lastn] {\n};
+        \draw[-Latex] (\lastn) to (\n);
+        }
+    \node (t) at (-0.32,-4) {t};
+\end{tikzpicture}
+\end{document}
