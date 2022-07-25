@@ -40,6 +40,7 @@ $for(classoption)$
   $classoption$$sep$,
 $endfor$
 ]{$documentclass$}
+
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
@@ -90,17 +91,21 @@ $if(section-titles)$
 }
 $endif$
 $endif$
+
 $if(beamerarticle)$
 \usepackage{beamerarticle} % needs to be loaded first
 $endif$
+
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
 \usepackage{lmodern}
 $endif$
+
 $if(linestretch)$
 \usepackage{setspace}
 $endif$
+
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -148,6 +153,7 @@ $if(CJKmainfont)$
     \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
   \fi
 $endif$
+
 $if(luatexjapresetoptions)$
   \ifluatex
     \usepackage[$for(luatexjapresetoptions)$$luatexjapresetoptions$$sep$,$endfor$]{luatexja-preset}
@@ -160,6 +166,7 @@ $if(CJKmainfont)$
   \fi
 $endif$
 \fi
+
 $if(beamer)$
 $if(theme)$
 \usetheme[$for(themeoptions)$$themeoptions$$sep$,$endfor$]{$theme$}
@@ -180,12 +187,14 @@ $if(outertheme)$
 \useoutertheme{$outertheme$}
 $endif$
 $endif$
+
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
   \usepackage[$for(microtypeoptions)$$microtypeoptions$$sep$,$endfor$]{microtype}
   \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+
 $if(indent)$
 $else$
 \makeatletter
@@ -199,9 +208,11 @@ $else$
   \KOMAoptions{parskip=half}}
 \makeatother
 $endif$
+
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
+
 \usepackage{xcolor}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
@@ -232,9 +243,11 @@ $else$
 $endif$
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+
 $if(verbatim-in-note)$
 \VerbatimFootnotes % allow verbatim text in footnotes
 $endif$
+
 $if(geometry)$
 $if(beamer)$
 \geometry{$for(geometry)$$geometry$$sep$,$endfor$}
@@ -242,21 +255,26 @@ $else$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $endif$
 $endif$
+
 $if(beamer)$
 \newif\ifbibliography
 $endif$
+
 $if(listings)$
 \usepackage{listings}
 \newcommand{\passthrough}[1]{#1}
 \lstset{defaultdialect=[5.3]Lua}
 \lstset{defaultdialect=[x86masm]Assembler}
 $endif$
+
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
 $endif$
+
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
+
 $if(tables)$
 \usepackage{longtable,booktabs}
 $if(beamer)$
@@ -276,6 +294,7 @@ $else$
 \makesavenoteenv{longtable}
 $endif$
 $endif$
+
 $if(graphics)$
 \usepackage{graphicx}
 \makeatletter
@@ -291,23 +310,28 @@ $if(graphics)$
 \def\fps@figure{htbp}
 \makeatother
 $endif$
+
 $if(links-as-notes)$
 % Make links footnotes instead of hotlinks:
 \DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
 $endif$
+
 $if(strikeout)$
 \usepackage[normalem]{ulem}
 % Avoid problems with \sout in headers with hyperref
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
+
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 $if(numbersections)$
 \setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
 $else$
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 $endif$
+
 $if(beamer)$
 $else$
 $if(block-headings)$
@@ -322,12 +346,15 @@ $if(block-headings)$
 \fi
 $endif$
 $endif$
+
 $if(pagestyle)$
 \pagestyle{$pagestyle$}
 $endif$
+
 $for(header-includes)$
 $header-includes$
 $endfor$
+
 $if(lang)$
 \ifxetex
   % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
@@ -343,6 +370,7 @@ $if(babel-newcommands)$
 $endif$
 \fi
 $endif$
+
 $if(dir)$
 \ifxetex
   % Load bidi as late as possible as it modifies e.g. graphicx
@@ -356,16 +384,19 @@ $if(dir)$
   \newenvironment{LTR}{\beginL}{\endL}
 \fi
 $endif$
+
 $if(natbib)$
 \usepackage[$natbiboptions$]{natbib}
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
+
 $if(biblatex)$
 \usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
 $for(bibliography)$
 \addbibresource{$bibliography$}
 $endfor$
 $endif$
+
 $if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
@@ -425,6 +456,7 @@ $for(include-before)$
 $include-before$
 
 $endfor$
+
 $if(toc)$
 $if(toc-title)$
 \renewcommand*\contentsname{$toc-title$}
@@ -446,23 +478,27 @@ $endif$
 }
 $endif$
 $endif$
+
 $if(lot)$
 \listoftables
 $endif$
 $if(lof)$
 \listoffigures
 $endif$
+
 $if(linestretch)$
 \setstretch{$linestretch$}
 $endif$
 $if(has-frontmatter)$
 \mainmatter
 $endif$
+
 $body$
 
 $if(has-frontmatter)$
 \backmatter
 $endif$
+
 $if(natbib)$
 $if(bibliography)$
 $if(biblio-title)$
@@ -483,6 +519,7 @@ $endif$
 
 $endif$
 $endif$
+
 $if(biblatex)$
 $if(beamer)$
 \begin{frame}[allowframebreaks]{$biblio-title$}
