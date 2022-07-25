@@ -1,23 +1,110 @@
 %
 % Custom LaTeX template for LIN 539 course notes
 % At present, still includes some extraneous content from the
-%   default Pandoc tempalte
+%   default Pandoc template
 %
 % Use variable `singlechapter` when compiling individual chapters
 %
 
-$if(singlesection)$
-\documentclass[11pt]{article}
-$elseif(singlechapter)$
-\documentclass[11pt]{article}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+$endif$
+$if(dir)$
+$if(latex-dir-rtl)$
+\PassOptionsToPackage{RTLdocument}{bidi}
+$endif$
+$endif$
+$if(CJKmainfont)$
+\PassOptionsToPackage{space}{xeCJK}
+$endif$
+%
+\documentclass[
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$if(lang)$
+  $babel-lang$,
+$endif$
+$if(papersize)$
+  $papersize$paper,
+$endif$
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$
+]{$documentclass$}
+
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
-\documentclass[11pt,oneside]{book}
+\usepackage{lmodern}
 $endif$
 
-\usepackage[hmargin=1.5in, vmargin=1in, letterpaper, includeheadfoot,
-            headheight=14pt]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{charter}
+$if(linestretch)$
+\usepackage{setspace}
+$endif$
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+$if(mathspec)$
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{unicode-math}
+  \fi
+$else$
+  \usepackage{unicode-math}
+$endif$
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+$if(mainfont)$
+  \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$endif$
+$if(sansfont)$
+  \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+$endif$
+$if(monofont)$
+  \setmonofont[$for(monofontoptions)$$monofontoptions$$sep$,$endfor$]{$monofont$}
+$endif$
+$for(fontfamilies)$
+  \newfontfamily{$fontfamilies.name$}[$for(fontfamilies.options)$$fontfamilies.options$$sep$,$endfor$]{$fontfamilies.font$}
+$endfor$
+$if(mathfont)$
+$if(mathspec)$
+  \ifxetex
+    \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+  \else
+    \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+  \fi
+$else$
+  \setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+$endif$
+$endif$
+$if(CJKmainfont)$
+  \ifxetex
+    \usepackage{xeCJK}
+    \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+  \fi
+$endif$
+$if(luatexjapresetoptions)$
+  \ifluatex
+    \usepackage[$for(luatexjapresetoptions)$$luatexjapresetoptions$$sep$,$endfor$]{luatexja-preset}
+  \fi
+$endif$
+$if(CJKmainfont)$
+  \ifluatex
+    \usepackage[$for(luatexjafontspecoptions)$$luatexjafontspecoptions$$sep$,$endfor$]{luatexja-fontspec}
+    \setmainjfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+  \fi
+$endif$
+\fi
 
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -42,6 +129,14 @@ $endif$
 
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
+$endif$
+
+$if(geometry)$
+$if(beamer)$
+\geometry{$for(geometry)$$geometry$$sep$,$endfor$}
+$else$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$endif$
 $endif$
 
 \usepackage{xcolor}
@@ -195,15 +290,15 @@ $endfor$
 
 $if(toc)$
 {
-$if(singlechapter)$
-% Format contents with section heading and no page break
-\section*{Contents}
-\startcontents
-\printcontents{}{1}[$toc-depth$]{}
-$else$
+% $if(singlechapter)$
+% % Format contents with section heading and no page break
+% \section*{Contents}
+% \startcontents
+% \printcontents{}{1}[$toc-depth$]{}
+% $else$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
-$endif$
+% $endif$
 }
 $endif$
 

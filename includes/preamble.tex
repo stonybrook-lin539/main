@@ -17,16 +17,25 @@
 % Page formatting
 %
 
-\usepackage{titletoc}
-\contentsmargin{2em}
-\dottedcontents{section}[2.5em]{}{2.5em}{8pt}
-\dottedcontents{subsection}[5em]{}{3em}{8pt}
-\dottedcontents{subsubsection}[8.5em]{}{3.5em}{8pt}
+% \usepackage{titletoc}
+% \contentsmargin{2em}
+% \dottedcontents{section}[2.5em]{}{2.5em}{8pt}
+% \dottedcontents{subsection}[5em]{}{3em}{8pt}
+% \dottedcontents{subsubsection}[8.5em]{}{3.5em}{8pt}
 
+% Use document metadata in header
 \usepackage{fancyhdr}
-\fancyhead[L]{Thomas Graf, Fall 2021}
-\fancyhead[R]{\nouppercase{\leftmark}}
 \pagestyle{fancy}
+\makeatletter
+% workaround to circumvent \maketitle deleting metadata
+\AtBeginDocument{
+  \let\theauthor\@author
+  \let\thedate\@date
+}
+\makeatother
+\fancyhead[L]{\theauthor, \thedate}
+\fancyhead[R]{\nouppercase{\leftmark}}
+
 
 %
 % Exercises

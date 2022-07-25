@@ -23,11 +23,11 @@ EDGEMARKERS = "filters/edgemarkers.lua"
 
 # Pandoc templates and includes
 LATEX_TEMPLATE = "templates/latex-custom.tex"
-# LATEX_BOOK_TEMPLATE = "templates/full-book.tex"
-# LATEX_CH_TEMPLATE = "templates/single-chapter.tex"
+FORMAT_DEFAULT = Path("includes/format.yaml")
+FORMAT_SINGLECHAP = Path("includes/format-single-chap.yaml")
+FORMAT_SINGLESEC = Path("includes/format-single-sec.yaml")
 MATHCMDS = Path("includes/mathcommands.md")
 LATEX_PREAMBLE = Path("includes/preamble.tex")
-# YAMLHEADER = Path("includes/format.yaml")
 # CSS path must be absolute to load locally
 WEBCSS = Path("includes/web-custom.css").resolve()
 MATHJAXCALL = Path("includes/include-mathjax.html")
@@ -42,6 +42,12 @@ SRCDIR = Path("source")
 MAIN_SRCDIR = SRCDIR / "main"
 BG_SRCDIR = SRCDIR / "background"
 
+MAIN_SRCFILES = sorted(f for f in MAIN_SRCDIR.glob("**/*")
+                       if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
+BG_SRCFILES = sorted(f for f in BG_SRCDIR.glob("**/*")
+                     if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
+ALL_SRCFILES = [f for f in chain(MAIN_SRCFILES, BG_SRCFILES)]
+
 SRC_MD = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in MD_EXTS
                 and "old" not in f.parts
                 and "solutions" not in f.parts
@@ -54,11 +60,6 @@ MAIN_CHAPS = sorted(d.relative_to(SRCDIR)
 BG_CHAPS = sorted(d.relative_to(SRCDIR)
                   for d in BG_SRCDIR.glob("*") if d.is_dir())
 ALL_CHAPS = MAIN_CHAPS + BG_CHAPS
-
-MAIN_SRCFILES = sorted(f for f in MAIN_SRCDIR.glob("**/*")
-                       if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
-BG_SRCFILES = sorted(f for f in BG_SRCDIR.glob("**/*")
-                     if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
 
 TESTDIR = Path("test/demo")
 TEST_MD = sorted(f for f in TESTDIR.glob('*') if f.suffix in MD_EXTS)
@@ -110,6 +111,7 @@ PANDOC_OPTS = (
 
 LATEX_OPTS = (
     f"--template {LATEX_TEMPLATE}"
+    f" --metadata-file={FORMAT_DEFAULT}"
     f" -H {LATEX_PREAMBLE}"
     f" -H {MODCMDS}"
     f" -L {LATEX_TIPA}"
@@ -117,23 +119,24 @@ LATEX_OPTS = (
 )
 
 LATEX_BOOK_OPTS = (
-    "--toc --toc-depth 1"
-    " --number-sections -M secnumdepth=1"
+    # "--toc --toc-depth 1"
+    # " --number-sections -M secnumdepth=1"
+    " --shift-heading-level-by=1"
 )
 
 LATEX_CH_OPTS = (
-    "-M singlechapter"
-    " --toc --toc-depth 1"
-    " --number-sections -M secnumdepth=1"
+    f"--metadata-file={FORMAT_SINGLECHAP}"
+    " -M singlechapter"
 )
 
 LATEX_SEC_OPTS = (
-    "-M singlesection"
+    f"--metadata-file={FORMAT_SINGLESEC}"
+    " -M singlesection"
     " --shift-heading-level-by=-1"
 )
 
 HTML_OPTS = (
-    f"--shift-heading-level-by=1"
+    "--shift-heading-level-by=1"
     f" -c {WEBCSS}"
     f" --mathjax -Vmath='' -H {MATHJAXCALL}"  # see task def for details
     f" {MODCMDS}"
@@ -171,7 +174,7 @@ def task_test_chapter():
     outfile = f"{PDFDIR}/test/{chname}.pdf"
     cmd = (
         f"TEXINPUTS=.:{srcsubdir}:"
-        f" pandoc -t pdf {PANDOC_OPTS} {LATEX_OPTS} {LATEX_CH_OPTS}"
+        f" pandoc --verbose -t pdf {PANDOC_OPTS} {LATEX_OPTS} {LATEX_CH_OPTS}"
         f" --metadata-file={srcsubdir}/metadata.yaml"
         f" {' '.join(infiles)} -o {outfile}"
     )
@@ -231,7 +234,7 @@ def task_latex_book():
     """
     Build entire book as LaTeX using Pandoc.
     """
-    infiles = [str(f) for f in chain(MAIN_SRCFILES, BG_SRCFILES)]
+    infiles = [str(f) for f in ALL_SRCFILES]
     outfile = TEX_BOOK
     cmd = (
         f" pandoc -t latex {PANDOC_OPTS} {LATEX_OPTS} {LATEX_BOOK_OPTS}"

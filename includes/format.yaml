@@ -1,0 +1,10 @@
+documentclass: book
+classoption: oneside
+geometry: hmargin=1.5in, vmargin=1in, letterpaper, includeheadfoot, headheight=14pt
+fontfamily: charter
+fontsize: 11pt
+indent: true
+numbersections: true
+secnumdepth: 1
+toc: true
+toc-depth: 1
