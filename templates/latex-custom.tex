@@ -30,27 +30,30 @@ $endif$
 \fancyhead[R]{\nouppercase{\leftmark}}
 \pagestyle{fancy}
 
-\raggedbottom
-
-% \titlecontents{section}
-% [3.8em] % left margin
-% {} % above code
-% {\contentslabel{2.3em}} % numbered format
-% {\hspace*{-2.3em}} % numberless format
-% {\titlerule*[6pt]{.}\contentspage} % filler format
-
-% \usepackage{tikz}
-% \usetikzlibrary{external}
-% \tikzexternalize[prefix=cache/]
-
-% \usepackage{amssymb,amsmath}
-
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
   \usepackage[$for(microtypeoptions)$$microtypeoptions$$sep$,$endfor$]{microtype}
   \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+
+$if(indent)$
+$else$
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+$endif$
+
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
 
 \usepackage{xcolor}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
