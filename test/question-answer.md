@@ -8,7 +8,7 @@ What is the answer?
 3. three
 
 ::: exranswer
-The answer is (3) one.
+The answer is (1) one.
 :::
 :::
 
