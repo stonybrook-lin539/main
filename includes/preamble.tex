@@ -1,5 +1,5 @@
 % This file contains code specific to the content of the book.
-% General formatting (font, page style) is in the LaTeX template.
+% General formatting (font, page style) is controlled via Pandoc.
 
 \usepackage[subpreambles=true]{standalone}
 % \usepackage[charter]{mathdesign} % requires package ly1 for texnansi.enc
@@ -24,10 +24,11 @@
 % \dottedcontents{subsubsection}[8.5em]{}{3.5em}{8pt}
 
 % Use document metadata in header
+% workarounds to handle declaration of metadata after header formatting
+%   and to circumvent \maketitle deleting metadata
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \makeatletter
-% workaround to circumvent \maketitle deleting metadata
 \AtBeginDocument{
   \let\theauthor\@author
   \let\thedate\@date

@@ -1,9 +1,10 @@
 %
 % Custom LaTeX template for LIN 539 course notes
-% At present, still includes some extraneous content from the
-%   default Pandoc template
+% Eliminates extraneous content related to beamer and bibliographies.
 %
-% Use variable `singlechapter` when compiling individual chapters
+% Use variable `singlechapter` when compiling individual chapters.
+% Use variable `singlesection` when compiling individual sections.
+% Use variable `showanswers` to typeset answers at the end of the document.
 %
 
 % Options for packages loaded elsewhere
@@ -20,7 +21,7 @@ $endif$
 $if(CJKmainfont)$
 \PassOptionsToPackage{space}{xeCJK}
 $endif$
-%
+
 \documentclass[
 $if(fontsize)$
   $fontsize$,
@@ -263,6 +264,7 @@ $endif$
 %----------------------------------------------------------------------------
 \begin{document}
 
+% typeset title
 $if(singlesection)$
 $if(title)$
 {\centering\LARGE\bfseries $title$ \par\bigskip}
@@ -272,11 +274,8 @@ $elseif(singlechapter)$
 $if(chapter-title)$
 $if(chapter-number)$
 {\centering\Huge\bfseries Chapter $chapter-number$: $chapter-title$ \par\bigskip}
-% \setcounter{chapter}{\numexpr $chapter-number$ - 1 \relax}
-% \chapter{$chapter-title$}
 $else$
 {\noindent\Huge\bfseries $chapter-title$ \par\bigskip}
-% \chapter*{$chapter-title$}
 $endif$
 $endif$
 $elseif(title)$
@@ -288,22 +287,18 @@ $for(include-before)$
 $include-before$
 $endfor$
 
+% table of contents
 $if(toc)$
 {
-% $if(singlechapter)$
-% % Format contents with section heading and no page break
-% \section*{Contents}
-% \startcontents
-% \printcontents{}{1}[$toc-depth$]{}
-% $else$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
-% $endif$
 }
 $endif$
 
+% Pandoc text body
 $body$
 
+% Typeset exercise answers
 $if(showanswers)$
 \ifdefvoid{\exranswerlist}{}{
   \pagebreak
