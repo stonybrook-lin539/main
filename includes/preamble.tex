@@ -13,6 +13,24 @@
 \usepackage{etoolbox}
 \usepackage{environ}
 
+\usepackage{xcolor}
+\definecolor{magenta}{cmy}{0.0 1.0 0.0}
+\definecolor{red}    {cmy}{0.0 1.0 1.0}
+\definecolor{redorange}{cmy}{0.0 0.7 1.0}
+\definecolor{orange} {cmy}{0.0 0.4 1.0}
+\definecolor{gold}   {cmy}{0.0 0.15 1.0}
+\definecolor{yellow} {cmy}{0.0 0.05 1.0}
+\definecolor{lime}   {cmy}{0.3 0.0 1.0}
+\definecolor{green}  {cmy}{0.8 0.0 1.0}
+\definecolor{teal}   {cmy}{1.0 0.0 0.5}
+\definecolor{cyan}   {cmy}{1.0 0.0 0.0}
+\definecolor{azure}  {cmy}{1.0 0.3 0.0}
+\definecolor{blue}   {cmy}{1.0 0.7 0.0}
+\definecolor{blueviolet}{cmy}{1.0 1.0 0.0}
+\definecolor{violet} {cmy}{0.8 1.0 0.0}
+\definecolor{purple} {cmy}{0.4 1.0 0.0}
+\definecolor{pink}   {cmy}{0.0 0.6 0.3}
+
 %
 % Page formatting
 %
@@ -37,191 +55,104 @@
 \fancyhead[L]{\theauthor, \thedate}
 \fancyhead[R]{\nouppercase{\leftmark}}
 
-
 %
-% Exercises
+% Theorems, exercises, and other blocks
 %
 
-\newcounter{exercise}
-\def\theexercise{\arabic{exercise}}
-
-\newenvironment{exercise}[1][\unskip]{%
-    \refstepcounter{exercise}%
-    \bigskip%
-    \noindent\ignorespaces%
-    \begin{tcolorbox}[
-      blanker,
-      width=0.85\textwidth,enlarge left by=0.15\textwidth,
-      before skip=6pt,
-      breakable,
-      overlay unbroken and first={%
-        \node[inner sep=0pt,outer sep=0pt,text width=0.15\textwidth,
-          align=left,below right]
-          at ([xshift=-0.15\textwidth]frame.north west)
-          {%
-            \noindent%
-            \bfseries\color[HTML]{2D68A2}
-            #1%
-            Exercise\\
-            \smallskip
-            \LARGE\theexercise%
-          };}]%
-}{%
-    \end{tcolorbox}%
-    % \smallskip\noindent%
+\tcbset{
+  enhanced,
+  breakable,
+  boxrule=1pt,
+  colframe=red!75!black,
+  colback=red!5!white,
+  left=.5em, right=.5em, top=.5em, bottom=.5em,
+  beforeafter skip=1em,
 }
 
-%
-% Exercise Solutions
-%
+\tcbset{roundframe/.style={
+  rounded corners=all
+}}
 
-\newenvironment{solution}[1][\unskip]{%
-    \bigskip%
-    \noindent\ignorespaces%
-    \begin{tcolorbox}[
-      blanker,
-      width=0.85\textwidth,enlarge left by=0.15\textwidth,
-      before skip=6pt,
-      breakable,
-      overlay unbroken and first={%
-        \node[inner sep=0pt,outer sep=0pt,text width=0.15\textwidth,
-          align=left,below right]
-          at ([xshift=-0.15\textwidth]frame.north west)
-          {%
-            \noindent%
-            \bfseries\color[HTML]{8A2194}
-            #1%
-            Solution\\
-          };}]%
-}{%
-    \end{tcolorbox}%
-    % \smallskip\noindent%
+\tcbset{noframe/.style={
+  boxrule=0pt,
+  frame empty,
+  sharp corners 
+}}
+
+\tcbset{thickleftframe/.style={
+  boxrule=0pt,
+  leftrule=3pt,
+  sharp corners
+}}
+
+\tcbset{titlebox/.style={
+  top=.7em,
+  colframe=gray,
+  colback=white,
+  coltitle=black,
+  colbacktitle=white,
+  attach boxed title to top left = {yshift=-\tcboxedtitleheight/2, xshift=.5cm},
+  boxed title style = {frame hidden}
+}}
+
+
+% callouts
+
+\newtcolorbox{advice}{
+  titlebox,
+  title=\textsc{Advice},
 }
 
-\providebool{showanswers}
-\newcommand{\exranswerlist}{}
-\NewEnviron{exranswer}{\ifbool{showanswers}{%
-  \xappto\exranswerlist{\theexercise . \BODY}}{}}
+% theorems, etc.
 
-%
-% Examples
-%
-
-\newcounter{example}
-\def\theexample{\arabic{example}}
-
-\newenvironment{example}[1][\unskip]{%
-    \refstepcounter{example}%
-    \bigskip%
-    \noindent\ignorespaces%
-    \begin{tcolorbox}[
-      blanker,
-      width=0.85\textwidth,enlarge left by=0.15\textwidth,
-      before skip=6pt,
-      breakable,
-      overlay unbroken and first={%
-        \node[inner sep=0pt,outer sep=0pt,text width=0.15\textwidth,
-          align=left,below right]
-          at ([xshift=-0.15\textwidth]frame.north west)
-          {%
-            \noindent%
-            \bfseries\color[HTML]{1A933D}%
-            #1%
-            Example\\
-            \smallskip
-            \LARGE\theexample%
-          };}]%
-}{%
-    \end{tcolorbox}%
-    % \smallskip\par\noindent%
-}
-
-%
-% Advice Block
-%
-
-\newenvironment{advice}[1][\unskip]{%
-    \bigskip%
-    \noindent\ignorespaces%
-    \begin{tcolorbox}[
-      blanker,
-      width=0.85\textwidth,enlarge left by=0.15\textwidth,
-      before skip=6pt,
-      breakable,
-      overlay unbroken and first={%
-        \node[inner sep=0pt,outer sep=0pt,text width=0.15\textwidth,
-          align=left, below right]
-          at ([xshift=-0.15\textwidth]frame.north west)
-          {%
-            \noindent%
-            \bfseries\color[HTML]{D425A7}%
-            #1%
-            Advice
-          };}]%
-}{%
-    \end{tcolorbox}%
-    % \smallskip\par\noindent%
-}
-
-%     \begin{minipage}[t]{.15\textwidth}
-%         \noindent%
-%         \bfseries\color[HTML]{1A933D}%
-%         #1%
-%         Example\\
-%         \LARGE\theexample%
-%     \end{minipage}
-%     \begin{minipage}[t]{.85\textwidth}%
-% }%
-% {%
-%     \end{minipage}%
-%     \medskip\par\noindent\ignorespacesafterend%
-% }
-
-%
-% Theorems, etc.
-%
-
-\theoremstyle{plain}
-\theoremheaderfont{\normalfont\bfseries}
-\theorembodyfont{\normalfont\upshape}
+\theoremstyle{normal}
+\theoremheaderfont{\normalfont\bfseries\scshape}
+\theorembodyfont{\normalfont}
 \theoremseparator{.}
-\newcommand{\TheoremSymbol}{\tikz{\draw (0,0) -| (.5em,.5em);}}
-\theoremsymbol{\ensuremath{\TheoremSymbol}}
+
+% \newcommand{\TheoremSymbol}{\tikz{\draw (0,0) -| (.5em,.5em);}}
+\theoremsymbol{\ensuremath{\rtimes}} % why doesn't the symbol appear?
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 
-\theorembodyfont{\normalfont\itshape}
 \theoremsymbol{}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{problem}[theorem]{Problem}
-
-\theorembodyfont{\normalfont\upshape}
-\theoremprework{\bigskip\hrule}
-\theorempostwork{\hrule\bigskip}
+% \newtheorem{conjecture}[theorem]{Conjecture}
+% \newtheorem{problem}[theorem]{Problem}
 \newtheorem{definition}[theorem]{Definition}
 
+
+% exercises and answers
+
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+\providebool{showanswers}
+\newcommand{\exranswerlist}{}
+\NewEnviron{exranswer}{\ifbool{showanswers}{%
+  \xappto\exranswerlist{\theexercise . \BODY}}{}}
+
+
+% proofs, etc.
+
 \theoremstyle{nonumberplain}
-\theoremheaderfont{\normalfont\itshape}
-\theoremprework{}
-\theorempostwork{}
+\theoremheaderfont{\normalfont\bfseries\itshape}
 \qedsymbol{\ensuremath{\blacksquare}}
-\theoremsymbol{\ensuremath{\Box}}
+\theoremsymbol{\qed}
 \newtheorem{proof}{Proof}
 
-% \theoremsymbol{\ensuremath{\bigcirc}}
 \theoremsymbol{}
 \newtheorem{remark}{Remark}
-% \newtheorem{example}{Example}
 
-\theoremsymbol{}
-\theoremheaderfont{\normalfont\scshape}
-\theoremindent1.5em
-\newtheorem{ucase}{Case}
+% styling
 
-\theoremstyle{plain}
-\newtheorem{case}{Case}
-\theoremindent1.5em
-\newtheorem{subcase}{Case}
-\numberwithin{subcase}{case}
+\tcolorboxenvironment{theorem}{roundframe}
+\tcolorboxenvironment{lemma}{roundframe}
+\tcolorboxenvironment{proposition}{roundframe}
+\tcolorboxenvironment{corollary}{roundframe}
+\tcolorboxenvironment{proof}{noframe,colback=blue!10}
+\tcolorboxenvironment{definition}{thickleftframe,colframe=green,colback=green!10}
+\tcolorboxenvironment{remark}{noframe}
+\tcolorboxenvironment{example}{noframe,colback=gray!10}
+\tcolorboxenvironment{exercise}{noframe,colback=yellow!10}
+
