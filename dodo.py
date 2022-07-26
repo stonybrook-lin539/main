@@ -174,7 +174,7 @@ def task_test_chapter():
     outfile = f"{PDFDIR}/test/{chname}.pdf"
     cmd = (
         f"TEXINPUTS=.:{srcsubdir}:"
-        f" pandoc --verbose -t pdf {PANDOC_OPTS} {LATEX_OPTS} {LATEX_CH_OPTS}"
+        f" pandoc -t pdf {PANDOC_OPTS} {LATEX_OPTS} {LATEX_CH_OPTS}"
         f" --metadata-file={srcsubdir}/metadata.yaml"
         f" {' '.join(infiles)} -o {outfile}"
     )
