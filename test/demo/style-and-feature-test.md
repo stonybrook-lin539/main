@@ -85,7 +85,7 @@ Image with custom size.
 ## Custom blocks
 
 ::: advice
-This is some advice.
+This is an advice block.
 :::
 
 ::: theorem
@@ -94,6 +94,14 @@ This is a theorem.
 
 ::: lemma
 This is a lemma.
+:::
+
+::: corollary
+This is a corollary.
+:::
+
+::: proposition
+This is a proposition.
 :::
 
 ::: definition
@@ -105,7 +113,7 @@ This is a proof.
 :::
 
 ::: example
-This is a theorem.
+This is an example.
 :::
 
 ::: exercise
