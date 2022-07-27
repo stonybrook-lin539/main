@@ -47,16 +47,16 @@
 % Use document metadata in header
 % workarounds to handle declaration of metadata after header formatting
 %   and to circumvent \maketitle deleting metadata
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\makeatletter
-\AtBeginDocument{
-  \let\theauthor\@author
-  \let\thedate\@date
-}
-\makeatother
-\fancyhead[L]{\theauthor, \thedate}
-\fancyhead[R]{\nouppercase{\leftmark}}
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \makeatletter
+% \AtBeginDocument{
+%   \let\theauthor\@author
+%   \let\thedate\@date
+% }
+% \makeatother
+% \fancyhead[L]{\nouppercase{\leftmark}}
+% \fancyhead[R]{\nouppercase{\rightmark}}
 
 %
 % Theorems, exercises, and other blocks

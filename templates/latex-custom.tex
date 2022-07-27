@@ -234,6 +234,9 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
+%----------------------------------------------------------------------------
+% Custom additions
+
 % Code for selective inclusion of answers
 %   Variable "showanswers" controls collection
 %   Macro \exranswerlist contains answers
@@ -243,43 +246,72 @@ $if(showanswers)$
 \setbool{showanswers}{$showanswers$}
 $endif$
 
+$if(singlesection)$
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \makeatletter
+  \AtBeginDocument{
+    \let\thetitle\@title
+  }
+  \makeatother
+  \fancyhead[L]{\nouppercase{\thetitle}}
+  \fancyhead[R]{\nouppercase{\leftmark}}
+$elseif(singlechapter)$
+  \usepackage{titletoc}
+  \contentsmargin{2em}
+  \dottedcontents{section}[2.5em]{}{2.5em}{8pt}
+  \dottedcontents{subsection}[5em]{}{3em}{8pt}
+  \dottedcontents{subsubsection}[8.5em]{}{3.5em}{8pt}
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[L]{\nouppercase{\leftmark}}
+  \fancyhead[R]{\nouppercase{\rightmark}}
+$else$
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[L]{\nouppercase{\leftmark}}
+  \fancyhead[R]{\nouppercase{\rightmark}}
+$endif$
+%----------------------------------------------------------------------------
+
 % Code for document metadata
 $if(title)$
 \title{$title$}
 $endif$
 
-$if(subtitle)$
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{$subtitle$}
-$endif$
+% $if(subtitle)$
+% \usepackage{etoolbox}
+% \makeatletter
+% \providecommand{\subtitle}[1]{% add subtitle to \maketitle
+%   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+% }
+% \makeatother
+% \subtitle{$subtitle$}
+% $endif$
 
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
-%----------------------------------------------------------------------------
 \begin{document}
 
 % typeset title
 $if(singlesection)$
-$if(title)$
-{\centering\LARGE\bfseries $title$ \par\bigskip}
-$endif$
+  $if(title)$
+    {\centering\LARGE\bfseries $title$ \par\bigskip}
+  $endif$
 $elseif(singlechapter)$
 % Use chapter number and title from metadata to simulate title
-$if(chapter-title)$
-$if(chapter-number)$
-{\centering\Huge\bfseries Chapter $chapter-number$: $chapter-title$ \par\bigskip}
-$else$
-{\noindent\Huge\bfseries $chapter-title$ \par\bigskip}
-$endif$
-$endif$
+  $if(chapter-title)$
+    $if(chapter-number)$
+      {\centering\Huge\bfseries Chapter $chapter-number$: $chapter-title$ \par\bigskip}
+    $else$
+      {\noindent\Huge\bfseries $chapter-title$ \par\bigskip}
+    $endif$
+  $elseif(title)$
+     {\centering\LARGE\bfseries $title$ \par\bigskip}
+  $endif$
 $elseif(title)$
-\maketitle
+  \maketitle
 $endif$
 
 % Pandoc include-before-body
