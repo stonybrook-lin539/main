@@ -99,6 +99,17 @@ This is an example.
 
 ::: example
 This is an example.
+
+This is a new paragraph.
+:::
+
+::: example
+This is an example with a list.
+
+- list
+- in
+- a
+- box
 :::
 
 Text after blocks.
