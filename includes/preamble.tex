@@ -66,7 +66,7 @@
   colframe=red!75!black,
   colback=red!5!white,
   left=.5em, right=.5em, top=.5em, bottom=.5em,
-  beforeafter skip=1em,
+  beforeafter skip balanced=.5\baselineskip plus 2pt,
 }
 
 \tcbset{roundframe/.style={
@@ -91,12 +91,17 @@
   colback=white,
   coltitle=black,
   colbacktitle=white,
-  attach boxed title to top left = {yshift=-\tcboxedtitleheight/2, xshift=.5cm},
-  boxed title style = {frame hidden}
+  attach boxed title to top left = {yshift=-\tcboxedtitleheight/2, xshift=5mm},
+  boxed title style = {frame empty, boxsep=0pt, left=3pt, right=3pt, top=0pt, bottom=0pt}
 }}
 
 
 % callouts
+
+\newtcolorbox{prereqs}{
+  titlebox,
+  title=\textsc{Prerequisites},
+}
 
 \newtcolorbox{advice}{
   titlebox,
