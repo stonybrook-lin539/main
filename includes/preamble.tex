@@ -35,6 +35,9 @@
 % Page formatting
 %
 
+\usepackage{enumitem}
+\setlist{topsep=0.2\baselineskip}
+
 % \usepackage{titletoc}
 % \contentsmargin{2em}
 % \dottedcontents{section}[2.5em]{}{2.5em}{8pt}
@@ -67,6 +70,7 @@
   colback=red!5!white,
   left=.5em, right=.5em, top=.5em, bottom=.5em,
   beforeafter skip balanced=.5\baselineskip plus 2pt,
+  before upper={\parindent5mm}
 }
 
 \tcbset{roundframe/.style={
@@ -91,8 +95,8 @@
   colback=white,
   coltitle=black,
   colbacktitle=white,
-  attach boxed title to top left = {yshift=-\tcboxedtitleheight/2, xshift=5mm},
-  boxed title style = {frame empty, boxsep=0pt, left=3pt, right=3pt, top=0pt, bottom=0pt}
+  attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=5mm},
+  boxed title style={frame empty, boxsep=0pt, left=3pt, right=3pt, top=0pt, bottom=0pt}
 }}
 
 
@@ -101,11 +105,13 @@
 \newtcolorbox{prereqs}{
   titlebox,
   title=\textsc{Prerequisites},
+  before upper={\noindent}
 }
 
 \newtcolorbox{advice}{
   titlebox,
   title=\textsc{Advice},
+  before upper={\noindent}
 }
 
 % theorems, etc.
@@ -116,7 +122,7 @@
 \theoremseparator{.}
 
 % \newcommand{\TheoremSymbol}{\tikz{\draw (0,0) -| (.5em,.5em);}}
-\theoremsymbol{\ensuremath{\rtimes}} % why doesn't the symbol appear?
+\theoremsymbol{\ensuremath{\diamondsuit}} % why doesn't the symbol appear?
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -126,17 +132,6 @@
 % \newtheorem{conjecture}[theorem]{Conjecture}
 % \newtheorem{problem}[theorem]{Problem}
 \newtheorem{definition}[theorem]{Definition}
-
-
-% exercises and answers
-
-\newtheorem{example}{Example}
-\newtheorem{exercise}{Exercise}
-\providebool{showanswers}
-\newcommand{\exranswerlist}{}
-\NewEnviron{exranswer}{\ifbool{showanswers}{%
-  \xappto\exranswerlist{\theexercise . \BODY}}{}}
-
 
 % proofs, etc.
 
@@ -148,6 +143,19 @@
 
 \theoremsymbol{}
 \newtheorem{remark}{Remark}
+
+% exercises and answers
+
+\theoremstyle{normal}
+\theoremheaderfont{\normalfont\bfseries\scshape}
+\theorembodyfont{\normalfont}
+\theoremseparator{.}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+\providebool{showanswers}
+\newcommand{\exranswerlist}{}
+\NewEnviron{exranswer}{\ifbool{showanswers}{%
+  \xappto\exranswerlist{\theexercise . \BODY}}{}}
 
 % styling
 
