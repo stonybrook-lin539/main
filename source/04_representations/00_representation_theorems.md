@@ -44,7 +44,7 @@ Define each function by explicitly writing down the values, e.g. $\text{John} \m
 
 ::: solution
 1. The set of a female students' name $\is \setof{Sue, Mary}$ The characteristic function will map $\text{John} \mapsto 0, \text{Sue} \mapsto 1,\text{Mary} \mapsto 1$.
-1. The set of a four-letter name $\is \setof{John, Mary}$. Therefore we have $\f(John) \mapsto 1, \f(Sue) \mapsto 0,\text(Mary)} \mapsto 1$.
+1. The set of a four-letter name $\is \setof{John, Mary}$. Therefore we have $\f(John) \mapsto 1, \f(Sue) \mapsto 0,\text(Mary)\mapsto 1$.
 1. The set of a four-letter female name $\is \setof{Mary}$. Therefore we have $\text{John} \mapsto 0, \text{Sue} \mapsto 1,\text{Mary} \mapsto 1$.
 :::
 :::

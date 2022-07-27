@@ -24,7 +24,7 @@ Consider the **identity function** $\mathrm{id}$, which connects every node to i
 We can view this function as a relation that connects each node to itself and nothing else.
 This is a weak partial order.
 It clearly satisfies reflexivity.
-Transitivity holds because $a \mathrel{R} b$ and $b \mathrel{R} c$ hold only if $a = b = c$, wherefore $a \mathrel{R} c$ is the same as $a \mathrel{R} a$, which is guaranteed by reflexivity.
+Transitivity holds because $a \mathrel{R} b$ and $b \mathrel{R} c$ hold only if $a = b = c$, wherefore $a \mathrel{R} c$ is the same as $a \mathrel{R} a$, which is guaranteed by r eflexivity.
 Antisymmetry holds for the same rason: $a \mathrel{R} b$ holds only if $a = b$, so it is trivially true that $a \mathrel{R} b$ and $b \mathrel{R} a$ implies $a = b$.
 :::
 
@@ -47,6 +47,12 @@ Compute each one of the following for the corresponding hierarchy above (assume 
 - $\text{positive} \wedge \text{comparative} \wedge \text{superlative}$
 - $\text{Nom} \wedge (\text{Gen} \vee \text{Acc})$
 
+::: solution 
+- $1 \wedge 2 = 2$ 
+- $2 \vee (1 \wedge 3) = 2$
+- $\text{positive} \wedge \text{comparative} \wedge \text{superlative} = \text{superlative}$
+- $\text{Nom} \wedge (\text{Gen} \vee \text{Acc}) = \text{Nom}$
+:::
 :::
 
 ::: exercise
@@ -54,11 +60,19 @@ The PCC structure is neither a join semilattice nor a meet semilattice.
 Explain why.
 
 *Hint*: Find two elements that have no unique supremum or no unique infimum.
+
+::: solution
+The PCC structure is neither a join semilattice nor a meet semilattice because because $\setof{1,2} \wedge \setof{2,3}$ and $\setof{2,1} \vee \setof{3,2}$ are not unique.
+:::
 :::
 
 ::: exercise
 Remember that we removed all elements from the PCC lattice where the first and second component are the same person.
 If we put these nodes back into the structure, would the result be a lattice?
+
+::: solution
+Yes, it would be a lattice because there exist a unique supremumand or infimum for every two elements. 
+:::
 :::
 
 With the exception of the PCC, the class of lattices seems to be a good fit.
@@ -87,6 +101,16 @@ gcc_hierarchy.tikz
 
 ::: exercise
 Show that the Zapotec GCC is monotonic over this hierarchy.
+
+::: solution
+As what we did for PCC, a function $f(<O,S>)$ can be mapped to an ordered set $\setof{T,F}$ such that $T<F$ and $f(<1,4>) = T$ and $f(<4,1>) = F$. 
+From the diagram, it can be seen that if $<S_1,O_1> \leq <S_2,O_2>$, it holds that $f<S_1,O_1> \leq f<S_2,O_2>$. 
+For example, $<1,4> > <4,1>$ and $f(<1,4>) = T > f(<4,1>) = F$. Therefore, the GCC is monotonically increasing. 
+
+~~~ {.include-tikz size=mid}
+gcc_hierarchy_monotonic.tikz
+~~~
+:::
 :::
 
 So it looks like we might be able narrow down the class of potential hierarchies from any weak partial order to lattices --- if we can deal with the PCC hierarchy somehow.
@@ -135,6 +159,18 @@ tense_hierarchy.forest
 
 ::: exercise
 For each one of the three data paradigms above, show that it is monotonic over this tense hierarchy.
+
+::: solution
+For Serbo Croatian, the tense hierarchy in monotonically increasing.
+~~~ {.include-tikz size=mid}
+gcc_hierarchy_serbo_croatian.tikz
+~~~
+
+For French, the tense hierarchy in monotonically increasing.
+~~~ {.include-tikz size=mid}
+gcc_hierarchy_french.tikz
+~~~
+:::
 :::
 
 This is not a lattice as neither of the following meets exists:
@@ -150,6 +186,17 @@ But the PCC hierarchy isn't a semilattice, either, and once again this isn't the
 
 ::: exercise
 Why can't we generalize the tense semilattice to a lattice by also setting $\text{past} < \text{future}$?
+
+::: solution
+If we set $\text{past} < \text{future}$, the tense hierarchy will become as below:
+
+~~~ {.include-tikz size=mid}
+gcc_hierarchy_wrong_french.tikz
+~~~
+In the case, $\text{past} < \text{future}$ but $f(\text{past}) = \text{B} > f(\text{future}) = \text{A}$.
+The monotonicity does not hold any more.
+Therefore, we can't generalize the tense semilattice to a lattice$.
+:::
 :::
 
 

@@ -1,0 +1,35 @@
+\documentclass[tikz]{standalone}
+\usepackage[linguistics]{forest}
+\begin{document}
+\usetikzlibrary{positioning}
+\begin{tikzpicture}
+    \node (pre) at (0,0) {present};
+    \node (par) [below left=of pre] {participle} ;
+    \node (fut) [below right=of pre] {future};
+    \node (past) [below =of par] {past};
+    \node (c) [above right =of fut] {C};
+    \node (b) [ right =of fut] {B};
+    \node (a) [below right =of fut] {A};
+
+    \foreach \Source/\Target in {%
+        pre/par,
+        par/past,
+        pre/fut,
+        a/b,
+        b/c%
+        }
+        \draw (\Source) to (\Target);
+        
+     \foreach \Source/\Target in {%
+        pre/b%
+        }
+        \draw[->,blue!75,dashed,thick,bend left=20] (\Source) to (\Target);
+    
+     \foreach \Source/\Target in {%
+        past/a,
+        par/a,
+        fut/a%
+        }
+        \draw[->,red!75,dotted,thick,bend right=20] (\Source) to (\Target);
+\end{tikzpicture}
+\end{document}
