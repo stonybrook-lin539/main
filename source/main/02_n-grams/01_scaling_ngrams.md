@@ -125,32 +125,33 @@ In particular, no word ever contains an edge marker in the middle, so *a{{{L}}}a
 It is also impossible for {{{R}}} to occur to the left of {{{L}}}, which rules out trigrams like *{{{R}}}a{{{L}}}* and *{{{R}}}{{{L}}}a*.
 Filtering out those useless trigrams leaves us with the following list:
 
-1. aaa
-1. aad
-1. aa{{{R}}}
-1. ada
-1. add
-1. ad{{{R}}}
-1. a{{{R}}}{{{R}}}
-1. daa
-1. dad
-1. da{{{R}}}
-1. dda
-1. ddd
-1. dd{{{R}}}
-1. d{{{R}}}{{{R}}}
-1. {{{L}}}aa
-1. {{{L}}}ad
-1. {{{L}}}a{{{R}}}
-1. {{{L}}}da
-1. {{{L}}}dd
-1. {{{L}}}d{{{R}}}
-1. {{{L}}}{{{L}}}a
-1. {{{L}}}{{{L}}}d
-1. {{{L}}}{{{L}}}{{{L}}}
-1. {{{L}}}{{{L}}}{{{R}}}
-1. {{{L}}}{{{R}}}{{{R}}}
-1. {{{R}}}{{{R}}}{{{R}}}
+-
+aaa
+aad
+aa{{{R}}}
+ada
+add
+ad{{{R}}}
+a{{{R}}}{{{R}}}
+daa
+dad
+da{{{R}}}
+dda
+ddd
+dd{{{R}}}
+d{{{R}}}{{{R}}}
+{{{L}}}aa
+{{{L}}}ad
+{{{L}}}a{{{R}}}
+{{{L}}}da
+{{{L}}}dd
+{{{L}}}d{{{R}}}
+{{{L}}}{{{L}}}a
+{{{L}}}{{{L}}}d
+{{{L}}}{{{L}}}{{{L}}}
+{{{L}}}{{{L}}}{{{R}}}
+{{{L}}}{{{R}}}{{{R}}}
+{{{R}}}{{{R}}}{{{R}}}
 
 But even if we had included all useless trigrams, that would not change the fact that there are only finitely many trigrams over *a*, *d*, and the edge markers.
 :::
@@ -172,64 +173,66 @@ We have to pad out *z{{{R}}}* from a bigram to a 4-gram.
 The length difference between a bigram and a 4-gram is 2, so we have to put bigrams in front of *z{{{R}}}*.
 The list of possible (and useful) bigrams is as follows:
 
-- {{{L}}}{{{L}}}
-- {{{L}}}{{{R}}}
-- {{{R}}}{{{R}}}
-- {{{L}}}a
-- {{{L}}}k
-- {{{L}}}z
-- {{{L}}}n
-- a{{{R}}}
-- aa
-- ak
-- az
-- an
-- k{{{R}}}
-- ka
-- kk
-- kz
-- kn
-- z{{{R}}}
-- za
-- zk
-- zz
-- zn
-- n{{{R}}}
-- na
-- nk
-- nz
-- nn
+-
+{{{L}}}{{{L}}}
+{{{L}}}{{{R}}}
+{{{R}}}{{{R}}}
+{{{L}}}a
+{{{L}}}k
+{{{L}}}z
+{{{L}}}n
+a{{{R}}}
+aa
+ak
+az
+an
+k{{{R}}}
+ka
+kk
+kz
+kn
+z{{{R}}}
+za
+zk
+zz
+zn
+n{{{R}}}
+na
+nk
+nz
+nn
 
 So we remove *z{{{R}}}* from $G$ and instead add all of the following.
 Note that not all of those 4-grams are useful, but that doesn't matter here.
 
-- {{{L}}}{{{L}}}z{{{R}}}
-- {{{L}}}{{{R}}}z{{{R}}}
-- {{{R}}}{{{R}}}z{{{R}}}
-- {{{L}}}az{{{R}}}
-- {{{L}}}kz{{{R}}}
-- {{{L}}}zz{{{R}}}
-- {{{L}}}nz{{{R}}}
-- a{{{R}}}z{{{R}}}
-- aaz{{{R}}}
-- akz{{{R}}}
-- azz{{{R}}}
-- anz{{{R}}}
-- k{{{R}}}z{{{R}}}
-- kaz{{{R}}}
-- kkz{{{R}}}
-- kzz{{{R}}}
-- knz{{{R}}}
-- z{{{R}}}z{{{R}}}
-- zaz{{{R}}}
-- zkz{{{R}}}
-- zzz{{{R}}}
-- znz{{{R}}}
-- n{{{R}}}z{{{R}}}
-- naz{{{R}}}
-- nkz{{{R}}}
-- nzz{{{R}}}
-- nnz{{{R}}}
+-
+{{{L}}}{{{L}}}z{{{R}}}
+{{{L}}}{{{R}}}z{{{R}}}
+{{{R}}}{{{R}}}z{{{R}}}
+{{{L}}}az{{{R}}}
+{{{L}}}kz{{{R}}}
+{{{L}}}zz{{{R}}}
+{{{L}}}nz{{{R}}}
+a{{{R}}}z{{{R}}}
+aaz{{{R}}}
+akz{{{R}}}
+azz{{{R}}}
+anz{{{R}}}
+k{{{R}}}z{{{R}}}
+kaz{{{R}}}
+kkz{{{R}}}
+kzz{{{R}}}
+knz{{{R}}}
+z{{{R}}}z{{{R}}}
+zaz{{{R}}}
+zkz{{{R}}}
+zzz{{{R}}}
+znz{{{R}}}
+n{{{R}}}z{{{R}}}
+naz{{{R}}}
+nkz{{{R}}}
+nzz{{{R}}}
+nnz{{{R}}}
 
 :::
 
@@ -239,34 +242,34 @@ Note that not all of those 4-grams are useful, but that doesn't matter here.
 ::: example
 We also add the following 4-grams to $G$:
 
-
-1. z{{{R}}}{{{L}}}{{{L}}}
-1. z{{{R}}}{{{L}}}{{{R}}}
-1. z{{{R}}}{{{R}}}{{{R}}}
-1. z{{{R}}}{{{L}}}a
-1. z{{{R}}}{{{L}}}k
-1. z{{{R}}}{{{L}}}z
-1. z{{{R}}}{{{L}}}n
-1. z{{{R}}}aa
-1. z{{{R}}}ak
-1. z{{{R}}}az
-1. z{{{R}}}an
-1. z{{{R}}}a{{{R}}}
-1. z{{{R}}}ka
-1. z{{{R}}}kk
-1. z{{{R}}}kz
-1. z{{{R}}}kn
-1. z{{{R}}}k{{{R}}}
-1. z{{{R}}}za
-1. z{{{R}}}zk
-1. z{{{R}}}zz
-1. z{{{R}}}zn
-1. z{{{R}}}z{{{R}}}
-1. z{{{R}}}na
-1. z{{{R}}}nk
-1. z{{{R}}}nz
-1. z{{{R}}}nn
-1. z{{{R}}}n{{{R}}}
+-
+z{{{R}}}{{{L}}}{{{L}}}
+z{{{R}}}{{{L}}}{{{R}}}
+z{{{R}}}{{{R}}}{{{R}}}
+z{{{R}}}{{{L}}}a
+z{{{R}}}{{{L}}}k
+z{{{R}}}{{{L}}}z
+z{{{R}}}{{{L}}}n
+z{{{R}}}aa
+z{{{R}}}ak
+z{{{R}}}az
+z{{{R}}}an
+z{{{R}}}a{{{R}}}
+z{{{R}}}ka
+z{{{R}}}kk
+z{{{R}}}kz
+z{{{R}}}kn
+z{{{R}}}k{{{R}}}
+z{{{R}}}za
+z{{{R}}}zk
+z{{{R}}}zz
+z{{{R}}}zn
+z{{{R}}}z{{{R}}}
+z{{{R}}}na
+z{{{R}}}nk
+z{{{R}}}nz
+z{{{R}}}nn
+z{{{R}}}n{{{R}}}
 
 Except for *z{{{R}}}{{{R}}}{{{R}}}* these are all useless because {{{R}}} cannot occur between two symbols that aren't edge markers.
 But we add them anyways to stick with the procedure.
@@ -279,37 +282,37 @@ But we add them anyways to stick with the procedure.
 Since the difference between a 4-gram and a bigram is $2$, each one of the two "sandwich" $n$-grams must have length $1$.
 So we add the following:
 
-
-1. {{{L}}}z{{{R}}}{{{L}}}
-1. {{{L}}}z{{{R}}}{{{R}}}
-1. {{{L}}}z{{{R}}}a
-1. {{{L}}}z{{{R}}}k
-1. {{{L}}}z{{{R}}}z
-1. {{{L}}}z{{{R}}}n
-1. az{{{R}}}a
-1. az{{{R}}}k
-1. az{{{R}}}z
-1. az{{{R}}}n
-1. az{{{R}}}{{{L}}}
-1. az{{{R}}}{{{R}}}
-1. kz{{{R}}}a
-1. kz{{{R}}}k
-1. kz{{{R}}}z
-1. kz{{{R}}}n
-1. kz{{{R}}}{{{L}}}
-1. kz{{{R}}}{{{R}}}
-1. zz{{{R}}}a
-1. zz{{{R}}}k
-1. zz{{{R}}}z
-1. zz{{{R}}}n
-1. zz{{{R}}}{{{L}}}
-1. zz{{{R}}}{{{R}}}
-1. nz{{{R}}}a
-1. nz{{{R}}}k
-1. nz{{{R}}}z
-1. nz{{{R}}}n
-1. nz{{{R}}}{{{L}}}
-1. nz{{{R}}}{{{R}}}
+-
+{{{L}}}z{{{R}}}{{{L}}}
+{{{L}}}z{{{R}}}{{{R}}}
+{{{L}}}z{{{R}}}a
+{{{L}}}z{{{R}}}k
+{{{L}}}z{{{R}}}z
+{{{L}}}z{{{R}}}n
+az{{{R}}}a
+az{{{R}}}k
+az{{{R}}}z
+az{{{R}}}n
+az{{{R}}}{{{L}}}
+az{{{R}}}{{{R}}}
+kz{{{R}}}a
+kz{{{R}}}k
+kz{{{R}}}z
+kz{{{R}}}n
+kz{{{R}}}{{{L}}}
+kz{{{R}}}{{{R}}}
+zz{{{R}}}a
+zz{{{R}}}k
+zz{{{R}}}z
+zz{{{R}}}n
+zz{{{R}}}{{{L}}}
+zz{{{R}}}{{{R}}}
+nz{{{R}}}a
+nz{{{R}}}k
+nz{{{R}}}z
+nz{{{R}}}n
+nz{{{R}}}{{{L}}}
+nz{{{R}}}{{{R}}}
 
 Again there are many useless $n$-grams, but we do not care.
 :::
