@@ -15,6 +15,9 @@ Text in section.
 
 Text in subsection.
 
+#### Subsubsection
+
+Text in subsubsection.
 
 ## Text formatting
 
@@ -42,14 +45,6 @@ Here is a code block.
 
 ```This is a code block.```
 
-Here is a table.
-
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|   12  |  12  |    12   |    12  |
-|  123  |  123 |   123   |   123  |
-|    1  |    1 |     1   |     1  |           
-
 Before horizontal rule
 
 ---
@@ -71,18 +66,44 @@ $\tuple{a, b, c}$
 $\setof{a, b, c}$
 
 
-## Images
+## Tables, images
 
-PNG image at natural size.
+Here is a table.
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+
+
+PNG image at natural size, followed by same image with width of 1 inch.
 
 ![test image](sbuling-logo.png)
-
-Image with custom size.
-
 ![small image](sbuling-logo.png){width=1in}
 
 
 ## Custom blocks
+
+Text before block.
+
+::: example
+This is an example.
+:::
+
+Text between blocks.
+
+::: example
+This is an example.
+:::
+
+::: example
+This is an example.
+:::
+
+Text after blocks.
+
+### More blocks
 
 ::: advice
 This is an advice block.
@@ -127,7 +148,6 @@ This is an exercise with an answer. The answer will appear at the bottom of the 
 This is the answer to an exercise.
 :::
 :::
-
 
 ## Custom includes
 
