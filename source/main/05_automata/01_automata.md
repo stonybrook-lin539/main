@@ -1,9 +1,9 @@
-**Prerequisites**
+# Finite-state automata
 
+:::prereqs
 - strings (string parts)
 - general (big operators)
-
-# Finite-state automata
+:::
 
 Prefix trees, although limited to tree structures rather than arbitrary graphs, generalize our standard notion of graphs in that they have both vertex labels (which we called *colors*) and edge labels (the actual characters of the strings).
 We briefly entertained the notion of generalizing prefix trees to prefix DAGs, but that did not turn out to be particularly useful for our intended application, namely a more efficient encoding of word lists.

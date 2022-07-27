@@ -1,9 +1,9 @@
-**Prerequisites**
+# Multiset relations
 
+:::prereqs
 - sets (comparison, powerset)
 - multisets (operations)
-
-# Multiset relations
+:::
 
 The (proper) subset and superset relations are readily extended to multisets.
 

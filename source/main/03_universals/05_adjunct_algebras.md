@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- posets (basics, semilattices)
-
 # Explaining a syntactic universal: the Adjunct Island Constraint
+
+:::prereqs
+- posets (basics, semilattices)
+:::
 
 The Person Case Constraint in the previous unit was an instance of monotonicity regulating the shape of sentences, i.e. the **syntax** of a language.
 It probably won't surprise you to hear that there is more to syntax than just the Person Case Constraint.

@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (notation, operations, cardinality)
-
 # Comparing sets
+
+:::prereqs
+- sets (notation, operations, cardinality)
+:::
 
 Two sets can stand in several distinct relations to each other:
 

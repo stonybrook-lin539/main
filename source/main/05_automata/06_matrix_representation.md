@@ -1,10 +1,10 @@
-**Prerequisites**
+# Finite-state recognition as Boolean matrix multiplication
 
+:::prereqs
 - linear algebra (not in background section yet)
     - matrices
     - matrix multiplication
-
-# Finite-state recognition as Boolean matrix multiplication
+:::
 
 ## Generators and recognizers
 

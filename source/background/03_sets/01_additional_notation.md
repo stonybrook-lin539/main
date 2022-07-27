@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (basic notation)
-
 # Sets: Additional notation
+
+:::prereqs
+- sets (basic notation)
+:::
 
 ## The empty set
 

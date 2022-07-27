@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (notation, operations, cardinality)
-
 # The Powerset
+
+:::prereqs
+- sets (notation, operations, cardinality)
+:::
 
 Sometimes it is useful to take a set and consider all sets one could build from its elements.
 For example, each one of the following sets can be built from the elements of $\setof{1,2,3}$: 

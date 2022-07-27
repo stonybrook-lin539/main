@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- multisets (basics)
-
 # Set-of-words revisited: adding counts
+
+:::prereqs
+- multisets (basics)
+:::
 
 I have a horrible confession to make: the previous unit contains a lie.
 The set-of-words model isn't actually used in practice.

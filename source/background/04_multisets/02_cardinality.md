@@ -1,10 +1,10 @@
-**Prerequisites**
+# Cardinality of multisets
 
+:::prereqs
 - general (big operators)
 - sets (cardinality)
 - multisets (operations)
-
-# Cardinality of multisets
+:::
 
 Given a multiset $S_M$, we write $S_M(a)$ for the count of $a$ in $S_M$.
 

@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- basic math (factorial)
-
 # Positive $n$-gram grammars
+
+:::prereqs
+- basic math (factorial)
+:::
 
 We now have a simple model of phonotactics, i.e. what sequences of sounds may occur in the words of a natural language.
 According to this model, the phonotactic well-formedness of a word can be determined from the chunks that said word is built from.

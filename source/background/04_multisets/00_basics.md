@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (notation)
-
 # Sets with counters: Multisets
+
+:::prereqs
+- sets (notation)
+:::
 
 Sets are an abstract mathematical object that we may think of as collections in a lose sense.
 They are sometimes likened to bags, but this can be misleading.

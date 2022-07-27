@@ -1,9 +1,9 @@
-**Prerequisites**
+# Operations on multisets
 
+:::prereqs
 - sets (operations)
 - multisets (basics)
-
-# Operations on multisets
+:::
 
 ## Standard set operations
 

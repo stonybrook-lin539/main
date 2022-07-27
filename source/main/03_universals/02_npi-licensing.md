@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (comparisons)
-
 # NPIs and monotonicity
+
+:::prereqs
+- sets (comparisons)
+:::
 
 Monotonicity is not limited to morphology, it also shows up in areas where syntax (= sentence structure) interacts with semantics (= meaning).
 One instance is the licensing of **Negative Polarity Items**.

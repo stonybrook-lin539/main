@@ -1,4 +1,5 @@
-**Prerequisites**
+:::prereqs
+:::
 
 # Cardinality of multisets
 
