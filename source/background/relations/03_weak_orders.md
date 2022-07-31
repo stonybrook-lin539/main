@@ -67,6 +67,13 @@ Consequently, $R$ is also reflexive.
 ::: exercise
 There is no relation that is reflexive, and irreflexive, and non-reflexive.
 Explain why!
+
+::: solution
+If a relation is *reflexive*, it holds that for all $x \in D$, there's $x \mathrel{R} x$.
+If a relation is *irreflexive*, it holds that there does not exist any $x \in D$ such that $x \mathrel{R} x$.
+*Nonreflexive* is there exist at least one but not all $x \in D$, there's $x \mathrel{R} x$.
+These properties are contraditory to one another. 
+:::
 :::
 
 ::: exercise
@@ -82,10 +89,23 @@ If you have to make additional assumptions, explain what they are.
 - the "parent-of" relation over humans in a world with time travelling
 - the "reverse" relation over words ($x \mathrel{R} y$ iff $x$ is $y$ read backwards; e.g. *deer* and *reed*)
 
+::: solution 
+- the "younger than" relation is irreflexive
+- the "sums to 10" relation ($x \mathrel{R} y$ iff $x + y = 10$) is reflexive becuase there exist x where $x \mathrel{R} x$ iff $x + x = 10$.
+- the "at least as rich as" relation is reflexive because every one is as rich as themselves.
+- the "voted for the same candidate" relation is reflexive.
+- the "parent-of" relation over humans in a world with time travelling - tricky! If everyone can time travle and be their own parent, then yes it is reflexive; if time travelling just mean we can trace back into our ancestor as much as we want (but do not change the parent-child relation) then that's irreflexive.
+- the "reverse" relation over words is non-reflexive. There exist some words such as *deed* or the name *ava* or the band *abba* which can be read backwards and remain the same. 
+:::
 :::
 
 ::: exercise
 Say whether the following claim is true or false, and justify your answer: If there are $x$ and $y$ in the domain $D$ of $R$ such that $x \mathrel{R} y$, then it is impossible for $R$ to be reflexive and asymmetric.
+
+::: solution
+If a relation is reflexive, $x \mathrel{R} x$ itself is symmetric which is against asymmetricy. 
+Therefore, it is impossible for $R$ to be reflexive and asymmetric.
+:::
 :::
 
 Reflexivity is the crucial difference between weak and strict orders.
@@ -125,6 +145,11 @@ So antisymmetry is satisfied by virtue of $<$ being asymmetric.
 
 ::: exercise
 Show that every relation that is both irreflexive and antisymmetric is asymmetric.
+
+::: solution
+Let's define a antisymmetric relation $R$ over $D$ such that for all $x, y \in D$, $x \mathrel{R} y$ and $y \mathrel{R} x$ jointly imply $x = y$. In other words, antisymmetry implies reflexivity.
+If the realtion is antisymmetric but losing its reflexivity, then it cancels the possibitity of having both $x \mathrel{R} y$ and $y \mathrel{R} x$. Hence, this is an asymmetric relation.
+:::
 :::
 
 Keep in mind that antisymmetry is not the opposite of asymmetry.
@@ -151,6 +176,16 @@ If $x$ isn't related to $y$ to begin with, then symmetry simply doesn't care.
 
 ::: exercise
 Say whether the following claim is true or false, and justify your answer: If there are $x$ and $y$ in the domain $D$ of $R$ such that $x \mathrel{R} y$, then it is impossible for $R$ to be transitive, symmetric, and irreflexive.
+
+::: solution 
+Let's see $x,y,z \in D$ of $R$ where it holds that:
+- transitive: if $x \mathrel{R} y$ and $y \mathrel{R} z$ then $x \mathrel{R} z$ 
+- symmetric: if $x \mathrel{R} y$ then it follows $y \mathrel{R} x$.
+Since $x \mathrel{R} y$ implies $y \mathrel{R} x$, the transtivity can give us $x \mathrel{R} x$. 
+This is reflexivity.
+It can be seen that  transitivity and symmetricy combined implies reflexivity.
+Therefore it is impossible for $R$ to be transitive, symmetric, and irreflexive.
+:::
 :::
 
 If a relation is neither symmetric, nor asymmetric, nor antisymmetric, then it is **non-symmetric**.
@@ -186,6 +221,15 @@ Take care to justify your answers, and if you have to make additional assumption
 - the "reverse" relation over words ($x \mathrel{R} y$ iff $x$ is $y$ read backwards; e.g. *deer* and *reed*)
 - the lexicographic order of words in a dictionary
 
+::: solution 
+- the "younger than" relation is antisymmetric.
+- the "sums to 10" relation ($x \mathrel{R} y$ iff $x + y = 10$) is symmetric.
+- the "at least as rich as" relation is symmetric.
+- the "voted for the same candidate" relation is symmetric.
+- the "parent-of" relation over humans in a world with time travelling is asymmetric.
+- the "reverse" relation over words ($x \mathrel{R} y$ iff $x$ is $y$ read backwards; e.g. *deer* and *reed*) is symmetric.
+- the lexicographic order of words in a dictionary is antisymmetric.
+:::
 :::
 
 
@@ -211,6 +255,15 @@ Indicate in the table below which properties hold of the relations.
 | alphabetical order            |                |               |                   |             |
 | taller than                   |                |               |                   |             |
 
+::: solution
+| **Relation**                  | **transitive** | **reflexive** | **anti-symmetric** | **connex** |
+| :--                           | :--            | :--           | :--               | :--         |
+| substring                     |        Y       |       Y       |         Y         |       Y     |
+| $\subsetneq$                  |        Y       |       N       |         N         |       N     |
+| $\subseteq$                   |        Y       |       Y       |         Y         |       Y     |
+| alphabetical order            |        Y       |       Y       |         Y         |       Y     |
+| taller than                   |        Y       |       N       |         Y         |       N     |
+:::
 :::
 
 
@@ -291,7 +344,18 @@ A binary relation $R$ over domain $D$ is
 ::: exercise
 Indicate for each relation in the table below what kind of order it represents.
 Some relations fit multiple types, and some none.
-:::
+
+| **Relation**                  |  **weak partial** | **strict partial** | **weak total** | **strict total**|
+| :--                           |  :--              | :--                | :--            | :--             |
+| substring                     |Y                  |N                   |Y               |N                |
+| $\subsetneq$                  |N                  |Y                   |N               |Y                |
+| alphabetical order            |Y                  |N                   |Y               |N                |
+| ordering all humans by height |N                  |N                   |N               |N                |
+| "sums to 10" relation         |Y                  |N                   |N               |N                 |
+| parent-of relation            |N                  |Y                   |N               |N                 |
+| "voted for same candidate"    |Y                  |N                  |N               |N                 |
+
+::: solution 
 
 | **Relation**                  |  **weak partial** | **strict partial** | **weak total** | **weak strict** |
 | :--                           |  :--              | :--                | :--            | :--             |
@@ -302,6 +366,8 @@ Some relations fit multiple types, and some none.
 | "sums to 10" relation         |                   |                    |                |                 |
 | parent-of relation            |                   |                    |                |                 |
 | "voted for same candidate"    |                   |                    |                |                 |
+:::
+:::
 
 ::: exercise
 Give a real-world example of a weak partial order that is not a total order.

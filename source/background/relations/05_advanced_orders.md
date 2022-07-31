@@ -43,24 +43,43 @@ For example, $5 \mod 2 = 1$, whereas $6 \mod 2 = 0$.
 
 Suppose $x \equiv_2 y$ iff $x \mod 2 = y \mod 2$.
 Then $\equiv_2$ is an equivalence relation.
-First, it is clearly refleixve: $x \equiv_2 x$ iff $x \mod 2 = x \mod 2$, which always holds.
+First, it is clearly refleixive: $x \equiv_2 x$ iff $x \mod 2 = x \mod 2$, which always holds.
 Next, symmetry is also satisfied: $x \equiv_2 y$ iff $x \mod 2 = y \mod 2$ iff $y \mod 2 = x \mod 2$ iff $y \equiv_2 x$.
 :::
 
 ::: exercise
 Explain why $\equiv_2$ is transitive.
+
+::: solution
+$x \mod 2 = y \mod 2$
+$y \mod 2 = z \mod 2$
+It follows that $x \mod 2 = z \mod 2$.
+The modulo 2 relation is transitive.
+::: 
 :::
 
 ::: exercise
 Let us define a person's *family pain* as the number of family members that they'd rather not be related to.
 Given some domain $D$ of individuals, let $R \is \setof{ \tuple{d,e} \mid d \text{ and } e \text{ suffer the same familiy pain} }$.
 Show that $R$ is an equivalence relation.
+
+::: solution
+$R$ is an equivalence relation iff $R$ is transtive, symmetric, reflexive.
+First, *same number of family pain* is reflexive because obviously one has the same number of pains as oneself.
+Second, it is symmetric. For $d,e,f \in D$, if there is $d \mathrel{R} e$, it holds that $e \mathrel{R} d$ which means $d$ and $e$ have the same as each other.
+Third, it is transitive. If $d$ and $e$ have the same family pain, and $e$ and $f$ have the same. It follows that $d$ has the same family pain as $f$. Mathmetically, we have $d \mathrel{R} e$ and $e \mathrel{R} d$, then $d \mathrel{R} f$.
+Therefore, it is an equivalence relation.
+:::
 :::
 
 ::: exercise
 The **equivalence kernel** of a function $f$ is an equivalence relation $\sim_f$ such that two elements are equivalent iff they are mapped to the same value by $f$.
 Formally, $x \sim_f y$ iff $f(x) = f(y)$.
 Explain why $\equiv_f$ is an equivalence relation no matter what function $f$ is.
+
+::: solution
+The relation still satisfies transtivity, symmetricy, and reflexivity.
+:::
 :::
 
 ::: exercise
@@ -68,6 +87,10 @@ Suppose that two cities are *continent mates* iff they are connected by roads.
 The continent mate relation contains all $\tuple{c,m}$ (and only those) such that $c$ and $m$ are continent mates.
 Is the continent mate relation an equivalence relation?
 Why (not)?
+
+::: solution 
+Yes, it is. 
+:::
 :::
 
 ::: exercise

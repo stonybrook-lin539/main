@@ -242,8 +242,21 @@ Indicate in the table below which properties hold of the respective relations.
 | strict partial order |           |              |             |                     |             |
 | strict total order   |           |              |             |                     |             |
 
+::: solution
+
+| **Properties**       | substring | $\subsetneq$ | $\subseteq$ | lexicographic order | taller than  |
+| :--                  | :--       | :-:          | :-:         | :-:                 | :-:          |
+| transitive           |     Y     |      Y       |      Y      |         Y           |      Y       |
+| irreflexive          |     N     |      Y       |      N      |         N           |      Y       |
+| asymmetric           |     Y     |      Y       |      N      |         N           |      Y       |
+| semi-connex          |     Y     |      Y       |      Y      |         Y           |      Y       |
+| strict partial order |     N     |      N       |      N      |         N           |      Y       |
+| strict total order   |     N     |      Y       |      N      |         N           |      Y       |
+
+:::
 :::
 
 ::: exercise
 Give a real-world example of a strict partial order that is not a strict total order.
+If we look at all the keys in the keyboard, we can form a relation that a key $x$ is "to the left of" a key $y$. The relation is transitive, irreflexive, asymmetric but not semi-connex. 
 :::

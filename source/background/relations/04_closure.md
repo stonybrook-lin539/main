@@ -36,4 +36,11 @@ Calculate all of the following, assuming that the relation's domain is $D \is \s
 - the reflexive, symmetric, transitive closure of $\setof{\tuple{a,b}, \tuple{a,c}, \tuple{d,c}}$
 - the reflexive, symmetric, transitive closure of $\emptyset$
 
+::: solution
+- the reflexive closure of $\setof{\tuple{a,b}, \tuple{b,a}}$ is $\setof{\tuple{a,b}, \tuple{b,a},\tuple{a,a},\tuple{b,b},\tuple{c,c},\tuple{d,d}}$ 
+- the transitive closure of $\setof{\tuple{a,b}, \tuple{b,a}}$ is $\setof{\tuple{a,b}, \tuple{b,a},\tuple{b,c},\tuple{c,d},\tuple{a,c},\tuple{a,d},\tuple{b,d}}$
+- the transitive closure of $\setof{\tuple{a,b}, \tuple{b,c}, \tuple{c,d}, \tuple{d,a}}$ is $\setof{\tuple{a,b}, \tuple{b,c}, \tuple{c,d}, \tuple{d,a},\tuple{a,c},\tuple{a,d},\tuple{b,d},\tuple{a,a},}$
+- the reflexive, symmetric, transitive closure of $\setof{\tuple{a,b}, \tuple{a,c}, \tuple{d,c}}$ is $\setof{\tuple{a,b}, \tuple{a,c}, \tuple{d,c}, \tuple{a,a},\tuple{b,b},\tuple{c,c},\tuple{d,d},\tuple{b,a},\tuple{c,a},\tuple{c,d},\tuple{a,d},\tuple{b,c},\tuple{c,d}}$
+- the reflexive, symmetric, transitive closure of $\emptyset$ is $\emptyset$.
+:::
 :::
