@@ -62,6 +62,16 @@ $$
 $$
 \sum_{i = 1} i + i + i
 $$
+
+::: solution
+$$
+5 - \sum_{1 \leq i \leq 3} i = 5 - (1+2+3) = 5-6 =-1
+$$
+
+$$
+\sum_{i = 1} i + i + i = 1 + 1 + 1 = 3
+$$
+:::
 :::
 
 ::: exercise
@@ -72,6 +82,12 @@ Express each formula below in a more succinct format using the sum operator $\su
 - $30 + 15 + 3 + 10 + 2 + 20$
 - $-10 - 9 - 8 - 7$
 
+::: solution
+- $$ 20 + 21 + 22 + 23 + 24 + 25 + 26 + 27 + 28 + 20 = \sum_{20 \leq i \leq 29} i$$
+- $$2 + 4 + 6 + 8 + 10 = \sum_{1\leq i \leq 5} 2i $$
+- $$30 + 15 + 3 + 10 + 2 + 20 = \sum_{n \in \setof{2,3,10,15,20,30}}n$$
+- $$-10 - 9 - 8 - 7 = -\sum_{7\leq i \leq 10}n$$
+:::
 :::
 
 Sometimes, $\sum$ is used with a format where the subscript indicates the lowest of a range of values and a superscript specifies the cutoff point.
@@ -92,6 +108,12 @@ Rewrite the formula below so that it uses the subscript/superscript format.
 $$
 5 - \sum_{1 \leq i \leq 3} i
 $$
+
+:::solution
+$$
+5 - \sum_{1 \leq i \leq 3} i = 5 - \sum_{i=1}^3 i
+$$
+:::
 :::
 
 The variable need not always occur by itself, it can be part of a larger expression.
@@ -127,6 +149,13 @@ Consider once more the formulas below.
 
 Combine the sum operator with other operations in order to describe each formula in a more systematic way. 
 Keep in mind that there are infinitely many ways this can be done, just pick the one that seems most plausible to you.
+
+::: solution
+- $$20 + 21 + 22 + 23 + 24 + 25 + 26 + 27 + 28 + 29 = 20 +\sum_{0 \leq i \leq 9} i$$
+- $$2 + 4 + 6 + 8 + 10 = 2 \sum_{n \in \setof{1,2...10} | n is an even number}$$
+- $30 + 15 + 3 + 10 + 2 + 20$
+- $$-10 - 9 - 8 - 7 = \sum_{n = 0}^3 (n-10)$$
+:::
 :::
 
 Quite generally, $\sum$ can occur wherever addition may occur, so we can build some very complex formulas with this operator.
@@ -250,8 +279,8 @@ Just like $\sum$, $\prod$ can occur as part of a larger formula with other opera
 \begin{align*}
 & \prod_{i=1}^{3} \prod_{j=0}^{i} i^j\\
 = & \prod_{j=0}^{1} 1^j \mult \prod_{j=0}^{2} 2^j \mult \prod_{j=0}^{3} 3^j\\
-= & 1^0 \mult 2^0 \mult 2^1 \mult 3^0 \mult 3^1 \mult 3^2\\
-= & 54
+= & 1^0 \mult 1^1 \mult 2^0 \mult 2^1 \mult 2^2 \mult 3^0 \mult 3^1 \mult 3^2 \mult 3^3\\
+= & 5832
 \end{align*}
 :::
 
@@ -315,10 +344,35 @@ What is the value of the formula below, assuming that $i \oplus j = ij$ if $i \g
 $$
 \prod_{S \in \mathcal{S}} \bigoplus_{n \in S} n
 $$
+
+::: solution
+Assume $i \oplus j \oplus k$ follows a leftwards operation order, i.e.,$i \oplus j \oplus k = ij \oplus k$ if $i \geq j$, and $ij \oplus k = kij $ if $k \geq ij$), then we have:
+$$
+\prod_{S \in \mathcal{S}} \bigoplus_{n \in S} n = 
+
+\bigoplus_{n \in \setof{0, 3, 6}} n
+\mult
+\bigoplus_{n \in \setof{2, 3, 9}} n
+\mult
+\bigoplus_{n \in \setof{2,9}} n
+=
+( 0 \oplus 3 \oplus 6) 
+\mult
+( 2 \oplus 3 \oplus 9)
+\mult
+( 2 \oplus 9)
+=
+306
+\mult
+329
+\mult
+92
+=
+9262008
+$$
+:::
 :::
 
-::: exercise
-:::
 
 ## Two important requirements
 
