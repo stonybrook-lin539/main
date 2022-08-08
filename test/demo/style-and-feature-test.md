@@ -51,6 +51,7 @@ Before horizontal rule
 
 After horizontal rule
 
+
 ## Math
 
 Here is some inline math: $y = mx + b$.
@@ -58,6 +59,10 @@ Here is some inline math: $y = mx + b$.
 And some display math:
 
 $$y = mx + b$$
+
+Special symbols:
+
+$$\alpha\beta\gamma\ltimes\rtimes\cdot$$
 
 Now for some math using custom macros.
 
@@ -95,17 +100,11 @@ Text between blocks.
 
 ::: example
 This is an example.
-:::
-
-::: example
-This is an example.
 
 This is a new paragraph.
 :::
 
-::: example
-This is an example with a list.
-
+::: advice
 - list
 - in
 - a
@@ -114,7 +113,13 @@ This is an example with a list.
 
 Text after blocks.
 
-### More blocks
+- Block in a list:
+
+  ::: example
+  This is an example.
+  :::
+
+## More blocks
 
 ::: advice
 This is an advice block.
