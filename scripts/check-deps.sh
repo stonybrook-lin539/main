@@ -30,25 +30,40 @@ list_deps() {
 check_deps() {
     errors=0
 
-    python_ver_inst=$(python3 --version | awk '{print $2}')
-    if ! version_gte $python_ver_inst $python_ver_req; then
+    if ! command -v python3 > /dev/null; then
         errors=$((errors + 1))
-        echo "Python version below $python_ver_req."
+        echo "Python 3 not installed."
+    else
+        python_ver_inst=$(python3 --version | awk '{print $2}')
+        if ! version_gte $python_ver_inst $python_ver_req; then
+            errors=$((errors + 1))
+            echo "Python version below $python_ver_req."
+        fi
     fi
 
-    doit_ver_inst=$(doit --version | head -n 1)
-    if ! version_gte $doit_ver_inst $doit_ver_req; then
+    if ! command -v doit > /dev/null; then
         errors=$((errors + 1))
-        echo "Doit version below $doit_ver_req."
+        echo "Doit not installed."
+    else
+        doit_ver_inst=$(doit --version | head -n 1)
+        if ! version_gte $doit_ver_inst $doit_ver_req; then
+            errors=$((errors + 1))
+            echo "Doit version below $doit_ver_req."
+        fi
     fi
 
-    pandoc_ver_inst=$(pandoc --version | head -n 1 | awk '{print $2}')
-    if ! version_gte $pandoc_ver_req $pandoc_ver_req; then
+    if ! command -v pandoc > /dev/null; then
         errors=$((errors + 1))
-        echo "Pandoc version below $pandoc_ver_req."
+        echo "Pandoc not installed."
+    else
+        pandoc_ver_inst=$(pandoc --version | head -n 1 | awk '{print $2}')
+        if ! version_gte $pandoc_ver_req $pandoc_ver_req; then
+            errors=$((errors + 1))
+            echo "Pandoc version below $pandoc_ver_req."
+        fi
     fi
 
-    if ! pdflatex --version > /dev/null; then
+    if ! command -v pdflatex > /dev/null; then
         errors=$((errors + 1))
         echo "PDFLaTeX not installed."
     fi
