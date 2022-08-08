@@ -243,7 +243,7 @@ Indicate in the table below which properties hold of the respective relations.
 | strict total order   |           |              |             |                     |             |
 
 ::: solution
-
+fixme
 | **Properties**       | substring | $\subsetneq$ | $\subseteq$ | lexicographic order | taller than  |
 | :--                  | :--       | :-:          | :-:         | :-:                 | :-:          |
 | transitive           |     Y     |      Y       |      Y      |         Y           |      Y       |

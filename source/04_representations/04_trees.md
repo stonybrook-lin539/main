@@ -39,6 +39,15 @@ Describe the ambiguity, in particular which words seem to be more closely relate
 - The police man stopped and arrested the criminal.
 - Who do you want to leave?
 
+::: solution 
+- *I watched ... with Arnold* vs. *a movie with Arnold*
+- *the father ... on the balcony* vs. *the woman on the balcony*
+- *both John and Bill or only Mary* vs. *John and either Bill or Mary* 
+- *the dad of both John and Bill* vs. *Bill's dad and John*
+- *The police man stopped hiself* vs. *stopped the criminal*
+- *You want whom to leave?* vs *You want to leave whom?* 
+:::
+
 :::
 
 ::: example
@@ -145,6 +154,13 @@ This graph has an in-degree of 2 and an out-degree of 2.
 ::: exercise
 Draw the smallest graph possible where every vertex has in-degree 2 and out-degree 2.
 Try to minimize both the number of vertices and the number of edges.
+
+::: solution 
+~~~ {.include-tikz size=mid}
+graph_indegree_2.tikz
+~~~
+fixme later - should be two vertices with self loops?
+:::
 :::
 
 ::: exercise
@@ -155,11 +171,21 @@ Justify your answer.
 If the plain English description is unclear to you, here's one in formal terms.
 Suppose we write $i(v)$ and $o(v)$ for the in-degree and out-degree of vertex $v$, respectively.
 Then it holds for every finite graph $\tuple{V,E}$ that summing all elements of $\setof{ i(v) \mid v \in V }$ yields the same number as summing all elements of $\setof{ o(v) \mid v \in V}$.
+
+::: solution
+The statement is true. When there is an in-degree of a vertex, there must be an out-degress of the edege. 
+:::
 :::
 
 ::: exercise
 Say whether the following is true or false: no vertex can be both a source and a sink.
 Justify your answer.
+
+::: solution 
+fixme
+This statement is true.
+If there exists a vertex that can be both a source and a sink, it entails that this vertex has in-degree 0 and out-degree 0, which does not consititute a vertex at all.
+::: 
 :::
 
 A graph is **rooted** iff both of the following hold:
@@ -171,6 +197,14 @@ We can express this in formal terms using $E^*$ for the reflexive, transitive cl
 
 ::: exercise
 Explain step-by-step why it is the case that if there is exactly one $v$ such that $E^* v = \emptyset$ and $v E^* = V$, then the graph $G \is \tuple{V, E}$ is rooted.
+
+::: solution 
+1. If there is exactly one $v$ such that $E^* v = \emptyset$, it indicates that there only exists one vertex with no in-degree.
+1. when a vertex with in-degree 0, it is a **source**.
+1. The source vertex also holds $v E^* = V$. This shows that for the same vertex, it has the out-degrees that reach to all other vertices in $E^*$ which is the transitive and reflexice closure of $E$. 
+1. Since the graph $G \is \tuple{V, E}$ has exactly one source vertex and all other vertices can be reached from the source, this graph is rooted.
+
+
 :::
 
 ::: example
@@ -186,11 +220,18 @@ The left one is rooted, whereas the right one is not.
 ::: exercise
 Draw the smallest graph that is rooted but not a tree.
 Try to minimize both the number of vertices and the number of edges.
+::: solution 
+fixme
+:::
 :::
 
 ::: exercise
 Every rooted graph is weakly connected.
 Explain why.
+
+::: solution 
+fixme
+:::
 :::
 
 Finally, a graph is **acyclic** iff there is no vertex $v$ such that $\tuple{v,v} \in E^*$.
@@ -201,6 +242,10 @@ Basically, whenever we can start at some vertex $v$ and follow a sequence of 1 o
 
 ::: exercise
 For each one of the two graphs from the previous example, say whether it is acyclic.
+
+::: solution 
+fixme
+:::
 :::
 
 ::: exercise

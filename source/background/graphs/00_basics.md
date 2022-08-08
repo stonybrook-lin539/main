@@ -79,6 +79,11 @@ For each on the hierarchies listed below, define its corresponding graph.
 - the case hierarchy for noun stem allmorphy
 
 Each edge you posit should correspond to a line in the figure for the relevant hierarchy.
+
+::: solution
+- the person hierarchy has $\setof{1,2,3}$ as its set of vertices, and $E$ consists of $\tuple{1,2},\tuple{1,3},\tuple{2,3}$.
+- the person-person hierarchy used for the PCC has $\setof{\tuple{x,y | x,y \in \setof{1,2,3}, x \neq y}}$. $E$ consists of $\tuple{\tuple{1,3},\tuple{1,2}},tuple{\tuple{1,3},\tuple{2,3}},\tuple{\tuple{1,2},\tuple{2,1}},\tuple{\tuple{1,2},\tuple{3,2}},tuple{\tuple{2,3},\tuple{2,1}},\tuple{\tuple{2,3},\tuple{3,2}},\tuple{\tuple{2,1},\tuple{3,1}},\tuple{\tuple{3,2},\tuple{3,1}}$
+- the case hierarchy for noun stem allmorphy has $\setof{Nom, Acc, Gen, Dat, Others}$. $E$ consists of $\tuple{Nom,Acc},\tuple{Nom,Gen},\tuple{Acc, Dat},\tuple{Gen,Dat},\tuple{Dat, Others}$
 :::
 
 

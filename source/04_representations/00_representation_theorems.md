@@ -55,12 +55,16 @@ Continuing the previous exercise, can you give a general definition for union th
 *Hint*: Check out the **max** function in the backgrounds section.
 
 ::: solution
-
+fixme
 :::
 :::
 
 ::: exercise
 Can you define the analog of a characteristic function for multisets?
+
+::: solution
+fixme
+:::
 :::
 
 ::: example

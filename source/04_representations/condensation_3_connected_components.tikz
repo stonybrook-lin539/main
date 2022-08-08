@@ -1,0 +1,21 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows,arrows.meta,backgrounds,fit,positioning}
+\tikzset{arrow/.style = {-{Latex[length=.5em]}}}
+\begin{document}
+\begin{tikzpicture}
+\node (1) at (0,0) {1,2,3};
+\node (2) [below=of 1] {4};
+\node (3) [below=of 2] {5,6,7,8};
+
+\foreach \Source/\Target in {%
+   1/2,
+   2/3}
+    \draw[arrow] (\Source) to (\Target);
+
+%\begin{pgfonlayer}{background}
+  %  \node[draw=blue!75, dashed, fit=(1)(2)(3)(4)] {};
+   % \node[draw=red!75, dashed, fit=(0)] {};
+    %\node[draw=red!75, dashed, fit=(5)(6)(7)(8)] {};
+%\end{pgfonlayer}
+\end{tikzpicture}
+\end{document}

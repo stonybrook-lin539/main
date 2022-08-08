@@ -46,6 +46,16 @@ Because of these principled connections between their edge relations, all four g
 ::: exercise
 We can regard the tense hierarchy from the previous unit as a graph with a transitive and reflexive edge relation.
 Compute $V$ and $E$ for this graph.
+
+::: solution
+$V \is \setof{present, past, future, participle}$.
+A transitive and reflexive $E$ will include:
+ $\tuple{present, present}$,
+ $\tuple{past, past}$,
+ $\tuple{future, future}$,
+ $\tuple{participle, participle}$,
+ $\tuple{present, present}$
+:::
 :::
 
 A graph is **weakly connected** if it does not consist of disjoint components that have no edges between them.
@@ -79,12 +89,18 @@ We can construct a new graph where each strongly connected component is replaced
 This is called a **condensation**.
 In the case at hand, the condensation forms a smaller hierarchy that is, in fact, a lattice.
 
-~~~ {.include-tikz size=mid}
+~~~ {.include-tikz size=mid}  
 stem_allomorphy_lattice.tikz
 ~~~
 
 ::: exercise
 Draw the condensation of the example graph with three strongly connected components.
+
+::: solution
+~~~ {.include-tikz size=mid}  
+condensation_3_connected_components.tikz
+~~~
+:::
 :::
 
 All the other linguistic hierarchies lack strongly connected components, so their condensation would look exactly the same.
@@ -110,4 +126,8 @@ Once one understands what these technical concepts accomplish, it is a fairly pl
 Does the condensation trick help us with the PCC?
 That is to say, is the hierarchy for the PCC such that its condensation is a semilattice?
 Justify your answer, and if your answer is No, suggest a way that the PCC hierarchy can be turned into a semilattice or perhaps even a lattice.
+
+::: solution
+fixme
+:::
 :::

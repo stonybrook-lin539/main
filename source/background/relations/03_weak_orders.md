@@ -345,17 +345,7 @@ A binary relation $R$ over domain $D$ is
 Indicate for each relation in the table below what kind of order it represents.
 Some relations fit multiple types, and some none.
 
-| **Relation**                  |  **weak partial** | **strict partial** | **weak total** | **strict total**|
-| :--                           |  :--              | :--                | :--            | :--             |
-| substring                     |Y                  |N                   |Y               |N                |
-| $\subsetneq$                  |N                  |Y                   |N               |Y                |
-| alphabetical order            |Y                  |N                   |Y               |N                |
-| ordering all humans by height |N                  |N                   |N               |N                |
-| "sums to 10" relation         |Y                  |N                   |N               |N                 |
-| parent-of relation            |N                  |Y                   |N               |N                 |
-| "voted for same candidate"    |Y                  |N                  |N               |N                 |
-
-::: solution 
+ 
 
 | **Relation**                  |  **weak partial** | **strict partial** | **weak total** | **weak strict** |
 | :--                           |  :--              | :--                | :--            | :--             |
@@ -366,9 +356,24 @@ Some relations fit multiple types, and some none.
 | "sums to 10" relation         |                   |                    |                |                 |
 | parent-of relation            |                   |                    |                |                 |
 | "voted for same candidate"    |                   |                    |                |                 |
+
+::: solution
+| **Relation**                  |  **weak partial** | **strict partial** | **weak total** | **strict total**|
+| :--                           |  :--              | :--                | :--            | :--             |
+| substring                     |Y                  |N                   |Y               |N                |
+| $\subsetneq$                  |N                  |Y                   |N               |Y                |
+| alphabetical order            |Y                  |N                   |Y               |N                |
+| ordering all humans by height |N                  |N                   |N               |N                |
+| "sums to 10" relation         |Y                  |N                   |N               |N                 |
+| parent-of relation            |N                  |Y                   |N               |N                 |
+| "voted for same candidate"    |Y                  |N                  |N               |N                 |
+
 :::
 :::
 
 ::: exercise
 Give a real-world example of a weak partial order that is not a total order.
+::: solution
+fixme
+:::
 :::

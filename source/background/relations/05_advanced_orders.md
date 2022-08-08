@@ -134,6 +134,10 @@ In addition, an equivalence relation over a set $S$ is usually chosen in such a 
 In principle, one could combine the set $\setof{a,b,c}$ with the equivalence relation $R \is \setof{\tuple{a,a}, \tuple{a,b}, \tuple{b,a}, \tuple{b,b}}$.
 But it is more natural to extend the relation to $R' \is \setof{\tuple{a,a}, \tuple{a,b}, \tuple{b,a}, \tuple{b,b}, \tuple{c,c}}$.
 Intuitively, $R'$ is exactly like $R$ except that there is also an equivalence class for elements that $R$ is not defined for.
+
+::: solution
+fixme
+:::
 :::
 
 Given these assumptions, every member of $S$ belongs to exactly one equivalence class.

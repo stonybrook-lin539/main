@@ -34,12 +34,21 @@ Define the corresponding functions (with suitable domains and co-domains) for th
 - z
 - $\emptystring$
 
+::: solution
+- $0 \mapsto a$, $1 \mapsto b$, $2 \mapsto c$, $3 \mapsto d$,$4 \mapsto e$, $5 \mapsto f$
+- $0 \mapsto z$
+- $\emptystring \mapsto 0$
+:::
 :::
 
 ::: exercise
 Assume that $g$ is a function with domain $\setof{0, 1, 2, \ldots, 7}$ such that $g$ maps $x$ to $a$ if $x$ is odd and at least 5.
 In all other cases, $x$ is mapped to $b$.
 What is the string defined by $g$?
+
+::: solution
+bbbbbaba
+:::
 :::
 
 Here's another way of saying what we just said: each string is a pair $\tuple{D, \ell}$ where $D$ is a **downward-closed** set of natural numbers and $\ell$ is a *labeling function* from $D$ to $\Sigma$.
@@ -59,6 +68,12 @@ Which of the following sets are downward-closed sets of natural numbers?
 - $\setof{0}$
 - $\emptyset$
 
+::: solution
+- $\setof{1,2,3,4}$: yes
+- $\setof{-2,-1,0,1}$: no
+- $\setof{0}$: no
+- $\emptyset$: no
+:::
 :::
 
 This definition of strings as a pair $\tuple{D, \ell}$ is fully equivalent to our previous notion, but it clearly separates the relevant properties of a string:

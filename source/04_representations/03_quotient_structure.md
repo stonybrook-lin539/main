@@ -45,6 +45,10 @@ $\text{Acc} \sim \text{Gen} \sim \text{Dat} \sim \text{Others}$.
 ::: exercise
 Write down the relation $\sim$ over the noun stem hierarchy as a set of pairs.
 That is to say, this set contains $\tuple{x,y}$ iff $x \sim y$.
+
+::: solution 
+$\tuple{Acc, Gen}, \tuple{Gen, Dat}, \tuple{Dat, Others},\tuple{Other, Acc}$
+:::
 :::
 
 Let $C$ be the set of all cases in this hierarchy, i.e. $C \is \{ \text{Nom}, \text{Acc}, \text{Gen}, \text{Dat}, \text{Others} \}$.
@@ -67,12 +71,23 @@ We can construct such quotient structures for all other hierarchies, but in thes
 ::: exercise
 Construct the quotient structure for the standard case hierarchy $H$ (in which accusative and genitive are unordered with respect to each other).
 Verify for yourself that the quotient structure $H/\mathop{\sim}$ has exactly the same shape as this hierarchy.
+
+::: solution
+If Acc and Gen is unordered, then the hierachy will be as below. 
+~~~ {.include-tikz size=mid}
+stem_allomorphy_lattice_accgen_unordered.tikz
+~~~
+:::
 :::
 
 In sum, then, we can formulate the following restriction on linguistic hierarchies: given $\sim$ as defined above, every linguistic hierarchy must have a quotient structure under $\sim$ that forms a semilattice.
 
 ::: exercise
 Once again, explain whether this also handles the problematic case of the PCC hierarchy.
+
+::: solution
+fixme
+:::
 :::
 
 ::: exercise
@@ -84,4 +99,9 @@ pcc_hierarchy_wrong_reduced.tikz
 
 Would this have been a superior choice given our new understanding of linguistic hierarchies, or would we still run into problems with the PCC?
 Justify your answer.
+
+
+::: solution
+fixme
+:::
 :::

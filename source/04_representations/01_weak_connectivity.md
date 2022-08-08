@@ -242,6 +242,10 @@ Note how this hierarchy essentially creates a cycle from accusative to genitive,
 ::: exercise
 A monotonic mapping must map all cases in the Acc-Gen-Dat-Others-Acc cycle to the same value.
 Explain why.
+
+::: solution
+Because if the mapping is monotonic, then it follows that for $x \leq y,$ it holds that $f(x) \leq f(y)$.
+Since Others $\leq$ Acc $\leq$ Gen $\leq$ Dat $\leq$ Others $\leq$ Acc, the only way to make the equation holds is to assign them the same value, i.e., Acc = Gen = Dat = Others = Acc. 
 :::
 
 The hierarchy above allows for the two attested noun stem allmorphy patterns, and nothing else.

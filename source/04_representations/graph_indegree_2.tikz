@@ -1,0 +1,21 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{calc, positioning}
+\begin{document}
+\begin{tikzpicture}[%
+    every node/.style = {circle, fill=blue!25, minimum size=2em}]
+
+    \node (0) at (0,0) {A};
+    \node (3) [right =of 0]{B};
+    \node (6) [below right=1.5em of 0]{C};
+
+    \foreach \Source/\Target in {
+        0/3,
+        0/6,
+        3/0,
+        3/6,
+        6/3,
+        6/0}
+        \draw[->, bend left] (\Source) to (\Target);
+    
+\end{tikzpicture}
+\end{document}
