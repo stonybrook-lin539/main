@@ -365,7 +365,7 @@ def task_pdf_sections():
 # HTML build path
 #
 
-def task_html_chaps():
+def task_html_simple():
     """
     Build HTML chapters using Pandoc.
 
@@ -416,7 +416,11 @@ def task_html_images():
             "clean": True}
 
 
-def task_images_pdf():
+#
+# TikZ images
+#
+
+def task_tikz_pdf():
     """
     Compile TikZ diagrams to PDF.
     """
@@ -432,7 +436,7 @@ def task_images_pdf():
             "clean": True}
 
 
-def task_images_svg():
+def task_tikz_svg():
     """
     Convert TikZ diagrams to SVG for HTML inclusion.
     """
