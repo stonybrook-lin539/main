@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Apply given sed command to all source files.
+# Apply given sed script to all source files.
 
 set -u
 
