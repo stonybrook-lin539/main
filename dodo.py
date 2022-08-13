@@ -12,6 +12,7 @@ DOIT_CONFIG = {"default_tasks": ["pdf_book"],
 
 # external programs
 TIKZ2PDF = "scripts/tikz2pdf.sh"
+GEN_HTML_TOC = "scripts/gen-site-toc.py"
 # TIKZ2SVG = "scripts/tikz2svg.sh"
 PDF2SVG = "pdf2svg"
 LATEX = "latexmk -pdf -interaction=nonstopmode -halt-on-error"
@@ -108,7 +109,6 @@ HTML_DEPS = [CSTM_BLKS, INCL_FILE,
 # Pandoc shared options
 PANDOC_OPTS = (
     "-f markdown-implicit_figures"
-    f" --metadata-file={SRCDIR}/metadata.yaml"
     # " -V showanswers"
     f" -L {CSTM_BLKS}"
     f" -L {INCL_FILE}"
@@ -116,6 +116,7 @@ PANDOC_OPTS = (
 
 LATEX_OPTS = (
     f"--template {LATEX_TEMPLATE}"
+    f" --metadata-file={SRCDIR}/metadata.yaml"
     f" --metadata-file={FORMAT_DEFAULT}"
     f" -H {LATEX_PREAMBLE}"
     f" -H {MODCMDS}"
@@ -141,7 +142,7 @@ LATEX_SEC_OPTS = (
 )
 
 HTML_OPTS = (
-    "--shift-heading-level-by=1"
+    # "--shift-heading-level-by=-1"
     f" -c {WEBCSS}"
     f" --mathjax -Vmath='' -H {MATHJAXCALL}"  # see task def for details
     f" {MODCMDS}"
@@ -367,6 +368,31 @@ def task_pdf_sections():
 
 def task_html_simple():
     """
+    Build custom website with individual pages for sections.
+    """
+    from doit.tools import result_dep
+    return {
+        "actions": [],
+        'uptodate': [result_dep("html_toppage"),
+                     result_dep("html_sections"),
+                     result_dep("html_images")],
+    }
+
+
+def task_html_toppage():
+    """
+    Table of contents for web book.
+    """
+    outfile = HTMLDIR / "index.html"
+    return {
+        "targets": [outfile],
+        "file_dep": [str(f) for f in ALL_SRCFILES],
+        "actions": [f"{GEN_HTML_TOC} > {outfile}"],
+        "clean": True}
+
+
+def task_html_sections():
+    """
     Build HTML chapters using Pandoc.
 
     MODCMDS is inserted in the HTML body so that Pandoc will correctly add
@@ -379,21 +405,19 @@ def task_html_simple():
     use -Vmath='' to manually clear the internal variable where Pandoc records
     whether math was detected, and insert the script ourselves.
     """
-    for ch in ALL_CHAPS:
-        infiles = sorted(str(f)
-                         for f in Path(f"{SRCDIR}/{ch}").glob("*.md"))
-        incl_images = sorted(HTMLDIR / img.relative_to(SRCDIR).with_suffix(".svg")
-                             for img in SRC_TIKZ)
-        outfile = Path(f"{HTMLDIR}/{ch}/index.html")
+    for infile in SRC_MD:
+        # srcsubdir = infile.parent
+        # incl_images = sorted(HTMLDIR / img.relative_to(srcsubdir).with_suffix(".svg")
+        #                      for img in SRC_TIKZ)
+        outfile = HTMLDIR / infile.relative_to(SRCDIR).with_suffix(".html")
         cmd = (
             f"pandoc -t html {PANDOC_OPTS} {HTML_OPTS}"
-            f" --metadata title={ch}"
-            f" {' '.join(infiles)} -o {outfile}"
+            f" {infile} -o {outfile}"
         )
         yield {
             "name": outfile,
             "targets": [outfile],
-            "file_dep": [*infiles, *incl_images, *HTML_DEPS],
+            "file_dep": [infile, *HTML_DEPS],
             "actions": [f"mkdir -p $(dirname {outfile})",
                         cmd],
             "clean": True}
