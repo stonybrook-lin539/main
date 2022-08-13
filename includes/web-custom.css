@@ -1,8 +1,6 @@
 /* CSS for web output */
 
-img.small { width: 200px; }
-img.med   { width: 400px; }
-img.big   { width: 800px; }
+/* Basic formatting */
 
 body {
     counter-reset: definition;
@@ -34,6 +32,13 @@ h3:before {
 h1, h2, h3 {
     color: #336699;
 }
+
+img.small { width: 200px; }
+img.med   { width: 400px; }
+img.big   { width: 800px; }
+
+
+/* Custom blocks */
 
 .advice {
     display: block;
