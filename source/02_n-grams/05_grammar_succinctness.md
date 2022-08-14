@@ -175,7 +175,7 @@ For $n \geq 2$, no grammar ever needs to contain every member of $\Sigma_E^n$.
 Explain why.
 
 ::: solution
-When $n = 2$, no matter how large our alphabet is, the grammar will inevitably contain $2^2=4$ combinations that only have edge markers:
+When $n = 2$, no matter how large the alphabet is, the grammar will inevitably contain $2^2=4$ combinations that only have edge markers:
 1. {{{L}}}{{{L}}}
 1. {{{L}}}{{{R}}}
 1. {{{R}}}{{{R}}}

@@ -1,0 +1,17 @@
+\documentclass[tikz]{standalone}
+\usepackage[linguistics]{forest}
+\providecommand{\emptystring}{\varepsilon}
+\providecommand{\stringcat}{\cdot}
+\begin{document}
+\begin{forest}
+
+[$\mathit{f}(\mathit{aaba,\{b\}})$
+    [$\mathit{f}(\mathit{aba,\{b\}})$
+        [$\mathit{f}(\mathit{ba,\{b\}})$
+            [1]
+        ]
+    ]
+]
+
+\end{forest}
+\end{document}

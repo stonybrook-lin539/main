@@ -95,6 +95,9 @@ For each one of the following, say whether it is a bigram of the word.
 - super
 
 ::: solution
+
+The bigrams of the word *supercalifragilisticexpialidocious* are *ag, al, ca, ce, ci, do, er, ex, fr, gi, ia, ic, id, if, il, io, is, li, oc, ou, pe, pi, ra, rc, st, su, ti, up, us, xp*. We can easily tell that the following strings are its bigrams or not.
+
 - fr: yes
 - z: no
 - doci: no
@@ -165,6 +168,7 @@ Which one of the following is among its bigrams (with edge markers):
 - s{{{R}}}{{{R}}}
 
 ::: solution
+After adding the edge markers, two new bigrams will be added into the list: *{{{L}}}s* and *s{{{R}}}*.  Therefore, we have the following answers:
 - fr: yes
 - z: no
 - {{{L}}}{{{R}}}: no
@@ -335,13 +339,13 @@ For each one of the following, say whether it is a bigram of the word (with edge
 - {{{L}}}sup
 
 ::: solution
-- {{{L}}}fr: none of any n-grams
-- z: none of any n-grams
-- do{{{R}}}c: none of any n-grams
-- s{{{R}}}{{{R}}}{{{R}}}: 4-gram of the word
-- sit: none of any n-grams
-- cious:: not a bi-gram, trigram, or 4-gram.
-- {{{L}}}sup: 4-gram
+- {{{L}}}fr: none of any n-grams because *fr* is not at the edge
+- z: none of any n-grams because *z* does not show up in the word itself
+- do{{{R}}}c: none of any n-grams because *do* is not at the edge nor a *c* is followed by the right edge
+- s{{{R}}}{{{R}}}{{{R}}}: 4-gram because *s* is at the right edge and the length of the string is 4
+- sit: none of any n-grams because the word does not contain *sit*
+- cious: not a bi-gram, trigram, or 4-gram, but this is a 5-gram
+- {{{L}}}sup: 4-gram because *sup* is at the left edge and the length of the string is 4
 :::
 :::
 
@@ -351,7 +355,7 @@ The language also has intervocalic voicing, which means that no voiceless conson
 Write an $n$-gram grammar that expresses this fact.
 
 ::: solution
-As mentioned in Example 5, the phonotactics of natural languages can be described as a set of forbidden $n$-grams.Thintervocalication could be expressed by a set of forbiden trigrams: *asa, asu, usa, usu, afa, afu, ufa, ufu*
+As mentioned in Example 5, the phonotactics of natural languages can be described as a set of forbidden $n$-grams.Thintervocalication could be expressed by a set of forbiden trigrams: *asa, asu, usa, usu, afa, afu, ufa, ufu*. 
 :::
 :::
 
@@ -384,7 +388,8 @@ Write a negative $n$-gram grammar for this language such that all $n$-grams have
 *{{{L}}}{{L}}}b, 
 {{{L}}}{{L}}}c, 
 c{{{R}}}{{R}}}, 
-{{{L}}}ac, 
+{{{L}}}ac,
+{{{L}}}ca, 
 aac,
 bac,
 cac,
@@ -392,7 +397,11 @@ abc,
 aca,
 bca,
 cca,
-cba*
+cba,
+caa,
+acb,
+acc,
+cab*
 :::
 :::
 

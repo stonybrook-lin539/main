@@ -138,6 +138,12 @@ Explain why!
 
 *Hint*: Suppose that we wrote numbers in hexadecimal instead, where $11$ is $A$.
 Would the Gorn address $11$ still be ambiguous?
+
+::: solution
+The 11 is ambiguous in Gorn address system because the notation for natural numbers is decimal system which only uses 0-9 and assigns every place value to the power of 10. For example, $11 = 1 * 10^1 + 1 * 10^0$. This notation is ambiguous because in Gorn system, the number 11 is the result of $1 \tuplecat 1 = 11$.
+
+This ambiguity disappears in the hexadecimal system where 11 is $A$ because $1 \tuplecat 1 = 11$ and $1 \tuplecat A = 1A$.
+:::
 :::
 
 Since Gorn addresses follow a very specific pattern, the set of Gorn addresses for any given tree obeys two closure properties:
@@ -166,6 +172,11 @@ Annotate each node in the tree below with its Gorn address.
 ~~~ {.include-tikz size=mid}
 tree_exercise.forest
 ~~~
+::: solution
+~~~ {.include-tikz size=mid}
+tree_to_gorn_solution.forest
+~~~
+:::
 :::
 
 With Gorn addresses, is it very easy to define trees.
@@ -248,6 +259,15 @@ You may assume that each digit is a component of the Gorn address (so 10 means "
 - $101$ and $102$
 - $101$ and $101$
 
+::: solution
+- $00010$ and $000109$: yes
+- $\emptystring$ and $00$: no
+- $0010$ and $0110$: no
+- $10$ and $11$: no
+- $101$ and $102$: no
+- $101$ and $101$: no
+
+:::
 :::
 
 With the parent-of relation, it is also very easy to identify which nodes are parents and which are children.
@@ -296,6 +316,14 @@ You may assume that each digit is a component of the Gorn address (so 10 means "
 - $101$ and $102$
 - $101$ and $101$
 
+::: solution
+- $00010$ and $000109$: no
+- $\emptystring$ and $00$: no
+- $0010$ and $0110$: no
+- $10$ and $11$: yes
+- $101$ and $102$: yes
+- $101$ and $101$: no
+:::
 :::
 
 ::: exercise
@@ -323,6 +351,15 @@ You may assume that each digit is a component of the Gorn address (so 10 means "
 - $101$ and $102$
 - $101$ and $101$
 
+::: solution
+
+- $00010$ and $000109$: yes
+- $\emptystring$ and $00$: yes
+- $0010$ and $0110$: no
+- $10$ and $11$: no
+- $101$ and $102$: no
+- $101$ and $101$: no
+:::
 :::
 
 The way the term *dominance* is used in the linguistic literature is actually somewhat sloppy.

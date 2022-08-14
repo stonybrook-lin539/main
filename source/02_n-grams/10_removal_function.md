@@ -97,6 +97,12 @@ The function calculate the product of $x$ and $y$. The function is commonly know
 ::: exercise
 This continues the previous exercise.
 Draw a diagram like the one above for $f(5,4)$.
+
+::: solution
+~~~ {.include-tikz size=mid}
+recursive_function_f54.forest
+~~~
+:::
 :::
 
 ::: exercise
@@ -108,7 +114,7 @@ $$
 \mathit{f}(u_1 \cdots u_n,S)
     \is
     \begin{cases}
-    \emptystring & \text{if } u_1 \cdots u_n = \emptystring\\
+    0 & \text{if } u_1 \cdots u_n = \emptystring\\
     1 & \text{if } u_1 \in S\\
     \mathit{f}(u_2 \cdots u_n) & \text{otherwise}\\
     \end{cases}
@@ -119,4 +125,14 @@ $$
 ::: exercise
 This continues the previous exercise.
 Draw a diagram like the one above for $f(\mathit{aaba}, \setof{b})$ and $f(\mathit{aaba}, \setof{c,d,e})$.
+
+::: solution
+~~~ {.include-tikz size=mid}
+recursive_function_aaba_b.forest
+~~~
+
+~~~ {.include-tikz size=mid}
+recursive_function_aaba_cde.forest
+~~~
+
 :::

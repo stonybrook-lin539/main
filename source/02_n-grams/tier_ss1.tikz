@@ -4,8 +4,8 @@
 \begin{document}
 \begin{tikzpicture}
 \matrix (m) at (0,0) [matrix of nodes, column sep=.5em, row sep=2em] {
-      &   & \textipa{S} &   &   &   &   &   &   &   &   &   & \textipa{S}\\
-    h & a & \textipa{S} & x & i & n & t & i & l & a & w & a & \textipa{S}\\
+      &   & \textipa{S} &   &   &   &   &   &   &   &   &   & s\\
+    h & a & \textipa{S} & x & i & n & t & i & l & a & w & a & s\\
 };
 \foreach \Segment in {3,13}
     \draw (m-1-\Segment) to (m-2-\Segment);

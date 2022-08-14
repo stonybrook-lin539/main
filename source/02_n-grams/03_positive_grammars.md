@@ -28,10 +28,11 @@ For some of them, you have to rephrase the phenomenon as a phonotactic constrain
 - **penultimate stress**: in words with at least two syllables, stress falls on the last but one syllable (assume that words are strings of stress syllables ($\acute{\sigma}$) and unstressed syllables ($\sigma$))
 
 ::: solution
-- **intervocalic voicing**: $\setof{asa, asi, asu, afa, afi, afu, isa, isi, isf, ifi, ifa, ifu, usa, usi, usu, ufa, ufu, ufi}$
+fixme: what is the alphabet of this exercise 
+- **intervocalic voicing**: $\setof{asa, asi, asu, afa, afi, afu, isa, isi, isu, ifi, ifa, ifu, usa, usi, usu, ufa, ufu, ufi}$
 - **local assimilation**: $\setof{nb, np}$
-- **local dissimilation**: $\setof{rar, rir, ror, rur}$
-- **penultimate stress** $\setof{$\acute{\sigma}$ {{{L}}} {{{L}}}, $\sigma$ $\sigma$ {{{L}}}, $\sigma$ $\acute{\sigma}$ $\acute{\sigma}$, $\acute{\sigma}$ $\acute{\sigma}$ $\sigma$, $\acute{\sigma}$ $\sigma$ $\acute{\sigma}$}$
+- **local dissimilation**: $\setof{rar, rir, rur}$
+- **penultimate stress** $\setof{\sigma \sigma {{{R}}}, \sigma \acute{\sigma} {{{R}}},  \acute{\sigma} \sigma \sigma, \sigma \acute{\sigma} \acute{\sigma}, \acute{\sigma} \acute{\sigma} \sigma, \acute{\sigma} \sigma \acute{\sigma}, \acute{\sigma}\acute{\sigma}\acute{\sigma}}$
 :::
 :::
 
@@ -72,8 +73,8 @@ Not all choice may be appropriate in each case.
 - *John likes Mary*
 
 ::: solution
-- *de-*: the $n$-gram can be the morpheme (*-de*) itself or the characters (*d,e*)
-- *mpi*: the $n$-gram can only be characters (*m, p, i*) since there is no such a morpheme
+- *de-*: the $n$-gram can be built from the morpheme *-de* itself or the characters *d,e*. 
+- *mpi*: the $n$-gram can only be characters *m, p, i* since there is no such a morpheme as *mpi*.
 - *John likes Mary*: $n$-gram can be the words (*John, likes, Mary*) or the morphemes (*John, like, -s, Mary*)
 :::
 :::
@@ -189,9 +190,9 @@ Is one of the two grammars more succinct or general than the other?
 What if the set of symbols is larger, e.g. *a*, *b*, *c*, and *d*?
 
 ::: solution
-- **positive grammar**: $\setof{${{{L}}}{{{L}}}a, b{{{R}}}{{{R}}}, aba, bab, {{{L}}}ab, ab{{{R}}}$}$
-- **negative grammar***: $\setof{{{{L}}}b, a{{{R}}}, aa, bb}$
-- The negative grammar appears to be more succinct since the postive grammar is a set of trigrams and the negative grammar is bigrams and less then the positive grammar. However, when the set of symbols gets larger, the positive grammar stays the same but the negative grammar will need more bigrams to rule out the illicit combinations.
+- **positive grammar**: $\setof{{{{L}}}a, b{{{R}}}, ab, ba}$
+- **negative grammar***: $\setof{{{{L}}}b, a{{{R}}}, aa, bb, {{{L}}}{{{R}}}}$
+Two grammars are equally succinct. However, when the set of symbols gets larger, the positive grammar stays the same but the negative grammar will need more bigrams to rule out the illicit combinations.
 :::
 :::
 
@@ -208,10 +209,11 @@ Once you're done, contrast the positive grammars against the negative ones from 
 Can you identify some general guidelines for when a positive grammar is preferable to a negative one?
 
 ::: solution
-- **intervocalic voicing**: the positive grammar will consist of $5^3$ - 18 = 107 trigrams 
-- **local assimilation**: {bb, bp, bm, bn, pb, pp, pn, pm, nn, nm, mn, mm, mp, mb}
-- **local disimilation**: {aaa, aau, aai, aar, aal,aua,auu,aui,aur,aul,aia,aiu,aii,air,ail,ara,aru,ari,arr,arl,ala,alu,ali,alr,all,uaa,uau,uai,uar,ual,uua,uuu,uui,uur,uul,uia,uiu,uii,uir,uil,ura,uru,uri,urr,url,ula,ulu,uli,ulr,ull,iaa,iau,iai,iar,ial,iua,iuu,iui,iur,iul,iia,iiu,iii,iir,iil,ira,iru,iri,irr,irl,ila,ilu,ili,ilr,ill,raa,rau,rai,ral,rua,ruu,rui,rul,ria,riu,rii,ril,rra,rru,rri,rrr,rrl,rla,rlu,rli,rlr,rll,laa,lau,lai,lar,lal,lua,luu,lui,lur,lul,lia,liu,lii,lir,lil,lra,lru,lri,lrr,lrl,lla,llu,lli,llr,lll}
-- **penultimate stress**: $\acute{\sigma}$ $\sigma${{{{R}}}}
+fixme: still we don't know the alphabet of the exercise. 
+- **intervocalic voicing**: this contraint can be interpreted as *s,f* will become *z,v* when they occur between vowels. In this case, the positive grammars will consist of $\setof{aza, azi, azu, ava, avi, avu, iza, izi, izu, iva, ivi, ivu, uza, uzi, uzu, uva, uvi, uvu}$
+- **local assimilation**: $\setof{mb, mp}$
+- **local disimilation**: $\setof{lar, lur, lir}$
+- **penultimate stress**: $\acute{\sigma} \sigma {{{{R}}}}$
 :::
 :::
 
@@ -330,6 +332,10 @@ English allows for *nature*, *natural*, *naturalize*, *denaturalize*, *naturaliz
 Write a grammar that generates all the well-formed forms but none of the ill-formed ones.
 It is up to you whether you want to use a positive or a negative grammar.
 If you use a negative grammar, it can be in the mixed format, with $n$-grams of varying lengths.
+
+::: solution
+fixme
+:::
 :::
 
 ## An important take-home message

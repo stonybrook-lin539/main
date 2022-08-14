@@ -248,10 +248,10 @@ fixme
 | :--                  | :--       | :-:          | :-:         | :-:                 | :-:          |
 | transitive           |     Y     |      Y       |      Y      |         Y           |      Y       |
 | irreflexive          |     N     |      Y       |      N      |         N           |      Y       |
-| asymmetric           |     Y     |      Y       |      N      |         N           |      Y       |
-| semi-connex          |     Y     |      Y       |      Y      |         Y           |      Y       |
-| strict partial order |     N     |      N       |      N      |         N           |      Y       |
-| strict total order   |     N     |      Y       |      N      |         N           |      Y       |
+| asymmetric           |     N     |      Y       |      N      |         N           |      Y       |
+| semi-connex          |     N     |      N       |      N      |         Y           |      Y       |
+| strict partial order |     N     |      Y       |      N      |         N           |      Y       |
+| strict total order   |     N     |      N       |      N      |         N           |      Y       |
 
 :::
 :::

@@ -40,11 +40,25 @@ Only an 11-gram grammar could capture the contrast.
 ::: exercise
 Write an 11-gram grammar that generates *hasxintilawas* and *haʃxintilawaʃ*, but not *hasxintilawaʃ* and *haʃxinitilawas*.
 The grammar may be positive or negative, whichever you prefer.
+
+::: solution
+We could construct a negative 11-gram grammar that forbids two combinations:
+- *sxintilawaʃ*
+- *ʃxintilawas*
+:::
 :::
 
 ::: exercise
 Extend the grammar so that it also captures the fact that *ʃtajanowonowaʃ* is licit whereas *stajanowonowaʃ* is illicit.
 You might have to move beyond 11-grams.
+
+::: solution
+In this case, a negative 14-grame is needed to forbid the illicit combinations:
+- *ʃtajanowonowas*
+- *stajanowonowaʃ*
+- {{{L}}}*hasxintilawaʃ*
+- {{{L}}}*haʃxintilawas*
+:::
 :::
 
 Samala's long-distance sibilant harmony can be handled by an $n$-gram grammar only if there is some upper bound $k < n$ such that sibilants in a Samala word are never separated by more than $k$ symbols.
@@ -92,11 +106,30 @@ Carry out the same calculations for
 - *haʃxinitilawas*, and
 - *ʃtajanowonowaʃ*.
 
+::: solution
+~~~ {.include-tikz size=mid}
+tier_ss1.tikz
+~~~
+~~~ {.include-tikz size=mid}
+tier_ss2.tikz
+~~~
+~~~ {.include-tikz size=mid}
+tier_ss3.tikz
+~~~
+:::
 :::
 
 ::: exercise
 As an abstract example, suppose that our alphabet consists of $a$, $b$, and $c$, and that all symbols except $c$ should be projected on the tier.
 What is the tier of $\mathit{aabaccacb}$?
+
+::: solution
+As before, we can construt a tier to which all symbols but $c$ can be projected. As a result, $\mathit{aabaccacb}$ has a tier of $\mathit{aabaab}$?
+
+~~~ {.include-tikz size=mid}
+tier_abc.tikz
+~~~
+:::
 :::
 
 Tiers are a nice linguistic metaphor, but what is going on here at a formal level?
@@ -125,6 +158,15 @@ Compute the values for all of the following:
 - $\mathit{del}_{^-\setof{a,b}}(\emptystring)$
 - $\mathit{del}_{^+\setof{a,b}}(\emptystring)$
 
+::: solution
+- $\mathit{del}_{^-\setof{a,b}}(\mathit{aaccbad}) = \mathit{ccd}$
+- $\mathit{del}_{^+\setof{a,b}}(\mathit{aaccbad}) = \mathit{aaba}$
+- $\mathit{del}_{^+\setof{a,b}}(\mathit{aababad}) = \mathit{aababa}$
+- $\mathit{del}_{^-\setof{a,b}}(\mathit{aababad}) = \mathit{d}$
+- $\mathit{del}_{^-\setof{a,b}}(\emptystring) = \emptystring$
+- $\mathit{del}_{^+\setof{a,b}}(\emptystring) = \emptystring$
+
+:::
 :::
 
 You might think that this isn't a true unification, we have just moved the difference between stop word removal and tier projection into the polarity distinction.
@@ -134,6 +176,10 @@ For every set $S$ of a given polarity, there is some set $T$ of opposite polarit
 ::: exercise
 Explain why this holds.
 Illustrate your argument with a few examples.
+
+::: solution
+fixme
+:::
 :::
 
 This is a pretty nifty result.
@@ -146,6 +192,16 @@ In later units, we will see many more examples of this unifying power of math.
 The term **culminativity** refers to the property that every word has exactly one primary stress.
 Suppose that our alphabet is $\setof{\sigma, \acute{\sigma}}$, where $\sigma$ denotes an unstressed syllable and $\acute{\sigma}$ one with primary stress.
 Specify a set $^+T$ of tier symbols and a bigram grammar $G$ to capture culminativity (*hint*: {{{L}}} and {{{R}}} can be used with tiers, too).
+
+::: solution
+fixme later - needs to be expanded
+
+We can have a set of tier symbols which contains $\setof{{{{L}}}}, {{{{R}}}, s}$. The tier only contains edges and primary stressed syllables.
+A positive bigram can be constructed:
+- {{{L}}}s
+- s{{{R}}}
+
+:::
 :::
 
 ## Recap

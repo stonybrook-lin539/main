@@ -258,11 +258,12 @@ Indicate in the table below which properties hold of the relations.
 ::: solution
 | **Relation**                  | **transitive** | **reflexive** | **anti-symmetric** | **connex** |
 | :--                           | :--            | :--           | :--               | :--         |
-| substring                     |        Y       |       Y       |         Y         |       Y     |
-| $\subsetneq$                  |        Y       |       N       |         N         |       N     |
+| substring                     |        Y       |       Y       |         Y         |       N     |
+| $\subsetneq$                  |        Y       |       N       |         Y         |       N     |
 | $\subseteq$                   |        Y       |       Y       |         Y         |       Y     |
 | alphabetical order            |        Y       |       Y       |         Y         |       Y     |
 | taller than                   |        Y       |       N       |         Y         |       N     |
+
 :::
 :::
 
@@ -360,13 +361,13 @@ Some relations fit multiple types, and some none.
 ::: solution
 | **Relation**                  |  **weak partial** | **strict partial** | **weak total** | **strict total**|
 | :--                           |  :--              | :--                | :--            | :--             |
-| substring                     |Y                  |N                   |Y               |N                |
+| substring                     |Y                  |N                   |N               |N                |
 | $\subsetneq$                  |N                  |Y                   |N               |Y                |
-| alphabetical order            |Y                  |N                   |Y               |N                |
-| ordering all humans by height |N                  |N                   |N               |N                |
-| "sums to 10" relation         |Y                  |N                   |N               |N                 |
+| alphabetical order            |N                 |N                   |Y               |N                |
+| ordering all humans by height |N                  |N                   |Y              |N                |
+| "sums to 10" relation         |N                  |N                   |N               |N                 |
 | parent-of relation            |N                  |Y                   |N               |N                 |
-| "voted for same candidate"    |Y                  |N                  |N               |N                 |
+| "voted for same candidate"    |N                  |N                  |N               |N                 |
 
 :::
 :::

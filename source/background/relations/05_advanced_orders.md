@@ -180,3 +180,23 @@ Quotient structures are a very powerful concept, in particular when it comes to 
 A set may contain millions of elements, and the operations on the set may take a long time to compute on some of those elements.
 But you might be able to build a much smaller quotient structure, and the operations may be faster over equivalence classes because you can pick very simple representatives of each class.
 After all, $(3 + 5) \mod 7$ is a much easier way to calculate the output of $(7,003 + 14,726) \mod 7$.
+
+
+\usetikzlibrary{arrows,arrows.meta,positioning}
+\tikzset{arrow/.style = {-{Latex[length=.5em]}}}
+
+\begin{tikzpicture}
+\node (nom) at (0,0) {Nom};
+\node (acc) [below left=of nom] {Acc,Gen};
+\node (dat) [below right=of nom] {Dat};
+\node (other) [below left=of dat] {Other};
+
+
+\foreach \Source/\Target in {%
+    nom/acc,
+    acc/dat,
+    dat/other,
+    other/acc}
+    \draw[arrow] (\Source) to (\Target);
+\end{tikzpicture}
+

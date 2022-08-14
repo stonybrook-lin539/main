@@ -47,7 +47,7 @@ Are their multisets identical?
 
 ::: solution
 - sets: identical 
-- multisets: not identical
+- multisets: not identical. The first yields $\setof{\text{john}: 1, \text{shaved}: 1}$ and the second yields  $\setof{\text{john}: 2, \text{shaved}: 1}$.
 :::
 :::
 
@@ -62,6 +62,13 @@ A few hints:
 - In English, *police* can be a noun or a verb (*to police something or somebody*).
 - English allows for reduced relative clauses, e.g. *the man that Mary saw* can be reduced to *the man Mary saw*.
 
+::: solution
+There might be multiple interpretations of the sentence. One possible interpretation is we assume *police police* a type of policeman that specifically investigate all police and their investigation is known as *police (v.)*. Here we use **bold** to indicate the noun phrase **police police** and *italic* to indicate the verb *police* and we convert the reduced relative clause by adding (that). Then we have:
+
+- If police (that) *police* police *police* police, then **police police** *police* **police police**.
+
+fixme: this may not make too much sense. fix later!!
+:::
 :::
 
 Just like sets, multisets aren't limited to unigrams.
@@ -225,7 +232,11 @@ Similarly, you may posit words that contain spaces.
 But take the opportunity to reflect on whether a computer program could easily make the linguistic distinctions you are making.
 
 ::: solution
-- $\setof{\text{John}: 1, \text{misses}: 1, \text{Mary}: 1}.$ When we computer the relative frequency of each word, it becomes $\setof{\text{John}: \frac{1}{3}, \text{misses}: \frac{1}{3}, \text{Mary}: \frac{1}{3}}$
+As mentioned above, the result varies with the choice of whether ignoring the capitalization and spaces between the words. Here, let's first ignore the capitalization, which means that "misses" as a verb is treated as the same word as "Misses" and "Chives" as a last name is the same word as the produce "chives". Besides, a space will make a difference. That is to say "passion fruit" is two different words. In this case, we will get the following result. 
+
+- $\setof{\text{John}: 1, \text{misses}: 1, \text{Mary}: 1}.$ 
+When we computer the relative frequency of each word, it becomes 
+$\setof{\text{John}: \frac{1}{3}, \text{misses}: \frac{1}{3}, \text{Mary}: \frac{1}{3}}$
 
 - $\setof{\text{Mary}: 1, \text{misses}: 2, \text{chives}: 1}.$ When we computer the relative frequency of each word, it becomes $\setof{\text{Mary}: \frac{1}{4}, \text{misses}: \frac{1}{2}, \text{chives}: \frac{1}{4}}$
 
@@ -254,12 +265,16 @@ If the query were *only john*, the score would be $0.625$.
 Suppose the sentence were
 *Only John thinks he thinks he thinks he likes himself*.
 What would be the score of *john* in this case?
-Is that a problems?
+Is that a problem?
 
 ::: solution
-$$_MS \is \setof{\text{only}: 1, \text{john}: 1, \text{thinks}: 3, \text{he}: 3,  \text{likes}: 1, \text[himself]:1}.$$
-With frequencies instead of counts this is
-$$_MS \is \setof{\text{only}: 0.1, \text{john}: 0.1, \text{thinks}: 0.3, \text{he}: 0.3,  \text{likes}: 0.1, \text[himself]:0.1}.$$
+$$_MS \is \setof{\text{only}: 1, \text{john}: 1, \text{thinks}: 3, \text{he}: 3,  \text{likes}: 1, \text{himself:1}}.$$
+
+With frequencies instead of counts, we will get:
+
+$$_MS \is \setof{\text{only}: 0.1, \text{john}: 0.1, \text{thinks}: 0.3, \text{he}: 0.3,  \text{likes}: 0.1, \text{himself}:0.1}.$$
+
+The score of *john* is 0.1. 
 :::
 :::
 
@@ -318,6 +333,8 @@ $$_MA \is \setof{w_i: w_i(\text{Aristotle}) \mid w_i \text{ is in the search eng
 Construct similar multisets for *ethics* and *Plato*.
 
 ::: solution
+The multisets for *ethics* and *Plato* are:
+
 $$
 \begin{array}{rl}
     _ME & \is \setof{w_1: 3, w_2: 0, w_3: 9, w_4: 7}\\
@@ -411,6 +428,35 @@ Considering that $w_1$ does not contain any mention of metaphysics, we actually 
 Suppose the user entered *ethics Plato Aristotle*.
 Use scalar multiplication to assign appropriate weights to each word (it is up to you to decide what is appropriate).
 Then compute the multiset sum and determine which website is the best fit for the query.
+
+::: solution 
+we have already known that the values of $ _MP and _ME$ are:
+$$
+\begin{array}{rl}
+    _MA & \is \setof{w_1: 9, w_2: 1, w_3: 4, w_4: 0}\\
+    _ME & \is \setof{w_1: 3, w_2: 0, w_3: 9, w_4: 7}\\
+    _MP & \is \setof{w_1: 6, w_2: 5, w_3: 8, w_4: 9}\\
+\end{array}
+$$.
+
+Let's suppose that $_ME$ and $_MA$ have the same importance but both of them are 50% more important than $_MP$. 
+We can multiply $_MA$ and $_ME$ by 3 and $_MP$ by 2. 
+
+\begin{align*}
+    3 \multimult _MA &= \setof{w_1: 27, w_2: 3, w_3: 12, w_4: 0}\\
+    3 \multimult _ME &= \setof{w_1: 9, w_2: 0, w_3: 27, w_4: 21}\\
+    2 \multimult _MP &= \setof{w_1: 0, w_2: 18, w_3: 10, w_4: 6}\\
+\end{align*}
+
+As before, the sum of the three multisets are:
+
+\begin{align*}
+    3 \multimult _MA \multisum  3 \multimult _ME \multisum 2 \multimult _MP &= \setof{w_1: 36, w_2: 21, w_3: 49, w_4: 27}\\
+\end{align*}
+
+This result based on our assigned weights show that $w_3$ is now the best match for the query *ethics Plato Aristotle*.
+:::
+:::
 :::
 
 ## Recap

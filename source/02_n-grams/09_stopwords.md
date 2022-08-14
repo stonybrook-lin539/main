@@ -126,17 +126,19 @@ Assuming a distribution that is exactly Zipfian, calculate the frequencies for r
 Give a rough estimate how many of the top ranks jointly make up at least 50\% of the text.
 
 ::: solution
-$f_2 = 1068 * \frac{1}{2} = 534$ 
-$f_3 = 1068 * \frac{1}{3} = 356$
-$f_5 = 1068 * \frac{1}{5} = 214$  
-$f_15 = 1068 * \frac{1}{15} = 71$
-$f_50 = 1068 * \frac{1}{50} = 21$ 
-$f_100 = 1068 * \frac{1}{100} = 11$
-$f_200 = 1068 * \frac{1}{200} = 5$
-$f_500 = 1068 * \frac{1}{500} = 2$
-$f_1000 = 1068 * \frac{1}{1000} = 1$ 
+$f_2 = 1068 \mult  \frac{1}{2} = 534$ 
+$f_3 = 1068 \mult  \frac{1}{3} = 356$
+$f_5 = 1068 \mult  \frac{1}{5} = 214$  
+$f_15 = 1068 \mult  \frac{1}{15} = 71$
+$f_50 = 1068 \mult  \frac{1}{50} = 21$ 
+$f_100 = 1068 \mult  \frac{1}{100} = 11$
+$f_200 = 1068 \mult  \frac{1}{200} = 5$
+$f_500 = 1068 \mult  \frac{1}{500} = 2$
+$f_1000 = 1068 \mult  \frac{1}{1000} = 1$ 
 
-Since the 50\% of the whole text is 10000 words which is the sum of frequencies of top 5 ranks.
+fixme: the most 1000 frequent ranks combined are no more than 2283.
+Since the 50\% of the whole text is $20000 \mult \frac{1}{2} = 10000$ words which is the sum of frequencies of top ?? ranks.
+
 :::
 :::
 
@@ -241,12 +243,13 @@ If so, why might that be?
 ::: solution
 After we delete the stop words, the above strings will look like this:
 - Hi
-- much wood woodchuck chuck woodchuck chuck wood
-- kick ass chew bubblegum gum
-- spoon
-- John loves Peter
-- student hates professor
-- student hates professor
+- much wood woodchuck chuck woodchuck chuck wood?
+- kick ass chew bubblegum, gum.
+- spoon.
+- John loves Peter.
+- Every student hates professor.
+- student hates professor.
+
 :::
 :::
 
@@ -357,11 +360,11 @@ Whether your answer is correct is less important than whether you can justify it
 - the US laws for assigning children to schools
 
 ::: solution 
-- Yes
-- Yes
-- Yes
-- It depends.
-- Yes
+- Yes, for every $x$ of certain value there is a unique $y$ corresponding to it. 
+- No, because for people who share the same name, say *John Smith*, there will be more than one telephone numbers corresponding to the same input.
+- Yes. For any email, it could either be a spam or not a spam. 
+- It depends. If we are talking about the location of any pieces on a eight-by-eight grid at a certain time during the game, this is a function; but if we are talking about the possible movements (up, down, left, right) of a chess piece, then it is not a function because one chess piece can have multiple movement directions.  
+- Yes. For any element, it could either belong or not belong to a set. 
 - It depends. If the same child could be assigned to several different schools, then this is not a function; but if the law assigns a child at a certain should or should not go to school, then this is a function.
 :::
 

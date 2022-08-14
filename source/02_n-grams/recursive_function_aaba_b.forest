@@ -1,0 +1,24 @@
+\documentclass[tikz]{standalone}
+\usepackage[linguistics]{forest}
+\providecommand{\emptystring}{\varepsilon}
+\providecommand{\stringcat}{\cdot}
+\begin{document}
+\begin{forest}
+
+
+[$\mathit{f}(\mathit{aaba,\{c,d,e\}})$
+    [$\mathit{f}(\mathit{aba,\{c,d,e\}})$
+        [$\mathit{f}(\mathit{ba,\{c,d,e\}})$
+            [$\mathit{f}(\mathit{ba,\{c,d,e\}})$
+                [$\mathit{f}(\mathit{a,\{c,d,e\}})$
+                    [$\mathit{f}(\mathit{\emptystring,\{c,d,e\}})$
+                    [0]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+
+\end{forest}
+\end{document}
