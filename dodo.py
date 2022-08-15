@@ -100,7 +100,7 @@ TEX_BOOK = TEXDIR / "full-book.tex"
 PDF_BOOK = PDFDIR / "full-book.pdf"
 
 # CSS
-CSS_NAME = "web-custom.css"
+CSS_NAME = "style.css"
 CSS_SRC = Path("includes") / CSS_NAME
 CSS_DEST = HTMLDIR / CSS_NAME
 
