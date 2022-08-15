@@ -31,8 +31,7 @@ FORMAT_SINGLECHAP = Path("includes/format-single-chap.yaml")
 FORMAT_SINGLESEC = Path("includes/format-single-sec.yaml")
 MATHCMDS = Path("includes/mathcommands.md")
 LATEX_PREAMBLE = Path("includes/preamble.tex")
-# CSS path must be absolute to load locally
-WEBCSS = Path("includes/web-custom.css").resolve()
+WEBCSS = Path("includes/web-custom.css")
 MATHJAXCALL = Path("includes/include-mathjax.html")
 
 # source files/directories
@@ -143,8 +142,17 @@ LATEX_SEC_OPTS = (
 
 HTML_OPTS = (
     # "--shift-heading-level-by=-1"
-    f" -c {WEBCSS}"
-    f" --mathjax -Vmath='' -H {MATHJAXCALL}"  # see task def for details
+    # CSS file is copied to HTML root directory
+    f" -c /{WEBCSS.name}"
+    # Problem: the --mathjax command performs preprocessing, then inserts the
+    # MathJax script *only if* LaTeX math is detected. This means that in a file
+    # with no math, the custom commands that we insert will appear as raw text.
+    # The author of Pandoc has refused to change this. As a workaround, we
+    # use -Vmath='' to manually clear the internal variable where Pandoc records
+    # whether math was detected, and insert the script ourselves.
+    f" --mathjax -Vmath='' -H {MATHJAXCALL}"
+    # MODCMDS is inserted in the HTML body so that Pandoc will correctly add
+    # MathJax delimiters (it will not change included headers).
     f" {MODCMDS}"
 )
 
@@ -366,13 +374,13 @@ def task_pdf_sections():
 # HTML build path
 #
 
-def task_html_simple():
+def task_html_website():
     """
-    Build custom website with individual pages for sections.
+    Build website with
     """
     from doit.tools import result_dep
     return {
-        "actions": [],
+        "actions": [f"cp {WEBCSS} build/html"],
         'uptodate': [result_dep("html_toppage"),
                      result_dep("html_sections"),
                      result_dep("html_images")],
@@ -394,16 +402,6 @@ def task_html_toppage():
 def task_html_sections():
     """
     Build HTML chapters using Pandoc.
-
-    MODCMDS is inserted in the HTML body so that Pandoc will correctly add
-    MathJax delimiters (it will not change included headers).
-
-    Problem: the --mathjax command performs preprocessing, then inserts the
-    MathJax script *only if* LaTeX math is detected. This means that in a file
-    with no math, the custom commands that we insert will appear as raw text.
-    The author of Pandoc has refused to change this. As a workaround, we
-    use -Vmath='' to manually clear the internal variable where Pandoc records
-    whether math was detected, and insert the script ourselves.
     """
     for infile in SRC_MD:
         # srcsubdir = infile.parent
