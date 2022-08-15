@@ -38,7 +38,7 @@ img.med   { width: 400px; }
 img.big   { width: 800px; }
 
 
-/* Custom blocks */
+/* Custom blocks -- general */
 
 .advice {
     display: block;
@@ -118,6 +118,8 @@ img.big   { width: 800px; }
 
 }
 
+/* Custom blocks -- math */
+
 .lemma {
     display: block;
     margin: 12px 0;
@@ -196,28 +198,3 @@ img.big   { width: 800px; }
     font-weight: bold;
     font-style: normal;
 }
-
-/*.MathJax_Display,
-.MathJax nobr>span.math>span {
-    border: 0 !important;
-    font-size: 105% !important;
-    text-align: center !important;
-    margin: 0em !important;
-}*/
-
-/*<script>
-    MathJax.Hub.Config({
-        jax: ["input/TeX", "output/SVG"],
-        "HTML-CSS": {
-            preferredFont: "TeX",
-            availableFonts: ["TeX", "STIX"],
-            styles: {
-                scale: 100,
-                ".MathJax_Display": {
-                    "font-size": "100%",
-                }
-            }
-        },
-        SVG: { linebreaks: { automatic: true } }
-    });
-</script>*/
