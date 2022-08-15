@@ -174,7 +174,7 @@ The total number of counts is $11$.
 So after we replace counts by frequencies, $_MS$ becomes $\setof{\text{if police}: \frac{1}{11}, \text{police police}: \frac{8}{11}, \text{police then}: \frac{1}{11}, \text{then police}: \frac{1}{11}}$ (which is no longer a multiset).
 :::
 
-::: jupyterpython
+``` jupyterpython
 import matplotlib.pyplot as plt
 
 print("N-gram frequencies for \"{}\"".format(" ".join(sentence2)))
@@ -200,7 +200,7 @@ for ngrams in [unigrams, bigrams, trigrams]:
     plt.tick_params(axis='both', which='major', labelsize=12)
     # plt.text(str(label)+"-gram")
     plt.show()
-:::
+```
 
 ::: exercise
 Construct a bag of words from the following text of four sentences, then compute the relative frequency of each word:

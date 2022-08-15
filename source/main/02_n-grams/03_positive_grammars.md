@@ -49,12 +49,12 @@ For phonotactics, we used $n$-grams where each symbol is a sound, but this is to
 Instead, we will use $n$-grams where each symbol is a morpheme.
 So *-ize -ation* is a bigram, not an 11-gram that consists of 8 letters, 2 hyphens, and 1 space.
 
-::: jupyterpython
+``` jupyterpython
 chunk = "-ize -ation"
 print("{} with characters as symbols: {}-gram".format(chunk, len(chunk)))
 print("{} with sounds as symbols: {}-gram".format(chunk, len("izaSon")))
 print("{} with morphemes as symbols: {}-gram".format(chunk, len(("-ize", "-ation"))))
-:::
+```
 
 ::: exercise
 For each one of the following $n$-grams, say how large it is depending on what one chooses as the basic symbols that $n$-grams are built from.
@@ -265,7 +265,7 @@ Removing all trigrams of the positive trigram grammar leaves us with the followi
 You can verify for yourself that a negative trigram grammar that contains those three trigrams (and no other $n$-grams) can only generate *aa* over the alphabet $\setof{a}$.
 :::
 
-::: jupyterpython
+``` jupyterpython
 from itertools import product
 
 def all_ngrams(alphabet, n):
@@ -299,7 +299,7 @@ print("The original grammar is:")
 print(neg_gram)
 print("The opposite polarity version is:")
 print(pos_gram)
-:::
+```
 
 ::: exercise
 English allows for *nature*, *natural*, *naturalize*, *denaturalize*, *naturalization*, and *denaturalization*, but not *denature* or any of misordered forms like *naturizalation*.

@@ -31,7 +31,7 @@ For humans, retrieval time seems to be largely independent of vocabulary size.
 Whether you know 1,000 words or 10,000, it does not take all that long to figure out that *be* and *woman* are words of English.
 But with word lists, retrieval time should depend on vocabulary size.
 
-::: jupyterpython
+``` jupyterpython
 # download a giant dictionary file
 from urllib.request import urlretrieve
 
@@ -44,20 +44,20 @@ with open("words.txt", "r") as words:
 
 # tokenize the string to get a Python list of words
 long_list = long_list.split("\n")
-:::
+```
 
-::: jupyterpython
+``` jupyterpython
 %%time
 # now look up woman in a short word list; it doesn't take long
 short_list = ["a", "is", "the", "woman", "zeal"]
 print(short_list.index("woman"))
-:::
+```
 
-::: jupyterpython
+``` jupyterpython
 %%time
 # now look up woman in the long word list; it takes over 4000 times longer
 print(long_list.index("woman"))
-:::
+```
 
 So with lists as a hypothetical counterpart for a mental lexicon, average retrieval speed should decrease as the size of the lexicon grows.
 This does not seem to be the case, and even if it were true for humans it would not be smart engineering for a computer program.

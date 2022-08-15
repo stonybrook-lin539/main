@@ -32,7 +32,7 @@ Right uniqueness guarantees that functions are deterministic in the sense that o
 
 **Caution**: The functions used in programming languages are not necessarily functions in the mathematical sense because their output can vary even if the input stays the same.
 
-::: jupyterpython
+``` jupyterpython
 import random
 import re
 
@@ -47,7 +47,7 @@ def random_output(number):
 # let's see what happens when we run the function multiple times
 for _ in range(10):
     print("The output of random_output({}) is {}".format(5, random_output(5)))
-:::
+```
 
 <!-- ```python -->
 <!-- import random -->
