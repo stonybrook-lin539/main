@@ -100,9 +100,9 @@ TEX_BOOK = TEXDIR / "full-book.tex"
 PDF_BOOK = PDFDIR / "full-book.pdf"
 
 # Pandoc shared dependencies
-LATEX_DEPS = [CSTM_BLKS, INCL_FILE, LATEX_TIPA, EDGEMARKERS,
+LATEX_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS, LATEX_TIPA,
               LATEX_TEMPLATE, LATEX_PREAMBLE, MODCMDS]
-HTML_DEPS = [CSTM_BLKS, INCL_FILE,
+HTML_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS,
              WEBCSS, MATHJAXCALL, MODCMDS]
 
 # Pandoc shared options
@@ -111,6 +111,7 @@ PANDOC_OPTS = (
     # " -V showanswers"
     f" -L {CSTM_BLKS}"
     f" -L {INCL_FILE}"
+    f" -L {EDGEMARKERS}"
 )
 
 LATEX_OPTS = (
@@ -120,7 +121,6 @@ LATEX_OPTS = (
     f" -H {LATEX_PREAMBLE}"
     f" -H {MODCMDS}"
     f" -L {LATEX_TIPA}"
-    f" -L {EDGEMARKERS}"
 )
 
 LATEX_BOOK_OPTS = (
