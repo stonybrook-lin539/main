@@ -31,7 +31,6 @@ FORMAT_SINGLECHAP = Path("includes/format-single-chap.yaml")
 FORMAT_SINGLESEC = Path("includes/format-single-sec.yaml")
 MATHCMDS = Path("includes/mathcommands.md")
 LATEX_PREAMBLE = Path("includes/preamble.tex")
-WEBCSS = Path("includes/web-custom.css")
 MATHJAXCALL = Path("includes/include-mathjax.html")
 
 # source files/directories
@@ -69,6 +68,7 @@ ALL_CHAPS = MAIN_CHAPS + BG_CHAPS
 TESTDIR = Path("test/demo")
 TEST_MD = sorted(f for f in TESTDIR.glob('*') if f.suffix in MD_EXTS)
 
+#
 # source directories
 # MAIN_CHAPS = [f"main/{ch}" for ch in
 #               ["01_intro", "02_n-grams", "03_universals", "04_representations",
@@ -99,11 +99,16 @@ MD_BOOK = SRCDIR / "full-book.md"
 TEX_BOOK = TEXDIR / "full-book.tex"
 PDF_BOOK = PDFDIR / "full-book.pdf"
 
+# CSS
+CSS_NAME = "web-custom.css"
+CSS_SRC = Path("includes") / CSS_NAME
+CSS_DEST = HTMLDIR / CSS_NAME
+
 # Pandoc shared dependencies
 LATEX_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS, LATEX_TIPA,
               LATEX_TEMPLATE, LATEX_PREAMBLE, MODCMDS]
 HTML_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS,
-             WEBCSS, MATHJAXCALL, MODCMDS]
+             MATHJAXCALL, MODCMDS]
 
 # Pandoc shared options
 PANDOC_OPTS = (
@@ -142,8 +147,8 @@ LATEX_SEC_OPTS = (
 
 HTML_OPTS = (
     # "--shift-heading-level-by=-1"
-    # CSS file is copied to HTML root directory
-    f" -c /{WEBCSS.name}"
+    # CSS is served from HTML root directory
+    f" -c /{CSS_NAME}"
     # Problem: the --mathjax command performs preprocessing, then inserts the
     # MathJax script *only if* LaTeX math is detected. This means that in a file
     # with no math, the custom commands that we insert will appear as raw text.
@@ -380,8 +385,9 @@ def task_html_website():
     """
     from doit.tools import result_dep
     return {
-        "actions": [f"cp {WEBCSS} build/html"],
-        'uptodate': [result_dep("html_toppage"),
+        "actions": [f"cp {CSS_SRC} {CSS_DEST}"],
+        "file_dep": [CSS_SRC],
+        "uptodate": [result_dep("html_toppage"),
                      result_dep("html_sections"),
                      result_dep("html_images")],
     }
