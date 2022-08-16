@@ -26,6 +26,7 @@ EDGEMARKERS = "filters/edgemarkers.lua"
 
 # Pandoc templates and includes
 LATEX_TEMPLATE = "templates/latex-custom.tex"
+HTML_TEMPLATE = "templates/html-custom.html"
 FORMAT_DEFAULT = Path("includes/format.yaml")
 FORMAT_SINGLECHAP = Path("includes/format-single-chap.yaml")
 FORMAT_SINGLESEC = Path("includes/format-single-sec.yaml")
@@ -108,7 +109,7 @@ CSS_DEST = HTMLDIR / CSS_NAME
 LATEX_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS, LATEX_TIPA,
               LATEX_TEMPLATE, LATEX_PREAMBLE, MODCMDS]
 HTML_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS,
-             MATHJAXCALL, MODCMDS]
+             HTML_TEMPLATE, MATHJAXCALL, MODCMDS]
 
 # Pandoc shared options
 PANDOC_OPTS = (
@@ -146,7 +147,8 @@ LATEX_SEC_OPTS = (
 )
 
 HTML_OPTS = (
-    # "--shift-heading-level-by=-1"
+    f"--template {HTML_TEMPLATE} --toc"
+    # " --shift-heading-level-by=-1"
     # CSS is served from HTML root directory
     f" -c /{CSS_NAME}"
     # Problem: the --mathjax command performs preprocessing, then inserts the
