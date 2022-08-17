@@ -43,7 +43,9 @@ Here is a quote block.
 
 Here is a code block.
 
-```This is a code block.```
+```
+This is a code block.
+```
 
 Before horizontal rule
 
