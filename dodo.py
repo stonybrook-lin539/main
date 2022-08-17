@@ -150,7 +150,7 @@ HTML_OPTS = (
     f"--template {HTML_TEMPLATE} --toc"
     # " --shift-heading-level-by=-1"
     # CSS is served from HTML root directory
-    f" -c /{CSS_NAME}"
+    # f" -c /{CSS_NAME}"
     # Problem: the --mathjax command performs preprocessing, then inserts the
     # MathJax script *only if* LaTeX math is detected. This means that in a file
     # with no math, the custom commands that we insert will appear as raw text.
@@ -183,6 +183,22 @@ def task_test_docs():
             "name": outfile,
             "targets": [outfile],
             "file_dep": [infile, *LATEX_DEPS],
+            "actions": [f"mkdir -p {outfile.parent}", cmd],
+            "clean": True}
+
+    for infile in TEST_MD:
+        srcsubdir = infile.parent
+        outfile = infile.with_suffix(".html")
+        cmd = (
+            f" pandoc -t html {PANDOC_OPTS} {HTML_OPTS}"
+            f" -c ../../{CSS_SRC}"
+            f" --resource-path=.:{srcsubdir}"
+            f" {infile} -o {outfile}"
+        )
+        yield {
+            "name": outfile,
+            "targets": [outfile],
+            "file_dep": [infile, *HTML_DEPS],
             "actions": [f"mkdir -p {outfile.parent}", cmd],
             "clean": True}
 
@@ -418,6 +434,7 @@ def task_html_sections():
         outfile = HTMLDIR / infile.relative_to(SRCDIR).with_suffix(".html")
         cmd = (
             f"pandoc -t html {PANDOC_OPTS} {HTML_OPTS}"
+            f" -c /{CSS_NAME}"
             f" {infile} -o {outfile}"
         )
         yield {
