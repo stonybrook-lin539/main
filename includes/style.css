@@ -22,6 +22,7 @@
 body {
     font-size: 16px;
     background-color: var(--page-bg-color);
+    margin: 10px;
     /*counter-reset: definition;*/
     /*counter-reset: example;*/
     /*counter-reset: exercise;*/
@@ -67,6 +68,9 @@ h4:before {
     content: counter(section)"."counter(subsection)"."counter(subsubsection)". ";
 }
 
+a { text-decoration: none; }
+a:hover { text-decoration: underline }
+
 ul, ol {
     margin-left: 0;
     padding-left: 2.5rem;
@@ -94,6 +98,13 @@ th, td {
 
 /* Page layout -- fixed sidebar for navigation*/
 
+#title-block-header {
+    width: 100%;
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .container {
     display: flex;
     width: 100%;
@@ -114,9 +125,18 @@ th, td {
     padding-left: 1rem;
 }
 
+#TOC {
+    font-size: 80%;
+}
+
+#TOC p {
+    /*margin: 0;*/
+}
+
 #TOC ul {
     list-style: none;
     padding-left: 0rem;
+    /*margin: 0;*/
 }
 
 #TOC ul ul {
@@ -124,7 +144,18 @@ th, td {
 }
 
 #TOC a {
-    font-size: 80%;
+    color: var(--theme-color);
+}
+
+#TOC .site-title {
+    font-size: 70%;
+    font-weight: bold;
+    color: var(--theme-color);
+}
+
+#toc-title {
+    font-weight: bold;
+    color: var(--theme-color);
 }
 
 /*
