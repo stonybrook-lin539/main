@@ -168,8 +168,8 @@ HTML_OPTS = (
 # Tasks to build just part of the book for faster testing
 #
 
-def task_test_docs():
-    """Compile test documents."""
+def task_test_pdf():
+    """Compile test documents to PDF."""
     for infile in TEST_MD:
         srcsubdir = infile.parent
         outfile = infile.with_suffix(".pdf")
@@ -186,6 +186,9 @@ def task_test_docs():
             "actions": [f"mkdir -p {outfile.parent}", cmd],
             "clean": True}
 
+
+def task_test_html():
+    """Compile test documents to HTML."""
     for infile in TEST_MD:
         srcsubdir = infile.parent
         outfile = infile.with_suffix(".html")
