@@ -419,10 +419,17 @@ def task_html_toppage():
     Table of contents for web book.
     """
     outfile = HTMLDIR / "index.html"
+    cmd = (
+        f"{GEN_HTML_TOC} | pandoc"
+        f" -f html -t html --template {HTML_TEMPLATE}"
+        f" --metadata-file={SRCDIR}/metadata.yaml"
+        f" -c /{CSS_NAME}"
+        f" > {outfile}"
+    )
     return {
         "targets": [outfile],
         "file_dep": [str(f) for f in ALL_SRCFILES],
-        "actions": [f"{GEN_HTML_TOC} > {outfile}"],
+        "actions": [cmd],
         "clean": True}
 
 
