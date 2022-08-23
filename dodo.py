@@ -6,7 +6,7 @@ from pathlib import Path
 from itertools import chain
 # from doit.tools import title_with_actions
 
-DOIT_CONFIG = {"default_tasks": ["pdf_book"],
+DOIT_CONFIG = {"default_tasks": ["pdf_book", "html_website"],
                "check_file_uptodate": "timestamp"}
 # DOIT_CONFIG = {"action_string_formatting": "new"}
 
