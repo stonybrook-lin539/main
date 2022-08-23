@@ -44,7 +44,14 @@ Here is a quote block.
 Here is a code block.
 
 ```
-This is a code block.
+This is a generic code block.
+```
+
+```python
+# this is a Python code block
+import math
+x = math.sqrt(3)
+print(x)
 ```
 
 Before horizontal rule
