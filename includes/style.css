@@ -125,6 +125,8 @@ th, td {
     padding-left: 1rem;
 }
 
+/* Sidebar formatting */
+
 #TOC {
     font-size: 80%;
 }
@@ -143,6 +145,10 @@ th, td {
     padding-left: 1rem;
 }
 
+#TOC li {
+    padding-left: 0rem;
+}
+
 #TOC a {
     color: var(--theme-color);
 }
@@ -157,6 +163,38 @@ th, td {
     font-weight: bold;
     color: var(--theme-color);
 }
+
+/* Top-page formatting */
+
+.site-toc ol {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.site-toc li {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.toc-part {
+    counter-increment: toc-part;
+    counter-reset: toc-ch;
+}
+
+.toc-ch {
+    counter-increment: toc-ch;
+    counter-reset: toc-sec;
+}
+
+.toc-sec {
+    padding-left: 1rem;
+    counter-increment: toc-sec;
+}
+
+.toc-part:before { content: "Part "counter(toc-part)". "; }
+.toc-ch:before { content: "Chapter "counter(toc-ch)". "; }
+.toc-sec:before { content: "Unit "counter(toc-ch)"."counter(toc-sec)". "; }
 
 /*
   Custom blocks

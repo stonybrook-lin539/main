@@ -407,6 +407,7 @@ def task_html_website():
     from doit.tools import result_dep
     return {
         "actions": [f"cp {CSS_SRC} {CSS_DEST}"],
+        "targets": [CSS_DEST],
         "file_dep": [CSS_SRC],
         "uptodate": [result_dep("html_toppage"),
                      result_dep("html_sections"),
@@ -421,14 +422,14 @@ def task_html_toppage():
     outfile = HTMLDIR / "index.html"
     cmd = (
         f"{GEN_HTML_TOC} | pandoc"
-        f" -f html -t html --template {HTML_TEMPLATE}"
+        f" -t html --template {HTML_TEMPLATE}"
         f" --metadata-file={SRCDIR}/metadata.yaml"
         f" -c /{CSS_NAME}"
         f" > {outfile}"
     )
     return {
         "targets": [outfile],
-        "file_dep": [str(f) for f in ALL_SRCFILES],
+        "file_dep": [GEN_HTML_TOC, *(str(f) for f in ALL_SRCFILES)],
         "actions": [cmd],
         "clean": True}
 
