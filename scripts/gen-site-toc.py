@@ -10,22 +10,19 @@ import yaml
 SRCDIR = Path("source")
 
 print("<div class=\"site-toc\">")
-print("<ol>")
 for part in ("main", "background"):
     partdir = SRCDIR / part
     partmeta = partdir / "metadata.yaml"
     with open(partmeta, 'r') as file:
         partmetadata = yaml.load(file, Loader=yaml.BaseLoader)
     parttitle = partmetadata["part-title"]
-    print(f"  <li class=\"toc-part\">{parttitle}")
-    print(f"  <ol>")
+    print(f"<h2 class=\"toc-part\">{parttitle}</h2>")
     for chdir in sorted(p for p in partdir.glob("*") if p.is_dir()):
         chmeta = chdir / "metadata.yaml"
         with open(chmeta, 'r') as file:
             chmetadata = yaml.load(file, Loader=yaml.BaseLoader)
         chtitle = chmetadata["chapter-title"]
-        print(f"    <li class=\"toc-ch\">{chtitle}")
-        print(f"    <ol>")
+        print(f"<h3 class=\"toc-ch\">{chtitle}</h3>")
         for mdfile in sorted(p for p in chdir.glob("*") if p.suffix == ".md"):
             htmlfile = mdfile.relative_to(SRCDIR).with_suffix(".html")
             with open(mdfile) as f:
@@ -33,12 +30,9 @@ for part in ("main", "background"):
                     # match = re.match(r"title:\s*(.*)", line)
                     match = re.match(r"^#\s(.*)", line)
                     if match:
-                        print(f"      <li>"
-                              f"<a class=\"toc-sec\" href='{htmlfile}'>"
+                        print(f"<h4 class=\"toc-sec\">"
+                              f"<a href='{htmlfile}'>"
                               f"{match[1]}"
-                              f"</a></li>")
+                              f"</a></h4>")
                         break
-        print("    </ol></li>")
-    print("  </ol></li>")
-print("</ol>")
 print("</div>")

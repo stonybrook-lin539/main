@@ -96,6 +96,11 @@ th, td {
     padding: .1rem .5rem;
 }
 
+.subtitle, .author, .date {
+    font-size: 125%;
+    margin: .5rem 0rem;
+}
+
 /* Page layout -- fixed sidebar for navigation*/
 
 #title-block-header {
@@ -108,7 +113,7 @@ th, td {
 .container {
     display: flex;
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -119,7 +124,11 @@ th, td {
     width: 200px;
 }
 
-.content {
+.container.with-sidebar {
+    max-width: 1000px;
+}
+
+.container.with-sidebar .content {
     width: 100%;
     margin-left: 200px;
     padding-left: 1rem;
@@ -166,29 +175,28 @@ th, td {
 
 /* Top-page formatting */
 
-.site-toc ol {
+.toc-part, .toc-ch, .toc-sec{
     list-style: none;
-    margin-left: 0;
-    padding-left: 0;
-}
-
-.site-toc li {
-    margin-left: 0;
-    padding-left: 0;
 }
 
 .toc-part {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
     counter-increment: toc-part;
     counter-reset: toc-ch;
 }
 
 .toc-ch {
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
     counter-increment: toc-ch;
     counter-reset: toc-sec;
 }
 
 .toc-sec {
-    padding-left: 1rem;
+    margin-left: 1rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
     counter-increment: toc-sec;
 }
 

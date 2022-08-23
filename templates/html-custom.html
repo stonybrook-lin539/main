@@ -31,9 +31,9 @@ $endfor$
 $for(include-before)$
 $include-before$
 $endfor$
-<div class="container">
-<div class="sidenav">
+<div class="container $if(toc)$with-sidebar$endif$">
 $if(toc)$
+<div class="sidenav">
 <nav id="$idprefix$TOC" role="doc-toc">
 <p><a id="site-title" href="/">Mathematical Methods in Linguistics</a></p>
 $if(title)$
@@ -41,8 +41,8 @@ $if(title)$
 $endif$
 $table-of-contents$
 </nav>
-$endif$
 </div>
+$endif$
 <div class="content">
 $if(title)$
 <h1 class="title">$title$</h1>
