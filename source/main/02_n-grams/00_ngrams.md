@@ -65,21 +65,21 @@ are *ko*, *ob*, *bi*, *in*, *na*, and *al*.
 The bigrams of *banana* are *ba*, *an*, and *na*.
 :::
 
-<!-- ``` jupyterpython -->
-<!-- def bigrams(word): -->
-<!--     return sorted(list(set(''.join(bigram) -->
-<!--                            for bigram in zip(word,word[1:])))) -->
-<!--  -->
-<!-- def bigram_print(word): -->
-<!--     print("The bigrams of", word, "are:") -->
-<!--     print(bigrams(word)) -->
-<!--  -->
-<!-- bigram_print("kobinal") -->
-<!-- bigram_print("banana") -->
-<!-- # try some words of your own -->
-<!-- bigram_print("wordone") -->
-<!-- bigram_print("wordtwo") -->
-<!-- ``` -->
+``` jupyterpython
+def bigrams(word):
+    return sorted(list(set(''.join(bigram)
+                           for bigram in zip(word,word[1:]))))
+
+def bigram_print(word):
+    print("The bigrams of", word, "are:")
+    print(bigrams(word))
+
+bigram_print("kobinal")
+bigram_print("banana")
+# try some words of your own
+bigram_print("wordone")
+bigram_print("wordtwo")
+```
 
 ::: exercise
 Consider the word
@@ -101,18 +101,18 @@ For each one of the following, say whether it is a bigram of the word.
 One shortcoming of this simple notion of bigrams is that one cannot tell which bigrams occurred at the beginning and the end of the word.
 For example, *ababa* and *babab* have the same bigrams, *ab* and *ba*.
 
-<!-- ``` jupyterpython -->
-<!-- def bigrams(word): -->
-<!--     return sorted(list(set(''.join(bigram) -->
-<!--                            for bigram in zip(word,word[1:])))) -->
-<!--  -->
-<!-- def bigram_print(word): -->
-<!--     print("The bigrams of", word, "are:") -->
-<!--     print(bigrams(word)) -->
-<!--  -->
-<!-- bigram_print("ababa") -->
-<!-- bigram_print("babab") -->
-<!-- ``` -->
+``` jupyterpython
+def bigrams(word):
+    return sorted(list(set(''.join(bigram)
+                           for bigram in zip(word,word[1:]))))
+
+def bigram_print(word):
+    print("The bigrams of", word, "are:")
+    print(bigrams(word))
+
+bigram_print("ababa")
+bigram_print("babab")
+```
 
 But for phonotactics it is actually important to know how a word starts and how it ends.
 We have to make some changes to capture this information with bigrams.
@@ -129,19 +129,19 @@ To calculate the bigrams of *kobinal*, we first expand it to *{{{L}}}kobinal{{{R
 Then we extract bigrams as usual, giving us the following list: *{{{L}}}k*, *ko*, *ob*, *bi*, *in*, *na*, *al*, *l{{{R}}}*.
 :::
 
-<!-- ``` jupyterpython -->
-<!-- def bigrams(word): -->
-<!--     word = "$" + word + "$" -->
-<!--     return sorted(list(set(''.join(bigram) -->
-<!--                            for bigram in zip(word,word[1:])))) -->
-<!--  -->
-<!-- def bigram_print(word): -->
-<!--     print("The bigrams of", word, "are:") -->
-<!--     print(bigrams(word)) -->
-<!--  -->
-<!-- bigram_print("ababa") -->
-<!-- bigram_print("babab") -->
-<!-- ``` -->
+``` jupyterpython
+def bigrams(word):
+    word = "$" + word + "$"
+    return sorted(list(set(''.join(bigram)
+                           for bigram in zip(word,word[1:]))))
+
+def bigram_print(word):
+    print("The bigrams of", word, "are:")
+    print(bigrams(word))
+
+bigram_print("ababa")
+bigram_print("babab")
+```
 
 ::: exercise
 Consider once more the word
@@ -205,21 +205,21 @@ The trigrams are *ban*, *ana*, and *nan*.
 The 4-grams are *bana*, *anan*, and *nana*.
 :::
 
-<!-- ``` jupyterpython -->
-<!-- def ngrams(word, n): -->
-<!--     return sorted(list(set(''.join(ngram) -->
-<!--                            for ngram in zip(*[word[i:] -->
-<!--                                               for i in range(n)])))) -->
-<!--  -->
-<!-- def ngram_print(word, n): -->
-<!--     print("The {}-grams of {} are:".format(n, word)) -->
-<!--     print(ngrams(word, n)) -->
-<!--  -->
-<!-- for n in [2, 3, 4]: -->
-<!--     ngram_print("ababa", n) -->
-<!--     ngram_print("babab", n) -->
-<!--     print() -->
-<!-- ``` -->
+``` jupyterpython
+def ngrams(word, n):
+    return sorted(list(set(''.join(ngram)
+                           for ngram in zip(*[word[i:]
+                                              for i in range(n)]))))
+
+def ngram_print(word, n):
+    print("The {}-grams of {} are:".format(n, word))
+    print(ngrams(word, n))
+
+for n in [2, 3, 4]:
+    ngram_print("ababa", n)
+    ngram_print("babab", n)
+    print()
+```
 
 One problem with large $n$-grams is that some words may be shorter than $n$ even after edge markers have been added.
 Just what are the 4-grams of *{{{L}}}a{{{R}}}*?
@@ -284,22 +284,22 @@ The 4-grams are
 and *a{{{R}}}{{{R}}}{{{R}}}*.
 :::
 
-<!-- ``` jupyterpython -->
-<!-- def ngrams(word, n): -->
-<!--     word = "$" * (n-1) + word + "$" * (n-1) -->
-<!--     return sorted(list(set(''.join(ngram) -->
-<!--                            for ngram in zip(*[word[i:] -->
-<!--                                               for i in range(n)])))) -->
-<!--  -->
-<!-- def ngram_print(word, n): -->
-<!--     print("The {}-grams of {} are:".format(n, word)) -->
-<!--     print(ngrams(word, n)) -->
-<!--  -->
-<!-- for n in [2, 3, 4]: -->
-<!--     ngram_print("ababa", n) -->
-<!--     ngram_print("babab", n) -->
-<!--     print() -->
-<!-- ``` -->
+``` jupyterpython
+def ngrams(word, n):
+    word = "$" * (n-1) + word + "$" * (n-1)
+    return sorted(list(set(''.join(ngram)
+                           for ngram in zip(*[word[i:]
+                                              for i in range(n)]))))
+
+def ngram_print(word, n):
+    print("The {}-grams of {} are:".format(n, word))
+    print(ngrams(word, n))
+
+for n in [2, 3, 4]:
+    ngram_print("ababa", n)
+    ngram_print("babab", n)
+    print()
+```
 
 Now we can finally state clearly why *kobinal*, *workbench* and *akbar* are all phonotactically well-formed, whereas *kbin* is not: the latter contains the illicit trigram *{{{L}}}kb*.
 

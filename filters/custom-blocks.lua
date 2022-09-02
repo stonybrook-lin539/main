@@ -37,7 +37,8 @@ function CodeBlock(elem)
   cls = elem.classes[1]
   if cls == "jupyterpython" then
     elem.classes[1] = "python"
-    return pandoc.CodeBlock(elem.text, elem.attr)
+    -- return pandoc.CodeBlock(elem.text, elem.attr)
+    return {}
   else
     return elem
   end

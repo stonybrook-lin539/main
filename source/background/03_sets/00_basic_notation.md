@@ -13,20 +13,20 @@ Nor do you care in which order the words occurred in the text.
 So you are actually interested in the *set* of words that occur in the text.
 :::
 
-<!-- ``` jupyterpython -->
-<!-- # Converting a text to the set of words -->
-<!-- import re -->
-<!--  -->
-<!-- def text_to_set(text): -->
-<!--     return set(re.findall(r"\w+", text.lower())) -->
-<!--  -->
-<!-- # change the string below as you see fit -->
-<!-- text = "If police police police, then police police police." -->
-<!-- print("The original text is:") -->
-<!-- print(text) -->
-<!-- print("The set of words is:") -->
-<!-- print(text_to_set(text)) -->
-<!-- ``` -->
+``` jupyterpython
+# Converting a text to the set of words
+import re
+
+def text_to_set(text):
+    return set(re.findall(r"\w+", text.lower()))
+
+# change the string below as you see fit
+text = "If police police police, then police police police."
+print("The original text is:")
+print(text)
+print("The set of words is:")
+print(text_to_set(text))
+```
 
 Each property is explained in detail below, but let's first put some helpful notation in place.
 
@@ -110,19 +110,19 @@ Consider the strings
 While they are clearly distinct sentences, their sets of words are identical.
 :::
 
-<!-- ``` jupyterpython -->
-<!-- import re -->
-<!--  -->
-<!-- def text_to_set(text): -->
-<!--     return set(re.findall(r"\w+", text.lower())) -->
-<!--  -->
-<!-- text1 = "If John slept, then Mary left." -->
-<!-- text2 = "If Mary left, then John slept." -->
-<!--  -->
-<!-- set1, set2 = text_to_set(text1), text_to_set(text2) -->
-<!-- print("Are the sets identical?") -->
-<!-- print("Yes") if set1 == set2 else print("No") -->
-<!-- ``` -->
+``` jupyterpython
+import re
+
+def text_to_set(text):
+    return set(re.findall(r"\w+", text.lower()))
+
+text1 = "If John slept, then Mary left."
+text2 = "If Mary left, then John slept."
+
+set1, set2 = text_to_set(text1), text_to_set(text2)
+print("Are the sets identical?")
+print("Yes") if set1 == set2 else print("No")
+```
 
 ::: exercise
 For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
@@ -139,19 +139,19 @@ Sets are **idempotent**, which means that duplicates are ignored.
 So $\setof{a,b} = \setof{a,a,b} = \setof{a,b,b,a,b,a,b,a,a}$.
 It also holds that $\setof{a} = \setof{a,a} = \setof{a,a,a}$, and so on.
 
-<!-- ``` jupyterpython -->
-<!-- import re -->
-<!--  -->
-<!-- def text_to_set(text): -->
-<!--     return set(re.findall(r"\w+", text.lower())) -->
-<!--  -->
-<!-- text1 = "If John slept, then Mary left." -->
-<!-- text2 = "If Mary left, then John slept." -->
-<!--  -->
-<!-- set1, set2 = text_to_set(text1), text_to_set(text2) -->
-<!-- print("Are the sets identical?") -->
-<!-- print(set1 == set2) -->
-<!-- ``` -->
+``` jupyterpython
+import re
+
+def text_to_set(text):
+    return set(re.findall(r"\w+", text.lower()))
+
+text1 = "If John slept, then Mary left."
+text2 = "If Mary left, then John slept."
+
+set1, set2 = text_to_set(text1), text_to_set(text2)
+print("Are the sets identical?")
+print(set1 == set2)
+```
 
 ::: example
 Linguists distinguish between **word types** and **word tokens**.
