@@ -13,7 +13,9 @@ date: Fall 2022
 |               |                                 |
 | Instructor    | Thomas Graf                     |
 | Email         | [coursenumber]@thomasgraf.net   |
-| Office hours  | tbd                             |
+| Office hours  | W 9:30-10:15am (Seminar room)   |
+                | W 11:45-1:00pm (N-249)          |
+                | F 12:00-1:00pm (N-249)          |
 | Office        | SBS N-249                       |
 
 **A friendly plug:** If you are interested in this class, also consider attending the department's [Mathematical Linguistics Reading Group](http://mlrg.thomasgraf.net) (<http://mlrg.thomasgraf.net>).
