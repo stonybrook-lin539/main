@@ -156,6 +156,7 @@
 \newcommand{\exranswerlist}{}
 \NewEnviron{exranswer}{\ifbool{showanswers}{%
   \xappto\exranswerlist{\theexercise . \BODY}}{}}
+\newenvironment{solution}[1]{\textbf{Solution}#1}{}
 
 % styling
 
