@@ -32,7 +32,7 @@ if FORMAT:match "html" then
   end
 end
 
--- Convert "jupyterpython" code blocks to plain "python".
+-- Remove "jupyterpython" code blocks.
 function CodeBlock(elem)
   cls = elem.classes[1]
   if cls == "jupyterpython" then
