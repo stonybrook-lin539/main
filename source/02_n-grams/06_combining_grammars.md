@@ -151,6 +151,8 @@ $a{{{R}}}$.
 )
 :::
 
+:::
+
 ## Extension to positive grammars via De Morgan's Law
 
 Combining grammars by taking their union only gives the desired result for negative grammars.
