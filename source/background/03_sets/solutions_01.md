@@ -70,7 +70,7 @@ Express the following in terms of set-builder notation:
 
 ::: solution
 1. $\setof{x \mid x \text{ is one of the first three presidents of the United States}}$
-1. $\setof{x \mid x \text{ is a vowel of the English alphabet}$
+1. $\setof{x \mid x \text{ is a vowel of the English alphabet}}$
 :::
 
 ::: solution_explained
