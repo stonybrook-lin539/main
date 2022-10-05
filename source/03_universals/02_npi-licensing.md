@@ -60,6 +60,7 @@ Yes. If *every student slept*, then both of the following are true:
 1. Every male student slept.
 1. Every sophomore slept.
 :::
+
 :::
 
 Note that the entailment only holds in one direction.
@@ -90,7 +91,7 @@ Let $A$ be the set of all students.
 The sentence *Every student slept* asserts for each student $s \in A$ that $s$ did in fact sleep.
 Suppose this is true.
 Then *Every X slept* is necessarily true if X denotes some set $B \subseteq A$ because we already know for each $s \in B$ that $s$ did sleep.
-Since there is no subset of $A$ for which this entailment fails, *no* is indeed downward entailing.
+Since there is no subset of $A$ for which this entailment fails, *every* is indeed downward entailing.
 :::
 :::
 
@@ -114,19 +115,24 @@ The intuition here is that *no*-sentences are of the general form *no X does/is 
 ::: exercise
 Represent the following sentences in terms of this functional notation:
 
-- No professor writes good lecture notes.
-- Every professor could earn more in industry.
-- This professor, no student likes.
+1. No professor writes good lecture notes.
+1. Every professor could earn more in industry.
+1. This professor, no student likes.
 
 ::: solution
-The central thing to keep in mind is that the arguments are determined by meaning, not the linear order in the string.
-The first argument is what we are quantifying over, the second one what is being done.
-
-- No(professor, writes good lecture notes)
-- Every(professor, could earn more in industry)
-- No(student, likes this professor)
-
+1. No(professor, writes good lecture notes)
+1. Every(professor, could earn more in industry)
+1. No(student, likes this professor)
 :::
+
+::: solution_explained
+The central thing to keep in mind here is that the arguments are determined by meaning, not the linear order in the string.
+The first argument expresses what we are quantifying over, the second one what is being done.
+For the first two examples, this is straight-forward.
+For the third example, we have to figure out first that *this professor* is the object of *likes*.
+So the sentence means the same as *no student likes this professor*, even though the word order is different.
+:::
+
 :::
 
 One thing the functional notation makes very clear is that a sentence like *no student slept* consists of two distinct parts that contribute to the meaning.
@@ -153,11 +159,14 @@ Show that *no* is downward entailing with respect to Y.
 Consider a concrete example first.
 Suppose *No student runs* is true.
 Then *No student runs a 5k* is also true.
-The set of individuals that run a 5k is a subset of the individuals that run, so we made an inference from a set $S$ to a subset of $S$, which means that we have downward entailment.
+The set of individuals that run a 5k is a subset of the individuals that run, so we made an inference from a set $S$ (the set of runners) to a subset of $S$ (the set of 5k runners), which means that we have downward entailment.
 
 More generally, if $\mathrm{No}(X,Y)$ is true, then there is no individual $i \in X$ such that $i$ belongs to the set of individuals that do $Y$.
-But then $i$ cannot belong to any subset of $Y$, either, giving us downward entailment with respect to $Y$.
+But then $i$ cannot belong to any subset of $Y$, either.
+Or in set-theoretic terms: if $\mathrm{No}(X,Y)$ is true, then $X \cap Y = \emptyset$, which implies $X \cap Z = \emptyset$ for every subset $Z$ of $Y$.
+This shows that *no* is downward entailing with respect to $Y$.
 :::
+
 :::
 
 And now we have the contrast between *every* and *no* that we need.
