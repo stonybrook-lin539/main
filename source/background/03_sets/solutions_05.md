@@ -34,7 +34,7 @@ For each one of the following sets, compute its powerset.
 1. $\wp(\emptyset) = \setof{ \emptyset }$
 1. $\wp(\setof{\emptyset}) = \setof{ \emptyset, \setof{\emptyset} }$
 1. $\wp(\wp(\setof{\setof{a}})) = \wp( \setof{ \emptyset, \setof{\setof{a}} }) = \setof{ \emptyset, \setof{\emptyset}, \setof{\setof{\setof{a}}}, \setof{ \emptyset, \setof{\setof{a}}}}$
-1. $\wp(\wp(\wp(\emptyset))) = \wp(\wp( \setof{ \emptyset }) = \wp ( \setof{ \emptyset, \setof{\emptyset}} )$, which is the set containing all of the following (and nothing else):
+1. $\wp(\wp(\wp(\emptyset))) = \wp(\wp( \setof{ \emptyset })) = \wp ( \setof{ \emptyset, \setof{\emptyset}} )$, which is the set containing all of the following (and nothing else):
     1. $\emptyset$
     1. $\setof{\emptyset}$,
     1. $\setof{\setof{\emptyset}}$,
@@ -75,7 +75,6 @@ For each one of the following sets, compute its powerset.
 
 ::: exercise
 For each set $A$ in the previous exercise, verify that $\card{\wp(A)} = 2^{\card{A}}$.
-:::
 
 ::: solution
 1. $\card{\setof{a,b}} = 2$ and $\card{\wp(\setof{a,b})} = 2^2 = 4$
@@ -85,4 +84,6 @@ For each set $A$ in the previous exercise, verify that $\card{\wp(A)} = 2^{\card
 1. $\card{\setof{\emptyset}} = 1$ and $\card{\wp(\setof{\emptyset}} = 2^1 = 2$
 1. $\card{\wp(\setof{\setof{a}})} = 2$ and $\card{\wp(\wp(\setof{\setof{a}}))} = 2^2 = 4$
 1. $\card{\wp(\wp(\emptyset))} = 2$ and $\card{\wp(\wp(\wp(\emptyset)))} = 2^2 = 4$
+:::
+
 :::

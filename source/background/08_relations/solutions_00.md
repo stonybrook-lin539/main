@@ -33,6 +33,8 @@ For each one of the following, say whether it is a function or just a relation.
    For example, the string *ab* is a prefix of infinitely many strings, including *ab*, *aba*, *abab*, and so on.
 :::
 
+:::
+
 ::: exercise
 Is the following statement true or false?
 Justify your answer.

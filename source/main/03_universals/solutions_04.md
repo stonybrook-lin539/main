@@ -103,7 +103,7 @@ We have $\tuple{2,3} \leq \tuple{2,1}$, yet $f(\tuple{2,3}) = T > F = f(\tuple{2
 Continuing the previous exercise, show that the U-PCC isn't a monotonically decreasing map either.
 
 ::: solution
-We have $\tuple{3,2} \leq \tuple{1,2}$, yet $f(\tuple{3,2) = F < T = f(\tuple{1,2})$.
+We have $\tuple{3,2} \leq \tuple{1,2}$, yet $f(\tuple{3,2}) = F < T = f(\tuple{1,2})$.
 :::
 
 :::
@@ -141,7 +141,7 @@ The relation $\triangleleft$ is a weak partial order because it is transitive, a
 In the following, I write $m \prec=n$ as a shorthand for "$m \prec n$ or $m = n$".
 
 1. **Transitivity**:
-   Suppose $\tuple{a,x} \triangleft \tuple{b,y}$ and $\tuple{b,y} \triangleleft \tuple{c,z}$.
+   Suppose $\tuple{a,x} \triangleleft \tuple{b,y}$ and $\tuple{b,y} \triangleleft \tuple{c,z}$.
    This entails that $a \leq b \leq c$ and $x \prec= y \prec= z$.
    But then, by the definition of $\leq$ and $\prec=$, it holds that $\tuple{a,x} \triangleleft \tuple{b,y}$.
 

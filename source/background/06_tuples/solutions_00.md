@@ -73,7 +73,7 @@ Calculate the result of the following concatenations:
 
 ::: solution_explained
 All we have to do is to resolve the concatenations step by step.
-$$
+$
 \begin{align*}
 \tuple{a,b} \tuplecat ((\tuple{c} \tuplecat \tuple{a,b}) \tuplecat \tuple{a,c,e})
 &=
@@ -83,9 +83,9 @@ $$
 &=
 \tuple{a,b,c,a,b,a,c,e}\\
 \end{align*}
-$$
+$
 
-$$
+$
 \begin{align*}
 (\tuple{a,b} \tuplecat \tuple{c}) \tuplecat (\tuple{a,b} \tuplecat \tuple{a,c,e})
 &=
@@ -95,7 +95,7 @@ $$
 &=
 \tuple{a,b,c,a,b,a,c,e}\\ 
 \end{align*}
-$$
+$
 :::
 
 :::
