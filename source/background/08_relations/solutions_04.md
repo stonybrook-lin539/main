@@ -32,10 +32,10 @@ At this point, transitive closure ends up relating everything to everything:
 
 1. $\tuple{a,d}$ is added because of $\tuple{a,c}$ and $\tuple{c,d}$.
 1. $\tuple{d,a}$ is added because of $\tuple{d,c}$ and $\tuple{c,a}$.
-1. $\tuple{b,c$} is added because of $\tuple{b,a}$ and $\tuple{a,c}$.
-1. $\tuple{b,d$} is added because of $\tuple{b,a}$ and $\tuple{a,d}$.
-1. $\tuple{c,b$} is added because of $\tuple{c,a}$ and $\tuple{a,b}$.
-1. $\tuple{d,b$} is added because of $\tuple{d,a}$ and $\tuple{a,b}$.
+1. $\tuple{b,c}$ is added because of $\tuple{b,a}$ and $\tuple{a,c}$.
+1. $\tuple{b,d}$ is added because of $\tuple{b,a}$ and $\tuple{a,d}$.
+1. $\tuple{c,b}$ is added because of $\tuple{c,a}$ and $\tuple{a,b}$.
+1. $\tuple{d,b}$ is added because of $\tuple{d,a}$ and $\tuple{a,b}$.
 :::
 
 :::

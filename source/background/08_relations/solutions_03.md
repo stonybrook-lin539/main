@@ -119,6 +119,8 @@ Take care to justify your answers, and if you have to make additional assumption
    We cannot order $x$ before $y$ and $y$ before $x$, including cases where $x = y$.
 :::
 
+:::
+
 ::: exercise
 Indicate in the table below which properties hold of the relations.
 
@@ -179,7 +181,7 @@ Some relations fit multiple types, and some none.
 | proper substring              |  No               | Yes                | No             | No               |
 | $\subsetneq$                  |  No               | Yes                | No             | No               |
 | alphabetical order            |  No               | Yes                | No             | Yes              |
-| ordering all humans by height |  Yes              | No                 | No             | No               |
+| ordering all humans by height |  Yes/No           | Yes/No             | No             | No               |
 | "sums to 10" relation         |  No               | No                 | No             | No               |
 | parent-of relation            |  No               | No                 | No             | No               |
 | "voted for same candidate"    |  No               | No                 | No             | No               |
@@ -192,19 +194,17 @@ A few clarifying remarks:
 
 1. Keep in mind that every total order is also a partial order.
    If a relation is not a partial order, it cannot be a total order.
+1. Whether we take "ordering all humans by height" to be antisymmetric is subject to interpretation.
+   If two individuals $x$ and $y$ are exactly the same height, then we could order them as $x \leq y$ and $y \leq x$.
+   In that case we don't have antisymmetry and hence no partial order.
+   But alternatively, we may say that humans of the same height are unordered with respect to each other, and then antisymmetry holds.
+   There's also some leeway whether the relation should be reflexive.
 1. The "sums to 10" relation and the parent-of relation are not transitive, so they cannot be partial orders.
-1. The "voted for same candidate" relation is not asymmetric, so it cannot be a partial order.
-1. The table assumes that the relation that orders humans by height is irreflexive.
-
+1. The "voted for same candidate" relation is not antisymmetric, so it cannot be a partial order.
 :::
 
 :::
 
 ::: exercise
 Give a real-world example of a weak partial order that is not a total order.
-
-::: solution
-fixme
-:::
-
 :::

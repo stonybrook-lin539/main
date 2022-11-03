@@ -1,9 +1,5 @@
 # Lower bounds and upper bounds (Solutions)
 
-~~~ {.include-tikz size=mid}
-lattice_123_bounds1.tikz
-~~~
-
 ::: exercise
 Draw corresponding diagrams indicating the upper and lower bounds of
 
