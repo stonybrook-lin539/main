@@ -1,0 +1,36 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows, automata, calc, positioning}
+\newcommand{\emptystring}{\ensuremath{\varepsilon}}
+\begin{document}
+\begin{tikzpicture}
+    \node[state, initial] (0) at (0,0) {0};
+    \node[state] (3) [right=of 0] {3};
+    \node[state] (2) [above=of 3] {2};
+    \node[state] (4) [right=of 2] {4};
+    \node[state] (5) [below=of 4] {5};
+    \node[state] (6) [below right=of 5] {6};
+    \node[state] (7) [right=of 5] {7};
+    \node[state] (8) [below right=of 7] {8};
+    \node[state] (9) [right=of 7] {9};
+    \node[state,accepting] (10) [right=of 8] {10};
+
+    \path[->]
+        (0) edge node [above] {a} (2)
+        (0) edge node [above] {b} (3)
+        (2) edge node [above] {a} (4)
+        (2) edge node [above] {b} (5)
+        (3) edge node [above] {a} (5)
+        (3) edge node [above] {b} (6)
+        (4) edge node [left,pos=.8] {a} (6)
+        (4) edge node [above] {b} (7)
+        (5) edge node [above] {a} (7)
+        (5) edge node [above] {b} (8)
+        (6) edge node [below] {a} (8)
+        (6) edge node [above] {b} (9)
+        (7) edge node [above] {a} (9)
+        (7) edge node [above] {b} (10)
+        (8) edge node [below] {a,b} (10)
+        (9) edge node [right] {a,b} (10)
+        (10) edge [loop right] node [right] {a,b} (10);
+\end{tikzpicture}
+\end{document}

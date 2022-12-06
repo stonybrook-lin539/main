@@ -1,0 +1,17 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows, automata, calc, positioning}
+\newcommand{\emptystring}{\ensuremath{\varepsilon}}
+\begin{document}
+\begin{tikzpicture}
+    \node[state, initial,accepting] (0) at (0,0) {$[\emptystring]$};
+    \node[state] (1) [right=of 0] {$[a]$};
+    \node[state] (2) [below=of 0] {$[b]$};
+
+    \path[->]
+        (0) edge [bend left] node [above] {a} (1)
+        (1) edge [bend left] node [below] {b} (0)
+        (0) edge node [left] {b} (2)
+        (1) edge node [below] {a} (2)
+        (2) edge [loop below] node [below] {a,b} (2);
+\end{tikzpicture}
+\end{document}

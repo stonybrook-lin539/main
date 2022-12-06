@@ -1,0 +1,18 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows, automata, calc, positioning}
+\begin{document}
+\begin{tikzpicture}
+    \node[state, initial, accepting] (0) at (0,0) {0};
+    \node[state, accepting] (1) [right=of 0] {1};
+    \node[state] (2) [right=of 1] {2};
+    \node[state, accepting] (3) [above=of 0] {3};
+
+    \path[->]
+        (0) edge node [left] {$\sigma$} (3)
+        (0) edge node [above] {a} (1)
+        (1) edge node [right] {$\sigma$} (3)
+        (1) edge node [above] {a} (2)
+        (2) edge node [right] {$\sigma$} (3)
+        (3) edge [loop left] node [left] {a, $\sigma$} (3);
+\end{tikzpicture}
+\end{document}
