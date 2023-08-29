@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (basic notation)
-
 # Sets: Additional notation
+
+:::prereqs
+- sets (basic notation)
+:::
 
 ## The empty set
 
@@ -72,11 +72,11 @@ The table below illustrates this for a few values.
 | 3   | Yes                   | 6    | 
 
 
-::: jupyterpython
+``` jupyterpython
 # set-builder notation even exists in some programming languages like Python
 built_set = set(2*n for n in [0, 1, 2, 3, 4, 5])
 print(built_set)
-:::
+```
 
 There is no limit on the complexity of set-builder notation.
 For example, one could nest multiple set definitions, as in $\setof{ \setof{ i \mid 0 \leq i \leq n } \mid n \text{ a natural number} }$.

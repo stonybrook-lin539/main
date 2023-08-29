@@ -1,9 +1,9 @@
-**Prerequisites**
+# A graph-theoretic baseline: connectedness
 
+:::prereqs
 - relations (closure)
 - graphs (basics, connectedness)
-
-# A graph-theoretic baseline: connectedness
+:::
 
 Consider for a moment the relation induced by the identity function $\mathrm{id}$ with $x \mapsto x$.
 It relates each element to itself, and nothing else.

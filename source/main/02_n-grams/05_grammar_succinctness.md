@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- functions(basics, function growth)
-
 # Succinctness and choosing between grammars
+
+:::prereqs
+- functions(basics, function growth)
+:::
 
 Thanks to all the math we have put to good use, we now have three expressively equivalent models of phonotactics:
 

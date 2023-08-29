@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- relations (advanced orders)
-
 # Quotient structures for hierarchies
+
+:::prereqs
+- relations (advanced orders)
+:::
 
 The graph-theoretic insights about condensations from the previous unit can also be expressed in order-theoretic terms.
 This part is somewhat technical, so you might have to read it multiple times to make sure you understand what is going on.

@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- relations (notation, basic orders)
-
 # Monotonicity in case syncretism
+
+:::prereqs
+- relations (notation, basic orders)
+:::
 
 Monotonicity also seems to play a role in a phenomenon called **case syncretism**.
 As you probably know, some languages have specific endings that go on nouns to indicate their case.

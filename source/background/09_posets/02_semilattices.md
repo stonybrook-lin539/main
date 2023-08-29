@@ -76,7 +76,7 @@ In the examples so far, there has always been a unique lub and a unique glb.
 But this isn't always the case with posets.
 
 ::: example
-We have already seen in the previous units that some posets many not have any lower bounds or upper bounds for at least some subsets of the carrier.
+We have already seen in the previous units that some posets may not have any lower bounds or upper bounds for at least some subsets of the carrier.
 
 ~~~ {.include-tikz size=mid}
 poset_nobounds.tikz

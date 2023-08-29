@@ -1,9 +1,9 @@
-**Prerequisites**
+# Cardinality
 
+:::prereqs
 - sets (notation, operations)
 - functions (basic notation, domain terminology)
-
-# Cardinality
+:::
 
 Sets can be compared based on how many elements they contain.
 

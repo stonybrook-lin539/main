@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (notation)
-
 # Union, intersection, and complement of sets
+
+:::prereqs
+- sets (notation)
+:::
 
 Sets can be combined with each other in various ways.
 Sometimes this is used as yet another way to define sets, and sometimes it is an actual construction process where multiple sets serve as the input to some mechanism that returns a single set as the output.
@@ -101,7 +101,7 @@ Since associativity requires that the order of evaluation may never matter, this
 That doesn't mean that there are never cases where one can't change the order of evaluation at all.
 For instance, $(\setof{0,1} - \setof{0}) - \setof{2} = \setof{1} = \setof{0,1} - (\setof{0} - \setof{2})$ --- but that is merely a coincidence.
 That relative complement is not associative mirrors subtraction for numbers, where $(5 - 2) - 3 = 0 \neq 6 = 5 - (2 -3)$.
-Commutativity does not hold for relative complement either, as is shown by $\setof{5} - \setof{5,4} = \emptyset \neq \setof{4} = \setof{5,4} - \setof{4}$.
+Commutativity does not hold for relative complement either, as is shown by $\setof{5} - \setof{5,4} = \emptyset \neq \setof{4} = \setof{5,4} - \setof{5}$.
 
 ::: exercise
 Give a concrete example where $A - B = B - A$.

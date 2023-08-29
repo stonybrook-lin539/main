@@ -1,10 +1,10 @@
-**Prerequisites**
+# Proof: Equivalence of positive and negative grammars
 
+:::prereqs
 - general(abbreviations[w.l.o.g.])
 - sets(notation, operations)
 - strings(notation)
-
-# Proof: Equivalence of positive and negative grammars
+:::
 
 This section defines both negative and positive versions of $n$-gram grammars and shows that they are expressively equivalent.
 Like in the section on the equivalence of mixed and fixed $n$-gram grammars, this is accomplished by a **constructive** proof.

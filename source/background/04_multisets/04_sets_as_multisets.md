@@ -1,10 +1,10 @@
-**Prerequisites**
+# Sets as instances of multisets
 
+:::prereqs
 - sets
 - functions (notation)
 - general (numbers)
-
-# Sets as instances of multisets
+:::
 
 Multisets are a natural generalization of sets.
 But if this is true, then sets should fall out as just a special case of multisets.

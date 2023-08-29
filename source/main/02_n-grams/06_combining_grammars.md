@@ -1,10 +1,9 @@
-**Prerequisites**
+# Combining $n$-gram grammars
 
+:::prereqs
 - sets (notation, operations)
 - strings (notation)
-
-
-# Combining $n$-gram grammars
+:::
 
 So far, our short expedition has resulted in a few formal insights into $n$-gram grammars, but also a variety of examples of how they can be used in linguistics.
 However, all the examples were limited to specific phenomena.

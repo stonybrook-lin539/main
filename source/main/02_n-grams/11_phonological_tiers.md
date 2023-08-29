@@ -129,7 +129,7 @@ Compute the values for all of the following:
 
 You might think that this isn't a true unification, we have just moved the difference between stop word removal and tier projection into the polarity distinction.
 But just as with $n$-gram grammars, polarity doesn't actually matter.
-For every set $S$ of a given polarity, there is some set $T$ of opposite polarity such that $\mathit{del}_X(s) = \mathit{del}_Y(s)$ for every string $s$ over some fixed alphabet $\Sigma$.
+For every set $A$ of symbols drawn from some fixed alphabet $\Sigma$, there is some set $B$ such that $\mathit{del}_{^-A}(s) = \mathit{del}_{^+B}(s)$ and $\mathit{del}_{^+A}(s) = \mathit{del}_{^-B}$ for every string $s$ over $\Sigma$.
 
 ::: exercise
 Explain why this holds.

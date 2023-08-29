@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- relations (basic orders)
-
 # The basics of graphs
+
+:::prereqs
+- relations (basic orders)
+:::
 
 A graph consists of at least two components. 
 The first is the set of nodes.

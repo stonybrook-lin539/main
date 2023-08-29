@@ -1,0 +1,320 @@
+/* CSS for web output */
+
+/* Shared colors */
+
+:root {
+    --theme-color: rgb(51, 102, 153);
+    --page-bg-color: hsl(60, 100%, 98%);
+    --red: hsl(0, 100%, 45%);
+    --yellow: hsl(53, 100%, 50%);
+    --green: hsl(100, 100%, 35%);
+    --blue: hsl(236, 100%, 50%);
+    --gray: hsl(0, 0%, 50%);
+    --light-red: hsl(0, 100%, 95%);
+    --light-yellow: hsl(53, 100%, 95%);
+    --light-green: hsl(100, 100%, 95%);
+    --light-blue: hsl(236, 100%, 95%);
+    --light-gray: hsl(0, 0%, 95%);
+}
+
+/* Basic formatting -- font size, spacing, colors, numbering */
+
+body {
+    font-size: 16px;
+    background-color: var(--page-bg-color);
+    margin: 10px;
+    /*counter-reset: definition;*/
+    /*counter-reset: example;*/
+    /*counter-reset: exercise;*/
+    /*counter-reset: theorem;*/
+}
+
+p {}
+
+h1, h2, h3, h4 {
+    color: var(--theme-color);
+}
+
+h1 {
+    font-size: 150%;
+}
+
+h2 {
+    font-size: 125%;
+    counter-increment: section;
+    counter-reset: subsection;
+}
+
+h2:before {
+    content: counter(section)". ";
+}
+
+h3 {
+    font-size: 110%;
+    counter-increment: subsection;
+    counter-reset: subsubsection;
+}
+
+h3:before {
+    content: counter(section)"."counter(subsection)". ";
+}
+
+h4 {
+    font-size: 100%;
+    counter-increment: subsubsection;
+}
+
+h4:before {
+    content: counter(section)"."counter(subsection)"."counter(subsubsection)". ";
+}
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline }
+
+ul, ol {
+    margin-left: 0;
+    padding-left: 2.5rem;
+}
+
+ul ul, ol ol {
+    padding-left: 1.5rem;
+}
+
+li {
+    padding-left: .25rem;
+}
+
+blockquote, pre {
+    margin-left: 2rem;
+}
+
+img.small { width: 200px; }
+img.med   { width: 400px; }
+img.big   { width: 800px; }
+
+th, td {
+    padding: .1rem .5rem;
+}
+
+.subtitle, .author, .date {
+    font-size: 125%;
+    margin: .5rem 0rem;
+}
+
+/* Page layout -- fixed sidebar for navigation*/
+
+#title-block-header {
+    width: 100%;
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sidenav {
+    position: fixed;
+    height: 100%;
+    width: 200px;
+}
+
+.container.with-sidebar {
+    max-width: 1000px;
+}
+
+.container.with-sidebar .content {
+    width: 100%;
+    margin-left: 200px;
+    padding-left: 1rem;
+}
+
+/* Sidebar formatting */
+
+#TOC {
+    font-size: 80%;
+}
+
+#TOC p {
+    /*margin: 0;*/
+}
+
+#TOC ul {
+    list-style: none;
+    padding-left: 0rem;
+    /*margin: 0;*/
+}
+
+#TOC ul ul {
+    padding-left: 1rem;
+}
+
+#TOC li {
+    padding-left: 0rem;
+}
+
+#TOC a {
+    color: var(--theme-color);
+}
+
+#TOC .site-title {
+    font-size: 70%;
+    font-weight: bold;
+    color: var(--theme-color);
+}
+
+#toc-title {
+    font-weight: bold;
+    color: var(--theme-color);
+}
+
+/* Top-page formatting */
+
+.toc-part, .toc-ch, .toc-sec{
+    list-style: none;
+}
+
+.toc-part {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    counter-increment: toc-part;
+    counter-reset: toc-ch;
+}
+
+.toc-ch {
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
+    counter-increment: toc-ch;
+    counter-reset: toc-sec;
+}
+
+.toc-sec {
+    margin-left: 1rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    counter-increment: toc-sec;
+}
+
+.toc-part:before { content: "Part "counter(toc-part)". "; }
+.toc-ch:before { content: "Chapter "counter(toc-ch)". "; }
+.toc-sec:before { content: "Unit "counter(toc-ch)"."counter(toc-sec)". "; }
+
+/*
+  Custom blocks
+*/
+
+.advice,
+.example,
+.exercise,
+.prereqs,
+.proof,
+.remark,
+.definition,
+.theorem,
+.lemma,
+.corollary,
+.proposition
+ {
+    display: block;
+    margin: 12px 0;
+    padding: .5rem .75rem .5rem;
+}
+
+/* Rounded, unfilled blocks -- advice */
+
+.advice {
+    border-style: solid;
+    border-width: thin;
+    border-radius: .5rem;
+    border-color: gray;
+}
+
+.advice:before {
+    content: "Advice";
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Simple colored background  --example, exercise, proof, remark */
+
+.example {
+    background-color: var(--light-gray);
+    border-color: var(--gray);
+    counter-increment: example;
+}
+
+.exercise {
+    background-color: var(--light-yellow);
+    border-color: var(--yellow);
+    counter-increment: exercise;
+}
+
+.example:before, .exercise:before {
+    font-weight: bold;
+    font-style: normal;
+}
+
+.example:before { content: "Example "counter(example)"."; }
+.exercise:before { content: "Exercise "counter(exercise)"."; }
+
+.proof, .remark {
+    background-color: var(--light-blue);
+    border-color: var(--blue);
+}
+
+.proof:before, .remark:before {
+    content: "Proof.";
+    font-style: italic;
+    font-weight: bold;
+}
+
+.proof:before,  { content: "Proof"; }
+.remark:before { content: "Remark."; }
+
+/* QED symbol */
+/*.proof:after {
+    content: "\25FC";
+    float: right;
+}*/
+
+/* Thick left border -- definition, theorem, lemma, corollary, proposition */
+
+.definition, .theorem, .lemma, .corollary, .proposition {
+    border-left: thick solid;
+}
+
+.definition {
+    background-color: var(--light-green);
+    border-color: var(--green);
+    counter-increment: definition;
+}
+
+.theorem, .lemma, .corollary, .proposition {
+    background-color: var(--light-red);
+    border-color: var(--red);
+    counter-increment: theorem;
+}
+
+.definition:before,
+.theorem:before,
+.lemma:before,
+.corollary:before,
+.proposition:before {
+    font-weight: bold;
+    font-style: normal;
+}
+
+.definition:before { content: "Definition "counter(definition)"."; }
+.theorem:before { content: "Lemma "counter(theorem)"."; }
+.lemma:before { content: "Lemma "counter(theorem)"."; }
+.corollary:before { content: "Lemma "counter(theorem)"."; }
+.proposition:before { content: "Lemma "counter(theorem)"."; }
+
+
+/* Automatic numbering and block titles */
+
