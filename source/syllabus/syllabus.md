@@ -3,22 +3,26 @@ title: Mathematical Methods in Linguistics
 date: Fall 2023
 ---
 
-| Course        | Info                            |
-| --:           | :--                             |
-| Course#       | LIN 361/539                     |
-| Time          | TueThu 10:00-11:20am            |
-| Location      | SBS N-250                       |
-| Website       | lin361.thomasgraf.net           |
-|               | lin539.thomasgraf.net           |
-|               |                                 |
-| Instructor    | Thomas Graf                     |
-| Email         | [coursenumber]@thomasgraf.net   |
-| Office hours  | Mon 10:00-11am                  |
-|               | Tue 11:30am-12:30pm             |
-|               | Thu 11:30am-12:30pm             |
-| Office        | SBS N-249                       |
-|               |                                 |
-| TA            | Han Li                          |
+| Course          | Info                            |
+| --:             | :--                             |
+| Course#         | LIN 361/539                     |
+| Time            | Tue/Thu 10:00-11:20am           |
+| Location        | SBS S-228                       |
+| Website         | lin361.thomasgraf.net           |
+|                 | lin539.thomasgraf.net           |
+|                 |                                 |
+| Instructor      | Thomas Graf                     |
+| Email           | [coursenumber]@thomasgraf.net   |
+| Office hours    | Mon 10:00-11:00am               |
+|                 | Tue 11:30am-12:30pm             |
+|                 | Thu 11:30am-12:30pm             |
+| Office          | SBS N-249                       |
+|                 |                                 |
+| TA              | Han Li                          |
+| TA email        | han.li.4@stonybrook.edu         |
+| TA office hours | Mon 10:00-11:00am               |
+|                 | Wed 10:00-11:00am               |
+| TA office       | SBS-N230                        |
 
 
 # Course Outline
