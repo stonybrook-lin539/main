@@ -1,24 +1,24 @@
 ---
 title: Mathematical Methods in Linguistics
-date: Fall 2022
+date: Fall 2023
 ---
 
 | Course        | Info                            |
 | --:           | :--                             |
 | Course#       | LIN 361/539                     |
-| Time          | TueThu 9:45-11:05am             |
-| Location      | Humanities 2047                 |
+| Time          | TueThu 10:00-11:20am            |
+| Location      | SBS N-250                       |
 | Website       | lin361.thomasgraf.net           |
 |               | lin539.thomasgraf.net           |
 |               |                                 |
 | Instructor    | Thomas Graf                     |
 | Email         | [coursenumber]@thomasgraf.net   |
-| Office hours  | W 9:30-10:15am                  |
-|               | W 11:45-1:00pm                  |
-|               | F 12:00-1:00pm                  |
+| Office hours  | Mon 10:00-11am                  |
+|               | Tue 11:30am-12:30pm             |
+|               | Thu 11:30am-12:30pm             |
 | Office        | SBS N-249                       |
-
-**A friendly plug:** If you are interested in this class, also consider attending the department's [Mathematical Linguistics Reading Group](http://mlrg.thomasgraf.net) (<http://mlrg.thomasgraf.net>).
+|               |                                 |
+| TA            | Han Li                          |
 
 
 # Course Outline
@@ -35,18 +35,19 @@ A strong emphasis is put on the linguistic application of the mathematical conce
 This course is an introduction to mathematics in linguistics.
 It aims to help students familiarize themselves with mathematical concepts and applications that are widely relevant to theoretical and\slash or computational linguistics.
 This covers a wide range of topics, mostly from *discrete mathematics*.
+All the concepts will be illustrated with examples that have to do with natural language.
+For linguistics students, this should make the math more approachable and engaging.
+For mathematics students, this will show you a little-known but fascinating application area for mathematics.
+
 The course is also very different from what you did in high school, there's precious few numbers here and we don't care much about trigonometry or calculating compound interest.
 In contrast to a proper mathematics course, we also focus more on techniques and tools rather than theorems and proofs.
-This means that you will learn how to work with things like matrices, semirings, and lattices, but you won't have to prove things about them.
+This means that you will learn how to work with things like functions, matrices, lattices, and finite-state automata, but you won't have to prove things about them.
 So this is more like a CS methods course than a proper math class.
 
 For more information about the content, see the [Selected Topics](#Selected-Topics) section.
 You will see that the schedule for this class is very ambitious.
-It has to be: this class serves an integral function of our Computational Linguistics MA and must get students to a level where they can take courses and read textbooks on mathematically demanding topics such as machine learning.
-
-<!-- - Graduate students: This is not your typical graduate-level course, it is a **boot camp**, so be prepared to invest a fair amount of blood, sweat, and tears. -->
-<!-- - Undergrads: The main goal is to make you aware of a really cool area of applied mathematics you probably haven't heard of before. You have more leeway in how hard you want this course to be, see grading details below. -->
-
+We probably won't be able to cover everything (I have taught this course many times, and I never made it all the way to the end).
+But no matter how far we get, by the end of the class you should have had enough exposure to mathematical thinking that the thought of picking up a textbook in mathematics or computational linguistics for self-study won't make you run away in horror.
 
 ## Teaching Goals
 
@@ -59,154 +60,153 @@ It has to be: this class serves an integral function of our Computational Lingui
 ## Prerequisites
 
 No prior mathematical or computational experience is required.
+We will get to see quite a bit of mathematical notation, like $(a \rightarrow \neg a) \rightarrow \neg a$ or $$\begin{pmatrix} 1 & 0\\0 & 0\\\end{pmatrix} \otimes \begin{pmatrix} 0 & 0\\1 & 1\end{pmatrix}$$ 
+But you don't need to know yet what any of that means.
 
-I have run this course as an independent study with high school students who had no prior experience in linguistics, and they could follow along for the most part and only needed some help in specific areas.
+There's no linguistic prereqs either, but since I'm a linguist I might sometimes forget what parts of linguistics are not common knowledge.
+Don't feel shy to ask clarification questions.
+Anecdotal evidence: I have run this course as an independent study with high school students who had no prior experience in linguistics, and they could follow along just fine because they were not afraid to ask me to clarify some linguistic concepts.
 
 
 ## Textbook
 
 None, but there are detailed lecture notes that will eventually become a textbook.
-The lecture notes will be made available as PDFs in the [course repository][gitrepo] (check the `pdf` folder, please ignore the rest).
-Detailed instructions will follow via email.
-
-
-
-
-<!-- # Mode of Instruction: Flipped Classroom Lite -->
-<!--  -->
-<!-- The most important mathematics skill is the ability to learn mathematics on your own, without the help of an instructor. -->
-<!-- Whether you're doing computational linguistics in the industry or as an academic, sooner or later you will come across some tool or technique that builds on an area of math you have never encountered before. -->
-<!-- It is vital for your future career that you can pick up a textbook or survey paper and teach yourself how this unfamiliar kind of math works. -->
-<!--  -->
-<!-- Unfortunately, math is already a very challenging topic for most people, and learning it without somebody's help seems impossible to many. -->
-<!-- In order to teach you how to make the transition from listener to autonomous learner, this course is run as a **hybrid class** with a small lecture component. -->
-<!-- This means that a lot of the learning takes place outside the class room, but each week still starts out with a lecture component to get you going. -->
-<!-- The rest of the week is dedicated to helping you in your journey of autonomous learning. -->
-<!-- Specifically, this will work as follows: -->
-<!--  -->
-<!-- | **Day**   | **Activities**                   | -->
-<!-- | :--       | :--                              | -->
-<!-- | Monday    | intro to this week's topic       | -->
-<!-- |           | assign chapters to read          | -->
-<!-- |           | assign exercises                 | -->
-<!-- |           | collect previous week's homework | -->
-<!-- | Wednesday | Q&A for assigned chapters        | -->
-<!-- | Friday    | homework discussion              | -->
-<!--  -->
-<!-- Expect the workload outside the class room to be much higher than usual, but on the flipside you do not even have to come to the Monday and Wednesday lectures if you have no questions and feel confident that you can handle the chapters on your own. -->
-<!-- Only Friday lectures have mandatory attendance. -->
-
-
-<!-- The lecture notes will be made available as [Jupyter notebooks](http://jupyter.org/) on a [dedicated server][server] (right now, this server is only accessible through Stony Brook's [Virtual SINC][sinc], but hopefully it will soon be accessible like any other website). -->
-<!-- You can also find them in the [course repository][gitrepo]. -->
-<!-- A Jupyter notebook is a mixture of text and Python code, which allows for a more interactive learning environment. -->
-<!-- There are multiple ways you can view the notebooks. -->
-<!-- In order of preference: -->
-<!--  -->
-<!-- - Use the [preconfigured Jupyter server that is provided for this class][server]. -->
-<!--   If this does not work, make sure you're connecting through [Virtual SINC][sinc]. -->
-<!-- - Use the department's virtual machine image for VirtualBox, available at Stony Brook's [Softweb](https://softweb.cc.stonybrook.edu/). -->
-<!-- - Install [Anaconda](https://www.continuum.io/downloads), a Python distro that also installs Jupyter. -->
-<!-- - If you already have a working Python setup, install Jupyter separately. -->
-<!-- - If you can live without the interactive Python demonstrations, pdfs of the notebooks will be shared in the [course repository][gitrepo] -->
-<!--  -->
-<!-- Ideally, you will be using the first option which takes care of all the setup for you. -->
-<!-- For all other options, you have to take a few steps of your own. -->
-<!-- In particular, you must use the supplied `start_jupyter.py` script to start the Jupyter server, otherwise the notebooks won't be formatted correctly. -->
-<!-- Proceed as follows: -->
-<!--  -->
-<!-- 1.  Clone or download the [course repository][gitrepo] (green button at the top of the page). -->
-<!-- 1.  If you downloaded the repository as a zip archive, extract it. -->
-<!-- 1.  Run the `start_jupyter.py` script. -->
-<!--     The Jupyter notebook server will start and open a new tab in your browser. -->
-<!-- 1.  Navigate to the notebook you want to read. -->
-<!--     They are all in the notebooks folder. -->
+The lecture notes will be made available as PDFs and HTML.
+Detailed instructions will follow in a separate announcement.
 
 
 # Selected Topics
 
 A brief selection of the topics to be covered (we will probably deviate from this order):
 
-1.  Basics of mathematics
-    - Topics: sets, multisets, tuples, functions
+1.  Basic mathematical objects
+    - Topics: sets, multisets, tuples
     - Applications: bag of words model of text, n-gram models of grammaticality
 
-1.  Types of infinity
-    - Topics: bijections, function inverse
-    - Applications: is language infinite?
+1.  Grammatical systems as mappings
+    - Topics: functions, monotonicity
+    - Applications: monotonicity as a linguistic universal in morphology, syntax, and semantics
 
 1.  Relations and orders
-    - Topics: properties of orders, posets, lattices, antimatroids
-    - Applications: mereology, string extension learners, OT, feature systems, adjunct algebras, syntactic relations, linguistic universals
+    - Topics: properties of orders, posets, lattices, perhaps antimatroids
+    - Applications: string extension learners, feature systems, adjunct algebras, syntactic relations, linguistic universals, OT if we cover antimatroids
 
-1.  Graph theory
+1.  Graph theory (we might skip this one)
     - Topics: (un)directed graphs, connectedness, components
     - Application: parse forest representation, autosegmental phonology, AVMs, unification grammars
 
 1.  Automata theory
-    - Topics: finite-state automata and transducers, regular expressions, push-down automata
-    - Application: complexity of phonology & morphology VS syntax
+    - Topics: finite-state automata and transducers
+    - Application: upper bounds on the complexity of phonology & morphology
+
+1.  Linear algebra
+    - Topics: vectors and vector spaces, matrices, tensor product
+    - Application: automata as boolean matrix multiplication, vector space semantics, neural networks
 
 1.  Logic
     - Topics: propositional logic and first-order logic, types, lambda calculus
     - Application: semantics, model-theoretic syntax, subregular linguistics, CCG
 
-1.  Linear algebra
-    - Topics: vectors and vector spaces, matrices, tensor product
-    - Application: vector space semantics, spatial semantics, inflectional morphology
-
-1.  Abstract algebra
+1.  Abstract algebra (only got to it once)
     - Topics: monoids, groups, semirings
     - Application: violation semirings in OT, semiring parsing
 
-1.  Probability theory
+1.  Types of infinity (usually not enough time)
+    - Topics: bijections, function inverse
+    - Applications: is language infinite?
+
+1.  Probability theory (extremely unlikely)
     - Topics: calculating probabilities with addition and multiplication
     - Application: weighted context-free grammars, corpus-based techniques
 
-1.  Information theory
+1.  Information theory (extremely unlikely)
     - Topics: entropy, cross-entropy
     - Application: probabilistic machine learning, surprisal for processing
 
 
 # Grading
 
-This course can only be taken for 0 or 3 credits.
-Student grades are determined by the following components:
+## Undergraduate students
+
+By default, 100% of your grade is determined by a (take-home) final exam.
+But there are various things you can do throughout the semester to reduce the importance of the final exam.
+This way, students who would rather study on their own can just do that and get their grade by demonstrating their knowledge on the final exam.
+Students who participate more regularly instead get to minimize the risk that a bad final exam will ruin their grade.
+
+1.  **Class participation (10%)**  
+    Show up all the time, ask questions and participate in discussion, and you will get an A for class participation.
+    That A makes up 10% of your grade.
 
 1.  **Pre-assessment (P/F; 5%)**  
     At the beginning of the semester, students are asked to take a survey to assess their prior knowledge of mathematical linguistics.
     It is perfectly normal not to know a single answer.
-    <!-- Participation is worth 10 percentage points. -->
-    <!-- It is perfectly alright to fail every single question, the goal is not to weed out "bad" students but to figure out the best way to pair up students in learning teams. -->
     Bring the completed survey to the first session of week 2.
     Performance is P/F depending on whether a filled-out survey was submitted (answering "Don't know" on each question is perfectly fine).
+    If you get a P, that is treated like an A and is worth 5% of your grade.
 
-1.  **Feedback on weekly assignments (10% each time you volunteer, max 70%)**  
-    A list of exercises from the lecture notes is assigned every Thursday and your anonymous answers are due the following Tuesday.
-    You should make a reasonable effort to complete the exercises, but your answers are not graded.
+1.  **Weekly assignments (P/F; 3% each)**  
+    A list of exercises from the lecture notes is assigned every Thursday and your answers are due the following Tuesday.
+    You should make a reasonable effort to complete the exercises, but your answers are not really graded.
+    As long as it is clear that you made an effort, you get a P, which is treated as an A and is worth 3% of your grade.
+    There will be around 10 assignments in total, making up 0% to 30% of your grade.
 
-    Instead, full solutions are distributed the same day.
-    You can volunteer to help me go through the student answers and send me an email with your observations: where did folks struggle, what did they do well, which exercises caused confusion, and so on.
-    You then return the assignments, completely unaltered, on Thursday.
+    Full solutions will be distributed each Thursday together with the next assignment.
 
-    - Thursday, week $n$: assignment $n$
-    - Tuesday, week $n+1$: hand in your answers for assignment $n$, may volunteer to look at some of the assignments, official solutions distributed
-    - Thursday, week $n+1$: answers are returned
+1.  **Take-home midterm (percentage graded; 30%)**  
+    We will have a midterm, but they won't be taken in class.
+    Instead, the midterm takes the form of an extra-long homework assignment.
+    If your grade on the midterm is higher than the grade on the final exam, it makes up 30% of your grade.
+    If it is lower, we simply drop it and it does not factor into your grade (if you bomb the midterm but then shape up and turn in a great final exam, that's something to be rewarded, not punished).
 
-    *Caution*: In order to maintain anonymity among your peers, don't put identifying information on your assignments!
-
-1.  **Post-assessment (P/F; 5%)**
+1.  **Post-assessment (P/F; 5%)**  
     Exactly the same as the pre-assessment.
+    Just do it again, pat yourself on the shoulder for every question you now know the answer to, and then hand it in with the final exam.
 
-1.  **Take-home mid-term + final (A-F; remainder)**  
-    We will have a midterm and final exam, but they won't be taken in class.
-    Instead, they take the form of longer assignments and you are given more time than usual to complete them.
-    These will be graded.
-    The mid-term can only improve your grade:
+1.  **Take-home final (percentage graded; remainder)**  
+    Same deal as the midterm, but even longer and you get two weeks to work on it.
 
-    1. If grade(mid-term) $\leq$ grade(final): grade = grade(final)
-    1. If grade(mid-term) $>$ grade(final): grade = (grade(mid-term) + grade(final))/2
+## Graduate students
 
+The grading is the same as for undergrads, except that:
+
+1.  The weekly assignments may contain exercises that are optional for undergrads but mandatory for grads.
+
+1.  Once during the semester, you have to serve as pseudo-grader.
+    You will get to look at half of the assignments, then you will meet with the TA to discuss what you think the students did well, what they struggled with, and who (if anybody) you think should not get a P due to lack of effort.
+
+## Student pseudonyms
+
+Because the grad students in this course will get to look at the handed-in assignments, we will put in place an extra measure to protect your privacy.
+At the beginning of the semester, you will pick a pseudonym, and whenever you hand in an assignment, you will use that pseudonym instead of your real name.
+Detailed instructions will be sent out in a separate announcement.
+
+## Chat GPT
+
+You are allowed to use Chat GPT for assignments and the final exam, but if you do so, please indicate that you did.
+It won't matter for grading or anything else, but I would like to know whether students actually benefit from using Chat GPT.
+Here is some advice based on my own experimentation:
+
+1. Do not blindly copy-paste answers from Chat GPT.
+   Treat it like a discussion with a peer, be aware that said peer may well be wrong, then write up your own answer.
+
+1. Chat GPT will often get things wrong, in particular on the exercises that combine math and linguistics.
+   But it can be insightful to think about what it got wrong, and why.
+   Contrast what Chat GPT does against the official solutions for exercises, and you may have quite a few epiphanies.
+
+1. Use Chat GPT selectively.
+   It can take a lot of time to convert an exercise into a prompt that Chat GPT can do something with.
+   It's often faster to just do things by yourself.
+   Use Chat GPT for the exercises that really have you stymied, the exercises where you don't even know how to get started.
+
+## A remark on grades
+
+Yes, this class has a grading system that is easy to game.
+You could do nothing the whole semester and then spend a day with Chat GPT to write up your take-home final.
+But that means you'll have paid the university a decent sum of money on a course that you learnt nothing from.
+If you're okay with that, then I'm okay with that, just like your gym doesn't mind that you pay them fifty bucks a month but never show up.
+
+My experience is that the students who shouldn't get a good grade somehow manage to get a low grade even under the most lenient grading system.
+No reason to tighten clamps that will only make things more annoying for students who do just fine without all those extra hoops to jump through.
 
 
 # Policies
@@ -245,8 +245,3 @@ Faculty are required to report to the Office of Student Conduct and Community S
 Until/unless the latest COVID guidance is explicitly amended by SBU, during Fall 2021 "disruptive behavior” will include refusal to wear a mask during classes.  
 
 For the latest COVID guidance, please refer to: <https://www.stonybrook.edu/commcms/strongertogether/latest.php>
-
-[gitrepo]: https://lin539.thomasgraf.net
-[googlefolder]: http://lin539.thomasgraf.net/skillsurvey
-[server]: https://dev.tlt.stonybrook.edu:8000
-[sinc]: https://it.stonybrook.edu/services/virtual-sinc-site
