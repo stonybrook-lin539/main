@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (cardinality)
-
 # Trees as relational objects
+
+:::prereqs
+- sets (cardinality)
+:::
 
 If our claims about hierarchies so far are on the right track, then posets seem to play an important role in language.
 Not just any posets, though, but rather the ones that constitute at least weakly connected graphs.

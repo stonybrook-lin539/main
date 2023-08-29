@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (basic notation)
-
 # Strings: Basic notation
+
+:::prereqs
+- sets (basic notation)
+:::
 
 Strings play a very prominent role in computational linguistics.
 A string is a sequence of symbols, like *nfm*, *wendigo*, or *105§/*.

@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (notation, operations, cardinality)
-
 # Comparing sets
+
+:::prereqs
+- sets (notation, operations, cardinality)
+:::
 
 Two sets can stand in several distinct relations to each other:
 
@@ -49,7 +49,7 @@ Complete the table below.
 :::
 
 
-::: jupyterpython
+``` jupyterpython
 def set_print(some_set):
     return '{' + ', '.join(sorted(list(some_set))) + '}'
 
@@ -61,7 +61,7 @@ if set1.issubset(set2):
     print(set_print(set1), "is a subset of", set_print(set2))
 else:
     print(set_print(set1), "is not a subset of", set_print(set2))
-:::
+```
 
 ::: exercise
 Say whether the following statement is true or false and justify your answer:

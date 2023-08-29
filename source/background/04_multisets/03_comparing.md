@@ -1,9 +1,9 @@
-**Prerequisites**
+# Multiset relations
 
+:::prereqs
 - sets (comparison, powerset)
 - multisets (operations)
-
-# Multiset relations
+:::
 
 The (proper) subset and superset relations are readily extended to multisets.
 
@@ -54,7 +54,7 @@ The contrast is even more pronounced when we consider a multiset like $\setof{a:
 While $\wp(\setof{a})$ only consists of $\emptyset$ and $\setof{a}$, $\wp(\setof{a:9})$ has $10$ members.
 :::
 
-::: jupyterpython
+``` jupyterpython
 def is_subset(A, B):
     for a in A.elements():
         if A[a] > A[b]:
@@ -86,7 +86,7 @@ pprint(powerset(B))
 print()
 print("Powerset of {} is:".format(A))
 pprint(powerset(Counter(A)))
-:::
+```
 
 The cardinality of the powerset of a multiset is computed by adding 1 to each count and then multiplying all counts.
 Again we can express this more precisely and succinctly with a formula:

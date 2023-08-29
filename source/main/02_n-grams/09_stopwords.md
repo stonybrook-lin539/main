@@ -101,7 +101,7 @@ A few word types make up the majority of word tokens in a text while many other 
 
 If we draw a plot with the word types in a text in descending frequency along the $x$-axis and their number of tokens as the $y$-axis, this produces a curve that starts out high, drops off quickly, and then has a very long tail that approaches 0 but never reaches it.
 
-::: jupyterpython
+``` jupyterpython
 # import plotting library as plt
 import matplotlib.pyplot as plt
 import numpy as np
@@ -118,7 +118,7 @@ plt.plot(x, f(x))
 
 # show the plotted diagram
 plt.show()
-:::
+```
 
 ::: exercise
 Suppose you have a text with 20,000 words where the most frequent word occurs 1068 times.

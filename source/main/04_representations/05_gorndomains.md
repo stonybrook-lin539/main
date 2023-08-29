@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- strings (prefix/suffix)
-
 # Gorn domains
+
+:::prereqs
+- strings (prefix/suffix)
+:::
 
 Trees in the graph-theoretic sense do not usually have a linear order.
 It can be added, but it is cumbersome.

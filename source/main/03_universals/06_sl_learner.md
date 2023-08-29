@@ -1,14 +1,14 @@
-**Prerequisites**
+# The lattice space of $n$-gram grammars
 
+:::prereqs
+Required:
 - posets (semilattices)
 
-**Suggested**
-
+Suggested:
 - sets (powerset)
 - general (fixpoint)
 - general (logarithm)
-
-# The lattice space of $n$-gram grammars
+:::
 
 The general take-home message of this chapter has been that a surprising number of seemingly unrelated language universals can be stated as monotonicity properties over ordered sets.
 This includes both substantive universals ($^*$ABA, PCC) and formal universals (adjunct island constraint).

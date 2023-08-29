@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- tuples (basics, crossproduct)
-
 # Person Case Constraints
+
+:::prereqs
+- tuples (basics, crossproduct)
+:::
 
 Monotonicity can be successfully invoked to explain $^*$ABA effects for adjectival gradation and person syncretism in pronouns, as well as case syncretism patterns.
 But languages do many other quirky things, and one particularly quirky thing is the **Person Case Constraint**, short PCC.

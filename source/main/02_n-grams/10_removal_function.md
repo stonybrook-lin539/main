@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- functions (domain terminology)
-
 # Stop word removal as a function
+
+:::prereqs
+- functions (domain terminology)
+:::
 
 This unit illustrates how one might define stop word removal as a mathematical function $\mathit{del}$ (read *delete*).
 

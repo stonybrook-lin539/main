@@ -109,8 +109,15 @@ class PosNGramGrammar(NGramGrammar):
         return cls(alphabet, n, ngrams)
 
     def __str__(self):
-        sorted_ngrams = sorted(self.ngrams,
-                               key=lambda s: (-s.count('>'), s.count('<')))
+        left_edge_ngrams = sorted([g for g in self.ngrams
+                                   if '>' in g],
+                                  key=lambda s: (-s.count('>')))
+        right_edge_ngrams = sorted([g for g in self.ngrams
+                                    if '<' in g and '>' not in g],
+                                   key=lambda s: (s.count('<')))
+        middle_ngrams = sorted([g for g in self.ngrams
+                                if '>' not in g and '<' not in g])
+        sorted_ngrams = left_edge_ngrams + middle_ngrams + right_edge_ngrams
         return f"G(+): {{{','.join(sorted_ngrams)}}}"
 
     def match(self, string):
@@ -166,7 +173,14 @@ class PosNGramGrammar(NGramGrammar):
 class NegNGramGrammar(NGramGrammar):
 
     def __str__(self):
-        return f"G(–): {self.ngrams}"
+        left_edge_ngrams = sorted([g for g in self.ngrams if '>' in g],
+                                  key=lambda s: (-s.count('>')))
+        right_edge_ngrams = sorted([g for g in self.ngrams if '<' in g],
+                                   key=lambda s: (s.count('<')))
+        middle_ngrams = sorted([g for g in self.ngrams
+                                if '>' not in g and '<' not in g])
+        sorted_ngrams = left_edge_ngrams + middle_ngrams + right_edge_ngrams
+        return f"G(-): {{{','.join(sorted_ngrams)}}}"
 
     def match(self, string):
         return not any(s in self.ngrams

@@ -1,9 +1,9 @@
-**Prerequisites**
+# Posets
 
+:::prereqs
 - tuples (basics)
 - relations (basic orders)
-
-# Posets
+:::
 
 While sets are unstructured, they can be combined with an ordering relation to yield a structured object.
 Usually, this will be a partial order.

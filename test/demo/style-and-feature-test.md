@@ -15,6 +15,9 @@ Text in section.
 
 Text in subsection.
 
+#### Subsubsection
+
+Text in subsubsection.
 
 ## Text formatting
 
@@ -40,21 +43,23 @@ Here is a quote block.
 
 Here is a code block.
 
-```This is a code block.```
+```
+This is a generic code block.
+```
 
-Here is a table.
-
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|   12  |  12  |    12   |    12  |
-|  123  |  123 |   123   |   123  |
-|    1  |    1 |     1   |     1  |           
+```python
+# this is a Python code block
+import math
+x = math.sqrt(3)
+print(x)
+```
 
 Before horizontal rule
 
 ---
 
 After horizontal rule
+
 
 ## Math
 
@@ -64,6 +69,10 @@ And some display math:
 
 $$y = mx + b$$
 
+Special symbols:
+
+$$\alpha\beta\gamma\ltimes\rtimes\cdot$$
+
 Now for some math using custom macros.
 
 $\tuple{a, b, c}$
@@ -71,21 +80,58 @@ $\tuple{a, b, c}$
 $\setof{a, b, c}$
 
 
-## Images
+## Tables, images
 
-PNG image at natural size.
+Here is a table.
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+
+
+PNG image at natural size, followed by same image with width of 1 inch.
 
 ![test image](sbuling-logo.png)
-
-Image with custom size.
-
 ![small image](sbuling-logo.png){width=1in}
 
 
 ## Custom blocks
 
+Text before block.
+
+::: example
+This is an example.
+:::
+
+Text between blocks.
+
+::: example
+This is an example.
+
+This is a new paragraph.
+:::
+
 ::: advice
-This is some advice.
+- list
+- in
+- a
+- box
+:::
+
+Text after blocks.
+
+- Block in a list:
+
+  ::: example
+  This is an example.
+  :::
+
+## More blocks
+
+::: advice
+This is an advice block.
 :::
 
 ::: theorem
@@ -94,6 +140,14 @@ This is a theorem.
 
 ::: lemma
 This is a lemma.
+:::
+
+::: corollary
+This is a corollary.
+:::
+
+::: proposition
+This is a proposition.
 :::
 
 ::: definition
@@ -105,7 +159,7 @@ This is a proof.
 :::
 
 ::: example
-This is a theorem.
+This is an example.
 :::
 
 ::: exercise
@@ -119,7 +173,6 @@ This is an exercise with an answer. The answer will appear at the bottom of the 
 This is the answer to an exercise.
 :::
 :::
-
 
 ## Custom includes
 

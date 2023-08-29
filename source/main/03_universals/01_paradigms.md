@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- functions (basics, domain terminology, monotonicity)
-
 # Morphological paradigms
+
+:::prereqs
+- functions (basics, domain terminology, monotonicity)
+:::
 
 A morphological paradigm lists related forms of the same word.
 For example, the adjectival gradation paradigm of *good* is *good* - *better* - *best*.

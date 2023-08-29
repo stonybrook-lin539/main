@@ -1,9 +1,9 @@
-**Prerequisites**
+# Formal definition and proof of the normal form theorem
 
+:::prereqs
 - sets (notation)
 - strings (basic notation)
-
-# Formal definition and proof of the normal form theorem
+:::
 
 The previous two sections introduced negative $n$-gram grammars at great length and showed a basic normal form theorem: for every grammar with $n$-grams of mixed length, there is an equivalent grammar where all $n$-grams have the same length.
 The presentation was deliberately informal to focus on intuitions rather than mathematical rigor.

@@ -6,9 +6,9 @@ if FORMAT:match "latex" then
   function CodeBlock(elem)
     cls = elem.classes[1]
     if cls == "include-tikz" then
-      filename = elem.text
-      size = elem.attributes.style
-      return pandoc.RawBlock("latex", "\\input{" .. filename .. "}")
+      filename = string.gsub(elem.text, "%..*$", ".pdf")
+      -- size = elem.attributes.style
+      return pandoc.Para({pandoc.Image({pandoc.Str(filename)}, filename)})
     else
       return elem
     end

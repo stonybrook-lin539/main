@@ -4,19 +4,17 @@
 if FORMAT:match "latex" then
   function Div(elem)
     cls = elem.classes[1]
-    if cls == "jupyterpython" then
-      elem.content = {}
-    else
-      table.insert(elem.content, 1,
-        pandoc.RawBlock("latex", "\\begin{" .. cls .. "}"))
-      table.insert(elem.content,
-        pandoc.RawBlock("latex", "\\end{" .. cls .. "}"))
-    end
+    table.insert(elem.content, 1,
+      pandoc.RawBlock("latex", "\\begin{" .. cls .. "}"))
+    table.insert(elem.content,
+      pandoc.RawBlock("latex", "\\end{" .. cls .. "}"))
     return elem
   end
 end
 
--- Convert exercise answer blocks for HTML. Leave other classes unchanged.
+-- Convert "exr-answer" div blocks for HTML.
+-- Format using details/summary tags.
+-- Leave div blocks with other classes unchanged.
 if FORMAT:match "html" then
   function Div(elem)
     cls = elem.classes[1]
@@ -31,5 +29,17 @@ if FORMAT:match "html" then
     else
       return elem
     end
+  end
+end
+
+-- Remove "jupyterpython" code blocks.
+function CodeBlock(elem)
+  cls = elem.classes[1]
+  if cls == "jupyterpython" then
+    elem.classes[1] = "python"
+    -- return pandoc.CodeBlock(elem.text, elem.attr)
+    return {}
+  else
+    return elem
   end
 end

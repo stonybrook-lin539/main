@@ -1,8 +1,8 @@
-**Prerequisites**
-
-- sets (cardinality)
-
 # An $n$-gram model of text
+
+:::prereqs
+- sets (cardinality)
+:::
 
 So far we have mostly studied $n$-gram models for linguistic reasons.
 These models are very simple, but can capture a fair amount of phonotactic and morphotactic conditions.

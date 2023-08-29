@@ -1,56 +1,4 @@
-# Notation: Big operators
-
-Very often, a formula requires you to combine a fixed collection of elements in a specific manner.
-For example, we may have a set of natural numbers $S \is \setof{10, 35, 100, 275, 1000, 8883}$ and want to combine them with some specific operation, say, $\oplus$.
-It does not matter what this operation does; the symbol $\oplus$ has no standardized meaning in mathematics, it could be addition, multiplication, string concatentation, or a completely new operation that you just defined yourself --- $\oplus$ could be literally anything.
-The only thing that matters here is that we want to write an expression to show that we are combining all elements of $S$ via $\oplus$.
-
-Of course we could write out a formula like $10 \oplus 35 \oplus 100 \oplus 275 \oplus 1000 \oplus 8883$.
-But this has two downsides:
-
-1. It is tedious for small sets and infeasible for large ones.
-1. It presumes that we know the members of the set.
-
-A more elegant solution is to use an indexed operator:
-
-$$
-\bigoplus_{n \in S} n
-$$
-
-An indexed operator has a subscripted condition that contains a variable (here $n$) and a specification of what value $n$ can assume.
-In the example above, all instantiations of $n$ must be members of $S$.
-One then instantiates all possible values of $n$ and combines them with the operation defined by the operator.
-
-This may still sound awfully abstract, but a few concrete examples will clarify things.
-
-## $\sum$: sum/addition
-
-The most common operator is the sum operator $\sum$, which indicates addition (get it? **s**igma, **s**um).
-The elements to be summed are commonly drawn from a set or an interval.
-
-::: example
-$$
-\sum_{n \in \setof{2,5,8,10}} n
-= 2 + 5 + 8 + 10 = 25
-$$
-
-Note that it does not matter in which order we substitute values for $n$.
-
-$$
-\sum_{n \in \setof{2,5,8,10}} n
-= 8 + 5 + 10 + 2 = 25
-$$
-:::
-
-::: example
-$$
-\sum_{1 \leq n \leq 10} n
-=
-1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
-=
-55
-$$
-:::
+# Notation: Big operators (Solutions)
 
 ::: exercise
 Write each one of the following expressions as a formula with the addition operator $+$.
@@ -62,6 +10,7 @@ $$
 $$
 \sum_{i = 1} i + i + i
 $$
+
 :::
 
 ::: exercise

@@ -1,9 +1,9 @@
-**Prerequisites**
+# Operations on multisets
 
+:::prereqs
 - sets (operations)
 - multisets (basics)
-
-# Operations on multisets
+:::
 
 ## Standard set operations
 
@@ -30,7 +30,7 @@ Then
     
 :::
 
-::: jupyterpython
+``` jupyterpython
 from collections import Counter
 
 A = Counter({"a": 3, "b": 2, "c": 1})
@@ -50,7 +50,7 @@ print("Union of\n{} and\n{} is\n{}\n".format(A, B, multiset_union(A, B)))
 print("Intersection of\n{} and\n{} is\n{}\n".format(A, B, multiset_intersection(A, B)))
 print("Relative complement of\n{} and\n{} is\n{}\n".format(A, B, A-B))
 print("Relative complement of\n{} and\n{} is\n{}\n".format(B, A, B-A))
-:::
+```
 
 ::: exercise
 Fill each gap with a matching multiset or operator.
@@ -83,14 +83,14 @@ For those two sets, $A_M \multisum B_M \is \setof{a:4, b:3, c:3, d:1}$, which is
 Furthermore, $3 \multimult A_M = \setof{a:9, b:6, c:3}$ whereas $3 \multimult B_M = \setof{a:3, b:3, c:6, d:3}$.
 :::
 
-::: jupyterpython
+``` jupyterpython
 def scalar_multiplication(A, n):
     return Counter({key: n * val for key, val in A.items()})
 
 print("{} + {} = {}".format(A, B, A+B))
 print("{} * {} = {}".format(3, A, scalar_multiplication(A, 3)))
 print("{} * {} = {}".format(3, B, scalar_multiplication(B, 3)))
-:::
+```
 
 ::: exercise
 Calculate the final result of the equations below.
