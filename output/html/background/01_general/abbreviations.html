@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#common-abbreviations">Common abbreviations</a>
+<ul>
+<li><a href="#w.l.o.g.---without-loss-of-generality">w.l.o.g. - without
+loss of generality</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="common-abbreviations">Common abbreviations</h1>
+<h2 id="w.l.o.g.---without-loss-of-generality">w.l.o.g. - without loss
+of generality</h2>
+<p>This abbreviation is often used in proofs. It means that we assume a
+specific property or condition that does not affect the validity of the
+proof. Here is an example:</p>
+<div class="theorem">
+<p>If somebody is holding three marbles in their hands, then at least
+one hand is holding at least two marbles.</p>
+</div>
+<div class="proof">
+<p>Assume w.l.o.g. that the right hand is holding strictly less than two
+marbles. So it is holding either no marbles or exactly one marble.
+Either way the left hand is holding at least two marbles.</p>
+</div>
+<p>The use of <em>w.l.o.g.</em> here modifies the restriction to the
+<em>right</em> hand. This restriction is made so that one does not have
+to speak of <em>one hand</em> and <em>the other hand</em>, which makes
+the proof slightly more readable. But obviously the proof would work
+just as well if we had assumed that it is the left hand that holds less
+than two marbles, not the right one.</p>
+</div>
+</div>
+</body>
+</html>

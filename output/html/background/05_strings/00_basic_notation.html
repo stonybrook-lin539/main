@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#strings-basic-notation">Strings: Basic notation</a>
+<ul>
+<li><a href="#alphabet">Alphabet</a></li>
+<li><a href="#string-length">String length</a></li>
+<li><a href="#infinite-string-sets-over-sigma">Infinite string sets over
+<span class="math inline">\(\Sigma\)</span></a></li>
+<li><a href="#concatenation">Concatenation</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="strings-basic-notation">Strings: Basic notation</h1>
+<div class="prereqs">
+<ul>
+<li>sets (basic notation)</li>
+</ul>
+</div>
+<p>Strings play a very prominent role in computational linguistics. A
+string is a sequence of symbols, like <em>nfm</em>, <em>wendigo</em>, or
+<em>105§/</em>. In contrast to sets, strings are ordered and can contain
+duplicates.</p>
+<div class="example">
+<p>The sets <span class="math inline">\(\left \{ m,a,d \right
+\}\)</span>, <span class="math inline">\(\left \{ d,a,m \right
+\}\)</span>, and <span class="math inline">\(\left \{ a,d,a,m \right
+\}\)</span> are equivalent, but for strings <span
+class="math inline">\(\mathit{mad} \neq \mathit{dam} \neq
+\mathit{adam}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Fill in <span class="math inline">\(=\)</span> or <span
+class="math inline">\(\neq\)</span> as appropriate for each pair of
+strings below.</p>
+<ul>
+<li><span class="math inline">\(\mathit{abba}\)</span> _ <span
+class="math inline">\(\mathit{ABBA}\)</span></li>
+<li><span class="math inline">\(10\)</span> _ <span
+class="math inline">\(5 + 5\)</span></li>
+<li><span class="math inline">\(\left \{ m,a,d \right \} \_ \left \{
+d,a,m \right \}\)</span></li>
+</ul>
+<p>Caution: <span class="math inline">\(\{\)</span> and <span
+class="math inline">\(\}\)</span> can be symbols just like <span
+class="math inline">\(m\)</span>, <span
+class="math inline">\(a\)</span>, or <span
+class="math inline">\(d\)</span>.</p>
+</div>
+<h2 id="alphabet">Alphabet</h2>
+<p>When talking about strings, one usually fixes a finite set of symbols
+over which the strings are built. This is called an
+<strong>alphabet</strong>. Alphabets are often given labels like <span
+class="math inline">\(\Sigma\)</span> or <span
+class="math inline">\(\Omega\)</span>. A string over alphabet <span
+class="math inline">\(\Sigma\)</span> is also called a <span
+class="math inline">\(\Sigma\)</span>-string.</p>
+<div class="example">
+<p>The set of Latin characters (A-Z, a-z) is an alphabet that’s familiar
+to all of you. Strings over it include:</p>
+<ul>
+<li>string</li>
+<li>alphabet</li>
+<li>aaaaaaa</li>
+<li>c</li>
+</ul>
+</div>
+<div class="example">
+<p>The set of Arabic digits is an alphabet with symbols 0, 1, 2, 3, 4,
+5, 6, 7, 8, and 9. Every natural number (0, 1, 2, …), when represented
+in decimal as usual, is a string over this alphabet. But not every
+string over this alphabet is a number of the decimal system. For
+instance, 000134095 is not a valid number, although 134095 is.</p>
+</div>
+<div class="example">
+<p>The set <span class="math inline">\(\mathbb{N}\)</span> of all
+natural numbers is not a valid alphabet because it isn’t finite.</p>
+</div>
+<div class="exercise">
+<p>For each one of the following, say whether it is a valid alphabet.
+Justify your answer.</p>
+<ul>
+<li><span class="math inline">\(\left \{ a \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \}\)</span></li>
+<li>the set of all English words that are spelled with at most 5
+characters</li>
+<li>all natural numbers less than 1000</li>
+<li>the nucleobases of DNA: adenine, cytosine, guanine, thymine</li>
+</ul>
+</div>
+<h2 id="string-length">String length</h2>
+<p>The length of a <span class="math inline">\(\Sigma\)</span>-string
+<span class="math inline">\(s\)</span> is indicated by <span
+class="math inline">\(\left | s \right |\)</span>. For instance, <span
+class="math inline">\(\left | \text{ant} \right | = 3\)</span>, <span
+class="math inline">\(\left | 0770001 \right | = 7\)</span>, and <span
+class="math inline">\(\left | \text{a} \right | = 1\)</span>. The set of
+all strings over <span class="math inline">\(\Sigma\)</span> whose
+length is exactly <span class="math inline">\(n\)</span> is denoted by
+<span class="math inline">\(\Sigma^n\)</span>.</p>
+<div class="example">
+<p>Let <span class="math inline">\(\Sigma \mathrel{\mathop:}=\left \{
+a,b \right \}\)</span>. Then <span
+class="math inline">\(\Sigma^3\)</span> contains all of the following
+strings, and only those:</p>
+<ul>
+<li><span class="math inline">\(\mathit{aaa}\)</span></li>
+<li><span class="math inline">\(\mathit{aab}\)</span></li>
+<li><span class="math inline">\(\mathit{aba}\)</span></li>
+<li><span class="math inline">\(\mathit{abb}\)</span></li>
+<li><span class="math inline">\(\mathit{baa}\)</span></li>
+<li><span class="math inline">\(\mathit{bab}\)</span></li>
+<li><span class="math inline">\(\mathit{bba}\)</span></li>
+<li><span class="math inline">\(\mathit{bbb}\)</span></li>
+</ul>
+</div>
+<p>The size of <span class="math inline">\(\Sigma^n\)</span> is always
+fixed. If <span class="math inline">\(\Sigma\)</span> has <span
+class="math inline">\(m\)</span> members, then <span
+class="math inline">\(\Sigma^n\)</span> contains <span
+class="math inline">\(m^n\)</span> strings.</p>
+<div class="example">
+<p>In the previous example, <span class="math inline">\(\Sigma\)</span>
+contains two symbols, so <span class="math inline">\(\Sigma^n\)</span>
+should consist of <span class="math inline">\(2^3 = 8\)</span> distinct
+strings. That’s exactly what we found.</p>
+</div>
+<div class="exercise">
+<p>Which one of the following are members of <span
+class="math inline">\(\left \{ a,b \right \}^4\)</span>, i.e. <span
+class="math inline">\(\Sigma^4\)</span> where <span
+class="math inline">\(\Sigma\)</span> contains <span
+class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and nothing else?</p>
+<ul>
+<li><span class="math inline">\(\mathit{aaab}\)</span></li>
+<li><span class="math inline">\(\mathit{aba}\)</span></li>
+<li><span class="math inline">\(\mathit{aaaaa}\)</span></li>
+<li><span class="math inline">\(\mathit{b}\)</span></li>
+<li><span class="math inline">\(\mathit{abca}\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>List all members of <span class="math inline">\(\left \{ k,o,z \right
+\}^2\)</span>.</p>
+</div>
+<p>Very often expressions like <span class="math inline">\(a^n\)</span>
+are used as a shorthand for <span class="math inline">\(\left \{ a
+\right \}^n\)</span>.</p>
+<div class="example">
+<p>The expression <span class="math inline">\(\mathit{b a^5 c^3
+d}\)</span> is a shorthand for <span
+class="math inline">\(\mathit{baaaaacccd}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Write each one of the following in a more compact fashion using
+exponents.</p>
+<ul>
+<li>ABBA</li>
+<li>loool</li>
+<li>aardvark</li>
+</ul>
+</div>
+<h2 id="infinite-string-sets-over-sigma">Infinite string sets over <span
+class="math inline">\(\Sigma\)</span></h2>
+<p>Since alphabets must be finite, <span
+class="math inline">\(\Sigma^n\)</span> is necessarily finite for any
+alphabet <span class="math inline">\(\Sigma\)</span> and <span
+class="math inline">\(n \geq 0\)</span>. But the set of all strings over
+<span class="math inline">\(\Sigma\)</span> is infinite.</p>
+<div class="example">
+<p>Let <span class="math inline">\(\Sigma \mathrel{\mathop:}=\left \{ a
+\right \}\)</span>. Then <span class="math inline">\(a\)</span> is a
+string over <span class="math inline">\(\Sigma\)</span>, and so are
+<span class="math inline">\(\mathit{aa}\)</span>, <span
+class="math inline">\(\mathit{aaa}\)</span>, <span
+class="math inline">\(\mathit{aaaa}\)</span>, and so on. This
+enumeration continues indefinitely, so there must be infinitely many
+distinct strings over <span class="math inline">\(\Sigma\)</span>.</p>
+</div>
+<p>Two infinite string sets are commonly defined over <span
+class="math inline">\(\Sigma\)</span>. They are <span
+class="math inline">\(\Sigma^*\)</span> and <span
+class="math inline">\(\Sigma^+\)</span>, respectively. The former
+contains all strings over <span class="math inline">\(\Sigma\)</span>,
+whereas the latter contains all strings whose length is at least <span
+class="math inline">\(1\)</span>. The only difference between the two is
+that <span class="math inline">\(\Sigma^*\)</span> also contains the
+<strong>empty string</strong> <span
+class="math inline">\(\varepsilon\)</span>. The empty string is the
+string counterpart of the number 0: it represents nothing. In fact,
+<span class="math inline">\(\varepsilon\)</span> is the only string
+whose length is 0.</p>
+<div class="example">
+<p>Let <span class="math inline">\(\Sigma = \left \{ a,b \right
+\}\)</span>. Then <span class="math inline">\(\Sigma^*\)</span>
+contains</p>
+<ul>
+<li><span class="math inline">\(\varepsilon\)</span>,</li>
+<li><span class="math inline">\(\mathit{a}\)</span>,</li>
+<li><span class="math inline">\(\mathit{b}\)</span>,</li>
+<li><span class="math inline">\(\mathit{aa}\)</span>,</li>
+<li><span class="math inline">\(\mathit{ab}\)</span>,</li>
+<li><span class="math inline">\(\mathit{ba}\)</span>,</li>
+<li><span class="math inline">\(\mathit{bb}\)</span>,</li>
+<li><span class="math inline">\(\mathit{aaa}\)</span>,</li>
+<li><span class="math inline">\(\mathit{aab}\)</span>,</li>
+<li><span class="math inline">\(\mathit{aba}\)</span>,</li>
+<li><span class="math inline">\(\mathit{abb}\)</span>,</li>
+<li>and so on.</li>
+</ul>
+<p>All these strings are also members of <span
+class="math inline">\(\Sigma^+\)</span>, except <span
+class="math inline">\(\varepsilon\)</span>.</p>
+</div>
+<p><span class="math inline">\(\Sigma^*\)</span> is also called the
+<strong>Kleene closure</strong>, named after <a
+href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene">Stephen C.
+Kleene</a>.</p>
+<p>Here’s a little bit of background to make it easier for you to
+remember the difference between <span
+class="math inline">\(\Sigma^*\)</span> and <span
+class="math inline">\(\Sigma^+\)</span>. As you might know from search
+engines, the Kleene star <code>*</code> is sometimes used as a wildcard
+that matches everything. So <span
+class="math inline">\(\Sigma^*\)</span> can be translated as “every
+string built over <span class="math inline">\(\Sigma\)</span>”. On the
+other hand <span class="math inline">\(\Sigma^+\)</span> only contains
+those strings whose length is at least 1, or in other words, whose
+length is positive. And <span class="math inline">\(+\)</span> is a
+common abbreviation for positive (just think of batteries).</p>
+<div class="exercise">
+<p>Enumerate the five shortest members of <span
+class="math inline">\(\left \{ a \right \}^*\)</span>.</p>
+</div>
+<h2 id="concatenation">Concatenation</h2>
+<p>Given two <span class="math inline">\(\Sigma\)</span>-strings <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span>, their <strong>concatenation</strong>
+<span class="math inline">\(u \cdot v\)</span> is the result of
+“glueing” the left end of <span class="math inline">\(v\)</span> to the
+right end of <span class="math inline">\(u\)</span>.</p>
+<div class="example">
+<p>Here are a few examples of concatenation:</p>
+<ul>
+<li><span class="math inline">\(\mathit{math} \cdot\mathit{ematics} =
+\mathit{mathematics}\)</span>,</li>
+<li><span class="math inline">\(2000 \cdot 18 = 200018\)</span>,</li>
+<li><span class="math inline">\(\text{Thomas} \cdot\text{Graf} =
+\text{ThomasGraf}\)</span>.</li>
+</ul>
+</div>
+<p>Just like addition, concatenation is <strong>associative</strong>.
+This means that if we carry out multiple concatenations, it does not
+matter which concatenation step we resolve first: <span
+class="math inline">\(u \cdot(v \cdot w) = (u \cdot v) \cdot w = u \cdot
+v \cdot w\)</span>.</p>
+<div class="example">
+<p>It does not matter in which order we combine <em>is</em> with
+<em>concatenation</em> and <em>associative</em> below:</p>
+<ul>
+<li><span class="math inline">\((\emph{concatenation} \cdot\emph{is})
+\cdot\emph{associative} = \emph{concatenation is
+associvative}\)</span></li>
+<li><span class="math inline">\(\emph{concatenation} \cdot(\emph{is}
+\cdot\emph{associative}) = \emph{concatenation is
+associvative}\)</span></li>
+</ul>
+</div>
+<p>Even though concatenation is associative, it is not
+<strong>commutative</strong>. That is to say, <span
+class="math inline">\(u \cdot v\)</span> and <span
+class="math inline">\(v \cdot u\)</span> are not necessarily the
+same.</p>
+<div class="example">
+<p>Let <span class="math inline">\(u
+\mathrel{\mathop:}=\text{house}\)</span> and <span
+class="math inline">\(v \mathrel{\mathop:}=\text{boat}\)</span>. Then
+<span class="math inline">\(u \cdot v\)</span> is <em>houseboat</em>,
+whereas <span class="math inline">\(v \cdot u\)</span> is
+<em>boathouse</em>. Those are not the same strings (and they also happen
+to mean completely different things).</p>
+</div>
+<p>Note the special behavior of the empty string: <span
+class="math inline">\(u \cdot\varepsilon= \varepsilon\cdot u =
+u\)</span>. This makes sense because adding nothing to <span
+class="math inline">\(u\)</span> does not change <span
+class="math inline">\(u\)</span>, just like adding 0 to a number does
+not change that number.</p>
+<p>Sometimes concatenation is not explicitly indicated, so that instead
+of <span class="math inline">\(u \cdot v\)</span> one may simply write
+<span class="math inline">\(\mathit{uv}\)</span>.</p>
+<div class="exercise">
+<p>Give an example of distinct <span class="math inline">\(u\)</span>
+and <span class="math inline">\(v\)</span> such that <span
+class="math inline">\(u \cdot v = v \cdot u\)</span> and neither <span
+class="math inline">\(u\)</span> nor <span
+class="math inline">\(v\)</span> is the empty string.</p>
+</div>
+<div class="exercise">
+<p>Is the following true or false? If <span class="math inline">\(u \neq
+v\)</span>, then <span class="math inline">\(u \cdot v \neq v \cdot
+u\)</span>?</p>
+</div>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>A string is a sequence of symbols drawn from some alphabet.</li>
+<li>A <span class="math inline">\(\Sigma\)</span>-string is a string
+over alphabet <span class="math inline">\(\Sigma\)</span>.</li>
+<li>The length of string <span class="math inline">\(s\)</span> is
+denoted by <span class="math inline">\(\left | s \right |\)</span>.</li>
+<li>The empty string <span class="math inline">\(\varepsilon\)</span> is
+the unique string of length <span class="math inline">\(0\)</span>.</li>
+<li><span class="math inline">\(\Sigma^n\)</span> is the set of all
+<span class="math inline">\(\Sigma\)</span>-strings <span
+class="math inline">\(s\)</span> such that <span
+class="math inline">\(\left | s \right | = n\)</span>.</li>
+<li><span class="math inline">\(a^n\)</span> is a shorthand for <span
+class="math inline">\(\left \{ a \right \}^n\)</span>.</li>
+<li>The Kleene closure <span class="math inline">\(\Sigma^*\)</span> is
+the set of all <span class="math inline">\(\Sigma\)</span>-strings
+(including <span class="math inline">\(\varepsilon\)</span>).</li>
+<li>The positive closure <span class="math inline">\(\Sigma^+\)</span>
+contains all <span class="math inline">\(\Sigma\)</span>-strings except
+<span class="math inline">\(\varepsilon\)</span>.</li>
+<li>Concatenation of strings <span class="math inline">\(u\)</span> and
+<span class="math inline">\(v\)</span> is denoted by <span
+class="math inline">\(u \cdot v\)</span>.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

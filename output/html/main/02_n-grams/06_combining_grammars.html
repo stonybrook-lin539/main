@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#combining-n-gram-grammars">Combining <span
+class="math inline">\(n\)</span>-gram grammars</a>
+<ul>
+<li><a href="#combining-negative-grammars">Combining negative
+grammars</a></li>
+<li><a
+href="#extension-to-positive-grammars-via-de-morgans-law">Extension to
+positive grammars via De Morgan’s Law</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="combining-n-gram-grammars">Combining <span
+class="math inline">\(n\)</span>-gram grammars</h1>
+<div class="prereqs">
+<ul>
+<li>sets (notation, operations)</li>
+<li>strings (notation)</li>
+</ul>
+</div>
+<p>So far, our short expedition has resulted in a few formal insights
+into <span class="math inline">\(n\)</span>-gram grammars, but also a
+variety of examples of how they can be used in linguistics. However, all
+the examples were limited to specific phenomena. If <span
+class="math inline">\(n\)</span>-gram grammars are supposed to provide a
+model of phonotactics or morphotactics, it isn’t enough to show that
+individual phenomena in those domains can be described with those
+grammars. We already know that word-final devoicing can be handled by
+<span class="math inline">\(n\)</span>-gram grammars, and the same is
+true for penultimate stress. But a speaker whose language displays both
+phenomena must have some grammar that takes care of both. Is this
+combined grammar also an <span class="math inline">\(n\)</span>-gram
+grammar? It is not immediately obvious that the answer to that is
+yes.</p>
+<p>There are other types of grammars for which the answer is no. Later
+on, we will encounter context-free grammars (CFGs). For CFGs, it is not
+the case that what can be jointly accomplished by two grammars can be
+done by a single grammar. The problem is mostly limited to artificial
+languages (which is interesting in itself — apparently all natural
+languages have some special property that avoids this problem). But it
+nonetheless shows that one cannot model each phenomenon with its own
+grammar and simply assume that they can all be combined into a single
+grammar of the same type.</p>
+<div class="example">
+<p>Consider the language <span class="math inline">\(L_\mathit{ab}
+\mathrel{\mathop:}=a^n b^n c^+\)</span>. This language only contains
+strings of the form <em>ab<span
+class="math inline">\(\delta\)</span></em>, <em>aabb<span
+class="math inline">\(\delta\)</span></em>, <em>aaabbb<span
+class="math inline">\(\delta\)</span></em>, and so on, where <span
+class="math inline">\(\delta\)</span> is a shorthand for 1 or more
+<em>c</em>s. So this language contains strings like <em>aabbc</em>,
+<em>abcccc</em>, or <em>aaaabbbbcc</em>, but not <em>abbc</em>.
+Intuitively, <span class="math inline">\(L_\mathit{ab}\)</span> is the
+language of strings where all <span class="math inline">\(a\)</span>
+occur before all <em>b</em>s, all <em>b</em>s occur before all
+<em>c</em>s, and the number of <em>a</em>s and <em>b</em>s must match. A
+very similar language is <span class="math inline">\(L_\mathit{bc}
+\mathrel{\mathop:}=a^+ b^n c^n\)</span>, where the number of <em>a</em>s
+is irrelevant and instead the number of <em>b</em>s and <em>c</em>s must
+match. It is easy to show that there is a CFG that generates <span
+class="math inline">\(L_\mathit{ab}\)</span>, and similarly that there
+is a CFG that generates <span
+class="math inline">\(L_\mathit{bc}\)</span>. Since we haven’t discussed
+CFGs yet, we won’t show those grammars here. The important thing is just
+that both <span class="math inline">\(L_\mathit{ab}\)</span> and <span
+class="math inline">\(L_\mathit{bc}\)</span> can be generated by
+CFGs.</p>
+<p>But now consider what happens if we combine the conditions of both
+languages. This yields the language <span
+class="math inline">\(L_\mathit{abc} \mathrel{\mathop:}=a^n b^n
+c^n\)</span>, where the number of <em>a</em>s must match the number of
+<em>b</em>s and the number of <em>b</em>s must match the number of
+<em>c</em>s. So <em>aabbcc</em> would be a string of <span
+class="math inline">\(L_\mathit{abc}\)</span>, but not <em>abbcc</em>,
+<em>abbc</em>, or <em>aaabbc</em>. This language cannot be generated by
+any CFG. Even though each individual matching condition can be captured
+by a CFG, their combination cannot.</p>
+</div>
+<p>Fortunately, <span class="math inline">\(n\)</span>-gram grammars are
+not like CFGs and can be combined in a very simple fashion.</p>
+<h2 id="combining-negative-grammars">Combining negative grammars</h2>
+<p>Suppose you have two negative bigram grammars that you want to
+combine into a single bigram grammar. The first thing to be clarified
+here is what we mean by combine. Given two grammars <span
+class="math inline">\(G\)</span> and <span
+class="math inline">\(G&#39;\)</span>, their combination could accept
+every string that is generated by both grammars, or every string that is
+generated by at least one grammar. The former is much more restrictive
+than the latter. It is like saying “each one of these grammars imposes a
+constraint, and we combine the constraints into a single grammar that
+enforces them all at once”. The other option instead allows for
+violations: “there’s a bunch of phenomena, and as long as a string
+exhibits at least one of them, it is well-formed”. This is not how
+natural languages work. If a language has both word-final devoicing and
+intervocalic voicing, then a word has to satisfy both. You cannot say
+“Oh, I already did the intervocalic voicing, so let’s not bother with
+the word-final devoicing”. Language is like an exam where you get an F
+unless you answer every single question correctly.</p>
+<p>Because of this, we only have to consider the stricter way of
+combining grammars, the one where the resulting grammar only generates
+strings that are well-formed with respect to each one of the original
+grammars. We also say that the language of this grammar is the
+<strong>intersection</strong> of the languages generated by the original
+grammars. Such a combined grammar is actually very easy to build:
+construct a new negative <span class="math inline">\(n\)</span>-gram
+grammar that contains every <span class="math inline">\(n\)</span>-gram
+that belongs to at least one of the original negative grammars. In
+set-theoretic terms, this amounts to taking the <strong>union</strong>
+of the two negative grammars.</p>
+<div class="example">
+<p>Suppose that we have a negative bigram grammar <span
+class="math inline">\(G_1\)</span> for word-final devoicing that
+contains only the bigram <em>s⋉</em>. In set notation, <span
+class="math inline">\(G_1 \mathrel{\mathop:}=\left \{ \text{s}{{{R}}}
+\right \}\)</span>. This grammar rules out every string that ends in an
+<em>s</em>. Furthermore, let <span class="math inline">\(G_2\)</span> be
+a negative trigram grammar for intervocalic voicing. It contains the
+trigrams <em>asa</em>, <em>asi</em>, <em>isa</em>, and <em>isi</em> (a
+realistic grammar would of course require more than just those four
+trigrams as the language would have more than just those two vowels). So
+<span class="math inline">\(G_2\)</span> forbids every string where
+<em>s</em> occurs between the vowels <em>a</em> and <em>i</em>.</p>
+<p>In order to obtain a grammar that enforces both constraints, one
+simply constructs a new grammar <span class="math inline">\(G\)</span>
+that contains all these <span class="math inline">\(n\)</span>-grams:
+<em>s⋉</em>, <em>asa</em>, <em>asi</em>, <em>isa</em>, <em>isi</em>.
+Every string that is ruled out by <span
+class="math inline">\(G_1\)</span> or <span
+class="math inline">\(G_2\)</span> is also ruled out by <span
+class="math inline">\(G\)</span>. And every string that is allowed by
+<span class="math inline">\(G\)</span> is allowed by both <span
+class="math inline">\(G_1\)</span> and <span
+class="math inline">\(G_2\)</span>. If desired, we can convert <span
+class="math inline">\(G\)</span> from a mixed grammar to a fixed one
+using the familiar padding procedure from an earlier unit.</p>
+</div>
+<p>We can express this insight in terms of a formal theorem.</p>
+<div class="theorem">
+<p>Let <span class="math inline">\(G_1\)</span> be a negative <span
+class="math inline">\(m\)</span>-gram grammar, <span
+class="math inline">\(G_2\)</span> a negative <span
+class="math inline">\(n\)</span>-gram grammar (<span
+class="math inline">\(m\)</span> and <span
+class="math inline">\(n\)</span> may be the same). Then <span
+class="math inline">\(L(G_1) \cap L(G_2) = L(G_1 \cup G_2)\)</span>.</p>
+</div>
+<p>Let us look in detail at how this theorem uses mathematical notation
+to express our idea about combining grammars. Recall that <span
+class="math inline">\(L(G)\)</span> is the set of strings that are
+well-formed with respect to <span class="math inline">\(G\)</span>. The
+intersection <span class="math inline">\(A \cap B\)</span> of two sets
+<span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> contains all elements that occur in
+both <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>. This is in contrast to the union <span
+class="math inline">\(A \cup B\)</span>, which contains all elements
+that occur in at least one of the two, <span
+class="math inline">\(A\)</span> or <span
+class="math inline">\(B\)</span>. So <span class="math inline">\(L(G_1)
+\cap L(G_2)\)</span> is the set of strings that belong to both <span
+class="math inline">\(L(G_1)\)</span> and <span
+class="math inline">\(L(G_2)\)</span>. In other words, these strings are
+well-formed with respect to both <span
+class="math inline">\(G_1\)</span> and <span
+class="math inline">\(G_2\)</span>. The theorem tells us that these are
+exactly the strings that are well-formed with respect to some other
+grammar that is the union of <span class="math inline">\(G_1\)</span>
+and <span class="math inline">\(G_2\)</span>. This makes sense because
+we have defined <span class="math inline">\(n\)</span>-gram grammars as
+finite sets, so set-theoretic operations like union can be applied to
+these grammars like to any other set.</p>
+<p>That negative <span class="math inline">\(n\)</span>-gram grammars
+are this easy to combine is a huge advantage. It means that when faced
+with a complex system like natural language phonotactics, we can safely
+decompose it into simpler subsystems and design a grammar for each one
+of them. The overall system is then obtained in a purely mechanical
+fashion by taking the union of the grammars for these subsystems. Not
+only does this greatly simplify the linguistic analysis step, it also
+helps with real-world implementations. For each phenomenon one designs a
+small grammar that can be easily tested for correctness, and only once
+all components have been individually verified does one combine them
+into the full model.</p>
+<div class="exercise">
+<p>Write two negative grammars such that the first only generates
+<em>ab</em> and <em>ba</em>, whereas the latter generates all strings of
+the form <em>ab</em>, <em>aab</em>, <em>aaab</em>, and so on. Then build
+the corresponding combined grammar. What is the language generated by
+the combined grammar? Is this the correct result?</p>
+</div>
+<h2 id="extension-to-positive-grammars-via-de-morgans-law">Extension to
+positive grammars via De Morgan’s Law</h2>
+<p>Combining grammars by taking their union only gives the desired
+result for negative grammars. For positive grammars, one has to take
+their intersection instead. (And since positive grammars always require
+a fixed <span class="math inline">\(n\)</span>-gram length, one has to
+make sure first that the <span class="math inline">\(n\)</span>-grams
+have the same length across all grammars.)</p>
+<div class="theorem">
+<p>Let <span class="math inline">\(G_1\)</span> and <span
+class="math inline">\(G_2\)</span> be positive <span
+class="math inline">\(n\)</span>-gram grammars. Then <span
+class="math inline">\(L(G_1) \cap L(G_2) = L(G_1 \cap G_2)\)</span>.</p>
+</div>
+<p>Think about this theorem for a moment to figure out the intuition
+behind it.</p>
+<p>…</p>
+<p>…</p>
+<p>…</p>
+<p>Done? Okay, then here is a very different way to think about it. The
+set operations of intersection and union are intimately connected via
+another operation called relative complement. The complement of <span
+class="math inline">\(B\)</span> with respect to <span
+class="math inline">\(A\)</span>, written <span class="math inline">\(A
+- B\)</span>, contains all elements of <span
+class="math inline">\(A\)</span> that aren’t also members of <span
+class="math inline">\(B\)</span>. Given some fixed universe <span
+class="math inline">\(U\)</span>, one usually writes <span
+class="math inline">\(\overline{A}\)</span> instead of <span
+class="math inline">\(U - A\)</span>. It then holds that <span
+class="math inline">\(A \cap B = \overline{\overline{A} \cup
+\overline{B}}\)</span> and <span class="math inline">\(A \cup B =
+\overline{\overline{A} \cap \overline{B}}\)</span>. This is known as
+<strong>De Morgan’s law</strong>.</p>
+<div class="example">
+<p>Let <span class="math inline">\(A = \left \{ a,b,c \right \}\)</span>
+and <span class="math inline">\(B \mathrel{\mathop:}=\left \{ b,c,d
+\right \}\)</span>, while the fixed universe is <span
+class="math inline">\(U \mathrel{\mathop:}=\left \{ a,b,c,d,e \right
+\}\)</span>. Then <span class="math inline">\(A \cup B = \left \{ a,b,c
+\right \} \cup \left \{ b,c,d \right \} = \left \{ a,b,c,d \right
+\}\)</span>. Following De Morgan’s law, we can also compute it in a
+stepwise fashion as <span class="math inline">\(\overline{\overline{A}
+\cap \overline{B}}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\overline{A} = U - A = \left \{
+a,b,c,d,e \right \} - \left \{ a,b,c \right \} = \left \{ d,e \right
+\}\)</span></li>
+<li><span class="math inline">\(\overline{B} = U - B = \left \{
+a,b,c,d,e \right \} - \left \{ b,c,d \right \} = \left \{ a,e \right
+\}\)</span></li>
+<li><span class="math inline">\(\overline{A} \cap \overline{B} = \left
+\{ e \right \}\)</span></li>
+<li><span class="math inline">\(\overline{\overline{A} \cap
+\overline{B}} = U - (\overline{A} \cap \overline{B}) = \left \{
+a,b,c,d,e \right \} - \left \{ e \right \} = \left \{ a,b,c,d \right
+\}\)</span></li>
+</ul>
+<p>As you can see, <span class="math inline">\(A \cup B = \left \{
+a,b,c,d \right \} = \overline{\overline{A} \cap
+\overline{B}}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Compute <span class="math inline">\(A \cap B\)</span> in the same
+fashion.</p>
+</div>
+<p>De Morgan’s law is very important as it extends from sets to logic
+and algebra, where it allows for some very nifty tricks. It can also
+greatly simplify proofs. But how does De Morgan help us understand that
+<span class="math inline">\(L(G_1) \cap L(G_2) = L(G_1 \cap
+G_2)\)</span> when <span class="math inline">\(G_1\)</span> and <span
+class="math inline">\(G_2\)</span> are positive grammars?</p>
+<p>Well, it’s because positive and negative grammars are connected by
+relative complement, as we already know. Given a <span
+class="math inline">\(n\)</span>-gram grammar <span
+class="math inline">\(G\)</span> of some polarity, <span
+class="math inline">\(\Sigma_E^n - G\)</span> is the equivalent grammar
+of opposite polarity. This is all we need to derive the theorem for
+positive grammars from the one for negative ones. Suppose <span
+class="math inline">\(^+G_1\)</span> and <span
+class="math inline">\(^+G_2\)</span> are positive grammars, and <span
+class="math inline">\(^-G_1 = \Sigma_E^n - ^+G_1 =
+^-\overline{G_1}\)</span> and <span class="math inline">\(^-G_2 =
+\Sigma_E^n - ^+G_2 = ^-\overline{G_2}\)</span> the equivalent negative
+grammars. The notation is, to put it politely, a teeny-weeny confusing
+here: we first take a positive grammar <span
+class="math inline">\(^+G_1\)</span>, then construct its set-theoretic
+complement <span class="math inline">\(\overline{G_1}\)</span>, and then
+interpret that as a negative grammar <span
+class="math inline">\(^-\overline{G_1}\)</span>.</p>
+<div class="exercise">
+<p>Suppose <span class="math inline">\(^+G\)</span> is a positive
+grammar containing the bigrams <em>⋊a</em>, <em>aa</em>, and
+<em>a⋉</em>. Assume furthermore that all symbols must be <em>a</em>.
+Compute <span class="math inline">\(\overline{G}\)</span>, then verify
+for yourself that <span class="math inline">\(^-\overline{G}\)</span> is
+the negative grammar that accepts the same strings as <span
+class="math inline">\(^+G\)</span>.</p>
+</div>
+<p>So given some grammar <span class="math inline">\(^+G\)</span>, we
+can always do polarity conversion to get the equivalent <span
+class="math inline">\(^-\overline{G}\)</span>. Similarly, we can convert
+<span class="math inline">\(^-G\)</span> to <span
+class="math inline">\(^+\overline{G}\)</span>, and the other way round.
+Note that we can do that even if <span class="math inline">\(G\)</span>
+is itself defined via a more complex expression. For instance, <span
+class="math inline">\(^-(G_1 \cup G_2)\)</span> can be polarity
+converted to <span class="math inline">\(^+\overline{G_1 \cup
+G_2}\)</span>. Furthermore, the polarity markers distribute over <span
+class="math inline">\(\cap\)</span> and <span
+class="math inline">\(\cup\)</span> in a systematic fashion. For
+example, <span class="math inline">\(^+(G_1 \cap G_2)\)</span> is
+equivalent to <span class="math inline">\(^+G_1 \cap ^+G_2\)</span>. The
+former says that there is a positive grammar that is the intersection of
+<span class="math inline">\(G_1\)</span> and <span
+class="math inline">\(G_2\)</span>, the latter describes the
+intersection of the positive grammars <span
+class="math inline">\(^+G_1\)</span> and <span
+class="math inline">\(^+G_2\)</span>. Since intersection does not change
+polarity, this is the same as <span class="math inline">\(^+(G_1 \cap
+G_2)\)</span>. The same is true if we replace <span
+class="math inline">\(+\)</span> with <span
+class="math inline">\(-\)</span>, or <span
+class="math inline">\(\cap\)</span> with <span
+class="math inline">\(\cup\)</span>.</p>
+<p>Given all these equivalences, plus De Morgan’s law, we have</p>
+<p><span class="math display">\[\begin{align*}
+&amp;
+L(^+G_1) \cap L(^+G_2)
+&amp;
+\emph{\hfill starting point}\\
+=&amp;
+L(^-\overline{G_1}) \cap L(^-\overline{G_2})
+&amp;
+\emph{\hfill polarity conversion}\\
+=&amp;
+L(^-\overline{G_1} \cup ^-\overline{G_2})
+&amp;
+\emph{\hfill Theorem 1}\\
+=&amp;
+L(^-(\overline{G_1} \cup \overline{G_2}))
+&amp;
+\emph{\hfill distributivity of polarity}\\
+=&amp;
+L(^+\overline{(\overline{G_1} \cup \overline{G_2}}))
+&amp;
+\emph{\hfill polarity conversion}\\
+=&amp;
+L(^+(G_1 \cap G_2))
+&amp;
+\emph{\hfill De Morgan&#39;s Law}\\
+=&amp;
+L(^+G_1 \cap ^+G_2))
+&amp;
+\emph{\hfill distributivity of polarity}\\
+\end{align*}\]</span></p>
+<p>Whew, that’s quite some symbol salad. You might have to read it
+several times before it even vaguely starts making sense to you. But
+that’s okay, math often takes some time before it clicks. And if you
+still can’t work your way through it after half an hour, just put it
+aside for now and come back later in the semester when you’re more
+comfortable with arguments of this sort.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li><span class="math inline">\(n\)</span>-gram grammars can be combined
+in an automatic fashion. If each component of a system can be described
+by an <span class="math inline">\(n\)</span>-gram grammar, the whole
+system can be described by an <span
+class="math inline">\(n\)</span>-gram grammar.</li>
+<li>Negative grammars are combined via union.</li>
+<li>Positive grammars are combined via intersection.</li>
+<li>The duality between negative grammars and union on the one hand and
+positive grammars and intersection on the other follows from <strong>De
+Morgan’s law</strong>: <span class="math inline">\(A \cap B =
+\overline{\overline{A} \cup \overline{B}}\)</span></li>
+</ul>
+</div>
+</div>
+</body>
+</html>

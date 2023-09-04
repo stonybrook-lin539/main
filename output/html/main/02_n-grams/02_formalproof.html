@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a
+href="#formal-definition-and-proof-of-the-normal-form-theorem">Formal
+definition and proof of the normal form theorem</a>
+<ul>
+<li><a href="#formal-definition-of-negative-grammars">Formal definition
+of negative grammars</a></li>
+<li><a href="#normal-form-theorem">Normal form theorem</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="formal-definition-and-proof-of-the-normal-form-theorem">Formal
+definition and proof of the normal form theorem</h1>
+<div class="prereqs">
+<ul>
+<li>sets (notation)</li>
+<li>strings (basic notation)</li>
+</ul>
+</div>
+<p>The previous two sections introduced negative <span
+class="math inline">\(n\)</span>-gram grammars at great length and
+showed a basic normal form theorem: for every grammar with <span
+class="math inline">\(n\)</span>-grams of mixed length, there is an
+equivalent grammar where all <span
+class="math inline">\(n\)</span>-grams have the same length. The
+presentation was deliberately informal to focus on intuitions rather
+than mathematical rigor. This unit is very different. It gives the
+definitions in a mathematical format, rigorously states the normal form
+theorem, and states the proof of the theorem in a more standard
+mathematical style.</p>
+<p>I admit that this might be a lot to take in for the newbie, but it is
+important for you to learn how to read mathematical notation. It really
+makes things a lot easier in the long run. Once you feel more
+comfortable with mathematical notation, I suggest that you come back to
+this unit and contrast it to the two preceding ones. Which one gives you
+more information in a short amount of time?</p>
+<p>If you’re suffering an acute case of symbol shock, don’t worry. We
+will continue at a leisurely pace, with optional formal sections
+sprinkled in to give a succinct summary of the more informal
+sections.</p>
+<h2 id="formal-definition-of-negative-grammars">Formal definition of
+negative grammars</h2>
+<p>An <strong>alphabet</strong> is a finite set of symbols.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
+<span class="math inline">\(\Sigma_E\)</span> its extension with a edge
+marker symbols <span class="math inline">\({{{L}}}, {{{R}}} \notin
+\Sigma\)</span>. An <span class="math inline">\(n\)</span>-gram over
+<span class="math inline">\(\Sigma_E\)</span> is an element of <span
+class="math inline">\(\Sigma_E^n\)</span> (<span class="math inline">\(n
+\geq 1\)</span>). A <strong>negative <span
+class="math inline">\(n\)</span>-gram grammar</strong> <span
+class="math inline">\(G\)</span> over alphabet <span
+class="math inline">\(\Sigma\)</span> is a finite set of <span
+class="math inline">\(n\)</span>-grams over <span
+class="math inline">\(\Sigma_E\)</span>. A string <span
+class="math inline">\(s\)</span> over <span
+class="math inline">\(\Sigma\)</span> is well-formed with respect to
+<span class="math inline">\(G\)</span> iff there are no <span
+class="math inline">\(u, v\)</span> over <span
+class="math inline">\(\Sigma_E\)</span> and no <span
+class="math inline">\(g \in G\)</span> such that <span
+class="math inline">\({{{L}}}^{n-1} \cdot s \cdot{{{R}}}^{n-1} = u \cdot
+g \cdot v\)</span>. The <strong>language of <span
+class="math inline">\(G\)</span></strong>, denoted <span
+class="math inline">\(L(G)\)</span>, contains all strings that are
+well-formed with respect to <span class="math inline">\(G\)</span>, and
+only those.</p>
+</div>
+<div class="example">
+<p>Suppose <span class="math inline">\(\Sigma \mathrel{\mathop:}=\left
+\{ C, V \right \}\)</span>, where C represents consonants and V vowels.
+One string over <span class="math inline">\(\Sigma\)</span> is <span
+class="math inline">\(\mathit{CVCVCV}\)</span>, an instance of a very
+simple CV-syllable template. Assume <span
+class="math inline">\(G\)</span> contains <span
+class="math inline">\(\mathit{CC}\)</span> and <span
+class="math inline">\(\mathit{VC}\)</span> and let’s see if the string
+<span class="math inline">\(\mathit{CVCVCV}\)</span> is well-formed with
+respect to <span class="math inline">\(G\)</span>. The bigram <span
+class="math inline">\(\mathit{CC}\)</span> is not a problem since there
+are no strings <span class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> such that <span
+class="math inline">\({{{L}}}\mathit{CVCV}{{{R}}} = u \cdot\mathit{CC}
+\cdot v\)</span>, which means that <span
+class="math inline">\(\mathit{CVCVCV}\)</span> does not contain the
+forbidden bigram <span class="math inline">\(\mathit{CC}\)</span>. But
+clearly <span class="math inline">\({{{L}}}\mathit{CVCV}{{{R}}} =
+{{{L}}}\mathit{C} \cdot\mathit{VC} \cdot\mathit{V}{{{R}}}\)</span>. So
+<span class="math inline">\(\mathit{VC}\)</span> is a component of <span
+class="math inline">\(\mathit{CVCV}\)</span>, and as a result the string
+is ruled out by <span class="math inline">\(G\)</span>.</p>
+</div>
+<div class="definition">
+<p>A <strong>mixed negative <span class="math inline">\(n\)</span>-gram
+grammar</strong> <span class="math inline">\(G\)</span> is a finite set
+of strings over <span class="math inline">\(\Sigma\)</span> such that
+<span class="math inline">\(n\)</span> is the length of the longest
+string in <span class="math inline">\(G\)</span>. A negative <span
+class="math inline">\(n\)</span>-gram grammar that is not mixed is
+called <strong>strict</strong>.</p>
+</div>
+<h2 id="normal-form-theorem">Normal form theorem</h2>
+<div class="theorem">
+<p>For every mixed negative <span class="math inline">\(n\)</span>-gram
+grammar <span class="math inline">\(G\)</span>, there is a strict
+negative <span class="math inline">\(n\)</span>-gram grammar <span
+class="math inline">\(G&#39;\)</span> such that <span
+class="math inline">\(L(G) = L(G&#39;)\)</span>.</p>
+</div>
+<div class="proof">
+<p>Let <span class="math inline">\(G&#39; \mathrel{\mathop:}=\left \{  u
+\cdot g \cdot v \mid g \in G, u,v \in \Sigma^*, \text{ and the length of
+} u \cdot g \cdot v \text{ is } n \right \}\)</span>. Suppose <span
+class="math inline">\(s \notin L(G)\)</span>. Then there must be some
+<span class="math inline">\(g \in G\)</span> and <span
+class="math inline">\(u = u_1 \cdot u_2\)</span> and <span
+class="math inline">\(v = v_1 \cdot v_2\)</span> over <span
+class="math inline">\(\Sigma\)</span> such that <span
+class="math inline">\({{{L}}}^{n-1} \cdot s \cdot{{{R}}}^{n-1} = u \cdot
+g \cdot v\)</span>. But then <span class="math inline">\({{{L}}}^{n-1}
+\cdot s \cdot{{{R}}}^{n-1} = u_1 \cdot u_2 \cdot g \cdot v_1 \cdot
+v_2\)</span>. As the length of <span class="math inline">\({{{L}}}^{n-1}
+\cdot s \cdot{{{R}}}^{n-1}\)</span> exceeds <span
+class="math inline">\(n\)</span>, it holds that <span
+class="math inline">\(u_2 \cdot g \cdot v_1 \in G&#39;\)</span> for some
+choice of <span class="math inline">\(u_2\)</span> and <span
+class="math inline">\(v_1\)</span>. But then <span
+class="math inline">\(s \notin L(G&#39;)\)</span>.</p>
+<p>In the other direction, suppose <span class="math inline">\(s \notin
+L(G&#39;)\)</span>. Then there is some <span class="math inline">\(g \in
+G&#39;\)</span> such that <span class="math inline">\({{{L}}}^{n-1}
+\cdot s \cdot{{{R}}}^{n-1} = u \cdot g \cdot v\)</span>. But then there
+must <span class="math inline">\(u&#39;\)</span>, <span
+class="math inline">\(g&#39;\)</span> and <span
+class="math inline">\(v&#39;\)</span> over <span
+class="math inline">\(\Sigma\)</span> such that <span
+class="math inline">\(g = u&#39; \cdot g&#39; \cdot v&#39;\)</span> and
+<span class="math inline">\(g&#39; \in G\)</span>. It follows that <span
+class="math inline">\(s \notin L(G)\)</span>.</p>
+</div>
+<p>And there you have it. All the ground we’ve covered in dozens of
+pages so far, condensed into less than one page. That’s the power of
+math.</p>
+</div>
+</div>
+</body>
+</html>
