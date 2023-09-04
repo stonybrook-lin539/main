@@ -37,7 +37,6 @@
 !scripts/**/
 !source/
 !source/**/
-source/random_exercises
 !templates/
 !templates/**/
 !test/
