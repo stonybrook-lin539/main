@@ -425,7 +425,7 @@ def task_html_toppage():
         f"{GEN_HTML_TOC} | pandoc"
         f" -t html --template {HTML_TEMPLATE}"
         f" --metadata-file={SRCDIR}/metadata.yaml"
-        f" -css=/{CSS_NAME}"
+        f" --css=/{CSS_NAME}"
         f" > {outfile}"
     )
     return {
