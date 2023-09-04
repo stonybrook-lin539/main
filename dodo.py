@@ -425,7 +425,7 @@ def task_html_toppage():
         f"{GEN_HTML_TOC} | pandoc"
         f" -t html --template {HTML_TEMPLATE}"
         f" --metadata-file={SRCDIR}/metadata.yaml"
-        f" --css=/{CSS_WEB}"
+        f" --css={CSS_WEB}"
         f" > {outfile}"
     )
     return {
@@ -446,7 +446,7 @@ def task_html_sections():
         outfile = HTMLDIR / infile.relative_to(SRCDIR).with_suffix(".html")
         cmd = (
             f"pandoc -t html {PANDOC_OPTS} {HTML_OPTS}"
-            f" --css=/{CSS_WEB}"
+            f" --css={CSS_WEB}"
             f" {infile} -o {outfile}"
         )
         yield {
