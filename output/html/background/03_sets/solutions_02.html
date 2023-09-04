@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/style.css" />
+  <!-- Include this in HTML headers to activate MathJax. -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a
+href="#union-intersection-and-complement-of-sets-solutions">Union,
+intersection, and complement of sets (Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="union-intersection-and-complement-of-sets-solutions">Union,
+intersection, and complement of sets (Solutions)</h1>
+<div class="exercise">
+<p>Compute the union of the following:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{
+1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 0,1
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup
+\emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cup \left \{
+0,1 \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \} = \left \{ 0,1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{
+1,2,3 \right \} = \left \{ 0,1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 0,1
+\right \} = \left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \emptyset =
+\left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cup \left \{
+0,1 \right \} = \left \{ 0,1,2,3 \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>The union must contain all elements of the first set, all elements
+of the second set, and nothing else. In this case, where the first set
+contains <span class="math inline">\(0\)</span> and <span
+class="math inline">\(1\)</span>, and the second contains <span
+class="math inline">\(2\)</span> and <span
+class="math inline">\(3\)</span>, the union hence must contain all of
+the following, and nothing else:<span class="math inline">\(0\)</span>,
+<span class="math inline">\(1\)</span>, <span
+class="math inline">\(2\)</span>, and <span
+class="math inline">\(3\)</span>.</li>
+<li>The same logic still applies. The fact that <span
+class="math inline">\(1\)</span> appears in both sets does not affect
+how union works.</li>
+<li>The union of two identical sets always returns the same set.</li>
+<li>Since the empty set contains no elements at all, it is always the
+case <span class="math inline">\(A \cup \emptyset = A\)</span> (and
+<span class="math inline">\(\emptyset \cup A = A\)</span>), no matter
+what <span class="math inline">\(A\)</span> looks like. And yes, this
+means that <span class="math inline">\(\emptyset = \emptyset \cup
+\emptyset\)</span>.</li>
+<li>This is exactly the same as the second exercise because union does
+not care about the order of the sets: <span class="math inline">\(A \cup
+B\)</span> is always the same as <span class="math inline">\(B \cup
+A\)</span>, just like <span class="math inline">\(m + n\)</span> is
+always the same as <span class="math inline">\(n + m\)</span> for
+addition of numbers.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the union of the following in a step-wise fashion:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \} \cup \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \emptyset
+\cup \left \{ 2,3 \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \} \cup \emptyset = (\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \}) \cup \emptyset = \left \{ 0,1,2,3 \right \} \cup \emptyset =
+\left \{ 0,1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \emptyset
+\cup \left \{ 2,3 \right \} = (\left \{ 0,1 \right \} \cup \emptyset)
+\cup \left \{ 2,3 \right \} = \left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \} = \left \{ 0,1,2,3 \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<p>Another way to phrase the exercise would be to ask you to verify that
+<span class="math inline">\((\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \}) \cup \emptyset = \left \{ 0,1 \right \} \cup (\left \{ 2,3
+\right \} \cup \emptyset)\)</span>. Either way you are verifying that it
+does not matter in what order you carry out the union steps, the result
+will always be the same.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the intersection of the following:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 2,3
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{
+1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 0,1
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap
+\emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cap \left \{
+0,1 \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 2,3
+\right \} = \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{
+1,2,3 \right \} = \left \{ 1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 0,1
+\right \} = \left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \emptyset =
+\emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cap \left \{
+0,1 \right \} = \left \{ 1 \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>As neither set contains any elements that occur in the other set,
+their intersection is empty.</li>
+<li>The only element shared by both sets is <span
+class="math inline">\(1\)</span>, hence the intersection is <span
+class="math inline">\(\left \{ 1 \right \}\)</span>. Note that the
+intersection of two sets is always a set, even if that set has only one
+member. It is incorrect to say that the intersection of <span
+class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 1,2,3 \right
+\}\)</span> is <span class="math inline">\(1\)</span>, it is the set
+<span class="math inline">\(\left \{ 1 \right \}\)</span>.</li>
+<li>Just like <span class="math inline">\(A \cup A = A\)</span> is
+universally true no matter what this set <span
+class="math inline">\(A\)</span> looks like, it is always the case that
+<span class="math inline">\(A \cap A = A\)</span>.</li>
+<li>Since the empty set contains no elements at all, the result of
+intersecting a set <span class="math inline">\(A\)</span> with the empty
+set will always be the empty set, no matter what <span
+class="math inline">\(A\)</span> looks like.</li>
+<li>When we contrast that against the second exercise with <span
+class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 1,2,3 \right
+\}\)</span>, we see once again that the order of the sets does not
+matter for intersection: <span class="math inline">\(\left \{ 0,1 \right
+\} \cap \left \{ 1,2,3 \right \} = \left \{ 1 \right \} = \left \{ 1,2,3
+\right \} \cap \left \{ 0,1 \right \}\)</span>. Just like union,
+intersection is commutative.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Give a concrete example where <span class="math inline">\(A - B = B -
+A\)</span>. Then make a single change to <span
+class="math inline">\(A\)</span> such that <span class="math inline">\(A
+- B \neq B - A\)</span>.</p>
+<div class="solution">
+<p>Let <span class="math inline">\(A = B = \left \{ 1 \right
+\}\)</span>. Then <span class="math inline">\(A - B = \left \{ 1 \right
+\} - \left \{ 1 \right \} = B - A\)</span>. Now remove <span
+class="math inline">\(1\)</span> from <span
+class="math inline">\(B\)</span> such that <span class="math inline">\(B
+= \emptyset\)</span>. Then <span class="math inline">\(A - B = \left \{
+1 \right \} - \emptyset = \left \{ 1 \right \}\)</span>, which is
+distinct from <span class="math inline">\(B - A = \emptyset - \left \{ 1
+\right \} = \emptyset\)</span>.</p>
+</div>
+<div class="solution_explained">
+<p>In general, <span class="math inline">\(A - B \neq B - A\)</span>
+whenever <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are distinct sets, but if <span
+class="math inline">\(A = B\)</span> then <span class="math inline">\(A
+- B\)</span> is always the same as <span class="math inline">\(B -
+A\)</span>. Hence we can always pick <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> to be identical sets and then make a
+single change to render them distinct.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

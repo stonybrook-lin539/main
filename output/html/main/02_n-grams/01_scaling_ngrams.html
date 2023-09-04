@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/style.css" />
+  <!-- Include this in HTML headers to activate MathJax. -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#analyzing-negative-n-gram-grammars">Analyzing negative
+<span class="math inline">\(n\)</span>-gram grammars</a>
+<ul>
+<li><a href="#a-plea-for-proofs">A plea for proofs</a></li>
+<li><a href="#our-first-proof-mixed-n-gram-grammars">Our first proof:
+Mixed <span class="math inline">\(n\)</span>-gram grammars</a>
+<ul>
+<li><a href="#formalizing-the-problem">Formalizing the problem</a></li>
+<li><a href="#proof">Proof</a></li>
+</ul></li>
+<li><a href="#some-thoughts">Some thoughts</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="analyzing-negative-n-gram-grammars">Analyzing negative <span
+class="math inline">\(n\)</span>-gram grammars</h1>
+<p>In the previous unit, we entertained the idea that natural language
+phonotactics can be described in terms of a collection of forbidden
+sound sequences. Such a collection is called a forbidden <span
+class="math inline">\(n\)</span>-gram grammar, and each <span
+class="math inline">\(n\)</span>-gram represents one forbidden sound
+sequence of length <span class="math inline">\(n\)</span>. But this idea
+ran into a problem. In German, words cannot start with <em>rb</em>,
+which is captured by adding the trigram <em>⋊rb</em> to the list of
+illicit <span class="math inline">\(n\)</span>-grams (remember that ⋊ is
+a special symbol that indicates the left edge of a word). But German
+also has word-final devoicing, which means that no word can end in a
+voiced <em>s</em>-sound, which corresponds to <em>z</em> in English
+orthography. Using this notational convention, we can represent the
+illicit sequence as <em>z⋉</em> (with ⋉ as the right edge counterpart of
+⋊). This is a bigram, whereas <em>⋊rb</em> is a trigram. What are the
+consequences of mixing bigrams and trigrams in a single <span
+class="math inline">\(n\)</span>-gram grammar? Does this introduce
+inconsistencies such that a word is both forbidden and allowed? Let’s
+try to answer this question. Fair warning: this will be a bit of a pain,
+and that’s actually the point of this unit.</p>
+<h2 id="a-plea-for-proofs">A plea for proofs</h2>
+<p>Unless you’re a mathematician, your first instinct will be to work
+through one or more examples. If we, say, construct 100 grammars that
+include bigrams and trigrams and don’t run into any problems, it’s
+probably fine to mix and match. But this has several downsides:</p>
+<ul>
+<li><p><strong>So much work…</strong><br />
+Constructing and testing 100 grammars doesn’t exactly sound like fun.
+Sure, you could write a program to do it for you, but that’s also work.
+And your program might have bugs, which takes us to the next
+point.</p></li>
+<li><p><strong>No guarantees</strong><br />
+Just because your simulations produce a certain result does not mean
+that things always work this way. If you ask 1000 people if they’ve ever
+read Werner Schwab’s <em>Fäkaliendramen</em> (feces dramas), the answers
+will probably all be No. But if your sample happened to include mostly
+literature buffs, you’ll hear Yes a lot more often. Similarly, the
+grammars you construct for your simulation might exhibit a special
+property that allows them to pass the test. There might still be
+grammars that do not display this property and fail. If you construct
+the grammars with a program, your code might be written in a way that
+only produces grammars of a specific type. Bottom line: if you are
+testing based on examples, you can never be sure that your examples
+cover all possible cases that need testing.</p></li>
+<li><p><strong>No scalability</strong><br />
+Alright, suppose you actually wrote a program that is free of any bias
+and ran a huge number of simulations for grammar with mixed bigrams and
+trigrams. You now feel very confident that mixing of bigrams and
+trigrams is unproblematic. What about 4-grams? 5-grams? 127-grams? How
+do you know that your results will carry over from bigrams and trigrams
+to arbitrary <span class="math inline">\(n\)</span>-grams?</p></li>
+</ul>
+<p>Computer-aided simulations are <em>en vogue</em> nowadays, but
+they’re really a last resort. They are hard to design, often require
+significant resources, and do not provide perfect insight into how the
+specific aspects of a system determine its behavior. That’s not to say
+that simulations are a bad thing — if you are dealing with a very
+complex system, they’re often the best tool at your disposal. But there
+are other tools around, and in many cases they are a superior choice.
+Mathematics furnishes the best tool of them all: proofs!</p>
+<p>A mathematical proof starts out from a fixed set of assumptions and
+shows how these assumptions entail a specific property. We will see a
+concrete example in a moment, but let’s first focus on the specific
+advantages of proofs:</p>
+<ul>
+<li><p><strong>Laziness</strong><br />
+Hard proofs are very, very hard. They are much harder than designing a
+simulation. But unless you are a professional mathematician, most proofs
+you’ll ever see are fairly easy. And easy proofs are very, very easy.
+You can often work them out in less than 30 minutes, and they only take
+a few lines to write down.</p></li>
+<li><p><strong>Guarantees</strong><br />
+Of course a proof may contain mistakes, just like a program may contain
+bugs. But mistakes in a proof are easier to spot than bugs in a program.
+Fixing a proof is also much simpler than verifying that a simulation has
+no hidden biases. Once you have a correct proof, you have a guarantee:
+as long as the assumptions of the proof hold, the property established
+by proof holds, too.</p></li>
+<li><p><strong>Scalability</strong><br />
+Since a proof holds as long as its initial assumptions are satisfied, it
+can be extended to any object that satisfies these assumptions.</p></li>
+</ul>
+<p>This may all sound awfully abstract to you. So let’s finally turn to
+our first proof, because the proof of the pudding is in the eating
+(sorry, I couldn’t resist). We will show that a negative <span
+class="math inline">\(n\)</span>-gram grammar that also contains, say,
+bigrams and trigrams can be converted to an equivalent <span
+class="math inline">\(n\)</span>-gram grammar that only contains <span
+class="math inline">\(n\)</span>-grams. While reading through the proof,
+keep in mind the three properties above (laziness, guarantees,
+scalability), and think about how they’re instantiated in the proof.</p>
+<h2 id="our-first-proof-mixed-n-gram-grammars">Our first proof: Mixed
+<span class="math inline">\(n\)</span>-gram grammars</h2>
+<h3 id="formalizing-the-problem">Formalizing the problem</h3>
+<p>Our initial question is whether there is any problem with mixing
+bigrams and trigrams in a single grammar. This is not a very precise
+question. What exactly constitutes a problem? If you have to write on a
+tiny piece of paper that can barely hold a single bigram, adding a
+trigram to the mix creates problems. That’s obviously not our concern
+here. Remember that we use negative <span
+class="math inline">\(n\)</span>-gram grammars as a model of natural
+language phonotactics. So their job is to describe which potential words
+are well-formed and which are ill-formed. We would have a problem if
+this failed for some reason: a word is both well-formed or ill-formed, a
+word that is ill-formed suddenly becomes well-formed when bigrams and
+trigrams are mixed, or the other way round.</p>
+<p>We will show that none of these issues ever arise; we do so by
+establishing a <strong>normal form theorem</strong>. Whenever a grammar
+contains <span class="math inline">\(n\)</span>-grams of different
+sizes, it can be converted to a grammar where all <span
+class="math inline">\(n\)</span>-grams are of the same size. This
+converted grammar is equivalent to the original in the sense that they
+make the same phonotactic judgments: the first grammar deems a word
+well-formed iff the second one does, too, and the two also agree on
+which words are ill-formed. The second grammar thus behaves exactly like
+the first, but has a normalized form without any <span
+class="math inline">\(n\)</span>-grams of different length. That’s why
+the second grammar is called a <strong>normal form</strong> of the first
+one. <strong>Theorem</strong> is just a fancy term for a statement that
+follows from a fixed set of assumptions. So we are proving a theorem
+about the existence of a normal form, hence the term <strong>normal form
+theorem</strong>.</p>
+<p>In order to avoid an overload of notation and terminology, we state
+the theorem in a slightly inaccurate manner as follows:</p>
+<div class="theorem">
+<p>Let <span class="math inline">\(G\)</span> be some collection of
+sound <span class="math inline">\(n\)</span>-grams of different lengths
+where <span class="math inline">\(k\)</span> is the length of the
+longest <span class="math inline">\(n\)</span>-gram. Then there exists
+an equivalent grammar <span class="math inline">\(G&#39;\)</span> such
+that every <span class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(G&#39;\)</span> has length <span
+class="math inline">\(k\)</span>.</p>
+</div>
+<h3 id="proof">Proof</h3>
+<p>We start with a few key observations.</p>
+<ul>
+<li><p>Every language has only finitely many sounds. The precise number
+does not matter here, it could be 2, it could be 2 trillion trillion.
+The important thing is that it is finite. We use <span
+class="math inline">\(\left | \Sigma \right |\)</span> as the special
+symbol for this number.</p>
+<div class="example">
+<p>If a language only has the sounds <em>a</em>, <em>u</em>, <em>i</em>,
+<em>b</em>, <em>m</em>, <em>d</em>, <em>g</em>, and <em>h</em>, then
+<span class="math inline">\(\left | \Sigma \right |\)</span> for that
+specific language is <span class="math inline">\(8\)</span>.</p>
+</div></li>
+<li><p>As stated in the theorem, the longest <span
+class="math inline">\(n\)</span>-gram is assumed to have length <span
+class="math inline">\(k\)</span>. Since each position is filled by
+either a sound or one of two edge markers (⋊ or ⋉), there are <span
+class="math inline">\(\left | \Sigma \right | + 2\)</span> choices for
+each position. Consequently, there are at most <span
+class="math inline">\((\left | \Sigma \right |+2)^k\)</span> different
+<span class="math inline">\(n\)</span>-grams of length <span
+class="math inline">\(k\)</span>. This implies that <span
+class="math inline">\(G\)</span> contains at most <span
+class="math inline">\((\left | \Sigma \right |+2)^k\)</span> <span
+class="math inline">\(n\)</span>-grams and thus contains only finitely
+many.</p>
+<div class="example">
+<p>Suppose that the language only has the sounds <em>a</em> and
+<em>d</em>, barely enough for <em>dada</em>. It’s <span
+class="math inline">\(\left | \Sigma \right |^k\)</span> is <span
+class="math inline">\(2\)</span>. There are <span
+class="math inline">\((2+2)^3 = 4^3 = 64\)</span> different trigrams.
+Not all of them are ever useful. In particular, no word ever contains an
+edge marker in the middle, so <em>a⋊a</em> and <em>a⋉a</em> serve no
+purpose. It is also impossible for ⋉ to occur to the left of ⋊, which
+rules out trigrams like <em>⋉a⋊</em> and <em>⋉⋊a</em>. Filtering out
+those useless trigrams leaves us with the following list:</p>
+<ul>
+<li>aaa, aad, aa⋉, ada, add, ad⋉, a⋉⋉, daa, dad, da⋉, dda, ddd, dd⋉,
+d⋉⋉, ⋊aa, ⋊ad, ⋊a⋉, ⋊da, ⋊dd, ⋊d⋉, ⋊⋊a, ⋊⋊d, ⋊⋊⋊, ⋊⋊⋉, ⋊⋉⋉, ⋉⋉⋉</li>
+</ul>
+<p>But even if we had included all useless trigrams, that would not
+change the fact that there are only finitely many trigrams over
+<em>a</em>, <em>d</em>, and the edge markers.</p>
+</div></li>
+</ul>
+<p>Now suppose that we pick one of the finitely many <span
+class="math inline">\(n\)</span>-grams of <span
+class="math inline">\(G\)</span>. Call it <span
+class="math inline">\(g\)</span>. If the length of <span
+class="math inline">\(g\)</span> is already <span
+class="math inline">\(k\)</span>, it is one of the longest <span
+class="math inline">\(n\)</span>-grams and we don’t need to do anything.
+But if its length <span class="math inline">\(i\)</span> is strictly
+less than <span class="math inline">\(k\)</span>, we need to replace
+<span class="math inline">\(g\)</span> by something equivalent. We
+remove the <span class="math inline">\(n\)</span>-gram <span
+class="math inline">\(g\)</span> from the grammar <span
+class="math inline">\(G\)</span>, and instead add in a number of
+“padded” variants of <span class="math inline">\(g\)</span>:</p>
+<ul>
+<li><p>Construct every possible <span
+class="math inline">\(n\)</span>-gram of length <span
+class="math inline">\(k - i\)</span>. For each such <span
+class="math inline">\(n\)</span>-gram, put it <strong>in front
+of</strong> <span class="math inline">\(g\)</span> and add the result
+back to <span class="math inline">\(G\)</span>.</p>
+<div class="example">
+<p>Suppose <em>G</em> contains the bigram <em>z⋉</em>, the trigram
+<em>⋊kn</em>, and the 4-gram <em>akzn</em>. Assume furthermore that the
+only possible sounds are <em>a</em>, <em>k</em>, <em>z</em>, and
+<em>n</em>.</p>
+<p>We have to pad out <em>z⋉</em> from a bigram to a 4-gram. The length
+difference between a bigram and a 4-gram is 2, so we have to put bigrams
+in front of <em>z⋉</em>. The list of possible (and useful) bigrams is as
+follows:</p>
+<ul>
+<li>⋊⋊ ⋊⋉, ⋉⋉, ⋊a, ⋊k, ⋊z, ⋊n, a⋉, aa, ak, az, an, k⋉, ka, kk, kz, kn,
+z⋉, za, zk, zz, zn, n⋉, na, nk, nz, nn</li>
+</ul>
+<p>So we remove <em>z⋉</em> from <span class="math inline">\(G\)</span>
+and instead add all of the following. Note that not all of those 4-grams
+are useful, but that doesn’t matter here.</p>
+<ul>
+<li>⋊⋊z⋉, ⋊⋉z⋉, ⋉⋉z⋉, ⋊az⋉, ⋊kz⋉, ⋊zz⋉, ⋊nz⋉, a⋉z⋉, aaz⋉, akz⋉, azz⋉,
+anz⋉, k⋉z⋉, kaz⋉, kkz⋉, kzz⋉, knz⋉, z⋉z⋉, zaz⋉, zkz⋉, zzz⋉, znz⋉, n⋉z⋉,
+naz⋉, nkz⋉, nzz⋉, nnz⋉</li>
+</ul>
+</div></li>
+<li><p>Construct every possible <span
+class="math inline">\(n\)</span>-gram of length <span
+class="math inline">\(k - i\)</span>. For each such <span
+class="math inline">\(n\)</span>-gram, put it <strong>after</strong>
+<span class="math inline">\(g\)</span> and add the result back to <span
+class="math inline">\(G\)</span>.</p>
+<div class="example">
+<p>We also add the following 4-grams to <span
+class="math inline">\(G\)</span>:</p>
+<ul>
+<li>z⋉⋊⋊, z⋉⋊⋉, z⋉⋉⋉, z⋉⋊a, z⋉⋊k, z⋉⋊z, z⋉⋊n, z⋉aa, z⋉ak, z⋉az, z⋉an,
+z⋉a⋉, z⋉ka, z⋉kk, z⋉kz, z⋉kn, z⋉k⋉, z⋉za, z⋉zk, z⋉zz, z⋉zn, z⋉z⋉, z⋉na,
+z⋉nk, z⋉nz, z⋉nn, z⋉n⋉</li>
+</ul>
+<p>Except for <em>z⋉⋉⋉</em> these are all useless because ⋉ cannot occur
+between two symbols that aren’t edge markers. But we add them anyways to
+stick with the procedure.</p>
+</div></li>
+<li><p>Finally, pick any two <span
+class="math inline">\(n\)</span>-grams of length <span
+class="math inline">\(i&#39;\)</span> and <span
+class="math inline">\(i&#39;&#39;\)</span> such that <span
+class="math inline">\(i&#39; + i + i&#39;&#39; = k\)</span> (remember
+that <span class="math inline">\(i\)</span> is the length of the n-gram
+<span class="math inline">\(g\)</span> that must padded out, and <span
+class="math inline">\(k\)</span> is the length of the longest <span
+class="math inline">\(n\)</span>-gram in the grammar). Sandwich <span
+class="math inline">\(g\)</span> between those <span
+class="math inline">\(n\)</span>-grams and add the result to the grammar
+<span class="math inline">\(G\)</span>.</p>
+<div class="example">
+<p>Since the difference between a 4-gram and a bigram is <span
+class="math inline">\(2\)</span>, each one of the two “sandwich” <span
+class="math inline">\(n\)</span>-grams must have length <span
+class="math inline">\(1\)</span>. So we add the following:</p>
+<ul>
+<li>⋊z⋉⋊, ⋊z⋉⋉, ⋊z⋉a, ⋊z⋉k, ⋊z⋉z, ⋊z⋉n, az⋉a, az⋉k, az⋉z, az⋉n, az⋉⋊,
+az⋉⋉, kz⋉a, kz⋉k, kz⋉z, kz⋉n, kz⋉⋊, kz⋉⋉, zz⋉a, zz⋉k, zz⋉z, zz⋉n, zz⋉⋊,
+zz⋉⋉, nz⋉a, nz⋉k, nz⋉z, nz⋉n, nz⋉⋊, nz⋉⋉</li>
+</ul>
+<p>Again there are many useless <span
+class="math inline">\(n\)</span>-grams, but we do not care.</p>
+</div></li>
+</ul>
+<p>The new grammar <span class="math inline">\(G&#39;\)</span>
+constructed this way is equivalent to <span
+class="math inline">\(G\)</span>. To see this, suppose that some string
+is ill-formed according to <span class="math inline">\(G\)</span>. Then
+some <span class="math inline">\(n\)</span>-gram <span
+class="math inline">\(g\)</span> of <span
+class="math inline">\(G\)</span> must occur in the string, otherwise it
+would not be deemed ill-formed by <span
+class="math inline">\(G\)</span>.</p>
+<ul>
+<li><p><strong>Case 1</strong><br />
+If <span class="math inline">\(g\)</span> has length <span
+class="math inline">\(k\)</span>, then it is also an <span
+class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(G&#39;\)</span>, so <span
+class="math inline">\(G&#39;\)</span> would consider the string illicit,
+too.</p>
+<div class="example">
+<p>Remember that our example grammar <span
+class="math inline">\(G\)</span> disallows <em>z⋉</em>, <em>⋊kn</em>,
+and <em>akzn</em>. The construction above constructs <span
+class="math inline">\(G&#39;\)</span> by padding out <em>z⋉</em> and
+<em>⋊kn</em> to 4-grams, but it keeps <em>akzn</em> the same. So if some
+word is forbidden by <span class="math inline">\(G\)</span> because it
+contains <em>akzn</em>, it will also be forbidden <span
+class="math inline">\(G&#39;\)</span>.</p>
+</div></li>
+<li><p><strong>Case 2</strong><br />
+Now assume that <span class="math inline">\(g\)</span>’s length is less
+than <span class="math inline">\(k\)</span>. Then <span
+class="math inline">\(G&#39;\)</span> contains padded variants of <span
+class="math inline">\(g\)</span> that have length <span
+class="math inline">\(k\)</span> and are equivalent to <span
+class="math inline">\(g\)</span>. Here is why:</p>
+<ul>
+<li><p>Remember that a string for an <span
+class="math inline">\(n\)</span>-gram grammar is padded with <span
+class="math inline">\(n-1\)</span> edge markers. So with respect to
+<span class="math inline">\(G&#39;\)</span>, whose longest <span
+class="math inline">\(n\)</span>-gram has length <span
+class="math inline">\(k\)</span>, every string has <span
+class="math inline">\(k-1\)</span> edge markers to its left and <span
+class="math inline">\(k-1\)</span> edge markers to its right. This means
+every string has at least length <span class="math inline">\(2 \times(k
+- 1) = 2k - 2\)</span>, which is greater than <span
+class="math inline">\(k\)</span>.</p></li>
+<li><p>Consider once more the illicit string, whatever it may be.
+Somewhere inside the string is an offending instance of the illicit
+<span class="math inline">\(n\)</span>-gram <span
+class="math inline">\(g\)</span>. There must be symbols to its left and
+right, at the very least some edge markers. We know this because <span
+class="math inline">\(n \leq k &lt; 2k - 2\)</span>. But <span
+class="math inline">\(G&#39;\)</span> contains every padded version of
+<span class="math inline">\(g\)</span>, i.e. <span
+class="math inline">\(g\)</span> with 0 or more symbols to its left and
+right. So if a string contains <span class="math inline">\(g\)</span>,
+it also contains some illicit padding of <span
+class="math inline">\(g\)</span>.</p></li>
+</ul>
+<div class="example">
+<p>Consider the word <em>kaz</em>, which is illicit because it contains
+<em>z⋉</em> (remember, we always add a sufficient number of edge
+markers). This string is still considered illicit by <span
+class="math inline">\(G&#39;\)</span>. The padded out word is
+<em>⋊⋊⋊kaz⋉⋉⋉</em>, and several of the illicit 4-grams we constructed
+from <em>z⋉</em> are contained in this string:</p>
+<ul>
+<li>kaz⋉</li>
+<li>az⋉⋉</li>
+<li>z⋉⋉⋉</li>
+</ul>
+</div></li>
+</ul>
+<p>This shows that every string that is deemed illicit by <span
+class="math inline">\(G\)</span> is also illicit with respect to <span
+class="math inline">\(G&#39;\)</span>. We still have to show the
+opposite, which is much easier. Suppose that a string is ruled out by
+<span class="math inline">\(G&#39;\)</span> because it contains the
+<span class="math inline">\(n\)</span>-gram <span
+class="math inline">\(g\)</span>.</p>
+<ul>
+<li><p><strong>Case 1</strong><br />
+<span class="math inline">\(G\)</span> contains <span
+class="math inline">\(g\)</span>, too. Then <span
+class="math inline">\(G\)</span> also deems the string illicit.</p></li>
+<li><p><strong>Case 2</strong><br />
+<span class="math inline">\(G\)</span> does not contain <span
+class="math inline">\(g\)</span>. Then <span
+class="math inline">\(g\)</span> was obtained by padding out some
+smaller <span class="math inline">\(n\)</span>-gram <span
+class="math inline">\(f\)</span> of <span
+class="math inline">\(G\)</span>. But every string that contains an
+instance of <span class="math inline">\(g\)</span> must also contain an
+instance of <span class="math inline">\(f\)</span>. So <span
+class="math inline">\(G\)</span> still considers the string
+illicit.</p></li>
+</ul>
+<p>Since <span class="math inline">\(G\)</span> and <span
+class="math inline">\(G&#39;\)</span> agree on which strings are
+illicit, they necessarily agree on which strings are well-formed. So by
+carrying out the procedure above for every <span
+class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(G\)</span>, one obtains a grammar <span
+class="math inline">\(G&#39;\)</span> that is equivalent to <span
+class="math inline">\(G\)</span> but only contains <span
+class="math inline">\(n\)</span>-grams of a fixed length.</p>
+<h2 id="some-thoughts">Some thoughts</h2>
+<p>You might cry foul at this point. I promised you that proofs are easy
+and only take a few lines, and the one above is neither. It’s very long,
+and it’s cumbersome to read, and the sentences are hard to make sense
+of. But that’s because everything was explained in plain English rather
+than mathematical notation. This made the proof harder to read and much
+longer, and it also means that we had to rely on examples to explain
+what exactly is intended at each step of the proof. The next unit will
+present the same proof in mathematical notation, and while it may be
+initially harder for you, this format will be a lot easier for you once
+you have some experience.</p>
+<p>In fact, this is why it is so helpful to learn math. Many things are
+intuitive enough that they can be explained in plain English. But it is
+clumsy, imprecise, and takes longer. Specialized notation and
+terminology makes things easier to talk and think about, not harder.</p>
+</div>
+</div>
+</body>
+</html>

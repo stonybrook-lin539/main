@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/style.css" />
+  <!-- Include this in HTML headers to activate MathJax. -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#comparing-sets-solutions">Comparing sets
+(Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="comparing-sets-solutions">Comparing sets (Solutions)</h1>
+<div class="exercise">
+<p>Complete the table below.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">B</th>
+<th style="text-align: left;"><span class="math inline">\(A \subseteq
+B\)</span>?</th>
+<th style="text-align: left;"><span class="math inline">\(A \supseteq
+B\)</span>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{
+a,a,b,c \right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ b
+\right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left
+\{  \right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a
+\right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{
+a,a,b,b \right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<div class="solution">
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">B</th>
+<th style="text-align: left;"><span class="math inline">\(A \subseteq
+B\)</span>?</th>
+<th style="text-align: left;"><span class="math inline">\(A \supseteq
+B\)</span>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{
+a,a,b,c \right \}\)</span></td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ b
+\right \}\)</span></td>
+<td style="text-align: left;">N</td>
+<td style="text-align: left;">N</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left
+\{  \right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a
+\right \}\)</span></td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">N</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{
+a,a,b,b \right \}\)</span></td>
+<td style="text-align: left;">Y</td>
+<td style="text-align: left;">Y</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="solution_explained">
+<p>For <span class="math inline">\(A \subseteq B\)</span>, we have to
+check that every member of <span class="math inline">\(A\)</span> is a
+member of <span class="math inline">\(B\)</span>. For <span
+class="math inline">\(A \supseteq B\)</span>, the opposite has to hold:
+every membeer of <span class="math inline">\(B\)</span> is a member of
+<span class="math inline">\(A\)</span>. Keep in mind that the empty set
+<span class="math inline">\(\left \{  \right \}\)</span> contains no
+elements at all, so it is a subset of every set <span
+class="math inline">\(A\)</span>, no matter what <span
+class="math inline">\(A\)</span> looks like. Finally, recall that <span
+class="math inline">\(\left \{ a,a,b,b \right \} = \left \{ a,b \right
+\}\)</span>, so the last line is asking whether <span
+class="math inline">\(\left \{ a,b \right \}\)</span> is a subset and/or
+superset of <span class="math inline">\(\left \{ a,b \right \}\)</span>,
+to which the answer is yes in both cases.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Say whether the following statement is true or false and justify your
+answer: for any two sets <span class="math inline">\(A\)</span> and
+<span class="math inline">\(B\)</span>, <span class="math inline">\(A
+\subseteq B\)</span> iff <span class="math inline">\(A \cap B =
+A\)</span>.</p>
+<div class="solution">
+<p>This is true.</p>
+<p>We have to show that <span class="math inline">\(A \subseteq
+B\)</span> implies <span class="math inline">\(A \cap B = A\)</span>,
+and that <span class="math inline">\(A \cap B = A\)</span> implies that
+<span class="math inline">\(A \subseteq B\)</span>. Suppose, then, that
+<span class="math inline">\(A \subseteq B\)</span>. In this case, every
+element <span class="math inline">\(A\)</span> is also an element of
+<span class="math inline">\(B\)</span>. Since <span
+class="math inline">\(A \cap B\)</span> contains all elements that
+belong to both <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>, and every element of <span
+class="math inline">\(A\)</span> is also an element of <span
+class="math inline">\(B\)</span>, <span class="math inline">\(A \cap
+B\)</span> contains at least all elements of <span
+class="math inline">\(A\)</span>. But by definition, <span
+class="math inline">\(A \cap B\)</span> cannot contain any elements that
+do not belong to <span class="math inline">\(A\)</span> itself. Hence
+<span class="math inline">\(A \cap B\)</span> contains all elements of
+<span class="math inline">\(A\)</span>, and nothing else, which means
+that <span class="math inline">\(A \cap B = A\)</span>.</p>
+<p>Now suppose that <span class="math inline">\(A \cap B = A\)</span>.
+Since <span class="math inline">\(A \cap B\)</span> contains all
+elements that are members of <span class="math inline">\(A\)</span> and
+members of <span class="math inline">\(B\)</span>, <span
+class="math inline">\(A \cap B = A\)</span> entails that every member of
+<span class="math inline">\(A\)</span> is a member of <span
+class="math inline">\(B\)</span>. In other words, <span
+class="math inline">\(A \subseteq B\)</span>.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Fill in <span class="math inline">\(=\)</span>, <span
+class="math inline">\(\subsetneq\)</span>, or <span
+class="math inline">\(\supsetneq\)</span> as appropriate.</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ a,b \right \} \_ \left \{ a
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ a,a,b,c \right \} \_ \left \{
+b,b,a,c \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \_ \left \{ n +
+5 \mid n \in \left \{ -4, -3 \right \} \right \}\)</span></li>
+<li><span class="math inline">\(\emptyset \_ \left \{ a \right
+\}\)</span></li>
+<li><span class="math inline">\(\emptyset \_ \left \{ \emptyset \right
+\}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ a,b \right \} \supsetneq \left
+\{ a \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ a,a,b,c \right \} = \left \{
+b,b,a,c \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \supsetneq
+\left \{ n + 5 \mid n \in \left \{ -4, -3 \right \} \right
+\}\)</span></li>
+<li><span class="math inline">\(\emptyset \subsetneq \left \{ a \right
+\}\)</span></li>
+<li><span class="math inline">\(\emptyset \subsetneq \left \{ \emptyset
+\right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>Every member of <span class="math inline">\(\left \{ a \right
+\}\)</span> is a member of <span class="math inline">\(\left \{ a,b
+\right \}\)</span>, but <span class="math inline">\(\left \{ a,b \right
+\}\)</span> contains at least one element that is not a member of <span
+class="math inline">\(\left \{ a \right \}\)</span>, hence <span
+class="math inline">\(\left \{ a \right \}\)</span> is a proper subset
+of <span class="math inline">\(\left \{ a,b \right \}\)</span>.</li>
+<li>Just remember that sets cannot contain an element more than once, so
+<span class="math inline">\(\left \{ a,a,b,c \right \} = \left \{ a,b,c
+\right \} = \left \{ b,b,a,c \right \}\)</span>.</li>
+<li>The set <span class="math inline">\(\left \{ n + 5 \mid n \in \left
+\{ -4,-3 \right \}  \right \}\)</span> is <span
+class="math inline">\(\left \{ 1,2 \right \}\)</span>, which is a proper
+subset of <span class="math inline">\(\left \{ 1,2,3 \right
+\}\)</span>.</li>
+<li>Remember that the empty set is a subset of every set, which means
+that it is a proper subset of every set that is distinct from the empty
+set.</li>
+<li>The same reasoning applies here, it is just a bit more confusing
+because we are comparing the empty set to the set containing the empty
+set. Still, the empty set has to be a subset of <span
+class="math inline">\(\left \{ \emptyset \right \}\)</span>, and <span
+class="math inline">\(\left \{ \emptyset \right \}\)</span> contains an
+element that is not contained in the empty set, namely the empty set
+itself.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>For each line in the table, say whether the sets are disjoint,
+incomparable, identical, or stand in a proper subset/superset
+relation.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left \{ 2,5,8
+\right \}\)</span></td>
+<td style="text-align: left;">the set of all odd numbers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b,c
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cup (\left \{ a,c \right \} - \left \{ b,d \right
+\})\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span
+class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cap (\left \{ a,c \right \} - \left \{ b,d \right
+\})\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span
+class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cap (\left \{ a,c \right \} \cap \left \{ b,d \right
+\})\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="solution">
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">B</th>
+<th style="text-align: left;">relation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left \{ 2,5,8
+\right \}\)</span></td>
+<td style="text-align: left;">the set of all odd numbers</td>
+<td style="text-align: left;">incomparable</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b,c
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cup (\left \{ a,c \right \} - \left \{ b,d \right
+\})\)</span></td>
+<td style="text-align: left;">identical</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span
+class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cap (\left \{ a,c \right \} - \left \{ b,d \right
+\})\)</span></td>
+<td style="text-align: left;">A is the proper subset of B</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span
+class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cap (\left \{ a,c \right \} \cap \left \{ b,d \right
+\})\)</span></td>
+<td style="text-align: left;">identical</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>The set of all odd numbers contains some numbers that occur in <span
+class="math inline">\(\left \{ 2,5,8 \right \}\)</span>, and many that
+do not. In the other direction, <span class="math inline">\(\left \{
+2,5,8 \right \}\)</span> contains <span
+class="math inline">\(8\)</span>, which is not an element of the set of
+all numbers. Overall, the two sets have some overlap, but neither
+subsumes the other. Hence they are incomparable.</li>
+<li>We have <span class="math inline">\(\left \{ a,c \right \} - \left
+\{ b,d \right \} = \left \{ a,c \right \}\)</span>, and <span
+class="math inline">\(\left \{ a,b \right \} \cup \left \{ a,c \right \}
+= \left \{ a,b,c \right \}\)</span>. That’s clearly the same set as
+<span class="math inline">\(\left \{ a,b,c \right \}\)</span>.</li>
+<li>We first have to compute <span class="math inline">\(\left \{ a,b
+\right \} \cap \left \{ a,c \right \}\)</span>, which is <span
+class="math inline">\(\left \{ a \right \}\)</span>. Clearly that is
+distinct from the <span class="math inline">\(\emptyset\)</span>, but
+the <span class="math inline">\(\emptyset\)</span> is a subste of every
+set, including <span class="math inline">\(\left \{ a \right
+\}\)</span>. Hence the empty set is a proper subset of <span
+class="math inline">\(\left \{ a \right \}\)</span>.</li>
+<li>Again we perform some computations first: <span
+class="math inline">\(\left \{ a,c \right \} \cap \left \{ b,d \right \}
+= \emptyset\)</span>, and <span class="math inline">\(\left \{ a,b
+\right \} \cap \emptyset = \emptyset\)</span>. Needless to say, <span
+class="math inline">\(\emptyset = \emptyset\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -29,10 +29,8 @@
 !filters/
 !jupyter/
 !jupyter/**/
-!notebooks/
-!notebooks/**/
-!pdf/
-!pdf/**/
+!output/
+!output/**/
 !includes/
 !includes/**/
 !scripts/

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/style.css" />
+  <!-- Include this in HTML headers to activate MathJax. -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#cardinality">Cardinality</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="cardinality">Cardinality</h1>
+<div class="prereqs">
+<ul>
+<li>sets (notation, operations)</li>
+<li>functions (basic notation, domain terminology)</li>
+</ul>
+</div>
+<p>Sets can be compared based on how many elements they contain.</p>
+<div class="example">
+<p>The set <span class="math inline">\(A \mathrel{\mathop:}=\left \{
+a,b,c \right \}\)</span> contains exactly as many elements as the set
+<span class="math inline">\(X \mathrel{\mathop:}=\left \{ x,y,z \right
+\}\)</span>, namely <span class="math inline">\(3\)</span>. Each set has
+fewer members than <span class="math inline">\(A \cup X\)</span>, which
+contains <span class="math inline">\(6\)</span> elements, whereas <span
+class="math inline">\(A \cap X\)</span> has <span
+class="math inline">\(0\)</span> members.</p>
+</div>
+<p>This is commonly called the <strong>size</strong> of a set, but the
+more accurate term is <strong>cardinality</strong>. The cardinality of a
+set <span class="math inline">\(A\)</span> is denoted <span
+class="math inline">\(\left | A \right |\)</span>. We say that <span
+class="math inline">\(\left | A \right | \leq B\)</span> iff there is a
+function <span class="math inline">\(f\)</span> such that every element
+of <span class="math inline">\(A\)</span> is mapped to some element of
+<span class="math inline">\(B\)</span> and every element of <span
+class="math inline">\(B\)</span> has at most one element of <span
+class="math inline">\(A\)</span> mapped to it.</p>
+<div class="example">
+<p>Suppose that <span class="math inline">\(A \mathrel{\mathop:}=\left
+\{ a,b,c \right \}\)</span> and <span class="math inline">\(D
+\mathrel{\mathop:}=\left \{ d,e,f,g \right \}\)</span>. Then <span
+class="math inline">\(\left | A \right | \leq \left | D \right
+|\)</span>, as every element of <span class="math inline">\(A\)</span>
+can be mapped to some distinct element of <span
+class="math inline">\(D\)</span>. For instance, we could have a function
+with <span class="math inline">\(a \mapsto f\)</span>, <span
+class="math inline">\(b \mapsto d\)</span>, <span
+class="math inline">\(c \mapsto g\)</span>.</p>
+<p>In the other direction, <span class="math inline">\(\left | D \right
+| \not\leq \left | A \right |\)</span>. No matter how one maps the
+elements of <span class="math inline">\(D\)</span> to members of <span
+class="math inline">\(A\)</span>, at least two members of <span
+class="math inline">\(D\)</span> will have to be mapped to the same
+element in <span class="math inline">\(A\)</span>.</p>
+</div>
+<p>Clearly <span class="math inline">\(\left | A \right | = \left | B
+\right |\)</span> iff <span class="math inline">\(\left | A \right |
+\leq \left | B \right |\)</span> and <span class="math inline">\(\left |
+B \right | \leq \left | A \right |\)</span> are both true. But there is
+a more direct definition: <span class="math inline">\(\left | A \right |
+= \left | B \right |\)</span> iff there is a function <span
+class="math inline">\(f\)</span> such that <span
+class="math inline">\(f\)</span> maps every element of <span
+class="math inline">\(A\)</span> to some element of <span
+class="math inline">\(B\)</span> and every element of <span
+class="math inline">\(B\)</span> has exactly one element of <span
+class="math inline">\(A\)</span> mapped to it. We also say that there is
+a <strong>bijection</strong> between <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>, which is a technical term for a 1-to-1
+correspondence between the elements of <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>.</p>
+<div class="example">
+<p>We already saw that <span class="math inline">\(\left | A \right | =
+\left | X \right |\)</span> in the previous example. A possible choice
+of <span class="math inline">\(f\)</span> would be <span
+class="math inline">\(a \mapsto x\)</span>, <span
+class="math inline">\(b \mapsto y\)</span>, <span
+class="math inline">\(c \mapsto z\)</span>.</p>
+</div>
+<div class="example">
+<p>The sets <span class="math inline">\(A \mathrel{\mathop:}=\left \{
+0,1,2 \right \}\)</span> and <span class="math inline">\(B
+\mathrel{\mathop:}=\left \{ 2,3 \right \}\)</span> obviously have
+distinct cardinality. The set <span class="math inline">\(A\)</span>
+contains 3 elements, the set <span class="math inline">\(B\)</span> only
+2. But let us see how we get the same result via our mathematical
+definition.</p>
+<p>Suppose we have some arbitrary function <span
+class="math inline">\(f: A \rightarrow B\)</span>. If <span
+class="math inline">\(f\)</span> is a bijection, then it must map every
+element of <span class="math inline">\(A\)</span> to some element of
+<span class="math inline">\(B\)</span>. But since there are three
+elements in <span class="math inline">\(A\)</span> and only two in <span
+class="math inline">\(B\)</span>, some element of <span
+class="math inline">\(B\)</span> must be the output for at least two
+elements of <span class="math inline">\(A\)</span>. But then <span
+class="math inline">\(f\)</span> is not a bijection.</p>
+<p>In the other direction, consider some arbitrary function <span
+class="math inline">\(g: B \rightarrow A\)</span>. Since a function maps
+each input to at most one output, the two elements of <span
+class="math inline">\(B\)</span> are mapped to at most two elements of
+<span class="math inline">\(A\)</span>. But <span
+class="math inline">\(A\)</span> has three elements, so one element of
+<span class="math inline">\(A\)</span> cannot be an output for any
+element of <span class="math inline">\(B\)</span>. Again we find that
+<span class="math inline">\(g\)</span> cannot be bijection.</p>
+<p>This exhausts all cases we need to consider, and we may conclude that
+no function from <span class="math inline">\(A\)</span> to <span
+class="math inline">\(B\)</span>, or the other way round, can be a
+bijection. Hence <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> must have distinct cardinality.</p>
+</div>
+<div class="exercise">
+<p>Show that <span class="math inline">\(\left | \left \{  0 \leq n &lt;
+10 \mid n \text{ is odd} \right \} = \left | \left \{  0 \leq n &lt; 10
+\mid n \text{ is even} \right \} \right | \right |\)</span>.</p>
+</div>
+<p>For finite sets, our intuitive notion of size closely matches the
+technical term of cardinality. However, size and cardinality diverge
+once we look at infinite sets.</p>
+<div class="example">
+<p>Consider the set <span class="math inline">\(\mathbb{N}
+\mathrel{\mathop:}=\left \{ 0,1,2,\ldots \right \}\)</span> of all
+natural numbers and the set <span class="math inline">\(\mathbb{N}_+
+\mathrel{\mathop:}=\left \{ 1,2,\ldots \right \}\)</span> of all
+positive natural numbers. Intuitively, <span
+class="math inline">\(\mathbb{N}\)</span> is larger than <span
+class="math inline">\(\mathbb{N}_+\)</span> because it contains all
+members of <span class="math inline">\(\mathbb{N}_+\)</span> as well as
+0, which is not in <span class="math inline">\(\mathbb{N}_+\)</span>.
+But the function <span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{N}_+\)</span> with <span class="math inline">\(n \mapsto
+n+1\)</span> is a bijection. Hence <span class="math inline">\(\left |
+\mathbb{N} \right | = \left | \mathbb{N}_+ \right |\)</span> even though
+intuitively the two sets have distinct size.</p>
+</div>
+<div class="exercise">
+<p>Show that the set of natural numbers has the same cardinality as the
+set of all even natural numbers.</p>
+</div>
+<p>In a later unit, we will see that our definition of cardinality
+entails that there are different “sizes” of infinity, and that we want
+one specific infinity size to talk about language.</p>
+</div>
+</div>
+</body>
+</html>

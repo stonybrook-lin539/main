@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/style.css" />
+  <!-- Include this in HTML headers to activate MathJax. -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#positive-n-gram-grammars-solutions">Positive <span
+class="math inline">\(n\)</span>-gram grammars (Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="positive-n-gram-grammars-solutions">Positive <span
+class="math inline">\(n\)</span>-gram grammars (Solutions)</h1>
+<div class="exercise">
+<p>For each one of the following phenomena, write a negative <span
+class="math inline">\(n\)</span>-gram grammar that handles it correctly.
+For some of them, you have to rephrase the phenomenon as a phonotactic
+constraint first.</p>
+<ol type="1">
+<li><strong>intervocalic voicing</strong>: voiceless fricatives (assume
+<em>s</em> and <em>f</em>) may not occur between vowels (assume
+<em>a</em>, <em>i</em>, <em>u</em>)</li>
+<li><strong>local assimilation</strong>: <em>n</em> must be <em>m</em>
+before <em>b</em> or <em>p</em></li>
+<li><strong>local dissimilation</strong>: <em>rVr</em> becomes
+<em>lVr</em>, where <em>V</em> is <em>a</em>, <em>i</em>, or
+<em>u</em></li>
+<li><strong>penultimate stress</strong>: in words with at least two
+syllables, stress falls on the last but one syllable (assume that words
+are strings of stress syllables (<span
+class="math inline">\(\acute{\sigma}\)</span>) and unstressed syllables
+(<span class="math inline">\(\sigma\)</span>))</li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><strong>intervocalic voicing</strong>: asa, asi, asu, afa, afi, afu,
+isa, isi, isu, ifi, ifa, ifu, usa, usi, usu, ufa, ufu, ufi</li>
+<li><strong>local assimilation</strong>: nb, np</li>
+<li><strong>local dissimilation</strong>: rar, rir, rur</li>
+<li><strong>penultimate stress</strong> <span
+class="math inline">\({{{L}}}\sigma{{{R}}}, \sigma
+\acute{\sigma}{{{R}}}, \sigma \sigma {{{R}}}, \acute{\sigma} \sigma
+\sigma\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>We have to forbid trigrams of the form <span
+class="math inline">\(xyz\)</span> where <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(z\)</span> are vowels and <span
+class="math inline">\(y\)</span> is a voiceless fricative. The exercise
+tells us that <span class="math inline">\(x\)</span> and <span
+class="math inline">\(z\)</span> can be <em>a</em>, <em>i</em>, or
+<em>u</em>, and <span class="math inline">\(y\)</span> can be <em>s</em>
+or <em>f</em>. After carrying out all possible substitutions of <span
+class="math inline">\(x\)</span>, <span
+class="math inline">\(y\)</span>, and <span
+class="math inline">\(z\)</span>, we get the list of forbidden trigrams
+above.</li>
+<li>If <em>n</em> must be <em>m</em> before <em>b</em> or <em>p</em>,
+this means that we can never have an <em>n</em> followed by <em>b</em>
+or <em>p</em> (because then we would have a case where <em>n</em> failed
+to turn into <em>m</em>). Hence we forbid the bigrams <em>nb</em> and
+<em>np</em>.</li>
+<li>The exercise describes local dissimilation as a process where
+<em>r</em> changes to <em>l</em> if it is followed by <em>Vr</em>. In
+terms of phonotactics, this means that we cannot have <em>r</em>
+followed by <em>Vr</em>. Replacing <em>V</em> with all possible choices
+for a vowel, we get the forbidden trigrams <em>rar</em>, <em>rir</em>,
+and <em>rur</em>.</li>
+<li>This one is tricky because we have to consider multiple cases. If a
+word has just one syllable, then it is not subject to the penultimate
+stress rule (which only applies to words with at least two syllables),
+and hence stress falls on the last syllable in this case. In other
+words, monosyllabic words must be of the form <span
+class="math inline">\(\acute{\sigma}\)</span>, whereas <span
+class="math inline">\(\sigma\)</span> is not allowed. If a word has
+exactly two syllables, then it must be of the form <span
+class="math inline">\(\acute{\sigma} \sigma\)</span> because the other
+option <span class="math inline">\(\sigma \acute{\sigma}\)</span> would
+violate the penultimate stress rule. And if a word has three or more
+syllables, then it must be of the form <span
+class="math inline">\(\sigma^+ \acute{\sigma} \sigma\)</span>. Based on
+this, we can deduce what must be forbidden: First, we do not want to
+allow words like <span class="math inline">\(\sigma\)</span>, so our
+grammar must contain the forbidden trigram <span
+class="math inline">\({{{L}}} \sigma {{{R}}}\)</span>. We also do not
+want to allow any word with at least two syllables where stress falls on
+the last syllable, and thus we add the forbidden trigram <span
+class="math inline">\(\sigma \acute{\sigma} {{{R}}}\)</span>. We do not
+want to allow any word that ends with two unstressed syllables, which we
+capture with the forbidden trigram <span class="math inline">\(\sigma
+\sigma {{{R}}}\)</span>. The combination of <span
+class="math inline">\(\sigma \acute{\sigma} {{{R}}}\)</span> and <span
+class="math inline">\(\sigma \sigma{{{R}}}\)</span> guarantees that if a
+word has at least two syllables, the last but one is stressed. But
+that’s not quite enough, we also have to ensure that this is the only
+syllable that is stressed. That is the same as saying that we do not to
+allow any word where the stressed syllable is followed by at least two
+unstressed syllables, and thus we also forbid the trigram <span
+class="math inline">\(\acute{\sigma} \sigma \sigma\)</span>. And that’s
+it, nothing else is required.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the following <span
+class="math inline">\(n\)</span>-grams, say how large it is depending on
+what one chooses as the basic symbols that <span
+class="math inline">\(n\)</span>-grams are built from. Possible choices
+for building blocks are typed characters, morphemes, or words. Not all
+choice may be appropriate in each case.</p>
+<ol type="1">
+<li><em>de-</em></li>
+<li><em>mpi</em></li>
+<li><em>John likes Mary</em></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><em>de-</em>: It could be a unigram consisting just of the morpheme
+<em>de-</em>, or a trigram that consists of the characters <em>d</em>,
+<em>e</em>, and a hyphen.</li>
+<li><em>mpi</em>: The only reasonable treatment here is as a trigram
+consisting of the characters <em>m</em>, <em>p</em>, and
+<em>i</em>.</li>
+<li><em>John likes Mary</em>: This could be a trigram that consists of
+the words <em>John</em>, <em>likes</em>, and <em>Mary</em>, or a 4-gram
+that consists of the morphemes <em>John</em>, <em>like</em>, <em>s</em>,
+and <em>Mary</em>, or a 15-gram that consists of a long sequence of
+letters and spaces.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Write both a positive and a negative grammar that each allow only
+strings of the form <em>ab</em>, <em>abab</em>, <em>ababab</em>,
+<em>abababab</em>, and so on (assume that all symbols are either
+<em>a</em> or <em>b</em>). Is one of the two grammars more succinct or
+general than the other? What if the set of symbols is larger,
+e.g. <em>a</em>, <em>b</em>, <em>c</em>, and <em>d</em>?</p>
+<div class="solution">
+<ul>
+<li><strong>positive grammar</strong>: <span
+class="math inline">\({{{L}}}a, b{{{R}}}, ab, ba\)</span></li>
+<li><strong>negative grammar</strong>: <span
+class="math inline">\({{{L}}}b, a{{{R}}}, aa, bb,
+{{{L}}}{{{R}}}\)</span></li>
+</ul>
+<p>The two grammars are very similar in size, the only difference is
+that the negative grammar also has to block the empty string. However,
+when the set of symbols gets larger, the positive grammar stays the same
+but the negative grammar will need more bigrams to rule out the illicit
+combinations.</p>
+</div>
+<div class="solution_explained">
+<p>The general pattern is that strings must start with <em>a</em>, must
+end with <em>b</em>, and that <em>a</em> and <em>b</em> must alternate.
+The positive grammar states this very directly with its bigrams <span
+class="math inline">\({{{L}}}a\)</span>, <span
+class="math inline">\(\mathit{ab}\)</span>, <span
+class="math inline">\(\mathit{ba}\)</span>, and <span
+class="math inline">\(b{{{R}}}\)</span>. The negative grammar, on the
+other hand, captures this more indirectly. For example: instead of
+“start with <em>a</em>”, the negative grammars says “start with a
+symbol” (<span class="math inline">\({{{L}}}{{{R}}}\)</span>) and “do
+not start with <em>b</em>” (<span
+class="math inline">\({{{L}}}b\)</span>). But if there’s more symbols
+than just <em>a</em> and <em>b</em>, the negative grammar also has to
+say “do not start with <em>c</em>” (<span
+class="math inline">\({{{L}}}c\)</span>), “do not start with <em>d</em>”
+(<span class="math inline">\({{{L}}}d\)</span>), and so on. As the
+number of symbols increases, more and more options need to be
+blocked.</p>
+<p>Quite generally, a negative grammar will be very large when the
+majority of logically possible combinations is impossible. In this case,
+a positive grammar is smaller. But on the flip side, if most
+combinations are allowed and only a small number need to be ruled out,
+the negative grammar will be smaller.</p>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the following phenomena, write a positive <span
+class="math inline">\(n\)</span>-gram grammar that handles it correctly.
+For some of them, you have to rephrase the phenomenon as a phonotactic
+constraint first.</p>
+<ul>
+<li><strong>intervocalic voicing</strong>: voiceless fricatives (assume
+<em>s</em> and <em>f</em>) may not occur between vowels (assume
+<em>a</em>, <em>i</em>, <em>u</em>)</li>
+<li><strong>local assimilation</strong>: <em>n</em> must be <em>m</em>
+before <em>b</em> or <em>p</em></li>
+<li><strong>local disimilation</strong>: <em>rVr</em> becomes
+<em>lVr</em>, where <em>V</em> is <em>a</em>, <em>i</em>, or
+<em>u</em></li>
+<li><strong>penultimate stress</strong>: in words with at least two
+syllables, stress falls on the last but one syllable (assume that words
+are strings of stress syllables (<span
+class="math inline">\(\acute{\sigma}\)</span>) and unstressed syllables
+(<span class="math inline">\(\sigma\)</span>))</li>
+</ul>
+<p>Once you’re done, contrast the positive grammars against the negative
+ones from an earlier exercise. Can you identify some general guidelines
+for when a positive grammar is preferable to a negative one?</p>
+<div class="solution">
+<p>This exercise requires a lot more assumptions than the one for
+negative grammars. The problem is that it is not enough to know how
+intervocalic voicing works, we also have to know what the rest of the
+language looks like. Consider the case of intervocalic voicing. With the
+negative grammar, it was enough to say that <em>s</em> and <em>f</em>
+may not occur between the vowels <em>a</em>, <em>i</em>, and <em>u</em>.
+With the positive grammar, we instead have to allow for every possible
+trigram except the ones where <em>s</em> or <em>f</em> occurs between
+<em>a</em>, <em>i</em> and <em>u</em>. But we do not actually know what
+the set of all possible trigrams is because the exercise does not
+specify the alphabet. If the alphabet contains only <em>a</em>,
+<em>i</em>, <em>u</em>, <em>s</em>, <em>f</em>, and <em>k</em>, then the
+set of possible trigrams is much smaller compared to an alphabet that
+also contains all the other consonants of English.</p>
+<p>For this reason, each answer must always specify the assumed
+alphabet. And ideally, this alphabet will be small to reduce the number
+of <em>n</em>-grams that need to be written down. Even then, though,
+these grammars will be very large. They contain all possible <span
+class="math inline">\(n\)</span>-grams except the ones that were listed
+in the negative grammar.</p>
+</div>
+</div>
+<div class="exercise">
+<p>English allows for <em>nature</em>, <em>natural</em>,
+<em>naturalize</em>, <em>denaturalize</em>, <em>naturalization</em>, and
+<em>denaturalization</em>, but not <em>denature</em> or any other
+misordered forms like <em>naturizalation</em> (actually there is a
+technical term <em>denature</em>, but it is not very common and we’ll
+exclude it here to keep the exercise simple). Write a grammar that
+generates all the well-formed forms but none of the ill-formed ones. It
+is up to you whether you want to use a positive or a negative grammar.
+If you use a negative grammar, it can be in the mixed format, with <span
+class="math inline">\(n\)</span>-grams of varying lengths.</p>
+<div class="solution">
+<p>A negative mixed grammar is the easiest option here. As our alphabet,
+we assume the morphemes <em>de-</em>, <em>nature</em>, <em>-al</em>,
+<em>-ize</em>, and <em>-ation</em>. The negative grammar then contains
+the following <span class="math inline">\(n\)</span>-grams:</p>
+<ol type="1">
+<li>You must start with <em>de-</em> or <em>nature</em>: ⋊ -al, ⋊ -ize,
+⋊ -ation</li>
+<li><em>de-</em> can only be followed by <em>nature</em>: de- de-, de-
+-al, de -ize, de -ation, de ⋉</li>
+<li><em>nature</em> can only be followed by <em>-al</em> or the end of
+the word: nature de-, nature nature, nature -ize, nature -ation</li>
+<li><em>-al</em> can only be followed by <em>-ize</em> or the end of the
+word: -al de-, -al nature, -al -al, -al -ation</li>
+<li><em>-ize</em> can only be followed by <em>-ation</em> or the end of
+the word: -ize -de, -ize nature, -ize -al, -ize -ize</li>
+<li><em>-ation</em> can only be followed by the end of the word: -ation
+-de, -ation nature, -ation -al, -ation -ize, -ation -ation</li>
+<li>Do not end in <em>denature</em> or <em>denatural</em>: de- nature ⋉,
+de- nature -al ⋉</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

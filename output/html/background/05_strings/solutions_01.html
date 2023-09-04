@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/style.css" />
+  <!-- Include this in HTML headers to activate MathJax. -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#parts-of-strings-solutions">Parts of strings
+(Solutions)</a>
+<ul>
+<li><a href="#substrings">Substrings</a></li>
+<li><a href="#subsequence">Subsequence</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="parts-of-strings-solutions">Parts of strings (Solutions)</h1>
+<h2 id="substrings">Substrings</h2>
+<div class="exercise">
+<p>For each one of the gaps below, enter <span
+class="math inline">\(\sqsubseteq\)</span>, <span
+class="math inline">\(\sqsubsetneq\)</span>, or <span
+class="math inline">\(\not\sqsubseteq\)</span> depending on whether the
+first string is a substring of the second string, a proper substring, or
+neither:</p>
+<ol type="1">
+<li><span class="math inline">\(\mathit{a} \_
+\mathit{aaaa}\)</span></li>
+<li><span class="math inline">\(\mathit{a} \_ \mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\_ \mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\_ \varepsilon\)</span></li>
+<li><span class="math inline">\(\mathit{aa} \_
+\mathit{abbbca}\)</span></li>
+<li><span class="math inline">\(\mathit{bc} \_
+\mathit{abbbca}\)</span></li>
+<li><span class="math inline">\(\mathit{cb} \_
+\mathit{abbbca}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\mathit{a} \sqsubsetneq
+\mathit{aaaa}\)</span></li>
+<li><span class="math inline">\(\mathit{a} \not\sqsubseteq
+\mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\sqsubsetneq
+\mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\sqsubseteq
+\varepsilon\)</span></li>
+<li><span class="math inline">\(\mathit{aa} \not\sqsubseteq
+\mathit{abbbca}\)</span></li>
+<li><span class="math inline">\(\mathit{bc} \sqsubsetneq
+\mathit{abbbca}\)</span></li>
+<li><span class="math inline">\(\mathit{cb} \not\sqsubseteq
+\mathit{abbbca}\)</span></li>
+</ol>
+</div>
+</div>
+<h2 id="subsequence">Subsequence</h2>
+<div class="exercise">
+<p>For each one of the gaps below, enter <span
+class="math inline">\(\sqsubseteq\)</span>, <span
+class="math inline">\(\sqsubsetneq\)</span>, or <span
+class="math inline">\(\not\sqsubseteq\)</span> depending on whether the
+first string is a subsequence of the second string, a proper
+subsequence, or neither:</p>
+<ol type="1">
+<li><span class="math inline">\(\mathit{a} \_
+\mathit{aaaa}\)</span></li>
+<li><span class="math inline">\(\mathit{a} \_ \mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\_ \mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\_ \varepsilon\)</span></li>
+<li><span class="math inline">\(\mathit{aa} \_
+\mathit{abbbca}\)</span></li>
+<li><span class="math inline">\(\mathit{bc} \_
+\mathit{abbbca}\)</span></li>
+<li><span class="math inline">\(\mathit{cb} \_
+\mathit{abbbca}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\mathit{a} \sqsubsetneq
+\mathit{aaaa}\)</span></li>
+<li><span class="math inline">\(\mathit{a} \not\sqsubseteq
+\mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\sqsubsetneq
+\mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\sqsubseteq
+\varepsilon\)</span></li>
+<li><span class="math inline">\(\mathit{aa} \sqsubsetneq
+\mathit{abbbca}\)</span></li>
+<li><span class="math inline">\(\mathit{bc} \sqsubsetneq
+\mathit{abbbca}\)</span></li>
+<li><span class="math inline">\(\mathit{cb} \not\sqsubseteq
+\mathit{abbbca}\)</span></li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Say whether the following is True or False: Every substring of some
+string <span class="math inline">\(s\)</span> is also a subsequence of
+<span class="math inline">\(s\)</span>, but not the other way round.
+Justify your answer.</p>
+<div class="solution">
+<p>This is correct. Suppose <span class="math inline">\(u
+\mathrel{\mathop:}=u_1 \cdots u_n\)</span> is a substring of some string
+<span class="math inline">\(s\)</span>. Then it must be the case that
+<span class="math inline">\(u_1\)</span> appears before <span
+class="math inline">\(u_2, u_3, \ldots, u_n\)</span>, <span
+class="math inline">\(u_2\)</span> appears before <span
+class="math inline">\(u_3, \ldots, u_n\)</span>, and so on. But this is
+all that is required for <span class="math inline">\(u_1 \cdots
+u_n\)</span> to be a subsequence of <span
+class="math inline">\(s\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
