@@ -102,6 +102,7 @@ PDF_BOOK = PDFDIR / "full-book.pdf"
 
 # CSS
 CSS_NAME = "style.css"
+CSS_FILE = Path("includes/style.css")
 CSS_SRC = Path("includes") / CSS_NAME
 CSS_DEST = HTMLDIR / CSS_NAME
 
@@ -445,7 +446,7 @@ def task_html_sections():
         outfile = HTMLDIR / infile.relative_to(SRCDIR).with_suffix(".html")
         cmd = (
             f"pandoc -t html {PANDOC_OPTS} {HTML_OPTS}"
-            f" -c /{CSS_NAME}"
+            f" --css={CSS_FILE} --self-contained --standalone"
             f" {infile} -o {outfile}"
         )
         yield {
