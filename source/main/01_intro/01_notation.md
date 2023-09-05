@@ -1,3 +1,7 @@
+---
+pagetitle: Reading mathematics
+---
+
 # Reading mathematics
 
 While these materials are designed to be as approachable as possible, a certain mathematical style of writing will be indispensable.

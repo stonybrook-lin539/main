@@ -1,3 +1,7 @@
+---
+pagetitle: Mathematical elegance
+---
+
 # Mathematical elegance
 
 Mathematics is a very elegant enterprise, but it takes some expertise to appreciate that elegance.

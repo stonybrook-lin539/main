@@ -1,3 +1,7 @@
+---
+pagetitle: How to use these notes
+---
+
 # How to use these notes
 
 Since you're reading this, I assume that you already know how to open the lecture notes.
