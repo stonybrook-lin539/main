@@ -1,3 +1,7 @@
+---
+pagetitle: Positive n-gram grammars
+---
+
 # Positive $n$-gram grammars
 
 :::prereqs

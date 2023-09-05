@@ -1,3 +1,8 @@
+---
+pagetitle: Stop word removal as a function
+---
+
+
 # Stop word removal as a function
 
 :::prereqs

@@ -1,3 +1,7 @@
+---
+pagetitle: Analyzing negative n-gram grammars
+---
+
 # Analyzing negative $n$-gram grammars
 
 In the previous unit, we entertained the idea that natural language phonotactics can be described in terms of a collection of forbidden sound sequences.

@@ -1,3 +1,7 @@
+---
+pagetitle: Formal definition and proof of the normal form theorem
+---
+
 # Formal definition and proof of the normal form theorem
 
 :::prereqs

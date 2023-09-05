@@ -1,3 +1,8 @@
+---
+pagetitle: >-
+    Sets: The Basics
+---
+
 # Sets: The basics
 
 Sets are the fundamental building block of modern mathematics.

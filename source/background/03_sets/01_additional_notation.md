@@ -1,3 +1,8 @@
+---
+pagetitle: >-
+    Sets: Additional notation
+---
+
 # Sets: Additional notation
 
 :::prereqs

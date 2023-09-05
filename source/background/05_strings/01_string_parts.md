@@ -1,3 +1,7 @@
+---
+pagetitle: Parts of strings
+---
+
 # Parts of strings
 
 ## Substrings

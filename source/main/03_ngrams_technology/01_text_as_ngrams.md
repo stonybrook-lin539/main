@@ -1,3 +1,7 @@
+---
+pagetitle: An n-gram model of text
+---
+
 # An $n$-gram model of text
 
 :::prereqs

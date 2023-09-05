@@ -1,4 +1,9 @@
-# Notation: Big operators
+---
+pagetitle: >-
+    Notation: Big operators
+---
+
+# Notation: Big operators (Solutions)
 
 ::: exercise
 Write each one of the following expressions as a formula with the addition operator $+$.

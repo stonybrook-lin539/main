@@ -1,3 +1,7 @@
+---
+pagetitle: Succinctness and choosing between grammars
+---
+
 # Succinctness and choosing between grammars
 
 :::prereqs

@@ -1,4 +1,8 @@
-# Exercises with n-gram grammars
+---
+pagetitle: 100 exercises with n-gram grammars
+---
+
+# 100 exercises with n-gram grammars
 
 ::: exercise
 

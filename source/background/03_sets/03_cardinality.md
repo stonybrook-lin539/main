@@ -1,3 +1,7 @@
+---
+pagetitle: Cardinality
+---
+
 # Cardinality
 
 :::prereqs

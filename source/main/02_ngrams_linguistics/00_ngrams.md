@@ -1,3 +1,7 @@
+---
+pagetitle: N-grams models of grammaticality
+---
+
 # N-gram models of grammaticality
 
 This unit presents a very simple model of language.

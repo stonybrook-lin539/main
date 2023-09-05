@@ -1,3 +1,8 @@
+---
+pagetitle: >-
+    Strings: Basic notation
+---
+
 # Strings: Basic notation
 
 :::prereqs

@@ -1,3 +1,8 @@
+---
+pagetitle: >-
+    Proof: Equivalence of positive and negative grammars
+---
+
 # Proof: Equivalence of positive and negative grammars
 
 :::prereqs

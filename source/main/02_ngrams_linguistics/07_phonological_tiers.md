@@ -1,4 +1,9 @@
-# Stop word removal ~ phonological tiers
+---
+pagetitle: >-
+    Making n-grams more powerful: Phonological tiers
+---
+
+# Making n-grams more powerful: Phonological tiers
 
 We started out this unit with $n$-gram grammars as a basic model for studying the linguistic domains of phonotactics and morphotactics, i.e. the rules that govern the arrangement of sounds and parts of word like *un-*, *re-*, *-ly*, *-ize*, *-ation*, *-s*, and so on.
 After that, we switched to more applied issues and the bag-of-words model.

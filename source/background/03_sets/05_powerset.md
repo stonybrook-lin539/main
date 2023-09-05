@@ -1,3 +1,7 @@
+---
+pagetitle: The powerset
+---
+
 # The Powerset
 
 :::prereqs

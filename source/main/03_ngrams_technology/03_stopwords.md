@@ -1,3 +1,7 @@
+---
+pagetitle: Dealing with stop words
+---
+
 # Dealing with stop words
 
 ## Stop words: The intuition

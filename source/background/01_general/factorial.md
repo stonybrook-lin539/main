@@ -1,3 +1,7 @@
+---
+pagetitle: Factorial
+---
+
 # Factorial
 
 Given a natural number $n \geq 1$, its **factorial** $n!$ is defined in a recursive fashion:

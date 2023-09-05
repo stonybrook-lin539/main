@@ -1,3 +1,7 @@
+---
+pagetitle: Comparing sets
+---
+
 # Comparing sets
 
 :::prereqs

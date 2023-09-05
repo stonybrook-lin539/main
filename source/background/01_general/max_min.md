@@ -1,3 +1,7 @@
+---
+pagetitle: Picking maxima and minima
+---
+
 # Picking maxima and minima
 
 Four commonly encountered functions are $\max$, $\min$, $\mathrm{argmax}$, and $\mathrm{argmin}$.

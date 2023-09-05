@@ -1,3 +1,8 @@
+---
+pagetitle: >-
+    Set-of-words revisited: adding counts
+---
+
 # Set-of-words revisited: adding counts
 
 :::prereqs
