@@ -10,7 +10,7 @@ import yaml
 SRCDIR = Path("source")
 
 print("<div class=\"site-toc\">")
-for part in ("main", "background"):
+for part in ("main", "background", "exercises"):
     partdir = SRCDIR / part
     partmeta = partdir / "metadata.yaml"
     with open(partmeta, 'r') as file:

@@ -1,8 +1,8 @@
 ---
-pagetitle: 1000 exercises with n-gram grammars
+pagetitle: 1000 automatically generated exercises with n-gram grammars
 ---
 
-# 1000 exercises with n-gram grammars
+# 1000 automatically generated exercises with n-gram grammars
 
 ::: exercise
 

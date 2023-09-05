@@ -43,12 +43,15 @@ TEX_EXT = ".tex"
 SRCDIR = Path("source")
 MAIN_SRCDIR = SRCDIR / "main"
 BG_SRCDIR = SRCDIR / "background"
+EX_SRCDIR = SRCDIR / "exercises"
 
 MAIN_SRCFILES = sorted(f for f in MAIN_SRCDIR.glob("**/*")
                        if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
 BG_SRCFILES = sorted(f for f in BG_SRCDIR.glob("**/*")
                      if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
-ALL_SRCFILES = [f for f in chain(MAIN_SRCFILES, BG_SRCFILES)]
+EX_SRCFILES = sorted(f for f in BG_SRCDIR.glob("**/*")
+                     if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
+ALL_SRCFILES = list(chain(MAIN_SRCFILES, BG_SRCFILES, EX_SRCFILES))
 
 SRC_MD = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in MD_EXTS
                 and "old" not in f.parts
@@ -64,7 +67,9 @@ MAIN_CHAPS = sorted(d.relative_to(SRCDIR)
                     for d in MAIN_SRCDIR.glob("*") if d.is_dir())
 BG_CHAPS = sorted(d.relative_to(SRCDIR)
                   for d in BG_SRCDIR.glob("*") if d.is_dir())
-ALL_CHAPS = MAIN_CHAPS + BG_CHAPS
+EX_CHAPS = sorted(d.relative_to(SRCDIR)
+                  for d in EX_SRCDIR.glob("*") if d.is_dir())
+ALL_CHAPS = MAIN_CHAPS + BG_CHAPS + EX_CHAPS
 
 TESTDIR = Path("test/demo")
 TEST_MD = sorted(f for f in TESTDIR.glob('*') if f.suffix in MD_EXTS)
