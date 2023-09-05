@@ -1,3 +1,10 @@
+---
+pagetitle: >-
+    Extra exercises on n-grams
+---
+
+# Extra exercises on n-grams
+
 ::: exercise
 Write a negative grammar $G_1$ with alphabet $\setof{a,b,c}$ such that $L(G)$ contains all strings that start and end with an $a$.
 Then write a another grammar $G_2$ over the same alphabet that only generates strings where each $a$ is immediately followed by a $b$.

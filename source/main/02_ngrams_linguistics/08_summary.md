@@ -1,4 +1,9 @@
-# Summary
+---
+pagetitle: >-
+    Summary of n-grams in linguistics
+---
+
+# Summary of n-grams in linguistics
 
 This unit introduced $n$-grams as a fundamental concepts of computational and theoretical linguistics alike.
 
