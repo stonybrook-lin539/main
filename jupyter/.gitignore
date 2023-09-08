@@ -1,7 +1,0 @@
-# Ignore everything in this directory
-*
-# except
-!.gitignore
-# and whatever is in the custom subfolder
-!custom
-!custom/**/

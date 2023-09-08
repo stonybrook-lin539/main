@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Factorial</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#factorial">Factorial</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="factorial">Factorial</h1>
+<p>Given a natural number <span class="math inline">\(n \geq 1\)</span>,
+its <strong>factorial</strong> <span class="math inline">\(n!\)</span>
+is defined in a recursive fashion:</p>
+<ul>
+<li><span class="math inline">\(1! = 1\)</span>, and</li>
+<li><span class="math inline">\(n! = n \cdot (n - 1)!\)</span>.</li>
+</ul>
+<div class="example">
+<p>The factorial of <span class="math inline">\(5\)</span> is <span
+class="math inline">\(120\)</span> because</p>
+<ul>
+<li><span class="math inline">\(5! = 5 \cdot 4!\)</span></li>
+<li><span class="math inline">\(4! = 4 \cdot 3!\)</span></li>
+<li><span class="math inline">\(3! = 3 \cdot 2!\)</span></li>
+<li><span class="math inline">\(2! = 2 \cdot 1!\)</span></li>
+<li><span class="math inline">\(1! = 1\)</span></li>
+</ul>
+<p>So <span class="math inline">\(5!\)</span> reduces to <span
+class="math inline">\(5 \cdot 4 \cdot 3 \cdot 2 \cdot 1\)</span></p>
+</div>
+<p>The factorial often appears in combinatorial problems. For instance,
+if you have <span class="math inline">\(n\)</span> distinct elements,
+then they can be arranged in <span class="math inline">\(n!\)</span>
+ways.</p>
+<div class="example">
+<p>There are <span class="math inline">\(3! = 6\)</span> ways to order
+<span class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and <span
+class="math inline">\(c\)</span>:</p>
+<ul>
+<li><span class="math inline">\(abc\)</span></li>
+<li><span class="math inline">\(acb\)</span></li>
+<li><span class="math inline">\(bac\)</span></li>
+<li><span class="math inline">\(bca\)</span></li>
+<li><span class="math inline">\(cab\)</span></li>
+<li><span class="math inline">\(cba\)</span></li>
+</ul>
+</div>
+<p>The factorial function grows very fast, even faster than an
+exponential function.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span
+class="math inline">\(n\)</span></th>
+<th style="text-align: right;"><span
+class="math inline">\(2^n\)</span></th>
+<th style="text-align: right;"><span
+class="math inline">\(n!\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">120</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">720</td>
+</tr>
+</tbody>
+</table>
+<p>Even a very fast growing exponential like <span
+class="math inline">\(10,000^n\)</span> will eventually grow more slowly
+than the factorial, even though it grows more rapidly for small values
+of <span class="math inline">\(n\)</span> (e.g. <span
+class="math inline">\(10,000^{10} = 10^{4^{10}} = 10^{40}\)</span> is
+much larger than <span class="math inline">\(10! =
+3,628,800\)</span>).</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Comparing sets</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#comparing-sets">Comparing sets</a>
+<ul>
+<li><a href="#subset-and-superset">Subset and superset</a></li>
+<li><a href="#identity">Identity</a></li>
+<li><a href="#proper-subset-and-superset">Proper subset and
+superset</a></li>
+<li><a href="#disjoint-and-incomparable-sets">Disjoint and incomparable
+sets</a></li>
+<li><a href="#remarks-on-notation">Remarks on notation</a>
+<ul>
+<li><a href="#similarity-to-leq-and-geq">Similarity to <span
+class="math inline">\(\leq\)</span> and <span
+class="math inline">\(\geq\)</span></a></li>
+<li><a href="#a-note-on-subset">A note on <span
+class="math inline">\(\subset\)</span></a></li>
+<li><a href="#and-then-theres-notsubseteq">And then there’s <span
+class="math inline">\(\not\subseteq\)</span></a></li>
+</ul></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="comparing-sets">Comparing sets</h1>
+<div class="prereqs">
+<ul>
+<li>sets (notation, operations, cardinality)</li>
+</ul>
+</div>
+<p>Two sets can stand in several distinct relations to each other:</p>
+<ol type="1">
+<li>subset</li>
+<li>superset</li>
+<li>identity</li>
+<li>proper subset</li>
+<li>proper superset</li>
+<li>disjoint</li>
+<li>incomparable</li>
+</ol>
+<h2 id="subset-and-superset">Subset and superset</h2>
+<p>Given two sets <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>, <span class="math inline">\(A\)</span>
+is a <strong>subset</strong> of <span class="math inline">\(B\)</span>
+iff every element of <span class="math inline">\(A\)</span> is also an
+element of <span class="math inline">\(B\)</span>. In this case, one
+writes <span class="math inline">\(A \subseteq B\)</span>. For example,
+<span class="math inline">\(\left \{ a,b \right \} \subseteq \left \{
+a,b,c,d \right \}\)</span>. Alternatively, one also says in this case
+that <span class="math inline">\(B\)</span> is a
+<strong>superset</strong> of <span class="math inline">\(A\)</span>
+(written <span class="math inline">\(B \supseteq A\)</span>).</p>
+<div class="example">
+<p>A transitive verb is a verb that occurs with a subject and an object:
+<em>devour</em>, <em>contradict</em>, <em>wager</em>, <em>flummox</em>,
+and many more. Not all verbs are transitive, e.g. <em>sleep</em> or
+<em>give</em>. Suppose <span class="math inline">\(T\)</span> is the set
+of all English transitive verbs, whereas <span
+class="math inline">\(V\)</span> is the set of all English verbs. Since
+every transitive verb is a verb, but no the other way round, we have
+<span class="math inline">\(T \subseteq V\)</span>.</p>
+</div>
+<p>By the definition of subset, every set <span
+class="math inline">\(S\)</span> is a subset of itself. The reasoning is
+simple. If <span class="math inline">\(S \subseteq S\)</span>, then
+every member of <span class="math inline">\(S\)</span> must be a member
+of <span class="math inline">\(S\)</span>, which is obviously true (how
+could it be otherwise?).</p>
+<p>In addition, the empty set is a subset of every set, including
+itself. This is because the empty set contains no elements at all, so it
+trivially holds that every member of the empty set is a member of every
+set.</p>
+<div class="exercise">
+<p>Complete the table below.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">B</th>
+<th style="text-align: left;"><span class="math inline">\(A \subseteq
+B\)</span>?</th>
+<th style="text-align: left;"><span class="math inline">\(A \supseteq
+B\)</span>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{
+a,a,b,c \right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ b
+\right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left
+\{  \right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a
+\right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{
+a,a,b,b \right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="exercise">
+<p>Say whether the following statement is true or false and justify your
+answer: for any two sets <span class="math inline">\(A\)</span> and
+<span class="math inline">\(B\)</span>, <span class="math inline">\(A
+\subseteq B\)</span> iff <span class="math inline">\(A \cap B =
+A\)</span>.</p>
+</div>
+<h2 id="identity">Identity</h2>
+<p>Two sets are <em>identical</em> iff each one is a subset of the
+other. In formal terms, <span class="math inline">\(A = B\)</span> iff
+both <span class="math inline">\(A \subseteq B\)</span> and <span
+class="math inline">\(B \subseteq A\)</span> hold. The reason for this
+is again simple:</p>
+<ol type="1">
+<li><p>If two sets <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are identical, then they must contain
+exactly the same elements. But then every member of <span
+class="math inline">\(A\)</span> is a member of <span
+class="math inline">\(B\)</span>, which implies <span
+class="math inline">\(A \subseteq B\)</span>. And it’s also the case
+that every member of <span class="math inline">\(B\)</span> is a member
+of <span class="math inline">\(A\)</span>, so that we have <span
+class="math inline">\(B \subseteq A\)</span>, too.</p></li>
+<li><p>In the other direction, if <span class="math inline">\(A
+\subseteq B\)</span> and <span class="math inline">\(B \subseteq
+A\)</span>, then every member of <span class="math inline">\(A\)</span>
+is a member of <span class="math inline">\(B\)</span>, and every member
+of <span class="math inline">\(B\)</span> is a member of <span
+class="math inline">\(A\)</span>. But that can only happen if the sets
+are identical.</p></li>
+</ol>
+<h2 id="proper-subset-and-superset">Proper subset and superset</h2>
+<p>We call <span class="math inline">\(A\)</span> a <strong>proper
+subset</strong> of <span class="math inline">\(B\)</span> (<span
+class="math inline">\(A \subsetneq B\)</span>) iff <span
+class="math inline">\(A\)</span> is a subset of <span
+class="math inline">\(B\)</span> but <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are not identical. In other words,
+every element of <span class="math inline">\(A\)</span> is a member of
+<span class="math inline">\(B\)</span>, but not every element of <span
+class="math inline">\(B\)</span> is a member of <span
+class="math inline">\(A\)</span>. We also say that <span
+class="math inline">\(B\)</span> is a <strong>proper superset</strong>
+of <span class="math inline">\(A\)</span> (<span class="math inline">\(B
+\supsetneq A\)</span>).</p>
+<div class="example">
+<p>Given our previous discussion, the set <span
+class="math inline">\(T\)</span> of transitive verbs is proper subset of
+the set <span class="math inline">\(V\)</span> of verbs because it is a
+subset but not every verb is a transitive verb. In other words, <span
+class="math inline">\(T \subseteq V\)</span> yet <span
+class="math inline">\(T \neq V\)</span>. Hence <span
+class="math inline">\(T \subsetneq V\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Fill in <span class="math inline">\(=\)</span>, <span
+class="math inline">\(\subsetneq\)</span>, or <span
+class="math inline">\(\supsetneq\)</span> as appropriate.</p>
+<ul>
+<li><span class="math inline">\(\left \{ a,b \right \} \_ \left \{ a
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ a,a,b,c \right \} \_ \left \{
+b,b,a,c \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \_ \left \{ n +
+5 \mid n \in \left \{ -4, -3 \right \} \right \}\)</span></li>
+<li><span class="math inline">\(\emptyset \_ \left \{ a \right
+\}\)</span></li>
+<li><span class="math inline">\(\emptyset \_ \left \{ \emptyset \right
+\}\)</span></li>
+</ul>
+</div>
+<h2 id="disjoint-and-incomparable-sets">Disjoint and incomparable
+sets</h2>
+<p>If there are two sets <span class="math inline">\(A\)</span> and
+<span class="math inline">\(B\)</span> such that neither <span
+class="math inline">\(A \subseteq B\)</span> nor <span
+class="math inline">\(B \subseteq A\)</span>, then there can be only two
+scenarios. One option is that <span class="math inline">\(A\)</span> and
+<span class="math inline">\(B\)</span> are <strong>disjoint</strong>,
+which means that there is no <span class="math inline">\(x\)</span> such
+that both <span class="math inline">\(x \in A\)</span> and <span
+class="math inline">\(x \in B\)</span> — the two sets have absolutely no
+overlap. In mathematical terms, <span class="math inline">\(A \cap B =
+\emptyset\)</span>. Alternatively, <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> might be <strong>incomparable</strong>.
+In this case the two sets have a limited overlap such that there is at
+least one <span class="math inline">\(x\)</span> with both <span
+class="math inline">\(x \in A\)</span> and <span class="math inline">\(x
+\in B\)</span>, but there are also <span class="math inline">\(a \in
+A\)</span> and <span class="math inline">\(b \in B\)</span> such that
+<span class="math inline">\(a \notin B\)</span> and <span
+class="math inline">\(b \notin A\)</span>.</p>
+<div class="example">
+<p>The set of English prepositions (<em>on</em>, <em>to</em>,
+<em>at</em>, …) and the set of English determiners (<em>a</em>,
+<em>the</em>, <em>this</em>, …) have not a single word in common and
+thus are disjoint. The set of English verbs and the set of English
+nouns, on the other hand, are incomparable. Many words like
+<em>water</em>, <em>cut</em>, <em>fall</em>, <em>love</em>,
+<em>try</em>, <em>judge</em>, <em>beat</em>, or <em>cross</em> can be
+used as nouns or verbs, but many other words are used only as nouns
+(<em>tree</em>, <em>waterfall</em>, <em>idea</em>, <em>Ferrari</em>) or
+only as verbs (<em>write</em>, <em>convince</em>,
+<em>admonish</em>).</p>
+</div>
+<p>Remember that it is possible for both <span class="math inline">\(A
+\subseteq B\)</span> and <span class="math inline">\(B \subseteq
+A\)</span> to be true — in this case, <span class="math inline">\(A =
+B\)</span>. But there can be no <span class="math inline">\(A\)</span>
+and <span class="math inline">\(B\)</span> such that <span
+class="math inline">\(A \subsetneq B\)</span> and <span
+class="math inline">\(B \subsetneq A\)</span>.</p>
+<div class="exercise">
+<p>For each line in the table, say whether the sets are disjoint,
+incomparable, identical, or stand in a proper subset/superset
+relation.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left \{ 2,5,8
+\right \}\)</span></td>
+<td style="text-align: left;">the set of all odd numbers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b,c
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cup (\left \{ a,c \right \} - \left \{ b,d \right
+\})\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span
+class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cap (\left \{ a,c \right \} - \left \{ b,d \right
+\})\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span
+class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b
+\right \} \cap (\left \{ a,c \right \} \cap \left \{ b,d \right
+\})\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="remarks-on-notation">Remarks on notation</h2>
+<h3 id="similarity-to-leq-and-geq">Similarity to <span
+class="math inline">\(\leq\)</span> and <span
+class="math inline">\(\geq\)</span></h3>
+<p>Students sometimes confuse the symbols <span
+class="math inline">\(\subseteq\)</span> and <span
+class="math inline">\(\supseteq\)</span>. To avoid that, just keep in
+mind that these symbols are modeled after <span
+class="math inline">\(\leq\)</span> and <span
+class="math inline">\(\geq\)</span> for numbers. Just like <span
+class="math inline">\(x \leq y\)</span> means that <span
+class="math inline">\(x\)</span> is at most as large as <span
+class="math inline">\(y\)</span>, <span class="math inline">\(x
+\subseteq y\)</span> tells us that <span
+class="math inline">\(x\)</span> contains at most all the elements of
+<span class="math inline">\(y\)</span>, and nothing else.</p>
+<h3 id="a-note-on-subset">A note on <span
+class="math inline">\(\subset\)</span></h3>
+<p>You may occasionally come across the symbol <span
+class="math inline">\(\subset\)</span> in other math texts. Some authors
+use <span class="math inline">\(\subset\)</span> instead of <span
+class="math inline">\(\subseteq\)</span>, while others use it for <span
+class="math inline">\(\subsetneq\)</span>. As you might imagine, this
+can be very confusing for the reader, so it’s best to avoid <span
+class="math inline">\(\subset\)</span> and use <span
+class="math inline">\(\subseteq\)</span> and <span
+class="math inline">\(\subsetneq\)</span> instead.</p>
+<h3 id="and-then-theres-notsubseteq">And then there’s <span
+class="math inline">\(\not\subseteq\)</span></h3>
+<p>Sometimes we might just want to say that <span
+class="math inline">\(A\)</span> is not a subset of <span
+class="math inline">\(B\)</span>. We could paraphrase this, as in “it is
+not the case that <span class="math inline">\(A \subseteq B\)</span>”.
+But mathematicians like to use symbols for common phrases, so there’s a
+dedicated symbol for this: <span
+class="math inline">\(\not\subseteq\)</span>. Careful, do not confuse
+<span class="math inline">\(\not\subseteq\)</span> with <span
+class="math inline">\(\subsetneq\)</span>.</p>
+<p>Here’s an overview of all the relevant notation:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Formula</strong></th>
+<th style="text-align: left;"><strong>means…</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A \subseteq
+B\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(A\)</span> is
+a subset of <span class="math inline">\(B\)</span> (holds even if <span
+class="math inline">\(A = B\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(A \subsetneq
+B\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(A\)</span> is
+a proper subset of <span class="math inline">\(B\)</span> (<span
+class="math inline">\(A \subseteq B\)</span> and <span
+class="math inline">\(A \neq B\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A
+\not\subseteq B\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(A\)</span> is
+not a subset of <span class="math inline">\(B\)</span> (<span
+class="math inline">\(A \ni a \notin B\)</span> for some <span
+class="math inline">\(a\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p>As you might have expected, there’s corresponding counterparts for
+superset: <span class="math inline">\(\supseteq\)</span>, <span
+class="math inline">\(\supsetneq\)</span>, <span
+class="math inline">\(\not\supseteq\)</span>. But there is no
+standardized symbol for sets being incomparable, although some authors
+like to use <span class="math inline">\(\sim\)</span> for this
+purpose.</p>
+<h2 id="recap">Recap</h2>
+<div class="definition">
+<p>Let <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> be arbitrary sets. Then <span
+class="math inline">\(A\)</span> is a <strong>subset</strong> of <span
+class="math inline">\(B\)</span> (<span class="math inline">\(A
+\subseteq B\)</span>) iff every member of <span
+class="math inline">\(A\)</span> is a member of <span
+class="math inline">\(B\)</span>. In this case, <span
+class="math inline">\(B\)</span> is a <strong>superset</strong> of <span
+class="math inline">\(A\)</span> (<span class="math inline">\(B
+\supseteq A\)</span>).</p>
+</div>
+<div class="definition">
+<p>For <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> arbitrary sets, <span
+class="math inline">\(A\)</span> is a <strong>proper subset</strong> of
+<span class="math inline">\(B\)</span> (<span class="math inline">\(A
+\subsetneq B\)</span>) iff <span class="math inline">\(A \subseteq
+B\)</span> and there is a <span class="math inline">\(b \in B\)</span>
+such that <span class="math inline">\(b \notin A\)</span>. Similarly,
+<span class="math inline">\(B\)</span> is a <strong>proper
+superset</strong> of <span class="math inline">\(A\)</span> (<span
+class="math inline">\(B \supsetneq A\)</span>).</p>
+</div>
+<div class="definition">
+<p>Let <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> be arbitrary sets. Then <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are:</p>
+<ul>
+<li><strong>identical</strong> iff <span class="math inline">\(A
+\subseteq B\)</span> and <span class="math inline">\(B \subseteq
+A\)</span> both hold,</li>
+<li><strong>disjoint</strong> iff <span class="math inline">\(A \cap B =
+\emptyset\)</span>,</li>
+<li><strong>incomparable</strong> iff <span class="math inline">\(A
+\not\subseteq B\)</span> and <span class="math inline">\(B \not\subseteq
+A\)</span> and <span class="math inline">\(A \cap B \neq
+\emptyset\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
