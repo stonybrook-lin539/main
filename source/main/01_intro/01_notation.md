@@ -72,7 +72,7 @@ Revolutionary proofs may only span a few pages yet take trained mathematicians m
 Math takes time, so do not rush.
 As soon as you internalize this simple rule, symbol shock will be much less of a problem.
 When a new symbol is introduced, pause and commit it to memory.
-When you see a complex formula, work through it symbol by symbol until you understand what's going on here.
+When you see a complex formula, work through it symbol by symbol until you understand what's going on.
 Just. Take. Your. Time.
 
 This is actually why I think that math is easier to learn from a book than a class.
@@ -86,7 +86,7 @@ With time, you will get much better at reading math and it will take you much le
 
 - Assign colors to specific symbols and types of objects.
   In my personal experience, I can tell pretty easily how well I understand a paper based on how I would color its math.
-  At first, it's all just black, but as I get a deeper understanding of the objects and how they hang together I construct an internal coloring system for myself.
+  At first, it's all just black, but as I gain a deeper understanding of the objects and how they hang together I construct an internal coloring system for myself.
   So grammars are blue, automata green, certain variables that keep reoccurring are purple and teal, and so on.
   If you use the pdf versions of the units, you can literally add colors to all the symbols, and that way the logic of the pages will reveal itself more clearly to you.
 
@@ -125,8 +125,9 @@ For the uninitiated reader, it is easy to miss something important by assuming t
 
 Another common pitfall arises with statements like "Every blue dragon is a chain smoker".
 Is this claim true or false?
-A linguist will tell you that it is neither, and instead contains a presupposition violation (yes, linguists like their fancy terms, too) because the sentence assumes that blue dragons exist, which they obviously do not.
-A mathematician doesn't care for such linguistic subtleties and instead considers the statement true because there exists no blue dragon that isn't a chain smoker.
+A linguist will tell you that it is neither, and instead contains a presupposition violation (yes, linguists like their fancy terms, too).
+It is a presupposition violation because the sentence assumes that blue dragons exist, which they obviously do not.
+A mathematician doesn't care for such linguistic subtleties and instead considers the statement true because there is no counterexample to prove it wrong: there exists no blue dragon that isn't a chain smoker, and hence "Every blue dragon is a chain smoker" is true.
 That is perfectly fine for mathematics, but it's very different from how a layperson would interpret the sentence.
 Again, when dealing with math you shouldn't assume anything that isn't stated explicitly.
 
@@ -166,7 +167,7 @@ Hence the natural numbers with division is not an algebra.
 If all those examples got you confused because you don't quite remember the difference between natural numbers and integers, or what exactly a logarithm is, don't worry.
 For most of this class, we actually won't be using the things you heard about in high school and have forgotten since then.
 Where we do need them, they're slowly introduced like any other new concept.
-So don't worry about this and focus on the important insight here: whenever you see an abstract definition, think about what kind of more concrete objects (do not) fit the definition.
+So don't worry about this and focus on the important insight here: whenever you see an abstract definition, think about what kind of more concrete objects would (not) fit the definition.
 
 ### Implication and equivalence are not the same
 
@@ -196,7 +197,7 @@ Every unmarried man is a bachelor, and every bachelor (in the non-academic sense
     - try to understand the notation
 - Definitions
     - read them carefully
-    - think about what (does not) fit the definition
+    - think about what would (not) fit the definition
     - think about why this particular definition was chosen, rather than some alternative
 - Writing style
     - Don't assume implicatures.

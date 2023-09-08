@@ -62,7 +62,7 @@ We will see a concrete example in a moment, but let's first focus on the specifi
 
 - **Guarantees**  
   Of course a proof may contain mistakes, just like a program may contain bugs.
-  But mistakes in a proof are easier to spot than bugs in a program.
+  But mistakes in a proof tend to be easier to spot than bugs in a program.
   Fixing a proof is also much simpler than verifying that a simulation has no hidden biases.
   Once you have a correct proof, you have a guarantee: as long as the assumptions of the proof hold, the property established by proof holds, too.
 
@@ -98,8 +98,8 @@ So we are proving a theorem about the existence of a normal form, hence the term
 In order to avoid an overload of notation and terminology, we state the theorem in a slightly inaccurate manner as follows:
 
 ::: theorem
-Let $G$ be some collection of sound $n$-grams of different lengths where $k$ is the length of the longest $n$-gram.
-Then there exists an equivalent grammar $G'$ such that every $n$-gram of $G'$ has length $k$.
+Let $G$ be some negative $n$-gram grammar such that $k$ is the length of the longest $n$-gram.
+Then there exists an equivalent negative grammar $G'$ such that every $n$-gram of $G'$ has length $k$.
 :::
 
 ### Proof
@@ -118,12 +118,15 @@ We start with a few key observations.
 - As stated in the theorem, the longest $n$-gram is assumed to have length $k$.
   Since each position is filled by either a sound or one of two edge markers ({{{L}}} or {{{R}}}), there are $\card{\Sigma} + 2$ choices for each position.
   Consequently, there are at most $(\card{\Sigma}+2)^k$ different $n$-grams of length $k$.
-  This implies that $G$ contains at most $(\card{\Sigma}+2)^k$ $n$-grams and thus contains only finitely many.
+  This implies that for every possible value of $k$, there are only finitely many $n$-grams of length $k$.
+  Note that this also implies that $G$ contains only finitely many $n$-grams.
 
   ::: example
   Suppose that the language only has the sounds *a* and *d*, barely enough for *dada*.
-  It's $\card{\Sigma}^k$ is $2$.
-  There are $(2+2)^3 = 4^3 = 64$ different trigrams.
+  It's value for $\card{\Sigma}$ is $2$.
+  Let us calculate how many trigrams there are.
+  Since we are dealing with trigrams, $k=3$.
+  Given the formula above, this means there are $(\card{\Sigma}+2)^k = (2+2)^3 = 4^3 = 64$ different trigrams.
   Not all of them are ever useful.
   In particular, no word ever contains an edge marker in the middle, so *a{{{L}}}a* and *a{{{R}}}a* serve no purpose.
   It is also impossible for {{{R}}} to occur to the left of {{{L}}}, which rules out trigrams like *{{{R}}}a{{{L}}}* and *{{{R}}}{{{L}}}a*.
@@ -160,209 +163,80 @@ We start with a few key observations.
   But even if we had included all useless trigrams, that would not change the fact that there are only finitely many trigrams over *a*, *d*, and the edge markers.
   :::
 
-Now suppose that we pick one of the finitely many $n$-grams of $G$.
-Call it $g$.
-If the length of $g$ is already $k$, it is one of the longest $n$-grams and we don't need to do anything.
-But if its length $i$ is strictly less than $k$, we need to replace $g$ by something equivalent.
-We remove the $n$-gram $g$ from the grammar $G$, and instead add in a number of "padded" variants of $g$: 
+Now suppose that we pick one of the finitely many $n$-grams of our grammar $G$.
+Call this $n$-gram $g$.
+If the length of $g$ is already $k$, we do not need to do anything to make it an $n$-gram of length $k$.
+But if its length $i$ is strictly less than $k$, we need to replace $g$ by something equivalent of length $k$.
+More precisely, we replace $g$ with every possible $n$-gram of length $k$ that contains $g$ as a *substring*.
+By this we mean that $g$ occurs inside of these $n$-grams.
 
-- Construct every possible $n$-gram of length $k - i$.
-  For each such $n$-gram, put it **in front of** $g$ and add the result back to $G$.
+::: example
+Consider once more our toy language that only has the sounds *a* and *d*.
+We have already constructed the set of all possible (and useful) trigrams for this language in the previous example.
+Now suppose that we have a negative grammar $G$ that contains two $n$-grams, one being the trigram *ada* and the other the bigram *dd*.
 
-  ::: example
-  Suppose *G* contains the bigram *z{{{R}}}*, the trigram *{{{L}}}kn*, and the 4-gram *akzn*.
-  Assume furthermore that the only possible sounds are *a*, *k*, *z*, and *n*.
+We want to convert $G$ into an equivalent grammar $G'$ that only uses trigrams.
+Since *ada* is already a trigram, we keep it as is.
+But *dd* is a bigram and thus has to be replaced with every trigram that contains the substring *dd*.
+Consulting the list from the previous example, we see that these are
 
-  We have to pad out *z{{{R}}}* from a bigram to a 4-gram.
-  The length difference between a bigram and a 4-gram is 2, so we have to put bigrams in front of *z{{{R}}}*.
-  The list of possible (and useful) bigrams is as follows:
+- add, dda, ddd, dd{{{R}}}, {{{L}}}dd
 
-  -
-  {{{L}}}{{{L}}}
-  {{{L}}}{{{R}}},
-  {{{R}}}{{{R}}},
-  {{{L}}}a,
-  {{{L}}}k,
-  {{{L}}}z,
-  {{{L}}}n,
-  a{{{R}}},
-  aa,
-  ak,
-  az,
-  an,
-  k{{{R}}},
-  ka,
-  kk,
-  kz,
-  kn,
-  z{{{R}}},
-  za,
-  zk,
-  zz,
-  zn,
-  n{{{R}}},
-  na,
-  nk,
-  nz,
-  nn
+After the replacement step, we are left with a negative grammar $G'$ that contains six forbidden $n$-grams, all of which are trigrams:
 
-  So we remove *z{{{R}}}* from $G$ and instead add all of the following.
-  Note that not all of those 4-grams are useful, but that doesn't matter here.
+- ada, add, dda, ddd, dd{{{R}}}, {{{L}}}dd
 
-  -
-  {{{L}}}{{{L}}}z{{{R}}},
-  {{{L}}}{{{R}}}z{{{R}}},
-  {{{R}}}{{{R}}}z{{{R}}},
-  {{{L}}}az{{{R}}},
-  {{{L}}}kz{{{R}}},
-  {{{L}}}zz{{{R}}},
-  {{{L}}}nz{{{R}}},
-  a{{{R}}}z{{{R}}},
-  aaz{{{R}}},
-  akz{{{R}}},
-  azz{{{R}}},
-  anz{{{R}}},
-  k{{{R}}}z{{{R}}},
-  kaz{{{R}}},
-  kkz{{{R}}},
-  kzz{{{R}}},
-  knz{{{R}}},
-  z{{{R}}}z{{{R}}},
-  zaz{{{R}}},
-  zkz{{{R}}},
-  zzz{{{R}}},
-  znz{{{R}}},
-  n{{{R}}}z{{{R}}},
-  naz{{{R}}},
-  nkz{{{R}}},
-  nzz{{{R}}},
-  nnz{{{R}}}
-
-  :::
-
-- Construct every possible $n$-gram of length $k - i$.
-  For each such $n$-gram, put it **after** $g$ and add the result back to $G$.
-
-  ::: example
-  We also add the following 4-grams to $G$:
-
-  -
-  z{{{R}}}{{{L}}}{{{L}}},
-  z{{{R}}}{{{L}}}{{{R}}},
-  z{{{R}}}{{{R}}}{{{R}}},
-  z{{{R}}}{{{L}}}a,
-  z{{{R}}}{{{L}}}k,
-  z{{{R}}}{{{L}}}z,
-  z{{{R}}}{{{L}}}n,
-  z{{{R}}}aa,
-  z{{{R}}}ak,
-  z{{{R}}}az,
-  z{{{R}}}an,
-  z{{{R}}}a{{{R}}},
-  z{{{R}}}ka,
-  z{{{R}}}kk,
-  z{{{R}}}kz,
-  z{{{R}}}kn,
-  z{{{R}}}k{{{R}}},
-  z{{{R}}}za,
-  z{{{R}}}zk,
-  z{{{R}}}zz,
-  z{{{R}}}zn,
-  z{{{R}}}z{{{R}}},
-  z{{{R}}}na,
-  z{{{R}}}nk,
-  z{{{R}}}nz,
-  z{{{R}}}nn,
-  z{{{R}}}n{{{R}}}
-
-  Except for *z{{{R}}}{{{R}}}{{{R}}}* these are all useless because {{{R}}} cannot occur between two symbols that aren't edge markers.
-  But we add them anyways to stick with the procedure.
-  :::
-
-- Finally, pick any two $n$-grams of length $i'$ and $i''$ such that $i' + i + i'' = k$ (remember that $i$ is the length of the n-gram $g$ that must padded out, and $k$ is the length of the longest $n$-gram in the grammar).
-  Sandwich $g$ between those $n$-grams and add the result to the grammar $G$.
-
-  ::: example
-  Since the difference between a 4-gram and a bigram is $2$, each one of the two "sandwich" $n$-grams must have length $1$.
-  So we add the following:
-
-  -
-  {{{L}}}z{{{R}}}{{{L}}},
-  {{{L}}}z{{{R}}}{{{R}}},
-  {{{L}}}z{{{R}}}a,
-  {{{L}}}z{{{R}}}k,
-  {{{L}}}z{{{R}}}z,
-  {{{L}}}z{{{R}}}n,
-  az{{{R}}}a,
-  az{{{R}}}k,
-  az{{{R}}}z,
-  az{{{R}}}n,
-  az{{{R}}}{{{L}}},
-  az{{{R}}}{{{R}}},
-  kz{{{R}}}a,
-  kz{{{R}}}k,
-  kz{{{R}}}z,
-  kz{{{R}}}n,
-  kz{{{R}}}{{{L}}},
-  kz{{{R}}}{{{R}}},
-  zz{{{R}}}a,
-  zz{{{R}}}k,
-  zz{{{R}}}z,
-  zz{{{R}}}n,
-  zz{{{R}}}{{{L}}},
-  zz{{{R}}}{{{R}}},
-  nz{{{R}}}a,
-  nz{{{R}}}k,
-  nz{{{R}}}z,
-  nz{{{R}}}n,
-  nz{{{R}}}{{{L}}},
-  nz{{{R}}}{{{R}}}
-
-  Again there are many useless $n$-grams, but we do not care.
-  :::
+:::
 
 The new grammar $G'$ constructed this way is equivalent to $G$.
+By "equivalent" we mean that the following holds for every string: $G$ and $G'$ both deem the string well-formed, or $G$ and $G'$ both deem the string ill-formed.
+There is no string that is well-formed for $G$ but ill-formed for $G'$, or the other way around.
+
 To see this, suppose that some string is ill-formed according to $G$.
-Then some $n$-gram $g$ of $G$ must occur in the string, otherwise it would not be deemed ill-formed by $G$.
+Then some $n$-gram $g$ of $G$ must occur in the string, otherwise the string would not be deemed ill-formed by $G$.
 
 - **Case 1**  
   If $g$ has length $k$, then it is also an $n$-gram of $G'$, so $G'$ would consider the string illicit, too.
 
   ::: example
-  Remember that our example grammar $G$ disallows *z{{{R}}}*, *{{{L}}}kn*, and *akzn*.
-  The construction above constructs $G'$ by padding out *z{{{R}}}* and *{{{L}}}kn* to 4-grams, but it keeps *akzn* the same.
-  So if some word is forbidden by $G$ because it contains *akzn*, it will also be forbidden $G'$.
+  Remember that our example grammar $G$ disallows *ada* and *dd*.
+  Since *ada* already has maximal length in $G$, we carried it over to $G'$ without changes.
+  So if some word is forbidden by $G$ because it contains *ada*, it will also be forbidden by $G'$, which does not allow *ada* either.
   :::
 
 - **Case 2**  
   Now assume that $g$'s length is less than $k$.
-  Then $G'$ contains padded variants of $g$ that have length $k$ and are equivalent to $g$.
+  Then $G'$ contains at least one $n$-gram of length $k$ that has $g$ as a substring and that occurs in the illicit string.
+
   Here is why:
 
   - Remember that a string for an $n$-gram grammar is padded with $n-1$ edge markers.
     So with respect to $G'$, whose longest $n$-gram has length $k$, every string has $k-1$ edge markers to its left and $k-1$ edge markers to its right.
-    This means every string has at least length $2 \mult (k - 1) = 2k - 2$, which is greater than $k$.
+    This means every string has at least length $2 \mult (k - 1) = 2k - 2$, which is at least as big as $k$.
 
   - Consider once more the illicit string, whatever it may be.
     Somewhere inside the string is an offending instance of the illicit $n$-gram $g$.
     There must be symbols to its left and right, at the very least some edge markers.
-    We know this because $n \leq k < 2k - 2$.
-    But $G'$ contains every padded version of $g$, i.e. $g$ with 0 or more symbols to its left and right.
-    So if a string contains $g$, it also contains some illicit padding of $g$.
+    We know this because $n < k \leq 2k - 2$.
+    But $G'$ contains every $n$-gram of length $k$ that contains $g$ as a substring.
+    So if a string contains $g$, it also contains at least one of these illicit $n$-grams.
 
   ::: example
-  Consider the word *kaz*, which is illicit because it contains *z{{{R}}}* (remember, we always add a sufficient number of edge markers).
-  This string is still considered illicit by $G'$.
-  The padded out word is *{{{L}}}{{{L}}}{{{L}}}kaz{{{R}}}{{{R}}}{{{R}}}*, and several of the illicit 4-grams we constructed from *z{{{R}}}* are contained in this string:
+  Continuing the previous example, consider the word *dadd*.
+  It is considered illicit by $G$ because it contains *dd*.
+  This string is also considered illicit by $G'$.
+  With edge markers, the word is *{{{L}}}{{{L}}}dadd{{{R}}}{{{R}}}*.
+  During the construction process for $G'$, we replaced *dd* with several trigrams, two of which occur in this word:
 
-  - kaz{{{R}}}
-  - az{{{R}}}{{{R}}}
-  - z{{{R}}}{{{R}}}{{{R}}}
+  - add
+  - dd{{{R}}}
 
+  This is why $G'$ agrees with $G$ that *dadd* is ill-formed.
   :::
 
-This shows that every string that is deemed illicit by $G$ is also illicit with respect to $G'$.
-We still have to show the opposite, which is much easier.
+The discussion above shows that every string that is deemed illicit by $G$ is also illicit with respect to $G'$.
+We still have to show the opposite, i.e. that every string deemed illicit by $G'$ is also illicit with respect to $G$.
+Fortunately, this is much easier.
 Suppose that a string is ruled out by $G'$ because it contains the $n$-gram $g$.
 
 - **Case 1**  
@@ -371,9 +245,9 @@ Suppose that a string is ruled out by $G'$ because it contains the $n$-gram $g$.
 
 - **Case 2**  
   $G$ does not contain $g$.
-  Then $g$ was obtained by padding out some smaller $n$-gram $f$ of $G$.
-  But every string that contains an instance of $g$ must also contain an instance of $f$.
-  So $G$ still considers the string illicit.
+  Then $G$ must contain some substring $s$ of $g$.
+  But every string that contains $g$ also contains every substring of $g$, including $s$.
+  Consequently, $G$ deems the string illicit, too.
 
 Since $G$ and $G'$ agree on which strings are illicit, they necessarily agree on which strings are well-formed.
 So by carrying out the procedure above for every $n$-gram of $G$, one obtains a grammar $G'$ that is equivalent to $G$ but only contains $n$-grams of a fixed length.
@@ -382,7 +256,7 @@ So by carrying out the procedure above for every $n$-gram of $G$, one obtains a 
 ## Some thoughts
 
 You might cry foul at this point.
-I promised you that proofs are easy and only take a few lines, and the one above is neither.
+I promised you that proofs are easy and quickly written down with a few lines, and the one above is neither.
 It's very long, and it's cumbersome to read, and the sentences are hard to make sense of.
 But that's because everything was explained in plain English rather than mathematical notation.
 This made the proof harder to read and much longer, and it also means that we had to rely on examples to explain what exactly is intended at each step of the proof.
@@ -392,3 +266,161 @@ In fact, this is why it is so helpful to learn math.
 Many things are intuitive enough that they can be explained in plain English.
 But it is clumsy, imprecise, and takes longer.
 Specialized notation and terminology makes things easier to talk and think about, not harder.
+
+<!-- We remove the $n$-gram $g$ from the grammar $G$, and instead add in a number of "padded" variants of $g$:  -->
+<!--  -->
+<!-- - Construct every possible $n$-gram of length $k - i$. -->
+<!--   For each such $n$-gram, put it **in front of** $g$ and add the result back to $G$. -->
+<!--  -->
+<!--   ::: example -->
+<!--   Suppose *G* contains the bigram *z{{{R}}}*, the trigram *{{{L}}}kn*, and the 4-gram *akzn*. -->
+<!--   Assume furthermore that the only possible sounds are *a*, *k*, *z*, and *n*. -->
+<!--  -->
+<!--   We have to pad out *z{{{R}}}* from a bigram to a 4-gram. -->
+<!--   The length difference between a bigram and a 4-gram is 2, so we have to put bigrams in front of *z{{{R}}}*. -->
+<!--   The list of possible (and useful) bigrams is as follows: -->
+<!--  -->
+<!--   - -->
+<!--   {{{L}}}{{{L}}} -->
+<!--   {{{L}}}{{{R}}}, -->
+<!--   {{{R}}}{{{R}}}, -->
+<!--   {{{L}}}a, -->
+<!--   {{{L}}}k, -->
+<!--   {{{L}}}z, -->
+<!--   {{{L}}}n, -->
+<!--   a{{{R}}}, -->
+<!--   aa, -->
+<!--   ak, -->
+<!--   az, -->
+<!--   an, -->
+<!--   k{{{R}}}, -->
+<!--   ka, -->
+<!--   kk, -->
+<!--   kz, -->
+<!--   kn, -->
+<!--   z{{{R}}}, -->
+<!--   za, -->
+<!--   zk, -->
+<!--   zz, -->
+<!--   zn, -->
+<!--   n{{{R}}}, -->
+<!--   na, -->
+<!--   nk, -->
+<!--   nz, -->
+<!--   nn -->
+<!--  -->
+<!--   So we remove *z{{{R}}}* from $G$ and instead add all of the following. -->
+<!--   Note that not all of those 4-grams are useful, but that doesn't matter here. -->
+<!--  -->
+<!--   - -->
+<!--   {{{L}}}{{{L}}}z{{{R}}}, -->
+<!--   {{{L}}}{{{R}}}z{{{R}}}, -->
+<!--   {{{R}}}{{{R}}}z{{{R}}}, -->
+<!--   {{{L}}}az{{{R}}}, -->
+<!--   {{{L}}}kz{{{R}}}, -->
+<!--   {{{L}}}zz{{{R}}}, -->
+<!--   {{{L}}}nz{{{R}}}, -->
+<!--   a{{{R}}}z{{{R}}}, -->
+<!--   aaz{{{R}}}, -->
+<!--   akz{{{R}}}, -->
+<!--   azz{{{R}}}, -->
+<!--   anz{{{R}}}, -->
+<!--   k{{{R}}}z{{{R}}}, -->
+<!--   kaz{{{R}}}, -->
+<!--   kkz{{{R}}}, -->
+<!--   kzz{{{R}}}, -->
+<!--   knz{{{R}}}, -->
+<!--   z{{{R}}}z{{{R}}}, -->
+<!--   zaz{{{R}}}, -->
+<!--   zkz{{{R}}}, -->
+<!--   zzz{{{R}}}, -->
+<!--   znz{{{R}}}, -->
+<!--   n{{{R}}}z{{{R}}}, -->
+<!--   naz{{{R}}}, -->
+<!--   nkz{{{R}}}, -->
+<!--   nzz{{{R}}}, -->
+<!--   nnz{{{R}}} -->
+<!--  -->
+<!--   ::: -->
+<!--  -->
+<!-- - Construct every possible $n$-gram of length $k - i$. -->
+<!--   For each such $n$-gram, put it **after** $g$ and add the result back to $G$. -->
+<!--  -->
+<!--   ::: example -->
+<!--   We also add the following 4-grams to $G$: -->
+<!--  -->
+<!--   - -->
+<!--   z{{{R}}}{{{L}}}{{{L}}}, -->
+<!--   z{{{R}}}{{{L}}}{{{R}}}, -->
+<!--   z{{{R}}}{{{R}}}{{{R}}}, -->
+<!--   z{{{R}}}{{{L}}}a, -->
+<!--   z{{{R}}}{{{L}}}k, -->
+<!--   z{{{R}}}{{{L}}}z, -->
+<!--   z{{{R}}}{{{L}}}n, -->
+<!--   z{{{R}}}aa, -->
+<!--   z{{{R}}}ak, -->
+<!--   z{{{R}}}az, -->
+<!--   z{{{R}}}an, -->
+<!--   z{{{R}}}a{{{R}}}, -->
+<!--   z{{{R}}}ka, -->
+<!--   z{{{R}}}kk, -->
+<!--   z{{{R}}}kz, -->
+<!--   z{{{R}}}kn, -->
+<!--   z{{{R}}}k{{{R}}}, -->
+<!--   z{{{R}}}za, -->
+<!--   z{{{R}}}zk, -->
+<!--   z{{{R}}}zz, -->
+<!--   z{{{R}}}zn, -->
+<!--   z{{{R}}}z{{{R}}}, -->
+<!--   z{{{R}}}na, -->
+<!--   z{{{R}}}nk, -->
+<!--   z{{{R}}}nz, -->
+<!--   z{{{R}}}nn, -->
+<!--   z{{{R}}}n{{{R}}} -->
+<!--  -->
+<!--   Except for *z{{{R}}}{{{R}}}{{{R}}}* these are all useless because {{{R}}} cannot occur between two symbols that aren't edge markers. -->
+<!--   But we add them anyways to stick with the procedure. -->
+<!--   ::: -->
+<!--  -->
+<!-- - Finally, pick any two $n$-grams of length $i'$ and $i''$ such that $i' + i + i'' = k$ (remember that $i$ is the length of the n-gram $g$ that must padded out, and $k$ is the length of the longest $n$-gram in the grammar). -->
+<!--   Sandwich $g$ between those $n$-grams and add the result to the grammar $G$. -->
+<!--  -->
+<!--   ::: example -->
+<!--   Since the difference between a 4-gram and a bigram is $2$, each one of the two "sandwich" $n$-grams must have length $1$. -->
+<!--   So we add the following: -->
+<!--  -->
+<!--   - -->
+<!--   {{{L}}}z{{{R}}}{{{L}}}, -->
+<!--   {{{L}}}z{{{R}}}{{{R}}}, -->
+<!--   {{{L}}}z{{{R}}}a, -->
+<!--   {{{L}}}z{{{R}}}k, -->
+<!--   {{{L}}}z{{{R}}}z, -->
+<!--   {{{L}}}z{{{R}}}n, -->
+<!--   az{{{R}}}a, -->
+<!--   az{{{R}}}k, -->
+<!--   az{{{R}}}z, -->
+<!--   az{{{R}}}n, -->
+<!--   az{{{R}}}{{{L}}}, -->
+<!--   az{{{R}}}{{{R}}}, -->
+<!--   kz{{{R}}}a, -->
+<!--   kz{{{R}}}k, -->
+<!--   kz{{{R}}}z, -->
+<!--   kz{{{R}}}n, -->
+<!--   kz{{{R}}}{{{L}}}, -->
+<!--   kz{{{R}}}{{{R}}}, -->
+<!--   zz{{{R}}}a, -->
+<!--   zz{{{R}}}k, -->
+<!--   zz{{{R}}}z, -->
+<!--   zz{{{R}}}n, -->
+<!--   zz{{{R}}}{{{L}}}, -->
+<!--   zz{{{R}}}{{{R}}}, -->
+<!--   nz{{{R}}}a, -->
+<!--   nz{{{R}}}k, -->
+<!--   nz{{{R}}}z, -->
+<!--   nz{{{R}}}n, -->
+<!--   nz{{{R}}}{{{L}}}, -->
+<!--   nz{{{R}}}{{{R}}} -->
+<!--  -->
+<!--   Again there are many useless $n$-grams, but we do not care. -->
+<!--   ::: -->
+<!--  -->

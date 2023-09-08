@@ -9,7 +9,7 @@ pagetitle: >-
 - sets (basic notation)
 :::
 
-Strings play a very prominent role in computational linguistics.
+Strings play a very prominent role in linguistics and language technology.
 A string is a sequence of symbols, like *nfm*, *wendigo*, or *105§/*.
 In contrast to sets, strings are ordered and can contain duplicates.
 
@@ -54,7 +54,7 @@ For instance, 000134095 is not a valid number, although 134095 is.
 :::
 
 ::: example
-The set $\mathbb{N}$ of all natural numbers is not a valid alphabet because it isn't finite.
+The set $\mathbb{N}$ of all natural numbers (0, 1, 2, and so on) is not a valid alphabet because it isn't finite.
 :::
 
 ::: exercise
@@ -196,13 +196,13 @@ Here are a few examples of concatenation:
 :::
 
 Just like addition, concatenation is **associative**.
-This means that if we carry out multiple concatenations, it does not matter which concatenation step we resolve first: $u \stringcat (v \stringcat w) = (u \stringcat v) \stringcat w = u \stringcat v \stringcat w$.
+This means that if we carry out multiple concatenations, it does not matter in what order we resolve the concatenation steps: $u \stringcat (v \stringcat w) = (u \stringcat v) \stringcat w = u \stringcat v \stringcat w$.
 
 ::: example
 It does not matter in which order we combine *is* with *concatenation* and *associative* below:
 
-- $(\emph{concatenation} \stringcat \emph{is}) \stringcat \emph{associative} = \emph{concatenation is associvative}$
-- $\emph{concatenation} \stringcat (\emph{is} \stringcat \emph{associative}) = \emph{concatenation is associvative}$
+- $(\text{\emph{concatenation}} \stringcat \text{\emph{is}}) \stringcat \text{\emph{associative}} = \text{\emph{concatenation is associvative}}$
+- $\text{\emph{concatenation}} \stringcat (\text{\emph{is}} \stringcat \text{\emph{associative}}) = \texxt{\emph{concatenation is associvative}}$
 
 :::
 

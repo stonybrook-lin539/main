@@ -27,7 +27,7 @@ We will continue at a leisurely pace, with optional formal sections sprinkled in
 An **alphabet** is a finite set of symbols.
 
 ::: definition
-Let $\Sigma$ be some alphabet, and $\Sigma_E$ its extension with a edge marker symbols ${{{L}}}, {{{R}}} \notin \Sigma$.
+Let $\Sigma$ be some alphabet, and $\Sigma_E$ its extension with edge marker symbols ${{{L}}}, {{{R}}} \notin \Sigma$.
 An $n$-gram over $\Sigma_E$ is an element of $\Sigma_E^n$ ($n \geq 1$).
 A **negative $n$-gram grammar** $G$ over alphabet $\Sigma$ is a finite set of $n$-grams over $\Sigma_E$.
 A string $s$ over $\Sigma$ is well-formed with respect to $G$ iff there are no $u, v$ over $\Sigma_E$ and no $g \in G$ such that
@@ -45,7 +45,7 @@ So $\mathit{VC}$ is a component of $\mathit{CVCV}$, and as a result the string i
 :::
 
 ::: definition
-A **mixed negative $n$-gram grammar** $G$ is a finite set of strings over $\Sigma$ such that $n$ is the length of the longest string in $G$.
+A **mixed negative $n$-gram grammar** $G$ is a finite set of strings over $\Sigma_E$ such that $n$ is the length of the longest string in $G$.
 A negative $n$-gram grammar that is not mixed is called **strict**.
 :::
 

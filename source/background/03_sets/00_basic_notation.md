@@ -61,7 +61,7 @@ Write the following as a set:
 
 - the first names of your three favorite actors/actresses,
 - the colors of the rainbow,
-- all prime numbers between 1 and 10 (remember, 1 is not a prime number!)
+- all even numbers between 1 and 11
 
 :::
 
@@ -74,16 +74,16 @@ The symbol $\in$ thus indicates **set membership**.
 
 ::: example
 Let $W$ be the set of words in the string *If John slept, then Mary left*.
-Then it holds that $\emph{left} \in W$ and $\emph{right} \notin W$.
-But it is not the case that $\emph{then} \notin W$ or $\emph{awake} \in W$.
+Then it holds that $\text{\emph{left}} \in W$ and $\text{\emph{right}} \notin W$.
+But it is not the case that $\text{\emph{then}} \notin W$ or $\text{emph{awake}} \in W$.
 :::
 
 Sometimes $\ni$ is used as the mirror image of $\in$.
 For example, $a \in S$ could also be written as $S \ni a$.
 
 ::: example
-Continuing the previous example, it is true that $\emph{left} \in W \ni \emph{then}$.
-That is to say, both $\emph{left} \in W$ and $\emph{then} \in W$ are true.
+Continuing the previous example, it is true that $\text{\emph{left}} \in W \ni \text{\emph{then}}$.
+That is to say, both $\text{\emph{left}} \in W$ and $\text{\emph{then}} \in W$ are true.
 :::
 
 ::: exercise
@@ -93,6 +93,24 @@ Put $\in$, $\ni$, $\notin$, $\not\ni$ in the gaps below as appropriate:
 - $6 \_ \setof{1,2,4,5,8}$
 - $\setof{5} \_ \setof{1,2,4,5,8}$
 - $5 \_ \setof{1,2,4,5,8} \_ 6$
+
+:::
+
+Sets can contain arbitrary objects, including other sets.
+However, the members of a set are just the elements immediately contained by the set, not what might in turn by contained inside of those elements.
+
+::: example
+The set $\setof{a, \setof{b}}$ has two members: $a$ and $\setof{b}$.
+While $b$ is an element of $\setof{b}$, it is not an element of $\setof{a, \setof{b}}$.
+:::
+
+::: exercise
+Put $\in$, $\ni$, $\notin$, $\not\ni$ in the gaps below as appropriate:
+
+- $5 \_ \setof{1,\setof{2,4},5,8}$
+- $6 \_ \setof{1,\setof{2,4,5,8}}$
+- $\setof{5} \_ \setof{1,\setof{2,4},\setof{5},8}$
+- $5 \_ \setof{\setof{1,2,4,5,8}} \_ 6$
 
 :::
 
@@ -193,6 +211,22 @@ So we might want to annotate the string as follows:
 *If police[N] police[V] police[N], then police[N] police[V] police[N]*.
 Assume that words are annotated with their part of speech in this fashion.
 Then what would be the corresponding set of words?
+:::
+
+Again it is important to keep in mind that these regularities only hold with respect to the elements of a set, not what may be contained by those elements.
+
+::: example
+Even though $\setof{a} = \setof{a,a}$, it is not the case that $\setof{a} = \setof{a, \setof{a}}$.
+:::
+
+::: exercise
+For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
+
+- $\setof{a,b} \_ \setof{a,a,b,\setof{b}}$
+- $\setof{\setof{b},\setof{a}} \_ \setof{\setof{a},\setof{b},\setof{a}}$
+- $\setof{c,b,\setof{a,a},d,c} \_ \setof{\setof{a},b,d,c,c,c}$
+- $\setof{a} \_ \setof{a,a,a,a,a,a,\setof{a},a,a,a,a,a,a}$
+
 :::
 
 ## Recap

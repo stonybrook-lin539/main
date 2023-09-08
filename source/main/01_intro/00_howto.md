@@ -5,19 +5,21 @@ pagetitle: How to use these notes
 # How to use these notes
 
 Since you're reading this, I assume that you already know how to open the lecture notes.
-So this section only describes the overall structure of the lecture notes and how to best navigate them.
+So this unit only describes the overall structure of the lecture notes and how to best navigate them.
 
+The lecture notes are split into multiple parts, in particular *Main units*, *Background*, and *Additional Practice Exercises*.
+Each part consists of multiple chapters, and each chapter is broken down into units.
 The background folder contains information on all kinds of topics, e.g. sets, relations, graphs, and so on.
 You're not supposed to read those in sequence.
-Instead, they act as a reference.
-Each notebook that is not background material starts with a list of its prerequisites.
-Some notebooks (like this one) have no prerequisites and can be read by anybody as is.
+Instead, they act as a reference for the units in the *Main units* part.
+A unit may start with a list of its prerequisites.
+Some units (like this one) have no prerequisites and can be read by anybody as is.
 Others may list among their prerequisites something like the following:
 
 - sets (operations, set-relations)
 
 This means that you have to know about set operations like union and intersection, and the typical relations that can hold between sets (e.g. subset and superset).
-If you don't have the required background, you should go to the background material about sets and read the units on operations and set-relations.
+If you don't have the required background, you should go to the background chapter about sets and read the units on operations and set-relations.
 These units may themselves have prerequisites, so if you don't meet those either you have to start with those prerequisites first.
 
 ::: example

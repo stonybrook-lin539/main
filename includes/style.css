@@ -240,6 +240,20 @@ th, td {
     font-style: normal;
 }
 
+.prereqs {
+    border-style: solid;
+    border-width: thin;
+    border-radius: .5rem;
+    border-color: gray;
+}
+
+.prereqs:before {
+    content: "Prerequisites";
+    font-weight: bold;
+    font-style: normal;
+}
+
+
 /* Simple colored background  --example, exercise, proof, remark */
 
 .example {
