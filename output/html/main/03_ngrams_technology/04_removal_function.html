@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Stop word removal as a function</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#stop-word-removal-as-a-function">Stop word removal as a
+function</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="stop-word-removal-as-a-function">Stop word removal as a
+function</h1>
+<div class="prereqs">
+<ul>
+<li>functions (domain terminology)</li>
+</ul>
+</div>
+<p>This unit illustrates how one might define stop word removal as a
+mathematical function <span class="math inline">\(\mathit{del}\)</span>
+(read <em>delete</em>).</p>
+<p>First, we fix some alphabet <span
+class="math inline">\(\Sigma\)</span> and let <span
+class="math inline">\(S\)</span> be some finite set of symbols drawn
+from <span class="math inline">\(\Sigma\)</span>. For every such <span
+class="math inline">\(S\)</span>, we define a deletion function <span
+class="math inline">\(\mathit{del}_S\)</span> that maps strings over
+<span class="math inline">\(\Sigma\)</span> to strings over <span
+class="math inline">\(\Sigma - S\)</span>. In mathematical notation,
+<span class="math inline">\(\mathit{del}_S: \Sigma^* \rightarrow (\Sigma
+- S)^*\)</span>.</p>
+<p>This only tells us the domain and co-domain of <span
+class="math inline">\(\mathit{del}_S\)</span>, but not how exactly
+inputs and outputs are connected to each other. For any string of the
+form <span class="math inline">\(u_1 \cdots u_n\)</span> (where <span
+class="math inline">\(n \geq 0\)</span> and each <span
+class="math inline">\(u_i\)</span> is a symbol drawn from <span
+class="math inline">\(\Sigma\)</span>), we define <span
+class="math display">\[
+\mathit{del}_S(u_1 \cdots u_n)
+    \mathrel{\mathop:}=
+    \begin{cases}
+    \varepsilon&amp; \text{if } u_1 \cdots u_n = \varepsilon\\
+    \mathit{del}_S(u_2 \cdots u_n) &amp; \text{if } u_1 \in S\\
+    u_1 \cdot\mathit{del}_S(u_2 \cdots u_n) &amp; \text{otherwise}\\
+    \end{cases}
+\]</span></p>
+<div class="example">
+<p>Suppose <span class="math inline">\(\Sigma \mathrel{\mathop:}=\left
+\{ a,b \right \}\)</span> and <span class="math inline">\(S
+\mathrel{\mathop:}=\left \{ a \right \}\)</span>. Let <span
+class="math inline">\(s \mathrel{\mathop:}=\mathit{abba}\)</span>. Then
+<span class="math inline">\(\mathit{del}_S(s)\)</span> should yield
+<span class="math inline">\(\mathit{bb}\)</span>. To this end, we
+compute <span class="math inline">\(\mathit{del}_S(s)\)</span> in a
+stepwise fashion:</p>
+<p><span class="math display">\[\begin{align*}
+\mathit{del}_S(s)
+&amp;=
+\mathit{del}_S(\mathit{abba})
+\\
+&amp;=
+\mathit{del}_S(\mathit{bba})
+\\
+&amp;=
+b \cdot\mathit{del}_S(ba)
+\\
+&amp;=
+b \cdot b \cdot\mathit{del}_S(a)
+\\
+&amp;=
+b \cdot b \cdot\mathit{del}_S(\varepsilon)
+\\
+&amp;=
+b \cdot b \cdot\varepsilon
+\\
+&amp;=
+b \cdot b
+\\
+&amp;=
+\mathit{bb}
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\mathit{del}_S(\mathit{abba}) =
+\mathit{bb}\)</span>, as expected.</p>
+</div>
+<p>As you can see, <span class="math inline">\(\mathit{del}_S\)</span>
+is partially defined in terms of itself: the value of <span
+class="math inline">\(\mathit{del}_S(\mathit{abba})\)</span> is inferred
+from the value of <span
+class="math inline">\(\mathit{del}_S(\mathit{bba})\)</span>. This is
+called a <strong>recursive</strong> definition. We can visualize the
+computation of this recursive function as below:</p>
+<p><img src="recursive_function.svg" alt="recursive_function.svg" /></p>
+<p>Every recursive function has one or more <strong>base cases</strong>
+and a <strong>recursion step</strong>. The base cases are those where
+the value of the function can be determined without recursion. For <span
+class="math inline">\(\mathit{del}\)</span>, there is only the base case
+<span class="math inline">\(\mathit{del}_S(\varepsilon) =
+\varepsilon\)</span>. Notice how in the graph above <span
+class="math inline">\(\mathit{del}_S(\varepsilon)\)</span> does not
+contain any further instances of <span
+class="math inline">\(\mathit{del}_S\)</span>. Instead, we immediately
+get <span class="math inline">\(\varepsilon\)</span> as the output. The
+recursion step defines the function in terms of the function itself. In
+the graph above, that’s every instance of <span
+class="math inline">\(\mathit{del}_S\)</span> which has another instance
+of <span class="math inline">\(\mathit{del}_S\)</span> below it.</p>
+<div class="exercise">
+<p>Here is another recursively defined function.</p>
+<p><span class="math display">\[
+f(x,y) \mathrel{\mathop:}=
+    \begin{cases}
+        x &amp; \text{if } y \leq 1\\
+        x + f(x,y-1) &amp; \text{otherwise}\\
+    \end{cases}
+\]</span></p>
+<p>What does this function do? Is there a commonly used name for it?</p>
+</div>
+<div class="exercise">
+<p>This continues the previous exercise. Draw a diagram like the one
+above for <span class="math inline">\(f(5,4)\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Give a recursive definition of a function that takes two arguments: a
+string <span class="math inline">\(u \mathrel{\mathop:}=u_1 \cdots
+u_n\)</span> over alphabet <span class="math inline">\(\Sigma\)</span>,
+and a set <span class="math inline">\(S\)</span> of symbols drawn from
+<span class="math inline">\(\Sigma\)</span>. The function returns <span
+class="math inline">\(1\)</span> if at least one member of <span
+class="math inline">\(S\)</span> occurs in <span
+class="math inline">\(u\)</span>, and <span
+class="math inline">\(0\)</span> otherwise.</p>
+</div>
+<div class="exercise">
+<p>This continues the previous exercise. Draw a diagram like the one
+above for <span class="math inline">\(f(\mathit{aaba}, \left \{ b \right
+\})\)</span> and <span class="math inline">\(f(\mathit{aaba}, \left \{
+c,d,e \right \})\)</span>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
