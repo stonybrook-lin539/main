@@ -74,16 +74,16 @@ The symbol $\in$ thus indicates **set membership**.
 
 ::: example
 Let $W$ be the set of words in the string *If John slept, then Mary left*.
-Then it holds that $\text{\emph{left}} \in W$ and $\text{\emph{right}} \notin W$.
-But it is not the case that $\text{\emph{then}} \notin W$ or $\text{emph{awake}} \in W$.
+Then it holds that $\mathit{left} \in W$ and $\mathit{right} \notin W$.
+But it is not the case that $\mathit{then} \notin W$ or $\mathit{awake} \in W$.
 :::
 
 Sometimes $\ni$ is used as the mirror image of $\in$.
 For example, $a \in S$ could also be written as $S \ni a$.
 
 ::: example
-Continuing the previous example, it is true that $\text{\emph{left}} \in W \ni \text{\emph{then}}$.
-That is to say, both $\text{\emph{left}} \in W$ and $\text{\emph{then}} \in W$ are true.
+Continuing the previous example, it is true that $\mathit{left} \in W \ni \mathit{then}$.
+That is to say, both $\mathit{left} \in W$ and $\mathit{then} \in W$ are true.
 :::
 
 ::: exercise
