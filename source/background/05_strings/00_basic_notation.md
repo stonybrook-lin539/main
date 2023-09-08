@@ -202,7 +202,7 @@ This means that if we carry out multiple concatenations, it does not matter in w
 It does not matter in which order we combine *is* with *concatenation* and *associative* below:
 
 - $(\text{\emph{concatenation}} \stringcat \text{\emph{is}}) \stringcat \text{\emph{associative}} = \text{\emph{concatenation is associvative}}$
-- $\text{\emph{concatenation}} \stringcat (\text{\emph{is}} \stringcat \text{\emph{associative}}) = \texxt{\emph{concatenation is associvative}}$
+- $\text{\emph{concatenation}} \stringcat (\text{\emph{is}} \stringcat \text{\emph{associative}}) = \text{\emph{concatenation is associvative}}$
 
 :::
 
