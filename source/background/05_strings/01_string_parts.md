@@ -30,7 +30,7 @@ Note that
 1. the empty string is a substring of every string, and
 2. every string is a substring of itself.
 
-A substring $u$ of $v$ is **proper** iff $u \neq v$.
+A substring $u$ of $v$ is a **proper** substring iff $u \neq v$.
 
 ::: example
 All the strings listed above are proper substrings of $\String{abcd}$, except $\String{abcd}$ itself.

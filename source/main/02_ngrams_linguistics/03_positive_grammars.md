@@ -25,11 +25,10 @@ word-final devoicing, intervocalic voicing, local assimilation, and various stre
 For each one of the following phenomena, write a negative $n$-gram grammar that handles it correctly.
 For some of them, you have to rephrase the phenomenon as a phonotactic constraint first.
 
-
 - **intervocalic voicing**: voiceless fricatives (assume *s* and *f*) may not occur between vowels (assume *a*, *i*, *u*)
 - **local assimilation**: *n* must be *m* before *b* or *p*
 - **local dissimilation**: *rVr* becomes *lVr*, where *V* is *a*, *i*, or *u*
-- **penultimate stress**: in words with at least two syllables, stress falls on the last but one syllable (assume that words are strings of stress syllables ($\acute{\sigma}$) and unstressed syllables ($\sigma$))
+- **penultimate stress**: in words with at least two syllables, stress falls on the last but one syllable (assume that words are strings of stressed syllables ($\acute{\sigma}$) and unstressed syllables ($\sigma$))
 
 :::
 
@@ -51,7 +50,8 @@ Let's see if we can write a negative $n$-gram grammar that allows for *denatural
 First, we have to pick the basic building blocks for the $n$-grams.
 For phonotactics, we used $n$-grams where each symbol is a sound, but this is too fine-grained for morphotactics.
 Instead, we will use $n$-grams where each symbol is a morpheme.
-So *-ize -ation* is a bigram, not an 11-gram that consists of 8 letters, 2 hyphens, and 1 space.
+If we used sounds, then *-ize -ation* would be an 11-gram that consists of 8 letters, 2 hyphens, and 1 space.
+But since we use morphemes as our basic building blocks, *-ize -ation* is a bigram.
 
 ``` jupyterpython
 chunk = "-ize -ation"
@@ -177,14 +177,24 @@ But the opposite is also true, in particular for mixed negative grammars.
 It depends on the specific phenomenon.
 
 ::: exercise
-Write both a positive and a negative grammar that each allow only strings of the form *ab*, *abab*, *ababab*, *abababab*, and so on (assume that all symbols are either *a* or *b*).
-Is one of the two grammars more succinct or general than the other?
-What if the set of symbols is larger, e.g. *a*, *b*, *c*, and *d*?
+Many languages only allow syllables of the form *CV*, where C is some consonant and V is a vowel.
+In these languages, words are of the from *CV*, *CVCV*, *CVCVCV*, and so on.
+Write both a positive and a negative grammar that only allows strings of this form.
+Is one grammar significantly smaller than the other?
+:::
+
+::: exercise
+Continuing the previous exercise, suppose that we use actual consonants and vowels instead of the abstract symbols C and V.
+Assume that the language has 5 consonants (*p*, *t*, *k*, *s*, *f*) and only one vowel (*a*).
+So this language allows strings like *papa* or *tasa*, but not *tas*, *psafa*, or *saaka*.
+Write both a positive and a negative grammar that only allows strings of this form.
+Is one grammar significantly smaller than the other?
 :::
 
 ::: exercise
 For each one of the following phenomena, write a positive $n$-gram grammar that handles it correctly.
 For some of them, you have to rephrase the phenomenon as a phonotactic constraint first.
+You will also have to make assumptions about the sound inventory of the language.
 
 - **intervocalic voicing**: voiceless fricatives (assume *s* and *f*) may not occur between vowels (assume *a*, *i*, *u*)
 - **local assimilation**: *n* must be *m* before *b* or *p*
@@ -198,7 +208,7 @@ Can you identify some general guidelines for when a positive grammar is preferab
 ## ...and back: Translating between positive and negative grammars
 
 We now have two different kinds of $n$-gram grammars: positive grammars, and negative grammars.
-The latter fall into two subtypes, fixed and mixed, but as we have already proved those two are equivalent in the sense that one can freely translate between the two.
+The latter actually span two subtypes, fixed negative grammars and mixed negative grammars, but as we have already proved those two are equivalent in the sense that one can freely translate between them.
 The same is in fact true for positive and negative grammars.
 
 The idea is very simple.
@@ -247,26 +257,22 @@ This would be the case if we have a positive trigram grammar containing:
 The set of all possible (and useful) trigrams over the alphabet is as follows:
 
 - *{{{L}}}{{{L}}}a*
+- *{{{L}}}{{{L}}}{{{R}}}*
 - *{{{L}}}aa*
+- *{{{L}}}a{{{R}}}*
+- *{{{L}}}{{{R}}}{{{R}}}*
+- *aaa*
 - *aa{{{R}}}*
 - *a{{{R}}}{{{R}}}*
-- *{{{L}}}{{{L}}}{{{L}}}*
-- *{{{L}}}{{{L}}}{{{R}}}*
-- *{{{L}}}{{{R}}}{{{R}}}*
-- *{{{R}}}{{{R}}}{{{R}}}*
-- *{{{L}}}a{{{R}}}*
-- *aaa*
 
 Removing all trigrams of the positive trigram grammar leaves us with the following list:
 
-- *{{{L}}}{{{L}}}{{{L}}}*
 - *{{{L}}}{{{L}}}{{{R}}}*
 - *{{{L}}}{{{R}}}{{{R}}}*
-- *{{{R}}}{{{R}}}{{{R}}}*
 - *{{{L}}}a{{{R}}}*
 - *aaa*
 
-You can verify for yourself that a negative trigram grammar that contains those three trigrams (and no other $n$-grams) can only generate *aa* over the alphabet $\setof{a}$.
+You can verify for yourself that a negative trigram grammar that contains those four trigrams (and no other $n$-grams) can only generate *aa* over the alphabet $\setof{a}$.
 :::
 
 ``` jupyterpython
@@ -306,7 +312,7 @@ print(pos_gram)
 ```
 
 ::: exercise
-English allows for *nature*, *natural*, *naturalize*, *denaturalize*, *naturalization*, and *denaturalization*, but not *denature* or any of misordered forms like *naturizalation*.
+English allows for *nature*, *natural*, *naturalize*, *denaturalize*, *naturalization*, and *denaturalization*, but not *denatureal* or any of misordered forms like *naturizalation*.
 Write a grammar that generates all the well-formed forms but none of the ill-formed ones.
 It is up to you whether you want to use a positive or a negative grammar.
 If you use a negative grammar, it can be in the mixed format, with $n$-grams of varying lengths.
@@ -315,19 +321,22 @@ If you use a negative grammar, it can be in the mixed format, with $n$-grams of 
 ## An important take-home message
 
 The next section will give a formal proof that this simple conversion strategy will always result in an equivalent grammar.
-By "equivalent" we mean that the two grammars generate exactly the same strings.
+By "equivalent" we mean that the two grammars generate exactly the same strings --- there is no string such that the two grammars disagree on whether the string is well-formed or ill-formed.
 But beyond pure math, there is an important insight here that will be with us for pretty much the rest of the course: one and the same thing can be specified in many different ways.
 Depending on one's criteria, one way may be better than another.
 In some cases, a positive grammar may be smaller than a negative one.
-But for some phenomena it is the other way round, and negative grammar also has the advantage that they can be made more compact by using a mixed format instead of a fixed length for all $n$-grams.
+But for some phenomena it is the other way round.
+A negative grammar also has the advantage that they can be made more compact by using a mixed format instead of a fixed length for all $n$-grams.
+Then again, positive grammars are easier to translate to **finite-state automata**, which we will encounter in a later chapter.
+Each grammar format has its pros and cons.
 
 There's many examples of this kind of interdefinability in mathematics.
 Logical formulas, for example, can be put into a normal form that is harder to read for humans but easier to implement for computers.
-So-called **finite-state automata** can be viewed as a special case of Boolean matrix multiplication (we'll talk about this one in quite some detail).
+Finite-state automata can be viewed as a special case of Boolean matrix multiplication (we'll talk about this one in quite some detail).
 This may seem bewildering to the linguists among you.
 Linguists like to talk about *the* grammar, *the* feature system, *the* constraints of the grammar, as if those were concrete objects of a singular nature --- like a chair is a chair is a chair.
 Linguistics is driven by the search for *the* correct description of linguistic knowledge.
-Linguists want the "source code" of the language program that runs in the human brain, not just any implementation that behaves the same.
+Linguists want the "source code" of the language program that runs in the human brain, not just any implementation that exhibits the same behavior.
 But this quest for *the* correct specification cannot work for abstract concepts, and all linguistic concepts are abstract.
 When dealing with abstract ideas, you want to be able to conceptualize them in as many distinct ways as possible.
 True understanding comes from the ability to describe one and the same thing in many different ways, each one with its unique advantages and its unique opportunities for new insights.
@@ -336,5 +345,6 @@ True understanding comes from the ability to describe one and the same thing in 
 ## Recap
 
 - A positive $n$-gram grammar is a finite list of allowed $n$-grams.
+- A string is generated by a positive $n$-gram grammar iff after addition of edge markers, it contains only $n$-grams that are allowed by the grammar.
 - Positive grammars can be converted to negative grammars, and the other way round.
 - Having multiple descriptions of the same thing is a boon, not a bane.

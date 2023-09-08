@@ -267,6 +267,14 @@ Many things are intuitive enough that they can be explained in plain English.
 But it is clumsy, imprecise, and takes longer.
 Specialized notation and terminology makes things easier to talk and think about, not harder.
 
+## Recap
+
+- In a **fixed** negative $n$-gram grammar, all $n$-grams must have the same length.
+  In a **mixed** negative $n$-gram grammar, this requirement is lifted and $n$-grams may be of different lengths.
+- Every mixed negative $n$-gram grammar can be converted into an equivalent fixed negative $n$-gram grammar.
+  This is an instance of a **normal form theorem**.
+
+
 <!-- We remove the $n$-gram $g$ from the grammar $G$, and instead add in a number of "padded" variants of $g$:  -->
 <!--  -->
 <!-- - Construct every possible $n$-gram of length $k - i$. -->

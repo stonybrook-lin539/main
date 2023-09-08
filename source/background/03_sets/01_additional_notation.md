@@ -65,23 +65,30 @@ $$
 This means that for every $n$ that is a natural number and is at least $1$, the set contains $2n$.
 
 The table below illustrates this for a few values.
+
+| Value of n | Satisfies definition? | Value of 2n |
+| :--        | :-:                   | --:         |
+| 0          | No                    | -           |
+| 0.3        | No                    | -           |
+| 1          | Yes                   | 2           |
+| 1.7        | No                    | -           |
+| 2          | Yes                   | 4           |
+| 3          | Yes                   | 6           |
+
 :::
-
-| $n$ | Satisfies definition? | $2n$ | 
-| :-- | :-:                   | --:  | 
-| 0   | No                    | -    | 
-| 0.3 | No                    | -    | 
-| 1   | Yes                   | 2    | 
-| 1.7 | No                    | -    | 
-| 2   | Yes                   | 4    | 
-| 3   | Yes                   | 6    | 
-
 
 ``` jupyterpython
 # set-builder notation even exists in some programming languages like Python
 built_set = set(2*n for n in [0, 1, 2, 3, 4, 5])
 print(built_set)
 ```
+
+::: exercise
+For each one of the following finite sets, list all its elements.
+
+1. 
+
+:::
 
 There is no limit on the complexity of set-builder notation.
 For example, one could nest multiple set definitions, as in $\setof{ \setof{ i \mid 0 \leq i \leq n } \mid n \text{ a natural number} }$.

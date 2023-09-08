@@ -207,7 +207,7 @@ In fact, we do not even need to worry too much about $\Sigma$ as $n$ has a much 
 Even with very small alphabets, $\Sigma_E^n$ is giant for $n > 5$.
 
 ::: example
-For an alphabet with just two symbols, $\Sigma_E^6$ is 4,096, and $\Sigma_E^10$ is 1,048,576.
+For an alphabet with just two symbols, $\Sigma_E^6$ is 4,096, and $\Sigma_E^{10}$ is 1,048,576.
 That's more than the number of trigrams over an alphabet with close to 100 symbols.
 :::
 
