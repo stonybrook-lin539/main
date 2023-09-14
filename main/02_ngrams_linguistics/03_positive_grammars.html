@@ -99,7 +99,7 @@ before <em>b</em> or <em>p</em></li>
 <em>u</em></li>
 <li><strong>penultimate stress</strong>: in words with at least two
 syllables, stress falls on the last but one syllable (assume that words
-are strings of stress syllables (<span
+are strings of stressed syllables (<span
 class="math inline">\(\acute{\sigma}\)</span>) and unstressed syllables
 (<span class="math inline">\(\sigma\)</span>))</li>
 </ul>
@@ -133,8 +133,10 @@ For phonotactics, we used <span class="math inline">\(n\)</span>-grams
 where each symbol is a sound, but this is too fine-grained for
 morphotactics. Instead, we will use <span
 class="math inline">\(n\)</span>-grams where each symbol is a morpheme.
-So <em>-ize -ation</em> is a bigram, not an 11-gram that consists of 8
-letters, 2 hyphens, and 1 space.</p>
+If we used sounds, then <em>-ize -ation</em> would be an 11-gram that
+consists of 8 letters, 2 hyphens, and 1 space. But since we use
+morphemes as our basic building blocks, <em>-ize -ation</em> is a
+bigram.</p>
 <div class="exercise">
 <p>For each one of the following <span
 class="math inline">\(n\)</span>-grams, say how large it is depending on
@@ -296,18 +298,28 @@ class="math inline">\(n\)</span>-grams, positive grammars can be much
 smaller than negative ones. But the opposite is also true, in particular
 for mixed negative grammars. It depends on the specific phenomenon.</p>
 <div class="exercise">
-<p>Write both a positive and a negative grammar that each allow only
-strings of the form <em>ab</em>, <em>abab</em>, <em>ababab</em>,
-<em>abababab</em>, and so on (assume that all symbols are either
-<em>a</em> or <em>b</em>). Is one of the two grammars more succinct or
-general than the other? What if the set of symbols is larger,
-e.g. <em>a</em>, <em>b</em>, <em>c</em>, and <em>d</em>?</p>
+<p>Many languages only allow syllables of the form <em>CV</em>, where C
+is some consonant and V is a vowel. In these languages, words are of the
+from <em>CV</em>, <em>CVCV</em>, <em>CVCVCV</em>, and so on. Write both
+a positive and a negative grammar that only allows strings of this form.
+Is one grammar significantly smaller than the other?</p>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, suppose that we use actual
+consonants and vowels instead of the abstract symbols C and V. Assume
+that the language has 5 consonants (<em>p</em>, <em>t</em>, <em>k</em>,
+<em>s</em>, <em>f</em>) and only one vowel (<em>a</em>). So this
+language allows strings like <em>papa</em> or <em>tasa</em>, but not
+<em>tas</em>, <em>psafa</em>, or <em>saaka</em>. Write both a positive
+and a negative grammar that only allows strings of this form. Is one
+grammar significantly smaller than the other?</p>
 </div>
 <div class="exercise">
 <p>For each one of the following phenomena, write a positive <span
 class="math inline">\(n\)</span>-gram grammar that handles it correctly.
 For some of them, you have to rephrase the phenomenon as a phonotactic
-constraint first.</p>
+constraint first. You will also have to make assumptions about the sound
+inventory of the language.</p>
 <ul>
 <li><strong>intervocalic voicing</strong>: voiceless fricatives (assume
 <em>s</em> and <em>f</em>) may not occur between vowels (assume
@@ -332,10 +344,11 @@ id="and-back-translating-between-positive-and-negative-grammars">…and
 back: Translating between positive and negative grammars</h2>
 <p>We now have two different kinds of <span
 class="math inline">\(n\)</span>-gram grammars: positive grammars, and
-negative grammars. The latter fall into two subtypes, fixed and mixed,
-but as we have already proved those two are equivalent in the sense that
-one can freely translate between the two. The same is in fact true for
-positive and negative grammars.</p>
+negative grammars. The latter actually span two subtypes, fixed negative
+grammars and mixed negative grammars, but as we have already proved
+those two are equivalent in the sense that one can freely translate
+between them. The same is in fact true for positive and negative
+grammars.</p>
 <p>The idea is very simple. Suppose that your alphabet (i.e. the set of
 symbols from which strings are built) contains only <em>a</em> and
 <em>b</em>. Then consider the language <span
@@ -389,28 +402,24 @@ positive trigram grammar containing:</p>
 follows:</p>
 <ul>
 <li><em>⋊⋊a</em></li>
+<li><em>⋊⋊⋉</em></li>
 <li><em>⋊aa</em></li>
+<li><em>⋊a⋉</em></li>
+<li><em>⋊⋉⋉</em></li>
+<li><em>aaa</em></li>
 <li><em>aa⋉</em></li>
 <li><em>a⋉⋉</em></li>
-<li><em>⋊⋊⋊</em></li>
-<li><em>⋊⋊⋉</em></li>
-<li><em>⋊⋉⋉</em></li>
-<li><em>⋉⋉⋉</em></li>
-<li><em>⋊a⋉</em></li>
-<li><em>aaa</em></li>
 </ul>
 <p>Removing all trigrams of the positive trigram grammar leaves us with
 the following list:</p>
 <ul>
-<li><em>⋊⋊⋊</em></li>
 <li><em>⋊⋊⋉</em></li>
 <li><em>⋊⋉⋉</em></li>
-<li><em>⋉⋉⋉</em></li>
 <li><em>⋊a⋉</em></li>
 <li><em>aaa</em></li>
 </ul>
 <p>You can verify for yourself that a negative trigram grammar that
-contains those three trigrams (and no other <span
+contains those four trigrams (and no other <span
 class="math inline">\(n\)</span>-grams) can only generate <em>aa</em>
 over the alphabet <span class="math inline">\(\left \{ a \right
 \}\)</span>.</p>
@@ -418,7 +427,7 @@ over the alphabet <span class="math inline">\(\left \{ a \right
 <div class="exercise">
 <p>English allows for <em>nature</em>, <em>natural</em>,
 <em>naturalize</em>, <em>denaturalize</em>, <em>naturalization</em>, and
-<em>denaturalization</em>, but not <em>denature</em> or any of
+<em>denaturalization</em>, but not <em>denatureal</em> or any of
 misordered forms like <em>naturizalation</em>. Write a grammar that
 generates all the well-formed forms but none of the ill-formed ones. It
 is up to you whether you want to use a positive or a negative grammar.
@@ -429,39 +438,48 @@ class="math inline">\(n\)</span>-grams of varying lengths.</p>
 message</h2>
 <p>The next section will give a formal proof that this simple conversion
 strategy will always result in an equivalent grammar. By “equivalent” we
-mean that the two grammars generate exactly the same strings. But beyond
-pure math, there is an important insight here that will be with us for
-pretty much the rest of the course: one and the same thing can be
-specified in many different ways. Depending on one’s criteria, one way
-may be better than another. In some cases, a positive grammar may be
-smaller than a negative one. But for some phenomena it is the other way
-round, and negative grammar also has the advantage that they can be made
-more compact by using a mixed format instead of a fixed length for all
-<span class="math inline">\(n\)</span>-grams.</p>
+mean that the two grammars generate exactly the same strings — there is
+no string such that the two grammars disagree on whether the string is
+well-formed or ill-formed. But beyond pure math, there is an important
+insight here that will be with us for pretty much the rest of the
+course: one and the same thing can be specified in many different ways.
+Depending on one’s criteria, one way may be better than another. In some
+cases, a positive grammar may be smaller than a negative one. But for
+some phenomena it is the other way round. A negative grammar also has
+the advantage that they can be made more compact by using a mixed format
+instead of a fixed length for all <span
+class="math inline">\(n\)</span>-grams. Then again, positive grammars
+are easier to translate to <strong>finite-state automata</strong>, which
+we will encounter in a later chapter. Each grammar format has its pros
+and cons.</p>
 <p>There’s many examples of this kind of interdefinability in
 mathematics. Logical formulas, for example, can be put into a normal
 form that is harder to read for humans but easier to implement for
-computers. So-called <strong>finite-state automata</strong> can be
-viewed as a special case of Boolean matrix multiplication (we’ll talk
-about this one in quite some detail). This may seem bewildering to the
-linguists among you. Linguists like to talk about <em>the</em> grammar,
-<em>the</em> feature system, <em>the</em> constraints of the grammar, as
-if those were concrete objects of a singular nature — like a chair is a
-chair is a chair. Linguistics is driven by the search for <em>the</em>
-correct description of linguistic knowledge. Linguists want the “source
-code” of the language program that runs in the human brain, not just any
-implementation that behaves the same. But this quest for <em>the</em>
-correct specification cannot work for abstract concepts, and all
-linguistic concepts are abstract. When dealing with abstract ideas, you
-want to be able to conceptualize them in as many distinct ways as
-possible. True understanding comes from the ability to describe one and
-the same thing in many different ways, each one with its unique
+computers. Finite-state automata can be viewed as a special case of
+Boolean matrix multiplication (we’ll talk about this one in quite some
+detail). This may seem bewildering to the linguists among you. Linguists
+like to talk about <em>the</em> grammar, <em>the</em> feature system,
+<em>the</em> constraints of the grammar, as if those were concrete
+objects of a singular nature — like a chair is a chair is a chair.
+Linguistics is driven by the search for <em>the</em> correct description
+of linguistic knowledge. Linguists want the “source code” of the
+language program that runs in the human brain, not just any
+implementation that exhibits the same behavior. But this quest for
+<em>the</em> correct specification cannot work for abstract concepts,
+and all linguistic concepts are abstract. When dealing with abstract
+ideas, you want to be able to conceptualize them in as many distinct
+ways as possible. True understanding comes from the ability to describe
+one and the same thing in many different ways, each one with its unique
 advantages and its unique opportunities for new insights.</p>
 <h2 id="recap">Recap</h2>
 <ul>
 <li>A positive <span class="math inline">\(n\)</span>-gram grammar is a
 finite list of allowed <span
 class="math inline">\(n\)</span>-grams.</li>
+<li>A string is generated by a positive <span
+class="math inline">\(n\)</span>-gram grammar iff after addition of edge
+markers, it contains only <span class="math inline">\(n\)</span>-grams
+that are allowed by the grammar.</li>
 <li>Positive grammars can be converted to negative grammars, and the
 other way round.</li>
 <li>Having multiple descriptions of the same thing is a boon, not a

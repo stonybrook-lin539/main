@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#sets-the-basics-solutions">Sets: The basics
+(Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="sets-the-basics-solutions">Sets: The basics (Solutions)</h1>
+<div class="exercise">
+<p>Write the following as a set:</p>
+<ol type="1">
+<li>the first names of your three favorite actors/actresses,</li>
+<li>the colors of the rainbow,</li>
+<li>all even numbers between 1 and 11</li>
+</ol>
+<div class="solution">
+<ul>
+<li><span class="math inline">\(\{\)</span>Bruce, Marlene, Bela<span
+class="math inline">\(\}\)</span></li>
+<li><span class="math inline">\(\{\)</span>red, orange, yellow, green,
+blue, indigo, violet<span class="math inline">\(\}\)</span></li>
+<li>${<span class="math inline">\(2, 4, 6, 8, 10\)</span>}$</li>
+</ul>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li><p>Suppose that your favorite actors are Bruce Campbell (<em>Evil
+Dead</em>), Marlene Dietrich (<em>The Blue Angel</em>, <em>Witness for
+the Prosecution</em>), and Bela Lugosi (<em>Dracula</em>). Their first
+names are <em>Bruce</em>, <em>Marlene</em>, and <em>Bela</em>, so the
+set that contains their first names, and nothing else, is <span
+class="math inline">\(\{\)</span>Bruce, Marlene, Bela<span
+class="math inline">\(\}\)</span>.</p></li>
+<li><p>If you’re like me, you probably had to look this one up, but
+rainbows have six colors, which are red, orange, yellow, green, blue,
+indigo, and violet. So the set we’re looking for contains these six
+colors. We can specify that set using the names of these colors, but it
+would also be okay to use colored squares instead of names, colored
+lines, anything that conveys clearly that this is the set that contains
+these six colors.</p></li>
+<li><p>A number is even if and only if it is a multiple of 2. Between 1
+and 11, that’s 2, 4, 6, 8, and 10.</p></li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Put <span class="math inline">\(\in\)</span>, <span
+class="math inline">\(\ni\)</span>, <span
+class="math inline">\(\notin\)</span>, <span
+class="math inline">\(\not\ni\)</span> in the gaps below as
+appropriate:</p>
+<ol type="1">
+<li><span class="math inline">\(5 \_ \left \{ 1,2,4,5,8 \right
+\}\)</span></li>
+<li><span class="math inline">\(6 \_ \left \{ 1,2,4,5,8 \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ 5 \right \} \_ \left \{
+1,2,4,5,8 \right \}\)</span></li>
+<li><span class="math inline">\(5 \_ \left \{ 1,2,4,5,8 \right \} \_
+6\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(5 \in \left \{ 1,2,4,5,8 \right
+\}\)</span></li>
+<li><span class="math inline">\(6 \notin \left \{ 1,2,4,5,8 \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ 5 \right \} \notin \left \{
+1,2,4,5,8 \right \}\)</span></li>
+<li><span class="math inline">\(5 \in \left \{ 1,2,4,5,8 \right \}
+\notin 6\)</span> or <span class="math inline">\(5 \in \left \{
+1,2,4,5,8 \right \} \not\ni 6\)</span>.</li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>The set <span class="math inline">\(\left \{ 1,2,4,5,8 \right
+\}\)</span> has 5 as one of its members, which we write as <span
+class="math inline">\(5 \in \left \{ 1,2,4,5,8 \right \}\)</span>.</li>
+<li>On the other hand, <span class="math inline">\(6\)</span> is nowhere
+to be found in <span class="math inline">\(\left \{ 1,2,4,5,8 \right
+\}\)</span>, its only elements are <span
+class="math inline">\(1\)</span>, <span
+class="math inline">\(2\)</span>, <span
+class="math inline">\(4\)</span>, <span
+class="math inline">\(5\)</span>, and <span
+class="math inline">\(8\)</span>. Hence <span class="math inline">\(6
+\notin \left \{ 1,2,4,5,8 \right \}\)</span>.</li>
+<li>This one is a bit tricky. We already know that <span
+class="math inline">\(\left \{ 1,2,4,5,8 \right \}\)</span> contains
+<span class="math inline">\(5\)</span>, but that’s not the same thing as
+containing <span class="math inline">\(\left \{ 5 \right \}\)</span>,
+i.e. the set containing <span class="math inline">\(5\)</span>. None of
+the elements of <span class="math inline">\(\left \{ 1,2,4,5,8 \right
+\}\)</span> is <span class="math inline">\(\left \{ 5 \right
+\}\)</span>. By the way, this is also why <span class="math inline">\(5
+\notin \left \{ 1,2,4,\left \{ 5 \right \},8 \right \}\)</span>. Never
+confuse an object with a set containing that object, the two are very
+different things.</li>
+<li>We already know that <span class="math inline">\(\left \{ 1,2,4,5,8
+\right \}\)</span> contains <span class="math inline">\(5\)</span>, so
+the first gap must be <span class="math inline">\(\in\)</span>. For the
+second gap, there are two options. If we fill the gap with <span
+class="math inline">\(\notin\)</span>, we are saying that <span
+class="math inline">\(\left \{ 1,2,4,5,8 \right \}\)</span> is not a
+member of <span class="math inline">\(6\)</span>, which is true, but
+it’s an odd thing to say as <span class="math inline">\(6\)</span> isn’t
+a set to begin with. Instead, it makes more sense to fill the gap with
+<span class="math inline">\(\not\ni\)</span>, which states that <span
+class="math inline">\(6\)</span> is not a member of <span
+class="math inline">\(\left \{ 1,2,4,5,8 \right \}\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the following, fill the gap with <span
+class="math inline">\(=\)</span> or <span
+class="math inline">\(\neq\)</span> as appropriate:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ a,b \right \} \_ \left \{ a,b
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ b,a \right \} \_ \left \{ a,b
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ b,a,c,d \right \} \_ \left \{
+e,a,b,d \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ a,b \right \} = \left \{ a,b
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ b,a \right \} = \left \{ a,b
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ b,a,c,d \right \} \neq \left \{
+e,a,b,d \right \}\)</span> (assuming that <span
+class="math inline">\(c\)</span> and <span
+class="math inline">\(e\)</span> are distinct objects)</li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>Two sets are identical if they contain exactly the same elements.
+This is clearly the case here, both sets contain <span
+class="math inline">\(a\)</span>, both of them also contain <span
+class="math inline">\(b\)</span>, and they contain nothing else.</li>
+<li>It may seem like <span class="math inline">\(\left \{ b,a \right
+\}\)</span> is different from <span class="math inline">\(\left \{ a,b
+\right \}\)</span>, but remember that sets are unordered. It does not
+matter in what order we write down the elements, all that matters is
+whether the sets have the same members. And this is still the case
+here.</li>
+<li>Each one of the sets contains four elements, three of which are
+<span class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and <span
+class="math inline">\(d\)</span>. Only the first set contains <span
+class="math inline">\(c\)</span>, and only the second set contains <span
+class="math inline">\(e\)</span>. This suggests that the sets are not
+equivalent. However, we have to be careful here as <span
+class="math inline">\(c\)</span> and <span
+class="math inline">\(e\)</span> may just be different ways of referring
+to the same object. As a concrete example, suppose that we are talking
+about sets of actors, and we are looking at the sets <span
+class="math inline">\(\{\)</span>Arnold<span
+class="math inline">\(\}\)</span> and <span
+class="math inline">\(\{\)</span>Schwarzenegger<span
+class="math inline">\(\}\)</span>. These are not actually distinct sets,
+they are just different ways of writing down the set that contains only
+the actor Arnold Schwarzenegger. So remember: what matters isn’t how we
+choose to write down a set, what matters is what it actually contains.
+If both <span class="math inline">\(c\)</span> and <span
+class="math inline">\(e\)</span> are just ways of referring to, say, the
+number <span class="math inline">\(5\)</span>, then the two sets above
+are equivalent.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the following, fill the gap with <span
+class="math inline">\(=\)</span> or <span
+class="math inline">\(\neq\)</span> as appropriate:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ a,b \right \} \_ \left \{
+a,a,b,b \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ b,a \right \} \_ \left \{ a,b,a
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ c,b,a,a,d,c \right \} \_ \left
+\{ a,a,b,d,c,c,c \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ a \right \} \_ \left \{
+a,a,a,a,a,a,c,a,a,a,a,a,a \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ a,b \right \} = \left \{
+a,a,b,b \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ b,a \right \} = \left \{ a,b,a
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ c,b,a,a,d,c \right \} = \left
+\{ a,a,b,d,c,c,c \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ a \right \} \neq \left \{
+a,a,a,a,a,a,c,a,a,a,a,a,a \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>Remember, one and the same element cannot be contained in a set
+multiple times. Either it is a member of the set, or it is not a member,
+it cannot be a member two times, or three times, or anything like that.
+Hence <span class="math inline">\(\left \{ a,a,b,b \right \} = \left \{
+a,b,b \right \} = \left \{ a,b \right \}\)</span>.</li>
+<li>The same logic applies in this case: <span
+class="math inline">\(\left \{ a,b,a \right \} = \left \{ a,b \right
+\}\)</span>, which is the same as <span class="math inline">\(\left \{
+b,a \right \}\)</span> because sets are not ordered.</li>
+<li>Again we have two identical sets. The first set contains <span
+class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, <span
+class="math inline">\(c\)</span>, <span
+class="math inline">\(d\)</span>, and nothing else, and the same is true
+for the second set.</li>
+<li>Finally we have two sets that are distinct. The second set could be
+written more compactly as <span class="math inline">\(\left \{ a,c
+\right \}\)</span>, and that is not the same set as <span
+class="math inline">\(\left \{ a \right \}\)</span> because only the
+former contains <span class="math inline">\(c\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>The sentence <em>If police police police, then police police
+police</em> actually uses two different word types. It just just so
+happens that both are pronounced and spelled <em>police</em>. But one is
+the noun <em>police</em>, the other one the verb <em>police</em>. So we
+might want to annotate the string as follows: <em>If police[N] police[V]
+police[N], then police[N] police[V] police[N]</em>. Assume that words
+are annotated with their part of speech in this fashion. Then what would
+be the corresponding set of words?</p>
+<div class="solution">
+<p><span class="math inline">\(\left \{  \text{if}, \text{police[N]},
+\text{police[V]}, \text{then}  \right \}\)</span>.</p>
+</div>
+<div class="solution_explained">
+<p>We can build this set incrementally by moving from left to right
+through the string <em>If police[N] police[V] police[N], then police[N]
+police[V] police[N]</em> (ignoring capitalization). The string starts
+with <em>if</em>, so at this point our set is <span
+class="math inline">\(\left \{ \text{if} \right \}\)</span>. Next we see
+<em>police[N]</em>, and since this is not in our set yet, we add it and
+obtain <span class="math inline">\(\left \{ \text{if}, \text{police[N]}
+\right \}\)</span>. After that we encounter <em>police[V]</em>, which is
+not an element of our set yet — the set only contains the noun
+<em>police</em>, not the verb <em>police</em>. Hence we add
+<em>police[V]</em>, yielding <span class="math inline">\(\left \{
+\text{if}, \text{police[N]}, \text{police[V]} \right \}\)</span>. Now
+the next word is <em>police[N]</em>, but since that’s already in our set
+we do not need to add it again (there’s no point in writing down the
+same element multiple times). After that we add <em>then</em>, and at
+this point we are done. Our set is <span class="math inline">\(\left \{
+\text{if}, \text{police[N]}, \text{police[V]}, \text{then} \right
+\}\)</span>, and our example sentence contains no words after
+<em>then</em> that aren’t already members of this set.</p>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the following, fill the gap with <span
+class="math inline">\(=\)</span> or <span
+class="math inline">\(\neq\)</span> as appropriate:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ a,b \right \} \_ \left \{
+a,a,b,\left \{ b \right \} \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ \left \{ b \right \},\left \{ a
+\right \} \right \} \_ \left \{ \left \{ a \right \},\left \{ b \right
+\},\left \{ a \right \} \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ c,b,\left \{ a,a \right \},d,c
+\right \} \_ \left \{ \left \{ a \right \},b,d,c,c,c \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ a \right \} \_ \left \{
+a,a,a,a,a,a,\left \{ a \right \},a,a,a,a,a,a \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ a,b \right \} \neq \left \{
+a,a,b,\left \{ b \right \} \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ \left \{ b \right \},\left \{ a
+\right \} \right \} = \left \{ \left \{ a \right \},\left \{ b \right
+\},\left \{ a \right \} \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ c,b,\left \{ a,a \right \},d,c
+\right \} = \left \{ \left \{ a \right \},b,d,c,c,c \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ a \right \} \neq \left \{
+a,a,a,a,a,a,\left \{ a \right \},a,a,a,a,a,a \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>Since <span class="math inline">\(b\)</span> is not the same as
+<span class="math inline">\(\left \{ b \right \}\)</span>, <span
+class="math inline">\(\left \{ a,a,b,\left \{ b \right \} \right
+\}\)</span> contains an element that is not a member of <span
+class="math inline">\(\left \{ a,b \right \}\)</span>, which means that
+the two are distinct sets.</li>
+<li>As sets do not contain duplicates, it holds that <span
+class="math inline">\(\left \{ \left \{ a \right \}, \left \{ b \right
+\}, \left \{ a \right \} \right \} = \left \{ \left \{ a \right \},
+\left \{ b \right \} \right \}\)</span>. But sets are also unordered, so
+that <span class="math inline">\(\left \{ \left \{ a \right \}, \left \{
+b \right \} \right \} = \left \{  \left \{ b \right \}, \left \{ a
+\right \} \right \}\)</span>.</li>
+<li>Again we have to keep in mind that sets do not contain duplicates,
+and as a result <span class="math inline">\(\left \{ a,a \right \} =
+\left \{ a \right \}\)</span>. We thus can simplify the two sets as
+follows: <span class="math inline">\(\left \{ c,b,\left \{ a,a \right
+\},d,c \right \} = \left \{ c,b,\left \{ a \right \},d,c \right \} =
+\left \{ c,b,\left \{ a \right \}, d \right \} = \left \{ \left \{ a
+\right \},b,c,d \right \}\)</span> and <span class="math inline">\(\left
+\{ \left \{ a \right \},b,d,c,c,c \right \} = \left \{ \left \{ a \right
+\},b,d,c \right \} = \left \{ \left \{ a \right \},b,c,d \right
+\}\)</span>.</li>
+<li>We can reduce <span class="math inline">\(\left \{ a,a,a,a,a,a,\left
+\{ a \right \},a,a,a,a,a,a \right \}\)</span> to <span
+class="math inline">\(\left \{ a, \left \{ a \right \} \right
+\}\)</span>, but since <span class="math inline">\(a \neq \left \{ a
+\right \}\)</span>, we can see that <span class="math inline">\(\left \{
+a, \left \{ a \right \} \right \}\)</span> is not the same set as <span
+class="math inline">\(\left \{ a \right \}\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
