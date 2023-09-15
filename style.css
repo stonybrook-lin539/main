@@ -281,14 +281,16 @@ th, td {
     border-color: var(--blue);
 }
 
-.proof:before, .remark:before {
+.proof:before, .remark:before, .solution:before, .solution_explained:before {
     content: "Proof.";
     font-style: italic;
     font-weight: bold;
 }
 
-.proof:before,  { content: "Proof"; }
+.proof:before  { content: "Proof"; }
 .remark:before { content: "Remark."; }
+.solution:before { content: "Solution"; }
+.solution_explained:before { content: "Explanation"; }
 
 /* QED symbol */
 /*.proof:after {
