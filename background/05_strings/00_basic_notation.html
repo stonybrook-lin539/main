@@ -222,33 +222,34 @@ distinct strings over <span class="math inline">\(\Sigma\)</span>.</p>
 <p>Two infinite string sets are commonly defined over <span
 class="math inline">\(\Sigma\)</span>. They are <span
 class="math inline">\(\Sigma^*\)</span> and <span
-class="math inline">\(\Sigma^+\)</span>, respectively. The former
-contains all strings over <span class="math inline">\(\Sigma\)</span>,
-whereas the latter contains all strings whose length is at least <span
-class="math inline">\(1\)</span>. The only difference between the two is
-that <span class="math inline">\(\Sigma^*\)</span> also contains the
-<strong>empty string</strong> <span
-class="math inline">\(\varepsilon\)</span>. The empty string is the
-string counterpart of the number 0: it represents nothing. In fact,
-<span class="math inline">\(\varepsilon\)</span> is the only string
-whose length is 0.</p>
+class="math inline">\(\Sigma^+\)</span>, respectively. The set <span
+class="math inline">\(\Sigma^*\)</span> contains all strings over <span
+class="math inline">\(\Sigma\)</span>, whereas <span
+class="math inline">\(\Sigma^+\)</span> contains all strings whose
+length is at least <span class="math inline">\(1\)</span>. The only
+difference between the two is that <span
+class="math inline">\(\Sigma^*\)</span> also contains the <strong>empty
+string</strong> <span class="math inline">\(\varepsilon\)</span>. The
+empty string is the string counterpart of the number 0: it represents
+nothing. In fact, <span class="math inline">\(\varepsilon\)</span> is
+the only string whose length is 0.</p>
 <div class="example">
 <p>Let <span class="math inline">\(\Sigma = \left \{ a,b \right
 \}\)</span>. Then <span class="math inline">\(\Sigma^*\)</span>
 contains</p>
 <ul>
 <li><span class="math inline">\(\varepsilon\)</span>,</li>
-<li><span class="math inline">\(\mathit{a}\)</span>,</li>
-<li><span class="math inline">\(\mathit{b}\)</span>,</li>
-<li><span class="math inline">\(\mathit{aa}\)</span>,</li>
-<li><span class="math inline">\(\mathit{ab}\)</span>,</li>
-<li><span class="math inline">\(\mathit{ba}\)</span>,</li>
-<li><span class="math inline">\(\mathit{bb}\)</span>,</li>
-<li><span class="math inline">\(\mathit{aaa}\)</span>,</li>
-<li><span class="math inline">\(\mathit{aab}\)</span>,</li>
-<li><span class="math inline">\(\mathit{aba}\)</span>,</li>
-<li><span class="math inline">\(\mathit{abb}\)</span>,</li>
-<li>and so on.</li>
+<li><span class="math inline">\(\mathit{a}\)</span></li>
+<li><span class="math inline">\(\mathit{b}\)</span></li>
+<li><span class="math inline">\(\mathit{aa}\)</span></li>
+<li><span class="math inline">\(\mathit{ab}\)</span></li>
+<li><span class="math inline">\(\mathit{ba}\)</span></li>
+<li><span class="math inline">\(\mathit{bb}\)</span></li>
+<li><span class="math inline">\(\mathit{aaa}\)</span></li>
+<li><span class="math inline">\(\mathit{aab}\)</span></li>
+<li><span class="math inline">\(\mathit{aba}\)</span></li>
+<li><span class="math inline">\(\mathit{abb}\)</span></li>
+<li>and so on</li>
 </ul>
 <p>All these strings are also members of <span
 class="math inline">\(\Sigma^+\)</span>, except <span
@@ -324,24 +325,25 @@ to mean completely different things).</p>
 </div>
 <p>Note the special behavior of the empty string: <span
 class="math inline">\(u \cdot\varepsilon= \varepsilon\cdot u =
-u\)</span>. This makes sense because adding nothing to <span
-class="math inline">\(u\)</span> does not change <span
-class="math inline">\(u\)</span>, just like adding 0 to a number does
-not change that number.</p>
+u\)</span>. This is fairly intuitive because adding a string of length 0
+to <span class="math inline">\(u\)</span> should not change the length
+of <span class="math inline">\(u\)</span>, which means that <span
+class="math inline">\(u\)</span> does not change at all — just like
+adding 0 to a number does not change that number.</p>
 <p>Sometimes concatenation is not explicitly indicated, so that instead
 of <span class="math inline">\(u \cdot v\)</span> one may simply write
 <span class="math inline">\(\mathit{uv}\)</span>.</p>
 <div class="exercise">
 <p>Give an example of distinct <span class="math inline">\(u\)</span>
 and <span class="math inline">\(v\)</span> such that <span
-class="math inline">\(u \cdot v = v \cdot u\)</span> and neither <span
-class="math inline">\(u\)</span> nor <span
+class="math inline">\(\mathit{uv} = \mathit{vu}\)</span> and neither
+<span class="math inline">\(u\)</span> nor <span
 class="math inline">\(v\)</span> is the empty string.</p>
 </div>
 <div class="exercise">
 <p>Is the following true or false? If <span class="math inline">\(u \neq
-v\)</span>, then <span class="math inline">\(u \cdot v \neq v \cdot
-u\)</span>?</p>
+v\)</span>, then <span class="math inline">\(\mathit{uv} \neq
+\mathit{vu}\)</span>?</p>
 </div>
 <h2 id="recap">Recap</h2>
 <ul>
@@ -366,7 +368,8 @@ contains all <span class="math inline">\(\Sigma\)</span>-strings except
 <span class="math inline">\(\varepsilon\)</span>.</li>
 <li>Concatenation of strings <span class="math inline">\(u\)</span> and
 <span class="math inline">\(v\)</span> is denoted by <span
-class="math inline">\(u \cdot v\)</span>.</li>
+class="math inline">\(u \cdot v\)</span> or simply <span
+class="math inline">\(\mathit{uv}\)</span>.</li>
 </ul>
 </div>
 </div>
