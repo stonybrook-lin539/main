@@ -166,7 +166,7 @@ Then make a single change to $A$ such that $A - B \neq B - A$.
 If $A$ is clear from context, we just write $\overline{B}$ for $A - B$ and call it the complement of $B$.
 
 ::: example
-Given some fixed $A \is \setof{0,1,2,3}$, $\overline{\setof{1,3}} = \setof{0,2}$.
+Given some fixed $A \is \setof{0,1,2,3}$, we have $\overline{\setof{1,3}} = \setof{0,2}$.
 :::
 
 ::: exercise
@@ -175,8 +175,9 @@ Compute all of the following:
 
 - $\overline{\setof{0}}$
 - $\overline{\setof{0,\setof{1}}}$
-- $\overline{\setof{\setof{0}}}$
 - $\overline{\setof{}}$
+- $\overline{\setof{\setof{0}}}$
+- $\setof{\overline{\setof{0}}}$
 :::
 
 ## Summary
