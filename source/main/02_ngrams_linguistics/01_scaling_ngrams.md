@@ -44,8 +44,8 @@ But this has several downsides:
   127-grams?
   How do you know that your results will carry over from bigrams and trigrams to arbitrary $n$-grams?
 
-Computer-aided simulations are *en vogue* nowadays, but they're really a last resort.
-They are hard to design, often require significant resources, and do not provide perfect insight into how the specific aspects of a system determine its behavior.
+Computer-aided simulations are a very common tool nowadays, but that does not mean that they are perfect.
+They are hard to design, often require significant resources, and do not provide complete insight into how the specific aspects of a system determine its behavior.
 That's not to say that simulations are a bad thing --- if you are dealing with a very complex system, they're often the best tool at your disposal.
 But there are other tools around, and in many cases they are a superior choice.
 Mathematics furnishes the best tool of them all: proofs!
@@ -62,9 +62,9 @@ We will see a concrete example in a moment, but let's first focus on the specifi
 
 - **Guarantees**  
   Of course a proof may contain mistakes, just like a program may contain bugs.
-  But mistakes in a proof tend to be easier to spot than bugs in a program.
-  Fixing a proof is also much simpler than verifying that a simulation has no hidden biases.
-  Once you have a correct proof, you have a guarantee: as long as the assumptions of the proof hold, the property established by proof holds, too.
+  But since your average proof is much smaller than your average program, mistakes in a proof tend to be easier to spot than bugs in a program.
+  Fixing a mistake in a proof also tends to be much simpler than determining whether a simulation has hidden biases and correcting for that.
+  And most importantly, once you have a correct proof, you have a guarantee: as long as the assumptions of the proof hold, the property established by proof holds, too.
 
 - **Scalability**  
   Since a proof holds as long as its initial assumptions are satisfied, it can be extended to any object that satisfies these assumptions.
@@ -273,6 +273,9 @@ Specialized notation and terminology makes things easier to talk and think about
   In a **mixed** negative $n$-gram grammar, this requirement is lifted and $n$-grams may be of different lengths.
 - Every mixed negative $n$-gram grammar can be converted into an equivalent fixed negative $n$-gram grammar.
   This is an instance of a **normal form theorem**.
+- We can use mathematical proofs to establish results that are guaranteed to hold whenever the conditions assumed by the proof are met.
+  In contrast to simulations, proofs allow us to leave some parameters unspecified, e.g. the length of the n-grams.
+  In addition, we do not need to worry about accidental gaps or biases in our simulations because a proof states explicitly which assumptions it is built on.
 
 
 <!-- We remove the $n$-gram $g$ from the grammar $G$, and instead add in a number of "padded" variants of $g$:  -->

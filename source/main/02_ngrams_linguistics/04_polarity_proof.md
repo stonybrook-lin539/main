@@ -7,8 +7,8 @@ pagetitle: >-
 
 :::prereqs
 - general(abbreviations[w.l.o.g.])
-- sets(notation, operations)
-- strings(notation)
+- sets(basic notation, operations)
+- strings(basic notation)
 :::
 
 This section defines both negative and positive versions of $n$-gram grammars and shows that they are expressively equivalent.
@@ -17,19 +17,19 @@ A proof is constructive if it doesn't just derive the existence of some object, 
 In the case at hand, the proof shows how to construct a positive grammar from a negative one, and the other way around.
 
 ::: definition
-Let $\Sigma$ be some alphabet, and $\Sigma_E$ its extension with edge marker symbols ${{{L}}}, {{{R}}} \notin \Sigma$.
+Let $\Sigma$ be some alphabet, and $\Sigma_E$ its extension with the edge marker symbols ${{{L}}}, {{{R}}} \notin \Sigma$.
 An $n$-gram over $\Sigma_E$ is an element of $\Sigma_E^n$ ($n \geq 1$).
 An $n$-gram grammar $G$ over alphabet $\Sigma$ is a finite set of $n$-grams over $\Sigma_E$.
-Every $n$-gram grammar has a **polarity**:
+Every $n$-gram grammar has a **polarity** interpretation:
 
-- If $G$ is negative (also denoted $^-G$), then a string $s$ over $\Sigma$ is well-formed with respect to $^-G$ iff there are no $u, v$ over $\Sigma_E$ and no $g \in ^-G$ such that ${{{L}}}^{n-1} \stringcat s \stringcat {{{R}}}^{n-1} = u \stringcat g \stringcat v$.
-- If $G$ is positive (also denoted $^+G$), then a string $s$ over $\Sigma$ is well-formed with respect to $^+G$ iff for all $u, v$ over $\Sigma_E$ and $g \in \Sigma_E^n$ such that ${{{L}}}^{n-1} \stringcat s \stringcat {{{R}}}^{n-1} = u \stringcat g \stringcat v$, it holds that $g \in ^+G$.
+- Under the negative interpretation of $G$ (also denoted $N(G)$), a string $s$ over $\Sigma$ is well-formed with respect to $G$ iff there are no $u, v$ over $\Sigma_E$ and no $g \in G$ such that ${{{L}}}^{n-1} \stringcat s \stringcat {{{R}}}^{n-1} = u \stringcat g \stringcat v$.
+- Under the positive interpretation of $G$ (also denoted $P(G)$), a string $s$ over $\Sigma$ is well-formed with respect to $G$ iff for all $u, v$ over $\Sigma_E$ and $g \in \Sigma_E^n$ such that ${{{L}}}^{n-1} \stringcat s \stringcat {{{R}}}^{n-1} = u \stringcat g \stringcat v$, it holds that $g \in G$.
 
 The **language of $G$**, denoted $L(G)$, contains all strings that are well-formed with respect to $G$, and only those.
 :::
 
 ::: theorem
-For every $n$-gram grammar $G$ there exists a grammar $G'$ of opposite polarity such that $L(G) = L(G')$.
+For every $n$-gram grammar $G$ there exists a grammar $G'$ such that $L(P(G)) = L(N(G'))$ and $L(N(G)) = L(P(G'))$.
 :::
 
 ::: proof
@@ -50,3 +50,13 @@ But then $g \in N$, which entails $s \notin L(N)$.
 This shows that $s \in L(P)$ iff $s \in L(N)$.
 As $s$ was arbitrary, this holds for all strings and establishes $L(P) = L(N)$, which concludes our proof.
 :::
+
+Again you should not feel heartbroken if you can't make sense of the proof yet.
+Take a deep breath, don't panic, and try to translate the symbol salad into English in your head.
+Consider for example this part of the proof:
+
+- Then there must be some $g \in N$ such that ${{{L}}}^{n-1} s {{{R}}}^{n-1} = u \stringcat g \stringcat v$ ($u,v, \in \Sigma_E^*$).
+
+This just says that the negative grammar necessarily contains some $n$-gram $g$ that occurs in the string $s$ (augmented with edge markers).
+Try to break the proof down into individual chunks that you can make sense of, and then reassemble those chunks into the overall argument of the proof.
+And if you run out of energy, but this unit assign, move on to the next one, and come back a few weeks later when you have built up more math endurance.

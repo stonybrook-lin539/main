@@ -1,41 +1,15 @@
 ---
 pagetitle: >-
-    Sets: Additional notation
+    Set-builder notation
 ---
 
-# Sets: Additional notation
+# Set-builder notation
 
 :::prereqs
 - sets (basic notation)
 :::
 
-## The empty set
-
-While the intuition of sets as collections is fairly intuitive, intuition only goes so far.
-Many sets are rather strange and do not gel with the metaphor of sets as containers.
-One example of that is the *empty set*, written $\setof{}$ or more commonly $\emptyset$.
-
-The empty set contains nothing.
-So there is no $a$ such that $a \in \emptyset$.
-At the same time, the empty set is not simply nothing because it is still a set.
-A set is not nothing.
-This might make more sense if you think of sets as boxes or bags: an empty bag is still a bag, it just happens to contain nothing.
-
-The empty set may seem rather useless to you at this point, but it actually has a very important role to play. 
-You will see it quite a bit in definitions, but also in the construction of abstract mathematical objects such as [monoids](fixme).
-
-::: exercise
-For each one of the statements below, say whether it is true or false.
-
-- $\emptyset = \setof{}$
-- $\emptyset \in \setof{a}$
-- $\setof{a,b} \neq \emptyset$
-
-:::
-
-## Set-builder notation
-
-### Motivation
+## Motivation
 
 Defining a set by listing all its elements is only feasible for small sets.
 But many sets are very large, for example the set of atoms in the universe (10^82^), or the set of bad horror movies produced after *Scream* (not quite as big, but too big to write down).
@@ -49,7 +23,7 @@ Remember, sets have no order, so a set does not start with anything.
 And even if we take such human intuitions into account, it's still too imprecise for more complex cases.
 Rather than rely on human intuition about what would be a natural interpretation of the ellipsis dots, we can use *set-builder notation* to succinctly describe large/infinite sets.
 
-### Format
+## Format
 
 Set-builder notation uses the general template
 
@@ -140,3 +114,14 @@ Express the following in terms of set-builder notation:
 
 - The empty set, denoted $\emptyset$, contains no elements at all.
 - Set-builder notation uses the format $\setof{ \text{expression using variable(s)} \mid \text{definition of variable(s)} }$.
+
+::: definition
+Let $A$ and $B$ be arbitrary sets.
+
+- The **union** of $A$ and $B$ is $A \cup B \is \setof{ x \mid x \in A \text{ or } x \in B}$.
+- The **intersection** of $A$ and $B$ is $A \cap B \is \setof{ x \mid x \in A \text{ and } x \in B}$.
+- The **relative complement** of $A$ and $B$ is $A - B \is \setof{ x \mid x \in A \text{ and } x \notin B}$.
+- If $A$ is clear from context, we just write $\overline{B}$ for $A - B$ and call it the **complement** of $B$.
+
+:::
+

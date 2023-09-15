@@ -237,3 +237,5 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 - The objects contained in a set are called its *elements* or *members*.
 - The symbols $\in$ and $\notin$ are used to indicate membership and non-membership, respectively.
 - Occasionally, $\ni$ is used as the mirror image of $\in$.
+- While sets may contain objects that are themselves collections of other objects, these objects inside objects are not considered for set membership.
+  Remember: $a \in \setof{a}$ and $\setof{a} \in \setof{\setof{a}}$, but $a \notin \setof{\setof{a}}$.

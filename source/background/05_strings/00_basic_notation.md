@@ -69,6 +69,7 @@ Justify your answer.
 
 :::
 
+
 ## String length
 
 The length of a $\Sigma$-string $s$ is indicated by $\length{s}$.
@@ -145,7 +146,7 @@ This enumeration continues indefinitely, so there must be infinitely many distin
 
 Two infinite string sets are commonly defined over $\Sigma$.
 They are $\Sigma^*$ and $\Sigma^+$, respectively.
-The former contains all strings over $\Sigma$, whereas the latter contains all strings whose length is at least $1$.
+The set $\Sigma^*$ contains all strings over $\Sigma$, whereas $\Sigma^+$ contains all strings whose length is at least $1$.
 The only difference between the two is that $\Sigma^*$ also contains the **empty string** $\emptystring$.
 The empty string is the string counterpart of the number 0: it represents nothing.
 In fact, $\emptystring$ is the only string whose length is 0.
@@ -155,17 +156,17 @@ Let $\Sigma = \setof{a,b}$.
 Then $\Sigma^*$ contains
 
 - $\emptystring$,
-- $\mathit{a}$,
-- $\mathit{b}$,
-- $\mathit{aa}$,
-- $\mathit{ab}$,
-- $\mathit{ba}$,
-- $\mathit{bb}$,
-- $\mathit{aaa}$,
-- $\mathit{aab}$,
-- $\mathit{aba}$,
-- $\mathit{abb}$,
-- and so on.
+- $\mathit{a}$
+- $\mathit{b}$
+- $\mathit{aa}$
+- $\mathit{ab}$
+- $\mathit{ba}$
+- $\mathit{bb}$
+- $\mathit{aaa}$
+- $\mathit{aab}$
+- $\mathit{aba}$
+- $\mathit{abb}$
+- and so on
 
 All these strings are also members of $\Sigma^+$, except $\emptystring$.
 :::
@@ -216,17 +217,17 @@ Those are not the same strings (and they also happen to mean completely differen
 :::
 
 Note the special behavior of the empty string: $u \stringcat \emptystring = \emptystring \stringcat u = u$. 
-This makes sense because adding nothing to $u$ does not change $u$, just like adding 0 to a number does not change that number.
+This is fairly intuitive because adding a string of length 0 to $u$ should not change the length of $u$, which means that $u$ does not change at all --- just like adding 0 to a number does not change that number.
 
 Sometimes concatenation is not explicitly indicated, so that instead of $u \stringcat v$ one may simply write $\mathit{uv}$.
 
 ::: exercise
-Give an example of distinct $u$ and $v$ such that $u \stringcat v = v \stringcat u$ and neither $u$ nor $v$ is the empty string.
+Give an example of distinct $u$ and $v$ such that $\mathit{uv} = \mathit{vu}$ and neither $u$ nor $v$ is the empty string.
 :::
 
 ::: exercise
 Is the following true or false?
-If $u \neq v$, then $u \stringcat v \neq v \stringcat u$?
+If $u \neq v$, then $\mathit{uv} \neq \mathit{vu}$?
 :::
 
 ## Recap
@@ -239,4 +240,4 @@ If $u \neq v$, then $u \stringcat v \neq v \stringcat u$?
 - $a^n$ is a shorthand for $\setof{a}^n$.
 - The Kleene closure $\Sigma^*$ is the set of all $\Sigma$-strings (including $\emptystring$).
 - The positive closure $\Sigma^+$ contains all $\Sigma$-strings except $\emptystring$.
-- Concatenation of strings $u$ and $v$ is denoted by $u \stringcat v$.
+- Concatenation of strings $u$ and $v$ is denoted by $u \stringcat v$ or simply $\mathit{uv}$.

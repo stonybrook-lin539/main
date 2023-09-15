@@ -20,7 +20,7 @@ The factorial of $5$ is $120$ because
 - $1! = 1$
 
 
-So $5!$ reduces to $5 \cdot 4 \cdot 3 \cdot 2 \cdot 1$
+So $5!$ reduces to $5 \cdot 4 \cdot 3 \cdot 2 \cdot 1$, which is $120$.
 :::
 
 The factorial often appears in combinatorial problems.
@@ -37,6 +37,10 @@ There are $3! = 6$ ways to order $a$, $b$, and $c$:
 - $cab$
 - $cba$
 
+:::
+
+::: exercise
+Write down all possible ways of ordering $a$, $b$, $c$ and $d$ and confirm that this number is the same as $4!$.
 :::
 
 The factorial function grows very fast, even faster than an exponential function.

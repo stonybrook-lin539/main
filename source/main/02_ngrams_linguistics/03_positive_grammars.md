@@ -208,7 +208,7 @@ Can you identify some general guidelines for when a positive grammar is preferab
 ## ...and back: Translating between positive and negative grammars
 
 We now have two different kinds of $n$-gram grammars: positive grammars, and negative grammars.
-The latter actually span two subtypes, fixed negative grammars and mixed negative grammars, but as we have already proved those two are equivalent in the sense that one can freely translate between them.
+The latter actually span two subtypes, strict negative grammars and mixed negative grammars, but as we have already proved those two are equivalent in the sense that one can freely translate between them.
 The same is in fact true for positive and negative grammars.
 
 The idea is very simple.
@@ -229,7 +229,7 @@ The positive grammar, on the other hand, contains
 1. *ba* (*b* may be followed by *a*),
 1. *a{{{R}}}* (you may end with *a*).
 
-Now compare this to the list of all possible bigrams over *a*, *b*, and *\$*:
+Now compare this to the list of all possible bigrams over *a*, *b*, and the edge markers {{{L}}} and {{{R}}} (we ignore useless bigrams such as {{{R}}}{{{L}}}, which can never occur in a string):
 
 1. *{{{L}}}{{{R}}}*,
 1. *{{{L}}}a*,
@@ -242,7 +242,7 @@ Now compare this to the list of all possible bigrams over *a*, *b*, and *\$*:
 1. *bb*.
 
 Notice anything?
-Each one of those bigrams is either in the negative grammar or in the positive one (but never in both).
+Each one of those bigrams is either in the negative grammar or in the positive one, but never in both.
 So in order to convert a positive grammar to a negative one, or the other way round, it suffices to first compute all possible $n$-grams and then remove all those that are in the grammar that is to be converted to the opposite polarity.
 
 ::: example
@@ -312,7 +312,7 @@ print(pos_gram)
 ```
 
 ::: exercise
-English allows for *nature*, *natural*, *naturalize*, *denaturalize*, *naturalization*, and *denaturalization*, but not *denatureal* or any of misordered forms like *naturizalation*.
+English allows for *nature*, *natural*, *naturalize*, *denature*, *denaturalize*, *naturalization*, and *denaturalization*, but not *denatural* or any of misordered forms like *naturizalation*.
 Write a grammar that generates all the well-formed forms but none of the ill-formed ones.
 It is up to you whether you want to use a positive or a negative grammar.
 If you use a negative grammar, it can be in the mixed format, with $n$-grams of varying lengths.
@@ -320,26 +320,40 @@ If you use a negative grammar, it can be in the mixed format, with $n$-grams of 
 
 ## An important take-home message
 
-The next section will give a formal proof that this simple conversion strategy will always result in an equivalent grammar.
+The next section will give a formal proof that the simple conversion strategy laid out above will always result in an equivalent grammar.
 By "equivalent" we mean that the two grammars generate exactly the same strings --- there is no string such that the two grammars disagree on whether the string is well-formed or ill-formed.
-But beyond pure math, there is an important insight here that will be with us for pretty much the rest of the course: one and the same thing can be specified in many different ways.
-Depending on one's criteria, one way may be better than another.
-In some cases, a positive grammar may be smaller than a negative one.
-But for some phenomena it is the other way round.
-A negative grammar also has the advantage that they can be made more compact by using a mixed format instead of a fixed length for all $n$-grams.
-Then again, positive grammars are easier to translate to **finite-state automata**, which we will encounter in a later chapter.
-Each grammar format has its pros and cons.
+This might seem like a mathematical curiosity to you, but it actually challenges one of the most fundamental assumptions of theoretical linguistics.
 
-There's many examples of this kind of interdefinability in mathematics.
-Logical formulas, for example, can be put into a normal form that is harder to read for humans but easier to implement for computers.
-Finite-state automata can be viewed as a special case of Boolean matrix multiplication (we'll talk about this one in quite some detail).
-This may seem bewildering to the linguists among you.
-Linguists like to talk about *the* grammar, *the* feature system, *the* constraints of the grammar, as if those were concrete objects of a singular nature --- like a chair is a chair is a chair.
-Linguistics is driven by the search for *the* correct description of linguistic knowledge.
+Linguists like to talk about **the** grammar, **the** right description, **the** correct generalization. **the** feature system, **the** constraints of the grammar, as if those were concrete objects of a singular nature --- like a chair is a chair is a chair.
+Linguistics is driven by the search for **the** correct description of linguistic knowledge.
 Linguists want the "source code" of the language program that runs in the human brain, not just any implementation that exhibits the same behavior.
-But this quest for *the* correct specification cannot work for abstract concepts, and all linguistic concepts are abstract.
+To a linguist, true understanding of language is achieved when we have found the one and only true model.
+If it looks like we have multiple equally viable analyses, descriptions, theories, or formalisms, then that just shows that we don't know enough about language yet to tease them apart.
+Our mathematical findings show us that things aren't that simple, this quest for *the* one unique correct specification does not work for abstract concepts.
+And all linguistic concepts are abstract.
 When dealing with abstract ideas, you want to be able to conceptualize them in as many distinct ways as possible.
 True understanding comes from the ability to describe one and the same thing in many different ways, each one with its unique advantages and its unique opportunities for new insights.
+
+Now admittedly there is more linguistic data than just what strings are well-formed or ill-formed.
+For example, we can put native speakers into fMRI machines to get an inkling of an idea of what computations occur in a native speaker's brain when they are asked to determine whether a word is well-formed.
+But the data one obtains this way is very different in nature from the models linguists operate with.
+The brain data has to be given a specific interpretation in order to link it to linguistic models, and there are many different plausible implementations to choose from.
+Just like there may not be such a thing as **the** correct grammar, there may not be such a thing as **the** correct linking hypothesis.
+We may well be living in a world where grammar $G$ plus linking hypothesis $L$ makes exactly the same predictions as grammar $G'$ with linking hypothesis $L'$.
+
+Rather than reject this scenario or trying to argue it away, we should embrace it.
+The conventional wisdom that true understanding of language means having converged on exactly one way of looking at language has it exactly the wrong way around.
+True understanding of language means having many different ways of looking at language that we can effortlessly switch between depending on which view is most useful for the problem at hand.
+In some cases, a positive grammar may be smaller than a negative one.
+For some phenomena it is the other way round.
+A negative grammar also has the advantage that they can be made more compact by using a mixed format instead of a fixed length for all $n$-grams.
+Then again, positive grammars are easier to translate to **finite-state automata**, which we will encounter in a later chapter.
+Each grammar format has its pros and cons, and there is no reason why we should insist that, say, mixed negative $n$-gram grammars are the one right answer.
+
+Interdefinability results of this kind are one of the driving forces of mathematics.
+Logical formulas, for example, can be put into a normal form that is harder to read for humans but easier to implement for computers.
+Finite-state automata can be viewed as a special case of Boolean matrix multiplication (we'll talk about this one in quite some detail).
+Interdefinability isn't a horror scenario to avoid, it is one of the most powerful results possible, but in order to get to these results, we need mathematics.
 
 
 ## Recap
