@@ -180,6 +180,14 @@ Compute all of the following:
 - $\setof{\overline{\setof{0}}}$
 :::
 
+::: exercise
+No matter how one chooses $A$ and $B$, it always holds that the complement of the complement of $B$ is identical to $B$ itself.
+In symbols: $B = \overline{\overline{B}}$.
+Explain why this holds.
+
+*Hint*: By definition, $\overline{\overline{B}} = A - \overline{B} = A - (A - B)$.
+:::
+
 ## Summary
 
 - The **union** of $A$ and $B$ is the smallest set that contains every $x$ such that $x \in A$ or $x \in B$ (or both).
