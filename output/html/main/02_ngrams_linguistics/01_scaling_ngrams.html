@@ -109,11 +109,11 @@ trigrams is unproblematic. What about 4-grams? 5-grams? 127-grams? How
 do you know that your results will carry over from bigrams and trigrams
 to arbitrary <span class="math inline">\(n\)</span>-grams?</p></li>
 </ul>
-<p>Computer-aided simulations are <em>en vogue</em> nowadays, but
-they’re really a last resort. They are hard to design, often require
-significant resources, and do not provide perfect insight into how the
-specific aspects of a system determine its behavior. That’s not to say
-that simulations are a bad thing — if you are dealing with a very
+<p>Computer-aided simulations are a very common tool nowadays, but that
+does not mean that they are perfect. They are hard to design, often
+require significant resources, and do not provide complete insight into
+how the specific aspects of a system determine its behavior. That’s not
+to say that simulations are a bad thing — if you are dealing with a very
 complex system, they’re often the best tool at your disposal. But there
 are other tools around, and in many cases they are a superior choice.
 Mathematics furnishes the best tool of them all: proofs!</p>
@@ -130,10 +130,12 @@ You can often work them out in less than 30 minutes, and they only take
 a few lines to write down.</p></li>
 <li><p><strong>Guarantees</strong><br />
 Of course a proof may contain mistakes, just like a program may contain
-bugs. But mistakes in a proof tend to be easier to spot than bugs in a
-program. Fixing a proof is also much simpler than verifying that a
-simulation has no hidden biases. Once you have a correct proof, you have
-a guarantee: as long as the assumptions of the proof hold, the property
+bugs. But since your average proof is much smaller than your average
+program, mistakes in a proof tend to be easier to spot than bugs in a
+program. Fixing a mistake in a proof also tends to be much simpler than
+determining whether a simulation has hidden biases and correcting for
+that. And most importantly, once you have a correct proof, you have a
+guarantee: as long as the assumptions of the proof hold, the property
 established by proof holds, too.</p></li>
 <li><p><strong>Scalability</strong><br />
 Since a proof holds as long as its initial assumptions are satisfied, it
@@ -435,6 +437,12 @@ different lengths.</li>
 grammar can be converted into an equivalent fixed negative <span
 class="math inline">\(n\)</span>-gram grammar. This is an instance of a
 <strong>normal form theorem</strong>.</li>
+<li>We can use mathematical proofs to establish results that are
+guaranteed to hold whenever the conditions assumed by the proof are met.
+In contrast to simulations, proofs allow us to leave some parameters
+unspecified, e.g. the length of the n-grams. In addition, we do not need
+to worry about accidental gaps or biases in our simulations because a
+proof states explicitly which assumptions it is built on.</li>
 </ul>
 <!-- We remove the $n$-gram $g$ from the grammar $G$, and instead add in a number of "padded" variants of $g$:  -->
 <!--  -->

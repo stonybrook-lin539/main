@@ -50,8 +50,8 @@ Equivalence of positive and negative grammars</h1>
 <div class="prereqs">
 <ul>
 <li>general(abbreviations[w.l.o.g.])</li>
-<li>sets(notation, operations)</li>
-<li>strings(notation)</li>
+<li>sets(basic notation, operations)</li>
+<li>strings(basic notation)</li>
 </ul>
 </div>
 <p>This section defines both negative and positive versions of <span
@@ -65,8 +65,8 @@ hand, the proof shows how to construct a positive grammar from a
 negative one, and the other way around.</p>
 <div class="definition">
 <p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
-<span class="math inline">\(\Sigma_E\)</span> its extension with edge
-marker symbols <span class="math inline">\({{{L}}}, {{{R}}} \notin
+<span class="math inline">\(\Sigma_E\)</span> its extension with the
+edge marker symbols <span class="math inline">\({{{L}}}, {{{R}}} \notin
 \Sigma\)</span>. An <span class="math inline">\(n\)</span>-gram over
 <span class="math inline">\(\Sigma_E\)</span> is an element of <span
 class="math inline">\(\Sigma_E^n\)</span> (<span class="math inline">\(n
@@ -76,29 +76,31 @@ class="math inline">\(\Sigma\)</span> is a finite set of <span
 class="math inline">\(n\)</span>-grams over <span
 class="math inline">\(\Sigma_E\)</span>. Every <span
 class="math inline">\(n\)</span>-gram grammar has a
-<strong>polarity</strong>:</p>
+<strong>polarity</strong> interpretation:</p>
 <ul>
-<li>If <span class="math inline">\(G\)</span> is negative (also denoted
-<span class="math inline">\(^-G\)</span>), then a string <span
+<li>Under the negative interpretation of <span
+class="math inline">\(G\)</span> (also denoted <span
+class="math inline">\(N(G)\)</span>), a string <span
 class="math inline">\(s\)</span> over <span
 class="math inline">\(\Sigma\)</span> is well-formed with respect to
-<span class="math inline">\(^-G\)</span> iff there are no <span
+<span class="math inline">\(G\)</span> iff there are no <span
 class="math inline">\(u, v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> and no <span
-class="math inline">\(g \in ^-G\)</span> such that <span
+class="math inline">\(g \in G\)</span> such that <span
 class="math inline">\({{{L}}}^{n-1} \cdot s \cdot{{{R}}}^{n-1} = u \cdot
 g \cdot v\)</span>.</li>
-<li>If <span class="math inline">\(G\)</span> is positive (also denoted
-<span class="math inline">\(^+G\)</span>), then a string <span
+<li>Under the positive interpretation of <span
+class="math inline">\(G\)</span> (also denoted <span
+class="math inline">\(P(G)\)</span>), a string <span
 class="math inline">\(s\)</span> over <span
 class="math inline">\(\Sigma\)</span> is well-formed with respect to
-<span class="math inline">\(^+G\)</span> iff for all <span
+<span class="math inline">\(G\)</span> iff for all <span
 class="math inline">\(u, v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> and <span
 class="math inline">\(g \in \Sigma_E^n\)</span> such that <span
 class="math inline">\({{{L}}}^{n-1} \cdot s \cdot{{{R}}}^{n-1} = u \cdot
 g \cdot v\)</span>, it holds that <span class="math inline">\(g \in
-^+G\)</span>.</li>
+G\)</span>.</li>
 </ul>
 <p>The <strong>language of <span
 class="math inline">\(G\)</span></strong>, denoted <span
@@ -109,8 +111,9 @@ only those.</p>
 <div class="theorem">
 <p>For every <span class="math inline">\(n\)</span>-gram grammar <span
 class="math inline">\(G\)</span> there exists a grammar <span
-class="math inline">\(G&#39;\)</span> of opposite polarity such that
-<span class="math inline">\(L(G) = L(G&#39;)\)</span>.</p>
+class="math inline">\(G&#39;\)</span> such that <span
+class="math inline">\(L(P(G)) = L(N(G&#39;))\)</span> and <span
+class="math inline">\(L(N(G)) = L(P(G&#39;))\)</span>.</p>
 </div>
 <div class="proof">
 <p>We assume w.l.o.g. that <span class="math inline">\(G\)</span> is a
@@ -147,6 +150,25 @@ class="math inline">\(s\)</span> was arbitrary, this holds for all
 strings and establishes <span class="math inline">\(L(P) =
 L(N)\)</span>, which concludes our proof.</p>
 </div>
+<p>Again you should not feel heartbroken if you can’t make sense of the
+proof yet. Take a deep breath, don’t panic, and try to translate the
+symbol salad into English in your head. Consider for example this part
+of the proof:</p>
+<ul>
+<li>Then there must be some <span class="math inline">\(g \in N\)</span>
+such that <span class="math inline">\({{{L}}}^{n-1} s {{{R}}}^{n-1} = u
+\cdot g \cdot v\)</span> (<span class="math inline">\(u,v, \in
+\Sigma_E^*\)</span>).</li>
+</ul>
+<p>This just says that the negative grammar necessarily contains some
+<span class="math inline">\(n\)</span>-gram <span
+class="math inline">\(g\)</span> that occurs in the string <span
+class="math inline">\(s\)</span> (augmented with edge markers). Try to
+break the proof down into individual chunks that you can make sense of,
+and then reassemble those chunks into the overall argument of the proof.
+And if you run out of energy, but this unit assign, move on to the next
+one, and come back a few weeks later when you have built up more math
+endurance.</p>
 </div>
 </div>
 </body>

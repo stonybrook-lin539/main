@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Equals VS Define: Why = is not the same as :=</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#equals-vs-define-why-is-not-the-same-as">Equals VS Define:
+Why = is not the same as :=</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="equals-vs-define-why-is-not-the-same-as">Equals VS Define: Why =
+is not the same as :=</h1>
+<p>I assume that you have all seen the “equals” sign <span
+class="math inline">\(=\)</span> before, as in <span
+class="math inline">\(1 + 1 = 2\)</span>. You have probably also seen
+usages such as <em>Compute <span class="math inline">\(f(x)\)</span> for
+<span class="math inline">\(x = 5\)</span></em>. These are actually two
+very distinct uses of <span class="math inline">\(=\)</span>.</p>
+<p>In <span class="math inline">\(1 + 1 = 2\)</span>, the equals sign
+expresses an equality. An equality may or may not hold, and a statement
+about equality may be true or false. While <span class="math inline">\(1
++ 1 = 2\)</span> is in general a true statement when talking about
+numbers, there can be cases when it is false. For example, in Boolean
+matrix multiplication we cannot have values larger than 1 and hence
+<span class="math inline">\(1 + 1 = 1\)</span>, which means that <span
+class="math inline">\(1 + 1 = 2\)</span> would be false in that
+case.</p>
+<p>In our <span class="math inline">\(x = 5\)</span> example, on the
+other hand, we are not saying that <span
+class="math inline">\(x\)</span> is equal to <span
+class="math inline">\(5\)</span>, we are defining <span
+class="math inline">\(x\)</span> to be <span
+class="math inline">\(5\)</span>. There is no way for this to be true or
+false, you cannot tell me that I am wrong to define <span
+class="math inline">\(x\)</span> as <span
+class="math inline">\(5\)</span>. I could have just as well defined it
+to be <span class="math inline">\(7\)</span>, or <span
+class="math inline">\(-35.3\)</span>, and there is nothing you could
+have done to stop me. There is no way for you to show that <span
+class="math inline">\(x = 5\)</span> is false.</p>
+<p>In linguistic terms, the equals sign in <span class="math inline">\(1
++ 1 = 2\)</span> expresses a proposition, whereas in <span
+class="math inline">\(x = 5\)</span> it expresses the speech act of
+establishing in the discourse that the name <span
+class="math inline">\(x\)</span> refers to the number <span
+class="math inline">\(5\)</span>. If you have some experience with
+programming languages, then you can think of this as the difference
+between a truth condition and a variable assignment. Mathematicians care
+so much about this difference that they use two distinct symbols.
+Equalities are expressed with <span class="math inline">\(=\)</span> as
+usual, but the speech act meaning of <span
+class="math inline">\(=\)</span> is denoted by <span
+class="math inline">\(\mathrel{\mathop:}=\)</span> instead. Hence a
+mathematician would not write “Suppose <span class="math inline">\(x =
+5\)</span>” but rather “Suppose <span class="math inline">\(x
+\mathrel{\mathop:}=5\)</span>”.</p>
+<p>Long story short: Don’t get confused when you see <span
+class="math inline">\(\mathrel{\mathop:}=\)</span> instead of <span
+class="math inline">\(=\)</span>, it simply means that you are looking
+at a definition/variable assignment rather than an equality.</p>
+</div>
+</div>
+</body>
+</html>

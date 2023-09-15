@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Sets: Additional notation</title>
+  <title>Set-builder notation</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -38,57 +38,23 @@
 <nav id="TOC" role="doc-toc">
 <p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
 <ul>
-<li><a href="#sets-additional-notation">Sets: Additional notation</a>
-<ul>
-<li><a href="#the-empty-set">The empty set</a></li>
 <li><a href="#set-builder-notation">Set-builder notation</a>
 <ul>
 <li><a href="#motivation">Motivation</a></li>
 <li><a href="#format">Format</a></li>
-</ul></li>
 <li><a href="#summary">Summary</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 <div class="content">
-<h1 id="sets-additional-notation">Sets: Additional notation</h1>
+<h1 id="set-builder-notation">Set-builder notation</h1>
 <div class="prereqs">
 <ul>
 <li>sets (basic notation)</li>
 </ul>
 </div>
-<h2 id="the-empty-set">The empty set</h2>
-<p>While the intuition of sets as collections is fairly intuitive,
-intuition only goes so far. Many sets are rather strange and do not gel
-with the metaphor of sets as containers. One example of that is the
-<em>empty set</em>, written <span class="math inline">\(\left \{  \right
-\}\)</span> or more commonly <span
-class="math inline">\(\emptyset\)</span>.</p>
-<p>The empty set contains nothing. So there is no <span
-class="math inline">\(a\)</span> such that <span class="math inline">\(a
-\in \emptyset\)</span>. At the same time, the empty set is not simply
-nothing because it is still a set. A set is not nothing. This might make
-more sense if you think of sets as boxes or bags: an empty bag is still
-a bag, it just happens to contain nothing.</p>
-<p>The empty set may seem rather useless to you at this point, but it
-actually has a very important role to play. You will see it quite a bit
-in definitions, but also in the construction of abstract mathematical
-objects such as <a href="fixme">monoids</a>.</p>
-<div class="exercise">
-<p>For each one of the statements below, say whether it is true or
-false.</p>
-<ul>
-<li><span class="math inline">\(\emptyset = \left \{  \right
-\}\)</span></li>
-<li><span class="math inline">\(\emptyset \in \left \{ a \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ a,b \right \} \neq
-\emptyset\)</span></li>
-</ul>
-</div>
-<h2 id="set-builder-notation">Set-builder notation</h2>
-<h3 id="motivation">Motivation</h3>
+<h2 id="motivation">Motivation</h2>
 <p>Defining a set by listing all its elements is only feasible for small
 sets. But many sets are very large, for example the set of atoms in the
 universe (10<sup>82</sup>), or the set of bad horror movies produced
@@ -111,7 +77,7 @@ into account, it’s still too imprecise for more complex cases. Rather
 than rely on human intuition about what would be a natural
 interpretation of the ellipsis dots, we can use <em>set-builder
 notation</em> to succinctly describe large/infinite sets.</p>
-<h3 id="format">Format</h3>
+<h2 id="format">Format</h2>
 <p>Set-builder notation uses the general template</p>
 <p><span class="math display">\[
 \left \{  \text{expression using variable} \mid \text{definition of
@@ -294,6 +260,31 @@ all.</li>
 class="math inline">\(\left \{  \text{expression using variable(s)} \mid
 \text{definition of variable(s)}  \right \}\)</span>.</li>
 </ul>
+<div class="definition">
+<p>Let <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> be arbitrary sets.</p>
+<ul>
+<li>The <strong>union</strong> of <span class="math inline">\(A\)</span>
+and <span class="math inline">\(B\)</span> is <span
+class="math inline">\(A \cup B \mathrel{\mathop:}=\left \{  x \mid x \in
+A \text{ or } x \in B \right \}\)</span>.</li>
+<li>The <strong>intersection</strong> of <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> is <span class="math inline">\(A \cap B
+\mathrel{\mathop:}=\left \{  x \mid x \in A \text{ and } x \in B \right
+\}\)</span>.</li>
+<li>The <strong>relative complement</strong> of <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> is <span class="math inline">\(A - B
+\mathrel{\mathop:}=\left \{  x \mid x \in A \text{ and } x \notin B
+\right \}\)</span>.</li>
+<li>If <span class="math inline">\(A\)</span> is clear from context, we
+just write <span class="math inline">\(\overline{B}\)</span> for <span
+class="math inline">\(A - B\)</span> and call it the
+<strong>complement</strong> of <span
+class="math inline">\(B\)</span>.</li>
+</ul>
+</div>
 </div>
 </div>
 </body>
