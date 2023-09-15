@@ -26,11 +26,21 @@ end
 if FORMAT:match "html" then
   function Str(elem)
     text = elem.text
-    -- Convert edge markers to LaTeX math for pdflatex
+    -- Convert edge markers to unicode
     text, countL = string.gsub(text, "{{{L}}}", "⋊")
     text, countR = string.gsub(text, "{{{R}}}", "⋉")
     if countL > 0 or countR > 0 then
       elem.text = text
+    end
+    return elem
+  end
+  function Math(elem)
+    text = elem.text
+    -- Convert edge markers to LaTeX math for MathJax
+    text, countL = string.gsub(text, "{{{L}}}", "{\\rtimes}")
+    text, countR = string.gsub(text, "{{{R}}}", "{\\ltimes}")
+    if countL > 0 or countR > 0 then
+        elem.text = text
     end
     return elem
   end
