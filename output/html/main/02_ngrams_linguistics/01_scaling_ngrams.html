@@ -64,19 +64,19 @@ class="math inline">\(n\)</span>-gram grammar, and each <span
 class="math inline">\(n\)</span>-gram represents one forbidden sound
 sequence of length <span class="math inline">\(n\)</span>. But this idea
 ran into a problem. In German, words cannot start with <em>rb</em>,
-which is captured by adding the trigram <em>Lrb</em> to the list of
-illicit <span class="math inline">\(n\)</span>-grams (remember that L is
-a special symbol that indicates the left edge of a word). But German
+which is captured by adding the trigram <em>&gt;rb</em> to the list of
+illicit <span class="math inline">\(n\)</span>-grams (remember that &gt;
+is a special symbol that indicates the left edge of a word). But German
 also has word-final devoicing, which means that no word can end in a
 voiced <em>s</em>-sound, which corresponds to <em>z</em> in English
 orthography. Using this notational convention, we can represent the
-illicit sequence as <em>zR</em> (with R as the right edge counterpart of
-L). This is a bigram, whereas <em>Lrb</em> is a trigram. What are the
-consequences of mixing bigrams and trigrams in a single <span
-class="math inline">\(n\)</span>-gram grammar? Does this introduce
-inconsistencies such that a word is both forbidden and allowed? Let’s
-try to answer this question. Fair warning: this will be a bit of a pain,
-and that’s actually the point of this unit.</p>
+illicit sequence as <em>z&lt;</em> (with &lt; as the right edge
+counterpart of &gt;). This is a bigram, whereas <em>&gt;rb</em> is a
+trigram. What are the consequences of mixing bigrams and trigrams in a
+single <span class="math inline">\(n\)</span>-gram grammar? Does this
+introduce inconsistencies such that a word is both forbidden and
+allowed? Let’s try to answer this question. Fair warning: this will be a
+bit of a pain, and that’s actually the point of this unit.</p>
 <h2 id="a-plea-for-proofs">A plea for proofs</h2>
 <p>Unless you’re a mathematician, your first instinct will be to work
 through one or more examples. If we, say, construct 100 grammars that
@@ -210,9 +210,9 @@ specific language is <span class="math inline">\(8\)</span>.</p>
 <li><p>As stated in the theorem, the longest <span
 class="math inline">\(n\)</span>-gram is assumed to have length <span
 class="math inline">\(k\)</span>. Since each position is filled by
-either a sound or one of two edge markers (L or R), there are <span
-class="math inline">\(\left | \Sigma \right | + 2\)</span> choices for
-each position. Consequently, there are at most <span
+either a sound or one of two edge markers (&gt; or &lt;), there are
+<span class="math inline">\(\left | \Sigma \right | + 2\)</span> choices
+for each position. Consequently, there are at most <span
 class="math inline">\((\left | \Sigma \right |+2)^k\)</span> different
 <span class="math inline">\(n\)</span>-grams of length <span
 class="math inline">\(k\)</span>. This implies that for every possible
@@ -231,13 +231,15 @@ class="math inline">\(k=3\)</span>. Given the formula above, this means
 there are <span class="math inline">\((\left | \Sigma \right |+2)^k =
 (2+2)^3 = 4^3 = 64\)</span> different trigrams. Not all of them are ever
 useful. In particular, no word ever contains an edge marker in the
-middle, so <em>aLa</em> and <em>aRa</em> serve no purpose. It is also
-impossible for R to occur to the left of L, which rules out trigrams
-like <em>RaL</em> and <em>RLa</em>. Filtering out those useless trigrams
-leaves us with the following list:</p>
+middle, so <em>a&gt;a</em> and <em>a&lt;a</em> serve no purpose. It is
+also impossible for &lt; to occur to the left of &gt;, which rules out
+trigrams like <em>&lt;a&gt;</em> and <em>&lt;&gt;a</em>. Filtering out
+those useless trigrams leaves us with the following list:</p>
 <ul>
-<li>aaa, aad, aaR, ada, add, adR, aRR, daa, dad, daR, dda, ddd, ddR,
-dRR, Laa, Lad, LaR, Lda, Ldd, LdR, LLa, LLd, LLL, LLR, LRR, RRR</li>
+<li>aaa, aad, aa&lt;, ada, add, ad&lt;, a&lt;&lt;, daa, dad, da&lt;,
+dda, ddd, dd&lt;, d&lt;&lt;, &gt;aa, &gt;ad, &gt;a&lt;, &gt;da, &gt;dd,
+&gt;d&lt;, &gt;&gt;a, &gt;&gt;d, &gt;&gt;&gt;, &gt;&gt;&lt;,
+&gt;&lt;&lt;, &lt;&lt;&lt;</li>
 </ul>
 <p>But even if we had included all useless trigrams, that would not
 change the fact that there are only finitely many trigrams over
@@ -278,13 +280,13 @@ is. But <em>dd</em> is a bigram and thus has to be replaced with every
 trigram that contains the substring <em>dd</em>. Consulting the list
 from the previous example, we see that these are</p>
 <ul>
-<li>add, dda, ddd, ddR, Ldd</li>
+<li>add, dda, ddd, dd&lt;, &gt;dd</li>
 </ul>
 <p>After the replacement step, we are left with a negative grammar <span
 class="math inline">\(G&#39;\)</span> that contains six forbidden <span
 class="math inline">\(n\)</span>-grams, all of which are trigrams:</p>
 <ul>
-<li>ada, add, dda, ddd, ddR, Ldd</li>
+<li>ada, add, dda, ddd, dd&lt;, &gt;dd</li>
 </ul>
 </div>
 <p>The new grammar <span class="math inline">\(G&#39;\)</span>
@@ -362,12 +364,12 @@ these illicit <span class="math inline">\(n\)</span>-grams.</p></li>
 is considered illicit by <span class="math inline">\(G\)</span> because
 it contains <em>dd</em>. This string is also considered illicit by <span
 class="math inline">\(G&#39;\)</span>. With edge markers, the word is
-<em>LLdaddRR</em>. During the construction process for <span
+<em>&gt;&gt;dadd&lt;&lt;</em>. During the construction process for <span
 class="math inline">\(G&#39;\)</span>, we replaced <em>dd</em> with
 several trigrams, two of which occur in this word:</p>
 <ul>
 <li>add</li>
-<li>ddR</li>
+<li>dd&lt;</li>
 </ul>
 <p>This is why <span class="math inline">\(G&#39;\)</span> agrees with
 <span class="math inline">\(G\)</span> that <em>dadd</em> is

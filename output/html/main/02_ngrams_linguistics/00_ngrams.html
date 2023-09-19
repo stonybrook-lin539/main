@@ -186,16 +186,17 @@ will add edge markers to indicate the left or right edge of a word. One
 could use a single edge marker like <em>$</em>. In that case,
 <em>ababa</em> would be <em>$ababa$</em>, and <em>babab</em> would be
 <em>$babab$</em>. But once we dive deeper into the mathematics, it will
-be more convenient to have separate markers: L for the left edge and R
-for the right edge. This means that <em>ababa</em> will be
-<em>LababaR</em>, and <em>babab</em> will be <em>LbababR</em>.</p>
+be more convenient to have separate markers: &gt; for the left edge and
+&lt; for the right edge. This means that <em>ababa</em> will be
+<em>&gt;ababa&lt;</em>, and <em>babab</em> will be
+<em>&gt;babab&lt;</em>.</p>
 <p>Now one can tell clearly which sounds occurred at the start and the
 end.</p>
 <div class="example">
 <p>To calculate the bigrams of <em>kobinal</em>, we first expand it to
-<em>LkobinalR</em>. Then we extract bigrams as usual, giving us the
-following list: <em>Lk</em>, <em>ko</em>, <em>ob</em>, <em>bi</em>,
-<em>in</em>, <em>na</em>, <em>al</em>, <em>lR</em>.</p>
+<em>&gt;kobinal&lt;</em>. Then we extract bigrams as usual, giving us
+the following list: <em>&gt;k</em>, <em>ko</em>, <em>ob</em>,
+<em>bi</em>, <em>in</em>, <em>na</em>, <em>al</em>, <em>l&lt;</em>.</p>
 </div>
 <div class="exercise">
 <p>Consider once more the word
@@ -204,9 +205,9 @@ is among its bigrams (with edge markers):</p>
 <ul>
 <li>fr</li>
 <li>z</li>
-<li>LR</li>
-<li>Ls</li>
-<li>sRR</li>
+<li>&gt;&lt;</li>
+<li>&gt;s</li>
+<li>s&lt;&lt;</li>
 </ul>
 </div>
 <p>(For the particular observant readers: Yes, bigrams with edge markers
@@ -229,8 +230,8 @@ must contain at least one forbidden bigram.</p>
 <em>kbin</em>. If <em>kb</em> is a forbidden bigram of English, then
 <em>kbin</em> is ill-formed. In order for <em>kobinal</em> to be
 well-formed, none of the following bigrams may be forbidden:
-<em>Lk</em>, <em>ko</em>, <em>ob</em>, <em>bi</em>, <em>in</em>,
-<em>na</em>, <em>al</em>, <em>lR</em>.</p>
+<em>&gt;k</em>, <em>ko</em>, <em>ob</em>, <em>bi</em>, <em>in</em>,
+<em>na</em>, <em>al</em>, <em>l&lt;</em>.</p>
 </div>
 <p>As the example above shows, forbidding the bigram <em>kb</em> rules
 out <em>kbin</em> as an illicit word for English. But there is a
@@ -241,10 +242,10 @@ concerned, might be two words rather than one. However, that does not
 solve the problem of Star Wars’s Admiral Ackbar, pronounced
 <em>akbar</em>. The problem with <em>kbin</em> is not <em>kb</em>, it’s
 <em>kb</em> at the start of the word. The forbidden sequence is not
-<em>kb</em>, but rather <em>Lkb</em>. And the ban against starting
+<em>kb</em>, but rather <em>&gt;kb</em>. And the ban against starting
 English words with <em>kn</em> does not mean that <em>kn</em> is a
-forbidden sequence, it means that <em>Lkn</em> is forbidden. These are
-not bigrams, they are <strong>trigrams</strong>.</p>
+forbidden sequence, it means that <em>&gt;kn</em> is forbidden. These
+are not bigrams, they are <strong>trigrams</strong>.</p>
 <h2 id="n-gram-grammars">n-gram grammars</h2>
 <p>We can generalize the notion of bigram to sequences of arbitrary
 length. A trigram is a sequence of three elements, a 4-gram contains
@@ -265,44 +266,46 @@ and <em>na</em>. The trigrams are <em>ban</em>, <em>ana</em>, and
 <p>One problem with large <span class="math inline">\(n\)</span>-grams
 is that some words may be shorter than <span
 class="math inline">\(n\)</span> even after edge markers have been
-added. Just what are the 4-grams of <em>LaR</em>? There’s many ways this
-could be fixed. We will use a method that is conceptually simple even
-though it can get awkward in practice: if the grammar uses <span
-class="math inline">\(n\)</span>-grams, we pad out the word with <span
-class="math inline">\(n-1\)</span> edge markers.</p>
+added. Just what are the 4-grams of <em>&gt;a&lt;</em>? There’s many
+ways this could be fixed. We will use a method that is conceptually
+simple even though it can get awkward in practice: if the grammar uses
+<span class="math inline">\(n\)</span>-grams, we pad out the word with
+<span class="math inline">\(n-1\)</span> edge markers.</p>
 <div class="example">
 <p>Consider now the bigrams, trigrams, and 4-grams of <em>kobinal</em>
-with edge markers L and R. For bigrams, we have to look at
-<em>LkobinalR</em>, which has the bigrams <em>Lk</em>, <em>ko</em>,
-<em>ob</em>, <em>bi</em>, <em>in</em>, <em>na</em>, <em>al</em>, and
-<em>lR</em>. The trigrams are computed over <em>LLkobinalRR</em>, so
-they’re <em>LLk</em>, <em>Lko</em>, <em>kob</em>, <em>obi</em>,
-<em>bin</em>, <em>nal</em>, <em>alR</em>, and <em>lRR</em>. The 4-grams
-are computed over <em>LLLkobinalRRR</em> and thus they are
-<em>LLLk</em>, <em>LLko</em>, <em>Lkob</em>, <em>kobi</em>,
-<em>obin</em>, <em>bina</em>, <em>inal</em>, <em>nalR</em>,
-<em>alRR</em>, and <em>lRRR</em>.</p>
-<p>For <em>banana</em>, the bigrams are now <em>Lb</em>, <em>ba</em>,
-<em>an</em>, <em>na</em>, and <em>aR</em>. Its trigrams are
-<em>LLb</em>, <em>Lba</em>, <em>ban</em>, <em>ana</em>, <em>nan</em>,
-<em>naR</em>, and <em>aRRR</em>. The 4-grams are <em>LLLb</em>,
-<em>LLba</em>, <em>LLban</em>, <em>bana</em>, <em>anan</em>,
-<em>nana</em>, <em>anaR</em>, <em>naRR</em>, and <em>aRRR</em>.</p>
+with edge markers &gt; and &lt;. For bigrams, we have to look at
+<em>&gt;kobinal&lt;</em>, which has the bigrams <em>&gt;k</em>,
+<em>ko</em>, <em>ob</em>, <em>bi</em>, <em>in</em>, <em>na</em>,
+<em>al</em>, and <em>l&lt;</em>. The trigrams are computed over
+<em>&gt;&gt;kobinal&lt;&lt;</em>, so they’re <em>&gt;&gt;k</em>,
+<em>&gt;ko</em>, <em>kob</em>, <em>obi</em>, <em>bin</em>, <em>nal</em>,
+<em>al&lt;</em>, and <em>l&lt;&lt;</em>. The 4-grams are computed over
+<em>&gt;&gt;&gt;kobinal&lt;&lt;&lt;</em> and thus they are
+<em>&gt;&gt;&gt;k</em>, <em>&gt;&gt;ko</em>, <em>&gt;kob</em>,
+<em>kobi</em>, <em>obin</em>, <em>bina</em>, <em>inal</em>,
+<em>nal&lt;</em>, <em>al&lt;&lt;</em>, and <em>l&lt;&lt;&lt;</em>.</p>
+<p>For <em>banana</em>, the bigrams are now <em>&gt;b</em>, <em>ba</em>,
+<em>an</em>, <em>na</em>, and <em>a&lt;</em>. Its trigrams are
+<em>&gt;&gt;b</em>, <em>&gt;ba</em>, <em>ban</em>, <em>ana</em>,
+<em>nan</em>, <em>na&lt;</em>, and <em>a&lt;&lt;&lt;</em>. The 4-grams
+are <em>&gt;&gt;&gt;b</em>, <em>&gt;&gt;ba</em>, <em>&gt;&gt;ban</em>,
+<em>bana</em>, <em>anan</em>, <em>nana</em>, <em>ana&lt;</em>,
+<em>na&lt;&lt;</em>, and <em>a&lt;&lt;&lt;</em>.</p>
 </div>
 <div class="exercise">
 <p>For each one of the following strings with the appropriate number of
 edge markers, say whether it has been padded for use with a bigram
 grammar, a trigram grammar, or a 4-gram grammar.</p>
 <ul>
-<li>LLkbinRR</li>
-<li>LLLworkbenchRRR</li>
-<li>LakbarR</li>
+<li>&gt;&gt;kbin&lt;&lt;</li>
+<li>&gt;&gt;&gt;workbench&lt;&lt;&lt;</li>
+<li>&gt;akbar&lt;</li>
 </ul>
 </div>
 <p>Now we can finally state clearly why <em>kobinal</em>,
 <em>workbench</em> and <em>akbar</em> are all phonotactically
 well-formed, whereas <em>kbin</em> is not: the latter contains the
-illicit trigram <em>Lkb</em>.</p>
+illicit trigram <em>&gt;kb</em>.</p>
 <p>We also refine our original hypothesis about the phonotactics of
 natural languages: every phonotactic system is described by a set of
 forbidden <span class="math inline">\(n\)</span>-grams.</p>
@@ -312,13 +315,13 @@ forbidden <span class="math inline">\(n\)</span>-grams.</p>
 following, say whether it is a bigram of the word (with edge markers), a
 trigram, a 4-gram, or none of those choices.</p>
 <ul>
-<li>Lfr</li>
+<li>&gt;fr</li>
 <li>z</li>
-<li>doRc</li>
-<li>sRRR</li>
+<li>do&lt;c</li>
+<li>s&lt;&lt;&lt;</li>
 <li>sit</li>
 <li>cious</li>
-<li>Lsup</li>
+<li>&gt;sup</li>
 </ul>
 </div>
 <div class="exercise">
@@ -359,16 +362,16 @@ well-formed.</p>
 <p>Unlike English, German is perfectly fine with words that starts with
 <em>kn</em>. But just like English, it does not like words that start
 with <em>rb</em>. We can capture this by writing a trigram grammar for
-German that contains the forbidden trigram <em>Lrb</em>. But German also
-has a process known as word-final devoicing: voiced sounds become
+German that contains the forbidden trigram <em>&gt;rb</em>. But German
+also has a process known as word-final devoicing: voiced sounds become
 voiceless at the end of a word. So whereas an English speaker will
 happily pronounce <em>woods</em> with a <em>z</em> at the end, a German
 speaker turns the <em>z</em> into an <em>s</em> like in
-<em>trinkets</em>. Alright, no big deal, we just forbid <em>zR</em> too.
-Or do we?</p>
-<p>We now have a forbidden trigram <em>Lrb</em> and a forbidden bigram
-<em>zR</em>. Are we allowed to mix bigrams and trigrams this way? More
-generally, can every negative <span
+<em>trinkets</em>. Alright, no big deal, we just forbid <em>z&lt;</em>
+too. Or do we?</p>
+<p>We now have a forbidden trigram <em>&gt;rb</em> and a forbidden
+bigram <em>z&lt;</em>. Are we allowed to mix bigrams and trigrams this
+way? More generally, can every negative <span
 class="math inline">\(n\)</span>-gram grammar also contain <span
 class="math inline">\(k\)</span>-grams, where <span
 class="math inline">\(k &lt; n\)</span>? Could this create
@@ -454,8 +457,8 @@ analysis to do!</p>
 <ul>
 <li>An <strong>n-gram</strong> is a sequence of <strong>n</strong>
 symbols.</li>
-<li>The special symbols L and R are <strong>edge markers</strong> for
-the left and right edge of the word, respectively.</li>
+<li>The special symbols &gt; and &lt; are <strong>edge markers</strong>
+for the left and right edge of the word, respectively.</li>
 <li>A <strong>negative n-gram grammar</strong> is a finite collection of
 forbidden <span class="math inline">\(n\)</span>-grams.</li>
 <li>In order to determine whether a negative <span
@@ -463,8 +466,8 @@ class="math inline">\(n\)</span>-gram grammar deems a given string
 well-formed or ill-formed, we carry out the following steps:
 <ol type="1">
 <li>Pad out the string with <span class="math inline">\(n-1\)</span>
-instances of L and <span class="math inline">\(n-1\)</span> instances of
-R.</li>
+instances of &gt; and <span class="math inline">\(n-1\)</span> instances
+of &lt;.</li>
 <li>Look at all the <span class="math inline">\(n\)</span>-grams of the
 string augmented with edge markers.</li>
 <li>If at least one of those <span

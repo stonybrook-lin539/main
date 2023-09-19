@@ -92,9 +92,9 @@ negative grammars</h2>
 <div class="definition">
 <p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
 <span class="math inline">\(\Sigma_E\)</span> its extension with edge
-marker symbols <span class="math inline">\(L, R \notin \Sigma\)</span>.
-An <span class="math inline">\(n\)</span>-gram over <span
-class="math inline">\(\Sigma_E\)</span> is an element of <span
+marker symbols <span class="math inline">\(&gt;, &lt; \notin
+\Sigma\)</span>. An <span class="math inline">\(n\)</span>-gram over
+<span class="math inline">\(\Sigma_E\)</span> is an element of <span
 class="math inline">\(\Sigma_E^n\)</span>, where <span
 class="math inline">\(n \geq 1\)</span>. A <strong>(strict) negative
 <span class="math inline">\(n\)</span>-gram grammar</strong> <span
@@ -108,8 +108,8 @@ class="math inline">\(\Sigma\)</span> is well-formed with respect to
 class="math inline">\(u, v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> and no <span
 class="math inline">\(g \in G\)</span> such that <span
-class="math inline">\(L^{n-1} \cdot s \cdotR^{n-1} = u \cdot g \cdot
-v\)</span>. The <strong>language of <span
+class="math inline">\(&gt;^{n-1} \cdot s \cdot&lt;^{n-1} = u \cdot g
+\cdot v\)</span>. The <strong>language of <span
 class="math inline">\(G\)</span></strong>, denoted <span
 class="math inline">\(L(G)\)</span>, contains all strings that are
 well-formed with respect to <span class="math inline">\(G\)</span>, and
@@ -129,12 +129,12 @@ respect to <span class="math inline">\(G\)</span>. The bigram <span
 class="math inline">\(\mathit{CC}\)</span> is not a problem since there
 are no strings <span class="math inline">\(u\)</span> and <span
 class="math inline">\(v\)</span> such that <span
-class="math inline">\(L\mathit{CVCV}R = u \cdot\mathit{CC} \cdot
+class="math inline">\(&gt;\mathit{CVCV}&lt; = u \cdot\mathit{CC} \cdot
 v\)</span>, which means that <span
 class="math inline">\(\mathit{CVCVCV}\)</span> does not contain the
 forbidden bigram <span class="math inline">\(\mathit{CC}\)</span>. But
-clearly <span class="math inline">\(L\mathit{CVCV}R = L\mathit{C}
-\cdot\mathit{VC} \cdot\mathit{V}R\)</span>. So <span
+clearly <span class="math inline">\(&gt;\mathit{CVCV}&lt; =
+&gt;\mathit{C} \cdot\mathit{VC} \cdot\mathit{V}&lt;\)</span>. So <span
 class="math inline">\(\mathit{VC}\)</span> is a component of <span
 class="math inline">\(\mathit{CVCV}\)</span>, and as a result the string
 is ruled out by <span class="math inline">\(G\)</span>.</p>
@@ -157,14 +157,15 @@ class="math inline">\(\mathit{VVC}\)</span>. Does this grammar deem the
 string <span class="math inline">\(\mathit{CVCVVCV}\)</span>
 well-formed? There are no strings <span class="math inline">\(u\)</span>
 and <span class="math inline">\(v\)</span> such that <span
-class="math inline">\(\mathit{LLCVVVCVRR} = u \cdot\mathit{CC} \cdot
-v\)</span>, which means that <span
+class="math inline">\(\mathit{&gt;&gt;CVVVCV&lt;&lt;} = u
+\cdot\mathit{CC} \cdot v\)</span>, which means that <span
 class="math inline">\(\mathit{CVCVVCV}\)</span> does not contain any
 instance of the forbidden bigram <span
 class="math inline">\(\mathit{CC}\)</span>. However, <span
-class="math inline">\(\mathit{LLCVCVVCVRR} = \mathit{LLCVC}
-\cdot\mathit{VVC} \cdot\mathit{VRR}\)</span>, and as a result the string
-is ruled out by <span class="math inline">\(G\)</span>.</p>
+class="math inline">\(\mathit{&gt;&gt;CVCVVCV&lt;&lt;} =
+\mathit{&gt;&gt;CVC} \cdot\mathit{VVC} \cdot\mathit{V&lt;&lt;}\)</span>,
+and as a result the string is ruled out by <span
+class="math inline">\(G\)</span>.</p>
 </div>
 <h2 id="normal-form-theorem">Normal form theorem</h2>
 <div class="theorem">
@@ -193,9 +194,9 @@ definition there must be some <span class="math inline">\(g \in
 G\)</span> and strings <span class="math inline">\(u\)</span> and <span
 class="math inline">\(v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> such that <span
-class="math inline">\(L^{n-1} s R^{n-1} = u \cdot g \cdot v\)</span>.
-But since <span class="math inline">\(\left | L^{n-1} s R^{n-1} \right |
-&gt; n\)</span>, there must also be strings <span
+class="math inline">\(&gt;^{n-1} s &lt;^{n-1} = u \cdot g \cdot
+v\)</span>. But since <span class="math inline">\(\left | &gt;^{n-1} s
+&lt;^{n-1} \right | &gt; n\)</span>, there must also be strings <span
 class="math inline">\(u_1, u_2, v_1, v_2\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> such that</p>
 <ol type="1">
@@ -210,8 +211,8 @@ G&#39;\)</span>, so that <span class="math inline">\(s \notin
 L(G&#39;)\)</span>.</p>
 <p>In the other direction, suppose <span class="math inline">\(s \notin
 L(G&#39;)\)</span>. Then there is some <span class="math inline">\(g \in
-G&#39;\)</span> such that <span class="math inline">\(L^{n-1} \cdot s
-\cdotR^{n-1} = u \cdot g \cdot v\)</span>. But then by definition of
+G&#39;\)</span> such that <span class="math inline">\(&gt;^{n-1} \cdot s
+\cdot&lt;^{n-1} = u \cdot g \cdot v\)</span>. But then by definition of
 <span class="math inline">\(G&#39;\)</span> there must <span
 class="math inline">\(u&#39;\)</span>, <span
 class="math inline">\(g&#39;\)</span> and <span
