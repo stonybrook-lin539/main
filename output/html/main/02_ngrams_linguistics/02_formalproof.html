@@ -92,9 +92,9 @@ negative grammars</h2>
 <div class="definition">
 <p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
 <span class="math inline">\(\Sigma_E\)</span> its extension with edge
-marker symbols <span class="math inline">\({\rtimes}, {\ltimes} \notin
-\Sigma\)</span>. An <span class="math inline">\(n\)</span>-gram over
-<span class="math inline">\(\Sigma_E\)</span> is an element of <span
+marker symbols <span class="math inline">\(L, R \notin \Sigma\)</span>.
+An <span class="math inline">\(n\)</span>-gram over <span
+class="math inline">\(\Sigma_E\)</span> is an element of <span
 class="math inline">\(\Sigma_E^n\)</span>, where <span
 class="math inline">\(n \geq 1\)</span>. A <strong>(strict) negative
 <span class="math inline">\(n\)</span>-gram grammar</strong> <span
@@ -108,8 +108,8 @@ class="math inline">\(\Sigma\)</span> is well-formed with respect to
 class="math inline">\(u, v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> and no <span
 class="math inline">\(g \in G\)</span> such that <span
-class="math inline">\({\rtimes}^{n-1} \cdot s \cdot{\ltimes}^{n-1} = u
-\cdot g \cdot v\)</span>. The <strong>language of <span
+class="math inline">\(L^{n-1} \cdot s \cdotR^{n-1} = u \cdot g \cdot
+v\)</span>. The <strong>language of <span
 class="math inline">\(G\)</span></strong>, denoted <span
 class="math inline">\(L(G)\)</span>, contains all strings that are
 well-formed with respect to <span class="math inline">\(G\)</span>, and
@@ -129,15 +129,15 @@ respect to <span class="math inline">\(G\)</span>. The bigram <span
 class="math inline">\(\mathit{CC}\)</span> is not a problem since there
 are no strings <span class="math inline">\(u\)</span> and <span
 class="math inline">\(v\)</span> such that <span
-class="math inline">\({\rtimes}\mathit{CVCV}{\ltimes} = u
-\cdot\mathit{CC} \cdot v\)</span>, which means that <span
+class="math inline">\(L\mathit{CVCV}R = u \cdot\mathit{CC} \cdot
+v\)</span>, which means that <span
 class="math inline">\(\mathit{CVCVCV}\)</span> does not contain the
 forbidden bigram <span class="math inline">\(\mathit{CC}\)</span>. But
-clearly <span class="math inline">\({\rtimes}\mathit{CVCV}{\ltimes} =
-{\rtimes}\mathit{C} \cdot\mathit{VC} \cdot\mathit{V}{\ltimes}\)</span>.
-So <span class="math inline">\(\mathit{VC}\)</span> is a component of
-<span class="math inline">\(\mathit{CVCV}\)</span>, and as a result the
-string is ruled out by <span class="math inline">\(G\)</span>.</p>
+clearly <span class="math inline">\(L\mathit{CVCV}R = L\mathit{C}
+\cdot\mathit{VC} \cdot\mathit{V}R\)</span>. So <span
+class="math inline">\(\mathit{VC}\)</span> is a component of <span
+class="math inline">\(\mathit{CVCV}\)</span>, and as a result the string
+is ruled out by <span class="math inline">\(G\)</span>.</p>
 </div>
 <div class="definition">
 <p>A <strong>mixed negative <span class="math inline">\(n\)</span>-gram
@@ -157,14 +157,13 @@ class="math inline">\(\mathit{VVC}\)</span>. Does this grammar deem the
 string <span class="math inline">\(\mathit{CVCVVCV}\)</span>
 well-formed? There are no strings <span class="math inline">\(u\)</span>
 and <span class="math inline">\(v\)</span> such that <span
-class="math inline">\(\mathit{{\rtimes}{\rtimes}CVVVCV{\ltimes}{\ltimes}}
-= u \cdot\mathit{CC} \cdot v\)</span>, which means that <span
+class="math inline">\(\mathit{LLCVVVCVRR} = u \cdot\mathit{CC} \cdot
+v\)</span>, which means that <span
 class="math inline">\(\mathit{CVCVVCV}\)</span> does not contain any
 instance of the forbidden bigram <span
 class="math inline">\(\mathit{CC}\)</span>. However, <span
-class="math inline">\(\mathit{{\rtimes}{\rtimes}CVCVVCV{\ltimes}{\ltimes}}
-= \mathit{{\rtimes}{\rtimes}CVC} \cdot\mathit{VVC}
-\cdot\mathit{V{\ltimes}{\ltimes}}\)</span>, and as a result the string
+class="math inline">\(\mathit{LLCVCVVCVRR} = \mathit{LLCVC}
+\cdot\mathit{VVC} \cdot\mathit{VRR}\)</span>, and as a result the string
 is ruled out by <span class="math inline">\(G\)</span>.</p>
 </div>
 <h2 id="normal-form-theorem">Normal form theorem</h2>
@@ -194,11 +193,11 @@ definition there must be some <span class="math inline">\(g \in
 G\)</span> and strings <span class="math inline">\(u\)</span> and <span
 class="math inline">\(v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> such that <span
-class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1} = u \cdot g
-\cdot v\)</span>. But since <span class="math inline">\(\left |
-{\rtimes}^{n-1} s {\ltimes}^{n-1} \right | &gt; n\)</span>, there must
-also be strings <span class="math inline">\(u_1, u_2, v_1, v_2\)</span>
-over <span class="math inline">\(\Sigma_E\)</span> such that</p>
+class="math inline">\(L^{n-1} s R^{n-1} = u \cdot g \cdot v\)</span>.
+But since <span class="math inline">\(\left | L^{n-1} s R^{n-1} \right |
+&gt; n\)</span>, there must also be strings <span
+class="math inline">\(u_1, u_2, v_1, v_2\)</span> over <span
+class="math inline">\(\Sigma_E\)</span> such that</p>
 <ol type="1">
 <li><span class="math inline">\(u = u_1 \cdot u_2\)</span>, and</li>
 <li><span class="math inline">\(v = v_1 \cdot v_2\)</span>, and</li>
@@ -211,10 +210,10 @@ G&#39;\)</span>, so that <span class="math inline">\(s \notin
 L(G&#39;)\)</span>.</p>
 <p>In the other direction, suppose <span class="math inline">\(s \notin
 L(G&#39;)\)</span>. Then there is some <span class="math inline">\(g \in
-G&#39;\)</span> such that <span class="math inline">\({\rtimes}^{n-1}
-\cdot s \cdot{\ltimes}^{n-1} = u \cdot g \cdot v\)</span>. But then by
-definition of <span class="math inline">\(G&#39;\)</span> there must
-<span class="math inline">\(u&#39;\)</span>, <span
+G&#39;\)</span> such that <span class="math inline">\(L^{n-1} \cdot s
+\cdotR^{n-1} = u \cdot g \cdot v\)</span>. But then by definition of
+<span class="math inline">\(G&#39;\)</span> there must <span
+class="math inline">\(u&#39;\)</span>, <span
 class="math inline">\(g&#39;\)</span> and <span
 class="math inline">\(v&#39;\)</span> over <span
 class="math inline">\(\Sigma\)</span> such that <span
