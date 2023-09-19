@@ -153,9 +153,9 @@ of the two negative grammars.</p>
 <div class="example">
 <p>Suppose that we have a negative bigram grammar <span
 class="math inline">\(G_1\)</span> for word-final devoicing that
-contains only the bigram <em>sR</em>. In set notation, <span
-class="math inline">\(G_1 \mathrel{\mathop:}=\left \{ \text{s}R \right
-\}\)</span>. This grammar rules out every string that ends in an
+contains only the bigram <em>s&lt;</em>. In set notation, <span
+class="math inline">\(G_1 \mathrel{\mathop:}=\left \{ \text{s}&lt;
+\right \}\)</span>. This grammar rules out every string that ends in an
 <em>s</em>. Furthermore, let <span class="math inline">\(G_2\)</span> be
 a negative trigram grammar for intervocalic voicing. It contains the
 trigrams <em>asa</em>, <em>asi</em>, <em>isa</em>, and <em>isi</em> (a
@@ -166,7 +166,7 @@ trigrams as the language would have more than just those two vowels). So
 <p>In order to obtain a grammar that enforces both constraints, one
 simply constructs a new grammar <span class="math inline">\(G\)</span>
 that contains all these <span class="math inline">\(n\)</span>-grams:
-<em>sR</em>, <em>asa</em>, <em>asi</em>, <em>isa</em>, <em>isi</em>.
+<em>s&lt;</em>, <em>asa</em>, <em>asi</em>, <em>isa</em>, <em>isi</em>.
 Every string that is ruled out by <span
 class="math inline">\(G_1\)</span> or <span
 class="math inline">\(G_2\)</span> is also ruled out by <span
@@ -339,10 +339,11 @@ class="math inline">\(P_2\)</span>.</p>
 <p>Suppose our alphabet contains only <span
 class="math inline">\(a\)</span> and that <span
 class="math inline">\(G\)</span> is a positive grammar containing the
-bigrams <em>La</em>, <em>aa</em>, and <em>aR</em> (and nothing else).
-Compute <span class="math inline">\(\overline{G}\)</span>, then verify
-for yourself that <span class="math inline">\(\overline{G}\)</span>,
-when interpreted as negative grammar, accepts the same strings as <span
+bigrams <em>&gt;a</em>, <em>aa</em>, and <em>a&lt;</em> (and nothing
+else). Compute <span class="math inline">\(\overline{G}\)</span>, then
+verify for yourself that <span
+class="math inline">\(\overline{G}\)</span>, when interpreted as
+negative grammar, accepts the same strings as <span
 class="math inline">\(G\)</span>.</p>
 </div>
 <p>So given some grammar <span class="math inline">\(G\)</span> of one
