@@ -66,13 +66,12 @@ negative one, and the other way around.</p>
 <div class="definition">
 <p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
 <span class="math inline">\(\Sigma_E\)</span> its extension with the
-edge marker symbols <span class="math inline">\({\rtimes}, {\ltimes}
-\notin \Sigma\)</span>. An <span class="math inline">\(n\)</span>-gram
-over <span class="math inline">\(\Sigma_E\)</span> is an element of
-<span class="math inline">\(\Sigma_E^n\)</span> (<span
-class="math inline">\(n \geq 1\)</span>). An <span
-class="math inline">\(n\)</span>-gram grammar <span
-class="math inline">\(G\)</span> over alphabet <span
+edge marker symbols <span class="math inline">\(L, R \notin
+\Sigma\)</span>. An <span class="math inline">\(n\)</span>-gram over
+<span class="math inline">\(\Sigma_E\)</span> is an element of <span
+class="math inline">\(\Sigma_E^n\)</span> (<span class="math inline">\(n
+\geq 1\)</span>). An <span class="math inline">\(n\)</span>-gram grammar
+<span class="math inline">\(G\)</span> over alphabet <span
 class="math inline">\(\Sigma\)</span> is a finite set of <span
 class="math inline">\(n\)</span>-grams over <span
 class="math inline">\(\Sigma_E\)</span>. Every <span
@@ -88,8 +87,8 @@ class="math inline">\(\Sigma\)</span> is well-formed with respect to
 class="math inline">\(u, v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> and no <span
 class="math inline">\(g \in G\)</span> such that <span
-class="math inline">\({\rtimes}^{n-1} \cdot s \cdot{\ltimes}^{n-1} = u
-\cdot g \cdot v\)</span>.</li>
+class="math inline">\(L^{n-1} \cdot s \cdotR^{n-1} = u \cdot g \cdot
+v\)</span>.</li>
 <li>Under the positive interpretation of <span
 class="math inline">\(G\)</span> (also denoted <span
 class="math inline">\(P(G)\)</span>), a string <span
@@ -99,9 +98,9 @@ class="math inline">\(\Sigma\)</span> is well-formed with respect to
 class="math inline">\(u, v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> and <span
 class="math inline">\(g \in \Sigma_E^n\)</span> such that <span
-class="math inline">\({\rtimes}^{n-1} \cdot s \cdot{\ltimes}^{n-1} = u
-\cdot g \cdot v\)</span>, it holds that <span class="math inline">\(g
-\in G\)</span>.</li>
+class="math inline">\(L^{n-1} \cdot s \cdotR^{n-1} = u \cdot g \cdot
+v\)</span>, it holds that <span class="math inline">\(g \in
+G\)</span>.</li>
 </ul>
 <p>The <strong>language of <span
 class="math inline">\(G\)</span></strong>, denoted <span
@@ -127,11 +126,11 @@ class="math inline">\(L(P) = L(N)\)</span>.</p>
 necessarily a member of <span class="math inline">\(L(N)\)</span>.
 Assume towards a contradiction that <span class="math inline">\(s \notin
 L(N)\)</span>. Then there must be some <span class="math inline">\(g \in
-N\)</span> such that <span class="math inline">\({\rtimes}^{n-1} s
-{\ltimes}^{n-1} = u \cdot g \cdot v\)</span> (<span
-class="math inline">\(u,v, \in \Sigma_E^*\)</span>). But since <span
-class="math inline">\(N \mathrel{\mathop:}=\Sigma_E^n - P\)</span>,
-<span class="math inline">\(g \in N\)</span> implies <span
+N\)</span> such that <span class="math inline">\(L^{n-1} s R^{n-1} = u
+\cdot g \cdot v\)</span> (<span class="math inline">\(u,v, \in
+\Sigma_E^*\)</span>). But since <span class="math inline">\(N
+\mathrel{\mathop:}=\Sigma_E^n - P\)</span>, <span
+class="math inline">\(g \in N\)</span> implies <span
 class="math inline">\(g \notin P\)</span>, wherefore <span
 class="math inline">\(s \notin L(P)\)</span>. As this contradicts our
 initial assumption that <span class="math inline">\(s \in L(P)\)</span>,
@@ -142,9 +141,9 @@ all.</p>
 \notin L(P)\)</span>. Then by definition there are <span
 class="math inline">\(u, v \in \Sigma_E^*\)</span> and <span
 class="math inline">\(\Sigma_E^n \ni g \notin P\)</span> such that <span
-class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1} = u \cdot g
-\cdot v\)</span>. But then <span class="math inline">\(g \in N\)</span>,
-which entails <span class="math inline">\(s \notin L(N)\)</span>.</p>
+class="math inline">\(L^{n-1} s R^{n-1} = u \cdot g \cdot v\)</span>.
+But then <span class="math inline">\(g \in N\)</span>, which entails
+<span class="math inline">\(s \notin L(N)\)</span>.</p>
 <p>This shows that <span class="math inline">\(s \in L(P)\)</span> iff
 <span class="math inline">\(s \in L(N)\)</span>. As <span
 class="math inline">\(s\)</span> was arbitrary, this holds for all
@@ -157,8 +156,8 @@ symbol salad into English in your head. Consider for example this part
 of the proof:</p>
 <ul>
 <li>Then there must be some <span class="math inline">\(g \in N\)</span>
-such that <span class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1}
-= u \cdot g \cdot v\)</span> (<span class="math inline">\(u,v, \in
+such that <span class="math inline">\(L^{n-1} s R^{n-1} = u \cdot g
+\cdot v\)</span> (<span class="math inline">\(u,v, \in
 \Sigma_E^*\)</span>).</li>
 </ul>
 <p>This just says that the negative grammar necessarily contains some
