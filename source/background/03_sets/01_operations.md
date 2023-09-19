@@ -188,7 +188,7 @@ Explain why this holds.
 *Hint*: By definition, $\overline{\overline{B}} = A - \overline{B} = A - (A - B)$.
 :::
 
-## Summary
+## Recap
 
 - The **union** of $A$ and $B$ is the smallest set that contains every $x$ such that $x \in A$ or $x \in B$ (or both).
 - The **intersection** of $A$ and $B$ is the smallest set that contains every $x$ such that $x \in A$ and $x \in B$.
