@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Morphological paradigms</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#morphological-paradigms">Morphological paradigms</a>
+<ul>
+<li><a href="#the-aba-generalization">The *ABA generalization</a></li>
+<li><a href="#aba-as-a-no-crossing-constraint"><span
+class="math inline">\(^*\)</span>ABA as a No-Crossing
+constraint</a></li>
+<li><a href="#monotonicity">Monotonicity</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="morphological-paradigms">Morphological paradigms</h1>
+<div class="prereqs">
+<ul>
+<li>functions(monotonicity)</li>
+</ul>
+</div>
+<p>A morphological paradigm lists related forms of the same word. For
+example, the adjectival gradation paradigm of <em>good</em> is
+<em>good</em> - <em>better</em> - <em>best</em>. The inflectional
+paradigm of English <em>like</em> in the present tense is</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Person</th>
+<th style="text-align: left;">Singular form</th>
+<th style="text-align: left;">Plural form</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">like</td>
+<td style="text-align: left;">like</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">like</td>
+<td style="text-align: left;">like</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">likes</td>
+<td style="text-align: left;">like</td>
+</tr>
+</tbody>
+</table>
+<p>German <em>mögen</em>, on the other hand, looks as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Person</th>
+<th style="text-align: left;">Singular form</th>
+<th style="text-align: left;">Plural form</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">mag</td>
+<td style="text-align: left;">mögen</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">magst</td>
+<td style="text-align: left;">mögt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">mag</td>
+<td style="text-align: left;">mögen</td>
+</tr>
+</tbody>
+</table>
+<p>You might think that paradigms can take any form you want. But that
+does not seem to be the case, some patterns simply do not arise. There
+are certain principled gaps in the linguistic typology, like holes in a
+Swiss cheese. The Swiss-cheese nature of language suggests that a
+universal is at play. In fact, we will see it is the interaction of a
+particular formal universal with substantive universals.</p>
+<h2 id="the-aba-generalization">The *ABA generalization</h2>
+<p>Adjectives usually come in three degrees:</p>
+<ol type="1">
+<li>a <strong>positive</strong> form, e.g. <em>good</em> or
+<em>hard</em></li>
+<li>a <strong>comparative</strong> form, e.g. <em>better</em> or
+<em>harder</em></li>
+<li>a <strong>superlative</strong> form, e.g. <em>best</em> or
+<em>hardest</em></li>
+</ol>
+<div class="exercise">
+<p>Can you think of an example of an English adjective that does not
+have a comparative and/or superlative form?</p>
+</div>
+<p>The contrast between <em>good</em> and <em>hard</em> already shows
+that the positive, comparative, and superlative are not always built the
+same way. In <em>good</em>-<em>better</em>-<em>best</em>, the
+comparative and superlative look very similar, but they are both
+different from the positive. We might call this an ABB pattern,
+reflecting the fact that the first form (positive) is different from the
+second and third (comparative and superlative). In
+<em>hard</em>-<em>harder</em>-<em>hardest</em>, all three forms are very
+similar. That’s an AAA pattern. Using this notation, we could also
+envision an ABC pattern where all three forms are highly distinct. This
+is instantiated by the Latin counterpart to
+<em>good</em>-<em>better</em>-<em>best</em>, which is
+<em>bonus</em>-<em>melior</em>-<em>optimus</em>.</p>
+<p>So the set of attested adjectival gradation patterns includes AAA,
+ABB, and ABC. Curiously absent is anything like
+<em>good</em>-<em>gooder</em>-<em>best</em>, an AAB pattern, and
+<em>good</em>-<em>better</em>-<em>goodest</em>, an ABA pattern. The
+latter has attracted particular attention among linguists. The absence
+of such ABA patterns across all known languages is called the
+<strong>*ABA generalization</strong>.</p>
+<p>The ban against ABA patterns can also be found in pronoun paradigms.
+If we ignore number, English has a separate pronoun form for each
+person. First person is <em>I</em>, second person is <em>you</em>, and
+third person is <em>he</em>/<em>she</em>/<em>it</em>. This is an ABC
+pattern. But looking across languages, we also find languages with AAA,
+AAB, and ABB. Only ABA is again curiously absent.</p>
+<p>The absence of ABA patterns is an intriguing puzzle, and it can be
+given a very natural mathematical explanation.</p>
+<h2 id="aba-as-a-no-crossing-constraint"><span
+class="math inline">\(^*\)</span>ABA as a No-Crossing constraint</h2>
+<p>Some linguists have argued for a person hierarchy of the form <span
+class="math inline">\(1 &lt; 2 &lt; 3\)</span>. This means that first
+person is somehow more prominent or important than second person, which
+in turn is more important than third person. There’s several linguistic
+reasons for positing such a hierarchy, but for our purposes a loose
+analogy is sufficient: people in general care most about themselves and
+their peers (<em>we</em>), then the people they interact with
+(<em>you</em>), and everybody else is at best irrelevant and at worst an
+enemy (<em>they</em>).</p>
+<p>If this hierarchy is indeed a substantive universal of natural
+languages, then a simple mathematical idea is sufficient to explain why
+pronoun systems can be of the form AAA, AAB, ABB, and ABC, but not ABA.
+But let’s start with the basic intuition before we bring in any
+mathematical machinery. Suppose that we line up 1, 2, 3 for person in a
+single horizontal line as in the figure below, with A, B, C as another
+horizontal line underneath it.</p>
+<p><img src="123_lineup.svg" alt="123_lineup.svg" /></p>
+<p>Using this visual format, we can represent an ABC pattern by
+connecting each person to the form below it. That is to say, we connect
+1 to A, 2 to B, and 3 to C.</p>
+<p><img src="123_ABC.svg" alt="123_ABC.svg" /></p>
+<p>By contrast, the AAA pattern is the result of linking each person to
+A.</p>
+<p><img src="123_AAA.svg" alt="123_AAA.svg" /></p>
+<div class="exercise">
+<p>What patterns do the two pictures below represent?</p>
+<p><img src="123_AAB.svg" alt="123_AAB.svg" /></p>
+<p><img src="123_ABB.svg" alt="123_ABB.svg" /></p>
+</div>
+<p>Now contrast the figures above against the one below, which displays
+an ABA pattern.</p>
+<p><img src="123_ABA.svg" alt="123_ABA.svg" /></p>
+<p>The ABA pattern is different from the others because the lines cross
+at some point. Specifically, it is impossible to connect 3 to A without
+crossing the line that goes from 2 to B.</p>
+<p>Linguists have noticed over the years that language, quite generally,
+does not like crossing lines. For instance, there is a theory known as
+<em>Autosegmental phonology</em>, which serves as the inspiration for
+the TSL class of <span class="math inline">\(n\)</span>-gram grammars
+with tiers. In this theory, a sound in a word can occupy a position in
+the word as well as on a specific tier. This connection can be made
+explicit with an association line. But association lines are never
+allowed to cross. So at least for pronoun paradigms, the *ABA
+generalization might just be an instance of a general ban against
+crossing lines.</p>
+<p>Interestingly, this ban against crossing lines corresponds to a very
+natural mathematical property…</p>
+<h2 id="monotonicity">Monotonicity</h2>
+<p>The figures above can be regarded as functions from <span
+class="math inline">\(\left \{ 1,2,3 \right \}\)</span> to <span
+class="math inline">\(\left \{ A, B, C \right \}\)</span>. For example,
+the AAB pattern corresponds to a function <span
+class="math inline">\(f_{AAB}\)</span> such that</p>
+<ul>
+<li><span class="math inline">\(1 \mapsto A\)</span>,</li>
+<li><span class="math inline">\(2 \mapsto A\)</span>,</li>
+<li><span class="math inline">\(3 \mapsto B\)</span>.</li>
+</ul>
+<div class="exercise">
+<p>Using <span class="math inline">\(\mapsto\)</span> as above, define
+<span class="math inline">\(f_{AAA}\)</span>, <span
+class="math inline">\(f_{ABB}\)</span>, <span
+class="math inline">\(f_{ABC}\)</span>, and <span
+class="math inline">\(f_{ABA}\)</span>.</p>
+</div>
+<p>But it is not quite correct to say that these functions whose domains
+and co-domains are simply sets. In the pictures above, the elements of
+<span class="math inline">\(\left \{ 1,2,3 \right \}\)</span> and <span
+class="math inline">\(\left \{ A,B,C \right \}\)</span> are put in a
+left-to-right order. We aren’t just dealing with sets, we are dealing
+with sets that have an <strong>order</strong> defined over them. What
+differentiates <span class="math inline">\(f_{ABA}\)</span> from the
+others is that it does not respect this order. It is the only function
+that is not <strong>monotonically increasing</strong>.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(f: S \rightarrow T\)</span> be a
+function from <span class="math inline">\(S\)</span> to <span
+class="math inline">\(T\)</span>. Assume that <span
+class="math inline">\(\leq_S\)</span> is an ordering of elements of
+<span class="math inline">\(S\)</span>, whereas <span
+class="math inline">\(\leq_T\)</span> is an ordering of the elements of
+<span class="math inline">\(T\)</span>. Then <span
+class="math inline">\(f\)</span> is <strong>monotonically
+increasing</strong> (or <strong>isotonic</strong>) iff <span
+class="math inline">\(x \leq_S y\)</span> implies <span
+class="math inline">\(f(x) \leq_T f(y)\)</span>.</p>
+</div>
+<div class="example">
+<p>The function <span class="math inline">\(f_{AAB}\)</span> is
+monotonically increasing because</p>
+<ul>
+<li><span class="math inline">\(1 \leq_S 2\)</span> and <span
+class="math inline">\(f(1) = A \leq_T A = f(2)\)</span></li>
+<li><span class="math inline">\(2 \leq_S 3\)</span> and <span
+class="math inline">\(f(2) = A \leq_T B = f(3)\)</span></li>
+<li><span class="math inline">\(1 \leq_S 3\)</span> and <span
+class="math inline">\(f(1) = A \leq_T B = f(3)\)</span></li>
+</ul>
+</div>
+<div class="example">
+<p>The function <span class="math inline">\(f_{ABA}\)</span> is not
+monotonically increasing because <span class="math inline">\(2 \leq_S
+3\)</span> yet <span class="math inline">\(f(2) = B \not\leq_T A =
+f(3)\)</span>.</p>
+</div>
+<p>The ABA pattern stands out among the rest because it is not
+monotonically increasing. We can even visualize that using the Cartesian
+coordinate system, which you are probably familiar with. Here’s what an
+ABC patterns looks like if we represent it in a 2-dimensional space,
+with the <span class="math inline">\(x\)</span>-axis encoding person (1,
+2, 3) and the <span class="math inline">\(y\)</span>-axis representing
+the output form (A, B, C).</p>
+<p><img src="123_ABC_diagram.svg" alt="123_ABC_diagram.svg" /></p>
+<p>As you can see, the function always goes upward, which makes it
+monotonically increasing. The function for ABB flattens after second
+person, but it is still monotonically increasing as it never dips down
+to a lower value.</p>
+<p><img src="123_ABB_diagram.svg" alt="123_ABB_diagram.svg" /></p>
+<p>But the diagram for ABA shows exactly such a dip from second person
+to third person, and that’s why the function is not monotonically
+increasing.</p>
+<p><img src="123_ABA_diagram.svg" alt="123_ABA_diagram.svg" /></p>
+<p>But if there’s the notion of monotonically increasing, perhaps
+there’s also <strong>monotonically decreasing</strong> and ABA fits that
+pattern? Well, you’re right that this mirror image exists. Whereas a
+monotonically increasing function preserves the original order, a
+monotonically decreasing function reverses this order. But the ABA
+pattern isn’t monotonically decreasing either.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(f\)</span>, <span
+class="math inline">\(S\)</span>, <span
+class="math inline">\(T\)</span>, <span
+class="math inline">\(\leq_S\)</span>, and <span
+class="math inline">\(\leq_T\)</span> be as before. Then <span
+class="math inline">\(f\)</span> is <strong>monotonically
+decreasing</strong> (or <strong>antitonic</strong>) iff <span
+class="math inline">\(x \leq_S y\)</span> implies <span
+class="math inline">\(f(x) \geq_T f(y)\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Show that <span class="math inline">\(f_{ABA}\)</span> is not
+monotonically decreasing.</p>
+</div>
+<p>Sometimes it does not matter whether a function is monotonically
+increasing or monotonically decreasing as long as it is one of the two,
+and in that case one simply speaks of <strong>monotonic
+functions</strong>. One can show that no matter how one linearly orders
+A, B, and C, no monotonic function can produce an ABA pattern as long as
+the hierarchy for person is <span class="math inline">\(1 &lt; 2 &lt;
+3\)</span>.</p>
+<div class="example">
+<p>Suppose that <span class="math inline">\(1 &lt; 2 &lt; 3\)</span>,
+that <span class="math inline">\(f(1) = f(3) = A\)</span>, and that
+<span class="math inline">\(A\)</span>, <span
+class="math inline">\(B\)</span>, and <span
+class="math inline">\(C\)</span> are linearly ordered (e.g. <span
+class="math inline">\(A &lt; B &lt; C\)</span> or <span
+class="math inline">\(C &lt; A &lt; B\)</span> or <span
+class="math inline">\(A &lt; C &lt; B\)</span>). If <span
+class="math inline">\(f\)</span> is monotonic, then it must be the case
+that either <span class="math inline">\(f(1) \leq f(2) \leq
+f(3)\)</span> or <span class="math inline">\(f(1) \geq f(2) \geq
+f(3)\)</span>. Either way, the fact that <span
+class="math inline">\(f(1) = f(3)\)</span> entails both <span
+class="math inline">\(f(1) = f(2)\)</span> and <span
+class="math inline">\(f(2) = f(3)\)</span>. Consequently, <span
+class="math inline">\(f(2) = A\)</span>. Since that is not the case for
+the ABA pattern, it cannot be produced by a monotonic function.</p>
+</div>
+<p>The *ABA generalization for pronouns thus follows from the
+interaction of a substantive universal and a formal universal:</p>
+<ol type="1">
+<li><strong>Substantive universal</strong>: All languages use a person
+hierarchy <span class="math inline">\(1 &lt; 2 &lt; 3\)</span>.</li>
+<li><strong>Formal universal</strong>: For every morphological paradigm,
+the mapping from the underlying hierarchy to the output forms must be
+monotonic.</li>
+</ol>
+<div class="exercise">
+<p>Show that monotonicity also explains the absence of adjectival
+gradation paradigms like <em>good</em>-<em>better</em>-<em>goodest</em>
+if one assumes the hierarchy <span
+class="math inline">\(\mathrm{positive} &lt; \mathrm{comparative} &lt;
+\mathrm{superlative}\)</span>. Explain why this is an intuitively
+plausible hierarchy.</p>
+</div>
+<div class="exercise">
+<p>Earlier I mentioned briefly that no language seems to allow AAB as an
+adjectival gradation pattern. Is this predicted by monotonicity? If not,
+is this an undergeneration or an overgeneration problem?</p>
+</div>
+<p>You might wonder why we restated the No-Crossing constraint in terms
+of the mathematical property of monotonicity. Doesn’t the former get the
+job done just as well? In the case at hand, certainly. But monotonicity
+is a more abstract property, and as we will see in the next two units,
+this abstractness allows it to be easily generalized to a number of
+phenomena which the No-Crossing constraint has little to say about.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Across languages, morphological paradigms exhibit curious gaps: a
+logically conceivable pattern does not seem to be instantiated in any
+language.</li>
+<li>The <strong>*ABA generalization</strong> states that paradigms do
+not contain patterns where two forms look the same (or similar) but
+forms in-between look very different.</li>
+<li>The *ABA generalization can be decomposed into two universals:
+<ul>
+<li>The formal universal is the requirement that morphological paradigms
+should be monotonic functions.</li>
+<li>The substantive universal is the particular order that underlies the
+paradigm (e.g. <span class="math inline">\(1 &lt; 2 &lt; 3\)</span> or
+<span class="math inline">\(\mathrm{positive} &lt; \mathrm{comparative}
+&lt; \mathrm{superlative}\)</span>).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Summary of monotonicity and universals</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#summary-of-monotonicity-and-universals">Summary of
+monotonicity and universals</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="summary-of-monotonicity-and-universals">Summary of monotonicity
+and universals</h1>
+<p>This unit discussed monotonicity as an abstract yet very important
+aspect of natural language. Monotonicity is a mathematical property of
+functions and breaks down into two distinct notions.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(f: S \rightarrow T\)</span> be a
+function from <span class="math inline">\(S\)</span> to <span
+class="math inline">\(T\)</span>. Assume that <span
+class="math inline">\(\leq_S\)</span> is an ordering of elements of
+<span class="math inline">\(S\)</span>, whereas <span
+class="math inline">\(\leq_T\)</span> is an ordering of the elements of
+<span class="math inline">\(T\)</span>. Then <span
+class="math inline">\(f\)</span> is <strong>monotonically
+increasing</strong> (or <strong>isotonic</strong>) iff <span
+class="math inline">\(x \leq_S y\)</span> implies <span
+class="math inline">\(f(x) \leq_T f(y)\)</span>.</p>
+</div>
+<div class="definition">
+<p>Let <span class="math inline">\(f\)</span>, <span
+class="math inline">\(S\)</span>, <span
+class="math inline">\(T\)</span>, <span
+class="math inline">\(\leq_S\)</span>, and <span
+class="math inline">\(\leq_T\)</span> be as before. Then <span
+class="math inline">\(f\)</span> is <strong>monotonically
+decreasing</strong> (or <strong>antitonic</strong>) iff <span
+class="math inline">\(x \leq_S y\)</span> implies <span
+class="math inline">\(f(x) \geq_T f(y)\)</span>.</p>
+</div>
+<p>Monotonicity is only of interest if the domain and co-domain of a
+function aren’t just flat sets but have additional structure that puts
+the elements into an order. A monotonically increasing function
+preserves order, a monotonically decreasing function reverses it. The
+structure may be a poset, a join semilattice, a meet semilattice, or a
+lattice.</p>
+<p>Various phenomena can be analyzed as involving monotonicity:</p>
+<ul>
+<li>the No-Crossing Branches constraint in Autosegmental Phonology,</li>
+<li>morphological syncretism (adjectival gradation, person pronouns,
+case), and</li>
+<li>NPI licensing based on left/right downward entailment, and</li>
+<li>the crosslinguistic typology of the Person Case Constraint, and</li>
+<li>the Adjunct island Constraint, and</li>
+<li>the learning of SL grammars, and</li>
+<li>many more that we didn’t have time to discuss.</li>
+</ul>
+<p>Monotonicity thus seems to permeate all aspects of language, from
+phonology and morphology to syntax, semantics, and even learning. It is
+a formal universal that can be combined with substantive universals
+(e.g. person hierarchies, adjunct algebras) to reduce overgeneration. It
+adds a new facet to our formal understanding. While a purely
+computational approach often fails to distinguish the linguistically
+natural from the unnatural, the combination of monotonicity and
+substantive universals can often capture the relevant distinction.</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function growth and Big O notation</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#function-growth-and-big-o-notation">Function growth and
+Big O notation</a>
+<ul>
+<li><a href="#constant-functions">Constant functions</a></li>
+<li><a href="#linear-functions">Linear functions</a></li>
+<li><a href="#polynomial-function">Polynomial function</a></li>
+<li><a href="#exponential-functions">Exponential functions</a></li>
+<li><a href="#big-o-notation">Big O notation</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="function-growth-and-big-o-notation">Function growth and Big O
+notation</h1>
+<p>Even though functions aren’t limited to mappings from numbers to
+numbers, this is certainly one of the most commonly encountered types of
+functions. We can classify these functions based on how quickly the
+output grows relative to the input.</p>
+<h2 id="constant-functions">Constant functions</h2>
+<p>In a constant function, the output is always the same independent of
+the argument. They follow the pattern <span class="math inline">\(f(x) =
+c\)</span>, where <span class="math inline">\(c\)</span> is some fixed
+value.</p>
+<div class="example">
+<p>All of the following are constant functions.</p>
+<ul>
+<li><span class="math inline">\(f(x) = 0\)</span></li>
+<li><span class="math inline">\(f(x) = 17,033,581,395\)</span></li>
+<li><span class="math inline">\(f(x) = e^\pi\)</span></li>
+<li><span class="math inline">\(f(x) = 10^{10^{10}}\)</span></li>
+</ul>
+</div>
+<h2 id="linear-functions">Linear functions</h2>
+<p>Linear functions follow the general pattern <span
+class="math inline">\(f(x) = kx + d\)</span>. They can be visualized as
+a line in a Cartesian coordinate system.</p>
+<div class="example">
+<p>All of the following are instances of linear functions.</p>
+<ul>
+<li><span class="math inline">\(f(x) = 5x + 10\)</span></li>
+<li><span class="math inline">\(f(x) = x - \sqrt{2}\)</span></li>
+<li><span class="math inline">\(f(x) = \frac{9x}{4}\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Explain why every constant function is also a linear function.</p>
+</div>
+<h2 id="polynomial-function">Polynomial function</h2>
+<p>In a polynomial function, the argument is multiplied with itself a
+fixed number of times. This is expressed as exponentiation.</p>
+<div class="example">
+<p>All of the following functions are polynomials.</p>
+<ul>
+<li><span class="math inline">\(f(x) = x^2\)</span></li>
+<li><span class="math inline">\(g(x) = x^3 - 5x\)</span></li>
+<li><span class="math inline">\(h(x) = -5x^4 + 7x^2 + (2x +
+3)^2\)</span></li>
+<li><span class="math inline">\(i(x) = \frac{3x^4 +
+x^3}{17}\)</span></li>
+</ul>
+</div>
+<p>When plotted in a coordinate system, polynomials aren’t straight
+lines but curves. These curves may also change direction, going up and
+down. Polynomial functions grow faster than linear functions, but a
+linear function may initially return higher values. Only as we move
+towards larger and larger numbers is a polynomial guaranteed to
+eventually outstrip a linear function.</p>
+<div class="example">
+<p>Consider the linear function <span class="math inline">\(j(x) =
+1000x\)</span> and the polynomial function <span
+class="math inline">\(k(x) = x^2 - 9x\)</span>. The table below shows
+the growth of those two functions.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span
+class="math inline">\(x\)</span></th>
+<th style="text-align: right;"><span
+class="math inline">\(j(x)\)</span></th>
+<th style="text-align: right;"><span
+class="math inline">\(k(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">-8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">-14</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3000</td>
+<td style="text-align: right;">-18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4000</td>
+<td style="text-align: right;">-20</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5000</td>
+<td style="text-align: right;">-20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6000</td>
+<td style="text-align: right;">-18</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7000</td>
+<td style="text-align: right;">-14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8000</td>
+<td style="text-align: right;">-8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10,000</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">100,000</td>
+<td style="text-align: right;">9,100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">1,000,000</td>
+<td style="text-align: right;">991,000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5,000</td>
+<td style="text-align: right;">5,000,000</td>
+<td style="text-align: right;">24,955,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Formally, a function is polynomial iff it can be rewritten to fit the
+template below, where <span class="math inline">\(k_0, \ldots,
+k_n\)</span> are arbitrary numbers.</p>
+<p><span class="math display">\[
+f(x) = k_n x^n + k_{n-1} x^{n-1} + \cdots + k_1 x^1 + k_0 x^0,
+\]</span></p>
+<div class="example">
+<p>The function <span class="math inline">\(f(x) = x^2\)</span> from the
+example above can be rewritten as <span class="math inline">\(f(x) = 1
+x^2 + 0 x^1 + 0 x^0\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Rewrite the functions <span class="math inline">\(g\)</span>, <span
+class="math inline">\(h\)</span>, <span class="math inline">\(i\)</span>
+from the same example above so that they fit this pattern.</p>
+<p>Some math facts you might have learned in school but forgotten in the
+meantime:</p>
+<ul>
+<li><span class="math inline">\((a + b)^2 = a^2 + 2ab +
+b^2\)</span></li>
+<li><span class="math inline">\(x^0 = 1\)</span> for every choice of
+<span class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(\frac{x+y}{z} = (x+y)\frac{1}{z} =
+x\frac{1}{z} + y\frac{1}{z}\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Explain why every linear function is also a polynomial function.</p>
+</div>
+<h2 id="exponential-functions">Exponential functions</h2>
+<p>Like polynomial functions, exponential functions involve
+exponentiation. But in a polynomial the argument of the function acts as
+the base for exponentation (e.g. <span class="math inline">\(f(x) =
+x^2\)</span>), whereas in an exponential function it serves as the
+exponent (e.g. <span class="math inline">\(f(x) = 2^x\)</span>).</p>
+<div class="example">
+<p>All of the following are exponential functions.</p>
+<ul>
+<li><span class="math inline">\(f(x) = 2^x\)</span></li>
+<li><span class="math inline">\(f(x) = 5 \times (10^x)\)</span></li>
+<li><span class="math inline">\(f(x) = 3.7 \times (1^x)\)</span></li>
+</ul>
+</div>
+<p>Exponential functions grow even faster than polynomials, but once
+again this may only hold as we consider larger and larger values for
+<span class="math inline">\(x\)</span>. A polynomial function may
+initially return larger values than an exponential function. And since
+we already saw that a linear function may initially return larger values
+than a polynomial, it follows that even a linear function may at first
+return larger values than an exponential function. But as we consider
+larger and larger values, the exponential function will end up growing
+much faster than the linear or polynomial functions.</p>
+<div class="exercise">
+<p>Give an example of a polynomial function <span
+class="math inline">\(f\)</span> and an exponential function <span
+class="math inline">\(g\)</span> such that <span
+class="math inline">\(f(x) &gt; g(x)\)</span> for relatively small
+values of <span class="math inline">\(x\)</span> (e.g. <span
+class="math inline">\(x &lt; 100\)</span>) but <span
+class="math inline">\(f(x) &lt; g(x)\)</span> for larger values.</p>
+</div>
+<div class="exercise">
+<p>Give an example of a linear function <span
+class="math inline">\(f\)</span> and an exponential function <span
+class="math inline">\(g\)</span> such that <span
+class="math inline">\(f(x) &gt; g(x)\)</span> for relatively small
+values of <span class="math inline">\(x\)</span> (e.g. <span
+class="math inline">\(x &lt; 100\)</span>) but <span
+class="math inline">\(f(x) &lt; g(x)\)</span> for larger values.</p>
+</div>
+<h2 id="big-o-notation">Big O notation</h2>
+<p>As one considers larger and larger values for <span
+class="math inline">\(x\)</span>, some parts of a function become
+increasingly irrelevant.</p>
+<div class="example">
+<p>Consider the function <span class="math inline">\(f(x) = x^3 +
+x^2\)</span>. For small <span class="math inline">\(x\)</span>, <span
+class="math inline">\(x^2\)</span> contributes a significant proportion
+of the output value, 10% or more. But as we increase <span
+class="math inline">\(x\)</span>, the contribution of <span
+class="math inline">\(x^2\)</span> becomes negligible, until it doesn’t
+even make up 1% of the overall value.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span
+class="math inline">\(x\)</span></th>
+<th style="text-align: right;"><span
+class="math inline">\(x^3\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(x^3 +
+x^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">150</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">216</td>
+<td style="text-align: right;">252</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">343</td>
+<td style="text-align: right;">392</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">512</td>
+<td style="text-align: right;">576</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">729</td>
+<td style="text-align: right;">810</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">1100</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1,000,000</td>
+<td style="text-align: right;">1,010,000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">1,000,000,000</td>
+<td style="text-align: right;">1,001,000,000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5,000</td>
+<td style="text-align: right;">125,000,000,000</td>
+<td style="text-align: right;">125,025,000,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Often we do not really care about the precise value returned by a
+function, we just want to know the rough ballpark and how quickly the
+function grows. The Big-O notation was designed just for this purpose.
+Instead of a complicated function like <span class="math inline">\(f(x)
+= 15 x^5 + \frac{3 x^4}{6} - 500,000 x\)</span>, we can just write <span
+class="math inline">\(O(x^5)\)</span> to signal that even though the
+full function may be more complicated, its overall growth pattern will
+resemble <span class="math inline">\(f(x) = x^5\)</span> as we start
+looking at larger and larger values for <span
+class="math inline">\(x\)</span>.</p>
+<p>While the Big-O notation has a fairly involved definition, the
+intuition is really simple: find the fastest-growing component in the
+function’s definition and remove everything else. The general principle
+is that exponential trumps polynomial trumps linear trumps constant.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span
+class="math inline">\(f(x)\)</span></th>
+<th style="text-align: center;">Big-O</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(3x +
+100\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(3x)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(50x +
+x^2\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(x^2)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(10\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(10)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(2^x -
+x^{100}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(2^x)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The Big-O examples in the right column might strike you as very
+incomplete representations of <span class="math inline">\(f\)</span>,
+but that’s the point: we use the Big-O notation when we do not care
+about the minor details of <span class="math inline">\(f\)</span> and
+just want to see the overall growth pattern. In fact, things are often
+simplified even further: constants are replaced with just 1, and in
+linear functions we drop the multiplier. The table above then becomes
+the one below.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span
+class="math inline">\(f(x)\)</span></th>
+<th style="text-align: center;">Big-O</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(3x +
+100\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(x)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(50x +
+x^2\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(x^2)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(10\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(2^x -
+x^{100}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(2^x)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>We can now relate each type of function to a specific type of Big-O
+expression.</p>
+<ul>
+<li><strong>constant</strong>: <span
+class="math inline">\(O(1)\)</span></li>
+<li><strong>linear</strong>: <span
+class="math inline">\(O(x)\)</span></li>
+<li><strong>polynomial</strong>: <span
+class="math inline">\(O(x^2)\)</span>, <span
+class="math inline">\(O(x^3)\)</span>, …</li>
+<li><strong>exponential</strong>: <span
+class="math inline">\(O(2^x)\)</span>, <span
+class="math inline">\(O(3^x)\)</span>, …</li>
+</ul>
+<div class="exercise">
+<p>For each one of the formulas below, right down its simplified version
+in Big-O notation.</p>
+<ol type="1">
+<li><span class="math inline">\(f(x) = x \times x\)</span></li>
+<li><span class="math inline">\(f(x) = x(3x + 5)\)</span></li>
+<li><span class="math inline">\(f(x) = x^2 + 17(x -
+\frac{2^x}{x})\)</span></li>
+<li><span class="math inline">\(f(x) = 2^x + 17 - (1 +
+2^x)\)</span></li>
+</ol>
+</div>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>For numerical functions, we can distinguish four subtypes: constant,
+linear, polynomial, exponential</li>
+<li>constant: <span class="math inline">\(f(x) = c\)</span></li>
+<li>linear: <span class="math inline">\(f(x) = kx + d\)</span></li>
+<li>polynomial: <span class="math inline">\(f(x) = k_n x^n + k_{n-1}
+x^{n-1} + \cdots + k_1 x^1 + k_0 x^0\)</span></li>
+<li>exponential: <span class="math inline">\(f(x) = k
+(b^x)\)</span></li>
+<li>The Big-O notation shows the part of the function <span
+class="math inline">\(f(x)\)</span> that grows most quickly as we
+consider larger and larger values for <span
+class="math inline">\(x\)</span>.</li>
+</ul>
+<!-- fixme: add some figures -->
+</div>
+</div>
+</body>
+</html>

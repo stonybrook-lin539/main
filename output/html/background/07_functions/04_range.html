@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Range</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#range">Range</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h2 id="range">Range</h2>
+<p>For many functions it won’t be the case that the every value in their
+domain is actually a possible output of a function. Given a function
+<span class="math inline">\(f: D \rightarrow C\)</span>, we use the term
+<strong>range</strong> to refer to the set of elements of <span
+class="math inline">\(C\)</span> that are an output for at least one
+input in <span class="math inline">\(D\)</span>.</p>
+<div class="example">
+<p>Consider the function <span class="math inline">\(f: \mathbb{N}
+\rightarrow \mathbb{N}\)</span> with <span class="math inline">\(x
+\mapsto 2x\)</span>. Not every natural number is a possible output of
+this function:</p>
+<ol type="1">
+<li><span class="math inline">\(f(0) = 0\)</span></li>
+<li><span class="math inline">\(f(1) = 2\)</span></li>
+<li><span class="math inline">\(f(2) = 4\)</span></li>
+<li><span class="math inline">\(f(3) = 6\)</span></li>
+<li>and so on</li>
+</ol>
+<p>The range thus does not contain all members of <span
+class="math inline">\(\mathbb{N}\)</span>. Instead, it consists of all
+even natural numbers, and nothing else.</p>
+</div>
+<div class="example">
+<p>Now suppose that we have <span class="math inline">\(f: \mathbb{R}
+\rightarrow \mathbb{N}\)</span> with <span class="math inline">\(x
+\mapsto 2x\)</span>. For every natural number <span
+class="math inline">\(n\)</span>, <span
+class="math inline">\(\frac{n}/2\)</span> is a real number and thus an
+element of <span class="math inline">\(\mathbb{R}\)</span>. Hence it
+must be the case that for every natural number <span
+class="math inline">\(n\)</span> there is at least one element <span
+class="math inline">\(e\)</span> in the domain of <span
+class="math inline">\(f\)</span> such that <span
+class="math inline">\(f(e) = n\)</span>. So this is an example where a
+function’s range is identical to its co-domain.</p>
+</div>
+<div class="exercise">
+<p>For each one of the following functions, describe its range and say
+whether it is the same as the function’s co-domain. Justify your answer.
+As in many other exercises, getting the correct answer is less important
+than giving a good argument for you answer.</p>
+<ol type="1">
+<li><span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{N}\)</span>, <span class="math inline">\(x \mapsto x +
+1\)</span></li>
+<li><span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{N}\)</span>, <span class="math inline">\(x \mapsto x -
+1\)</span></li>
+<li><span class="math inline">\(\mathrm{len}: \Sigma^* \rightarrow
+\mathbb{N}\)</span> with <span class="math inline">\(s \mapsto \left | s
+\right |\)</span> (remember that <span class="math inline">\(\left | s
+\right |\)</span> denotes the length of string <span
+class="math inline">\(s\)</span>)</li>
+<li>the child-of kinship relation among humans, limited to women (for
+instance, <span class="math inline">\(\mathrm{child}(\mathrm{Sue}) =
+\mathrm{Mary}\)</span> iff Sue is a child of Mary)</li>
+<li>a benchmark that sorts graphics card models by their speed for
+neutral network training</li>
+</ol>
+</div>
+</div>
+</div>
+</body>
+</html>

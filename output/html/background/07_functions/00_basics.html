@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Functions: Basic notation</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#functions-basic-notation">Functions: Basic notation</a>
+<ul>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="functions-basic-notation">Functions: Basic notation</h1>
+<p><strong>Functions</strong>, also called <strong>maps</strong> or
+<strong>mappings</strong>, are ubiquitous in mathematics. The laymen
+usually thinks of things like <span class="math inline">\(f(x) = x +
+1\)</span> when they hear the word <em>function</em>, but the concept is
+much more general. Anything can be thought of as a function as long as
+it takes a fixed number of <strong>arguments</strong> as its input and
+converts them to some output. Crucially, the output is not allowed to
+vary while the input is kept the same.</p>
+<div class="example">
+<p>Sticking with numbers, suppose <span
+class="math inline">\(f(x)\)</span> randomly maps <span
+class="math inline">\(x\)</span> to either <span
+class="math inline">\(x+2\)</span> or <span class="math inline">\(x
+\times 2\)</span>. This is not a function because one and the same input
+can produce different outputs. Yes, <span
+class="math inline">\(f(2)\)</span> would always yield <span
+class="math inline">\(4\)</span> because <span class="math inline">\(2 +
+2 = 4\)</span> and <span class="math inline">\(2 \times 2 = 4\)</span>.
+But for <span class="math inline">\(3\)</span>, the two diverge: <span
+class="math inline">\(3 + 2 = 5\)</span> but <span
+class="math inline">\(3 \times 2 = 6\)</span>. So <span
+class="math inline">\(f(3)\)</span> would sometimes be <span
+class="math inline">\(5\)</span> and sometimes <span
+class="math inline">\(6\)</span>, which means that <span
+class="math inline">\(f\)</span> is not a function.</p>
+<p>However, if we turned <span class="math inline">\(f\)</span> into a
+binary function that takes some number <span
+class="math inline">\(x\)</span> as its first argument and some
+operation <span class="math inline">\(\oplus\)</span> as its second
+argument and maps that to <span class="math inline">\(x \oplus
+2\)</span>, then <span class="math inline">\(f\)</span> is a function.
+In that case, <span class="math inline">\(f(3, +) = 3 + 2 = 5\)</span>
+and <span class="math inline">\(f(3, \times) = 3 \times 2 = 6\)</span>.
+Now it is okay that the outputs vary because we are also varying the
+inputs.</p>
+</div>
+<div class="example">
+<p>A car wash can be regarded as a function that takes as input a car
+and returns as its output a clean car (in an ideal world, at least). A
+dirty Dodge Viper comes out as a clean Dodge Viper, and a clean Audi A4
+still comes out as a clean Audi A4. The output is always perfectly
+predictable from the input.</p>
+</div>
+<div class="exercise">
+<p>Let <span class="math inline">\(f\)</span> be a function that takes
+as its input a number <span class="math inline">\(n\)</span> and returns
+<span class="math inline">\(n+1\)</span> on a workday and <span
+class="math inline">\(n+2\)</span> on the weekend.</p>
+<ul>
+<li>Is <span class="math inline">\(f\)</span> a function?</li>
+<li>What if <span class="math inline">\(f\)</span> instead takes two
+arguments: a number <span class="math inline">\(n\)</span>, and the name
+of the day of the week.</li>
+</ul>
+</div>
+<p>The fact that functions cannot map one and the same input to multiple
+outputs is known as <strong>right uniqueness</strong>. Right uniqueness
+guarantees that functions are deterministic in the sense that one can
+predict the output from the input with 100% accuracy.</p>
+<p><strong>Caution</strong>: The functions used in programming languages
+are not necessarily functions in the mathematical sense because their
+output can vary even if the input stays the same.</p>
+<!-- ```python -->
+<!-- import random -->
+<!-- import re -->
+<!-- import ipywidgets -->
+<!-- from ipywidgets import Button, Layout -->
+<!--  -->
+<!-- from IPython.display import display -->
+<!--  -->
+<!-- # a programming function that is not a mathematical function -->
+<!-- def random_output(number): -->
+<!--     # randomly choose between two outputs -->
+<!--     if random.choice([True, False]): -->
+<!--         return 2 * number -->
+<!--     else: -->
+<!--         return 3 * number -->
+<!--  -->
+<!-- b = ipywidgets.Button(description='Click to run randomization', -->
+<!--            layout=Layout(width='50%', height='80px')) -->
+<!-- display(b) -->
+<!--  -->
+<!-- def on_button_clicked(b): -->
+<!--     for _ in range(10): -->
+<!--         print("The output of random_output({}) is {}".format(5, random_output(5))) -->
+<!--      -->
+<!-- b.on_click(on_button_clicked) -->
+<!-- ``` -->
+<h2 id="recap">Recap</h2>
+<ul>
+<li>A function takes a fixed number of arguments as its input and
+returns a single output that is uniquely determined by the inputs.</li>
+<li>Functions are not limited to numbers, all kinds of things can be the
+input or output of a function.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

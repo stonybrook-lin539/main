@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Monotonicity in case syncretism</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#monotonicity-in-case-syncretism">Monotonicity in case
+syncretism</a>
+<ul>
+<li><a href="#a-primer-on-case-syncretism">A primer on case
+syncretism</a></li>
+<li><a href="#genitive-dative-and-accusative">Genitive, dative and
+accusative</a></li>
+<li><a href="#partial-orders-to-the-rescue">Partial orders to the
+rescue</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="monotonicity-in-case-syncretism">Monotonicity in case
+syncretism</h1>
+<div class="prereqs">
+<ul>
+<li>relations (notation, basic orders)</li>
+</ul>
+</div>
+<p>Monotonicity also seems to play a role in a phenomenon called
+<strong>case syncretism</strong>. As you probably know, some languages
+have specific endings that go on nouns to indicate their case. A subject
+might usually be nominative case, whereas an object could be accusative
+or dative, and a possessor might have genitive case. Case syncretism
+refers to the phenomenon that a word ends up using identical forms for
+distinct cases. Once again not every logically conceivable system is
+actually attested. Languages seem to be very finicky in what kinds of
+case syncretism they allow, and we would like to know why that is
+so.</p>
+<h2 id="a-primer-on-case-syncretism">A primer on case syncretism</h2>
+<p>We still see small reflexes of case syncretism in English, where the
+personal pronouns have different forms:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Word</strong></th>
+<th style="text-align: center;"><strong>Subject</strong></th>
+<th style="text-align: center;"><strong>Object</strong></th>
+<th style="text-align: center;"><strong>Possessor</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">3rd person singular masculine</td>
+<td style="text-align: center;">he</td>
+<td style="text-align: center;">him</td>
+<td style="text-align: center;">his</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3rd person singular feminine</td>
+<td style="text-align: center;">she</td>
+<td style="text-align: center;">her</td>
+<td style="text-align: center;">her</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3rd person singular neuter</td>
+<td style="text-align: center;">it</td>
+<td style="text-align: center;">it</td>
+<td style="text-align: center;">its</td>
+</tr>
+</tbody>
+</table>
+<p>The table above is called a <strong>morphological paradigm</strong>,
+where <strong>morphology</strong> means that we are talking about the
+form of words, and a <strong>paradigm</strong> is a collection of cells
+that specify the relation between the forms of a word and their
+function. In the case at hand, those functions are subject, object, and
+possessor. As you can see, <em>her</em> is the form for both the object
+and the possessor, and <em>it</em> is the form for both the subject and
+the object. When multiple cells of a paradigm look the same, this is
+called <strong>syncretism</strong>.</p>
+<p>The case system of English is so impoverished by now that it isn’t
+very interesting to look at. But many languages have a much richer case
+morphology, and case syncretism is a common occurrence in those
+languages. This is shown below for Latin <em>rex</em> ‘king’, where
+nominative and accusative are syncretic in the plural, as are dative and
+ablative.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><strong>Case</strong></th>
+<th style="text-align: left;"><strong>Singular</strong></th>
+<th style="text-align: left;"><strong>Plural</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Nom</td>
+<td style="text-align: left;">rex</td>
+<td style="text-align: left;">reg-es</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Gen</td>
+<td style="text-align: left;">reg-is</td>
+<td style="text-align: left;">reg-um</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Dat</td>
+<td style="text-align: left;">reg-i</td>
+<td style="text-align: left;">reg-ibus</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Acc</td>
+<td style="text-align: left;">reg-em</td>
+<td style="text-align: left;">reg-es</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Abl</td>
+<td style="text-align: left;">reg-e</td>
+<td style="text-align: left;">reg-ibus</td>
+</tr>
+</tbody>
+</table>
+<p>And Icelandic has paradigms like the one for <em>mamma</em> ‘mum’
+below, where almost every form is syncretic with some other form.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><strong>Case</strong></th>
+<th style="text-align: left;"><strong>Singular</strong></th>
+<th style="text-align: left;"><strong>Plural</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Nom</td>
+<td style="text-align: left;">mamma</td>
+<td style="text-align: left;">mömm-ur</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Gen</td>
+<td style="text-align: left;">mömm-u</td>
+<td style="text-align: left;">mamm-a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Dat</td>
+<td style="text-align: left;">mömm-u</td>
+<td style="text-align: left;">mömm-um</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Acc</td>
+<td style="text-align: left;">mömm-u</td>
+<td style="text-align: left;">mömm-ur</td>
+</tr>
+</tbody>
+</table>
+<p>As with person pronoun paradigms and adjectival gradation, some
+conceivable case syncretisms never show up in any language. For
+instance, there is no language with the following variant of the plural
+case paradigm for ‘rex’:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><strong>Case</strong></th>
+<th style="text-align: left;"><strong>Plural</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Nom</td>
+<td style="text-align: left;">reg-ibus</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Gen</td>
+<td style="text-align: left;">reg-um</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Dat</td>
+<td style="text-align: left;">reg-ibus</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Acc</td>
+<td style="text-align: left;">reg-es</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Abl</td>
+<td style="text-align: left;">reg-ibus</td>
+</tr>
+</tbody>
+</table>
+<p>Why is this impossible? It can’t be just because three cases are
+syncretic, because we’ve seen that this is fine in Icelandic. So why
+does no language like to have a case paradigm of this form? Again we are
+forced to explain some typological gaps, and again monotonicity provides
+an answer.</p>
+<div class="exercise">
+<p>Pick one of the languages below and write down a case paradigm for a
+specific word of that language. Highlight the cells that are syncretic
+(if any).</p>
+<ul>
+<li>Ancient Greek</li>
+<li>Basque</li>
+<li>Finnish</li>
+<li>German</li>
+<li>Hungarian</li>
+<li>Icelandic</li>
+<li>Japanese</li>
+<li>Korean</li>
+<li>Old English</li>
+<li>Old Norse</li>
+<li>Russian</li>
+<li>Sanskrit</li>
+<li>Tamil</li>
+</ul>
+<p>Unless you’re a native speaker of one of those languages, you will
+have to do some research to find out how their case system works. Try
+your local library, or an online resource like Wikipedia.</p>
+</div>
+<h2 id="genitive-dative-and-accusative">Genitive, dative and
+accusative</h2>
+<p>Case systems can be very complex and convoluted, so we will only
+focus on a few simple problems here. First of all, we will only consider
+syncretism within a single column of the case paradigm. That is to say,
+we do not worry how singular forms can be syncretic with plural forms,
+we’re only interested in syncretism among case forms in the singular and
+syncretism among case forms in the plural. Second, we won’t consider
+each individual case that has been proposed for some language, because
+there’s tons of them: ablative, locative, elative, instrumental,
+benefactive, and much more. Instead, we will subsume them all under
+<em>other</em> and use <strong>Blake’s case hierarchy</strong> as our
+starting point. Slightly truncated, it postulates that <span
+class="math display">\[\text{Nom} &lt;
+\text{Acc} &lt;
+\text{Gen} &lt;
+\text{Dat} &lt;
+\text{others}\]</span> The <span class="math inline">\(^*\)</span>ABA
+generalization, which we encountered with adjectival gradation and
+person pronoun paradigms, can be extended to this hierarchy. In this
+broader form, it states that two cases <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(z\)</span> cannot have the same form in a paradigm
+unless every case <span class="math inline">\(y\)</span> that occurs
+between them in the hierarchy also has this form in the paradigm.</p>
+<div class="example">
+<p>The paradigm for Latin <em>rex</em> displays syncretism of nominative
+and accusative to the exclusion of genitive, dative, and ablative. But
+since these cases do not occur between nominative and accusative in
+Blake’s case hierarchy, this obeys the <span
+class="math inline">\(^*\)</span>ABA generalization.</p>
+</div>
+<div class="exercise">
+<p>The paradigm for <em>rex</em> also has syncretism of dative and
+ablative in the plural. Can a monotonic function produce this pattern
+from Blake’s case hierarchy? Justify your answer.</p>
+</div>
+<p>There is a problem with the monotonicity account, though. In many
+Germanic languages, dative and accusative are syncretic to the exclusion
+of genitive.</p>
+<div class="example">
+<p>In German, it is very common for nominative, dative and accusative to
+take the base form, whereas genitive receives a special affix. So
+<em>Papa</em> ‘dad’ could be nominative, dative, or accusative, whereas
+the genitive must be <em>Papas</em>. German is not an ideal example,
+though, as the genitive is becoming increasingly unproductive. Moreover,
+the dative allows for a special suffix <em>-e</em> for nouns that end in
+a consonant, so that <em>Mann</em> can be either <em>Mann</em> or
+<em>Manne</em> (although the latter sounds very archaic). Nonetheless,
+it is conceivable that the dative of <em>Papa</em> is underlyingly
+<em>Papae</em>, with the final vowel subsequently deleted by some
+phonological process.</p>
+</div>
+<div class="example">
+<p>A better example comes from the Icelandic word for <em>father</em>.
+The nominative is <em>faðir</em>, its dative and accusative are
+<em>föður</em>, yet the genitive is <em>föðurs</em>. And in contrast to
+German, there’s no wiggle room here: these are the endings, and there
+aren’t any colloquial variations. So accusative and dative are indeed
+the only syncretic cases, and crucially the genitive case does not
+participate in this syncretism.</p>
+</div>
+<p>If we combine the <span class="math inline">\(^*\)</span>ABA
+generalization with Blake’s hierarchy in its current form, then we
+cannot produce syncretism of accusative and dative to the exclusion of
+genitive. Either the <span class="math inline">\(^*\)</span>ABA
+generalization is too restrictive, or Blake’s hierarchy is wrong. We
+could of course try to change the hierarchy, but the easy options do not
+work.</p>
+<div class="exercise">
+<p>Explain why the following hierarchy is empirically inadequate: <span
+class="math inline">\(\text{Nom} &lt; \text{Gen} &lt; \text{Acc} &lt;
+\text{Dat} &lt; \text{others}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Icelandic also has some nouns where nominative and genitive are
+syncretic to the exclusion of dative and accusative. Which variants of
+Blake’s hierarchy does this rule out?</p>
+</div>
+<h2 id="partial-orders-to-the-rescue">Partial orders to the rescue</h2>
+<p>It seems that no matter how we order the cases, at least one attested
+syncretism will violate the <span class="math inline">\(^*\)</span>ABA
+generalization. But perhaps we are accidentally limiting ourselves.
+First of all, remember that the <span
+class="math inline">\(^*\)</span>ABA generalization is just a linguistic
+counterpart to the mathematical notion of monotonicity. Perhaps
+monotonicity provides a way out?</p>
+<div class="exercise">
+<p>Pick one of the problematic syncretisms pointed out above and explain
+why it is also problematic if we replace the <span
+class="math inline">\(^*\)</span>ABA generalization with the requirement
+that the mapping from the Blake hierarchy to surface forms must be a
+monotonic function.</p>
+</div>
+<p>Well, monotonicity by itself doesn’t really help. But it opens up a
+path toward a new solution. So far, we have implicitly assumed that
+linguistic hierarchies must be <strong>trichotomous</strong>: for any
+given <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, it holds that <span
+class="math inline">\(x &lt; y\)</span>, or <span
+class="math inline">\(y &lt; x\)</span>, or <span
+class="math inline">\(x = y\)</span>.</p>
+<div class="example">
+<p>If we order the natural numbers by <span
+class="math inline">\(&lt;\)</span>, the result is a trichotomous order.
+No matter which two numbers <span class="math inline">\(m\)</span> and
+<span class="math inline">\(n\)</span> we pick, we either have <span
+class="math inline">\(m &lt; n\)</span>, <span class="math inline">\(n
+&lt; m\)</span>, or <span class="math inline">\(m = n\)</span>.</p>
+<p>Now suppose that we take the set of all humans that have ever lived
+and order them by the ancestor relation <span
+class="math inline">\(A\)</span> such that <span class="math inline">\(x
+\mathrel{A} y\)</span> iff <span class="math inline">\(x\)</span> is an
+ancestor of <span class="math inline">\(y\)</span>. The resulting order
+is not trichotomous because there are at least two distinct human beings
+such that neither one is the other’s ancestor.</p>
+</div>
+<p>Trichotomy is a natural starting point for linguistic hierarchies,
+but it isn’t a necessary one. In contrast to the <span
+class="math inline">\(^*\)</span>ABA generalization, monotonicity is
+also a meaningful concept if we consider <strong>partial
+orders</strong>. In a partial order, some elements may be unordered with
+respect to each other. This allows us to make a small but important
+modification to Blake’s hierarchy.</p>
+<p><img src="blake_partialorder.svg" alt="blake_partialorder.svg" /></p>
+<p>This graph encodes the following orderings of cases:</p>
+<ol type="1">
+<li><span class="math inline">\(\text{Nom} &lt;
+\text{Acc}\)</span>,</li>
+<li><span class="math inline">\(\text{Nom} &lt;
+\text{Gen}\)</span>,</li>
+<li><span class="math inline">\(\text{Acc} &lt;
+\text{Dat}\)</span>,</li>
+<li><span class="math inline">\(\text{Gen} &lt;
+\text{Dat}\)</span>,</li>
+<li><span class="math inline">\(\text{Dat} &lt;
+\text{others}\)</span>,</li>
+<li>all the orders that follow from this (e.g. <span
+class="math inline">\(\text{Nom} &lt; \text{Dat}\)</span>).</li>
+</ol>
+<p>Notice how genitive and accusative are now unordered with respect to
+each other. Monotonicity is a restriction on what a function may map
+<span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> to if <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are ordered with respect to each other.
+But monotonicity has nothing to say for cases where no such ordering
+holds. If there is no order between <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, then it does not matter whether <span
+class="math inline">\(f(x) \leq f(y)\)</span> or the other way round.
+Without an ordering between accusative and genitive, it becomes possible
+for accusative and dative to be syncretic to the exclusion of
+genitive.</p>
+<div class="example">
+<p>Suppose that accusative and dative are both mapped to the same
+exponent, which is different to the realization of genitive: <span
+class="math inline">\(f(\text{Acc}) = f(\text{Dat}) \neq
+f(\text{Gen})\)</span>. We will show that this is compatible with the
+assumption of a monotonically increasing (or decreasing) function.</p>
+<p>First, the revised case hierarchy above establishes that <span
+class="math inline">\(\text{Acc} &lt; \text{Dat}\)</span>. If <span
+class="math inline">\(f\)</span> is monotonically increasing, then <span
+class="math inline">\(\text{Acc} &lt; \text{Dat}\)</span> entails <span
+class="math inline">\(f(\text{Acc}) \leq f(\text{Dat})\)</span>. By our
+initial assumption, <span class="math inline">\(f(\text{Acc}) =
+f(\text{Dat})\)</span>, which confirms <span
+class="math inline">\(f(\text{Acc}) \leq f(\text{Dat})\)</span>. Our
+revised case hierarchy also postulates that <span
+class="math inline">\(\text{Gen} &lt; \text{Dat}\)</span>, so it must be
+the case that <span class="math inline">\(f(\text{Gen}) \leq
+f(\text{Dat})\)</span>. Whether this holds depends on how one orders the
+surface forms, but it is always possible to pick an ordering that
+satisfies <span class="math inline">\(f(\text{Gen}) \leq
+f(\text{Dat})\)</span>. Finally, <span
+class="math inline">\(\text{Acc}\)</span> and <span
+class="math inline">\(\text{Gen}\)</span> are unordered with respect to
+each other, and consequently the relative order of <span
+class="math inline">\(f(\text{Acc})\)</span> and <span
+class="math inline">\(f(\text{Gen})\)</span> is irrelevant for
+monotonicity.</p>
+</div>
+<div class="exercise">
+<p>For each one of the following syncretisms, state whether it can be
+realized by a monotonic mapping assuming the modified Blake hierarchy
+(if necessary, you may assume a different linear order of output forms
+for each syncretism). Justify your answer.</p>
+<ul>
+<li>Syncretism of nominative and genitive to the exclusion of
+accusative</li>
+<li>Syncretism of nominative and dative to the exclusion of
+accusative</li>
+<li>Syncretism of nominative, accusative, and dative to the exclusion of
+genitive</li>
+<li>Syncretism of nominative, accusative, and genitive to the exclusion
+of dative</li>
+<li>Syncretism of accusative and genitive to the exclusion of nominative
+and dative</li>
+</ul>
+</div>
+<p>It seems, then, that monotonicity does a lot of work even in the
+richer domain of case syncretisms. The crucial step is to move from a
+total order to a partial order.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Linguists often assume that hierarchies are
+<strong>trichotomous</strong>: all elements of the hierarchy must be
+ordered with respect to each other.</li>
+<li>If we drop the trichotomy requirement, linguistic hierarchies can be
+partial orders.</li>
+<li>In contrast to linguistic proposals like the No-Crossing-Branches
+constraint or the <span class="math inline">\(^*\)</span>ABA
+generalization, monotonicity isn’t limited to trichotomous orders. It
+works just as well for partial orders.</li>
+<li>This makes it possible to explain many highly distinct linguistic
+phenomena in terms of monotonicity.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
