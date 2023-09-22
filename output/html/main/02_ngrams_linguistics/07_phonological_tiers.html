@@ -46,8 +46,6 @@ class="math inline">\(n\)</span>-gram grammars</a></li>
 <li><a
 href="#phonological-tiers-allow-for-smaller-grammars">Phonological tiers
 allow for smaller grammars</a></li>
-<li><a href="#the-mathematics-of-tiers">The mathematics of
-tiers</a></li>
 <li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
@@ -56,39 +54,94 @@ tiers</a></li>
 <div class="content">
 <h1 id="making-n-grams-more-powerful-phonological-tiers">Making n-grams
 more powerful: Phonological tiers</h1>
-<p>We started out this unit with <span
+<p>We started this chapter with <span
 class="math inline">\(n\)</span>-gram grammars as a basic model for
 studying the linguistic domains of phonotactics and morphotactics,
 i.e. the rules that govern the arrangement of sounds and parts of word
 like <em>un-</em>, <em>re-</em>, <em>-ly</em>, <em>-ize</em>,
-<em>-ation</em>, <em>-s</em>, and so on. After that, we switched to more
-applied issues and the bag-of-words model. In order to be truly
-effective, the bag-of-words model must be combined with stop word
-removal. You might think that stop word removal, being a technique for
-real-world applications, offers nothing of value to linguistics. But
-stop word removal is actually closely related to what linguists call
-<em>phonological tiers</em>.</p>
+<em>-ation</em>, <em>-s</em>, and so on. We have learned a lot about
+these grammars. Positive and negative grammars are equally powerful, and
+the larger the value of <span class="math inline">\(n\)</span>, the more
+patterns can be captured with <span
+class="math inline">\(n\)</span>-gram grammars. But is there something
+like a cutoff point of language, some value of <span
+class="math inline">\(n\)</span> that allows us to handle all aspects of
+phonotactics and morphotactics? The answer is no, and in fact, things
+are even worse: there are phenomena that we cannot capture with our
+current <span class="math inline">\(n\)</span>-gram grammars no matter
+how large a value of <span class="math inline">\(n\)</span> we pick.
+That’s not good, but not too hard to fix, either.</p>
 <h2 id="the-limits-of-n-gram-grammars">The limits of <span
 class="math inline">\(n\)</span>-gram grammars</h2>
 <p>We already know that (positive/negative) <span
 class="math inline">\(n\)</span>-gram grammars can be used to describe
-all kinds of conditions on natural language phonotactics and
-morphotactics. But these grammars can only enforce locally bounded
-conditions like intervocalic voicing or penultimate stress. These
-phenomena have the property that it suffices to consider a finitely
-bounded number of adjacent segments. Not all natural language phenomena
-obey this condition.</p>
+various kinds of conditions on natural language phonotactics and
+morphotactics. This includes word-final devoicing, intervocalic voicing
+or penultimate stress, where primary stress must fall on the last but
+one syllable in a word. For some patterns, though, <span
+class="math inline">\(n\)</span>-gram grammars can be really clunky.</p>
 <div class="example">
-<p>One of these phenomena is attested in <strong>Samala</strong>, which
-belongs to the group of Chumash languages spoken in southern California.
-Samala displays a constraint known as <strong>long-distance sibilant
-harmony</strong>. All sibilants in a word must agree in anteriority, no
-matter how far apart they are. This means that a word can certainly
-contain multiple instances of <em>s</em> or multiple instances of
-<em>ʃ</em> (ʃ is the IPA symbol corresponding to English <em>sh</em>).
-But it may never contain a mixture of the two. So <em>haʃxintilawaʃ</em>
-is well-formed, whereas <em>hasxintilawaʃ</em> and
-<em>haʃxinitilawas</em> are both ill-formed. The form
+<p>Vowel harmony is a common phenomenon where certain vowels cannot
+co-occur in a given word. This happens in Hungarian, Finnish, Korean,
+and many other languages. Take the case of Korean. Korean distinguishes
+three classes of vowels: bright (B), mid dark (M), and high dark (H).
+Let us ignore H for now and consider only words where all vowels belong
+to class B or to class M. This is actually an exclusive <em>or</em>: no
+word may mix vowels of class B with vowels of class M. Can we express
+this with an <span class="math inline">\(n\)</span>-gram grammar? Yes,
+but it isn’t exactly nice.</p>
+<p>First, we need to consider the Korean syllable template. The most
+complex syllables in Korean are of the form CGVC, where V is a vowel as
+usual, C is a consonant as usual, and G is a subtype of consonant called
+a <em>glide</em>. But there is an independent constraint that no two
+vowels can be separated by more than two consonants. All we have to do
+is to rule out that these two vowels belong to different classes, which
+we can do very easily with a negative grammar that mixes <span
+class="math inline">\(n\)</span>-grams of varying lengths:</p>
+<ul>
+<li>BM</li>
+<li>MB</li>
+<li>BCM</li>
+<li>MCB</li>
+<li>BCCM</li>
+<li>MCCB</li>
+</ul>
+<p>This looks pretty neat, so why did I say that <span
+class="math inline">\(n\)</span>-gram grammars do not handle this well?
+The problem is that the <span class="math inline">\(n\)</span>-gram
+grammars do not operate with abstract classes like this, they work with
+segments. Korean has 19 consonants, which means the single 4-gram BCCM
+actually corresponds to <span class="math inline">\(19 \times 19 =
+361\)</span> 4-grams. Actually, it’s even more than that because we
+haven’t yet replaced the abstract symbols B and M by the corresponding
+vowels. Even if we refrain from doing that and only replace C with all
+possible consonants, we are looking at over 700 <span
+class="math inline">\(n\)</span>-grams. Replace B and M and the count
+will be in the thousands, and if you want to pad everything out to <span
+class="math inline">\(4\)</span>-grams, it will be in the tens of
+thousands.</p>
+</div>
+<p>That an <span class="math inline">\(n\)</span>-gram grammar of Korean
+vowel harmony needs so many <span class="math inline">\(n\)</span>-grams
+does not seem right, for two reasons. First, it is strange that a simple
+and natural process like vowel harmony cannot be stated in a unified
+fashion and should require tons of <span
+class="math inline">\(n\)</span>-grams. Second, it is even stranger that
+the number of consonants should impact how elegantly we can describe
+vowel harmony. Vowel harmony does not care about consonants, so why
+should the appeal of our model hinge on the language’s consonant
+inventory?</p>
+<div class="example">
+<p>For an even more extreme example, consider the case of
+<strong>Samala</strong>, which belongs to the group of Chumash languages
+spoken in southern California. Samala displays a constraint known as
+<strong>long-distance sibilant harmony</strong>. All sibilants in a word
+must agree in anteriority, no matter how far apart they are. This means
+that a word can certainly contain multiple instances of <em>s</em> or
+multiple instances of <em>ʃ</em> (ʃ is the IPA symbol corresponding to
+English <em>sh</em>). But it may never contain a mixture of the two. So
+<em>haʃxintilawaʃ</em> is well-formed, whereas <em>hasxintilawaʃ</em>
+and <em>haʃxinitilawas</em> are both ill-formed. The form
 <em>hasxintilawas</em>, while not an actual word of Samala, would also
 obey the sibilant harmony constraint.</p>
 <p>Even a 10-gram grammar cannot capture these contrasts. A negative
@@ -105,62 +158,121 @@ obey the sibilant harmony constraint.</p>
 grammar could capture the contrast.</p>
 </div>
 <div class="exercise">
-<p>Write an 11-gram grammar that generates <em>hasxintilawas</em> and
-<em>haʃxintilawaʃ</em>, but not <em>hasxintilawaʃ</em> and
-<em>haʃxinitilawas</em>. The grammar may be positive or negative,
-whichever you prefer.</p>
+<p>Write an 11-gram grammar that generates… you know what, no, don’t do
+that, life is too short to write 11-gram grammars. Instead, try to
+estimate how many <span class="math inline">\(11\)</span>-grams a
+negative <span class="math inline">\(n\)</span>-gram grammar would need
+so that it can generate <em>hasxintilawas</em> and
+<em>haʃxintilawaʃ</em> but still rules out <em>hasxintilawaʃ</em> and
+<em>haʃxinitilawas</em>. You may make the following simplifying
+assumptions:</p>
+<ul>
+<li>The only vowel and consonants are those that occur in the words
+above.</li>
+<li>There are no restrictions on the syllable template. That is to say,
+each position may be any one of the available vowels and consonants
+irrespective of the surrounding context.</li>
+</ul>
 </div>
 <div class="exercise">
-<p>Extend the grammar so that it also captures the fact that
-<em>ʃtajanowonowaʃ</em> is licit whereas <em>stajanowonowaʃ</em> is
-illicit. You might have to move beyond 11-grams.</p>
+<p>Actually, Samala has even longer words with instances of sibilant
+harmony. For example, <em>ʃtajanowonowaʃ</em> is attested whereas
+<em>stajanowonowaʃ</em> is illicit. Are 11-grams still enough to handle
+this? If not, what is the new value of <span
+class="math inline">\(n\)</span>, and how does that alter your estimate
+of a negative <span class="math inline">\(n\)</span>-gram grammars size?
+Would you say that is a large grammar?</p>
 </div>
-<p>Samala’s long-distance sibilant harmony can be handled by an <span
-class="math inline">\(n\)</span>-gram grammar only if there is some
+<p>Samala’s long-distance sibilant harmony can be handled by <span
+class="math inline">\(n\)</span>-gram grammars, but not in an elegant
+fashion. Moreover, it only works because we assume that there is some
 upper bound <span class="math inline">\(k &lt; n\)</span> such that
 sibilants in a Samala word are never separated by more than <span
-class="math inline">\(k\)</span> symbols. The examples above show that
-this <span class="math inline">\(k\)</span> is at least 12, so one would
-need at least a 13-gram grammar to handle the process. Such large <span
-class="math inline">\(n\)</span>-grams simply aren’t feasible in
-practice.</p>
+class="math inline">\(k\)</span> symbols. That is technically true, but
+the value of <span class="math inline">\(k\)</span> may increase as new
+words are added to the language. If that causes <span
+class="math inline">\(k\)</span> to become larger than <span
+class="math inline">\(n\)</span>, the whole <span
+class="math inline">\(n\)</span>-gram grammar would have to be tossed
+out and be replaced with one that uses a larger <span
+class="math inline">\(n\)</span>. Again this does not seem right. The
+shape of our sibilant harmony grammar should not be contingent on a
+completely unrelated property such as the length of the longest word in
+Samala. But we cannot do away with this unrelated property: without an
+upper bound on the distance between sibilants, sibilant harmony simply
+cannot be captured by any <span class="math inline">\(n\)</span>-gram
+grammar.</p>
 <div class="example">
-<p>Suppose for the sake of argument that Samala has only three sounds: a
-vowel, <em>s</em>, and <em>ʃ</em>. Then there are <span
-class="math inline">\(3^{13} = 1,594,323\)</span> distinct <span
-class="math inline">\(n\)</span>-grams. Only the <span
-class="math inline">\(n\)</span>-grams that do not mix <em>s</em> and
-<em>ʃ</em> are well-formed, of which there are <span
-class="math inline">\(2 \times 2^{13} = 2^{14} = 16,384\)</span>. So a
-positive 13-gram grammar for Samala’s sibilant harmony would contain
-<span class="math inline">\(16,384\)</span> distinct 13-grams (plus a
-few with &gt; or &lt;), and a negative one <span
-class="math inline">\(1,594,323 - 16,384 = 1,586,131\)</span>. That’s a
-lot.</p>
+<p>Let us return to Korean vowel harmony one more time in order to
+illustrate the problem. This time around, we will also consider the high
+dark vowels in class H. These are neutral vowels, which means that they
+can occur together with bright (B) or mid dark (M) vowels. So possible
+Korean words are CBCHCHCB and CMCHCHCM, among many others, but not
+CBCHCHCM or CMCHCHCB, where we have B and M in the same word, albeit
+separated by several neutral vowels. The only way we can capture this
+with an <span class="math inline">\(n\)</span>-gram grammar is to assume
+that there is some upper bound <span class="math inline">\(k\)</span>
+such that at most <span class="math inline">\(k\)</span> syllables in a
+row may contain H instead of B or M.</p>
+<p>Suppose no such bound exists. Then the following two strings must be
+well-formed, for arbitrary <span class="math inline">\(k\)</span>.</p>
+<ul>
+<li>CB(CH)<sup>k</sup>CB</li>
+<li>CM(CH)<sup>k</sup>CM</li>
+</ul>
+<p>The following string, however, should be ill-formed because we are
+mixing B and M:</p>
+<ul>
+<li>CB(CH)<sup>k</sup>CM</li>
+</ul>
+<p>In order to rule out this string, we need to forbid at least one of
+the <span class="math inline">\(n\)</span>-grams of <span
+class="math inline">\(&gt;^{n-1}\)</span>CB(CH)<sup>k</sup>CM<span
+class="math inline">\(&lt;^{n-1}\)</span>. But as long as <span
+class="math inline">\(k &gt; n\)</span>, every <span
+class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(&gt;^{n-1}\)</span>CB(CH)<sup>k</sup>CM<span
+class="math inline">\(&lt;^{n-1}\)</span> is also an <span
+class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(&gt;^{n-1}\)</span>CB(CH)<sup>k</sup>CB<span
+class="math inline">\(&lt;^{n-1}\)</span> or <span
+class="math inline">\(&gt;^{n-1}\)</span>CM(CH)<sup>k</sup>CM<span
+class="math inline">\(&lt;^{n-1}\)</span> (or both). Consequently, it is
+impossible for an <span class="math inline">\(n\)</span>-gram grammar to
+rule out CB(CH)<sup>k</sup>CM without incorrectly ruling out at least
+one of CB(CH)<sup>k</sup>CB and CM(CH)<sup>k</sup>CM.</p>
 </div>
-<p>Large grammars are undesirable for multiple reasons. They are almost
-impossible to decipher for humans. Who is supposed to look at <span
-class="math inline">\(16,384\)</span> distinct 13-grams and deduce what
-condition they encode? And the larger the grammar, the more
-computational resources it consumes. Small grammars are fast and easy to
-figure out, large grammars are slow and indecipherable. Small grammars
-trump large grammars.</p>
+<p>The only way to handle all these phenomena with <span
+class="math inline">\(n\)</span>-gram grammars is to stipulate the
+existence of a fixed upper bound. That is because <span
+class="math inline">\(n\)</span>-gram grammars can only handle locally
+bounded dependencies, and stipulating an upper bound like a maximum
+length for words ensures that everything is a locally bounded
+dependency. While doing so does get the job done, it results in giant,
+hideous grammars that do not capture the essence of the phenomenon and
+that have to be adapted and changed as the assumed upper bound changes.
+For all intents and purposes, this is a horrible way of handling these
+phenomena.</p>
 <h2 id="phonological-tiers-allow-for-smaller-grammars">Phonological
 tiers allow for smaller grammars</h2>
 <p>If you have some background in phonology, you might already be
-thinking that there is a much simpler solution: project a
-<strong>tier</strong> that contains only sibilants (<em>s</em> and
-<em>ʃ</em>), and regulate the shape of this sibilant tier with a
-negative bigram grammar containing only <em>sʃ</em> and <em>ʃs</em>.
-That’s one darn small grammar.</p>
+thinking that there is a very simple solution to all this: for any given
+string, we project a <strong>tier</strong> that contains only the
+segments that we care about and use an <span
+class="math inline">\(n\)</span>-gram grammar to regulate the shape of
+that tier.</p>
 <div class="example">
+<p>For sibilant harmony, we want a sibilant tier that contains all
+sibilants (<em>s</em> and <em>ʃ</em>). And this sibilant tier must be
+well-formed according to a negative bigram grammar that forbids
+<em>sʃ</em> and <em>ʃs</em>. That’s one darn small grammar.</p>
 <p>The sibilant tier of <em>hasxintilawas</em> is <em>ss</em>, which is
 allowed by the negative grammar. The illicit <em>hasxintilawaʃ</em>, on
 the other hand, has the sibilant tier <em>sʃ</em>, which is not
 allowed.</p>
-</div>
 <p><img src="tier_good.svg" alt="tier_good.svg" /></p>
 <p><img src="tier_bad.svg" alt="tier_bad.svg" /></p>
+</div>
 <div class="exercise">
 <p>Carry out the same calculations for</p>
 <ul>
@@ -168,6 +280,9 @@ allowed.</p>
 <li><em>haʃxinitilawas</em>, and</li>
 <li><em>ʃtajanowonowaʃ</em>.</li>
 </ul>
+<p>That is to say, write down their tiers (or draw them), and then
+indicate whether the tier is well-formed or ill-formed according to the
+negative bigram grammar above.</p>
 </div>
 <div class="exercise">
 <p>As an abstract example, suppose that our alphabet consists of <span
@@ -178,103 +293,70 @@ class="math inline">\(c\)</span> should be projected on the tier. What
 is the tier of <span
 class="math inline">\(\mathit{aabaccacb}\)</span>?</p>
 </div>
-<p>Tiers are a nice linguistic metaphor, but what is going on here at a
-formal level? Exactly the same thing as with stop word removal. We have
-a function that removes all irrelevant elements, and then we apply a
-specific procedure to the output of this function. For stop word
-removal, that follow-up procedure was the construction of a bag of
-words. With tier projection, we instead test the output for
-well-formedness with respect to an <span
-class="math inline">\(n\)</span>-gram grammar.</p>
-<h2 id="the-mathematics-of-tiers">The mathematics of tiers</h2>
-<p>Remember that <span class="math inline">\(\mathit{del}_S\)</span> is
-a function that takes a string as its input and deletes all symbols that
-belong <span class="math inline">\(S\)</span>. Tier projection works
-pretty much the same, except that one usually specifies which symbols to
-keep rather than which to delete. So given a set <span
-class="math inline">\(T\)</span> of tier symbols, <span
-class="math inline">\(\mathit{del}_T\)</span> takes a string as its
-input and keeps only those symbols that belong to <span
-class="math inline">\(T\)</span>. This difference is very similar to the
-split between positive and negative grammars: <span
-class="math inline">\(T\)</span> specifies what may be kept, <span
-class="math inline">\(S\)</span> what must not be kept. We can unify
-stop word removal and tier projection to a single function <span
-class="math inline">\(\mathit{del}_X\)</span>, where <span
-class="math inline">\(X\)</span> is some set with a specified polarity.
-With <span class="math inline">\(\mathit{del}_{^+X}\)</span>, only the
-symbols in <span class="math inline">\(X\)</span> are kept, whereas
-<span class="math inline">\(\mathit{del}_{^-X}\)</span> removes all
-symbols that belong to <span class="math inline">\(X\)</span> (and only
-those).</p>
+<div class="example">
+<p>Tiers also provide a solution for Korean vowel harmony. Let us once
+again consider only words that do not contain any instances of the
+neutral vowel H. We construct a vowel harmony tier that contains every
+instance of B and M, but no consonants at all. For example, a word of
+the form CGBCBCM would have the vowel harmony tier BBM. On the vowel
+harmony tier, there must be no occurrences of BM or MB, which can easily
+be enforced by a negative bigram grammar.</p>
+</div>
 <div class="exercise">
-<p>Compute the values for all of the following:</p>
+<p>For each one of the strings below, construct its vowel harmony tier
+and say whether the tier is well-formed according to the negative bigram
+grammar above.</p>
 <ul>
-<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
-\}}(\mathit{aaccbad})\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
-\}}(\mathit{aaccbad})\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
-\}}(\mathit{aababad})\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
-\}}(\mathit{aababad})\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
-\}}(\varepsilon)\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
-\}}(\varepsilon)\)</span></li>
+<li>CBCGBCB</li>
+<li>CGMCBCM</li>
+<li>CB</li>
 </ul>
 </div>
-<p>You might think that this isn’t a true unification, we have just
-moved the difference between stop word removal and tier projection into
-the polarity distinction. But just as with <span
-class="math inline">\(n\)</span>-gram grammars, polarity doesn’t
-actually matter. For every set <span class="math inline">\(A\)</span> of
-symbols drawn from some fixed alphabet <span
-class="math inline">\(\Sigma\)</span>, there is some set <span
-class="math inline">\(B\)</span> such that <span
-class="math inline">\(\mathit{del}_{^-A}(s) =
-\mathit{del}_{^+B}(s)\)</span> and <span
-class="math inline">\(\mathit{del}_{^+A}(s) =
-\mathit{del}_{^-B}\)</span> for every string <span
-class="math inline">\(s\)</span> over <span
-class="math inline">\(\Sigma\)</span>.</p>
 <div class="exercise">
-<p>Explain why this holds. Illustrate your argument with a few
-examples.</p>
+<p>Now let us also consider words with the neutral vowel class H, for
+instance the illicit CBCHCHCM. Do we need to make any modifications to
+the vowel harmony tier or the negative bigram grammar? If so, what are
+those modifications?</p>
 </div>
-<p>This is a pretty nifty result. Intuitively, stop word removal and
-tier projection seem completely unrelated. One is about cleaning up data
-for practical applications, the other about simplifying linguistic
-analysis. But mathematically, they are exactly the same thing. In later
-units, we will see many more examples of this unifying power of
-math.</p>
 <div class="exercise">
-<p>The term <strong>culminativity</strong> refers to the property that
-every word has exactly one primary stress. Suppose that our alphabet is
-<span class="math inline">\(\left \{ \sigma, \acute{\sigma} \right
-\}\)</span>, where <span class="math inline">\(\sigma\)</span> denotes
-an unstressed syllable and <span
-class="math inline">\(\acute{\sigma}\)</span> one with primary stress.
-Specify a set <span class="math inline">\(^+T\)</span> of tier symbols
-and a bigram grammar <span class="math inline">\(G\)</span> to capture
-culminativity (<em>hint</em>: &gt; and &lt; can be used with tiers,
-too).</p>
+<p>For each one of the following, say whether it is true or false.
+Justify your answer.</p>
+<ul>
+<li>The size of the negative bigram grammar regulating the vowel harmony
+tier is not contingent on the syllable structure of Korean.</li>
+<li>The size of the negative bigram grammar regulating the vowel harmony
+tier is not contingent on the number of consonants in Korean.</li>
+<li>The size of the negative bigram grammar regulating the vowel harmony
+tier is not contingent on the number of vowels in Korean.</li>
+<li>The size of the negative bigram grammar regulating the vowel harmony
+tier is not contingent on any fixed upper bound on the length of
+words.</li>
+</ul>
 </div>
+<p>As you can see from those examples (and exercises), tiers are a
+wonderful addition to our toolbox. They endow <span
+class="math inline">\(n\)</span>-gram grammars with the ability to
+handle long-distance phenomena without unappealing assumptions such as
+an upper bound on the length of words. Instead of applying directly to
+the string, the <span class="math inline">\(n\)</span>-gram grammar
+instead regulates the shape of a tier. Since the tier does not contain
+symbols that can never matter for the dependency, the grammar can state
+the relevant generalizations more succinctly without mentioning
+irrelevant material. And as we will see in the next unit, tiers are a
+very minimal addition that preserve many of the properties we have
+previously established for <span class="math inline">\(n\)</span>-gram
+grammars.</p>
 <h2 id="recap">Recap</h2>
 <ul>
 <li>No <span class="math inline">\(n\)</span>-gram grammar provides an
 elegant account of long-distance phenomena.</li>
 <li>The larger the <span class="math inline">\(n\)</span>-grams, the
-larger the grammar; large grammars are unwieldy and computationally
-inefficient.</li>
-<li>Phonological tiers allow for more compact grammars by filtering out
-irrelevant material.</li>
-<li>The stop word removal function <span
-class="math inline">\(\mathit{del}\)</span> is also the function for
-constructing phonological tiers.</li>
-<li>Math allows us to unify things that look very different at the
-surface. In particular, linguistic theory and language technology seem
-like very different beasts, but they actually share a lot of math.</li>
+larger the grammar; large grammars are unwieldy and inefficient.</li>
+<li>Phonological <strong>tiers</strong> allow for more compact grammars
+by filtering out irrelevant material.</li>
+<li>Unless one assumes an upper bound on the length of long-distance
+dependencies, <span class="math inline">\(n\)</span>-gram grammars
+without tiers cannot capture certain phenomena.</li>
 </ul>
 </div>
 </div>
