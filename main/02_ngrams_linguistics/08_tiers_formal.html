@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>The mathematics of tiers (work in progress)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#the-mathematics-of-tiers-work-in-progress">The mathematics
+of tiers (work in progress)</a>
+<ul>
+<li><a href="#the-mathematics-of-tiers">The mathematics of
+tiers</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="the-mathematics-of-tiers-work-in-progress">The mathematics of
+tiers (work in progress)</h1>
+<p>Tiers are a nice linguistic metaphor, but what is going on here at a
+formal level? Exactly the same thing as with stop word removal. We have
+a function that removes all irrelevant elements, and then we apply a
+specific procedure to the output of this function. For stop word
+removal, that follow-up procedure was the construction of a bag of
+words. With tier projection, we instead test the output for
+well-formedness with respect to an <span
+class="math inline">\(n\)</span>-gram grammar.</p>
+<h2 id="the-mathematics-of-tiers">The mathematics of tiers</h2>
+<p>Remember that <span class="math inline">\(\mathit{del}_S\)</span> is
+a function that takes a string as its input and deletes all symbols that
+belong <span class="math inline">\(S\)</span>. Tier projection works
+pretty much the same, except that one usually specifies which symbols to
+keep rather than which to delete. So given a set <span
+class="math inline">\(T\)</span> of tier symbols, <span
+class="math inline">\(\mathit{del}_T\)</span> takes a string as its
+input and keeps only those symbols that belong to <span
+class="math inline">\(T\)</span>. This difference is very similar to the
+split between positive and negative grammars: <span
+class="math inline">\(T\)</span> specifies what may be kept, <span
+class="math inline">\(S\)</span> what must not be kept. We can unify
+stop word removal and tier projection to a single function <span
+class="math inline">\(\mathit{del}_X\)</span>, where <span
+class="math inline">\(X\)</span> is some set with a specified polarity.
+With <span class="math inline">\(\mathit{del}_{^+X}\)</span>, only the
+symbols in <span class="math inline">\(X\)</span> are kept, whereas
+<span class="math inline">\(\mathit{del}_{^-X}\)</span> removes all
+symbols that belong to <span class="math inline">\(X\)</span> (and only
+those).</p>
+<div class="exercise">
+<p>Compute the values for all of the following:</p>
+<ul>
+<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
+\}}(\mathit{aaccbad})\)</span></li>
+<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
+\}}(\mathit{aaccbad})\)</span></li>
+<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
+\}}(\mathit{aababad})\)</span></li>
+<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
+\}}(\mathit{aababad})\)</span></li>
+<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
+\}}(\varepsilon)\)</span></li>
+<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
+\}}(\varepsilon)\)</span></li>
+</ul>
+</div>
+<p>You might think that this isn’t a true unification, we have just
+moved the difference between stop word removal and tier projection into
+the polarity distinction. But just as with <span
+class="math inline">\(n\)</span>-gram grammars, polarity doesn’t
+actually matter. For every set <span class="math inline">\(A\)</span> of
+symbols drawn from some fixed alphabet <span
+class="math inline">\(\Sigma\)</span>, there is some set <span
+class="math inline">\(B\)</span> such that <span
+class="math inline">\(\mathit{del}_{^-A}(s) =
+\mathit{del}_{^+B}(s)\)</span> and <span
+class="math inline">\(\mathit{del}_{^+A}(s) =
+\mathit{del}_{^-B}\)</span> for every string <span
+class="math inline">\(s\)</span> over <span
+class="math inline">\(\Sigma\)</span>.</p>
+<div class="exercise">
+<p>Explain why this holds. Illustrate your argument with a few
+examples.</p>
+</div>
+<p>This is a pretty nifty result. Intuitively, stop word removal and
+tier projection seem completely unrelated. One is about cleaning up data
+for practical applications, the other about simplifying linguistic
+analysis. But mathematically, they are exactly the same thing. In later
+units, we will see many more examples of this unifying power of
+math.</p>
+<div class="exercise">
+<p>The term <strong>culminativity</strong> refers to the property that
+every word has exactly one primary stress. Suppose that our alphabet is
+<span class="math inline">\(\left \{ \sigma, \acute{\sigma} \right
+\}\)</span>, where <span class="math inline">\(\sigma\)</span> denotes
+an unstressed syllable and <span
+class="math inline">\(\acute{\sigma}\)</span> one with primary stress.
+Specify a set <span class="math inline">\(^+T\)</span> of tier symbols
+and a bigram grammar <span class="math inline">\(G\)</span> to capture
+culminativity (<em>hint</em>: &gt; and &lt; can be used with tiers,
+too).</p>
+</div>
+<p>key properties preserved because it’s still just <span
+class="math inline">\(n\)</span>-gram grammars, but over a tier instead
+of the string itself</p>
+<ul>
+<li>The stop word removal function <span
+class="math inline">\(\mathit{del}\)</span> is also the function for
+constructing phonological tiers.</li>
+<li>Math allows us to unify things that look very different at the
+surface. In particular, linguistic theory and language technology seem
+like very different beasts, but they actually share a lot of math.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
