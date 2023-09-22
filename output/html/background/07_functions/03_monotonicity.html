@@ -40,6 +40,8 @@
 <ul>
 <li><a href="#monotonicity">Monotonicity</a>
 <ul>
+<li><a href="#monotonicity-with-numbers">Monotonicity with
+numbers</a></li>
 <li><a href="#isotonicity-and-antitonicity">Isotonicity and
 antitonicity</a></li>
 </ul></li>
@@ -82,10 +84,11 @@ class="math inline">\(f(3) = 9 - 5 \times 3 = -6 \leq 0 = 25 - 5 \times
 \geq -4 = 1 - 5 \times 1 = f(1)\)</span>.</p>
 </div>
 <p>This property of order preservation is known as
-<strong>monotonicity</strong>. You might have already encountered
-monotonicity in the special case of a function from reals to reals. In
-this case, one can draw the function as a line or curve in a coordinate
-system.</p>
+<strong>monotonicity</strong>.</p>
+<h2 id="monotonicity-with-numbers">Monotonicity with numbers</h2>
+<p>You might have already encountered monotonicity in the special case
+of a function from reals to reals. In this case, one can draw the
+function as a line or curve in a coordinate system.</p>
 <!-- ```python -->
 <!-- import numpy as np -->
 <!-- import matplotlib.pyplot as plt -->
@@ -125,8 +128,17 @@ system.</p>
 <!--      -->
 <!-- b.on_click(on_button_clicked) -->
 <!-- ``` -->
+<ul>
+<li><span class="math inline">\(f(x) = 2x\)</span></li>
+</ul>
 <p><img src="monotonicity_f.svg" alt="monotonicity_f.svg" /></p>
+<ul>
+<li><span class="math inline">\(g(x) = \frac{2^x}{2^x+1}\)</span></li>
+</ul>
 <p><img src="monotonicity_g.svg" alt="monotonicity_g.svg" /></p>
+<ul>
+<li><span class="math inline">\(h(x) = \frac{x^2}{4} - 10\)</span></li>
+</ul>
 <p><img src="monotonicity_h.svg" alt="monotonicity_h.svg" /></p>
 <p>A function is monotonic iff it does not change direction: once it
 goes up, it cannot go down, and the other way round. However, it may
@@ -143,9 +155,22 @@ going up after having gone down before).</p>
 <div class="exercise">
 <p>For each one of the following functions, say whether it is
 monotonic.</p>
+<ul>
+<li><span class="math inline">\(i(x) = x^3 + 3x^2\)</span></li>
+</ul>
 <p><img src="monotonicity_i.svg" alt="monotonicity_i.svg" /></p>
+<ul>
+<li><span class="math inline">\(j(x) = 5 \sqrt{|x+2|} -
+\frac{5|x|}{3}\)</span></li>
+</ul>
 <p><img src="monotonicity_j.svg" alt="monotonicity_j.svg" /></p>
+<ul>
+<li><span class="math inline">\(k(x) = 2\)</span></li>
+</ul>
 <p><img src="monotonicity_k.svg" alt="monotonicity_k.svg" /></p>
+<ul>
+<li><span class="math inline">\(l(x) = 2x - 2^{x-4} + 3\)</span></li>
+</ul>
 <p><img src="monotonicity_l.svg" alt="monotonicity_l.svg" /></p>
 </div>
 <div class="exercise">
@@ -182,7 +207,7 @@ class="math inline">\(f(y) \leq_B f(x)\)</span>. A function is
 antitonic, or neither.</p>
 <ul>
 <li><span class="math inline">\(f: \mathbb{N} \rightarrow
-\mathbb{Z}\)</span>, <span class="math inline">\(x \mapsto
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto
 -x\)</span></li>
 <li><span class="math inline">\(f: \mathbb{R} \rightarrow
 \mathbb{R}\)</span>, <span class="math inline">\(x \mapsto x -
