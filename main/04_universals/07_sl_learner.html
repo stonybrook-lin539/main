@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>The lattice space of n-gram grammars</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#the-lattice-space-of-n-gram-grammars">The lattice space of
+<span class="math inline">\(n\)</span>-gram grammars</a>
+<ul>
+<li><a href="#sl-and-learning">SL and learning</a></li>
+<li><a href="#learning-by-memorization">Learning by
+memorization</a></li>
+<li><a href="#learning-efficiency-and-the-grammar-lattice">Learning
+efficiency and the grammar lattice</a></li>
+<li><a href="#the-lattice-of-sl-languages">The lattice of SL
+languages</a></li>
+<li><a href="#monotonicity-provides-safe-generalization">Monotonicity
+provides safe generalization</a></li>
+<li><a href="#universals-in-learning">Universals in learning</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="the-lattice-space-of-n-gram-grammars">The lattice space of <span
+class="math inline">\(n\)</span>-gram grammars</h1>
+<div class="prereqs">
+<p>Required: - posets (semilattices)</p>
+<p>Suggested: - sets (powerset) - general (fixpoint) - general
+(logarithm)</p>
+</div>
+<p>The general take-home message of this chapter has been that a
+surprising number of seemingly unrelated language universals can be
+stated as monotonicity properties over ordered sets. This includes both
+substantive universals (<span class="math inline">\(^*\)</span>ABA, PCC)
+and formal universals (adjunct island constraint). But monotonicity is
+even more general. We conclude our journey with a brief look at how
+language acquisition might be informed by monotonicity, too.</p>
+<h2 id="sl-and-learning">SL and learning</h2>
+<p>Alright, time to rack your brain: do you still remember what a
+negative strictly <span class="math inline">\(n\)</span>-local (SL-<span
+class="math inline">\(n\)</span>) grammar is? It’s a finite set of <span
+class="math inline">\(n\)</span>-grams such that a string is well-formed
+iff it does not contain any of the <span
+class="math inline">\(n\)</span>-grams as a substring (after adding
+<span class="math inline">\(n-1\)</span> instances of &gt; and &lt; on
+each side of the string). A positive strictly <span
+class="math inline">\(n\)</span>-local grammar is the counterpart where
+a string may only consist of <span
+class="math inline">\(n\)</span>-grams that are allowed by the grammar.
+Every negative SL grammar can be translated into a positive one, and the
+other way round.</p>
+<div class="exercise">
+<p>As a reminder for yourself, write down an SL grammar for an attested
+linguistic phenomenon. A simple option is word-final devoicing or
+intervocalic voicing, but feel free to mix it up a bit.</p>
+</div>
+<p>Suppose we have a phenomenon that is SL. Then of course we can write
+an SL grammar for it. But how exactly do we come up with the grammar?
+And more generally, how can this phenomenon be acquired? Is there some
+algorithm that a child might use to identify the correct grammar for an
+SL process?</p>
+<p>Depending on your background, you might wonder why anybody would care
+how children find the right grammar for their language. As long as they
+actually do it and learn the grammar, everything’s fine and we don’t
+need to worry about this. But learning is in fact the most important
+question of linguistics because it is, to put it bluntly, a freaking
+miracle. Languages are very complex systems, yet children master them
+effortlessly without explicit instruction and with very little data.
+Think back to the unit on negative polarity items and <em>ever</em>.
+Unless you had prior linguistic training, you were completely unaware of
+the laws that govern the use of <em>ever</em>, yet you’ve obeyed them
+your whole life. If we look at the sentences that children hear around
+them while growing up, <em>ever</em> isn’t all that common. There isn’t
+millions of sentences with <em>ever</em> that the child could study in
+order to figure out how those negative polarity items work. The child
+takes the astonishingly little data it gets and still solves the problem
+almost effortlessly. We have no idea how children do this — it truly is
+a miracle.</p>
+<p>Learning is also of supreme importance for practical applications,
+e.g. voice recognition or machine translation. Computational linguists
+do not design those systems by hand. That would be an impossible task.
+It is sometimes done for very small and specialized domains like reading
+out numbers (<span class="math inline">\(1729\)</span> as a year is
+<em>seventeen hundred twenty nine</em>, but as a phone number it is
+<em>one seven two nine</em>). But in general grammars are learned
+automatically from an enormous collection of data, which is also called
+a <strong>corpus</strong>. The process of inducing a grammar or model
+from a corpus is called <strong>machine learning</strong> or
+<strong>grammatical inference</strong>. Needless to say, grammatical
+inference is impossible without a learning algorithm.</p>
+<p>So whether you care about the mysteries of the human mind or just
+want to see better closed captioning on Youtube, learning is extremely
+important. It is also a huge and very demanding research area. The
+learning algorithm for SL is very simple but also pretty clever. That
+makes it a good sneak peek of what the field of grammatical inference is
+like.</p>
+<h2 id="learning-by-memorization">Learning by memorization</h2>
+<p>Let’s conduct a thought experiment. Suppose that you have to learn
+the phonotactics of a new language (recall that phonotactics is the
+collection of rules and laws that govern the distribution of sounds).
+The only thing you are told about the language is that its phonotactics
+are at most strictly <span class="math inline">\(3\)</span>-local. The
+rest you have to figure out from the data, which is a never-ending
+stream of well-formed examples, one after the other. How could you do
+this?</p>
+<p>Well, I don’t know how you’re going to approach it, but here’s my
+strategy, which is guaranteed to work. First, since the phonotactics are
+at most strictly <span class="math inline">\(3\)</span>-local, I will
+assume that they are exactly strictly <span
+class="math inline">\(3\)</span>-local, no more, no less. I am allowed
+to do that because every strictly <span
+class="math inline">\(n\)</span>-local language is also strictly <span
+class="math inline">\((n+1)\)</span>-local, so even if the language is
+in fact strictly <span class="math inline">\(1\)</span>-local or
+strictly <span class="math inline">\(2\)</span>-local, it doesn’t hurt
+me to assume that it is strictly <span
+class="math inline">\(3\)</span>-local. Next, I will use the fact that
+every strictly <span class="math inline">\(3\)</span>-local language can
+be described by a positive SL-<span class="math inline">\(3\)</span>
+grammar, which is a finite set of allowed trigrams. This means that I
+only have to figure out what this finite set of allowed trigrams is. And
+that is easy: I look at every example string and memorize which trigrams
+occur in it. Since there can be only finitely many allowed trigrams,
+eventually I will have seen all of them, and at that point I have
+learned the phonotactics of the language.</p>
+<div class="example">
+<p>Suppose that we have to learn the (infinite) SL-<span
+class="math inline">\(2\)</span> language of all strings that start with
+either <span class="math inline">\(a\)</span> or <span
+class="math inline">\(b\)</span> and where <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> have to alternate. This language
+contains the following strings, starting from the shortest:</p>
+<ul>
+<li><span class="math inline">\(\mathit{a}\)</span></li>
+<li><span class="math inline">\(\mathit{b}\)</span></li>
+<li><span class="math inline">\(\mathit{ab}\)</span></li>
+<li><span class="math inline">\(\mathit{ba}\)</span></li>
+<li><span class="math inline">\(\mathit{aba}\)</span></li>
+<li><span class="math inline">\(\mathit{bab}\)</span></li>
+<li><span class="math inline">\(\mathit{abab}\)</span></li>
+<li><span class="math inline">\(\mathit{baba}\)</span></li>
+<li><span class="math inline">\(\mathit{ababab}\)</span></li>
+<li><span class="math inline">\(\mathit{bababa}\)</span></li>
+<li>and so on</li>
+</ul>
+<p>Just so we’re on the same page, here’s the positive SL-<span
+class="math inline">\(2\)</span> grammar that generates this language.
+The grammar uses an extended alphabet with <span
+class="math inline">\(\$\)</span> as the edge marker.</p>
+<ul>
+<li><span class="math inline">\(\mathit{&gt;a}\)</span></li>
+<li><span class="math inline">\(\mathit{&gt;b}\)</span></li>
+<li><span class="math inline">\(\mathit{ab}\)</span></li>
+<li><span class="math inline">\(\mathit{ba}\)</span></li>
+<li><span class="math inline">\(\mathit{a&lt;}\)</span></li>
+<li><span class="math inline">\(\mathit{b&lt;}\)</span></li>
+<li>and so on</li>
+</ul>
+<p>That’s the grammar we want to learn from the examples.</p>
+<p>Now assume that the first example we get to look at is <span
+class="math inline">\(\mathit{ab}\)</span>. We extract all the bigrams,
+giving us a short list of allowed bigrams.</p>
+<ul>
+<li><span class="math inline">\(\mathit{&gt;a}\)</span></li>
+<li><span class="math inline">\(\mathit{ab}\)</span></li>
+<li><span class="math inline">\(\mathit{b&lt;}\)</span></li>
+</ul>
+<p>This grammar can only generate one string, namely the example <span
+class="math inline">\(\mathit{ab}\)</span> that we derived it from.
+That’s not particularly interesting, we’ve looked at one well-formed
+example and have constructed a grammar that only allows for this one
+example.</p>
+<p>Well, let’s look at the next example. Let’s assume that it is <span
+class="math inline">\(\mathit{baba}\)</span>. Once again we extract the
+bigrams and add them to what we have so far, giving us the list
+below.</p>
+<ul>
+<li><span class="math inline">\(\mathit{&gt;a}\)</span></li>
+<li><span class="math inline">\(\mathit{&gt;b}\)</span></li>
+<li><span class="math inline">\(\mathit{ab}\)</span></li>
+<li><span class="math inline">\(\mathit{ba}\)</span></li>
+<li><span class="math inline">\(\mathit{a&lt;}\)</span></li>
+<li><span class="math inline">\(\mathit{b&lt;}\)</span></li>
+</ul>
+<p>Lo and behold, it’s the grammar for the target language. Two examples
+were enough to learn the whole infinite set of well-formed strings!</p>
+</div>
+<div class="exercise">
+<p>Suppose that you have the SL-<span class="math inline">\(3\)</span>
+language <span class="math inline">\((\mathit{aba})^+\)</span>, which
+contains <span class="math inline">\(\mathit{aba}\)</span>, <span
+class="math inline">\(\mathit{abaaba}\)</span>, <span
+class="math inline">\(\mathit{abaabaaba}\)</span>, and so on. Write down
+the positive trigram grammar for this language. Then write down a single
+example from which one can immediately infer the whole grammar.</p>
+</div>
+<p>As you can see, learning SL-<span class="math inline">\(n\)</span>
+languages is easy as long as there is a fixed upper bound on the value
+of <span class="math inline">\(n\)</span>. In that case, we simply
+memorize all <span class="math inline">\(n\)</span>-grams we encounter
+in the examples, and eventually we will have seen all well-formed <span
+class="math inline">\(n\)</span>-grams. At that point, we have learned
+the language.</p>
+<p>Note that this learning algorithm won’t be aware of the fact that it
+has found the target grammar. Even if it already has the correct
+grammar, it will continue to extract <span
+class="math inline">\(n\)</span>-grams from example strings and add them
+to the grammar. The difference is that this will no longer change the
+grammar. In mathematical terms, the learner has reached a
+<strong>fixpoint</strong>. An outside observers who knows what the
+target language should be can tell that nothing will ever change, but
+the learning algorithm itself has no knowledge. We could supplement it
+with some additional heuristics, e.g. that learning should stop after 1
+million steps that haven’t changed the grammar. But this is orthogonal
+to our issue, which is how one can learn SL-<span
+class="math inline">\(n\)</span> languages, even infinite ones, from a
+finite sample of data.</p>
+<p>But hold on a second, how many examples do we actually need to look
+at? In the toy examples above one or two strings were enough, but those
+are toy examples. Maybe real languages require us to see trillions of
+strings, in which case our learning strategy would be completely useless
+in practice. In order for a learning algorithm to perform well, it
+should work with as little data as possible. So let’s do some
+calculations.</p>
+<h2 id="learning-efficiency-and-the-grammar-lattice">Learning efficiency
+and the grammar lattice</h2>
+<p>At first glance, you might think that the math looks pretty bad for
+learning SL languages. Let’s consider the problem of learning a specific
+SL-<span class="math inline">\(5\)</span> language <span
+class="math inline">\(L\)</span> over an alphabet of about 50 symbols.
+This is realistic for the phonotactics of natural languages, where at
+least some processes are SL-<span class="math inline">\(4\)</span> or
+SL-<span class="math inline">\(5\)</span>, and many languages have 50 to
+100 different sounds. With 50 symbols, there are <span
+class="math inline">\(50^5\)</span> different <span
+class="math inline">\(5\)</span>-grams (the maximum grammar size grows
+polynomially with the alphabet and exponentially with <span
+class="math inline">\(n\)</span>). That’s <span
+class="math inline">\(312,500,000\)</span> different <span
+class="math inline">\(n\)</span>-grams. Okay, that’s big.</p>
+<p>But the number absolutely pales in comparison to the number of
+possible <span class="math inline">\(5\)</span>-grams grammars, which is
+<span class="math inline">\(2^{312,500,000}\)</span>. Why is that the
+number? Because for each <span class="math inline">\(n\)</span>-gram, a
+grammar may either contain it or not, so each grammar is the result of
+<span class="math inline">\(312,500,000\)</span> binary decisions. The
+overall decision space, then, must contain <span
+class="math inline">\(2^{312,500,000}\)</span> options, each one a
+distinct grammar. That is one giant space.</p>
+<p>The number is so large we would need a new word to describe it
+adequately. It is greater than the number of seconds since the Big Bang.
+If you were given <span class="math inline">\(2^{312,500,000}\)</span>
+sheets of paper and stack them on top of each other to build a paper
+tower from your home town to the sun, you would still be left with
+99,99999% of the paper afterwards. Whatever you think is a large number,
+it isn’t even a drop in the ocean compared to <span
+class="math inline">\(2^{312,500,000}\)</span>. If you got yourself an
+old Texas Instrument calculator and asked it to calculate <span
+class="math inline">\(2^{312,500,000}\)</span>, it would suddenly become
+self-aware and tell you to quit fooling around. And among those <span
+class="math inline">\(2^{312,500,000}\)</span> grammars, we have to find
+one for <span class="math inline">\(L\)</span>. Talk about looking for a
+needle in a haystack.</p>
+<p>But the learning procedure I sketched above is actually much smarter
+than this. It never looks at all possible grammars, it just keeps track
+of <span class="math inline">\(n\)</span>-grams, and that greatly cuts
+down the space of options. To see why, we will have to look at the
+structure of the space of possible grammars. As it turns out, this is a
+very peculiar structure for <span class="math inline">\(n\)</span>-gram
+grammars.</p>
+<p>Given a fixed value for <span class="math inline">\(n\)</span>, we
+can look at the set of all possible positive <span
+class="math inline">\(n\)</span>-gram grammars. Let’s call this set
+<span class="math inline">\(\mathcal{G}\)</span>. As we just saw, <span
+class="math inline">\(\mathcal{G}\)</span> can be huge, but it will
+always be finite. Since each <span class="math inline">\(n\)</span>-gram
+grammar is itself a set, we can order the set of <span
+class="math inline">\(n\)</span>-gram grammars by the subset relation.
+This gives us a poset, which we will refer to by <span
+class="math inline">\(\mathbb{G}\)</span>.</p>
+<div class="example">
+<p>Suppose <span class="math inline">\(n = 2\)</span> and our alphabet
+<span class="math inline">\(\Sigma\)</span> contains only <span
+class="math inline">\(a\)</span>. We add the edge marker to <span
+class="math inline">\(\Sigma\)</span> to give us the extended alphabet
+<span class="math inline">\(\Sigma_E\)</span>. Ignoring bigrams where
+the edge markers are placed in a nonsensical manner, there are 16
+distinct bigram grammars over <span
+class="math inline">\(\Sigma_E\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;&lt; \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;a \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ a&lt; \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ aa \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;&lt;, &gt;a \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;&lt;, a&lt; \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;&lt;, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;a, a&lt; \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;a, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ a&lt;, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;&lt;, &gt;a, a&lt; \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;&lt;, &gt;a, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;&lt;, a&lt;, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;a, a&lt;, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ &gt;&lt;, &gt;a, a&lt;, aa
+\right \}\)</span></li>
+</ul>
+<p>Ordering these sets by the subset relation <span
+class="math inline">\(\subseteq\)</span> yields the following
+structure.</p>
+<p><img src="lattice_bigrams.svg" alt="lattice_bigrams.svg" /></p>
+</div>
+<p>The structure in the above example is rather special. For any two
+grammars <span class="math inline">\(G_1\)</span> and <span
+class="math inline">\(G_2\)</span>, there is a unique smallest grammar
+<span class="math inline">\(G_{1 \vee 2}\)</span> such that <span
+class="math inline">\(G_1, G_2 \subseteq G_{1 \vee 2}\)</span>.
+Similarly, there’s also a unique largest grammar <span
+class="math inline">\(G_{1 \wedge 2}\)</span> such that <span
+class="math inline">\(G_1, G_2 \supseteq G_{1 \wedge 2}\)</span>. In
+other words, <span class="math inline">\(\mathcal{G}\)</span> is both a
+meet semilattice and a join semilattice. This makes <span
+class="math inline">\(\mathbb{G}\)</span> a
+<strong>lattice</strong>.</p>
+<div class="exercise">
+<p>Suppose <span class="math inline">\(G_1 \mathrel{\mathop:}=\left \{
+&gt;&lt;, &gt;a, aa \right \}\)</span> and <span
+class="math inline">\(G_2 \mathrel{\mathop:}=\left \{ a&lt; \right
+\}\)</span>. Compute <span class="math inline">\(G_{1 \wedge 2}\)</span>
+and <span class="math inline">\(G_{1 \vee 2}\)</span>.</p>
+</div>
+<p>In fact, <span class="math inline">\(\mathbb{G}\)</span> is a
+<strong>powerset lattice</strong>. The powerset of a set <span
+class="math inline">\(S\)</span> is <span class="math inline">\(\wp(S)
+\mathrel{\mathop:}=\left \{  X \mid X \subseteq S \right \}\)</span>. In
+plain English, the powerset of <span class="math inline">\(S\)</span>
+consists of all subsets of <span class="math inline">\(S\)</span>,
+including the empty set and <span class="math inline">\(S\)</span>
+itself. The grammars we listed above are all subsets of <span
+class="math inline">\(\Sigma_E^2\)</span>. Therefore, <span
+class="math inline">\(\mathbb{G}\)</span> is <span
+class="math inline">\(\wp(\Sigma_E^2)\)</span>, sorted by <span
+class="math inline">\(\subseteq\)</span>.</p>
+<p>The learning algorithm effectively moves us upwards in the lattice.
+When our currently conjectured grammar is <span
+class="math inline">\(G_c\)</span> and we get an example containing the
+<span class="math inline">\(n\)</span>-grams <span
+class="math inline">\(\left \{ g_1, \ldots, g_m \right \}\)</span>, our
+new grammar is the union of the two. But this is exactly the same as
+taking the join of the two sets in the grammar lattice <span
+class="math inline">\(\mathbb{G}\)</span>.</p>
+<div class="exercise">
+<p>Suppose that the lattice of grammars is as depicted above. Assume
+furthermore that the currently conjectured grammar is <span
+class="math inline">\(\left \{ &gt;&lt; \right \}\)</span>. The next
+example contains the bigrams <span class="math inline">\(&gt;a\)</span>
+and <span class="math inline">\(a&lt;\)</span>. Verify via calculation
+that <span class="math inline">\(\left \{ &gt;&lt; \right \} \cup \left
+\{ &gt;a, a&lt; \right \} = \left \{ &gt;&lt; \right \} \vee \left \{
+&gt;a, a&lt; \right \}\)</span>.</p>
+</div>
+<p>Taking the join moves us upward in <span
+class="math inline">\(\mathbb{G}\)</span> by 0 or more “levels”. Each
+level we move up, we get closer to a grammar that generates the target
+language that we are trying to learn. So for learning it doesn’t really
+matter how many elements the lattice has, what matters is how many
+levels it has. One step upward in a grammar lattice may rule out tons of
+grammars at once. Levels is where the action is. And the number of
+levels is a lot smaller.</p>
+<div class="example">
+<p>The grammar lattice above has 16 grammars but only 5 levels. That is
+an exponential reduction is size.</p>
+</div>
+<p>Quite generally, a powerset lattice with <span
+class="math inline">\(n\)</span> levels has <span
+class="math inline">\(2^{n-1}\)</span> elements. Or the other way round,
+a powerset lattice with <span class="math inline">\(n\)</span> elements
+has <span class="math inline">\(1 + \log_2 n\)</span> levels, where
+<span class="math inline">\(\log_2\)</span> is the <strong>base-2
+logarithm</strong>. So we really don’t need to be worried about how many
+potential grammars there are, that’s not what matters. It’s much more
+important how many levels the corresponding powerset lattice has, and
+that number is exponentially smaller.</p>
+<p>Great, so that’s out of the way — the overall size of the grammar
+space isn’t all that important, what matters is if the grammar space has
+a lattice structure with few levels. But there’s actually quite a bit
+more that we can learn from the grammar lattice, so let’s dive even
+deeper into it.</p>
+<h2 id="the-lattice-of-sl-languages">The lattice of SL languages</h2>
+<p>Each grammar <span class="math inline">\(G\)</span> of <span
+class="math inline">\(\mathcal{G}\)</span> generates a unique string
+language <span class="math inline">\(L(G)\)</span>. This language is
+just the set of strings that are well-formed with respect to <span
+class="math inline">\(G\)</span>. Let us call the set of all these
+languages <span class="math inline">\(\mathcal{L}\)</span>. More
+formally, <span class="math inline">\(\mathcal{L}
+\mathrel{\mathop:}=\left \{  L(G) \mid G \in \mathcal{G}  \right
+\}\)</span>. Just like <span class="math inline">\(\mathcal{G}\)</span>,
+we can order <span class="math inline">\(\mathcal{L}\)</span> by <span
+class="math inline">\(\subseteq\)</span> to obtain a lattice <span
+class="math inline">\(\mathbb{L} \mathrel{\mathop:}=\left \langle
+\mathcal{L}, \subseteq \right \rangle\)</span>.</p>
+<div class="example">
+<p>Recall that all grammars in <span
+class="math inline">\(\mathcal{G}\)</span> are assumed to be positive.
+Then the languages generated by these grammars are as follows:</p>
+<ul>
+<li><span class="math inline">\(L(\emptyset) = \emptyset\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;&lt; \right \}) = \left
+\{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;a \right \}) =
+\emptyset\)</span></li>
+<li><span class="math inline">\(L(\left \{ a&lt; \right \}) =
+\emptyset\)</span></li>
+<li><span class="math inline">\(L(\left \{ aa \right \}) =
+\emptyset\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;&lt;, &gt;a \right \}) =
+\left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;&lt;, a&lt; \right \}) =
+\left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;&lt;, aa \right \}) =
+\left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;a, a&lt; \right \}) =
+\left \{ a \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;a, aa \right \}) =
+\emptyset\)</span></li>
+<li><span class="math inline">\(L(\left \{ a&lt;, aa \right \}) =
+\emptyset\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;&lt;, &gt;a, a&lt; \right
+\}) = \left \{ \varepsilon, a \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;&lt;, &gt;a, aa \right
+\}) = \left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;&lt;, a&lt;, aa \right
+\}) = \left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ &gt;a, a&lt;, aa \right \}) =
+\left \{ a, aa, aaa, \ldots \right \} = a^+\)</span> (1 or more <span
+class="math inline">\(a\)</span>s)</li>
+<li><span class="math inline">\(L(\left \{ &gt;&lt;, &gt;a, a&lt;, aa
+\right \}) = \left \{ \varepsilon, a, aa, aaa, \ldots \right \} =
+a^*\)</span> (0 or more <span class="math inline">\(a\)</span>s)</li>
+</ul>
+</div>
+<p>Let us put the lattices from the two examples next to each other. We
+also add frames around nodes to indicate which grammar generates which
+language.</p>
+<p><img src="lattice_bigrams_match.svg"
+alt="lattice_bigrams_match.svg" /></p>
+<p>Notice anything special? Whenever two grammars stand in the subset
+relation, their languages do, too. That is to say, <span
+class="math inline">\(G \subseteq G&#39;\)</span> implies <span
+class="math inline">\(L(G) \subseteq L(G&#39;)\)</span>. Once again
+we’ve stumbled across monotonicity. The relation between grammars and
+their languages is order-preserving: move to a larger positive grammar,
+and you either get the same string language or a larger one. This
+monotonicity connection is what powers the <span
+class="math inline">\(n\)</span>-gram memorization algorithm I sketched
+at the beginning of this unit.</p>
+<div class="exercise">
+<p>Suppose that all members of <span
+class="math inline">\(\mathcal{G}\)</span> are negative grammars. Draw
+the corresponding lattice of languages, and connect each grammar to its
+language with a colored line.</p>
+</div>
+<div class="exercise">
+<p>What is the relation between negative grammars and their languages?
+Is it still monotonic? If so, is it the same kind of monotonicity?</p>
+</div>
+<h2 id="monotonicity-provides-safe-generalization">Monotonicity provides
+safe generalization</h2>
+<p>The learning algorithm I sketched starts out with an empty positive
+grammar, and after each example we enrich the grammars with all the
+<span class="math inline">\(n\)</span>-grams that occurred in the
+example. We can look at this from the perspective of the grammar lattice
+<span class="math inline">\(\mathbb{G}\)</span> and the language lattice
+<span class="math inline">\(\mathbb{L}\)</span> to understand why the
+algorithm works. Keep in mind that the algorithm itself doesn’t work
+with those lattices. As you have seen, that could require building a
+ludicrously large lattice with <span
+class="math inline">\(2^{312,500,000}\)</span> grammars, or even more
+than that. This is a purely mathematical exercise to understand how the
+algorithm works, not a claim about how the algorithm would actually be
+implemented on a computer.</p>
+<p>Let us use <span class="math inline">\(g_n(s)\)</span> to denote the
+set of <span class="math inline">\(n\)</span>-grams of string <span
+class="math inline">\(s\)</span>. Then our learning algorithm for
+SL-<span class="math inline">\(n\)</span> languages amounts to starting
+out with the assumption that <span class="math inline">\(G
+\mathrel{\mathop:}=\emptyset\)</span> and then, after each example <span
+class="math inline">\(e\)</span>, redefining <span
+class="math inline">\(G\)</span> as <span class="math inline">\(G \cup
+g_n(e)\)</span>. In the grammar lattice <span
+class="math inline">\(\mathbb{G}\)</span>, that’s the same as taking the
+join of <span class="math inline">\(G\)</span> and <span
+class="math inline">\(g_n(e)\)</span>. But how can we be sure that this
+gives us the right grammar? Maybe <span class="math inline">\(G \cup
+g_n(e)\)</span> gives a grammar <span class="math inline">\(G\)</span>
+that undergenerates, which means that it can’t generate all strings in
+the target language. Or maybe it overgenerates, which means that it
+generates some strings that aren’t well-formed according to the language
+we’re trying to learn. Thanks to monotonicity, neither one is a
+problem.</p>
+<p>The details are a little convoluted, so let’s focus just on the
+intuition. First of all, undergeneration is not an issue. The join
+operation moves us upwards in the grammar lattice <span
+class="math inline">\(\mathbb{G}\)</span>. By moving upward in the
+lattice, we will eventually reach a grammar that contains all the <span
+class="math inline">\(n\)</span>-grams that are needed to generate every
+string in the target language <span class="math inline">\(L_t\)</span>.
+The only risk is that we might go too high and end up with a grammar
+that generates some proper superset of the target language <span
+class="math inline">\(L_t\)</span>. That would be overgeneration, and
+monotonicity tells us that this cannot happen. The join operation <span
+class="math inline">\(G_c \vee g_n(e)\)</span> always gives us the least
+upper bound — it’s the shortest possible step given the new example
+<span class="math inline">\(e\)</span>. A minimal step up in the grammar
+lattice is also a minimal step up in the language lattice. If <span
+class="math inline">\(G_1 \subseteq G_2 \subseteq G_3\)</span>, then it
+must also be the case that <span class="math inline">\(L(G_1) \subseteq
+L(G_2) \subseteq L(G_3)\)</span> because of monotonicity. As we grow the
+grammar, we grow the conjectured language. If all we get is examples
+from <span class="math inline">\(L(G_2)\)</span>, then we will slowly
+inch our way there with join operations and stop once we have reached a
+grammar that generates <span class="math inline">\(L(G_2)\)</span>.
+There simply is no way that a minimal step up from <span
+class="math inline">\(G_1\)</span> will immediately propel us beyond
+<span class="math inline">\(L(G_2)\)</span> to <span
+class="math inline">\(L(G_3)\)</span>. Minimal steps in the grammar
+lattice allow us to safely grow the language until we hit our
+target.</p>
+<p>Without monotonicity, this wouldn’t be the case. Without
+monotonicity, it could be the case that <span class="math inline">\(G_1
+\subseteq G_2 \subseteq G_3\)</span> yet <span
+class="math inline">\(L(G_1) \subsetneq L(G_3) \subsetneq
+L(G_2)\)</span>, i.e. the grammar <span
+class="math inline">\(G_2\)</span> is a subset of <span
+class="math inline">\(G_3\)</span> yet the string language <span
+class="math inline">\(L(G_2)\)</span> is a proper superset of <span
+class="math inline">\(L(G_3)\)</span>. This would be a big problem. Once
+we have a grammar that generates <span
+class="math inline">\(L(G_2)\)</span>, we cannot backtrack to <span
+class="math inline">\(L(G_3)\)</span>. That’s because we only get
+examples of which strings are well-formed, not which strings are
+ill-formed.</p>
+<div class="example">
+<p>Suppose that you have already conjectured a grammar that generates
+<span class="math inline">\(a^+\)</span>. I now tell you that <span
+class="math inline">\(a\)</span> is well-formed. This is perfectly
+compatible with your assumption that the target language is <span
+class="math inline">\(a^+\)</span>, but maybe it’s just <span
+class="math inline">\(\left \{ a \right \}\)</span>. Who knows?</p>
+</div>
+<p>You might say that this is a case of the proverbial mountain in
+labor. The learning algorithm at the beginning of this section was so
+simple that anybody could see right away that it works. But by analyzing
+it in terms of lattices, we have turned the SL learning algorithm into
+something more general. If you think about it, it doesn’t really matter
+what the nodes in the grammar lattice are. We only need four things:</p>
+<ol type="1">
+<li>a lattice of all grammars, whatever they may look like,</li>
+<li>a lattice of languages, whatever they may look like,</li>
+<li>a monotonic mapping from the grammar lattice to the language
+lattice,</li>
+<li>a way of moving through the grammar lattice based on example strings
+from the target language.</li>
+</ol>
+<p>This setup works for a lot more than just SL languages. For instance,
+we saw an extension of SL called TSL, and the same procedure works for
+those, although each one of those four components is more complicated.
+The mathematical perspective gives us a much deeper understanding of
+what aspects of SL languages matter for learning, and any other problem
+that exhibits the same properties can be tackled in a similar way.</p>
+<h2 id="universals-in-learning">Universals in learning</h2>
+<p>Let’s wrap up with one more conceptual remark, but this one is on
+language rather than the virtues of math. While simple, the SL learning
+algorithm is quite smart. We have seen that relations can order
+linguistic properties like first and second person, or they can even
+order the sentences of a language with the adjunct extension. Now we
+have seen that even grammars and languages can be ordered. The space of
+possible languages isn’t flat, it contains hidden structure, and this is
+what enables fast learning.</p>
+<p>However, in order for this to work as desired, the learning algorithm
+needs to know the value for <span class="math inline">\(n\)</span> in
+advance. This is not too much of a problem in practice as <span
+class="math inline">\(n\)</span> can be approximated. Since <span
+class="math inline">\(n\)</span>-grams can always be padded out to some
+higher value, we can set <span class="math inline">\(n\)</span> to some
+safe upper bound like <span class="math inline">\(10\)</span>. For the
+vast majority of cases, that should work just fine. The downside of
+picking a large value for <span class="math inline">\(n\)</span> is that
+the lattice becomes much bigger, which reduces the speed of the learning
+algorithm.</p>
+<div class="example">
+<p>Suppose the target language is SL-4 but our learner assumes an SL-10
+language. With just 10 alphabet symbols there are <span
+class="math inline">\(2^{10^{10}} = 2^{10,000,000,000}\)</span> distinct
+SL-10 grammars. This is once again a huge number, but the grammar
+lattice reduces this to <span
+class="math inline">\(10,000,000,001\)</span> levels. That’s much
+smaller than the full space, but not exactly small.</p>
+<p>With 10 sounds and 4-grams, there are “only” <span
+class="math inline">\(2^{10^4} = 2^{10,000}\)</span> distinct grammars.
+That’s still a mindboggingly large number, but remember that each update
+rules out a good chunk of those grammars. The number of levels in the
+grammar lattice will be <span class="math inline">\(10,001\)</span>, and
+that’s actually a tiny number as far as machine learning is concerned.
+So the learning algorithm can still converge fairly quickly on the
+correct grammar, assuming that it uses the smaller space of SL-<span
+class="math inline">\(4\)</span> grammars.</p>
+</div>
+<p>Children presumably start out with some safe value <span
+class="math inline">\(n\)</span> as a genetically encoded universal
+about the maximum complexity of languages. Perhaps, as they figure out
+more about the target language, they use some smart heuristics to reduce
+the size of the grammar lattice, which increases the speed of
+acquisition. It’s all speculation at this point, but clearly children
+have some kind of innate ability to learn language effortlessly. Our
+mathematical perspective provides some coarse insights into what the
+child needs to know in advance so that it can learn from the linguistic
+data in its environment.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li><p>Learning an SL-<span class="math inline">\(k\)</span> language
+<span class="math inline">\(L\)</span> is easy if we already know some
+upper bound <span class="math inline">\(n\)</span> such that <span
+class="math inline">\(k \leq n\)</span>.</p>
+<ol type="1">
+<li>Start out with an empty positive grammar <span
+class="math inline">\(G\)</span> (i.e. the assumption that nothing is
+allowed).</li>
+<li>Given a string <span class="math inline">\(s\)</span> from the
+target language, add all <span class="math inline">\(n\)</span>-grams of
+<span class="math inline">\(s\)</span> to <span
+class="math inline">\(G\)</span>.</li>
+<li>Keep doing this. Eventually you will reach a fixpoint where <span
+class="math inline">\(G\)</span> no longer changes.</li>
+<li>At this point, it is guaranteed that <span
+class="math inline">\(L(G) = L\)</span>.</li>
+</ol></li>
+<li><p>Even though the space of possible grammar is huge, learning can
+be fast because the space is highly structured.</p></li>
+<li><p>Specifically, the space of <span
+class="math inline">\(n\)</span>-gram grammars forms a powerset
+lattice.</p></li>
+<li><p>A powerset lattice with <span class="math inline">\(n\)</span>
+elements has <span class="math inline">\(1 + \log_2 n\)</span> levels.
+Hence the number of levels is exponentially smaller than the whole
+powerset lattice. The learning algorithm moves from one level to the
+next, ruling out tons of grammars in one learning step. This keeps
+learning fast and efficient.</p></li>
+<li><p>The class of SL-<span class="math inline">\(n\)</span> languages
+also forms a lattice. The mapping from the grammar lattice to the
+language lattice is monotonic. This is what allows the learning
+algorithm to safely move from level to level, ignoring many grammars
+along the way.</p></li>
+<li><p>The algorithm can be generalized to any class that can be
+characterized in terms of such lattices linked by a monotonic
+function.</p></li>
+</ul>
+</div>
+</div>
+</body>
+</html>

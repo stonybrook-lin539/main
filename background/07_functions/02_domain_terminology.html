@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Domains and co-domains</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#domains-and-co-domains">Domains and co-domains</a>
+<ul>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="domains-and-co-domains">Domains and co-domains</h1>
+<p>Every function has a <strong>domain</strong> and a
+<strong>co-domain</strong>. The domain is the set of objects from which
+its arguments can be drawn, and the <strong>co-domain</strong> is the
+set of objects from which outputs can be drawn. A function is undefined
+on any arguments that do not belong to its domain. One commonly writes
+<span class="math inline">\(f: D \rightarrow C\)</span> to indicate that
+<span class="math inline">\(f\)</span> is a function from domain <span
+class="math inline">\(D\)</span> to co-domain <span
+class="math inline">\(C\)</span>.</p>
+<div class="example">
+<p>Consider the function <span class="math inline">\(f(x) = x
++1\)</span>. This actually represents multiple functions depending on
+how one picks the domain and co-domain.</p>
+<p>Suppose <span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{N}\)</span>. Then <span class="math inline">\(f\)</span> is a
+function from natural numbers (0, 1, 2, ) to natural numbers. In this
+case we have, among others, <span class="math inline">\(f(0) =
+1\)</span> and <span class="math inline">\(f(500) = 501\)</span>.
+However, <span class="math inline">\(f(-1)\)</span> or <span
+class="math inline">\(f(2.5)\)</span> would be undefined because <span
+class="math inline">\(-1\)</span> and <span
+class="math inline">\(2.5\)</span> are not natural numbers.</p>
+</div>
+<div class="example">
+<p>Now suppose that we have <span class="math inline">\(f(x) = x +
+1\)</span> with <span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, i.e. <span class="math inline">\(f\)</span> is a
+function from real numbers to real numbers. The set of real numbers,
+denoted <span class="math inline">\(\mathbb{R}\)</span>, includes every
+number you came across in high school, e.g. <span
+class="math inline">\(1\)</span>, <span
+class="math inline">\(1.38702\)</span>, <span
+class="math inline">\(-\frac{5}{17}\)</span>, <span
+class="math inline">\(\sqrt{2}\)</span>, <span
+class="math inline">\(\pi\)</span>, and so on. Since the domain and
+co-domain of this version of <span class="math inline">\(f\)</span> are
+a lot larger, <span class="math inline">\(f\)</span> is defined on a lot
+more values and we have <span class="math inline">\(f(-1)\)</span> = 0$
+and <span class="math inline">\(f(2.5) = 3.5\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Suppose that <span class="math inline">\(f\)</span> is still defined
+by <span class="math inline">\(f(x) = x + 1\)</span>, but we have <span
+class="math inline">\(f: \mathbb{R} \rightarrow \mathbb{N}\)</span>. For
+each one of the following, say whether it is defined or undefined.</p>
+<ol type="1">
+<li><span class="math inline">\(f(0)\)</span></li>
+<li><span class="math inline">\(f(-1)\)</span></li>
+<li><span class="math inline">\(f(-2)\)</span></li>
+<li><span class="math inline">\(f(2.5)\)</span></li>
+</ol>
+</div>
+<div class="example">
+<p>When a car wash is viewed as a function, its domain is the set of all
+cars (both dirty and clean), whereas the co-domain only contains clean
+cars (again, in an ideal world where there’s no such think as broken car
+washes).</p>
+</div>
+<div class="exercise">
+<p>What would be the domain and co-domain of a broken car wash that
+fails to remove even the tiniest speck of dirt?</p>
+</div>
+<p>It is important to keep in mind that the domain and co-domain do not
+need to provide a perfect fit. Not every element in the domain may
+actually be mapped to some element of the co-domain, and not every
+element of the co-domain may be an output for some input.</p>
+<div class="example">
+<p>Consider the function <span class="math inline">\(f: \mathbb{N}
+\rightarrow \mathbb{N}\)</span> such that <span
+class="math inline">\(f(x) = 2x - 1\)</span>. Even though <span
+class="math inline">\(0\)</span> is a natural number and hence in the
+domain of <span class="math inline">\(f\)</span>, <span
+class="math inline">\(f(0)\)</span> is undefined because <span
+class="math inline">\(f(0) = 2 \times 0 - 1 = -1\)</span> is not a
+natural number and hence not in the co-domain of <span
+class="math inline">\(f\)</span>. But there are also many natural
+numbers in the co-domain that can never be the output of <span
+class="math inline">\(f\)</span>, e.g. <span
+class="math inline">\(4\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Explain why there is no natural number <span
+class="math inline">\(x\)</span> such that <span
+class="math inline">\(f\)</span> from the example above maps <span
+class="math inline">\(x\)</span> to <span
+class="math inline">\(4\)</span>.</p>
+</div>
+<p>How tightly one wants to define the domain and co-domain is a matter
+of taste. A loose definition tells the reader very little about what
+gets mapped to what by the function, but a definition with a very tight
+fit makes things difficult to read. Nonetheless, the domain and
+co-domain are a crucial part of a function’s definition, and this is why
+they are usually specified before the precise mapping from inputs to
+outputs is even given.</p>
+<div class="example">
+<p>Here is an example of what this may look like: Let <span
+class="math inline">\(E\)</span> be the set of English first names. Then
+the function <span class="math inline">\(f: E \rightarrow \left \{ 0,1
+\right \}\)</span> maps <span class="math inline">\(n\)</span> to <span
+class="math inline">\(1\)</span> iff <span
+class="math inline">\(n\)</span> contains at least three syllables.</p>
+</div>
+<p>The mapping from arguments to outputs can be defined in various ways,
+e.g. in plain English, or as a formula like <span
+class="math inline">\(f(x) = \frac{(x + x^2 +
+5)^{x+1}}{1000^x}\)</span>. For very simple functions whose name was
+already mentioned, one often writes <span class="math inline">\(x
+\mapsto y\)</span> instead of <span class="math inline">\(f(x) =
+y\)</span>.</p>
+<div class="example">
+<p>Instead of <span class="math inline">\(f(x) = 5 \times x -
+3\)</span>, we may simply write <span class="math inline">\(x \mapsto 5
+\times x - 3\)</span>.</p>
+</div>
+<p>The same notation can be used to indicate <span
+class="math inline">\(f(x)\)</span> for specific values <span
+class="math inline">\(x\)</span>.</p>
+<div class="example">
+<p>Instead of <span class="math inline">\(f(2) = 7\)</span>, we may
+simply write <span class="math inline">\(2 \mapsto 7\)</span>.</p>
+</div>
+<p><strong>Caution:</strong> Notice the difference between <span
+class="math inline">\(\rightarrow\)</span> and <span
+class="math inline">\(\mapsto\)</span>. The first is used when
+specifying the domain and co-domain, whereas the latter indicates the
+concrete mapping from an argument to an output.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>The behavior of a function depends greatly on its
+<strong>domain</strong> and <strong>co-domain</strong>. The domain
+specifies the set that inputs can be drawn from, and the co-domain is
+the set that outputs can be drawn from.</li>
+<li>The standard notation is <em>function name: domain <span
+class="math inline">\(\rightarrow\)</span> co-domain</em>, e.g. <span
+class="math inline">\(f: \Sigma^* \rightarrow \mathbb{N}\)</span>.</li>
+<li>When the function we are defining is already clear from context, we
+may write <span class="math inline">\(x \mapsto y\)</span> instead of
+<span class="math inline">\(f(x) = y\)</span>. For example, <span
+class="math inline">\(x \mapsto 2^x - 5\)</span> is an alternative to
+<span class="math inline">\(f(x) = 2^x - 5\)</span>.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

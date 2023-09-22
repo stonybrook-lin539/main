@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Monotonicity</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#monotonicity">Monotonicity</a>
+<ul>
+<li><a href="#isotonicity-and-antitonicity">Isotonicity and
+antitonicity</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="monotonicity">Monotonicity</h1>
+<p>When the domain and co-domain of a function each have an order
+defined over them, one can ask whether the function is
+order-preserving.</p>
+<div class="example">
+<p>Consider the function <span class="math inline">\(f: \mathbb{N}
+\rightarrow \mathbb{N}\)</span> with <span class="math inline">\(x
+\mapsto 2x\)</span>. The domain of <span
+class="math inline">\(f\)</span> is <span
+class="math inline">\(\mathbb{N}\)</span>, the set of natural numbers,
+which is also the co-domain of <span class="math inline">\(f\)</span>.
+The set of natural numbers can be ordered by <span
+class="math inline">\(\leq\)</span> in the usual fashion, e.g. <span
+class="math inline">\(2 \leq 4\)</span> or <span class="math inline">\(0
+\leq 0\)</span>. The function <span class="math inline">\(f\)</span>
+respects the order induced by <span class="math inline">\(\leq\)</span>.
+For any two <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(x
+\leq y\)</span>, it also holds that <span class="math inline">\(f(x)
+\leq f(y)\)</span>. For instance, <span class="math inline">\(4 \leq
+10\)</span> and <span class="math inline">\(f(4) = 8 \leq 20 =
+f(10)\)</span>.</p>
+</div>
+<div class="example">
+<p>Let <span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span> be a function from real numbers to real numbers such
+that <span class="math inline">\(f(x) = x^2 - 5x\)</span>. Then <span
+class="math inline">\(f\)</span> does not preserve order in all cases.
+We have <span class="math inline">\(3 \leq 5\)</span> and <span
+class="math inline">\(f(3) = 9 - 5 \times 3 = -6 \leq 0 = 25 - 5 \times
+5 = f(5)\)</span>. But we also have <span class="math inline">\(0 \leq
+1\)</span> yet <span class="math inline">\(f(0) = 0 - 5 \times 0 = 0
+\geq -4 = 1 - 5 \times 1 = f(1)\)</span>.</p>
+</div>
+<p>This property of order preservation is known as
+<strong>monotonicity</strong>. You might have already encountered
+monotonicity in the special case of a function from reals to reals. In
+this case, one can draw the function as a line or curve in a coordinate
+system.</p>
+<!-- ```python -->
+<!-- import numpy as np -->
+<!-- import matplotlib.pyplot as plt -->
+<!--  -->
+<!-- f = lambda x: 2*x -->
+<!-- g = lambda x: x**2 -->
+<!-- h = lambda x: 2*x - 2**(x - 5) + 2**10 -->
+<!-- i = lambda x: x/2 - 2**x -->
+<!--  -->
+<!-- for func in [f, g, h, i]: -->
+<!--     values = np.linspace(-10, 10) -->
+<!--     plt.plot(values, func(values)) -->
+<!--     plt.show() -->
+<!-- ``` -->
+<!-- ```python -->
+<!-- import numpy as np -->
+<!-- import matplotlib.pyplot as plt -->
+<!-- import ipywidgets -->
+<!-- from ipywidgets import Button, Layout -->
+<!--  -->
+<!-- from IPython.display import display -->
+<!--  -->
+<!-- f = lambda x: 2*x -->
+<!-- g = lambda x: x**2 -->
+<!-- h = lambda x: 2*x - 2**(x - 5) + 2**10 -->
+<!-- i = lambda x: x/2 - 2**x -->
+<!--  -->
+<!-- b = ipywidgets.Button(description='Show graphs', -->
+<!--            layout=Layout(width='50%', height='80px')) -->
+<!-- display(b) -->
+<!--  -->
+<!-- def on_button_clicked(b): -->
+<!--     for func in [f, g, h, i]: -->
+<!--         values = np.linspace(-10, 10) -->
+<!--         plt.plot(values, func(values)) -->
+<!--         plt.show() -->
+<!--      -->
+<!-- b.on_click(on_button_clicked) -->
+<!-- ``` -->
+<p><img src="monotonicity_f.svg" alt="monotonicity_f.svg" /></p>
+<p><img src="monotonicity_g.svg" alt="monotonicity_g.svg" /></p>
+<p><img src="monotonicity_h.svg" alt="monotonicity_h.svg" /></p>
+<p>A function is monotonic iff it does not change direction: once it
+goes up, it cannot go down, and the other way round. However, it may
+stall, or never move at all. The functions <span
+class="math inline">\(f\)</span> and <span
+class="math inline">\(g\)</span> above are monotonic, but <span
+class="math inline">\(h\)</span> is not as it changes direction, from
+going down to going up. Note that <span class="math inline">\(g\)</span>
+is monotonic even though it rises more steeply at some points than at
+others — this is immaterial for monotonicity, it only matters that <span
+class="math inline">\(g\)</span> never reaches a point where it suddenly
+changes direction and starts going down after having gone up before (or
+going up after having gone down before).</p>
+<div class="exercise">
+<p>For each one of the following functions, say whether it is
+monotonic.</p>
+<p><img src="monotonicity_i.svg" alt="monotonicity_i.svg" /></p>
+<p><img src="monotonicity_j.svg" alt="monotonicity_j.svg" /></p>
+<p><img src="monotonicity_k.svg" alt="monotonicity_k.svg" /></p>
+<p><img src="monotonicity_l.svg" alt="monotonicity_l.svg" /></p>
+</div>
+<div class="exercise">
+<p>Give another example of a function that is not monotonic.</p>
+</div>
+<p>While such numerical functions are a good starting point for grasping
+the intuition behind monotonicity, they provide an incomplete picture.
+The concept of monotonicity is much broader than that, and it extends
+far beyond functions from numbers to numbers. See the unit on universals
+for various linguistic applications of monotonicity, none of which have
+anything to do with numbers.</p>
+<h2 id="isotonicity-and-antitonicity">Isotonicity and antitonicity</h2>
+<p>Monotonicity is actually an umbrella term for two distinct
+properties: <strong>isotonic</strong> (<strong>monotonic
+increasing</strong>) and <strong>antitonic</strong> (<strong>monotonic
+decreasing</strong>).</p>
+<div class="definition">
+<p>Let <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> be arbitrary sets and <span
+class="math inline">\(\leq_A\)</span> and <span
+class="math inline">\(\leq_B\)</span> ordering relations over these
+respective sets. Then a function <span class="math inline">\(f: A
+\rightarrow B\)</span> is <strong>isotonic</strong> (or
+<strong>monotonic increasing</strong>) iff <span class="math inline">\(x
+\leq_A y\)</span> implies <span class="math inline">\(f(x) \leq_B
+f(y)\)</span>. We call <span class="math inline">\(f\)</span>
+<strong>antitonic</strong> (or <strong>monotonic decreasing</strong>)
+iff <span class="math inline">\(x \leq_A y\)</span> implies <span
+class="math inline">\(f(y) \leq_B f(x)\)</span>. A function is
+<strong>monotonic</strong> iff it is isotonic or antitonic.</p>
+</div>
+<div class="exercise">
+<p>For each one of the following functions say whether it is isotonic,
+antitonic, or neither.</p>
+<ul>
+<li><span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{Z}\)</span>, <span class="math inline">\(x \mapsto
+-x\)</span></li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto x -
+10\)</span></li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto
+x^2\)</span></li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto
+\frac{x}{2}\)</span></li>
+<li><span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{N}\)</span>, <span class="math inline">\(f(n)\)</span> is <span
+class="math inline">\(1\)</span> if <span class="math inline">\(n =
+0\)</span> and <span class="math inline">\(n \times f(n-1)\)</span>
+otherwise</li>
+</ul>
+</div>
+<div class="exercise">
+<p>Given an example of a function that is both isotonic and
+antitonic.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

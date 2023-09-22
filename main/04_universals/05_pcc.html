@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Person Case Constraints</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#person-case-constraints">Person Case Constraints</a>
+<ul>
+<li><a href="#the-pcc-explained">The PCC explained</a></li>
+<li><a href="#pccs-as-tables">PCCs as tables</a></li>
+<li><a href="#a-hierarchy-for-pccs">A hierarchy for PCCs</a>
+<ul>
+<li><a href="#first-attempt">First attempt</a></li>
+<li><a href="#a-minor-fix-reversal">A minor fix: Reversal</a></li>
+</ul></li>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="person-case-constraints">Person Case Constraints</h1>
+<div class="prereqs">
+<ul>
+<li>tuples (basics, crossproduct)</li>
+</ul>
+</div>
+<p>Monotonicity can be successfully invoked to explain <span
+class="math inline">\(^*\)</span>ABA effects for adjectival gradation
+and person syncretism in pronouns, as well as case syncretism patterns.
+But languages do many other quirky things, and one particularly quirky
+thing is the <strong>Person Case Constraint</strong>, short PCC.</p>
+<h2 id="the-pcc-explained">The PCC explained</h2>
+<p>The PCC is a restriction on <strong>clitics</strong>. A clitic is a
+reduced pronoun that has attached to another word. For instance, the
+English pronoun <em>her</em> is often realized as a clitic <em>’er</em>,
+as in <em>I saw’er yesterday</em>.</p>
+<div class="exercise">
+<p>Can you think of other clitics in English? Exemplify their use with
+specific sentences.</p>
+</div>
+<p>English does not allow combinations of clitics like <em>I
+showed’er’em</em>. Other languages do, but usually not all combinations
+are okay. That’s what the PCC is about: if two pronouns belong to the
+same verb, the pronouns must have certain person values. An example of
+the PCC can be seen in certain dialects of French. The sentence
+<em>Roger me leur a présenté</em> ‘Roger has shown me to them’ is
+ungrammatical. But the minimally different <em>Roger le leur a
+présenté</em> ‘Rogers has shown him to them’ is perfectly fine. In these
+dialects, it is alright to combine</p>
+<ul>
+<li>a <strong>third</strong> person direct object pronoun with a
+<strong>third</strong> person indirect object pronoun,</li>
+</ul>
+<p>but not</p>
+<ul>
+<li>a <strong>first</strong> person direct object pronoun with a
+<strong>third</strong> person indirect object pronoun.</li>
+</ul>
+<p>A variety of PCCs have been found across languages, including French,
+Spanish, Catalan, Basque, Slovenian, and most recently Choctaw, a Native
+American language spoken in parts of Oklahoma, Mississippi, Louisiana,
+and Tennessee. Four PCCs are robustly attested at this point. Using
+1/2/3 as a shorthand for first/second/third person and DO/IO as
+abbreviations for direct and indirect object, they are usually defined
+as follows:</p>
+<ol type="1">
+<li><strong>S(trong)-PCC:</strong> DO must be 3.</li>
+<li><strong>U(ltrastrong)-PCC:</strong> DO is strictly less prominent
+than IO, where 3 is less prominent than 2, and 2 is less prominent than
+1.</li>
+<li><strong>W(eak)-PCC:</strong> 3IO combines only with 3DO.</li>
+<li><strong>M(e first)-PCC:</strong> If IO is 2 or 3, then DO is not
+1.</li>
+</ol>
+<p>That is, to be frank, a mess. The attested PCCs look like a random
+collection of conditions — if there is anything principled going on it
+must be well-hidden. Or maybe not. The four PCCs above are actually yet
+another instance of monotonicity.</p>
+<h2 id="pccs-as-tables">PCCs as tables</h2>
+<p>First, let’s summarize the facts above in a more accessible format.
+Each PCC can be represented by a table where the rows indicate the
+person specification of IO and the columns the person specification of
+DO. For example, the U-PCC has the following table:</p>
+<ul>
+<li><strong>U(ltrastrong)-PCC:</strong> DO is strictly less prominent
+than IO, where 3 is less prominent than 2, and 2 is less prominent than
+1.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span
+class="math inline">\(\downarrow\)</span>IO/DO<span
+class="math inline">\(\rightarrow\)</span></th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<p>Note that we leave the diagonal empty. This is because combinations
+of the IO and DO with the same person often display special behavior
+that linguists believe to be due to other factors that have nothing to
+do with PCCs. By keeping the diagonal empty, we effectively factor out
+these special situations to focus on only those that are free of such
+confounds.</p>
+<p>When viewed as a table, the S-PCC only differs from the U-PCC in that
+the combination of 1IO and 2DO is forbidden (so in a sense the strong
+PCC is stronger than the ultrastrong PCC — don’t ask me why they are
+named the way they are).</p>
+<ul>
+<li><strong>S(trong)-PCC:</strong> DO must be 3.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span
+class="math inline">\(\downarrow\)</span>IO/DO<span
+class="math inline">\(\rightarrow\)</span></th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<p>The W-PCC, on the other hand, is indeed weaker than the U-PCC in that
+it allows for more combinations.</p>
+<ul>
+<li><strong>W(eak)-PCC:</strong> 3IO combines only with 3DO.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span
+class="math inline">\(\downarrow\)</span>IO/DO<span
+class="math inline">\(\rightarrow\)</span></th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<div class="exercise">
+<p>Add the corresponding table for the M-PCC.</p>
+</div>
+<h2 id="a-hierarchy-for-pccs">A hierarchy for PCCs</h2>
+<h3 id="first-attempt">First attempt</h3>
+<p>If PCCs are an instance of monotonicity in some sense, then we once
+again need a hierarchy of the involved elements. The PCC is a
+restriction on person combinations, and we already have <span
+class="math inline">\(1 &lt; 2 &lt; 3\)</span> as our person hierarchy.
+But what are we supposed to do with this? In contrast to person
+syncretism, the PCC doesn’t care about individual person values, it
+cares about their combinations.</p>
+<p>We can represent the combination of two person features <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> as a pair <span
+class="math inline">\(\left \langle x, y \right \rangle\)</span>. As a
+convention, the first component of the pair will indicate the row in the
+corresponding table, the second the column. So the pairs first give the
+IO person, then the DO person.</p>
+<div class="example">
+<p>The combination of 3IO and 1DO is <span class="math inline">\(\left
+\langle 3,1 \right \rangle\)</span>. The pair <span
+class="math inline">\(\left \langle 1,3 \right \rangle\)</span>, on the
+other hand, represents the combination of 1IO and 3DO.</p>
+</div>
+<div class="exercise">
+<p>Translate between IO/DO notation and pairs.</p>
+<ul>
+<li>2IO, 1DO</li>
+<li><span class="math inline">\(\left \langle 1,2 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 3,3 \right
+\rangle\)</span></li>
+<li>2DO, 1IO</li>
+</ul>
+</div>
+<p>Using pairs, we now have <span class="math inline">\(3 \times 3 =
+9\)</span> distinct elements to order.</p>
+<ol type="1">
+<li><span class="math inline">\(\left \langle 1,1 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 1,2 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 1,3 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,1 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,2 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,3 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 3,1 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 3,2 \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 3,3 \right
+\rangle\)</span></li>
+</ol>
+<p>The pairs with identical components represent elements along the
+diagonal and thus aren’t of importance to us. But we will still include
+them for now. The question is how do we sort these 9 elements into a
+hierarchy?</p>
+<p>Ideally, our answer should be based on the existing person hierarchy
+<span class="math inline">\(1 &lt; 2 &lt; 3\)</span>. This is actually
+fairly easy. Given a set <span class="math inline">\(S\)</span> ordered
+by some relation <span class="math inline">\(R\)</span>, one can order
+pairs over this set by extending the order <strong>pointwise</strong>.
+That is to say, <span class="math inline">\(\left \langle u,v \right
+\rangle \mathrel{R} \left \langle x,y \right \rangle\)</span> iff both
+<span class="math inline">\(u \mathrel{R} x\)</span> and <span
+class="math inline">\(v \mathrel{R} y\)</span> hold. We are defining the
+order of the tuples in terms of the order between their components.</p>
+<div class="example">
+<p>When the person hierarchy is extended in a pointwise fashion, <span
+class="math inline">\(\left \langle 2,1 \right \rangle &lt; \left
+\langle 3,3 \right \rangle\)</span> because <span
+class="math inline">\(2 &lt; 3\)</span> and <span
+class="math inline">\(1 &lt; 3\)</span>. Similarly, <span
+class="math inline">\(\left \langle 2,1 \right \rangle &lt; \left
+\langle 3,1 \right \rangle\)</span> because <span
+class="math inline">\(2 &lt; 3\)</span> and <span
+class="math inline">\(1 = 1\)</span>, and <span
+class="math inline">\(\left \langle 1,2 \right \rangle &lt; \left
+\langle 1,3 \right \rangle\)</span> because <span
+class="math inline">\(1 = 1\)</span> and <span class="math inline">\(2
+&lt; 3\)</span>. On the other hand, <span class="math inline">\(\left
+\langle 2,1 \right \rangle\)</span> and <span
+class="math inline">\(\left \langle 1,3 \right \rangle\)</span> are
+unordered with respect to each other because <span
+class="math inline">\(2 &gt; 1\)</span> and <span
+class="math inline">\(1 &lt; 3\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Fill each gap with <span class="math inline">\(&lt;\)</span>, <span
+class="math inline">\(&gt;\)</span>, or <span
+class="math inline">\(=\)</span> as appropriate. If none of the three
+fit, leave the gap empty.</p>
+<ul>
+<li><span class="math inline">\(\left \langle 3,3 \right \rangle \_
+\left \langle 2,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,3 \right \rangle \_
+\left \langle 2,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 3,2 \right \rangle \_
+\left \langle 2,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,2 \right \rangle \_
+\left \langle 2,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 1,2 \right \rangle \_
+\left \langle 3,1 \right \rangle\)</span></li>
+</ul>
+</div>
+<p>Extending <span class="math inline">\(1 &lt; 2 &lt; 3\)</span> in
+this pointwise fashion yields the hierarchy below.</p>
+<p><img src="pcc_hierarchy_wrong.svg"
+alt="pcc_hierarchy_wrong.svg" /></p>
+<p>For clarity, let’s remove all elements where IO and DO are the same,
+as we have already excluded them from the PCC.</p>
+<p><img src="pcc_hierarchy_wrong_reduced.svg"
+alt="pcc_hierarchy_wrong_reduced.svg" /></p>
+<p>Now that we have a hierarchy, we can formulate the following
+hypothesis: every PCC is a monotonically increasing map from the
+person-person hierarchy. But a map to what? Well, PCCs either permit a
+combination, or forbid it. We can represent this by True (T) for
+allowed, and False (F) for forbidden.</p>
+<div class="example">
+<p>The U-PCC allows 1IO-2DO but not 2IO-1DO. We can view it as a
+function <span class="math inline">\(f\)</span> such that <span
+class="math inline">\(f(\left \langle 1,2 \right \rangle) = T\)</span>
+and <span class="math inline">\(f(\left \langle 2,1 \right \rangle) =
+F\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Write down the 6 values of <span class="math inline">\(f\)</span> for
+the W-PCC.</p>
+</div>
+<p>The set <span class="math inline">\(\left \{ \text{T}, \text{F}
+\right \}\)</span> is ordered such that <span
+class="math inline">\(\text{F} &lt; \text{T}\)</span>. The opposite
+ordering would work just as well, but it is rarely seen because F is
+usually identified with 0 and T with 1, and we have <span
+class="math inline">\(0 &lt; 1\)</span>, not <span
+class="math inline">\(1 &lt; 0\)</span>. As a picture:</p>
+<p><img src="pcc_2.svg" alt="pcc_2.svg" /></p>
+<p>This structure is commonly referred to as <strong>2</strong> (it has
+only two values, after all). So now we can ask whether PCCs are
+monotonically increasing maps from the person-person hierarchy to
+<strong>2</strong>. At least for the W-PCC, this is indeed the case.</p>
+<p><img src="pcc_hierarchy_wrong_wpcc.svg"
+alt="pcc_hierarchy_wrong_wpcc.svg" /></p>
+<p>For the W-PCC, there are no two pairs <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(x
+\leq y\)</span> without <span class="math inline">\(f(x) \leq
+f(y)\)</span>. It is indeed a monotonically increasing mapping from
+person combinations to True/False.</p>
+<p>But things don’t quite work the way they should. The U-PCC, for
+instance, is not monotonically increasing.</p>
+<p><img src="pcc_hierarchy_wrong_upcc.svg"
+alt="pcc_hierarchy_wrong_upcc.svg" /></p>
+<div class="exercise">
+<p>Pick two pairs <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> and use them to show that the U-PCC is
+not a monotonically increasing map.</p>
+<p><em>Hint:</em> What’s the main difference between the W-PCC and the
+U-PCC?</p>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, show that the U-PCC isn’t a
+monotonically decreasing map either.</p>
+</div>
+<p>Hmm, looks like not every PCC variant is a monotonic map from our
+person hierarchy to <strong>2</strong>. Back to the drawing board!</p>
+<h3 id="a-minor-fix-reversal">A minor fix: Reversal</h3>
+<p>If you look at the PCC tables at the beginning of this notebook,
+you’ll notice that grammaticality seems to spread from the top-right
+corner towards the bottom-left. The difference between these PCCs is how
+far grammaticality gets to spread in each direction. The top-right
+corner, however, is the well-formed starting point for all PCC variants.
+This should be the starting point of our hierarchy, then, and its lowest
+point should be the bottom-left corner. But the top-right corner
+corresponds to <span class="math inline">\(\left \langle 1,3 \right
+\rangle\)</span>, whereas our person-person hierarchy starts with <span
+class="math inline">\(\left \langle 1,1 \right \rangle\)</span>.
+Similarly, our hierarchy bottoms out at <span
+class="math inline">\(\left \langle 3,3 \right \rangle\)</span>, whereas
+the bottom-left corner of the table is <span class="math inline">\(\left
+\langle 3,1 \right \rangle\)</span>. This suggests a somewhat
+unintuitive fix: use the reversed person hierarchy for the second
+component.</p>
+<p>Given an ordering relation <span class="math inline">\(R\)</span>,
+its <strong>inverse</strong> <span class="math inline">\(R^{-1}\)</span>
+is the result of literally reversing the order. So if <span
+class="math inline">\(x\)</span> is related to <span
+class="math inline">\(y\)</span> via <span
+class="math inline">\(R\)</span> (formally, <span
+class="math inline">\(x \mathrel{R} y\)</span>), then <span
+class="math inline">\(y\)</span> is related to <span
+class="math inline">\(x\)</span> via <span
+class="math inline">\(R^{-1}\)</span> (<span class="math inline">\(y
+\mathrel{R^{-1}} x\)</span>). The reverse of <span
+class="math inline">\(1 &lt; 2 &lt; 3\)</span> is <span
+class="math inline">\(3 &lt; 2 &lt; 1\)</span>. Let us use <span
+class="math inline">\(\prec\)</span> for this reversed order to clearly
+separate it from <span class="math inline">\(&lt;\)</span>. Then we have
+<span class="math inline">\(1 &lt; 2 &lt; 3\)</span> but <span
+class="math inline">\(3 \prec 2 \prec 1\)</span>. Whereas before we used
+<span class="math inline">\(&lt;\)</span> for both the first and the
+second component of the IO-DO pairs, we will now use <span
+class="math inline">\(&lt;\)</span> for the first component and <span
+class="math inline">\(\prec\)</span> for the second.</p>
+<ul>
+<li><strong>First component hierarchy</strong>: <span
+class="math inline">\(1 &lt; 2 &lt; 3\)</span></li>
+<li><strong>Second component hierarchy</strong>: <span
+class="math inline">\(3 \prec 2 \prec 1\)</span></li>
+</ul>
+<p>We will also use <span class="math inline">\(\triangleleft\)</span>
+for the order in the person-person hierarchy, just to keep the three
+relations visually separated. In the pointwise definition, we now use
+<span class="math inline">\(&lt;\)</span> for the first component and
+<span class="math inline">\(\prec\)</span> for the second. So <span
+class="math inline">\(\left \langle u,v \right \rangle \triangleleft
+\left \langle x,y \right \rangle\)</span> iff both of the following
+hold:</p>
+<ul>
+<li><span class="math inline">\(u &lt; x\)</span> or <span
+class="math inline">\(u = x\)</span>, and</li>
+<li><span class="math inline">\(v \prec y\)</span> or <span
+class="math inline">\(v = y\)</span>.</li>
+</ul>
+<div class="example">
+<p>With this revised definition, we have <span
+class="math inline">\(\left \langle 2,3 \right \rangle \triangleleft
+\left \langle 3,1 \right \rangle\)</span> because <span
+class="math inline">\(2 &lt; 3\)</span> and <span
+class="math inline">\(3 \prec 1\)</span>. But for the very same reason,
+<span class="math inline">\(\left \langle 2,1 \right \rangle\)</span>
+and <span class="math inline">\(\left \langle 3,3 \right
+\rangle\)</span> are unordered with respect to each other.</p>
+</div>
+<div class="exercise">
+<p>Fill each gap with <span
+class="math inline">\(\triangleleft\)</span>, <span
+class="math inline">\(\triangleright\)</span>, or <span
+class="math inline">\(=\)</span> as appropriate. If none of the three
+fit, leave the gap empty.</p>
+<ul>
+<li><span class="math inline">\(\left \langle 3,3 \right \rangle \_
+\left \langle 2,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,3 \right \rangle \_
+\left \langle 2,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 3,2 \right \rangle \_
+\left \langle 2,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,2 \right \rangle \_
+\left \langle 2,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 1,2 \right \rangle \_
+\left \langle 3,1 \right \rangle\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>This exercise is only for those who have already delved deep into the
+background sections: Explain why <span
+class="math inline">\(\triangleleft\)</span> is a weak partial
+order.</p>
+<p><em>Hint</em>: Remember the three properties that each weak partial
+order must satisfy, and explain for each one why it holds.</p>
+</div>
+<p>The full person-person hierarchy now looks a bit different, although
+the overall geometry stays the same.</p>
+<p><img src="pcc_hierarchy_right.svg"
+alt="pcc_hierarchy_right.svg" /></p>
+<p>And after removal of the irrelevant pairs, we get the following:</p>
+<p><img src="pcc_hierarchy_right_reduced.svg"
+alt="pcc_hierarchy_right_reduced.svg" /></p>
+<p>Over this hierarchy, both the W-PCC and the U-PCC are monotonically
+increasing maps. This is illustrated in the figures below. For
+simplicity, boxes are used to indicate that a combination is mapped to
+T. Nodes without boxes around them are mapped to F.</p>
+<p><img src="pcc_hierarchy_right_wpcc.svg"
+alt="pcc_hierarchy_right_wpcc.svg" /></p>
+<p><img src="pcc_hierarchy_right_upcc.svg"
+alt="pcc_hierarchy_right_upcc.svg" /></p>
+<div class="exercise">
+<p>Redraw the figures above with arrows pointing towards T and F as we
+did earlier on in this unit. Confirm for yourself that this is indeed a
+monotonically increasing map.</p>
+</div>
+<div class="exercise">
+<p>Draw the corresponding pictures (with boxes instead of arrows) for
+the S(trong)-PCC and the M(e first)-PCC.</p>
+</div>
+<h2 id="summary">Summary</h2>
+<p>Where are we at this point? Well, all the attested types of PCCs are
+monotonically increasing maps over a specific person-person hierarchy.
+So PCCs, which looked truly befuddling at the beginning of this section,
+have turned out to be just another instance of monotonicity in language.
+This is a significant success because the PCC operates at the interface
+of morphology (word structure) and syntax (sentence structure).
+Monotonicity really seems to be interwoven into various subareas of
+language: morphology (syncretism in person pronoun systems, adjectival
+gradation, and case marking), the interface of morphology and syntax
+(PCC), and the interface of syntax and meaning (NPI-licensing).</p>
+<p>Note that these are all very different phenomena, and linguists use
+very different pieces of machinery to model and analyze them. At the
+usual level of linguistic description, there seems to be no unifying
+force that ties them all together. But our more abstract, mathematical
+view can identify monotonicity as the central condition, with variation
+stemming solely from differences in the structures that monotonicity
+applies to.</p>
+<p>The monotonicity account is not perfect, of course. Often there are
+additional principles that need to be put in place. For instance,
+adjectival gradation never displays AAB patterns of the form
+<em>good</em>-<em>gooder</em>-<em>best</em>, even though those are
+monotonic. Similarly, our revised person-person hierarchy allows for a
+few monotonic mappings that do not correspond to attested PCCs.</p>
+<div class="exercise">
+<p>Give two examples of functions from the revised person-person
+hierarchy to <strong>2</strong> (i.e. the True/False structure) that are
+monotonic but not one of the four PCCs. You can represent them in the
+pictorial format used above.</p>
+</div>
+<p>Monotonicity, then, does not tell the whole story; for each domain
+there are additional factors to take into consideration. But
+monotonicity is sufficient to carve out a broad range of options that
+need to be whittled down a bit by additional restrictions. It is truly
+remarkable how much linguistic work can be done by such a simple
+mathematical concept.</p>
+</div>
+</div>
+</body>
+</html>

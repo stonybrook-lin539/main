@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Explaining a syntactic universal: the Adjunct Island
+Constraint</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a
+href="#explaining-a-syntactic-universal-the-adjunct-island-constraint">Explaining
+a syntactic universal: the Adjunct Island Constraint</a>
+<ul>
+<li><a href="#linguistic-background">Linguistic background</a>
+<ul>
+<li><a href="#arguments-versus-adjuncts">Arguments versus
+adjuncts</a></li>
+<li><a href="#movement">Movement</a></li>
+<li><a href="#the-aic">The AIC</a></li>
+</ul></li>
+<li><a href="#adjunct-extensions">Adjunct extensions</a></li>
+<li><a href="#the-adjunct-extension-semilattice">The adjunct extension
+semilattice</a></li>
+<li><a href="#optionality-and-well-formedness-entailments">Optionality
+and well-formedness entailments</a></li>
+<li><a href="#monotonicity-derives-the-aic">Monotonicity derives the
+AIC</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1
+id="explaining-a-syntactic-universal-the-adjunct-island-constraint">Explaining
+a syntactic universal: the Adjunct Island Constraint</h1>
+<div class="prereqs">
+<ul>
+<li>posets (basics, semilattices)</li>
+</ul>
+</div>
+<p>The Person Case Constraint in the previous unit was an instance of
+monotonicity regulating the shape of sentences, i.e. the
+<strong>syntax</strong> of a language. It probably won’t surprise you to
+hear that there is more to syntax than just the Person Case Constraint.
+After all, the study of syntax has been around since at least the late
+50s, and who would want to spend over 60 years studying just one
+phenomenon? Syntax is a smorgasbord of intriguing, somewhat odd
+phenomena. One of them is the <strong>Adjunct Island
+Constraint</strong>, or simply <strong>AIC</strong>. The AIC is a
+condition that holds in every natural language we currently know. It
+seems to be a universal law of natural language. So what it is about? It
+is about a peculiar contrast, illustrated below for English.</p>
+<ol class="example" type="1">
+<li>John asserted [that Mary wants to watch which movie]? (good)</li>
+<li>Which movie did John assert [that Mary wants to watch]? (good)</li>
+<li>John cried [because Mary wants to watch which movie]? (good)</li>
+<li>*Which movie did John cry [because Mary wants to watch]? (bad)</li>
+</ol>
+<p>The last sentence is not okay in English, which — following
+linguists’ convention — we indicate with an asterisk. But why isn’t this
+sentence okay. It has all the needed words, and its meaning is perfectly
+clear. Why isn’t that okay? The culprit is the AIC, or, as we will see
+in this unit, monotonicity all over again. But in order to get to that
+point, we first have to put in place some linguistic basics. If you’re
+already familiar with the AIC, skip ahead to the section on adjunct
+extensions.</p>
+<h2 id="linguistic-background">Linguistic background</h2>
+<h3 id="arguments-versus-adjuncts">Arguments versus adjuncts</h3>
+<p>The AIC builds on the long-standing distinction in linguistics
+between <strong>arguments</strong> and <strong>adjuncts</strong>, and it
+states that the latter <strong>block movement</strong>. Well that’s
+quite a mouthful, so let’s take it step by step, starting with the split
+between arguments and adjuncts.</p>
+<p>An argument is a phrase that is introduced and required by some other
+word in the sentence. For example, in <em>Yesterday, John devoured
+twelve pounds of pasta</em>, both <em>John</em> and <em>twelve pounds of
+pasta</em> are arguments of the verb <em>devour</em>. Neither one can be
+easily removed — <em>Yesterday, devoured twelve pounds of pasta</em> is
+not well-formed, and neither is <em>Yesterday, John devoured</em>. So
+the arguments of the verb are a necessary part of the sentence. We
+cannot freely throw in additional arguments, either: <em>Yesterday, John
+devoured Mary twelve pounds of pasta the whole bowl</em> is not a good
+sentence of English.</p>
+<p>Adjuncts, on the other hand, are much less tightly controlled than
+arguments. They can be removed and added without problem. The adverb
+<em>yesterday</em> in <em>Yesterday, John devoured twelve pounds of
+pasta</em> is an adjunct, and indeed it can be removed without reducing
+the well-formedess of the string. We can also add additional adjuncts,
+e.g. the adverb <em>quickly</em> or the adjective
+<em>delicious</em>.</p>
+<ol start="5" class="example" type="1">
+<li>Yesterday, John quickly devoured twelve pounds of pasta.</li>
+<li>Yesterday, John devoured twelve pounds of delicious pasta.</li>
+<li>Yesterday, John quickly devoured twelve pounds of delicious
+pasta.</li>
+</ol>
+<p>Metaphorically speaking, arguments are the essential parts that make
+up the basic structure of the sentence, like a sentence skeleton.
+Adjuncts are the nice but ultimately optional embellishments that we
+hang from the bones of this skeleton. That isn’t to say that adjuncts
+are useless — they often provide useful or even essential information,
+like <em>yesterday</em> in the examples above. But in contrast to
+arguments, adjuncts aren’t needed for a sentence to be well-formed.</p>
+<h3 id="movement">Movement</h3>
+<p>When you compare specific sentences of a language, it often looks
+like a part of the sentence has been moved around. For instance, in the
+sentences below it looks like <em>this car</em> has moved from its
+position next to the verb to the beginning of the sentence.</p>
+<ol start="8" class="example" type="1">
+<li>Mary really likes this car.</li>
+<li>This car, Mary really likes.</li>
+</ol>
+<p>Linguists call this phenomenon <strong>movement</strong> or
+<strong>displacement</strong>. Apparently the structure of sentences
+isn’t fully rigid, parts can be shifted around. Sometimes they move to
+the left, like in the example above, and sometimes to the right, as in
+the example below.</p>
+<ol start="10" class="example" type="1">
+<li>The museum displayed a very old mosaic, which dates back all the way
+to 200BC and allegedly depicts an Etruscan goddess, at its most recent
+exhibition.</li>
+<li>The museum displayed at its most recent exhibition a very old
+mosaic, which dates back all the way to 200BC and allegedly depicts an
+Etruscan goddess.</li>
+</ol>
+<p>But movement isn’t all willy-nilly, there are some restrictions. For
+instance, we can’t move around the verb in the example below.</p>
+<ol start="12" class="example" type="1">
+<li>The museum closed its exhibition early.</li>
+<li>*Closed, the museum its exhibition early.</li>
+</ol>
+<p>This shows that movement, just like most other aspects of language,
+is subject to an elaborate system of rules and laws. The AIC is one of
+those laws.</p>
+<h3 id="the-aic">The AIC</h3>
+<p>Let’s go back to our initial examples. The first one contains the
+clause <em>that Mary wants to watch which movie</em>, repeated here:</p>
+<ol start="14" class="example" type="1">
+<li>John asserted [that Mary wants to watch which movie]?</li>
+</ol>
+<p>This clause is an argument of the verb <em>asserted</em> (removing
+the argument leaves us with the rather odd <em>John asserted</em>). In
+the sentence in (14), we can move <em>which movie</em> all the way to
+the left. As a peculiarity of English, this also requires a form of
+<em>do</em> to appear after <em>which movie</em> (in many other
+languages this doesn’t happen).</p>
+<ol start="15" class="example" type="1">
+<li>Which movie did John assert [that Mary wants to watch]?</li>
+</ol>
+<p>Now let’s contrast this against the other two example sentences.</p>
+<ol start="16" class="example" type="1">
+<li>John cried [because Mary wants to watch which movie]?</li>
+<li>*Which movie did John cry [because Mary wants to watch]?</li>
+</ol>
+<p>As you can see, <em>which movie</em> in (17) no longer gets to move
+to the left edge of the sentence as it did in (15). So apparently some
+law of movement has been violated. And that law is the AIC. You see,
+there is a crucial difference between (15) and (17): a clause that
+starts with <em>because</em> is an adjunct, not an argument. We can
+completely remove it from a well-formed sentence and the result is still
+well-formed.</p>
+<ol start="18" class="example" type="1">
+<li>John cried.</li>
+</ol>
+<p>Since the <em>because</em>-clause is an adjunct, the AIC does not
+allow anything to be moved out of it. When <em>which movie</em> tries to
+sneak all the way to the left edge of the sentence, it is in violation
+of the AIC. As a result, the sentence is ill-formed.</p>
+<p>This is the standard linguistic story, and it is supported by tons of
+evidence. The AIC seems to be active in every natural language that’s
+currently known to linguists. But why should the world be this way? The
+AIC looks like a pretty arbitrary law, yet it is enforced so
+stringently. Why would languages limit movement out of adjuncts but not
+out of arguments? Why isn’t there a single language that bucks the trend
+and forbids movement out of arguments instead of adjuncts? Clearly this
+isn’t some conspiracy where all languages congregated in a smoky
+backroom and decided that those free-spirited adjuncts need to be taken
+down a notch.</p>
+<p>No, the answer is much simpler. It’s just good ol’ monotonicity
+again.</p>
+<h2 id="adjunct-extensions">Adjunct extensions</h2>
+<p>If monotonicity is involved in the AIC, then there must also be some
+underlying order over some set. Remember, monotonicity states that <span
+class="math inline">\(x \leq y\)</span> implies <span
+class="math inline">\(f(x) \leq f(y)\)</span> — if there is no order
+<span class="math inline">\(\leq\)</span> to begin with, then
+monotonicity is vacuous. We can get such an order directly from the
+notion of adjuncts.</p>
+<p>Given two sentences <span class="math inline">\(s\)</span> and <span
+class="math inline">\(t\)</span>, we can order them with respect to each
+other based on various criteria. For instance, we could say <span
+class="math inline">\(s \leq_l t\)</span> iff the length of <span
+class="math inline">\(s\)</span> does not exceed the length of <span
+class="math inline">\(t\)</span>. Or we could say <span
+class="math inline">\(s \leq_s t\)</span> iff <span
+class="math inline">\(s\)</span> contains at most as many slurs as <span
+class="math inline">\(t\)</span>.</p>
+<div class="exercise">
+<p>Neither <span class="math inline">\(\leq_l\)</span> nor <span
+class="math inline">\(\leq_s\)</span> are weak partial orders. Remember
+that a relation is a weak partial order iff it is transitive,
+antisymmetric, and reflexive. Which of these properties do not hold of
+<span class="math inline">\(\leq_l\)</span> or <span
+class="math inline">\(\leq_s\)</span>? Justify your answer.</p>
+</div>
+<p>Neither <span class="math inline">\(\leq_l\)</span> nor <span
+class="math inline">\(\leq_s\)</span> are of any use for our problem,
+though; we need something a bit more sophisticated. Instead, we will
+establish an order <span class="math inline">\(\leq_A\)</span> between
+sentences based on whether one can be obtained from the other by adding
+0 or more adjuncts. In other words, <span class="math inline">\(x \leq_A
+y\)</span> iff we can turn <span class="math inline">\(x\)</span> into
+<span class="math inline">\(y\)</span> by adding 0 or more adjuncts. We
+say that <span class="math inline">\(y\)</span> is an <strong>adjunct
+extension</strong> of <span class="math inline">\(x\)</span> iff <span
+class="math inline">\(x \leq_A y\)</span>.</p>
+<div class="example">
+<p>Among the adjunct extensions of <em>John devoured twelve pounds of
+pasta</em>, we find, among many others:</p>
+<ul>
+<li><em>John quickly devoured twelve pounds of pasta.</em></li>
+<li><em>John devoured twelve delicious pounds of pasta.</em></li>
+<li><em>John devoured twelve pounds of pasta yesterday.</em></li>
+<li><em>John quickly devoured twelve delicious pounds of
+pasta.</em></li>
+<li><em>John quickly devoured twelve pounds of pasta
+yesterday.</em></li>
+<li><em>John devoured twelve delicious pounds of pasta
+yesterday.</em></li>
+<li><em>John quickly devoured twelve delicious pounds of pasta
+yesterday.</em></li>
+</ul>
+<p>Note that <em>John devoured twelve pounds of pasta</em> is an adjunct
+extension of itself. By putting parentheses around optional parts, we
+can represent all of this more succinctly as</p>
+<ul>
+<li><em>John devoured twelve pounds of pasta</em> <span
+class="math inline">\(\leq_A\)</span> <em>John (quickly) devoured twelve
+(delicious) pounds of pasta (yesterday)</em></li>
+</ul>
+<p>Besides that, all of the following also hold.</p>
+<ul>
+<li><em>John quickly devoured twelve pounds of pasta</em> <span
+class="math inline">\(\leq_A\)</span> <em>John quickly devoured twelve
+(delicious) pounds of pasta (yesterday)</em></li>
+<li><em>John devoured twelve pounds of pasta yesterday</em> <span
+class="math inline">\(\leq_A\)</span> <em>John (quickly) devoured twelve
+(delicious) pounds of pasta yesterday</em></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Fill the gaps with <span class="math inline">\(\leq_A\)</span> or
+<span class="math inline">\(\geq_A\)</span> as appropriate. If neither
+<span class="math inline">\(\leq_A\)</span> nor <span
+class="math inline">\(\geq_A\)</span> hold, leave the gap empty.</p>
+<ul>
+<li>John slept _ John definitely slept yesterday</li>
+<li>The old man snored _ The man snored</li>
+<li>John likes Mary _ Mary really likes John</li>
+<li>John ate pasta _ John ate pasta</li>
+<li>John ate pasta _ John ate</li>
+</ul>
+</div>
+<div class="exercise">
+<p>Show that <span class="math inline">\(\leq_A\)</span> is a weak
+partial order. That is to say, it is a binary relation that is
+transitive, antisymmetric, and reflexive.</p>
+</div>
+<p>As we will see next, <span class="math inline">\(\leq_A\)</span>
+interacts with well-formedness in a particular way. Understanding this
+interaction will allow us to derive the AIC from monotonicity.</p>
+<h2 id="the-adjunct-extension-semilattice">The adjunct extension
+semilattice</h2>
+<p>Let <span class="math inline">\(L\)</span> be the set of all
+sentences that can be built using only English words. Note that these
+sentences do not have to be well-formed, so <span
+class="math inline">\(L\)</span> contains both <em>Mary drives a fancy
+car</em> and <em>car Mary a fancy fancy drive because aardvark this
+seventeen allegedly</em>. The point of <span
+class="math inline">\(L\)</span> is that we want to have a collection of
+all the sentences that English could in principle have if there were
+absolutely no restrictions on what a natural language may look like.</p>
+<p>Assuming that we have some way of identifying adjuncts, we can order
+the sentences in <span class="math inline">\(L\)</span> according to the
+adjunct extension relation <span class="math inline">\(\leq_A\)</span>.
+Now pick some sentence <span class="math inline">\(s \in L\)</span>. We
+will write <span class="math inline">\(A_L(s)\)</span> to denote the set
+of sentences in <span class="math inline">\(L\)</span> that are adjunct
+extensions of <span class="math inline">\(s\)</span>. <span
+class="math display">\[A_L(s) \mathrel{\mathop:}=\left \{  t \mid t \in
+L \text{ and } s \leq_A t \right \}\]</span></p>
+<div class="example">
+<p>Let <span class="math inline">\(s\)</span> be the sentence <em>John
+really likes Mary</em>. Then <span class="math inline">\(A_L(s)\)</span>
+contains infinitely many sentences, including</p>
+<ul>
+<li>John really likes Mary.</li>
+<li>John really, really likes Mary.</li>
+<li>John really likes Mary because she looks like Sue.</li>
+<li>and so on</li>
+</ul>
+<p>But it also includes infinitely many sentences that wouldn’t actually
+be good English sentences, e.g. <em>John because yesterday she looks
+like Sue adores really Mary really red</em>.</p>
+</div>
+<div class="exercise">
+<p>Suppose that <span class="math inline">\(s\)</span> is <em>The old
+men quickly manned the boat</em>. Write down five members of <span
+class="math inline">\(A_L(s)\)</span>.</p>
+</div>
+<p>When we order <span class="math inline">\(L\)</span> with the partial
+order <span class="math inline">\(\leq_A\)</span>, we turn it into a
+partially ordered set, i.e. a <strong>poset</strong>. We can do the same
+thing with <span class="math inline">\(A_L(s)\)</span>.</p>
+<div class="example">
+<p>Let’s consider a small fragment of <span
+class="math inline">\(A_L(\mathit{John\ snored})\)</span>. It
+contains</p>
+<ul>
+<li>John snored.</li>
+<li>John snored yesterday.</li>
+<li>John really snored.</li>
+<li>John really snored yesterday.</li>
+<li>Allegedly, John really snored yesterday.</li>
+<li>John really, really snored yesterday.</li>
+<li>John really, really, really snored yesterday.</li>
+</ul>
+<p>When we order these sentences by <span
+class="math inline">\(\leq_A\)</span>, we get the structure depicted
+below.</p>
+<p><img src="adjunctextension.svg" alt="adjunctextension.svg" /></p>
+<p>We could’ve also drawn it upside-down with <em>John snored</em> at
+the top, this does not make a difference.</p>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, draw the corresponding figure for
+your fragment of <span class="math inline">\(A_L(s)\)</span>.</p>
+</div>
+<p>When we order <span class="math inline">\(A_L(s)\)</span> with <span
+class="math inline">\(\leq_A\)</span>, we don’t just get any poset, we
+get a particular type of poset that’s a <strong>semilattice</strong>.
+More precisely, it is a <strong>meet semilattice</strong>. Nice, another
+fancy term for your vocabulary, but this one sounds a lot scarier than
+it actually is. You can check out the backgrounds section for all the
+math, but for our purposes a visual example suffices.</p>
+<div class="example">
+<p>Consider once more the fragment from the previous example, sorted by
+<span class="math inline">\(\leq_A\)</span>. Pick two elements <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, for instance <em>Allegedly, John
+really snored yesterday</em> and <em>John really, really, really snored
+yesterday</em>. Put your fingers on those sentences. Now move your
+fingers downward, tracing a path towards the bottom element <em>John
+snored</em>. The <strong>meet</strong> <span class="math inline">\(x
+\wedge y\)</span> is the earliest point where your fingers can meet. In
+the case at hand, that’s <em>John really snored yesterday</em>.</p>
+<p>The meet of <em>John really, really, really snored yesterday</em> and
+<em>John really, really snored yesterday</em> is just <em>John really,
+really snored yesterday</em>. After all, the earliest point your fingers
+can meet is if you move the higher one down by one step while keeping
+the lower where it is.</p>
+</div>
+<p>A poset is a meet semilattice iff it holds for all elements <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> that they have a unique meet. This is
+the case for <span class="math inline">\(A_L(s)\)</span> no matter what
+sentence we pick for <span class="math inline">\(s\)</span>. But there
+are posets that do not meet this condition.</p>
+<div class="example">
+<p>Consider the structure below. Even though it is a poset, it is not a
+meet semilattice because <span class="math inline">\(a\)</span> and
+<span class="math inline">\(b\)</span> have no meet.</p>
+<p><img src="poset_nomeet.svg" alt="poset_nomeet.svg" /></p>
+</div>
+<div class="example">
+<p>The structure below is also a poset that fails to be a meet
+semilattice.</p>
+<p><img src="poset_nouniquemeet.svg" alt="poset_nouniquemeet.svg" /></p>
+<p>In this case, the problem is that there is no unique meet for <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>. Both <span
+class="math inline">\(c\)</span> and <span
+class="math inline">\(d\)</span> are viable choices, which violates the
+requirement that the meet must be unique.</p>
+</div>
+<div class="exercise">
+<p>Suppose we take the set of natural numbers and order it by <span
+class="math inline">\(\leq\)</span> in the usual way, yielding a single
+line of numbers. Is this a meet semilattice? Justify your answer.</p>
+</div>
+<div class="example">
+<p>Finally, the structure below isn’t a meet semilattice either. Even
+though it consists of two parts, each one of which forms a semilattice,
+there’s many pairs of elements that do not have meet, e.g. <span
+class="math inline">\(c\)</span> and <span
+class="math inline">\(x\)</span>. As one missing meet is enough to
+prevent a poset from being a semilattice, this shows that the structure
+isn’t as semilattice.</p>
+<p><img src="poset_union.svg" alt="poset_union.svg" /></p>
+</div>
+<p>The structure in the last example is exactly what we find with the
+poset <span class="math inline">\(L\)</span> ordered by <span
+class="math inline">\(\leq_A\)</span>. Each sentence <span
+class="math inline">\(s\)</span> that does not contain any adjuncts is
+the bottom element of a meet semilattice that consists of <span
+class="math inline">\(s\)</span> and all its adjunct extensions. But
+<span class="math inline">\(L\)</span>, even though it is a collection
+of such meet semilattices, is not itself a meet semilattice because
+adjunct extensions of distinct sentences simply have no meet. Their
+semilattices are like little islands with no land connection between
+them. The poset <span class="math inline">\(L\)</span> ordered by <span
+class="math inline">\(\leq_A\)</span> is the archipelago that consists
+of all these islands.</p>
+<p><img src="aic_semilattices.svg" alt="aic_semilattices.svg" /></p>
+<h2 id="optionality-and-well-formedness-entailments">Optionality and
+well-formedness entailments</h2>
+<p>All the math so far has served the purpose of identifying relations
+between possible sentences. We collect all logically conceivable
+sentences, including ill-formed ones, and say that if <span
+class="math inline">\(t\)</span> can be obtained from <span
+class="math inline">\(s\)</span> by adding finitely many adjuncts, then
+<span class="math inline">\(t\)</span> is an adjunct extension of <span
+class="math inline">\(s\)</span>. This turns a language from a simple
+set of sentences into a poset whose structure encodes how strings are
+related with respect to adjuncts.</p>
+<p>Now remember from earlier on that adjuncts have a crucial property:
+they are optional. That is to say, if a sentence containing an adjunct
+is grammatical, it should still be grammatical after removal of the
+adjunct.</p>
+<div class="example">
+<p>The sentence <em>Yesterday John definitely snored loudly</em> is
+well-formed, and so is every sentence that it is an adjunct extension
+of:</p>
+<ul>
+<li>Yesterday John definitely snored loudly</li>
+<li>Yesterday John definitely snored</li>
+<li>Yesterday John snored loudly</li>
+<li>John definitely snored loudly</li>
+<li>Yesterday John snored</li>
+<li>John definitely snored</li>
+<li>John snored loudly</li>
+<li>John snored</li>
+</ul>
+</div>
+<p>In the other direction, adding an adjunct cannot make an ill-formed
+sentence grammatical.</p>
+<div class="example">
+<p>The sentence <em>John meet</em> is ill-formed, and so are <em>John
+meet yesterday</em>, <em>John definitely meet</em>, <em>John really,
+really meet</em>, and all other adjunct extensions of the sentence.</p>
+</div>
+<p>If we take optionality in this sense as an intrinsic property of
+adjuncts, then we can use the structure of <span
+class="math inline">\(L\)</span> under <span
+class="math inline">\(\leq_A\)</span> to infer the well-formedness of
+one string from another. In particular, the following two laws follow
+from optionality:</p>
+<ol type="1">
+<li>If <span class="math inline">\(s\)</span> is well-formed, then so is
+every string that <span class="math inline">\(s\)</span> is an adjunct
+extension of.</li>
+<li>If <span class="math inline">\(s\)</span> is ill-formed, then so is
+every adjunct extension of <span class="math inline">\(s\)</span>.</li>
+</ol>
+<p>In other words, well-formedness travels downward in each meet
+semilattice <span class="math inline">\(A_L(s)\)</span>, and
+ill-formedness travels upward.</p>
+<div class="exercise">
+<p>Explain why these entailments follow from the optionality of
+adjuncts.</p>
+</div>
+<h2 id="monotonicity-derives-the-aic">Monotonicity derives the AIC</h2>
+<p>Alright, so we’ve covered a lot of linguistics ground, with
+arguments, adjuncts, and movement, and we’ve covered a lot of math
+ground, with meet semilattices. But I promised you an explanation of the
+AIC, and in particular I promised you an explanation in terms of
+monotonicity. Nothing said so far has anything to do with monotonicity.
+But the connection is easily made. Here’s another way of saying that
+grammaticality travels downward and ungrammaticality travels upward: the
+mapping from <span class="math inline">\(L\)</span> ordered by <span
+class="math inline">\(\leq_A\)</span> into the poset <span
+class="math inline">\(\mathbf{2}\)</span> of truth values must be — you
+guessed it — monotonic!</p>
+<p>Consider any function <span class="math inline">\(f\)</span> from
+<span class="math inline">\(L\)</span> to <span
+class="math inline">\(\mathbf{2}\)</span>, the structure of truth values
+<span class="math inline">\(T\)</span> and <span
+class="math inline">\(F\)</span>. Usually the order on <span
+class="math inline">\(\mathbf{2}\)</span> states <span
+class="math inline">\(F \leq_2 T\)</span>, but we will switch it to
+<span class="math inline">\(T \leq_2 F\)</span> (this is innocuous, it
+only means that the relevant mapping will be monotonically increasing
+instead of monotonically decreasing). If <span
+class="math inline">\(f(s) = T\)</span>, then <span
+class="math inline">\(s\)</span> is well-formed, otherwise it is
+ill-formed.</p>
+<div class="exercise">
+<p>Explain why a monotonically increasing function from <span
+class="math inline">\(L\)</span> to <span
+class="math inline">\(\mathbf{2}\)</span> with <span
+class="math inline">\(F \leq_2 T\)</span> must be monotonically
+decreasing if we do exactly one of the following:</p>
+<ul>
+<li>switch the order to <span class="math inline">\(T \leq_2
+F\)</span>,</li>
+<li>switch the order <span class="math inline">\(\leq_A\)</span> in
+<span class="math inline">\(L\)</span>.</li>
+</ul>
+</div>
+<p>Now consider two strings <span class="math inline">\(s\)</span> and
+<span class="math inline">\(t\)</span> such that <span
+class="math inline">\(s \leq_A t\)</span>. Suppose <span
+class="math inline">\(f(t) = T\)</span>. Since grammaticality travels
+downward, this entails <span class="math inline">\(f(s) = T\)</span>.
+But we get the very same inference from monotonicity:</p>
+<ol type="1">
+<li>If <span class="math inline">\(s \leq_A t\)</span>, then <span
+class="math inline">\(f(s) \leq_2 f(t)\)</span>.</li>
+<li>We know that <span class="math inline">\(f(t) = T\)</span>, and
+therefore <span class="math inline">\(f(s) \leq_2 T\)</span>.</li>
+<li>But <span class="math inline">\(T \leq_2 F\)</span>, so <span
+class="math inline">\(f(s) \leq_2\)</span> implies <span
+class="math inline">\(f(s) = T\)</span>.</li>
+</ol>
+<p>Now let us look at the other case. Suppose <span
+class="math inline">\(f(s) = F\)</span>. Then <span
+class="math inline">\(f(t) = F\)</span> because ungrammaticality travels
+upward. Once again monotonicity gives us the same inference:</p>
+<ol type="1">
+<li>If <span class="math inline">\(s \leq_A t\)</span>, then <span
+class="math inline">\(f(s) \leq_2 f(t)\)</span>.</li>
+<li>We know that <span class="math inline">\(f(s) = F\)</span>, and
+therefore <span class="math inline">\(F \leq_2 f(t)\)</span>.</li>
+<li>But <span class="math inline">\(T \leq_2 F\)</span>, so <span
+class="math inline">\(F \leq_2 f(t)\)</span> implies <span
+class="math inline">\(f(t) = F\)</span>.</li>
+</ol>
+<p>And this is the key to the AIC. To recap, here’s what we’ve done so
+far:</p>
+<ol type="1">
+<li>We have adopted the linguistic distinction between arguments and
+adjuncts.</li>
+<li>We have ordered the set of all conceivable (but not necessarily
+well-formed sentences) by the adjunct extension. This gives us a poset
+that is a collection of meet semilattices.</li>
+<li>Because adjuncts are optional, grammaticality travels downwards in
+this poset, whereas ungrammaticality travels upward.</li>
+<li>We have shown that the way grammaticality and ungrammaticality
+travel through the structure is once again an instance of
+monotonicity.</li>
+</ol>
+<p>At this point, we have actually derived the AIC from monotonicity.
+You might not see it clearly yet, but think about it. Consider once more
+the contrast this unit started out with (I know, that was ages ago).</p>
+<ol start="19" class="example" type="1">
+<li>John asserted [that Mary wants to watch which movie]? (good)</li>
+<li>Which movie did John assert [that Mary wants to watch]? (good)</li>
+<li>John cried [because Mary wants to watch which movie]? (good)</li>
+<li>*Which movie did John cry [because Mary wants to watch]? (bad)</li>
+</ol>
+<p>We have to explain why (22) is bad. But we already have! The sentence
+in (22) contains a <em>because</em>-clause, which is an adjunct. This
+means that (22) is an adjunct extension of <em>which movie did John
+cry</em>. That’s not a grammatical sentence of English. But if <em>which
+movie did John cry</em> is ungrammatical, then by monotonicity this must
+also be true for all its adjunct extensions, including (22). So there
+you have it, the explanation of the AIC: it’s not that movement out of
+an adjunct isn’t allowed, but rather the optionality of adjuncts creates
+monotonic entailment relations that simply make it impossible for such a
+sentence to be allowed.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li><p>Languages do not need to be flat, unstructured sets, we can
+define orders over the sentences they contain.</p></li>
+<li><p>One particular order is the adjunction extension order <span
+class="math inline">\(\leq_A\)</span>: <span class="math inline">\(s
+\leq_A t\)</span> iff <span class="math inline">\(t\)</span> can be
+built by adding 0 or more adjuncts to <span
+class="math inline">\(s\)</span>.</p></li>
+<li><p>A language with this order is a partially ordered set, or
+<strong>poset</strong>.</p></li>
+<li><p>More specifically, it is a collection of <strong>meet
+semilattices</strong>.</p></li>
+<li><p>Because of the optionality of adjuncts, we get specific
+entailments over each one of these semilattices:</p>
+<ul>
+<li>ungrammaticality travels upward: if <span
+class="math inline">\(s\)</span> is ill-formed, then so is every
+adjunction extension <span class="math inline">\(t\)</span> of <span
+class="math inline">\(s\)</span> (adjuncts cannot repair ill-formed
+sentences);</li>
+<li>grammaticality travels downward: if <span
+class="math inline">\(t\)</span> is well-formed, then so is every
+sentence <span class="math inline">\(s\)</span> that <span
+class="math inline">\(t\)</span> is an adjunct extension of (adjuncts
+aren’t needed for well-formedness).</li>
+</ul></li>
+<li><p>But this is the same as saying that the mapping from <span
+class="math inline">\(L\)</span> to <span
+class="math inline">\(\mathbf{2}\)</span>, the poset of truth values,
+must be monotonic.</p></li>
+</ul>
+</div>
+</div>
+</body>
+</html>

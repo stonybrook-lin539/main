@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>NPIs and monotonicity</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#npis-and-monotonicity">NPIs and monotonicity</a>
+<ul>
+<li><a href="#a-puzzle-distribution-of-npis">A puzzle: distribution of
+NPIs</a></li>
+<li><a href="#entailment">Entailment</a></li>
+<li><a href="#left-entailment-and-right-entailment">Left entailment and
+right entailment</a></li>
+<li><a href="#connection-to-monotonicity">Connection to
+monotonicity</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="npis-and-monotonicity">NPIs and monotonicity</h1>
+<div class="prereqs">
+<ul>
+<li>sets (comparisons)</li>
+</ul>
+</div>
+<p>Monotonicity is not limited to morphology, it also shows up in areas
+where syntax (= sentence structure) interacts with semantics (=
+meaning). One instance is the licensing of <strong>Negative Polarity
+Items</strong>. That’s quite a mouthful, so linguists usually say
+<strong>NPIs</strong>. NPIs are a fascinating aspect of natural
+languages, and they reveal just how much math languages hide under their
+hood. You might not have realized it, but the language brain is really
+sensitive to monotonic functions.</p>
+<h2 id="a-puzzle-distribution-of-npis">A puzzle: distribution of
+NPIs</h2>
+<p>One of the most common NPIs in English is <em>ever</em>. If you’re a
+native speaker of English, you’ve probably never noticed that
+<em>ever</em> is quite a special guy, but you definitely agree that the
+first sentence below is well-formed, whereas the second is clearly
+bad.</p>
+<ol type="1">
+<li>No student should ever sleep in class.</li>
+<li>Every student should ever sleep in class.</li>
+</ol>
+<p>Quite curious, what’s going on here? One simple answer is that
+<em>ever</em> can occur with <em>no</em> but not with <em>every</em>.
+This is rather unsatisfying since it only states the facts rather than
+explaining them. But more importantly, it is also false. Both of the
+following sentences are okay in standard dialects of English.</p>
+<ol type="1">
+<li>No student who ever slept in class should get a degree.</li>
+<li>Every student who ever slept in class should get a degree.</li>
+</ol>
+<p>So both <em>no</em> and <em>every</em> can be fine with
+<em>ever</em>, it’s only in some cases where they diverge. And when they
+do, we never find cases where <em>ever</em> is okay with <em>every</em>
+but not with <em>no</em>. Quite puzzling, but fortunately we have
+decades of research to build on. Linguists have studied NPIs for a long
+time, and one thing that has become clear is that in order to understand
+the contrast illustrated above, one has to look at the meaning of
+<em>every</em> and <em>no</em> from a mathematical perspective.</p>
+<h2 id="entailment">Entailment</h2>
+<p>One important fact about sentences with <em>every</em> and
+<em>no</em> is that depending on whether they are true or false, other
+sentences can immediately be inferred to be true or false. Consider the
+following sentence:</p>
+<ol type="1">
+<li>No student slept.</li>
+</ol>
+<p>Suppose that this is true. Then we can tell right away that both of
+the sentences below are also true.</p>
+<ol type="1">
+<li>No male students slept.</li>
+<li>No sophomores slept.</li>
+</ol>
+<p>After all, male students are students, and sophomores are students in
+their second year. If a sophomore had indeed slept, then there would be
+at least one student that slept, but we already know that no student
+slept. Hence it is impossible for <em>no student slept</em> to be true
+but <em>no sophomore slept</em> to be false. The sentences stand in an
+<strong>entailment relation</strong> such that the truth of the first
+implies the truth of the other.</p>
+<div class="exercise">
+<p>Consider the sentence <em>every student slept</em>. Does it allow for
+similar inferences via entailment?</p>
+</div>
+<p>Note that the entailment only holds in one direction. Even if <em>no
+sophomores slept</em> is true, it might still be the case that <em>no
+students slept</em> is false — perhaps there’s a freshman or junior who
+dozed off. So entailment has a directionality.</p>
+<p>We can actually express the directionality of entailment by looking
+at sets. Consider the set of all students. Clearly it contains all
+sophomores, but the set of sophomores does not contain all students. So
+the set of sophomores is a <strong>subset</strong> of the set of
+students. A sentence with <em>no</em> is <strong>downward
+entailing</strong>: if the sentence is true for a set <span
+class="math inline">\(A\)</span>, then it is true for all subsets of
+<span class="math inline">\(A\)</span>.</p>
+<div class="example">
+<p>Let <span class="math inline">\(A\)</span> be the set of all
+students. The sentence <em>No student slept</em> asserts for each
+student <span class="math inline">\(s \in A\)</span> that <span
+class="math inline">\(s\)</span> did not sleep. Suppose this is true.
+Then <em>No X slept</em> is necessarily true if X denotes some set <span
+class="math inline">\(B \subseteq A\)</span> because we already know for
+each <span class="math inline">\(s \in B\)</span> that <span
+class="math inline">\(s\)</span> did not sleep. Since there is no subset
+of <span class="math inline">\(A\)</span> for which this entailment
+fails, <em>no</em> is indeed downward entailing.</p>
+</div>
+<div class="exercise">
+<p>Construct a similar argument to show that <em>every</em> is downward
+entailing.</p>
+</div>
+<p>All this talk about downward entailment is nice and dandy, but it
+doesn’t really help us with our problem. We are looking for an
+explanation why there are cases where <em>ever</em> is fine with
+<em>no</em> but not with <em>every</em>. If both <em>no</em> and
+<em>every</em> are downward entailing, then that can’t be the relevant
+property to explain the contrast. But it actually is, we just haven’t
+been looking in the right (or left) place.</p>
+<h2 id="left-entailment-and-right-entailment">Left entailment and right
+entailment</h2>
+<p>To bring out the difference between <em>every</em> and <em>no</em>,
+we have to make things a bit more mathematical. We shall think of
+<em>no</em> and <em>every</em> as functions that take two arguments and
+return either true or false.</p>
+<div class="example">
+<p>The sentence <em>no student slept</em> can instead be written as
+<em>no(student, slept)</em>, i.e. a function <em>no</em> that takes the
+arguments <em>student</em> and <em>slept</em>. On the other hand,
+<em>no(old man that I know, snores louder than 125db)</em> corresponds
+to the sentence <em>no old man that I know snores louder than
+125db</em>.</p>
+</div>
+<p>The intuition here is that <em>no</em>-sentences are of the general
+form <em>no X does/is Y</em>, with <em>X</em> as the first argument and
+<em>Y</em> as the second.</p>
+<div class="exercise">
+<p>Represent the following sentences in terms of this functional
+notation:</p>
+<ul>
+<li>No professor writes good lecture notes.</li>
+<li>Every professor could earn more in industry.</li>
+<li>This professor, no student likes.</li>
+</ul>
+</div>
+<p>One thing the functional notation makes very clear is that a sentence
+like <em>no student slept</em> consists of two distinct parts that
+contribute to the meaning. The first one, represented by X, is the set
+of things or objects that <em>no</em> picks from. The second one,
+represented by Y, states what each one of them does. Our previous
+examples of entailment only looked at X. We made inferences from <em>no
+students</em> to <em>no sophomores</em> and <em>no male student</em>.
+But what happens if we instead look at Y?</p>
+<p>The answer is “not much” if we look at <em>no</em>. But things get
+more interesting with <em>every</em>, so let us look at that one first.
+Consider a sentence like <em>every student ran</em>, and contrast it
+against <em>every student ran a 5k</em>. Is there an entailment here,
+and if so, in what direction? Every person who runs a 5k is a person who
+runs, but the opposite is not true because somebody who runs, say, 1
+mile is still a person who runs, but they’re not a person who runs a 5k.
+So the set of 5k-runners is necessarily a subset of all runners, but the
+set of runners is not guaranteed to be a subset of the set of 5k-runners
+(although this can happen if literally every runner is running a 5k). It
+is also clear that if every student ran a 5k, then every student ran,
+whereas the opposite does not hold. So all of a sudden the direction of
+inference is the other way round — if the sentence is true for Y, then
+it is true for every <strong>superset</strong> of Y. This shows that
+even though <em>every</em> was downward entailing with respect to X, it
+is <strong>upward entailing</strong> with respect to Y.</p>
+<div class="exercise">
+<p>Show that <em>no</em> is downward entailing with respect to Y.</p>
+</div>
+<p>And now we have the contrast between <em>every</em> and <em>no</em>
+that we need. For <em>every</em>, we see that it is downward entailing
+with respect to X but upward entailing with respect to Y. This is also
+called <strong>left downward entailing</strong> and <strong>right upward
+entailing</strong> (because X is the left argument of the function and Y
+the right argument). But <em>no</em> is both <strong>left downward
+entailing</strong> and <strong>right downward entailing</strong>. Now
+look once more at the example sentences from the beginning of the
+notebook.</p>
+<ol type="1">
+<li>No student should ever sleep in class. (well-formed)</li>
+<li>No student who ever slept in class should get a degree.
+(well-formed)</li>
+<li>Every student should ever sleep in class. (ill-formed)</li>
+<li>Every student who ever slept in class should get a degree.
+(well-formed)</li>
+</ol>
+<p>For clarity, let’s rewrite this in the form of a table</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><strong>Quantifier</strong></th>
+<th style="text-align: left;"><strong>X</strong></th>
+<th style="text-align: left;"><strong>Y</strong></th>
+<th style="text-align: center;"><strong>Status</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">no</td>
+<td style="text-align: left;">student</td>
+<td style="text-align: left;">should ever sleep in class</td>
+<td style="text-align: center;">well-formed</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">no</td>
+<td style="text-align: left;">student who ever slept in class</td>
+<td style="text-align: left;">should get a degree</td>
+<td style="text-align: center;">well-formed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">every</td>
+<td style="text-align: left;">student</td>
+<td style="text-align: left;">should ever sleep in class</td>
+<td style="text-align: center;">ill-formed</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">no</td>
+<td style="text-align: left;">student who ever slept in class</td>
+<td style="text-align: left;">should get a degree</td>
+<td style="text-align: center;">well-formed</td>
+</tr>
+</tbody>
+</table>
+<p>When <em>ever</em> occurs in X, then it is fine with both <em>no</em>
+and <em>every</em>, which are both left downward entailing
+(i.e. downward entailing with respect to X). But when <em>ever</em>
+occurs in Y, it must be with the right downward entailing <em>no</em>
+rather than the right upward entailing <em>every</em>. So we finally
+have our answer: downward entailing contexts allow for NPIs like
+<em>ever</em>, upward entailing ones do not.</p>
+<h2 id="connection-to-monotonicity">Connection to monotonicity</h2>
+<p>Upward entailing and downward entailing are both instances of
+monotonicity. In order to see this, we have to make our treatment a bit
+more mathematical (it’s still fairly informal for mathematicians’
+standards).</p>
+<p>Let <span class="math inline">\(f\)</span> be some function that
+takes as its input a set (X or Y in the notation above) and maps it to
+either 1 (for True) or 0 (for False). Intuitively, you can think of
+<span class="math inline">\(f\)</span> as a sentence with a hole in it
+that must be filled by the argument.</p>
+<div class="example">
+<p>The sentence <em>Every male student snored loudly</em> is an instance
+of the function <em>every <span class="math inline">\(\Box\)</span>
+snored loudly</em> applied to the argument <em>male student</em>. The
+function maps <em>male student</em> to 1 iff every male student snored
+loudly.</p>
+<p>Alternatively, we can view the sentence as an instance of the
+function <em>every male student <span
+class="math inline">\(\Box\)</span></em> applied to the argument
+<em>snored loudly</em>. This function, too, returns 1 iff it is true
+that every male student snored loudly.</p>
+</div>
+<p>The domain of such a function <span class="math inline">\(f\)</span>
+consists of all possible sets of individuals and objects. For instance,
+it contains the set of all students, the set of all male students, the
+set of all US presidents, the set of all loud snorers, and so on. We can
+order the domain by the subset relation <span
+class="math inline">\(\subseteq\)</span> such that <span
+class="math inline">\(A \subseteq B\)</span> iff every member of <span
+class="math inline">\(A\)</span> is also a member of <span
+class="math inline">\(B\)</span>. Similarly, we order the co-domain
+<span class="math inline">\(\left \{ 0,1 \right \}\)</span> in the usual
+fashion such that <span class="math inline">\(0 &lt; 1\)</span>.</p>
+<p>Now suppose that <span class="math inline">\(f\)</span> is
+monotonically increasing. Then <span class="math inline">\(A \subseteq
+B\)</span> implies <span class="math inline">\(f(A) \leq f(B)\)</span>.
+Whenever <span class="math inline">\(f(A) = 1\)</span>, it must be the
+case that <span class="math inline">\(f(B) = 1\)</span>. In other words,
+<span class="math inline">\(f\)</span> is upward entailing.</p>
+<div class="example">
+<p>Consider the sentences <em>Every student ran a 5k</em> and <em>Every
+student ran</em>. Clearly if the former is true, the latter must be too.
+We also know already that the set of students that ran a 5k (call it
+<span class="math inline">\(5k\)</span>) is a subset of the students
+that ran (call it <span class="math inline">\(R\)</span>). So we have
+<span class="math inline">\(5k \subseteq R\)</span>.</p>
+<p>Now suppose that <span class="math inline">\(\text{\emph{every
+student}}(5k) = 1\)</span>. Then <span
+class="math inline">\(\text{\emph{every student}}(R) \geq 1\)</span>
+because <span class="math inline">\(R \supseteq 5k\)</span> and the
+function is monotonically increasing. So the fact that the sentence is
+true for <span class="math inline">\(5k\)</span> entails that it is true
+for every superset of <span class="math inline">\(5k\)</span>. This is
+exactly what it means to be upward entailing.</p>
+</div>
+<p>Downward entailment works exactly the same except that the function
+is monotonically decreasing.</p>
+<div class="exercise">
+<p>Construct an example for downward entailment similar to the one above
+for upward entailment.</p>
+</div>
+<div class="exercise">
+<p>Alternatively, we may view downward entailment as a monotonically
+increasing function if sets are ordered by the superset relation instead
+of subset. Explain why!</p>
+</div>
+<p>As you can see, monotonicity isn’t limited to morphological
+paradigms. Without mathematics, it wouldn’t be obvious that the No
+Crossing constraint of phonology has anything to do with the <span
+class="math inline">\(^*\)</span>ABA generalization or the distribution
+of <em>ever</em>. The abstract notion of monotonicity allows us to tie
+them all together.</p>
+</div>
+</div>
+</body>
+</html>
