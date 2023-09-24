@@ -64,8 +64,8 @@ Justify your answer.
 - $\setof{a}$
 - $\setof{0,1}$
 - the set of all English words that are spelled with at most 5 characters
-- all natural numbers less than 1000
-- the nucleobases of DNA: adenine, cytosine, guanine, thymine 
+- the set of all natural numbers less than 1000
+- the set of the nucleobases of DNA: adenine, cytosine, guanine, thymine 
 
 :::
 
