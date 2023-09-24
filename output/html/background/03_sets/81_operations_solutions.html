@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Union, intersection, and complement of sets (Solutions)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a
+href="#union-intersection-and-complement-of-sets-solutions">Union,
+intersection, and complement of sets (Solutions)</a></li>
+<li><a
+href="#union-intersection-and-complement-of-sets-solutions-1">Union,
+intersection, and complement of sets (Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="union-intersection-and-complement-of-sets-solutions">Union,
+intersection, and complement of sets (Solutions)</h1>
+<div class="exercise">
+<p>For each one of the statements below, say whether it is true or
+false.</p>
+<ul>
+<li><span class="math inline">\(\emptyset = \left \{  \right
+\}\)</span></li>
+<li><span class="math inline">\(\emptyset = \left \{ \emptyset \right
+\}\)</span></li>
+<li><span class="math inline">\(\emptyset \in \left \{ a \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ a,b \right \} \neq
+\emptyset\)</span></li>
+</ul>
+<div class="solution">
+<ul>
+<li>True</li>
+<li>False</li>
+<li>False</li>
+<li>True</li>
+</ul>
+</div>
+<div class="solution_explained">
+<ul>
+<li>By definition, <span class="math inline">\(\emptyset\)</span> and
+<span class="math inline">\(\left \{  \right \}\)</span> are just
+different ways of denoting the empty set.</li>
+<li>The empty set is not the same thing as the set containing the empty
+set. The former has no elements, whereas the latter has exactly one
+element (which happens to be the empty set, but this is
+irrelevant).</li>
+<li>The set <span class="math inline">\(\left \{ a \right \}\)</span>
+has exactly one member, which is <span class="math inline">\(a\)</span>.
+When using symbols like <span class="math inline">\(a\)</span> or <span
+class="math inline">\(b\)</span> in exercises, we usually assume that
+they are distinct from other symbols. So we may assume that <span
+class="math inline">\(a \neq \emptyset\)</span>, which means that <span
+class="math inline">\(\emptyset \notin \left \{ a \right
+\}\)</span>.</li>
+<li>The set <span class="math inline">\(\left \{ a,b \right \}\)</span>
+has two members (again we assume that <span class="math inline">\(a \neq
+b\)</span>), whereas the empty set has no members at all. Clearly, then,
+these must be distinct sets.</li>
+</ul>
+</div>
+</div>
+<h1 id="union-intersection-and-complement-of-sets-solutions-1">Union,
+intersection, and complement of sets (Solutions)</h1>
+<div class="exercise">
+<p>Compute the union of the following:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{
+1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 0,1
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup
+\emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cup \left \{
+0,1 \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \} = \left \{ 0,1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{
+1,2,3 \right \} = \left \{ 0,1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 0,1
+\right \} = \left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \emptyset =
+\left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cup \left \{
+0,1 \right \} = \left \{ 0,1,2,3 \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>The union must contain all elements of the first set, all elements
+of the second set, and nothing else. In this case, where the first set
+contains <span class="math inline">\(0\)</span> and <span
+class="math inline">\(1\)</span>, and the second contains <span
+class="math inline">\(2\)</span> and <span
+class="math inline">\(3\)</span>, the union hence must contain all of
+the following, and nothing else: <span class="math inline">\(0\)</span>,
+<span class="math inline">\(1\)</span>, <span
+class="math inline">\(2\)</span>, and <span
+class="math inline">\(3\)</span>.</li>
+<li>The same logic still applies. The fact that <span
+class="math inline">\(1\)</span> appears in both sets does not affect
+how union works.</li>
+<li>The union of two identical sets always returns the same set.</li>
+<li>Since the empty set contains no elements at all, it is always the
+case that <span class="math inline">\(A \cup \emptyset = A\)</span> (and
+<span class="math inline">\(\emptyset \cup A = A\)</span>), no matter
+what <span class="math inline">\(A\)</span> looks like. And yes, this
+means that <span class="math inline">\(\emptyset = \emptyset \cup
+\emptyset\)</span>.</li>
+<li>This is exactly the same as the second exercise because union does
+not care about the order of the sets: <span class="math inline">\(A \cup
+B\)</span> is always the same as <span class="math inline">\(B \cup
+A\)</span>, just like <span class="math inline">\(m + n\)</span> is
+always the same as <span class="math inline">\(n + m\)</span> for
+addition of numbers.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the union of the following:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cup \left \{ 2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cup \left \{ 1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cup \left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cup \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cup \left \{
+0,\left \{ 1 \right \} \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cup \left \{ 2,3 \right \} = \left \{ 0, \left \{ 1 \right \}, 2, 3
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cup \left \{ 1,2,3 \right \} = \left \{ 0, \left \{ 1 \right \}, 1,
+2, 3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cup \left \{ 0,1 \right \} = \left \{ 0, \left \{ 1 \right \}, 1
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cup \emptyset = \left \{ 0, \left \{ 1 \right \} \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cup \left \{
+0,\left \{ 1 \right \} \right \} = \left \{ 1,2,3,0,\left \{ 1 \right \}
+\right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>Again we keep all elements from both sets. The only wrinkle is that
+one of those elements is itself a set, but that’s irrelevant for union.
+We do not care what exactly the elements are, if it is an element of at
+least one of <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> then it must be in <span
+class="math inline">\(A \cup B\)</span>.</li>
+<li>The important thing to keep in mind here is that <span
+class="math inline">\(1 \neq \left \{ 1 \right \}\)</span>, so the union
+must contain both <span class="math inline">\(1\)</span> and <span
+class="math inline">\(\left \{ 1 \right \}\)</span>.</li>
+<li>For the same reason as above, the union must contain both <span
+class="math inline">\(1\)</span> and <span class="math inline">\(\left
+\{ 1 \right \}\)</span>. If the exercise had asked for the union of
+<span class="math inline">\(\left \{ 0, \left \{ 1 \right \} \right \}
+\cup \left \{ 0, \left \{ 1 \right \} \right \}\)</span>, then the union
+would have been <span class="math inline">\(\left \{ 0, \left \{ 1
+\right \} \right \}\)</span> because <span class="math inline">\(A \cup
+A = A\)</span> for every set <span class="math inline">\(A\)</span>.
+Note again that it is completely immaterial for all of this that <span
+class="math inline">\(\left \{ 1 \right \}\)</span> is a set, the only
+thing that matters is that it is an element of at least one set and is
+distinct from <span class="math inline">\(0\)</span> and <span
+class="math inline">\(1\)</span>.</li>
+<li>As always, <span class="math inline">\(A \cup \emptyset = A\)</span>
+no matter what <span class="math inline">\(A\)</span> looks like.</li>
+<li>This is again the same <span class="math inline">\(\left \{ 0,\left
+\{ 1 \right \} \right \} \cup \left \{ 1,2,3 \right \} = \left \{ 0,
+\left \{ 1 \right \}, 1, 2, 3 \right \}\)</span>. Note that the solution
+given here has a different order from that set, but since sets have no
+internal order this is just an artefact of our writing system.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the union of the following in a step-wise fashion:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \} \cup \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \emptyset
+\cup \left \{ 2,3 \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \} \cup \emptyset = (\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \}) \cup \emptyset = \left \{ 0,1,2,3 \right \} \cup \emptyset =
+\left \{ 0,1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cup \emptyset
+\cup \left \{ 2,3 \right \} = (\left \{ 0,1 \right \} \cup \emptyset)
+\cup \left \{ 2,3 \right \} = \left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \} = \left \{ 0,1,2,3 \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<p>Another way to phrase the exercise would be to ask you to verify that
+<span class="math inline">\((\left \{ 0,1 \right \} \cup \left \{ 2,3
+\right \}) \cup \emptyset = \left \{ 0,1 \right \} \cup (\left \{ 2,3
+\right \} \cup \emptyset)\)</span>. Either way you are verifying that it
+does not matter in what order you carry out the union steps as the
+result will always be the same.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the intersection of the following:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 2,3
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{
+1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 0,1
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap
+\emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cap \left \{
+0,1 \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 2,3
+\right \} = \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{
+1,2,3 \right \} = \left \{ 1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 0,1
+\right \} = \left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \} \cap \emptyset =
+\emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cap \left \{
+0,1 \right \} = \left \{ 1 \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>As neither set contains any elements that occur in the other set,
+their intersection is empty.</li>
+<li>The only element shared by both sets is <span
+class="math inline">\(1\)</span>, hence the intersection is <span
+class="math inline">\(\left \{ 1 \right \}\)</span>. Note that the
+intersection of two sets is always a set, even if that set has only one
+member. It is incorrect to say that the intersection of <span
+class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 1,2,3 \right
+\}\)</span> is <span class="math inline">\(1\)</span>, it is the set
+<span class="math inline">\(\left \{ 1 \right \}\)</span>.</li>
+<li>Just like <span class="math inline">\(A \cup A = A\)</span> is
+universally true no matter what this set <span
+class="math inline">\(A\)</span> looks like, it is always the case that
+<span class="math inline">\(A \cap A = A\)</span>.</li>
+<li>Since the empty set contains no elements at all, the result of
+intersecting a set <span class="math inline">\(A\)</span> with the empty
+set will always be the empty set, no matter what <span
+class="math inline">\(A\)</span> looks like. Commit that to memory:
+<span class="math inline">\(A \cap \emptyset = \emptyset\)</span> for
+every set <span class="math inline">\(A\)</span>.</li>
+<li>When we contrast that against the second exercise with <span
+class="math inline">\(\left \{ 0,1 \right \} \cap \left \{ 1,2,3 \right
+\}\)</span>, we see once again that the order of the sets does not
+matter for intersection: <span class="math inline">\(\left \{ 0,1 \right
+\} \cap \left \{ 1,2,3 \right \} = \left \{ 1 \right \} = \left \{ 1,2,3
+\right \} \cap \left \{ 0,1 \right \}\)</span>. Just like union,
+intersection is commutative.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the intersection of the following:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cap \left \{ 2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cap \left \{ 1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cap \left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cap \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cap \left \{
+0,\left \{ 1 \right \} \right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cap \left \{ 2,3 \right \} = \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cap \left \{ 1,2,3 \right \} = \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cap \left \{ 0,1 \right \} = \left \{ 0 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,\left \{ 1 \right \} \right
+\} \cap \emptyset = \emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 1,2,3 \right \} \cap \left \{
+0,\left \{ 1 \right \} \right \} = \emptyset\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>As the two sets have no elements in common, their intersection is
+empty.</li>
+<li>Again it is crucial to keep in mind that <span
+class="math inline">\(\left \{ 1 \right \} \neq 1\)</span>. Hence the
+two sets have no overlap and their intersection is the empty set.</li>
+<li>Since <span class="math inline">\(\left \{ 1 \right \} \neq
+1\)</span>, only <span class="math inline">\(0\)</span> is a member of
+both sets, and the intersection is <span class="math inline">\(\left \{
+0 \right \}\)</span>. Remember that the intersection is not just <span
+class="math inline">\(0\)</span>, but <span class="math inline">\(\left
+\{ 0 \right \}\)</span>. Intersection of two sets always yields a
+set.</li>
+<li>This must be the empty set because <span class="math inline">\(A
+\cap \emptyset = \emptyset\)</span> for every set <span
+class="math inline">\(A\)</span>.</li>
+<li>Since <span class="math inline">\(A \cap B = B \cap A\)</span>, we
+can just reuse the result from the second line of this exercise.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Give a concrete example where <span class="math inline">\(A - B = B -
+A\)</span>. Then make a single change to <span
+class="math inline">\(A\)</span> such that <span class="math inline">\(A
+- B \neq B - A\)</span>.</p>
+<div class="solution">
+<p>Let <span class="math inline">\(A = B = \left \{ 1 \right
+\}\)</span>. Then <span class="math inline">\(A - B = \left \{ 1 \right
+\} - \left \{ 1 \right \} = B - A\)</span>. Now remove <span
+class="math inline">\(1\)</span> from <span
+class="math inline">\(B\)</span> such that <span class="math inline">\(B
+= \emptyset\)</span>. Then <span class="math inline">\(A - B = \left \{
+1 \right \} - \emptyset = \left \{ 1 \right \}\)</span>, which is
+distinct from <span class="math inline">\(B - A = \emptyset - \left \{ 1
+\right \} = \emptyset\)</span>.</p>
+</div>
+<div class="solution_explained">
+<p>In general, <span class="math inline">\(A - B \neq B - A\)</span>
+whenever <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are distinct sets, but if <span
+class="math inline">\(A = B\)</span> then <span class="math inline">\(A
+- B\)</span> is always the same as <span class="math inline">\(B -
+A\)</span>. Hence we can always pick <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> to be identical sets and then make a
+single change to render them distinct.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Assume that the context fixes <span class="math inline">\(A
+\mathrel{\mathop:}=\left \{ 0,1,2,3 \right \}\)</span>. Compute all of
+the following:</p>
+<ol type="1">
+<li><span class="math inline">\(\overline{\left \{ 0 \right
+\}}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ 0,\left \{ 1 \right
+\} \right \}}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{  \right
+\}}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ \left \{ 0 \right \}
+\right \}}\)</span></li>
+<li><span class="math inline">\(\left \{ \overline{\left \{ 0 \right \}}
+\right \}\)</span></li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(\overline{\left \{ 0 \right \}} = \left
+\{ 1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ 0,\left \{ 1 \right
+\} \right \}} = \left \{ 1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{  \right \}} = \left
+\{ 0,1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ \left \{ 0 \right \}
+\right \}} = \left \{ 0,1,2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ \overline{\left \{ 0 \right \}}
+\right \} = \left \{ \left \{ 1,2,3 \right \} \right \}\)</span></li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>Given the context specified at the beginning of the exercise, we may
+rewrite <span class="math inline">\(\overline{\left \{ 0 \right
+\}}\)</span> as <span class="math inline">\(\left \{ 0,1,2,3 \right \} -
+\left \{ 0 \right \}\)</span>. This is the set of all elements in <span
+class="math inline">\(\left \{ 0,1,2,3 \right \}\)</span> that are not
+elements of <span class="math inline">\(\left \{ 0 \right \}\)</span>.
+The only such elements are <span class="math inline">\(1\)</span>, <span
+class="math inline">\(2\)</span>, and <span
+class="math inline">\(3\)</span>, and thus the set is <span
+class="math inline">\(\left \{ 1,2,3 \right \}\)</span>.</li>
+<li>Keep in mind that <span class="math inline">\(1 \neq \left \{ 1
+\right \}\)</span>. So the only element of <span
+class="math inline">\(\left \{ 0,1,2,3 \right \}\)</span> that isn’t a
+member of <span class="math inline">\(\left \{ 0,\left \{ 1 \right \}
+\right \}\)</span> is <span class="math inline">\(0\)</span>, and we
+once again get <span class="math inline">\(\left \{ 1,2,3 \right
+\}\)</span>.</li>
+<li>Since the empty set contains no elements at all, we do not remove
+any elements at all from <span class="math inline">\(\left \{ 0,1,2,3
+\right \}\)</span>. Remember: <span class="math inline">\(A - \emptyset
+= A\)</span> for every set <span class="math inline">\(A\)</span>.</li>
+<li>This formula is just a different way of writing <span
+class="math inline">\(\left \{ 0,1,2,3 \right \} - \left \{ \left \{ 0
+\right \} \right \}\)</span>. But no member of <span
+class="math inline">\(\left \{ 0,1,2,3 \right \}\)</span> is a member of
+<span class="math inline">\(\left \{ \left \{ 0 \right \} \right
+\}\)</span> (remember that <span class="math inline">\(0 \neq \left \{ 0
+\right \}\)</span>). Hence we get <span class="math inline">\(\left \{
+0,1,2,3 \right \}\)</span>.</li>
+<li>This is a tricky one. You have to look very carefully to notice that
+this isn’t <span class="math inline">\(\overline{\left \{ \left \{ 0
+\right \} \right \}}\)</span> but rather <span
+class="math inline">\(\left \{ \overline{\left \{ 0 \right \}} \right
+\}\)</span>, which is the set that contains <span
+class="math inline">\(\overline{\left \{ 0 \right \}}\)</span>. We
+already know that the latter is <span class="math inline">\(\left \{
+1,2,3 \right \}\)</span>, so <span class="math inline">\(\left \{
+\overline{\left \{ 0 \right \}} \right \}\)</span> must be <span
+class="math inline">\(\left \{  \left \{ 1,2,3 \right \}  \right
+\}\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>No matter how one chooses <span class="math inline">\(A\)</span> and
+<span class="math inline">\(B\)</span>, it always holds that the
+complement of the complement of <span class="math inline">\(B\)</span>
+is identical to <span class="math inline">\(B\)</span> itself. In
+symbols: <span class="math inline">\(B =
+\overline{\overline{B}}\)</span>. Explain why this holds.</p>
+<p><em>Hint</em>: By definition, <span
+class="math inline">\(\overline{\overline{B}} = A - \overline{B} = A -
+(A - B)\)</span>.</p>
+<div class="solution">
+<p>At first glance, this seems to be wrong. For example, if <span
+class="math inline">\(A \mathrel{\mathop:}=\left \{ 1 \right \}\)</span>
+and <span class="math inline">\(B \mathrel{\mathop:}=\left \{ 2 \right
+\}\)</span>, then <span class="math inline">\(\overline{B} = A - B =
+\left \{ 1 \right \} - \left \{ 2 \right \} = \left \{ 1 \right
+\}\)</span>, whereas <span class="math inline">\(\overline{\overline{B}}
+= A - (A - B) = \left \{ 1 \right \} - \left \{ 1 \right \} =
+\emptyset\)</span>. But there is an additional assumption in place when
+writing <span class="math inline">\(\overline{B}\)</span> instead of
+<span class="math inline">\(A - B\)</span>. We said that <span
+class="math inline">\(\overline{B}\)</span> is a shorthand for <span
+class="math inline">\(A - B\)</span> if <span
+class="math inline">\(A\)</span> is clear from context. But in addition,
+it must also be the case that <span class="math inline">\(B\)</span> can
+only contain elements that are also elements of <span
+class="math inline">\(A\)</span>. In a sense, <span
+class="math inline">\(A\)</span> serves as a fixed universe that
+specifies all possible elements, and other sets only get to choose from
+that universe.</p>
+<p>With this additional assumption in place, the claim in the exercise
+is correct. Let us use <span class="math inline">\(S\)</span> to denote
+<span class="math inline">\(A - B\)</span>. That is to say, <span
+class="math inline">\(S\)</span> is the set of all <span
+class="math inline">\(x\)</span> such that <span class="math inline">\(x
+\in A\)</span> and <span class="math inline">\(x \notin B\)</span>.
+Hence <span class="math inline">\(A - S\)</span> must be the set of all
+<span class="math inline">\(y\)</span> such that <span
+class="math inline">\(y \in A\)</span> and it is not the case that <span
+class="math inline">\(y \notin B\)</span>. This is the same thing as
+saying that <span class="math inline">\(S\)</span> contains all <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(y
+\in A\)</span> and <span class="math inline">\(y \in B\)</span>. But
+since we just said that the notation <span
+class="math inline">\(\overline{B}\)</span> implies that every member of
+<span class="math inline">\(B\)</span> is a member of <span
+class="math inline">\(A\)</span>, the <span class="math inline">\(y \in
+A\)</span> part is redundant and we can shorten the definition of <span
+class="math inline">\(S\)</span> to “the set of all <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(y
+\in B\)</span>”. And that is simply <span
+class="math inline">\(B\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
