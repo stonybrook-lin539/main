@@ -3,11 +3,12 @@ title: Skill Survey (Not Graded)
 ---
 
 This survey is part of a *pre-post assessment* to determine your mathematical linguistics skills before and after taking the class.
-Some questions can be answered with prior training in mathematics, some with prior training in linguistics, some require both.
+**The expected outcome is that you do not know a single answer at this point**.
 
+Some questions can be answered with prior training in mathematics, some with prior training in linguistics, some require both.
 Answer the questions to the best of your abilities, but do not guess.
 If you do not know an answer, just say so and move on to the next question.
-It is perfectly fine to do this for every question, this is **not** a test of your ability to pass the class.
+It is perfectly fine not to know a single answer, this is **not** a test of your ability to pass the class.
 Ideally, once the semester is over, you will come back to all these questions and they will strike you as really easy (assuming, of course, that we got to the unit that gives the answer to the question).
 
 ## Sets
