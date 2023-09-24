@@ -5,21 +5,56 @@ pagetitle: >-
 
 # Making n-grams more powerful: Phonological tiers
 
-We started out this unit with $n$-gram grammars as a basic model for studying the linguistic domains of phonotactics and morphotactics, i.e. the rules that govern the arrangement of sounds and parts of word like *un-*, *re-*, *-ly*, *-ize*, *-ation*, *-s*, and so on.
-After that, we switched to more applied issues and the bag-of-words model.
-In order to be truly effective, the bag-of-words model must be combined with stop word removal.
-You might think that stop word removal, being a technique for real-world applications, offers nothing of value to linguistics.
-But stop word removal is actually closely related to what linguists call *phonological tiers*.
+We started this chapter with $n$-gram grammars as a basic model for studying the linguistic domains of phonotactics and morphotactics, i.e. the rules that govern the arrangement of sounds and parts of word like *un-*, *re-*, *-ly*, *-ize*, *-ation*, *-s*, and so on.
+We have learned a lot about these grammars.
+Positive and negative grammars are equally powerful, and the larger the value of $n$, the more patterns can be captured with $n$-gram grammars.
+But is there something like a cutoff point of language, some value of $n$ that allows us to handle all aspects of phonotactics and morphotactics?
+The answer is no, and in fact, things are even worse: there are phenomena that we cannot capture with our current $n$-gram grammars no matter how large a value of $n$ we pick.
+That's not good, but not too hard to fix, either.
 
 ## The limits of $n$-gram grammars
 
-We already know that (positive/negative) $n$-gram grammars can be used to describe all kinds of conditions on natural language phonotactics and morphotactics.
-But these grammars can only enforce locally bounded conditions like intervocalic voicing or penultimate stress.
-These phenomena have the property that it suffices to consider a finitely bounded number of adjacent segments.
-Not all natural language phenomena obey this condition.
+We already know that (positive/negative) $n$-gram grammars can be used to describe various kinds of conditions on natural language phonotactics and morphotactics.
+This includes word-final devoicing, intervocalic voicing or penultimate stress, where primary stress must fall on the last but one syllable in a word.
+For some patterns, though, $n$-gram grammars can be really clunky.
 
 ::: example
-One of these phenomena is attested in **Samala**, which belongs to the group of Chumash languages spoken in southern California.
+Vowel harmony is a common phenomenon where certain vowels cannot co-occur in a given word.
+This happens in Hungarian, Finnish, Korean, and many other languages.
+Take the case of Korean.
+Korean distinguishes three classes of vowels: bright (B), mid dark (M), and high dark (H).
+Let us ignore H for now and consider only words where all vowels belong to class B or to class M.
+This is actually an exclusive *or*:  no word may mix vowels of class B with vowels of class M.
+Can we express this with an $n$-gram grammar?
+Yes, but it isn't exactly nice.
+
+First, we need to consider the Korean syllable template.
+The most complex syllables in Korean are of the form CGVC, where V is a vowel as usual, C is a consonant as usual, and G is a subtype of consonant called a *glide*.
+But there is an independent constraint that no two vowels can be separated by more than two consonants.
+All we have to do is to rule out that these two vowels belong to different classes, which we can do very easily with a negative grammar that mixes $n$-grams of varying lengths:
+
+- BM
+- MB
+- BCM
+- MCB
+- BCCM
+- MCCB
+
+This looks pretty neat, so why did I say that $n$-gram grammars do not handle this well?
+The problem is that the $n$-gram grammars do not operate with abstract classes like this, they work with segments.
+Korean has 19 consonants, which means the single 4-gram BCCM actually corresponds to $19 \times 19 = 361$ 4-grams.
+Actually, it's even more than that because we haven't yet replaced the abstract symbols B and M by the corresponding vowels.
+Even if we refrain from doing that and only replace C with all possible consonants, we are looking at over 700 $n$-grams.
+Replace B and M and the count will be in the thousands, and if you want to pad everything out to $4$-grams, it will be in the tens of thousands.
+:::
+
+That an $n$-gram grammar of Korean vowel harmony needs so many $n$-grams does not seem right, for two reasons.
+First, it is strange that a simple and natural process like vowel harmony cannot be stated in a unified fashion and should require tons of $n$-grams.
+Second, it is even stranger that the number of consonants should impact how elegantly we can describe vowel harmony.
+Vowel harmony does not care about consonants, so why should the appeal of our model hinge on the language's consonant inventory?
+
+::: example
+For an even more extreme example, consider the case of **Samala**, which belongs to the group of Chumash languages spoken in southern California.
 Samala displays a constraint known as **long-distance sibilant harmony**.
 All sibilants in a word must agree in anteriority, no matter how far apart they are.
 This means that a word can certainly contain multiple instances of *s* or multiple instances of *ʃ* (ʃ is the IPA symbol corresponding to English *sh*).
@@ -27,60 +62,90 @@ But it may never contain a mixture of the two.
 So *haʃxintilawaʃ* is well-formed, whereas *hasxintilawaʃ* and *haʃxinitilawas* are both ill-formed.
 The form *hasxintilawas*, while not an actual word of Samala, would also obey the sibilant harmony constraint.
 
-
 Even a 10-gram grammar cannot capture these contrasts.
 A negative 10-gram grammar that generates both *hasxinitilawas* and *haʃxintilawaʃ* must not forbid any of the following:
-
 
 - *sxintilawa*
 - *xintilawas*
 - *ʃxintilawa*
 - *xintilawaʃ*
 
-
 But then this grammar would also allow for the illicit *hasxintilawaʃ* and *haʃxintilawas*.
 Only an 11-gram grammar could capture the contrast.
 :::
 
 ::: exercise
-Write an 11-gram grammar that generates *hasxintilawas* and *haʃxintilawaʃ*, but not *hasxintilawaʃ* and *haʃxinitilawas*.
-The grammar may be positive or negative, whichever you prefer.
+Write an 11-gram grammar that generates... you know what, no, don't do that, life is too short to write 11-gram grammars.
+Instead, try to estimate how many $11$-grams a negative $n$-gram grammar would need so that it can generate
+*hasxintilawas* and *haʃxintilawaʃ* but still rules out *hasxintilawaʃ* and *haʃxinitilawas*.
+You may make the following simplifying assumptions:
+
+- The only vowel and consonants are those that occur in the words above.
+- There are no restrictions on the syllable template.
+  That is to say, each position may be any one of the available vowels and consonants irrespective of the surrounding context.
 :::
 
 ::: exercise
-Extend the grammar so that it also captures the fact that *ʃtajanowonowaʃ* is licit whereas *stajanowonowaʃ* is illicit.
-You might have to move beyond 11-grams.
+Actually, Samala has even longer words with instances of sibilant harmony.
+For example, *ʃtajanowonowaʃ* is attested whereas *stajanowonowaʃ* is illicit.
+Are 11-grams still enough to handle this?
+If not, what is the new value of $n$, and how does that alter your estimate of a negative $n$-gram grammars size?
+Would you say that is a large grammar?
 :::
 
-Samala's long-distance sibilant harmony can be handled by an $n$-gram grammar only if there is some upper bound $k < n$ such that sibilants in a Samala word are never separated by more than $k$ symbols.
-The examples above show that this $k$ is at least 12, so one would need at least a 13-gram grammar to handle the process.
-Such large $n$-grams simply aren't feasible in practice.
+Samala's long-distance sibilant harmony can be handled by $n$-gram grammars, but not in an elegant fashion.
+Moreover, it only works because we assume that there is some upper bound $k < n$ such that sibilants in a Samala word are never separated by more than $k$ symbols.
+That is technically true, but the value of $k$ may increase as new words are added to the language.
+If that causes $k$ to become larger than $n$, the whole $n$-gram grammar would have to be tossed out and be replaced with one that uses a larger $n$.
+Again this does not seem right.
+The shape of our sibilant harmony grammar should not be contingent on a completely unrelated property such as the length of the longest word in Samala.
+But we cannot do away with this unrelated property: without an upper bound on the distance between sibilants, sibilant harmony simply cannot be captured by any $n$-gram grammar.
 
 ::: example
-Suppose for the sake of argument that Samala has only three sounds: a vowel, *s*, and *ʃ*.
-Then there are $3^{13} = 1,594,323$ distinct $n$-grams.
-Only the $n$-grams that do not mix *s* and *ʃ* are well-formed, of which there are $2 \mult 2^{13} = 2^{14} = 16,384$.
-So a positive 13-gram grammar for Samala's sibilant harmony would contain $16,384$ distinct 13-grams (plus a few with {{{L}}} or {{{R}}}), and a negative one $1,594,323 - 16,384 = 1,586,131$.
-That's a lot.
+Let us return to Korean vowel harmony one more time in order to illustrate the problem.
+This time around, we will also consider the high dark vowels in class H.
+These are neutral vowels, which means that they can occur together with bright (B) or mid dark (M) vowels.
+So possible Korean words are CBCHCHCB and CMCHCHCM, among many others, but not CBCHCHCM or CMCHCHCB, where we have B and M in the same word, albeit separated by several neutral vowels.
+The only way we can capture this with an $n$-gram grammar is to assume that there is some upper bound $k$ such that at most $k$ syllables in a row may contain H instead of B or M.
+
+Suppose no such bound exists.
+Then the following two strings must be well-formed, for arbitrary $k$.
+
+- CB(CH)^k^CB
+- CM(CH)^k^CM
+
+The following string, however, should be ill-formed because we are mixing B and M:
+
+- CB(CH)^k^CM
+
+In order to rule out this string, we need to forbid at least one of the $n$-grams of ${{{L}}}^{n-1}$CB(CH)^k^CM${{{R}}}^{n-1}$.
+But as long as $k > n$, every $n$-gram of
+${{{L}}}^{n-1}$CB(CH)^k^CM${{{R}}}^{n-1}$
+is also an $n$-gram of
+${{{L}}}^{n-1}$CB(CH)^k^CB${{{R}}}^{n-1}$
+or
+${{{L}}}^{n-1}$CM(CH)^k^CM${{{R}}}^{n-1}$
+(or both).
+Consequently, it is impossible for an $n$-gram grammar to rule out CB(CH)^k^CM without incorrectly ruling out at least one of CB(CH)^k^CB and CM(CH)^k^CM.
 :::
 
-Large grammars are undesirable for multiple reasons.
-They are almost impossible to decipher for humans.
-Who is supposed to look at $16,384$ distinct 13-grams and deduce what condition they encode?
-And the larger the grammar, the more computational resources it consumes.
-Small grammars are fast and easy to figure out, large grammars are slow and indecipherable.
-Small grammars trump large grammars.
+The only way to handle all these phenomena with $n$-gram grammars is to stipulate the existence of a fixed upper bound.
+That is because $n$-gram grammars can only handle locally bounded dependencies, and stipulating an upper bound like a maximum length for words ensures that everything is a locally bounded dependency.
+While doing so does get the job done, it results in giant, hideous grammars that do not capture the essence of the phenomenon and that have to be adapted and changed as the assumed upper bound changes.
+For all intents and purposes, this is a horrible way of handling these phenomena.
 
 
 ## Phonological tiers allow for smaller grammars
 
-If you have some background in phonology, you might already be thinking that there is a much simpler solution: project a **tier** that contains only sibilants (*s* and *ʃ*), and regulate the shape of this sibilant tier with a negative bigram grammar containing only *sʃ* and *ʃs*.
-That's one darn small grammar.
+If you have some background in phonology, you might already be thinking that there is a very simple solution to all this: for any given string, we project a **tier** that contains only the segments that we care about and use an $n$-gram grammar to regulate the shape of that tier.
 
 ::: example
+For sibilant harmony, we want a sibilant tier that contains all sibilants (*s* and *ʃ*).
+And this sibilant tier must be well-formed according to a negative bigram grammar that forbids *sʃ* and *ʃs*.
+That's one darn small grammar.
+
 The sibilant tier of *hasxintilawas* is *ss*, which is allowed by the negative grammar.
 The illicit *hasxintilawaʃ*, on the other hand, has the sibilant tier *sʃ*, which is not allowed.
-:::
 
 ~~~ {.include-tikz size=mid}
 tier_good.tikz
@@ -89,14 +154,16 @@ tier_good.tikz
 tier_bad.tikz
 ~~~
 
+:::
+
 ::: exercise
 Carry out the same calculations for
-
 
 - *haʃxintilawaʃ*,
 - *haʃxinitilawas*, and
 - *ʃtajanowonowaʃ*.
 
+That is to say, write down their tiers (or draw them), and then indicate whether the tier is well-formed or ill-formed according to the negative bigram grammar above.
 :::
 
 ::: exercise
@@ -104,60 +171,47 @@ As an abstract example, suppose that our alphabet consists of $a$, $b$, and $c$,
 What is the tier of $\mathit{aabaccacb}$?
 :::
 
-Tiers are a nice linguistic metaphor, but what is going on here at a formal level?
-Exactly the same thing as with stop word removal.
-We have a function that removes all irrelevant elements, and then we apply a specific procedure to the output of this function.
-For stop word removal, that follow-up procedure was the construction of a bag of words.
-With tier projection, we instead test the output for well-formedness with respect to an $n$-gram grammar.
-
-## The mathematics of tiers
-
-Remember that $\mathit{del}_S$ is a function that takes a string as its input and deletes all symbols that belong $S$.
-Tier projection works pretty much the same, except that one usually specifies which symbols to keep rather than which to delete.
-So given a set $T$ of tier symbols, $\mathit{del}_T$ takes a string as its input and keeps only those symbols that belong to $T$.
-This difference is very similar to the split between positive and negative grammars: $T$ specifies what may be kept, $S$ what must not be kept.
-We can unify stop word removal and tier projection to a single function $\mathit{del}_X$, where $X$ is some set with a specified polarity.
-With $\mathit{del}_{^+X}$, only the symbols in $X$ are kept, whereas $\mathit{del}_{^-X}$ removes all symbols that belong to $X$ (and only those).
-
-::: exercise
-Compute the values for all of the following:
-
-
-- $\mathit{del}_{^-\setof{a,b}}(\mathit{aaccbad})$
-- $\mathit{del}_{^+\setof{a,b}}(\mathit{aaccbad})$
-- $\mathit{del}_{^+\setof{a,b}}(\mathit{aababad})$
-- $\mathit{del}_{^-\setof{a,b}}(\mathit{aababad})$
-- $\mathit{del}_{^-\setof{a,b}}(\emptystring)$
-- $\mathit{del}_{^+\setof{a,b}}(\emptystring)$
-
+::: example
+Tiers also provide a solution for Korean vowel harmony.
+Let us once again consider only words that do not contain any instances of the neutral vowel H.
+We construct a vowel harmony tier that contains every instance of B and M, but no consonants at all.
+For example, a word of the form CGBCBCM would have the vowel harmony tier BBM.
+On the vowel harmony tier, there must be no occurrences of BM or MB, which can easily be enforced by a negative bigram grammar.
 :::
 
-You might think that this isn't a true unification, we have just moved the difference between stop word removal and tier projection into the polarity distinction.
-But just as with $n$-gram grammars, polarity doesn't actually matter.
-For every set $A$ of symbols drawn from some fixed alphabet $\Sigma$, there is some set $B$ such that $\mathit{del}_{^-A}(s) = \mathit{del}_{^+B}(s)$ and $\mathit{del}_{^+A}(s) = \mathit{del}_{^-B}$ for every string $s$ over $\Sigma$.
-
 ::: exercise
-Explain why this holds.
-Illustrate your argument with a few examples.
+For each one of the strings below, construct its vowel harmony tier and say whether the tier is well-formed according to the negative bigram grammar above.
+
+- CBCGBCB
+- CGMCBCM
+- CB
 :::
 
-This is a pretty nifty result.
-Intuitively, stop word removal and tier projection seem completely unrelated.
-One is about cleaning up data for practical applications, the other about simplifying linguistic analysis.
-But mathematically, they are exactly the same thing.
-In later units, we will see many more examples of this unifying power of math.
+::: exercise
+Now let us also consider words with the neutral vowel class H, for instance the illicit CBCHCHCM.
+Do we need to make any modifications to the vowel harmony tier or the negative bigram grammar?
+If so, what are those modifications?
+:::
 
 ::: exercise
-The term **culminativity** refers to the property that every word has exactly one primary stress.
-Suppose that our alphabet is $\setof{\sigma, \acute{\sigma}}$, where $\sigma$ denotes an unstressed syllable and $\acute{\sigma}$ one with primary stress.
-Specify a set $^+T$ of tier symbols and a bigram grammar $G$ to capture culminativity (*hint*: {{{L}}} and {{{R}}} can be used with tiers, too).
+For each one of the following, say whether it is true or false.
+Justify your answer.
+
+- The size of the negative bigram grammar regulating the vowel harmony tier is not contingent on the syllable structure of Korean.
+- The size of the negative bigram grammar regulating the vowel harmony tier is not contingent on the number of consonants in Korean.
+- The size of the negative bigram grammar regulating the vowel harmony tier is not contingent on the number of vowels in Korean.
+- The size of the negative bigram grammar regulating the vowel harmony tier is not contingent on any fixed upper bound on the length of words.
 :::
+
+As you can see from those examples (and exercises), tiers are a wonderful addition to our toolbox.
+They endow $n$-gram grammars with the ability to handle long-distance phenomena without unappealing assumptions such as an upper bound on the length of words.
+Instead of applying directly to the string, the $n$-gram grammar instead regulates the shape of a tier.
+Since the tier does not contain symbols that can never matter for the dependency, the grammar can state the relevant generalizations more succinctly without mentioning irrelevant material.
+And as we will see in the next unit, tiers are a very minimal addition that preserve many of the properties we have previously established for $n$-gram grammars.
 
 ## Recap
 
 - No $n$-gram grammar provides an elegant account of long-distance phenomena.
-- The larger the $n$-grams, the larger the grammar; large grammars are unwieldy and computationally inefficient.
-- Phonological tiers allow for more compact grammars by filtering out irrelevant material.
-- The stop word removal function $\mathit{del}$ is also the function for constructing phonological tiers.
-- Math allows us to unify things that look very different at the surface.
-  In particular, linguistic theory and language technology seem like very different beasts, but they actually share a lot of math.
+- The larger the $n$-grams, the larger the grammar; large grammars are unwieldy and inefficient.
+- Phonological **tiers** allow for more compact grammars by filtering out irrelevant material.
+- Unless one assumes an upper bound on the length of long-distance dependencies, $n$-gram grammars without tiers cannot capture certain phenomena.

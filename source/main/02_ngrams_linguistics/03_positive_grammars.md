@@ -85,13 +85,13 @@ Easy peasy, so let's write it down as a negative grammar.
 Here's the list of the forbidden $n$-grams that correspond to each one of the conditions.
 
 1. start with *de-*
-    1. *{{{L}}} \$*
+    1. *{{{L}}} {{{R}}}*
     1. *{{{L}}} nature*
     1. *{{{L}}} -al*
     1. *{{{L}}} -ize*
     1. *{{{L}}} -ation*
 1. *de-* is followed by *nature*
-    1. *de- \$*
+    1. *de- {{{R}}}*
     1. *de- de-*
     1. *de- -al*
     1. *de- ize*

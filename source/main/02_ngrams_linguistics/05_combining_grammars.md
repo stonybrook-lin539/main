@@ -174,7 +174,7 @@ And $N_2 \is \Sigma_E^n - P_2 = \overline{P_2}$ is the negative grammar counterp
 
 ::: exercise
 Suppose our alphabet contains only $a$ and that $G$ is a positive grammar containing the bigrams *{{{L}}}a*, *aa*, and *a{{{R}}}* (and nothing else).
-Compute $\overline{G}$, then verify for yourself that $\overline{G}$, when interpreted as negative grammar, accepts the same strings as $G$. 
+Compute $\overline{G}$, then verify for yourself that $\overline{G}$, when interpreted as a negative grammar, accepts the same strings as $G$. 
 :::
 
 So given some grammar $G$ of one polarity, $\overline{G}$ of the opposite polarity generates the same string language.
