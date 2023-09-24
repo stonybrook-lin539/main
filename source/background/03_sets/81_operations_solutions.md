@@ -33,9 +33,6 @@ For each one of the statements below, say whether it is true or false.
 
 :::
 
-
-# Union, intersection, and complement of sets (Solutions)
-
 ::: exercise
 Compute the union of the following:
 
