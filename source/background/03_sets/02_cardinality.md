@@ -5,7 +5,7 @@ pagetitle: Cardinality
 # Cardinality
 
 :::prereqs
-- sets (notation, operations)
+- sets (basic notation, operations)
 - functions (basic notation, domain terminology)
 :::
 

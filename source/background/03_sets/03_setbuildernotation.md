@@ -110,7 +110,7 @@ Express the following in terms of set-builder notation:
 
 :::
 
-## Summary
+## Recap
 
 - The empty set, denoted $\emptyset$, contains no elements at all.
 - Set-builder notation uses the format $\setof{ \text{expression using variable(s)} \mid \text{definition of variable(s)} }$.
