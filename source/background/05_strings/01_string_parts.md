@@ -99,3 +99,5 @@ Say whether the following is True or False:
 Every substring of some string $s$ is also a subsequence of $s$, but not the other way round.
 Justify your answer.
 :::
+
+fixme: add prefixes and suffixes
