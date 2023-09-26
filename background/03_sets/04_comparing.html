@@ -65,7 +65,7 @@ class="math inline">\(\not\subseteq\)</span></a></li>
 <h1 id="comparing-sets">Comparing sets</h1>
 <div class="prereqs">
 <ul>
-<li>sets (notation, operations, cardinality)</li>
+<li>sets (basic notation, operations, cardinality)</li>
 </ul>
 </div>
 <p>Two sets can stand in several distinct relations to each other:</p>
@@ -91,14 +91,15 @@ that <span class="math inline">\(B\)</span> is a
 <strong>superset</strong> of <span class="math inline">\(A\)</span>
 (written <span class="math inline">\(B \supseteq A\)</span>).</p>
 <div class="example">
-<p>A transitive verb is a verb that occurs with a subject and an object:
-<em>devour</em>, <em>contradict</em>, <em>wager</em>, <em>flummox</em>,
-and many more. Not all verbs are transitive, e.g. <em>sleep</em> or
-<em>give</em>. Suppose <span class="math inline">\(T\)</span> is the set
-of all English transitive verbs, whereas <span
-class="math inline">\(V\)</span> is the set of all English verbs. Since
-every transitive verb is a verb, but no the other way round, we have
-<span class="math inline">\(T \subseteq V\)</span>.</p>
+<p>A transitive verb is a verb that occurs with a subject and one
+object: <em>devour</em>, <em>contradict</em>, <em>wager</em>,
+<em>flummox</em>, and many more. Not all verbs are transitive,
+e.g. <em>sleep</em> or <em>give</em>. Suppose <span
+class="math inline">\(V_T\)</span> is the set of all English transitive
+verbs, whereas <span class="math inline">\(V\)</span> is the set of all
+English verbs. Since every transitive verb is a verb, but no the other
+way round, we have <span class="math inline">\(V_T \subseteq
+V\)</span>.</p>
 </div>
 <p>By the definition of subset, every set <span
 class="math inline">\(S\)</span> is a subset of itself. The reasoning is
@@ -162,6 +163,14 @@ a,a,b,b \right \}\)</span></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left \{ \left
+\{ a \right \}, b \right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left \{
+a,a,b,b \right \}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -196,6 +205,14 @@ of <span class="math inline">\(B\)</span> is a member of <span
 class="math inline">\(A\)</span>. But that can only happen if the sets
 are identical.</p></li>
 </ol>
+<div class="exercise">
+<p>Consider the set <span class="math inline">\(E\)</span> that contains
+all even natural numbers that are at least 0 and at most 10. Show that
+this is the same as the set that contains all <span
+class="math inline">\(n\)</span> such that <span class="math inline">\(n
+= 2m\)</span> for <span class="math inline">\(m \in \left \{ 0,1,2,3,4,5
+\right \}\)</span>.</p>
+</div>
 <h2 id="proper-subset-and-superset">Proper subset and superset</h2>
 <p>We call <span class="math inline">\(A\)</span> a <strong>proper
 subset</strong> of <span class="math inline">\(B\)</span> (<span
@@ -213,12 +230,12 @@ of <span class="math inline">\(A\)</span> (<span class="math inline">\(B
 \supsetneq A\)</span>).</p>
 <div class="example">
 <p>Given our previous discussion, the set <span
-class="math inline">\(T\)</span> of transitive verbs is proper subset of
-the set <span class="math inline">\(V\)</span> of verbs because it is a
-subset but not every verb is a transitive verb. In other words, <span
-class="math inline">\(T \subseteq V\)</span> yet <span
-class="math inline">\(T \neq V\)</span>. Hence <span
-class="math inline">\(T \subsetneq V\)</span>.</p>
+class="math inline">\(V_T\)</span> of transitive verbs is proper subset
+of the set <span class="math inline">\(V\)</span> of verbs because it is
+a subset but not every verb is a transitive verb. In other words, <span
+class="math inline">\(V_T \subseteq V\)</span> yet <span
+class="math inline">\(V_T \neq V\)</span>. Hence <span
+class="math inline">\(V_T \subsetneq V\)</span>.</p>
 </div>
 <div class="exercise">
 <p>Fill in <span class="math inline">\(=\)</span>, <span
@@ -227,6 +244,8 @@ class="math inline">\(\supsetneq\)</span> as appropriate.</p>
 <ul>
 <li><span class="math inline">\(\left \{ a,b \right \} \_ \left \{ a
 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ a,b \right \} \_ \left \{ \left
+\{ a \right \} \right \}\)</span></li>
 <li><span class="math inline">\(\left \{ a,a,b,c \right \} \_ \left \{
 b,b,a,c \right \}\)</span></li>
 <li><span class="math inline">\(\left \{ 1,2,3 \right \} \_ \left \{ n +
@@ -342,8 +361,8 @@ class="math inline">\(\subset\)</span></h3>
 class="math inline">\(\subset\)</span> in other math texts. Some authors
 use <span class="math inline">\(\subset\)</span> instead of <span
 class="math inline">\(\subseteq\)</span>, while others use it for <span
-class="math inline">\(\subsetneq\)</span>. As you might imagine, this
-can be very confusing for the reader, so it’s best to avoid <span
+class="math inline">\(\subsetneq\)</span>. As you might imagine, this is
+a frequent source of confusion. It is best to avoid <span
 class="math inline">\(\subset\)</span> and use <span
 class="math inline">\(\subseteq\)</span> and <span
 class="math inline">\(\subsetneq\)</span> instead.</p>
@@ -399,10 +418,9 @@ class="math inline">\(a\)</span>)</td>
 <p>As you might have expected, there’s corresponding counterparts for
 superset: <span class="math inline">\(\supseteq\)</span>, <span
 class="math inline">\(\supsetneq\)</span>, <span
-class="math inline">\(\not\supseteq\)</span>. But there is no
-standardized symbol for sets being incomparable, although some authors
-like to use <span class="math inline">\(\sim\)</span> for this
-purpose.</p>
+class="math inline">\(\not\supseteq\)</span>. There is no standardized
+symbol for sets being incomparable, although some authors like to use
+<span class="math inline">\(\sim\)</span> for this purpose.</p>
 <h2 id="recap">Recap</h2>
 <div class="definition">
 <p>Let <span class="math inline">\(A\)</span> and <span

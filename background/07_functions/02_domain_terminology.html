@@ -134,13 +134,27 @@ class="math inline">\(f\)</span> from the example above maps <span
 class="math inline">\(x\)</span> to <span
 class="math inline">\(4\)</span>.</p>
 </div>
-<p>How tightly one wants to define the domain and co-domain is a matter
-of taste. A loose definition tells the reader very little about what
-gets mapped to what by the function, but a definition with a very tight
-fit makes things difficult to read. Nonetheless, the domain and
-co-domain are a crucial part of a function’s definition, and this is why
-they are usually specified before the precise mapping from inputs to
-outputs is even given.</p>
+<p>In the example above, the function <span
+class="math inline">\(f\)</span> is <strong>partial</strong> because it
+is not defined on all values of the domain. A <strong>total</strong>
+function, on the other hand, maps every element of its domain to some
+element of its co-domain. Fields differ in whether they take total or
+partial functions to be the default. For example, computer scientists
+usually assume total functions and explicitly mention it when a function
+is partial, whereas it is common in calculus to assume partial functions
+and explicitly mention it when a function is total. Of course every
+partial function can be made total by giving a tighter definition of its
+domain, but this is not always practical. Sometimes the function is so
+complex that one simply cannot say what elements it is defined on, and
+hence one can only approximate its domain.</p>
+<p>Quite generally, it is a matter of taste how tightly one wants to
+define the domain and co-domain. A loose definition tells the reader
+very little about what gets mapped to what by the function, but a
+definition with a very tight fit, if it can be found at all, makes
+things difficult to read. Nonetheless, the domain and co-domain are a
+crucial part of a function’s definition, and this is why they are
+usually specified before the precise mapping from inputs to outputs is
+even given.</p>
 <div class="example">
 <p>Here is an example of what this may look like: Let <span
 class="math inline">\(E\)</span> be the set of English first names. Then
@@ -149,13 +163,14 @@ the function <span class="math inline">\(f: E \rightarrow \left \{ 0,1
 class="math inline">\(1\)</span> iff <span
 class="math inline">\(n\)</span> contains at least three syllables.</p>
 </div>
-<p>The mapping from arguments to outputs can be defined in various ways,
-e.g. in plain English, or as a formula like <span
-class="math inline">\(f(x) = \frac{(x + x^2 +
-5)^{x+1}}{1000^x}\)</span>. For very simple functions whose name was
-already mentioned, one often writes <span class="math inline">\(x
-\mapsto y\)</span> instead of <span class="math inline">\(f(x) =
-y\)</span>.</p>
+<p>Irrespective of how one defines the domain and co-domain, and
+irrespective of whether a function is total or partial, the mapping from
+arguments to outputs can be defined in various ways, e.g. in plain
+English, or as a formula like <span class="math inline">\(f(x) =
+\frac{(x + x^2 + 5)^{x+1}}{1000^x}\)</span>. For very simple functions
+whose name was already mentioned, one often writes <span
+class="math inline">\(x \mapsto y\)</span> instead of <span
+class="math inline">\(f(x) = y\)</span>.</p>
 <div class="example">
 <p>Instead of <span class="math inline">\(f(x) = 5 \times x -
 3\)</span>, we may simply write <span class="math inline">\(x \mapsto 5
@@ -182,6 +197,8 @@ the set that outputs can be drawn from.</li>
 <li>The standard notation is <em>function name: domain <span
 class="math inline">\(\rightarrow\)</span> co-domain</em>, e.g. <span
 class="math inline">\(f: \Sigma^* \rightarrow \mathbb{N}\)</span>.</li>
+<li>A function is <strong>total</strong> if it is defined for all
+elements of its domain.</li>
 <li>When the function we are defining is already clear from context, we
 may write <span class="math inline">\(x \mapsto y\)</span> instead of
 <span class="math inline">\(f(x) = y\)</span>. For example, <span
