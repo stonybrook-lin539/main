@@ -38,7 +38,10 @@
 <nav id="TOC" role="doc-toc">
 <p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
 <ul>
-<li><a href="#cardinality">Cardinality</a></li>
+<li><a href="#cardinality">Cardinality</a>
+<ul>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -64,13 +67,25 @@ class="math inline">\(0\)</span> members.</p>
 <p>This is commonly called the <strong>size</strong> of a set, but the
 more accurate term is <strong>cardinality</strong>. The cardinality of a
 set <span class="math inline">\(A\)</span> is denoted <span
-class="math inline">\(\left | A \right |\)</span>. We say that <span
+class="math inline">\(\left | A \right |\)</span>.</p>
+<p>Often we do not care about the exact value of <span
+class="math inline">\(\left | A \right |\)</span> but rather how it
+compares to <span class="math inline">\(\left | B \right |\)</span> for
+some other set <span class="math inline">\(B\)</span>. In such cases it
+isn’t always practical to simply count how many members each set has
+(the sets may be very large, or perhaps even infinite). Instead, one can
+use functions to compare the cardinality of sets. We say that <span
 class="math inline">\(\left | A \right | \leq B\)</span> iff there is a
-function <span class="math inline">\(f\)</span> such that every element
-of <span class="math inline">\(A\)</span> is mapped to some element of
-<span class="math inline">\(B\)</span> and every element of <span
-class="math inline">\(B\)</span> has at most one element of <span
-class="math inline">\(A\)</span> mapped to it.</p>
+(total) function <span class="math inline">\(f\)</span> such that every
+element of <span class="math inline">\(A\)</span> is mapped to some
+element of <span class="math inline">\(B\)</span> and every element of
+<span class="math inline">\(B\)</span> has at most one element of <span
+class="math inline">\(A\)</span> mapped to it. The second half of that
+clause means that <span class="math inline">\(f\)</span> must be
+<strong>injective</strong> (or equivalently,
+<strong>one-to-one</strong>): if <span class="math inline">\(x \neq
+y\)</span>, then <span class="math inline">\(f(x) \neq
+f(y)\)</span>.</p>
 <div class="example">
 <p>Suppose that <span class="math inline">\(A \mathrel{\mathop:}=\left
 \{ a,b,c \right \}\)</span> and <span class="math inline">\(D
@@ -89,29 +104,45 @@ class="math inline">\(A\)</span>, at least two members of <span
 class="math inline">\(D\)</span> will have to be mapped to the same
 element in <span class="math inline">\(A\)</span>.</p>
 </div>
-<p>Clearly <span class="math inline">\(\left | A \right | = \left | B
-\right |\)</span> iff <span class="math inline">\(\left | A \right |
-\leq \left | B \right |\)</span> and <span class="math inline">\(\left |
-B \right | \leq \left | A \right |\)</span> are both true. But there is
-a more direct definition: <span class="math inline">\(\left | A \right |
-= \left | B \right |\)</span> iff there is a function <span
-class="math inline">\(f\)</span> such that <span
+<div class="exercise">
+<p>Show that <span class="math inline">\(\left | \left \{ 3, \emptyset,
+3 \right \} \right | \leq \left | \left \{ \mathit{John}, \mathit{Mary},
+\emptyset \right \} \right |\)</span> by giving a function that maps
+every element of the former set to some member of the latter.</p>
+</div>
+<p>Given the definition above, we have <span class="math inline">\(\left
+| A \right | = \left | B \right |\)</span> iff <span
+class="math inline">\(\left | A \right | \leq \left | B \right
+|\)</span> and <span class="math inline">\(\left | B \right | \leq \left
+| A \right |\)</span> are both true. But this means we would have to
+specify two separate functions, one from <span
+class="math inline">\(A\)</span> to <span
+class="math inline">\(B\)</span> and one from <span
+class="math inline">\(B\)</span> to <span
+class="math inline">\(A\)</span>. There is a more direct definition that
+does this with just one function. First, a (total) function <span
+class="math inline">\(f: A \rightarrow B\)</span> is a
+<strong>bijection</strong> or <strong>one-to-one correspondence</strong>
+iff it is injective and for every <span class="math inline">\(b \in
+B\)</span> there is some <span class="math inline">\(a \in A\)</span>
+such that <span class="math inline">\(f(a) = b\)</span> (we also say
+that the function is <strong>surjective</strong> or
+<strong>onto</strong>). In other words, <span
 class="math inline">\(f\)</span> maps every element of <span
 class="math inline">\(A\)</span> to some element of <span
 class="math inline">\(B\)</span> and every element of <span
 class="math inline">\(B\)</span> has exactly one element of <span
-class="math inline">\(A\)</span> mapped to it. We also say that there is
-a <strong>bijection</strong> between <span
-class="math inline">\(A\)</span> and <span
-class="math inline">\(B\)</span>, which is a technical term for a 1-to-1
-correspondence between the elements of <span
-class="math inline">\(A\)</span> and <span
-class="math inline">\(B\)</span>.</p>
+class="math inline">\(A\)</span> mapped to it. Then <span
+class="math inline">\(\left | A \right | = \left | B \right |\)</span>
+iff there is a bijection <span class="math inline">\(f: A \rightarrow
+B\)</span>.</p>
 <div class="example">
 <p>We already saw that <span class="math inline">\(\left | A \right | =
-\left | X \right |\)</span> in the previous example. A possible choice
-of <span class="math inline">\(f\)</span> would be <span
-class="math inline">\(a \mapsto x\)</span>, <span
+\left | X \right |\)</span> for <span class="math inline">\(A
+\mathrel{\mathop:}=\left \{ a,b,c \right \}\)</span> and <span
+class="math inline">\(X \mathrel{\mathop:}=\left \{ x,y,z \right
+\}\)</span>. A possible choice of <span class="math inline">\(f\)</span>
+would be <span class="math inline">\(a \mapsto x\)</span>, <span
 class="math inline">\(b \mapsto y\)</span>, <span
 class="math inline">\(c \mapsto z\)</span>.</p>
 </div>
@@ -149,9 +180,15 @@ bijection. Hence <span class="math inline">\(A\)</span> and <span
 class="math inline">\(B\)</span> must have distinct cardinality.</p>
 </div>
 <div class="exercise">
-<p>Show that <span class="math inline">\(\left | \left \{  0 \leq n &lt;
-10 \mid n \text{ is odd} \right \} = \left | \left \{  0 \leq n &lt; 10
-\mid n \text{ is even} \right \} \right | \right |\)</span>.</p>
+<p>Show that Let <span class="math inline">\(O\)</span> be the set of
+all odd natural numbers that are at least <span
+class="math inline">\(0\)</span> and at most <span
+class="math inline">\(9\)</span>, and <span
+class="math inline">\(E\)</span> the set of all even natural numbers
+that are at least <span class="math inline">\(0\)</span> and at most
+<span class="math inline">\(9\)</span>. Show that <span
+class="math inline">\(\left | O \right | = \left | E \right
+|\)</span>.</p>
 </div>
 <p>For finite sets, our intuitive notion of size closely matches the
 technical term of cardinality. However, size and cardinality diverge
@@ -168,17 +205,61 @@ members of <span class="math inline">\(\mathbb{N}_+\)</span> as well as
 0, which is not in <span class="math inline">\(\mathbb{N}_+\)</span>.
 But the function <span class="math inline">\(f: \mathbb{N} \rightarrow
 \mathbb{N}_+\)</span> with <span class="math inline">\(n \mapsto
-n+1\)</span> is a bijection. Hence <span class="math inline">\(\left |
-\mathbb{N} \right | = \left | \mathbb{N}_+ \right |\)</span> even though
-intuitively the two sets have distinct size.</p>
+n+1\)</span> is a bijection. It maps <span
+class="math inline">\(0\)</span> to <span
+class="math inline">\(1\)</span>, <span class="math inline">\(1\)</span>
+to <span class="math inline">\(2\)</span>, and so on, so that every
+natural number is mapped to a positive natural number, and every
+positive natural number has some natural number mapped to it. Hence
+<span class="math inline">\(\left | \mathbb{N} \right | = \left |
+\mathbb{N}_+ \right |\)</span> even though intuitively the two sets have
+distinct size.</p>
 </div>
 <div class="exercise">
 <p>Show that the set of natural numbers has the same cardinality as the
 set of all even natural numbers.</p>
 </div>
-<p>In a later unit, we will see that our definition of cardinality
+<p>In a later chapter, we will see that our definition of cardinality
 entails that there are different “sizes” of infinity, and that we want
 one specific infinity size to talk about language.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Instead of the intuitive notion of size, we use the formal notion of
+<strong>cardinality</strong> to measure how many elements a set
+contains.</li>
+<li>For every finite set <span class="math inline">\(A\)</span>, its
+cardinality <span class="math inline">\(\left | A \right |\)</span> is
+the number of elements it contains.</li>
+<li>We can use functions to measure the relative cardinality of distinct
+sets <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>.
+<ul>
+<li><span class="math inline">\(\left | A \right | \leq \left | B \right
+|\)</span>: there exists a total, injective function <span
+class="math inline">\(f: A \rightarrow B\)</span> (where <span
+class="math inline">\(f\)</span> is <strong>injective</strong> iff <span
+class="math inline">\(x \neq y\)</span> implies <span
+class="math inline">\(f(x) \neq f(y)\)</span>).</li>
+<li><span class="math inline">\(\left | A \right | \geq \left | B \right
+|\)</span>: there exists a total, surjective function <span
+class="math inline">\(f: A \rightarrow B\)</span> (where <span
+class="math inline">\(f\)</span> is <strong>surjective</strong> iff for
+every <span class="math inline">\(b \in B\)</span> there is some <span
+class="math inline">\(a \in A\)</span> such that <span
+class="math inline">\(f(a) = b\)</span>).</li>
+<li><span class="math inline">\(\left | A \right | = \left | B \right
+|\)</span>: there exists a bijection <span class="math inline">\(f: A
+\rightarrow B\)</span> (where <span class="math inline">\(f\)</span> is
+a <strong>bijection</strong> iff it is both injective and
+surjective).</li>
+</ul></li>
+<li>When the name of function <span class="math inline">\(f\)</span> is
+clear from context, one may write <span class="math inline">\(x \mapsto
+y\)</span> instead of <span class="math inline">\(f(x) =
+y\)</span>.</li>
+<li>While cardinality is very intuitive for finite sets, it yields
+surprising results with infinite sets.</li>
+</ul>
 </div>
 </div>
 </body>

@@ -47,6 +47,7 @@ NPIs</a></li>
 right entailment</a></li>
 <li><a href="#connection-to-monotonicity">Connection to
 monotonicity</a></li>
+<li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -77,11 +78,14 @@ bad.</p>
 <li>No student should ever sleep in class.</li>
 <li>Every student should ever sleep in class.</li>
 </ol>
-<p>Quite curious, what’s going on here? One simple answer is that
-<em>ever</em> can occur with <em>no</em> but not with <em>every</em>.
-This is rather unsatisfying since it only states the facts rather than
-explaining them. But more importantly, it is also false. Both of the
-following sentences are okay in standard dialects of English.</p>
+<p>Quite curious, what’s going on here? Here we have two sentences that
+use two distinct <strong>quantifiers</strong>, one being <em>no</em> and
+the other <em>every</em>. For some reason, <em>ever</em> can occur in
+the sentence with <em>no</em> but not with <em>every</em>. We could
+posit a constraint that forbids <em>ever</em> and <em>every</em> to
+co-occur, this is rather unsatisfying as it only states the facts rather
+than explaining them. But more importantly, it is also false. Both of
+the following sentences are okay in standard dialects of English.</p>
 <ol type="1">
 <li>No student who ever slept in class should get a degree.</li>
 <li>Every student who ever slept in class should get a degree.</li>
@@ -143,8 +147,10 @@ class="math inline">\(s\)</span> did not sleep. Since there is no subset
 of <span class="math inline">\(A\)</span> for which this entailment
 fails, <em>no</em> is indeed downward entailing.</p>
 </div>
+<p>A similar argument can be used to show that <em>every</em> is
+downward entailing, too.</p>
 <div class="exercise">
-<p>Construct a similar argument to show that <em>every</em> is downward
+<p>Construct such an argument that <em>every</em> is downward
 entailing.</p>
 </div>
 <p>All this talk about downward entailment is nice and dandy, but it
@@ -203,7 +209,8 @@ whereas the opposite does not hold. So all of a sudden the direction of
 inference is the other way round — if the sentence is true for Y, then
 it is true for every <strong>superset</strong> of Y. This shows that
 even though <em>every</em> was downward entailing with respect to X, it
-is <strong>upward entailing</strong> with respect to Y.</p>
+is <strong>upward entailing</strong> with respect to Y — whereas
+<em>no</em> is downward entailing with respect to both X and Y.</p>
 <div class="exercise">
 <p>Show that <em>no</em> is downward entailing with respect to Y.</p>
 </div>
@@ -235,35 +242,35 @@ notebook.</p>
 <thead>
 <tr class="header">
 <th style="text-align: right;"><strong>Quantifier</strong></th>
-<th style="text-align: left;"><strong>X</strong></th>
-<th style="text-align: left;"><strong>Y</strong></th>
-<th style="text-align: center;"><strong>Status</strong></th>
+<th style="text-align: center;"><strong>X</strong></th>
+<th style="text-align: center;"><strong>Y</strong></th>
+<th style="text-align: left;"><strong>Status</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">no</td>
-<td style="text-align: left;">student</td>
-<td style="text-align: left;">should ever sleep in class</td>
-<td style="text-align: center;">well-formed</td>
+<td style="text-align: center;">student</td>
+<td style="text-align: center;">should ever sleep in class</td>
+<td style="text-align: left;">well-formed</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">no</td>
-<td style="text-align: left;">student who ever slept in class</td>
-<td style="text-align: left;">should get a degree</td>
-<td style="text-align: center;">well-formed</td>
+<td style="text-align: center;">student who ever slept in class</td>
+<td style="text-align: center;">should get a degree</td>
+<td style="text-align: left;">well-formed</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">every</td>
-<td style="text-align: left;">student</td>
-<td style="text-align: left;">should ever sleep in class</td>
-<td style="text-align: center;">ill-formed</td>
+<td style="text-align: center;">student</td>
+<td style="text-align: center;">should ever sleep in class</td>
+<td style="text-align: left;">ill-formed</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">no</td>
-<td style="text-align: left;">student who ever slept in class</td>
-<td style="text-align: left;">should get a degree</td>
-<td style="text-align: center;">well-formed</td>
+<td style="text-align: center;">student who ever slept in class</td>
+<td style="text-align: center;">should get a degree</td>
+<td style="text-align: left;">well-formed</td>
 </tr>
 </tbody>
 </table>
@@ -279,22 +286,36 @@ have our answer: downward entailing contexts allow for NPIs like
 monotonicity. In order to see this, we have to make our treatment a bit
 more mathematical (it’s still fairly informal for mathematicians’
 standards).</p>
+<p>In the preceding section, we essentially treated quantifiers like
+<em>no</em> and <em>every</em> as binary functions that take two
+arguments and maps them to a truth value. More abstractly, we analyze
+every quantifier <span class="math inline">\(Q\)</span> as a function of
+the form <span class="math inline">\(Q(X,Y)\)</span>. Since we haven’t
+really looked at monotonicity for functions with more than one argument,
+we first need to simplify things a bit. Instead of considering the
+quantifiers themselves, which take two arguments, we will only consider
+unary functions that fix one of arguments. In other words, instead of
+the function <span class="math inline">\(Q(X,Y)\)</span>, we will
+consider the functions <span class="math inline">\(Q_X(Y)\)</span> and
+<span class="math inline">\(Q_Y(X)\)</span>.</p>
 <p>Let <span class="math inline">\(f\)</span> be some function that
 takes as its input a set (X or Y in the notation above) and maps it to
 either 1 (for True) or 0 (for False). Intuitively, you can think of
 <span class="math inline">\(f\)</span> as a sentence with a hole in it
 that must be filled by the argument.</p>
 <div class="example">
-<p>The sentence <em>Every male student snored loudly</em> is an instance
-of the function <em>every <span class="math inline">\(\Box\)</span>
-snored loudly</em> applied to the argument <em>male student</em>. The
-function maps <em>male student</em> to 1 iff every male student snored
-loudly.</p>
-<p>Alternatively, we can view the sentence as an instance of the
-function <em>every male student <span
-class="math inline">\(\Box\)</span></em> applied to the argument
-<em>snored loudly</em>. This function, too, returns 1 iff it is true
-that every male student snored loudly.</p>
+<p>Consider the sentence <em>Every male student snored loudly</em>. We
+could take this to define the function <em>every</em>(<em>male
+student</em>, <em>snored loudly</em>), which returns 1 iff every male
+student snored loudly.</p>
+<p>But we could also take it to be an instance of the function <em>every
+<span class="math inline">\(\Box\)</span> snored loudly</em> applied to
+the argument <em>male student</em>. The function maps <em>male
+student</em> to 1 iff, once again, every male student snored loudly.</p>
+<p>And we can also view the sentence as an instance of the function
+<em>every male student <span class="math inline">\(\Box\)</span></em>
+applied to the argument <em>snored loudly</em>. This function, too,
+returns 1 iff it is true that every male student snored loudly.</p>
 </div>
 <p>The domain of such a function <span class="math inline">\(f\)</span>
 consists of all possible sets of individuals and objects. For instance,
@@ -320,13 +341,13 @@ We also know already that the set of students that ran a 5k (call it
 <span class="math inline">\(5k\)</span>) is a subset of the students
 that ran (call it <span class="math inline">\(R\)</span>). So we have
 <span class="math inline">\(5k \subseteq R\)</span>.</p>
-<p>Now suppose that <span class="math inline">\(\text{\emph{every
-student}}(5k) = 1\)</span>. Then <span
-class="math inline">\(\text{\emph{every student}}(R) \geq 1\)</span>
-because <span class="math inline">\(R \supseteq 5k\)</span> and the
-function is monotonically increasing. So the fact that the sentence is
-true for <span class="math inline">\(5k\)</span> entails that it is true
-for every superset of <span class="math inline">\(5k\)</span>. This is
+<p>Now suppose that <em>every student</em><span
+class="math inline">\((5k) = 1\)</span>. Then <em>every
+student</em><span class="math inline">\((R) \geq 1\)</span> because
+<span class="math inline">\(R \supseteq 5k\)</span> and the function is
+monotonically increasing. So the fact that the sentence is true for
+<span class="math inline">\(5k\)</span> entails that it is true for
+every superset of <span class="math inline">\(5k\)</span>. This is
 exactly what it means to be upward entailing.</p>
 </div>
 <p>Downward entailment works exactly the same except that the function
@@ -340,12 +361,75 @@ for upward entailment.</p>
 increasing function if sets are ordered by the superset relation instead
 of subset. Explain why!</p>
 </div>
+<div class="exercise">
+<p>Determine whether <em>some</em> is right downward entailing or right
+upward entailing. What does this predict for the distribution of
+<em>ever</em> in a sentence with <em>some</em>, and does this prediction
+match your intuitions?</p>
+</div>
+<div class="exercise">
+<p>Determine whether <em>some</em> is left downward entailing or left
+upward entailing. What does this predict for the distribution of
+<em>ever</em> in a sentence with <em>some</em>, and does this prediction
+match your intuitions?</p>
+</div>
 <p>As you can see, monotonicity isn’t limited to morphological
 paradigms. Without mathematics, it wouldn’t be obvious that the No
 Crossing constraint of phonology has anything to do with the <span
 class="math inline">\(^*\)</span>ABA generalization or the distribution
 of <em>ever</em>. The abstract notion of monotonicity allows us to tie
-them all together.</p>
+them all together, gaining a deeper understanding of universals across
+language modules.</p>
+<div class="exercise">
+<p>In the case of adjectival gradation, the formal universal of
+monotonicity had to be supplemented with the ordering <em>positive</em>
+<span class="math inline">\(&lt;\)</span> <em>comparative</em> <span
+class="math inline">\(&lt;\)</span> superlative, a substantive
+universal. In this unit, we again used monotonicity as a formal
+universal to restrict the distribution of <em>ever</em>. What is the
+substantive universal we had to combine monotonicity with? Does this
+strike you as a language-specific universal, or is it more likely an
+aspect of human cognition in general?</p>
+</div>
+<h2 id="recap">Recap</h2>
+<ul>
+<li><strong>Negative polarity items</strong> (NPIs) like <em>ever</em>
+have a peculiar distribution that is conditioned by entailment
+relations.</li>
+<li>A sentence <span class="math inline">\(s\)</span>
+<strong>entails</strong> another sentence <span
+class="math inline">\(t\)</span> iff <span
+class="math inline">\(t\)</span> must be true whenever <span
+class="math inline">\(s\)</span> is true.</li>
+<li>Every quantifier <span class="math inline">\(Q\)</span> can be
+regarded as a binary function of the form <span
+class="math inline">\(Q(X, Y)\)</span> where <span
+class="math inline">\(X\)</span> describes the set of
+individuals/object/entities <span class="math inline">\(Q\)</span>
+quantifies over (students, sophomores, …) and <span
+class="math inline">\(Y\)</span> is another set of individuals (the set
+of runner, 5k runners, and so on).</li>
+<li>A quantifier <span class="math inline">\(Q\)</span> can be
+left/right downward/upward entailing depending on which of the clauses
+below hold whenever <span class="math inline">\(Q(X, Y)\)</span> is
+true.
+<ul>
+<li><strong>left downward</strong>: <span class="math inline">\(Q(Z,
+Y)\)</span> is true for every <span class="math inline">\(Z \subseteq
+X\)</span>.</li>
+<li><strong>right downward</strong>: <span class="math inline">\(Q(X,
+Z)\)</span> is true for every <span class="math inline">\(Z \subseteq
+Y\)</span>.</li>
+<li><strong>left upward</strong>: <span class="math inline">\(Q(Z,
+Y)\)</span> is true for every <span class="math inline">\(Z \supseteq
+X\)</span>.</li>
+<li><strong>right upward</strong>: <span class="math inline">\(Q(X,
+Z)\)</span> is true for every <span class="math inline">\(Z \supseteq
+Y\)</span>.</li>
+</ul></li>
+<li>Upward entailment (downward entailment) is the same as being
+monotonic increasing (monotonic decreasing).</li>
+</ul>
 </div>
 </div>
 </body>
