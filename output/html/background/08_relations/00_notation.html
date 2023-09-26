@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Relations: Basic notation</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#relations-basic-notation">Relations: Basic notation</a>
+<ul>
+<li><a href="#basic-notation">Basic notation</a></li>
+<li><a href="#relations-versus-functions">Relations versus
+functions</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="relations-basic-notation">Relations: Basic notation</h1>
+<div class="prereqs">
+<ul>
+<li>functions (basics)</li>
+</ul>
+</div>
+<p>Relations are similar to functions in that they establish connections
+between objects. But whereas a function associates only one output with
+every input, a relation is more flexible and allows connections to
+arbitrarily many elements.</p>
+<div class="example">
+<p>The question <em>Is <span class="math inline">\(x\)</span> a
+biological child of <span class="math inline">\(y\)</span></em> is a
+function because it maps any two <span class="math inline">\(x\)</span>
+and <span class="math inline">\(y\)</span> to either true or false, but
+never both. But if we slightly change the question to just <em>Name a
+biological child of <span class="math inline">\(y\)</span></em>, we are
+no longer dealing with a function because multiple answers are possible
+if <span class="math inline">\(y\)</span> has more than one child.
+Instead, we can talk about the <em>biological child</em> relation <span
+class="math inline">\(R\)</span> such that <span
+class="math inline">\(x\)</span> is related to <span
+class="math inline">\(y\)</span> via <span
+class="math inline">\(R\)</span> iff <span
+class="math inline">\(x\)</span> is a biological child of <span
+class="math inline">\(y\)</span>.</p>
+</div>
+<h2 id="basic-notation">Basic notation</h2>
+<p>Given some relation <span class="math inline">\(R\)</span>, we write
+<span class="math inline">\(x \mathrel{R} y\)</span> to indicate that
+<span class="math inline">\(R\)</span> relates <span
+class="math inline">\(x\)</span> to <span
+class="math inline">\(y\)</span>. Note that <span
+class="math inline">\(x \mathrel{R} y\)</span> does not imply that <span
+class="math inline">\(y \mathrel{R} x\)</span> also holds, nor that
+<span class="math inline">\(y \mathrel{R} x\)</span> doesn’t hold.
+Either one may be the case.</p>
+<div class="example">
+<p>One relation you know very well is the “less than” relation <span
+class="math inline">\(&lt;\)</span> over numbers. When we write <span
+class="math inline">\(5 &lt; 7\)</span>, we are saying that the relation
+<span class="math inline">\(&lt;\)</span> relates <span
+class="math inline">\(5\)</span> to <span
+class="math inline">\(7\)</span>. However, it is not the case that <span
+class="math inline">\(7\)</span> is related to <span
+class="math inline">\(5\)</span> via <span
+class="math inline">\(&lt;\)</span>, since <span class="math inline">\(7
+&lt; 5\)</span> does not hold.</p>
+</div>
+<div class="example">
+<p>Suppose <em>John</em> has exactly two siblings, <em>Mary</em> and
+<em>Sue</em>. Then the sibling relation establishes two connections for
+John: <em>John</em>-<em>Mary</em>, and <em>John</em>-<em>Sue</em>. Using
+<span class="math inline">\(S\)</span> for the sibling relation, we have
+<span class="math inline">\(\mathrm{John} \mathrel{S}
+\mathrm{Mary}\)</span> and <span class="math inline">\(\mathrm{John}
+\mathrel{S} \mathrm{Sue}\)</span>.</p>
+<p>In contrast to <span class="math inline">\(&lt;\)</span>, the sibling
+relation is <strong>symmetric</strong>. That is to say, if Mary is a
+sibling of John, then John is also a sibling of Mary. Therefore we also
+have <span class="math inline">\(\mathrm{Mary} \mathrel{S}
+\mathrm{John}\)</span> and <span class="math inline">\(\mathrm{Sue}
+\mathrel{S} \mathrm{John}\)</span>.</p>
+<p>The relation is also <strong>transitive</strong>. If John is a
+sibling of Mary, and Sue is a sibling of John, then Sue is a sibling of
+Mary. So it also holds that <span class="math inline">\(\mathrm{Mary}
+\mathrel{S} \mathrm{Sue}\)</span>, and via symmetry we also get <span
+class="math inline">\(\mathrm{Sue} \mathrel{S}
+\mathrm{Mary}\)</span>.</p>
+<p>Overall, we have <span class="math inline">\(x \mathrel{S} y\)</span>
+where <span class="math inline">\(x, y \in \left \{ \mathrm{John},
+\mathrm{Mary}, \mathrm{Sue} \right \}\)</span> and <span
+class="math inline">\(x \neq y\)</span>.</p>
+</div>
+<div class="example">
+<p>The <strong>substring relation</strong> <span
+class="math inline">\(\sqsubseteq\)</span> holds between two strings
+<span class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> iff <span
+class="math inline">\(u\)</span> is a substring of <span
+class="math inline">\(v\)</span>. That is to say, <span
+class="math inline">\(u \subseteq v\)</span> iff there are <span
+class="math inline">\(w, w&#39; \in \Sigma^*\)</span> such that <span
+class="math inline">\(w \cdot u \cdot w&#39; = v\)</span>. Note that for
+any given string <span class="math inline">\(u\)</span>, there are
+infinitely many <span class="math inline">\(v\)</span> that <span
+class="math inline">\(u\)</span> is a substring of. Even if the alphabet
+contains only <span class="math inline">\(a\)</span>, the string <span
+class="math inline">\(aa\)</span> is a substring of <span
+class="math inline">\(aaa\)</span>, <span
+class="math inline">\(aaaa\)</span>, <span
+class="math inline">\(aaaaa\)</span>, and so on, ad infinitum. It is
+also a substring of itself (in this case, <span class="math inline">\(w
+= w&#39; = \varepsilon\)</span>).</p>
+</div>
+<div class="example">
+<p>Relations can be defined over more complex objects like sets. An
+example of this is the subset relation <span
+class="math inline">\(\subseteq\)</span>. The set <span
+class="math inline">\(\left \{ 1 \right \}\)</span> is a subset of
+infinitely many other sets: <span class="math inline">\(\left \{ 0,1
+\right \}\)</span>, <span class="math inline">\(\left \{ 1,2 \right
+\}\)</span>, <span class="math inline">\(\left \{ 0,1,2 \right
+\}\)</span>, <span class="math inline">\(\left \{ 1,3 \right
+\}\)</span>, and so on.</p>
+</div>
+<div class="example">
+<p>Just like a function can take multiple arguments to return a single
+output, a relation can connect multiple elements. In the real world, the
+“jointly conceived” relation <span class="math inline">\(J\)</span>
+would connect two individuals to their offspring. So the expression
+<span class="math display">\[\mathrm{John}, \mathrm{Mary} \mathrel{R}
+\mathrm{Sue}\]</span> encodes that John and Mary are the biological
+parents of Sue (let’s just hope that those are not the same people as in
+the first example).</p>
+</div>
+<div class="example">
+<p>Here is an example of a very abstract relation. Consider the space of
+all possible functions from real numbers to real numbers — that’s a lot
+of functions. Now let’s define a boundedness relation <span
+class="math inline">\(B\)</span> which relates function <span
+class="math inline">\(f\)</span> to function <span
+class="math inline">\(g\)</span> iff <span class="math inline">\(f(x)
+\leq g(x)\)</span> for every natural number <span
+class="math inline">\(x\)</span>. Suppose, for instance, that <span
+class="math inline">\(f(x) = x\)</span> and <span
+class="math inline">\(g(x) = x^2\)</span>. Then <span
+class="math inline">\(f \mathrel{B} g\)</span>, but not <span
+class="math inline">\(g \mathrel{B} f\)</span>.</p>
+<p>Many functions aren’t related via <span
+class="math inline">\(B\)</span> at all. One example of this is <span
+class="math inline">\(f(x) = -x + 1\)</span> and <span
+class="math inline">\(g(x) = x^2\)</span>. It is the case that <span
+class="math inline">\(f(x) \leq g(x)\)</span> for all <span
+class="math inline">\(x \geq 1\)</span>, but <span
+class="math inline">\(f(0) = 1 &gt; 0 = g(0)\)</span>.</p>
+</div>
+<p>We will mostly be dealing with the special case of <strong>binary
+relations</strong> where exactly one element is related to some other
+element.</p>
+<div class="example">
+<p>Almost all relations above are binary relations. The only exception
+is the “jointly conceived” relation <span
+class="math inline">\(J\)</span>, which is a ternary relation as it
+relates three elements.</p>
+</div>
+<p>Given a binary relation <span class="math inline">\(R\)</span>, <span
+class="math inline">\(a \mathrel{R}\)</span> is the set of objects that
+<span class="math inline">\(a\)</span> is related to. Similarly, <span
+class="math inline">\(\mathrel{R} b\)</span> is the set of objects that
+are related to <span class="math inline">\(b\)</span>. <span
+class="math display">\[
+a \mathrel{R} \mathrel{\mathop:}=\left \{  b \mid a \mathrel{R} b \right
+\}
+\]</span> <span class="math display">\[
+\mathrel{R} b \mathrel{\mathop:}=\left \{  a \mid a \mathrel{R} b \right
+\}
+\]</span></p>
+<div class="example">
+<p>Suppose that the parent-of relation <span
+class="math inline">\(P\)</span> establishes the following relations
+between elements: <span class="math inline">\(\mathrm{John} \mathrel{P}
+\mathrm{Sue}\)</span> and <span class="math inline">\(\mathrm{Mary}
+\mathrel{P} \mathrm{Sue}\)</span>. Then <span
+class="math inline">\(\mathrm{John} \mathrel{P} = \left \{ \mathrm{Sue}
+\right \}\)</span> and <span class="math inline">\(\mathrel{P}
+\mathrm{Sue} = \left \{  \mathrm{John}, \mathrm{Mary} \right
+\}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Let <span class="math inline">\(R\)</span> be the relation that
+connects words to their parts of speech (N for nouns, V for verbs, A for
+adjectives, P for prepositions, D for determiners, and so on). List the
+following for English:</p>
+<ul>
+<li>export <span class="math inline">\(R\)</span></li>
+<li>apple <span class="math inline">\(R\)</span></li>
+<li><span class="math inline">\(R\)</span> P</li>
+</ul>
+</div>
+<h2 id="relations-versus-functions">Relations versus functions</h2>
+<p>Every function can be regarded as a relation.</p>
+<div class="example">
+<p>Consider the function <span class="math inline">\(f: \mathbb{N}
+\rightarrow \mathbb{N}\)</span> with <span class="math inline">\(x
+\mapsto 2x\)</span>. It is identical to the relation <span
+class="math inline">\(R\)</span> with <span class="math inline">\(x
+\mathrel{R} y\)</span> iff <span class="math inline">\(y =
+2x\)</span>.</p>
+</div>
+<p>The crucial difference between functions and relations is that
+functions are <strong>right-unique relations</strong>. That’s a fancy
+way of saying that a function cannot provide more than one output,
+whereas a relation can unless it is right-unique. When we view a
+function <span class="math inline">\(f\)</span> as a relation <span
+class="math inline">\(R\)</span>, then it must hold for every <span
+class="math inline">\(a\)</span> that <span class="math inline">\(a
+\mathrel{R}\)</span> is either empty or contains exactly one element.
+Hence the term right-unique: if we look at the expression <span
+class="math inline">\(a \mathrel{R} b\)</span>, <span
+class="math inline">\(a\)</span> is the left side and <span
+class="math inline">\(b\)</span> the right side. If there cannot be more
+than one choice for <span class="math inline">\(b\)</span>, then the
+right side of <span class="math inline">\(a \mathrel{R} b\)</span> is
+uniquely determined.</p>
+<p>The bottom line: every function is a relation, but not every relation
+is a function. If <span class="math inline">\(a\)</span> is related to
+two elements or more (i.e. <span class="math inline">\(\left | a
+\mathrel{R} \right | \geq 2\)</span>), then <span
+class="math inline">\(R\)</span> cannot be a function.</p>
+<div class="exercise">
+<p>For each one of the following, say whether it is a function or just a
+relation.</p>
+<ul>
+<li>the parent-of relation (e.g. <span class="math inline">\(j
+\mathrel{P} m\)</span> for “John is a parent of Mary”)</li>
+<li>the parent-of relation in a world where the one-child policy is
+enforced globally</li>
+<li>the relation between a car’s license plate and its owners</li>
+<li>the prefix relation, where <span class="math inline">\(u\)</span> is
+a prefix of <span class="math inline">\(v\)</span> iff there is some
+<span class="math inline">\(w \in \Sigma^*\)</span> such that <span
+class="math inline">\(v = u \cdot w\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Is the following statement true or false? Justify your answer.</p>
+<p>Every relation <span class="math inline">\(R\)</span> can be regarded
+as a function that maps <span class="math inline">\(x\)</span> to <span
+class="math inline">\(x \mathrel{R}\)</span>.</p>
+</div>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Relations are a generalization of functions in that a single input
+can be related to many distinct outputs.</li>
+<li>Given some relation <span class="math inline">\(R\)</span>, we write
+<span class="math inline">\(x \mathrel{R} y\)</span> to indicate that
+<span class="math inline">\(R\)</span> relates <span
+class="math inline">\(x\)</span> to <span
+class="math inline">\(y\)</span>.</li>
+<li>We mostly focus on binary relations.</li>
+<li>For binary relations, we have the following notation: <span
+class="math display">\[
+a \mathrel{R} \mathrel{\mathop:}=\left \{  b \mid a \mathrel{R} b \right
+\}
+\]</span> <span class="math display">\[
+\mathrel{R} b \mathrel{\mathop:}=\left \{  a \mid a \mathrel{R} b \right
+\}
+\]</span></li>
+</ul>
+</div>
+</div>
+</body>
+</html>

@@ -44,6 +44,7 @@
 numbers</a></li>
 <li><a href="#isotonicity-and-antitonicity">Isotonicity and
 antitonicity</a></li>
+<li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -186,21 +187,64 @@ anything to do with numbers.</p>
 <p>Monotonicity is actually an umbrella term for two distinct
 properties: <strong>isotonic</strong> (<strong>monotonic
 increasing</strong>) and <strong>antitonic</strong> (<strong>monotonic
-decreasing</strong>).</p>
-<div class="definition">
-<p>Let <span class="math inline">\(A\)</span> and <span
-class="math inline">\(B\)</span> be arbitrary sets and <span
-class="math inline">\(\leq_A\)</span> and <span
-class="math inline">\(\leq_B\)</span> ordering relations over these
-respective sets. Then a function <span class="math inline">\(f: A
-\rightarrow B\)</span> is <strong>isotonic</strong> (or
-<strong>monotonic increasing</strong>) iff <span class="math inline">\(x
-\leq_A y\)</span> implies <span class="math inline">\(f(x) \leq_B
-f(y)\)</span>. We call <span class="math inline">\(f\)</span>
-<strong>antitonic</strong> (or <strong>monotonic decreasing</strong>)
-iff <span class="math inline">\(x \leq_A y\)</span> implies <span
-class="math inline">\(f(y) \leq_B f(x)\)</span>. A function is
-<strong>monotonic</strong> iff it is isotonic or antitonic.</p>
+decreasing</strong>). In both cases, the mapping from elements of the
+domain to elements of the co-domain must respect the order of the domain
+in a specific sense. Suppose that we have a function <span
+class="math inline">\(f\)</span> from some domain <span
+class="math inline">\(D\)</span> to some co-domain <span
+class="math inline">\(C\)</span>. As usual, thees are sets, but they are
+special sets in that each one has an order defined over its elements.
+Let us call these orders <span class="math inline">\(\leq_D\)</span> and
+<span class="math inline">\(\leq_C\)</span>, respectively. Then an
+isotonic function preserves the order over the domain: if <span
+class="math inline">\(x \leq_D y\)</span> in the domain, then <span
+class="math inline">\(f(x) \leq_C f(y)\)</span> in the co-domain. And an
+antitonic function preserves the mirror image: if <span
+class="math inline">\(x \leq_D y\)</span> in the domain, then <span
+class="math inline">\(f(x) \geq_C f(y)\)</span> in the co-domain.</p>
+<div class="example">
+<p>The function <span class="math inline">\(f\)</span> from natural
+numbers to natural numbers with <span class="math inline">\(x \mapsto
+x+1\)</span> is monotonic increasing. If <span class="math inline">\(x
+\leq y\)</span>, then it necessarily holds that <span
+class="math inline">\(x + 1 \leq y + 1\)</span>, and thus <span
+class="math inline">\(f(x) \leq f(y)\)</span>.</p>
+</div>
+<div class="example">
+<p>Suppose we order the set of all strings over alphabet <span
+class="math inline">\(\Sigma\)</span> such that <span
+class="math inline">\(u \leq_D w\)</span> iff there is some string <span
+class="math inline">\(v\)</span> such that <span class="math inline">\(w
+= u \cdot v\)</span>. Intuitively, <span
+class="math inline">\(w\)</span> is the result of adding 0 or more
+symbols to <span class="math inline">\(u\)</span>. Hence we have <span
+class="math inline">\(\mathit{aab} \leq \mathit{aaba}\)</span> and <span
+class="math inline">\(\mathit{aab} \leq \mathit{aab}\)</span>, but <span
+class="math inline">\(\mathit{aab} \not\leq \mathit{abaa}\)</span>. Now
+let <span class="math inline">\(f: \Sigma^* \rightarrow
+\mathbb{N}\)</span> be the function that maps every strings to its
+length (i.e. <span class="math inline">\(x \mapsto \left | x \right
+|\)</span>), and the we order string lengths with <span
+class="math inline">\(\leq\)</span> in the usual fashion. Then <span
+class="math inline">\(f\)</span> is isotonic.</p>
+<p>In order to see this, consider two arbitrary strings <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(w\)</span> with <span class="math inline">\(u
+\leq_D w\)</span>. By definition, then, <span class="math inline">\(w
+\mathrel{\mathop:}=u \cdot v\)</span> for some <span
+class="math inline">\(v \in \Sigma^*\)</span>. But then <span
+class="math inline">\(\left | w \right | = \left | u \right | + \left |
+v \right |\)</span>, and since strings cannot have negative lengths, it
+must hold that <span class="math inline">\(\left | u \right | \leq \left
+| u \right | + \left | v \right |\)</span>. This in turn implies that
+<span class="math inline">\(f(u) \leq f(w)\)</span>. Since <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(w\)</span> were arbitrary, <span
+class="math inline">\(f(u) \leq f(w)\)</span> truly holds for every
+choice of <span class="math inline">\(u\)</span> and <span
+class="math inline">\(w\)</span> with <span class="math inline">\(u
+\leq_D w\)</span>, exactly as required by the definition of monotonic
+increasing functions.</p>
 </div>
 <div class="exercise">
 <p>For each one of the following functions say whether it is isotonic,
@@ -228,6 +272,27 @@ otherwise</li>
 <div class="exercise">
 <p>Given an example of a function that is both isotonic and
 antitonic.</p>
+</div>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>If the domain and co-domain of a function each have an order defined
+over them, we can ask whether the function is
+<strong>monotonic</strong>.</li>
+</ul>
+<div class="definition">
+<p>Let <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> be arbitrary sets and <span
+class="math inline">\(\leq_A\)</span> and <span
+class="math inline">\(\leq_B\)</span> ordering relations over these
+respective sets. Then a function <span class="math inline">\(f: A
+\rightarrow B\)</span> is <strong>isotonic</strong> (or
+<strong>monotonic increasing</strong>) iff <span class="math inline">\(x
+\leq_A y\)</span> implies <span class="math inline">\(f(x) \leq_B
+f(y)\)</span>. We call <span class="math inline">\(f\)</span>
+<strong>antitonic</strong> (or <strong>monotonic decreasing</strong>)
+iff <span class="math inline">\(x \leq_A y\)</span> implies <span
+class="math inline">\(f(y) \leq_B f(x)\)</span>. A function is
+<strong>monotonic</strong> iff it is isotonic or antitonic.</p>
 </div>
 </div>
 </div>

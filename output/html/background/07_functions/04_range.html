@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Range</title>
+  <title>Range and surjections</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -38,18 +38,33 @@
 <nav id="TOC" role="doc-toc">
 <p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
 <ul>
-<li><a href="#range">Range</a></li>
+<li><a href="#range-and-surjections">Range and surjections</a>
+<ul>
+<li><a href="#definition-of-range">Definition of range</a></li>
+<li><a href="#surjective-functions">Surjective functions</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
 <div class="content">
-<h2 id="range">Range</h2>
-<p>For many functions it won’t be the case that the every value in their
-domain is actually a possible output of a function. Given a function
-<span class="math inline">\(f: D \rightarrow C\)</span>, we use the term
-<strong>range</strong> to refer to the set of elements of <span
-class="math inline">\(C\)</span> that are an output for at least one
-input in <span class="math inline">\(D\)</span>.</p>
+<h1 id="range-and-surjections">Range and surjections</h1>
+<p>We already saw that functions can be total or partial. Total
+functions map each element of their domain to some element of the
+co-domain, whereas partial functions are undefined on some elements of
+their domain. A similar split can be found for co-domains, where there
+may be some elements in the co-domain that no elements of the domain are
+mapped to. This is why we have to distinguish a function’s co-domain
+from its <strong>range</strong>.</p>
+<h2 id="definition-of-range">Definition of range</h2>
+<p>Given a function <span class="math inline">\(f: D \rightarrow
+C\)</span>, we use the term <strong>range</strong> to refer to the set
+of elements of <span class="math inline">\(C\)</span> that are an output
+for at least one input in <span class="math inline">\(D\)</span>. More
+precisely, <span class="math inline">\(c \in C\)</span> is in the range
+of <span class="math inline">\(f\)</span> iff there is some <span
+class="math inline">\(d \in D\)</span> such that <span
+class="math inline">\(d \mapsto c\)</span>.</p>
 <div class="example">
 <p>Consider the function <span class="math inline">\(f: \mathbb{N}
 \rightarrow \mathbb{N}\)</span> with <span class="math inline">\(x
@@ -103,6 +118,30 @@ instance, <span class="math inline">\(\mathrm{child}(\mathrm{Sue}) =
 <li>a benchmark that sorts graphics card models by their speed for
 neutral network training</li>
 </ol>
+</div>
+<h2 id="surjective-functions">Surjective functions</h2>
+<p>In the special case where a function’s range is identical to it’s
+co-domain, we say that the function is <strong>surjective</strong> or
+<strong>onto</strong>. Hence if we say that, say, <span
+class="math inline">\(f\)</span> is a function from <span
+class="math inline">\(D\)</span> onto <span
+class="math inline">\(C\)</span>, the use of the tiny word <em>onto</em>
+signals that <span class="math inline">\(f\)</span> is surjective, and
+hence every <span class="math inline">\(c\in C\)</span> has some <span
+class="math inline">\(d \in D\)</span> such that <span
+class="math inline">\(f(d) = c\)</span>.</p>
+<h2 id="recap">Recap</h2>
+<div class="definition">
+<p>The <strong>range</strong> of a function <span
+class="math inline">\(f: D \rightarrow C\)</span> is the set of all
+<span class="math inline">\(c \in C\)</span> such that there is some
+<span class="math inline">\(d \in D\)</span> with <span
+class="math inline">\(f(d) = c\)</span>. The range of <span
+class="math inline">\(f\)</span> is sometimes denoted <span
+class="math inline">\(\mathrm{range}(f)\)</span> or <span
+class="math inline">\(\mathrm{ran}(f)\)</span>. If <span
+class="math inline">\(\mathrm{range}(f) = C\)</span>, then <span
+class="math inline">\(f\)</span> is a <strong>surjection</strong>.</p>
 </div>
 </div>
 </div>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Types of relations</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#types-of-relations">Types of relations</a>
+<ul>
+<li><a href="#preorder">Preorder</a></li>
+<li><a href="#equivalence-relations">Equivalence relations</a></li>
+<li><a href="#equivalence-classes-and-partitions">Equivalence classes
+and partitions</a></li>
+<li><a href="#quotient-structure">Quotient structure</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="types-of-relations">Types of relations</h1>
+<p>Weak partial orders and total orders are just two particular types of
+relations. There are several others.</p>
+<h2 id="preorder">Preorder</h2>
+<p>The most basic order relation is the <strong>preorder</strong>, which
+is like a weak partial order but lacks antisymmetry. So it is transitive
+and reflexive, but not necessarily anything beyond that.</p>
+<div class="definition">
+<p>A relation <span class="math inline">\(R \subseteq D \times
+D\)</span> is a <strong>preorder</strong> iff it is reflexive and
+transitive.</p>
+</div>
+<p>If one takes a preorder and adds antisymmetry, one gets a weak
+partial order. If one adds symmetry instead, one gets an
+<strong>equivalence relation</strong>.</p>
+<p><img src="relation_types.svg" alt="relation_types.svg" /></p>
+<h2 id="equivalence-relations">Equivalence relations</h2>
+<div class="definition">
+<p>A relation <span class="math inline">\(R \subseteq D \times
+D\)</span> is an <strong>equivalence relation</strong> iff it is
+reflexive, symmetric, and transitive.</p>
+</div>
+<p>Intuitively, an equivalence relation does exactly what its name
+implies: it relates elements that are equivalent with respect to some
+property that the relation is sensitive to.</p>
+<div class="example">
+<p>One equivalence relation that everybody is familiar with is the
+equality <span class="math inline">\(=\)</span> of numbers. But it isn’t
+a particularly insightful relation. It is reflexive as <span
+class="math inline">\(n = n\)</span> for every number <span
+class="math inline">\(n\)</span>. It also satisfies symmetry and
+transitivity, but that’s because <span class="math inline">\(x =
+y\)</span> iff <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are the same number. So symmetry holds
+because <span class="math inline">\(x = y\)</span> obviously implies
+<span class="math inline">\(y = x\)</span> if <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are the same number. For the same
+reason, transitivity must hold, too: <span class="math inline">\(x =
+y\)</span> and <span class="math inline">\(y = z\)</span> can be the
+case only if <span class="math inline">\(x\)</span>, <span
+class="math inline">\(y\)</span>, and <span
+class="math inline">\(z\)</span> are all the same number, in which case
+<span class="math inline">\(x = z\)</span> is of course true.</p>
+</div>
+<div class="example">
+<p>A more interesting example is equivalence modulo <span
+class="math inline">\(2\)</span>. The modulo <span
+class="math inline">\(n\)</span> operation divdies a number by <span
+class="math inline">\(n\)</span> and returns the remainder. For example,
+<span class="math inline">\(5 \mod 2 = 1\)</span>, whereas <span
+class="math inline">\(6 \mod 2 = 0\)</span>.</p>
+<p>Suppose <span class="math inline">\(x \equiv_2 y\)</span> iff <span
+class="math inline">\(x \mod 2 = y \mod 2\)</span>. Then <span
+class="math inline">\(\equiv_2\)</span> is an equivalence relation.
+First, it is clearly refleixve: <span class="math inline">\(x \equiv_2
+x\)</span> iff <span class="math inline">\(x \mod 2 = x \mod 2\)</span>,
+which always holds. Next, symmetry is also satisfied: <span
+class="math inline">\(x \equiv_2 y\)</span> iff <span
+class="math inline">\(x \mod 2 = y \mod 2\)</span> iff <span
+class="math inline">\(y \mod 2 = x \mod 2\)</span> iff <span
+class="math inline">\(y \equiv_2 x\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Explain why <span class="math inline">\(\equiv_2\)</span> is
+transitive.</p>
+</div>
+<div class="exercise">
+<p>Let us define a person’s <em>family pain</em> as the number of family
+members that they’d rather not be related to. Given some domain <span
+class="math inline">\(D\)</span> of individuals, let <span
+class="math inline">\(R \mathrel{\mathop:}=\left \{  \left \langle d,e
+\right \rangle \mid d \text{ and } e \text{ suffer the same familiy
+pain}  \right \}\)</span>. Show that <span
+class="math inline">\(R\)</span> is an equivalence relation.</p>
+</div>
+<div class="exercise">
+<p>The <strong>equivalence kernel</strong> of a function <span
+class="math inline">\(f\)</span> is an equivalence relation <span
+class="math inline">\(\sim_f\)</span> such that two elements are
+equivalent iff they are mapped to the same value by <span
+class="math inline">\(f\)</span>. Formally, <span
+class="math inline">\(x \sim_f y\)</span> iff <span
+class="math inline">\(f(x) = f(y)\)</span>. Explain why <span
+class="math inline">\(\equiv_f\)</span> is an equivalence relation no
+matter what function <span class="math inline">\(f\)</span> is.</p>
+</div>
+<div class="exercise">
+<p>Suppose that two cities are <em>continent mates</em> iff they are
+connected by roads. The continent mate relation contains all <span
+class="math inline">\(\left \langle c,m \right \rangle\)</span> (and
+only those) such that <span class="math inline">\(c\)</span> and <span
+class="math inline">\(m\)</span> are continent mates. Is the continent
+mate relation an equivalence relation? Why (not)?</p>
+</div>
+<div class="exercise">
+<p>Is the empty relation (i.e. <span
+class="math inline">\(\emptyset\)</span>) an equivalence relation?
+Justify your answer.</p>
+</div>
+<h2 id="equivalence-classes-and-partitions">Equivalence classes and
+partitions</h2>
+<p>Given an equivalence relation <span class="math inline">\(R \subseteq
+D \times D\)</span> and element <span class="math inline">\(x\)</span>,
+<span class="math inline">\([x]\)</span> is the <strong>equivalence
+class</strong> of <span class="math inline">\(x\)</span>. It contains
+all elements that are equivalent to <span
+class="math inline">\(x\)</span> according to <span
+class="math inline">\(R\)</span>. Formaly, <span
+class="math inline">\([x] \mathrel{\mathop:}=\left \{  y \mid x R y
+\right \}\)</span>. Keep in mind that <span
+class="math inline">\(R\)</span> is reflexive, so <span
+class="math inline">\(x \in [x]\)</span>.</p>
+<p>Also, symmetry and transitivity entail that <span
+class="math inline">\(x \in [y]\)</span> iff <span
+class="math inline">\(y \in [x]\)</span>. So it follows from <span
+class="math inline">\(x \in [y]\)</span> that <span
+class="math inline">\([x] = [y]\)</span>. Hence it doesn’t matter which
+member of an equivalence class one uses in its name, there is no
+difference between <span class="math inline">\([x]\)</span> and <span
+class="math inline">\([y]\)</span> if <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> belong go the same equivalence
+class.</p>
+<div class="example">
+<p>Consider again the modulo 2 relation <span
+class="math inline">\(\equiv_2\)</span>. It gives rise to two
+equivalence classes. The first ist <span class="math inline">\([0]
+\mathrel{\mathop:}=\left \{ 0, 2, 4, 6, \ldots \right \}\)</span>, which
+contains all even numbers, and the other is <span
+class="math inline">\([1] \mathrel{\mathop:}=\left \{ 1, 3, 5, 7, \ldots
+\right \}\)</span>, the set of odd numbers. We could also refer to them
+as <span class="math inline">\([2]\)</span> and <span
+class="math inline">\([3]\)</span>, respectively, or <span
+class="math inline">\([10]\)</span> and <span
+class="math inline">\([7]\)</span>, it really does not matter.</p>
+</div>
+<div class="exercise">
+<p>Intuitively, what equivalence classes does the continent mate
+relation yield?</p>
+</div>
+<p>Note that equivalence classes never overlap, they are disjoint sets.
+Given a set <span class="math inline">\(S\)</span> and an equivalence
+relation <span class="math inline">\(R\)</span>, no member of <span
+class="math inline">\(S\)</span> can belong to more than one equivalence
+class.</p>
+<div class="exercise">
+<p>Suppose that <span class="math inline">\(x \in [y]\)</span> and <span
+class="math inline">\(x \in [z]\)</span>, but <span
+class="math inline">\([y] \neq [z]\)</span>. Why is this impossible?</p>
+</div>
+<p>In addition, an equivalence relation over a set <span
+class="math inline">\(S\)</span> is usually chosen in such a way that
+every element of <span class="math inline">\(S\)</span> belongs to an
+equivalence class.</p>
+<div class="exercise">
+<p>In principle, one could combine the set <span
+class="math inline">\(\left \{ a,b,c \right \}\)</span> with the
+equivalence relation <span class="math inline">\(R
+\mathrel{\mathop:}=\left \{ \left \langle a,a \right \rangle, \left
+\langle a,b \right \rangle, \left \langle b,a \right \rangle, \left
+\langle b,b \right \rangle \right \}\)</span>. But it is more natural to
+extend the relation to <span class="math inline">\(R&#39;
+\mathrel{\mathop:}=\left \{ \left \langle a,a \right \rangle, \left
+\langle a,b \right \rangle, \left \langle b,a \right \rangle, \left
+\langle b,b \right \rangle, \left \langle c,c \right \rangle \right
+\}\)</span>. Intuitively, <span class="math inline">\(R&#39;\)</span> is
+exactly like <span class="math inline">\(R\)</span> except that there is
+also an equivalence class for elements that <span
+class="math inline">\(R\)</span> is not defined for.</p>
+</div>
+<p>Given these assumptions, every member of <span
+class="math inline">\(S\)</span> belongs to exactly one equivalence
+class. The equivalence classes thus add an additional layer of structure
+to <span class="math inline">\(S\)</span>. They break it down into a
+collection of non-overlapping, non-empty subsets (the equivalence
+classes) that fully cover <span class="math inline">\(S\)</span>. This
+is also called a <strong>partition</strong> of <span
+class="math inline">\(S\)</span>, and one says that <span
+class="math inline">\(R\)</span> partitions <span
+class="math inline">\(S\)</span>. Each equivalence class is also called
+a <strong>cell</strong> of the partition.</p>
+<h2 id="quotient-structure">Quotient structure</h2>
+<p>Given an equivalence relation <span
+class="math inline">\(\sim\)</span>, <span class="math inline">\(S/\sim
+\mathrel{\mathop:}=\left \{  [x] \mid x \in S \right \}\)</span> is the
+partition <span class="math inline">\(\sim\)</span> induces on <span
+class="math inline">\(S\)</span>. This is also called a <strong>quotient
+set</strong> (yes, there’s many different names for the same thing
+here). Sometimes, <span class="math inline">\(S\)</span> may have some
+additional operation or relation defined on it. It may be possible to
+lift this operation or relation from <span
+class="math inline">\(S\)</span> to its quotient set <span
+class="math inline">\(S/\sim\)</span>. In this case, one obtains a
+<strong>quotient structure</strong>.</p>
+<div class="example">
+<p>Consider once more the equivalence relation <span
+class="math inline">\(\equiv_2\)</span>. Over the natural numbers, it
+induces a quotient set consisting of <span
+class="math inline">\([0]\)</span> and <span
+class="math inline">\([1]\)</span>, the even and odd numbers,
+respectively. Now suppose that we add addition as an operation to the
+natural numbers. Then it holds that <span class="math inline">\((m + n)
+\mod 2 = ([m] + [n]) \mod 2\)</span>. In other words, there are two
+different ways of computing the desired result. The first option
+operates on <span class="math inline">\(S\)</span>. One adds the two
+numbers and then takes the sum modulo 2. Alternatively, one can look at
+the quotient set. Take the two equivalence classes, and take their sum
+by picking the smallest number from each equivalence class and adding
+them together. Then apply modulo 2 as before.</p>
+<p>Here’s what this looks like with specific numbers. Suppose you want
+to calculate <span class="math inline">\((10,222 + 13,728,529) \mod
+2\)</span>. You could add this up to <span
+class="math inline">\(13,738,751\)</span>, divide by two, and get a
+remainder of <span class="math inline">\(1\)</span>. But you probably
+realized right away that the first number is even and the second one
+odd, so their sum will be odd, which means that division by 2 will leave
+a remainder of <span class="math inline">\(1\)</span>. In other words,
+you have computed the result with the quotient structure. First you
+noted that <span class="math inline">\(10,222 \in [0]\)</span> and <span
+class="math inline">\(13,728,529 \in [1]\)</span>. As <span
+class="math inline">\([0] + [1] = 0 + 1 = 1\)</span>, you immediately
+get a remainder of <span class="math inline">\(1\)</span>.</p>
+</div>
+<p>Quotient structures are a very powerful concept, in particular when
+it comes to designing efficient algorithms. A set may contain millions
+of elements, and the operations on the set may take a long time to
+compute on some of those elements. But you might be able to build a much
+smaller quotient structure, and the operations may be faster over
+equivalence classes because you can pick very simple representatives of
+each class. After all, <span class="math inline">\((3 + 5) \mod
+7\)</span> is a much easier way to calculate the output of <span
+class="math inline">\((7,003 + 14,726) \mod 7\)</span>.</p>
+</div>
+</div>
+</body>
+</html>

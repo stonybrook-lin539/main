@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Exponentiation</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#exponentiation">Exponentiation</a>
+<ul>
+<li><a href="#terminology-base-and-exponent">Terminology: Base and
+exponent</a></li>
+<li><a href="#addition-of-exponents-is-multiplication-of-bases">Addition
+of exponents is multiplication of bases</a></li>
+<li><a href="#negative-exponents-are-fractions">Negative exponents are
+fractions</a></li>
+<li><a href="#subtraction-of-exponents-is-division-of-bases">Subtraction
+of exponents is division of bases</a></li>
+<li><a href="#x0-1"><span class="math inline">\(x^0 =
+1\)</span></a></li>
+<li><a href="#xmathrmey-notation-for-exponentiation"><span
+class="math inline">\(x\mathrm{e}y\)</span> notation for
+exponentiation</a></li>
+<li><a href="#the-euler-number-e-and-exp-notation">The Euler number
+<span class="math inline">\(e\)</span> and exp notation</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="exponentiation">Exponentiation</h1>
+<p>You are probably familiar with the expressions like <span
+class="math inline">\(2^5\)</span>, which is the same as multiplying
+five instances of <span class="math inline">\(2\)</span>. That is to
+say, <span class="math inline">\(2^5 = 2 \times 2 \times 2 \times 2
+\times 2 = 32\)</span> (don’t confuse this with the string notation
+<span class="math inline">\(2^5\)</span>, which would yield <span
+class="math inline">\(22222\)</span>). But there are some more advanced
+or subtle aspects of exponentiation that you might not have come across
+before or that you might have forgotten about in the meantime.</p>
+<h2 id="terminology-base-and-exponent">Terminology: Base and
+exponent</h2>
+<p>In an expression like <span class="math inline">\(x^y\)</span>, we
+say that <span class="math inline">\(x\)</span> is the
+<strong>base</strong> and <span class="math inline">\(y\)</span> is the
+<strong>exponent</strong>. This is true even if <span
+class="math inline">\(x\)</span> or <span
+class="math inline">\(y\)</span> are complex expressions, and even if
+they themselves contain exponents</p>
+<div class="example">
+<p>In <span class="math display">\[(10^3 \times \frac{3}{17}  -
+7)^{5^\frac{2}{3}}\]</span>, the base is <span
+class="math display">\[(10^3 \times \frac{3}{17}  - 7)\]</span> and the
+exponent is <span class="math display">\[5^\frac{2}{3}.\]</span> We see
+that the base contains another instance of exponentiation, <span
+class="math inline">\(10^3\)</span>, where <span
+class="math inline">\(10\)</span> is the base and <span
+class="math inline">\(3\)</span> the exponent. Similarly, the exponent
+<span class="math inline">\(5^\frac{2}{3}\)</span> is itself an instance
+of exponentiation with base <span class="math inline">\(5\)</span> and
+exponent <span class="math inline">\(\frac{2}{3}\)</span>.</p>
+</div>
+<h2 id="addition-of-exponents-is-multiplication-of-bases">Addition of
+exponents is multiplication of bases</h2>
+<p>Since exponents may be arbitrarily complex formulas, they can contain
+instances of addition, e.g. <span class="math inline">\(2^{2+3} = 2^5 =
+32\)</span>. Addition of exponents corresponds to multiplication of
+bases.</p>
+<div class="example">
+<p>Consider once more the formula <span
+class="math inline">\(2^{2+3}\)</span>. We show that we can get the
+correct result either by adding up exponents or by multiplying
+bases.</p>
+<ul>
+<li><strong>Addition of exponents</strong>: <span
+class="math inline">\(2^{2+3} = 2^5 = 32\)</span></li>
+<li><strong>Multiplication of bases</strong>: <span
+class="math inline">\(2^{2+3} = 2^2 \times 2^3 = 4 \times 8 =
+32\)</span></li>
+</ul>
+</div>
+<p>This is intuitive enough. Suppose <span class="math inline">\(y = m +
+n\)</span>. Then <span class="math inline">\(x^y\)</span> means
+“multiply <span class="math inline">\(y\)</span> instances of <span
+class="math inline">\(x\)</span>”, but that is the same as “multiply
+<span class="math inline">\(m\)</span> instances of <span
+class="math inline">\(x\)</span>, multiply <span
+class="math inline">\(n\)</span> instances of <span
+class="math inline">\(y\)</span>, and then multiply those two
+values”.</p>
+<h2 id="negative-exponents-are-fractions">Negative exponents are
+fractions</h2>
+<p>For every positive number <span class="math inline">\(y\)</span>, it
+holds that <span class="math inline">\(x^{-y} = \frac{1}{x^y}\)</span>.
+For example, <span class="math inline">\(2^{-3} = \frac{1}{2^3} =
+\frac{1}{8} = 0.125\)</span>.</p>
+<p>At first, this does not seem very intuitive. The expression <span
+class="math inline">\(2^{-3}\)</span> could be translated as “multiply
+negative 3 instances of <span class="math inline">\(2\)</span>”, which
+sounds like gibberish. Why should this be <span
+class="math inline">\(\frac{1}{2^3}\)</span>? Here is a somewhat
+intuitive way you can think about it (the full explanation requires a
+bit more abstract algebra than you might have seen at this point):</p>
+<p>Consider the formula <span class="math inline">\(4 \times 3 \times
+2^{3} \times 2^{-3}\)</span>. Whatever it means to “multiply negative 3
+instances of <span class="math inline">\(2\)</span>” in this formula, it
+should undo the effects of “multiplying 3 instances of <span
+class="math inline">\(2\)</span>” so that we are left with just <span
+class="math inline">\(4 \times 3\)</span>. Another way of saying this is
+<span class="math inline">\(2^{3} \times 2^{-3}\)</span> should yield
+some number <span class="math inline">\(n\)</span> such that <span
+class="math inline">\(4 \times 3 \times n\)</span> is the same as <span
+class="math inline">\(4 \times 3\)</span>. Obviously the only possible
+value for <span class="math inline">\(n\)</span> is <span
+class="math inline">\(1\)</span>. So whatever the value of <span
+class="math inline">\(2^{-3}\)</span>, it must be such that <span
+class="math inline">\(2^{3} \times 2^{-3} = 1\)</span>. But that is
+exactly what fractions do: <span class="math inline">\(2^{3} \times
+2^{-3} = 2^{3} \times \frac{1}{2^3} = \frac{2^3}{2^3} = 1\)</span>.</p>
+<p>Once you understand this line of reasoning, it makes perfect sense
+that <span class="math inline">\(x^{-y} = \frac{1}{x^y}\)</span>.</p>
+<h2 id="subtraction-of-exponents-is-division-of-bases">Subtraction of
+exponents is division of bases</h2>
+<p>Just like addition of exponents corresponds to multiplication of
+bases, subtraction of exponents corresponds to division of bases. This
+follows from the fact that subtraction is equivalent to addition with
+negative numbers.</p>
+<div class="example">
+<p>Consider the formula <span class="math inline">\(2^{3-2}\)</span>. We
+show that we can get the correct result either by subtraction of
+exponents or by division of bases.</p>
+<ul>
+<li><strong>Subraction of exponents</strong>: <span
+class="math inline">\(2^{3-2} = 2^1 = 2\)</span></li>
+<li><strong>Division of bases</strong>: <span
+class="math inline">\(2^{3-2} = \frac{2^3}{2^2} = \frac{8}{4} =
+2\)</span></li>
+</ul>
+<p>This is a corollary of the fact that 1) subtraction is addition with
+negative numbers and 2) <span class="math inline">\(x^{-y} =
+\frac{1}{x^y}\)</span>. Hence we have:</p>
+<p><span class="math display">\[2^{3-2} = 2^{3 + (-2)} = 2^3 \times
+2^{-2} = 2^3 \times\frac{1}{2^2} = \frac{2^3}{2^2} = \frac{8}{4} =
+2\]</span></p>
+</div>
+<h2 id="x0-1"><span class="math inline">\(x^0 = 1\)</span></h2>
+<p>When you ask a random person on the street to compute <span
+class="math inline">\(10^0\)</span>, they will probably tell you that
+the result is <span class="math inline">\(0\)</span>. But the correct
+answer is <span class="math inline">\(1\)</span>. In fact, <span
+class="math inline">\(x^0 = 1\)</span> for any number <span
+class="math inline">\(x\)</span>. Again this seems intuitively wrong. If
+<span class="math inline">\(x^0\)</span> means “multiply 0 instances of
+<span class="math inline">\(x\)</span>”, then it seems the result should
+be <span class="math inline">\(0\)</span>, not <span
+class="math inline">\(1\)</span>.</p>
+<p>But given everything said so far, we can derive that <span
+class="math inline">\(x^0\)</span> must in fact be <span
+class="math inline">\(1\)</span>. First, observe that for any natural
+number <span class="math inline">\(n\)</span>, it holds that <span
+class="math inline">\(0 = n - n\)</span>. So we can rewrite <span
+class="math inline">\(x^0\)</span> and <span
+class="math inline">\(x^{(n-n)}\)</span>. But we already know that
+subtraction of exponents corresponds to division, hence <span
+class="math inline">\(x^{(n-n)} = \frac{x^n}{x^n}\)</span>. And this
+must be <span class="math inline">\(1\)</span> because no matter what
+the actual value <span class="math inline">\(v\)</span> of <span
+class="math inline">\(x^n\)</span> might be, <span
+class="math inline">\(\frac{v}{v}\)</span> is always <span
+class="math inline">\(1\)</span>.</p>
+<h2 id="xmathrmey-notation-for-exponentiation"><span
+class="math inline">\(x\mathrm{e}y\)</span> notation for
+exponentiation</h2>
+<p>fixme: to be added</p>
+<h2 id="the-euler-number-e-and-exp-notation">The Euler number <span
+class="math inline">\(e\)</span> and exp notation</h2>
+<p>fixme: to be added</p>
+</div>
+</div>
+</body>
+</html>

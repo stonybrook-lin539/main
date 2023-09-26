@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Order relations: the intuition</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#order-relations-the-intuition">Order relations: the
+intuition</a>
+<ul>
+<li><a href="#examples-of-ordered-sets">Examples of ordered
+sets</a></li>
+<li><a href="#not-every-binary-relation-is-an-order">Not every binary
+relation is an order</a></li>
+<li><a href="#linear-and-partial-orders">Linear and partial
+orders</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="order-relations-the-intuition">Order relations: the
+intuition</h1>
+<p>A binary relation <span class="math inline">\(R\)</span> can be
+combined with a set <span class="math inline">\(S\)</span> to define an
+<strong>ordered set</strong>. Think of it as follows: whereas the
+elements of a normal set are just floating around in limbo with no ties
+between them, an ordered set uses some ordering relation <span
+class="math inline">\(R\)</span> to lock its elements into place. This
+unit only covers the intuition behind orders, and the formal definitions
+are left to the next one.</p>
+<h2 id="examples-of-ordered-sets">Examples of ordered sets</h2>
+<div class="example">
+<p>The prototypical example of an order is the “equal or less than”
+relation <span class="math inline">\(\leq\)</span> over the set <span
+class="math inline">\(\mathbb{N}\)</span> of natural numbers. While the
+set of natural numbers is unordered, we can use <span
+class="math inline">\(\leq\)</span> to define the usual order over it
+with <span class="math inline">\(0\)</span> at the beginning, followed
+by <span class="math inline">\(1\)</span>, which is followed by <span
+class="math inline">\(2\)</span>, and so on.</p>
+</div>
+<p><img src="natnum_lessthan.svg" alt="natnum_lessthan.svg" /></p>
+<div class="example">
+<p>We could have defined a very different kind of order over <span
+class="math inline">\(\mathbb{N}\)</span>. Let <span
+class="math inline">\(f\)</span> be a function that maps each natural
+number <span class="math inline">\(x\)</span> to the recursive sum of
+its digits. That is to say, <span class="math inline">\(f\)</span> first
+sums up all the digits, then sums up the digits of the sum, and so on,
+until only a single digit remains. The computation for <span
+class="math inline">\(537\)</span>, for instance, would proceed as
+follows:</p>
+<ul>
+<li><span class="math inline">\(537: 5 + 3 + 7 = 15\)</span></li>
+<li><span class="math inline">\(15: 1 + 5 = 6\)</span></li>
+</ul>
+<p>Consequently, <span class="math inline">\(f(537) = 6\)</span>. Note
+that <span class="math inline">\(f(537) = f(357) = f(753) = f(861) =
+f(96) = f(15) = f(6)\)</span>, so many different numbers have the same
+sum of digits. Now we define an order <span
+class="math inline">\(R\)</span> such that <span class="math inline">\(x
+\mathrel{R} y\)</span> iff <span class="math inline">\(f(x) &lt;
+f(y)\)</span>. That’s a very different way of ordering the natural
+numbers, but it’s still an order.</p>
+</div>
+<p><img src="natnum_digitsum.svg" alt="natnum_digitsum.svg" /></p>
+<div class="example">
+<p>The standard way of reciting the alphabet in English can be regarded
+as an order on the set <span class="math inline">\(\left \{
+a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z \right
+\}\)</span>.</p>
+</div>
+<h2 id="not-every-binary-relation-is-an-order">Not every binary relation
+is an order</h2>
+<p>The essential aspect of orders is that they allow us to say that some
+element is in some sense less relevant or prominent than some other
+element. The <span class="math inline">\(\leq\)</span> relation, for
+instance, orders numbers from small to big. We are effectively ranking
+the elements of the set.</p>
+<p>Not every binary relation gives rise to such a ranking.</p>
+<div class="example">
+<p>Suppose that we define the following binary relation <span
+class="math inline">\(R\)</span> over the set <span
+class="math inline">\(\left \{ 1,2,3 \right \}\)</span> of person
+features: <span class="math inline">\(1 \mathrel{R} 2\)</span>, <span
+class="math inline">\(1 \mathrel{R} 3\)</span>, <span
+class="math inline">\(2 \mathrel{R} 3\)</span>, and <span
+class="math inline">\(3 \mathrel{R} 2\)</span>. That’s not really a
+ranking. Yes, we can see that <span class="math inline">\(1\)</span> is
+ranked higher than <span class="math inline">\(2\)</span> and <span
+class="math inline">\(3\)</span> (or lower, depending on how you look at
+it). But <span class="math inline">\(2\)</span> and <span
+class="math inline">\(3\)</span> are not clearly ranked with respect to
+each other. On the one hand <span class="math inline">\(2\)</span> is
+higher than <span class="math inline">\(3\)</span>, and on the other
+hand <span class="math inline">\(3\)</span> is higher than <span
+class="math inline">\(2\)</span>. We have a kind of cycle, and that’s
+not okay for orders.</p>
+</div>
+<div class="example">
+<p>Now consider the successor relation <span
+class="math inline">\(S\)</span> over natural numbers. Here <span
+class="math inline">\(x \mathrel{S} y\)</span> iff <span
+class="math inline">\(y = x + 1\)</span>. So we have <span
+class="math inline">\(0 \mathrel{S} 1\)</span>, <span
+class="math inline">\(1 \mathrel{S} 2\)</span>, <span
+class="math inline">\(2 \mathrel{S} 3\)</span>, and so on. Even though
+this might look like it generates the same order as <span
+class="math inline">\(&lt;\)</span>, it’s not an order at all. The
+problem is that the relation does not relate elements that should be
+related if this were an actual ranking.</p>
+<p>Just look at <span class="math inline">\(0 \mathrel{S} 1\)</span> and
+<span class="math inline">\(1 \mathrel{S} 2\)</span>. This tells us that
+<span class="math inline">\(0\)</span> is ranked higher than <span
+class="math inline">\(1\)</span>, and <span
+class="math inline">\(1\)</span> is ranked higher than <span
+class="math inline">\(2\)</span> (again, it doesn’t matter if we say
+“ranked higher” or “ranked lower”). But in a normal ranking, this would
+mean that <span class="math inline">\(0\)</span> is also ranked higher
+than <span class="math inline">\(2\)</span>. Yet we do not have <span
+class="math inline">\(0 \mathrel{S} 2\)</span>. According to <span
+class="math inline">\(S\)</span>, <span class="math inline">\(0\)</span>
+and <span class="math inline">\(2\)</span> are completely unrelated,
+contradicting our intuitions about how a ranking ought to work. In a
+ranking, it is always the case that if <span
+class="math inline">\(x\)</span> outranks something that outranks <span
+class="math inline">\(y\)</span>, then <span
+class="math inline">\(x\)</span> outranks <span
+class="math inline">\(y\)</span>.</p>
+</div>
+<p>For this reason, an ordered set has to use a binary relation that is
+in some sense ranking-like. Among other things, this means that the
+relation can’t contain loops or cycles, and it must not have gaps that
+would be filled in if it were actually a ranking. If this seems awfully
+fuzzy to you, just focus on the intuition for now and check out the
+formal definitions in the next unit.</p>
+<h2 id="linear-and-partial-orders">Linear and partial orders</h2>
+<p>There are numerous types of orders, and the next unit covers them in
+detail. For now, it suffices to be aware of the major split between
+<strong>total orders</strong> and <strong>partial orders</strong>. Total
+orders are also called <strong>linear orders</strong>, which conveys the
+essential intuition behind them: a relation is a total order if it can
+be represented by writing all elements in a single line. A partial order
+is more flexible and allows some elements to be unordered with respect
+to each other, as long as this does not violate our requirement that the
+relation must be ranking-like.</p>
+<p>Let’s consider once more the examples above. The relation <span
+class="math inline">\(\leq\)</span> defines a total order over the set
+of natural numbers as there are no two elements that are unordered with
+respect to each other. No matter which two numbers <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> we look at, we either have <span
+class="math inline">\(x \leq y\)</span> or <span class="math inline">\(y
+\leq x\)</span>. And if we have both <span class="math inline">\(x \leq
+y\)</span> and <span class="math inline">\(y \leq x\)</span>, then <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> must be the same number. So we can’t
+have any odd situations like a loop from 10 back to 5. Hence we do
+indeed end up with a single line. And if we have a single line, we have
+a linear order, i.e a total order.</p>
+<p>The relation <span class="math inline">\(R\)</span>, on the other
+hand, only defines a partial order. While we do still have a rough order
+between numbers based on their recursive digit sum, numbers with the
+same digit sum are unordered with respect to each other. This can be
+seen clearly in the corresponding figure. We are still dealing with some
+kind of ranking, though, as all elements in the <span
+class="math inline">\(n\)</span>-th column of the figure are ranked
+higher than all the elements in the columns to their right. We still
+have a ranking of sorts, there’s just a lot elements that occupy the
+same rank.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Binary relations can be used to induce an order over a set, yielding
+an <strong>ordered set</strong> (e.g. the natural numbers with <span
+class="math inline">\(\leq\)</span>).</li>
+<li>Orders must be ranking-like. They cannot contain any loops or
+cycles, and it must the case that if <span
+class="math inline">\(x\)</span> outranks something that outranks <span
+class="math inline">\(y\)</span>, then <span
+class="math inline">\(x\)</span> outranks <span
+class="math inline">\(y\)</span>.</li>
+<li>The order is <strong>total</strong> (or <strong>linear</strong>) iff
+all elements of the set are related to each other. Intuitively, total
+orders build lines.</li>
+<li>Partial orders allow some elements to be unordered with respect to
+each other. Intuitively, they cannot be represented by a single line and
+instead require more complex arrangements.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
