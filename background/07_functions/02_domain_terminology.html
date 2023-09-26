@@ -40,6 +40,11 @@
 <ul>
 <li><a href="#domains-and-co-domains">Domains and co-domains</a>
 <ul>
+<li><a href="#notation">Notation</a></li>
+<li><a href="#total-and-partial-functions">Total and partial
+functions</a></li>
+<li><a href="#the-mapsto-notation">The <span
+class="math inline">\(\mapsto\)</span> notation</a></li>
 <li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
@@ -50,12 +55,13 @@
 <p>Every function has a <strong>domain</strong> and a
 <strong>co-domain</strong>. The domain is the set of objects from which
 its arguments can be drawn, and the <strong>co-domain</strong> is the
-set of objects from which outputs can be drawn. A function is undefined
-on any arguments that do not belong to its domain. One commonly writes
-<span class="math inline">\(f: D \rightarrow C\)</span> to indicate that
-<span class="math inline">\(f\)</span> is a function from domain <span
-class="math inline">\(D\)</span> to co-domain <span
-class="math inline">\(C\)</span>.</p>
+set of objects from which outputs can be drawn.</p>
+<h2 id="notation">Notation</h2>
+<p>One commonly writes <span class="math inline">\(f: D \rightarrow
+C\)</span> to indicate that <span class="math inline">\(f\)</span> is a
+function from domain <span class="math inline">\(D\)</span> to co-domain
+<span class="math inline">\(C\)</span>. A function is always undefined
+on all arguments that do not belong to its domain.</p>
 <div class="example">
 <p>Consider the function <span class="math inline">\(f(x) = x
 +1\)</span>. This actually represents multiple functions depending on
@@ -134,6 +140,7 @@ class="math inline">\(f\)</span> from the example above maps <span
 class="math inline">\(x\)</span> to <span
 class="math inline">\(4\)</span>.</p>
 </div>
+<h2 id="total-and-partial-functions">Total and partial functions</h2>
 <p>In the example above, the function <span
 class="math inline">\(f\)</span> is <strong>partial</strong> because it
 is not defined on all values of the domain. A <strong>total</strong>
@@ -163,6 +170,8 @@ the function <span class="math inline">\(f: E \rightarrow \left \{ 0,1
 class="math inline">\(1\)</span> iff <span
 class="math inline">\(n\)</span> contains at least three syllables.</p>
 </div>
+<h2 id="the-mapsto-notation">The <span
+class="math inline">\(\mapsto\)</span> notation</h2>
 <p>Irrespective of how one defines the domain and co-domain, and
 irrespective of whether a function is total or partial, the mapping from
 arguments to outputs can be defined in various ways, e.g. in plain
@@ -177,7 +186,7 @@ class="math inline">\(f(x) = y\)</span>.</p>
 \times x - 3\)</span>.</p>
 </div>
 <p>The same notation can be used to indicate <span
-class="math inline">\(f(x)\)</span> for specific values <span
+class="math inline">\(f(x)\)</span> for specific choices of <span
 class="math inline">\(x\)</span>.</p>
 <div class="example">
 <p>Instead of <span class="math inline">\(f(2) = 7\)</span>, we may
@@ -198,7 +207,7 @@ the set that outputs can be drawn from.</li>
 class="math inline">\(\rightarrow\)</span> co-domain</em>, e.g. <span
 class="math inline">\(f: \Sigma^* \rightarrow \mathbb{N}\)</span>.</li>
 <li>A function is <strong>total</strong> if it is defined for all
-elements of its domain.</li>
+elements of its domain. Otherwise it is <strong>partial</strong>.</li>
 <li>When the function we are defining is already clear from context, we
 may write <span class="math inline">\(x \mapsto y\)</span> instead of
 <span class="math inline">\(f(x) = y\)</span>. For example, <span
