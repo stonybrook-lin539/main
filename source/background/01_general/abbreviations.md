@@ -1,5 +1,6 @@
 ---
-pagetitle: Common abbreviations
+pagetitle: >-
+    Common abbreviations
 ---
 
 # Common abbreviations

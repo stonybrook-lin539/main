@@ -1,5 +1,6 @@
 ---
-pagetitle: Factorial
+pagetitle: >-
+    Factorial
 ---
 
 # Factorial

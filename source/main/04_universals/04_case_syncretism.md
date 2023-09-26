@@ -30,7 +30,7 @@ We still see small reflexes of case syncretism in English, where the personal pr
 The table above is called a **morphological paradigm**, where **morphology** means that we are talking about the form of words, and a **paradigm** is a collection of cells that specify the relation between the forms of a word and their function.
 In the case at hand, those functions are subject, object, and possessor.
 As you can see, *her* is the form for both the object and the possessor, and *it* is the form for both the subject and the object.
-When multiple cells of a paradigm look the same, this is called **syncretism**.
+Such cases where multiple cells of a paradigm look the same are called **syncretism**.
 
 The case system of English is so impoverished by now that it isn't very interesting to look at.
 But many languages have a much richer case morphology, and case syncretism is a common occurrence in those languages.
@@ -98,19 +98,20 @@ Case systems can be very complex and convoluted, so we will only focus on a few 
 First of all, we will only consider syncretism within a single column of the case paradigm.
 That is to say, we do not worry how singular forms can be syncretic with plural forms, we're only interested in syncretism among case forms in the singular and syncretism among case forms in the plural.
 Second, we won't consider each individual case that has been proposed for some language, because there's tons of them: ablative, locative, elative, instrumental, benefactive, and much more.
-Instead, we will subsume them all under *other* and use **Blake's case hierarchy** as our starting point.
-Slightly truncated, it postulates that
-$$\text{Nom} <
-\text{Acc} <
-\text{Gen} <
-\text{Dat} <
-\text{others}$$
-The $^*$ABA generalization, which we encountered with adjectival gradation and person pronoun paradigms, can be extended to this hierarchy.
-In this broader form, it states that two cases $x$ and $z$ cannot have the same form in a paradigm unless every case $y$ that occurs between them in the hierarchy also has this form in the paradigm.
+Instead, we will subsume them all under *other* and use **Blake's case hierarchy** (named after Australian linguist Barry Blake) as our starting point.
+
+Slightly truncated, Blake's case hierarchy postulates that
+$$\mathrm{Nom} <
+\mathrm{Acc} <
+\mathrm{Gen} <
+\mathrm{Dat} <
+\mathrm{others}$$
+The \*ABA generalization, which we encountered with adjectival gradation and person pronoun paradigms, can be extended to this hierarchy, and linguists have indeed done so.
+But now that the generalization applies to paradigms with more than three cells, it receives a slightly more general interpretation: two cases $x$ and $z$ cannot have the same form in a paradigm unless every case $y$ that occurs between them in the hierarchy also has this form in the paradigm.
 
 ::: example
 The paradigm for Latin *rex* displays syncretism of nominative and accusative to the exclusion of genitive, dative, and ablative.
-But since these cases do not occur between nominative and accusative in Blake's case hierarchy, this obeys the $^*$ABA generalization.
+But since these cases do not occur between nominative and accusative in Blake's case hierarchy, this obeys the \*ABA generalization.
 :::
 
 ::: exercise
@@ -119,16 +120,32 @@ Can a monotonic function produce this pattern from Blake's case hierarchy?
 Justify your answer.
 :::
 
-There is a problem with the monotonicity account, though.
+::: exercise
+Barry Blake did not actually intend his case hierarchy to be used in this manner.
+Instead, it was supposed to capture a particular typological generalization: if a language has some case $y$, then it also has every case such that $x < y$ in Blake's hierarchy.
+Show that this, too, can be understood as an instance of monotonicity.
+:::
+
+There is a problem with the \*ABA generalization, though.
 In many Germanic languages, dative and accusative are syncretic to the exclusion of genitive.
+But given Blake's case hierarchy, that would be an instance of an ABA pattern.
 
 ::: example
 In German, it is very common for nominative, dative and accusative to take the base form, whereas genitive receives a special affix.
 So *Papa* 'dad' could be nominative, dative, or accusative, whereas the genitive must be *Papas*.
-German is not an ideal example, though, as the genitive is becoming increasingly unproductive.
-Moreover, the dative allows for a special suffix *-e* for nouns that end in a consonant, so that *Mann* can be either *Mann* or *Manne* (although the latter sounds very archaic).
-Nonetheless, it is conceivable that the dative of *Papa* is underlyingly *Papae*, with the final vowel subsequently deleted by some phonological process.
 :::
+
+::
+German is not an ideal example because the genitive is becoming increasingly unproductive.
+Moreover, the dative allows for a special suffix *-e* for nouns that end in a consonant, so that *Mann* can be either *Mann* or *Manne* (although the latter sounds very archaic).
+it is conceivable, then, that the dative of *Papa* is underlyingly *Papae*, with the final vowel subsequently deleted by some phonological process.
+
+Show that the German case pattern for *Papa* obeys the \*ABA generalization if one makes at least one of the following assumptions:
+
+1. German has no genitive case and uses a truncated version of Blake's case hierarchy without genitive.
+1. German has a genitive form *Papas*, but the dative is underlyingly *Papae* rather than *Papa*.
+:::
+
 
 ::: example
 A better example comes from the Icelandic word for *father*.
@@ -137,17 +154,18 @@ And in contrast to German, there's no wiggle room here: these are the endings, a
 So accusative and dative are indeed the only syncretic cases, and crucially the genitive case does not participate in this syncretism.
 :::
 
-If we combine the $^*$ABA generalization with Blake's hierarchy in its current form, then we cannot produce syncretism of accusative and dative to the exclusion of genitive.
-Either the $^*$ABA generalization is too restrictive, or Blake's hierarchy is wrong.
+If we combine the \*ABA generalization with Blake's hierarchy in its current form, then we cannot produce these attested syncretism patterns.
+Since genitive occurs between accusative and dative, syncretism of the latter two the exclusion of the former necessarily generates an ABA pattern.
+Either the \*ABA generalization is too restrictive, or Blake's hierarchy is wrong.
 We could of course try to change the hierarchy, but the easy options do not work.
 
 ::: exercise
 Explain why the following hierarchy is empirically inadequate:
-$\text{Nom} <
-\text{Gen} <
-\text{Acc} <
-\text{Dat} <
-\text{others}$.
+$\mathrm{Nom} <
+\mathrm{Gen} <
+\mathrm{Acc} <
+\mathrm{Dat} <
+\mathrm{others}$.
 :::
 
 ::: exercise
@@ -158,13 +176,13 @@ Which variants of Blake's hierarchy does this rule out?
 
 ## Partial orders to the rescue
 
-It seems that no matter how we order the cases, at least one attested syncretism will violate the $^*$ABA generalization.
+It seems that no matter how we order the cases, at least one attested syncretism will violate the \*ABA generalization.
 But perhaps we are accidentally limiting ourselves.
-First of all, remember that the $^*$ABA generalization is just a linguistic counterpart to the mathematical notion of monotonicity.
+First of all, remember that the \*ABA generalization is just a linguistic counterpart to the mathematical notion of monotonicity.
 Perhaps monotonicity provides a way out?
 
 ::: exercise
-Pick one of the problematic syncretisms pointed out above and explain why it is also problematic if we replace the $^*$ABA generalization with the requirement that the mapping from the Blake hierarchy to surface forms must be a monotonic function.
+Pick one of the problematic syncretisms pointed out above and explain why it is also problematic if we replace the \*ABA generalization with the requirement that the mapping from the Blake hierarchy to surface forms must be a monotonic function.
 :::
 
 Well, monotonicity by itself doesn't really help.
@@ -180,8 +198,8 @@ The resulting order is not trichotomous because there are at least two distinct 
 :::
 
 Trichotomy is a natural starting point for linguistic hierarchies, but it isn't a necessary one.
-In contrast to the $^*$ABA generalization, monotonicity is also a meaningful concept if we consider **partial orders**.
-In a partial order, some elements may be unordered with respect to each other.
+In contrast to the \*ABA generalization, monotonicity is also a meaningful concept if we consider **partial orders**.
+In a partial order, some elements may be unordered with respect to some other elements.
 This allows us to make a small but important modification to Blake's hierarchy.
 
 ~~~ {.include-tikz size=mid}
@@ -190,29 +208,33 @@ blake_partialorder.tikz
 
 This graph encodes the following orderings of cases:
 
-1. $\text{Nom} < \text{Acc}$,
-1. $\text{Nom} < \text{Gen}$,
-1. $\text{Acc} < \text{Dat}$,
-1. $\text{Gen} < \text{Dat}$,
-1. $\text{Dat} < \text{others}$,
-1. all the orders that follow from this (e.g. $\text{Nom} < \text{Dat}$).
+1. $\mathrm{Nom} < \mathrm{Acc}$,
+1. $\mathrm{Nom} < \mathrm{Gen}$,
+1. $\mathrm{Acc} < \mathrm{Dat}$,
+1. $\mathrm{Gen} < \mathrm{Dat}$,
+1. $\mathrm{Dat} < \mathrm{others}$,
+1. all the orders that follow from this:
+    - $\mathrm{Nom} < \mathrm{Dat}$,
+    - $\mathrm{Nom} < \mathrm{others}$,
+    - $\mathrm{Acc} < \mathrm{others}$,
+    - $\mathrm{Gen} < \mathrm{others}$).
 
-Notice how genitive and accusative are now unordered with respect to each other.
+But crucially, genitive and accusative are now unordered with respect to each other.
 Monotonicity is a restriction on what a function may map $x$ and $y$ to if $x$ and $y$ are ordered with respect to each other.
 But monotonicity has nothing to say for cases where no such ordering holds.
 If there is no order between $x$ and $y$, then it does not matter whether $f(x) \leq f(y)$ or the other way round.
 Without an ordering between accusative and genitive, it becomes possible for accusative and dative to be syncretic to the exclusion of genitive.
 
 ::: example
-Suppose that accusative and dative are both mapped to the same exponent, which is different to the realization of genitive: $f(\text{Acc}) = f(\text{Dat}) \neq f(\text{Gen})$.
+Suppose that accusative and dative are both mapped to the same exponent, which is different from the realization of genitive: $f(\mathrm{Acc}) = f(\mathrm{Dat}) \neq f(\mathrm{Gen})$.
 We will show that this is compatible with the assumption of a monotonically increasing (or decreasing) function.
 
-First, the revised case hierarchy above establishes that $\text{Acc} < \text{Dat}$.
-If $f$ is monotonically increasing, then $\text{Acc} < \text{Dat}$ entails $f(\text{Acc}) \leq f(\text{Dat})$.
-By our initial assumption, $f(\text{Acc}) = f(\text{Dat})$, which confirms $f(\text{Acc}) \leq f(\text{Dat})$.
-Our revised case hierarchy also postulates that $\text{Gen} < \text{Dat}$, so it must be the case that $f(\text{Gen}) \leq f(\text{Dat})$.
-Whether this holds depends on how one orders the surface forms, but it is always possible to pick an ordering that satisfies $f(\text{Gen}) \leq f(\text{Dat})$.
-Finally, $\text{Acc}$ and $\text{Gen}$ are unordered with respect to each other, and consequently the relative order of $f(\text{Acc})$ and $f(\text{Gen})$ is irrelevant for monotonicity.
+First, the revised case hierarchy above establishes that $\mathrm{Acc} < \mathrm{Dat}$.
+If $f$ is monotonically increasing, then $\mathrm{Acc} < \mathrm{Dat}$ entails $f(\mathrm{Acc}) \leq f(\mathrm{Dat})$.
+By our initial assumption, $f(\mathrm{Acc}) = f(\mathrm{Dat})$, which confirms $f(\mathrm{Acc}) \leq f(\mathrm{Dat})$.
+Our revised case hierarchy also postulates that $\mathrm{Gen} < \mathrm{Dat}$, so it must be the case that $f(\mathrm{Gen}) \leq f(\mathrm{Dat})$.
+Whether this holds depends on how one orders the surface forms, but it is always possible to pick an ordering that satisfies $f(\mathrm{Gen}) \leq f(\mathrm{Dat})$.
+Finally, $\mathrm{Acc}$ and $\mathrm{Gen}$ are unordered with respect to each other, and consequently the relative order of $f(\mathrm{Acc})$ and $f(\mathrm{Gen})$ is irrelevant for monotonicity.
 :::
 
 ::: exercise
@@ -231,10 +253,15 @@ Justify your answer.
 It seems, then, that monotonicity does a lot of work even in the richer domain of case syncretisms.
 The crucial step is to move from a total order to a partial order.
 
+::: exercise
+Actually, this insight was already implicit in the unit on NPIs, where we looked at the distribution of *ever*.
+What was the partial order that we used in this case?
+:::
+
 ## Recap
 
 - Linguists often assume that hierarchies are **trichotomous**: all elements of the hierarchy must be ordered with respect to each other.
-- If we drop the trichotomy requirement, linguistic hierarchies can be partial orders.
-- In contrast to linguistic proposals like the No-Crossing-Branches constraint or the $^*$ABA generalization, monotonicity isn't limited to trichotomous orders.
+- If we drop the trichotomy requirement, linguistic hierarchies can be **partial orders**.
+- In contrast to linguistic proposals like the No-Crossing-Branches constraint or the \*ABA generalization, monotonicity isn't limited to trichotomous orders.
   It works just as well for partial orders.
-- This makes it possible to explain many highly distinct linguistic phenomena in terms of monotonicity.
+- This makes it possible to explain highly distinct linguistic phenomena as the result of two interacting factors: the formal universal of monotonicity that holds across many domains of language, and domain-specific substantive universals, each one of which takes the form of a linear order (e.g. $1 < 2 < 3$ for pronouns or $\mathrm{positive} < \mathrm{comparative} < \mathrm{superlative}$ in adjectival gradation) or a partial order (Blake's case hierarchy).

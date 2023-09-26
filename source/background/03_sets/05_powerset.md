@@ -1,5 +1,6 @@
 ---
-pagetitle: The powerset
+pagetitle: >-
+    The powerset
 ---
 
 # The Powerset

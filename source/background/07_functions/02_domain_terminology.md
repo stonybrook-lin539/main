@@ -57,8 +57,15 @@ But there are also many natural numbers in the co-domain that can never be the o
 Explain why there is no natural number $x$ such that $f$ from the example above maps $x$ to $4$.
 :::
 
-How tightly one wants to define the domain and co-domain is a matter of taste.
-A loose definition tells the reader very little about what gets mapped to what by the function, but a definition with a very tight fit makes things difficult to read.
+In the example above, the function $f$ is **partial** because it is not defined on all values of the domain.
+A **total** function, on the other hand, maps every element of its domain to some element of its co-domain.
+Fields differ in whether they take total or partial functions to be the default.
+For example, computer scientists usually assume total functions and explicitly mention it when a function is partial, whereas it is common in calculus to assume partial functions and explicitly mention it when a function is total.
+Of course every partial function can be made total by giving a tighter definition of its domain, but this is not always practical.
+Sometimes the function is so complex that one simply cannot say what elements it is defined on, and hence one can only approximate its domain.
+
+Quite generally, it is a matter of taste how tightly one wants to define the domain and co-domain.
+A loose definition tells the reader very little about what gets mapped to what by the function, but a definition with a very tight fit, if it can be found at all, makes things difficult to read.
 Nonetheless, the domain and co-domain are a crucial part of a function's definition, and this is why they are usually specified before the precise mapping from inputs to outputs is even given.
 
 ::: example
@@ -67,7 +74,7 @@ Let $E$ be the set of English first names.
 Then the function $f: E \rightarrow \setof{0,1}$ maps $n$ to $1$ iff $n$ contains at least three syllables.
 :::
 
-The mapping from arguments to outputs can be defined in various ways, e.g. in plain English, or as a formula like $f(x) = \frac{(x + x^2 + 5)^{x+1}}{1000^x}$.
+Irrespective of how one defines the domain and co-domain, and irrespective of whether a function is total or partial, the mapping from arguments to outputs can be defined in various ways, e.g. in plain English, or as a formula like $f(x) = \frac{(x + x^2 + 5)^{x+1}}{1000^x}$.
 For very simple functions whose name was already mentioned, one often writes $x \mapsto y$ instead of $f(x) = y$.
 
 ::: example
@@ -89,5 +96,6 @@ The first is used when specifying the domain and co-domain, whereas the latter i
 - The behavior of a function depends greatly on its **domain** and **co-domain**.
   The domain specifies the set that inputs can be drawn from, and the co-domain is the set that outputs can be drawn from.
 - The standard notation is *function name: domain $\rightarrow$ co-domain*, e.g. $f: \Sigma^* \rightarrow \mathbb{N}$.
+- A function is **total** if it is defined for all elements of its domain.
 - When the function we are defining is already clear from context, we may write $x \mapsto y$ instead of $f(x) = y$.
   For example, $x \mapsto 2^x - 5$ is an alternative to $f(x) = 2^x - 5$.

@@ -1,5 +1,6 @@
 ---
-pagetitle: Union, intersection, and complement of sets
+pagetitle: >-
+    Union, intersection, and complement of sets
 ---
 
 # Union, intersection, and complement of sets

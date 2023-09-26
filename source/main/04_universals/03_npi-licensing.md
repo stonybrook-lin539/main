@@ -24,8 +24,9 @@ If you're a native speaker of English, you've probably never noticed that *ever*
 1. Every student should ever sleep in class.
 
 Quite curious, what's going on here?
-One simple answer is that *ever* can occur with *no* but not with *every*.
-This is rather unsatisfying since it only states the facts rather than explaining them.
+Here we have two sentences that use two distinct **quantifiers**, one being *no* and the other *every*.
+For some reason, *ever* can occur in the sentence with *no* but not with *every*.
+We could posit a constraint that forbids *ever* and *every* to co-occur, this is rather unsatisfying as it only states the facts rather than explaining them.
 But more importantly, it is also false.
 Both of the following sentences are okay in standard dialects of English.
 
@@ -78,8 +79,10 @@ Then *No X slept* is necessarily true if X denotes some set $B \subseteq A$ beca
 Since there is no subset of $A$ for which this entailment fails, *no* is indeed downward entailing.
 :::
 
+A similar argument can be used to show that *every* is downward entailing, too.
+
 ::: exercise
-Construct a similar argument to show that *every* is downward entailing.
+Construct such an argument that *every* is downward entailing.
 :::
 
 All this talk about downward entailment is nice and dandy, but it doesn't really help us with our problem.
@@ -123,7 +126,7 @@ Every person who runs a 5k is a person who runs, but the opposite is not true be
 So the set of 5k-runners is necessarily a subset of all runners, but the set of runners is not guaranteed to be a subset of the set of 5k-runners (although this can happen if literally every runner is running a 5k).
 It is also clear that if every student ran a 5k, then every student ran, whereas the opposite does not hold. 
 So all of a sudden the direction of inference is the other way round --- if the sentence is true for Y, then it is true for every **superset** of Y.
-This shows that even though *every* was downward entailing with respect to X, it is **upward entailing** with respect to Y.
+This shows that even though *every* was downward entailing with respect to X, it is **upward entailing** with respect to Y --- whereas *no* is downward entailing with respect to both X and Y.
 
 ::: exercise
 Show that *no* is downward entailing with respect to Y.
@@ -143,7 +146,7 @@ Now look once more at the example sentences from the beginning of the notebook.
 For clarity, let's rewrite this in the form of a table
 
 | **Quantifier** | **X**                           | **Y**                      | **Status**  |
-| --:            | :--                             | :--                        | :-:         |
+| --:            | :-:                             | :-:                        | :--         |
 | no             | student                         | should ever sleep in class | well-formed |
 | no             | student who ever slept in class | should get a degree        | well-formed |
 | every          | student                         | should ever sleep in class | ill-formed  |
@@ -159,19 +162,27 @@ So we finally have our answer: downward entailing contexts allow for NPIs like *
 Upward entailing and downward entailing are both instances of monotonicity.
 In order to see this, we have to make our treatment a bit more mathematical (it's still fairly informal for mathematicians' standards).
 
+In the preceding section, we essentially treated quantifiers like *no* and *every* as binary functions that take two arguments and maps them to a truth value.
+More abstractly, we analyze every quantifier $Q$ as a function of the form $Q(X,Y)$.
+Since we haven't really looked at monotonicity for functions with more than one argument, we first need to simplify things a bit.
+Instead of considering the quantifiers themselves, which take two arguments, we will only consider unary functions that fix one of arguments.
+In other words, instead of the function $Q(X,Y)$, we will consider the functions $Q_X(Y)$ and $Q_Y(X)$.
+
 Let $f$ be some function that takes as its input a set (X or Y in the notation above) and maps it to either 1 (for True) or 0 (for False).
 Intuitively, you can think of $f$ as a sentence with a hole in it that must be filled by the argument.
 
 ::: example
-The sentence
-*Every male student snored loudly*
-is an instance of the function
+Consider the sentence
+*Every male student snored loudly*.
+We could take this to define the function *every*(*male student*, *snored loudly*), which returns 1 iff every male student snored loudly.
+
+But we could also take it to be an instance of the function
 *every $\Box$ snored loudly*
 applied to the argument
 *male student*.
-The function maps *male student* to 1 iff every male student snored loudly.
+The function maps *male student* to 1 iff, once again, every male student snored loudly.
 
-Alternatively, we can view the sentence as an instance of the function
+And we can also view the sentence as an instance of the function
 *every male student $\Box$*
 applied to the argument
 *snored loudly*.
@@ -197,8 +208,8 @@ Clearly if the former is true, the latter must be too.
 We also know already that the set of students that ran a 5k (call it $5k$) is a subset of the students that ran (call it $R$).
 So we have $5k \subseteq R$.
 
-Now suppose that $\text{\emph{every student}}(5k) = 1$.
-Then $\text{\emph{every student}}(R) \geq 1$ because $R \supseteq 5k$ and the function is monotonically increasing.
+Now suppose that *every student*$(5k) = 1$.
+Then *every student*$(R) \geq 1$ because $R \supseteq 5k$ and the function is monotonically increasing.
 So the fact that the sentence is true for $5k$ entails that it is true for every superset of $5k$.
 This is exactly what it means to be upward entailing.
 :::
@@ -214,6 +225,35 @@ Alternatively, we may view downward entailment as a monotonically increasing fun
 Explain why!
 :::
 
+::: exercise
+Determine whether *some* is right downward entailing or right upward entailing.
+What does this predict for the distribution of *ever* in a sentence with *some*, and does this prediction match your intuitions?
+:::
+
+::: exercise
+Determine whether *some* is left downward entailing or left upward entailing.
+What does this predict for the distribution of *ever* in a sentence with *some*, and does this prediction match your intuitions?
+:::
+
 As you can see, monotonicity isn't limited to morphological paradigms.
 Without mathematics, it wouldn't be obvious that the No Crossing constraint of phonology has anything to do with the $^*$ABA generalization or the distribution of *ever*.
-The abstract notion of monotonicity allows us to tie them all together.
+The abstract notion of monotonicity allows us to tie them all together, gaining a deeper understanding of universals across language modules.
+
+::: exercise
+In the case of adjectival gradation, the formal universal of monotonicity had to be supplemented with the ordering *positive* $<$ *comparative* $<$ superlative, a substantive universal.
+In this unit, we again used monotonicity as a formal universal to restrict the distribution of *ever*.
+What is the substantive universal we had to combine monotonicity with?
+Does this strike you as a language-specific universal, or is it more likely an aspect of human cognition in general?
+:::
+
+## Recap
+
+- **Negative polarity items** (NPIs) like *ever* have a peculiar distribution that is conditioned by entailment relations.
+- A sentence $s$ **entails** another sentence $t$ iff $t$ must be true whenever $s$ is true.
+- Every quantifier $Q$ can be regarded as a binary function of the form $Q(X, Y)$ where $X$ describes the set of individuals/object/entities $Q$ quantifies over (students, sophomores, ...) and $Y$ is another set of individuals (the set of runner, 5k runners, and so on).
+- A quantifier $Q$ can be left/right downward/upward entailing depending on which of the clauses below hold whenever $Q(X, Y)$ is true.
+    - **left downward**: $Q(Z, Y)$ is true for every $Z \subseteq X$.
+    - **right downward**: $Q(X, Z)$ is true for every $Z \subseteq Y$.
+    - **left upward**: $Q(Z, Y)$ is true for every $Z \supseteq X$.
+    - **right upward**: $Q(X, Z)$ is true for every $Z \supseteq Y$.
+- Upward entailment (downward entailment) is the same as being monotonic increasing (monotonic decreasing).

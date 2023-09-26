@@ -1,11 +1,12 @@
 ---
-pagetitle: Comparing sets
+pagetitle: >-
+    Comparing sets
 ---
 
 # Comparing sets
 
 :::prereqs
-- sets (notation, operations, cardinality)
+- sets (basic notation, operations, cardinality)
 :::
 
 Two sets can stand in several distinct relations to each other:
@@ -27,10 +28,10 @@ For example, $\setof{a,b} \subseteq \setof{a,b,c,d}$.
 Alternatively, one also says in this case that $B$ is a **superset** of $A$ (written $B \supseteq A$).
 
 ::: example
-A transitive verb is a verb that occurs with a subject and an object: *devour*, *contradict*, *wager*, *flummox*, and many more.
+A transitive verb is a verb that occurs with a subject and one object: *devour*, *contradict*, *wager*, *flummox*, and many more.
 Not all verbs are transitive, e.g. *sleep* or *give*. 
-Suppose $T$ is the set of all English transitive verbs, whereas $V$ is the set of all English verbs.
-Since every transitive verb is a verb, but no the other way round, we have $T \subseteq V$.
+Suppose $V_T$ is the set of all English transitive verbs, whereas $V$ is the set of all English verbs.
+Since every transitive verb is a verb, but no the other way round, we have $V_T \subseteq V$.
 :::
 
 By the definition of subset, every set $S$ is a subset of itself.
@@ -43,15 +44,15 @@ This is because the empty set contains no elements at all, so it trivially holds
 ::: exercise
 Complete the table below.
 
-| A             | B                 | $A \subseteq B$? | $A \supseteq B$? | 
-| :--           | :--               | :--              | :--              | 
-| $\setof{a,b}$ | $\setof{a,a,b,c}$ |                  |                  | 
-| $\setof{a}$   | $\setof{b}$       |                  |                  | 
-| $\setof{}$    | $\setof{a}$       |                  |                  | 
-| $\setof{a,b}$ | $\setof{a,a,b,b}$ |                  |                  | 
+| A                      | B                 | $A \subseteq B$? | $A \supseteq B$? | 
+| :--                    | :--               | :--              | :--              | 
+| $\setof{a,b}$          | $\setof{a,a,b,c}$ |                  |                  | 
+| $\setof{a}$            | $\setof{b}$       |                  |                  | 
+| $\setof{}$             | $\setof{a}$       |                  |                  | 
+| $\setof{a,b}$          | $\setof{a,a,b,b}$ |                  |                  | 
+| $\setof{\setof{a}, b}$ | $\setof{a,a,b,b}$ |                  |                  |
 
 :::
-
 
 ``` jupyterpython
 def set_print(some_set):
@@ -85,6 +86,11 @@ The reason for this is again simple:
 1.  In the other direction, if $A \subseteq B$ and $B \subseteq A$, then every member of $A$ is a member of $B$, and every member of $B$ is a member of $A$.
     But that can only happen if the sets are identical.
 
+::: exercise
+Consider the set $E$ that contains all even natural numbers that are at least 0 and at most 10.
+Show that this is the same as the set that contains all $n$ such that $n = 2m$ for $m \in \setof{0,1,2,3,4,5}$.
+:::
+
 
 ## Proper subset and superset
 
@@ -93,16 +99,16 @@ In other words, every element of $A$ is a member of $B$, but not every element o
 We also say that $B$ is a **proper superset** of $A$ ($B \supsetneq A$).
 
 ::: example
-Given our previous discussion, the set $T$ of transitive verbs is proper subset of the set $V$ of verbs because it is a subset but not every verb is a transitive verb.
-In other words, $T \subseteq V$ yet $T \neq V$.
-Hence $T \subsetneq V$.
+Given our previous discussion, the set $V_T$ of transitive verbs is proper subset of the set $V$ of verbs because it is a subset but not every verb is a transitive verb.
+In other words, $V_T \subseteq V$ yet $V_T \neq V$.
+Hence $V_T \subsetneq V$.
 :::
 
 ::: exercise
 Fill in $=$, $\subsetneq$, or $\supsetneq$ as appropriate.
 
-
 - $\setof{a,b} \_ \setof{a}$
+- $\setof{a,b} \_ \setof{\setof{a}}$
 - $\setof{a,a,b,c} \_ \setof{b,b,a,c}$
 - $\setof{1,2,3} \_ \setof{n + 5 \mid n \in \setof{-4, -3}}$
 - $\emptyset \_ \setof{a}$
@@ -151,7 +157,8 @@ Just like $x \leq y$ means that $x$ is at most as large as $y$, $x \subseteq y$ 
 
 You may occasionally come across the symbol $\subset$ in other math texts.
 Some authors use $\subset$ instead of $\subseteq$, while others use it for $\subsetneq$.
-As you might imagine, this can be very confusing for the reader, so it's best to avoid $\subset$ and use $\subseteq$ and $\subsetneq$ instead.
+As you might imagine, this is a frequent source of confusion.
+It is best to avoid $\subset$ and use $\subseteq$ and $\subsetneq$ instead.
 
 ### And then there's $\not\subseteq$
 
@@ -169,7 +176,7 @@ Here's an overview of all the relevant notation:
 | $A \not\subseteq B$ | $A$ is not a subset of $B$ ($A \ni a \notin B$ for some $a$) |
 
 As you might have expected, there's corresponding counterparts for superset: $\supseteq$, $\supsetneq$, $\not\supseteq$.
-But there is no standardized symbol for sets being incomparable, although some authors like to use $\sim$ for this purpose.
+There is no standardized symbol for sets being incomparable, although some authors like to use $\sim$ for this purpose.
 
 ## Recap
 

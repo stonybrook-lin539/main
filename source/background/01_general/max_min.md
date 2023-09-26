@@ -1,5 +1,6 @@
 ---
-pagetitle: Picking maxima and minima
+pagetitle: >-
+    Picking maxima and minima
 ---
 
 # Picking maxima and minima
@@ -45,5 +46,9 @@ And assuming $F < T$, $\min(\setof{T, F}) = F$.
 :::
 
 ## argmax/argmin
+
+will be added at a later point
+
+## softmax
 
 will be added at a later point
