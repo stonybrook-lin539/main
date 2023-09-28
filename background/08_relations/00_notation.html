@@ -48,6 +48,7 @@ class="math inline">\(x \mathrel{R}\)</span> and <span
 class="math inline">\(\mathrel{R} y\)</span> notation</a></li>
 <li><a href="#relations-versus-functions">Relations versus
 functions</a></li>
+<li><a href="#formal-definition">Formal definition</a></li>
 <li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
@@ -317,18 +318,18 @@ way of saying that a function cannot provide more than one output,
 whereas a relation can unless it is right-unique. When we view a
 function <span class="math inline">\(f\)</span> as a relation <span
 class="math inline">\(R\)</span>, then it must hold for every <span
-class="math inline">\(a\)</span> that <span class="math inline">\(a
+class="math inline">\(x\)</span> that <span class="math inline">\(x
 \mathrel{R}\)</span> is either empty or contains exactly one element.
 Hence the term right-unique: if we look at the expression <span
-class="math inline">\(a \mathrel{R} b\)</span>, <span
-class="math inline">\(a\)</span> is the left side and <span
-class="math inline">\(b\)</span> the right side. If there cannot be more
-than one choice for <span class="math inline">\(b\)</span>, then the
-right side of <span class="math inline">\(a \mathrel{R} b\)</span> is
-uniquely determined by <span class="math inline">\(a\)</span>.</p>
+class="math inline">\(x \mathrel{R} y\)</span>, <span
+class="math inline">\(x\)</span> is the left side and <span
+class="math inline">\(y\)</span> the right side. If there cannot be more
+than one choice for <span class="math inline">\(y\)</span>, then the
+right side of <span class="math inline">\(x \mathrel{R} y\)</span> is
+uniquely determined by <span class="math inline">\(x\)</span>.</p>
 <p>The bottom line: every function is a relation, but not every relation
-is a function. If <span class="math inline">\(a\)</span> is related to
-two elements or more (i.e. <span class="math inline">\(\left | a
+is a function. If <span class="math inline">\(x\)</span> is related to
+two elements or more (i.e. <span class="math inline">\(\left | x
 \mathrel{R} \right | \geq 2\)</span>), then <span
 class="math inline">\(R\)</span> cannot be a function.</p>
 <div class="exercise">
@@ -355,6 +356,31 @@ class="math inline">\(\mathit{abbaaa}\)</span>)</li>
 <p>Every relation <span class="math inline">\(R\)</span> can be regarded
 as a function that maps <span class="math inline">\(x\)</span> to <span
 class="math inline">\(x \mathrel{R}\)</span>.</p>
+</div>
+<h2 id="formal-definition">Formal definition</h2>
+<p>There are multiple ways to define binary relations depending on
+whether one thinks of them as relating elements drawn from a single set,
+or as relating elements from some set <span
+class="math inline">\(X\)</span> to elements of some set <span
+class="math inline">\(Y\)</span>. The former is more standard and will
+also be more natural for all the scenarios we will encounter.</p>
+<div class="definition">
+<p>A <strong>binary relation</strong> <span
+class="math inline">\(R\)</span> over some fixed set <span
+class="math inline">\(S\)</span> is a (possibly infinite) set of
+statements of the form <span class="math inline">\(x \mathrel{R}
+y\)</span>, where <span class="math inline">\(x \in S\)</span> and <span
+class="math inline">\(y \in S\)</span>.</p>
+</div>
+<p>Since relations are sets, we can apply set-theoretic operations to
+them as usual.</p>
+<div class="example">
+<p>Suppose <span class="math inline">\(R \mathrel{\mathop:}=\left \{ a
+\mathrel{R} b, b \mathrel{R} c \right \}\)</span> and <span
+class="math inline">\(R&#39; \mathrel{\mathop:}=\left \{ a \mathrel{R}
+b, c \mathrel{R} b \right \}\)</span>. Then <span
+class="math inline">\(R \cup R&#39; = \left \{ a \mathrel{R} b, b
+\mathrel{R} c, c \mathrel{R} b \right \}\)</span>.</p>
 </div>
 <h2 id="recap">Recap</h2>
 <ul>
