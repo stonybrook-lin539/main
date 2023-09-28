@@ -57,7 +57,7 @@ rescue</a></li>
 syncretism</h1>
 <div class="prereqs">
 <ul>
-<li>relations (notation, basic orders)</li>
+<li>relations (basic notation, intuition behind order relations)</li>
 </ul>
 </div>
 <p>Monotonicity also seems to play a role in a phenomenon called
@@ -393,9 +393,16 @@ but it isn’t a necessary one. In contrast to the *ABA generalization,
 monotonicity is also a meaningful concept if we consider <strong>partial
 orders</strong>. In a partial order, some elements may be unordered with
 respect to some other elements. This allows us to make a small but
-important modification to Blake’s hierarchy.</p>
+important modification to Blake’s hierarchy: allow accusative and
+genitive to be unordered with respect to each other. We can depict this
+new hierarchy in the form of a graph</p>
 <p><img src="blake_partialorder.svg" alt="blake_partialorder.svg" /></p>
-<p>This graph encodes the following orderings of cases:</p>
+<p>In this graph, the vertical axis corresponds to the order induced by
+<span class="math inline">\(&lt;\)</span>. The graph is, essentially,
+the result of rotation Blake’ case hierarchy 90 degrees clockwise and
+then rearranging accusative and genitive so that they are still between
+nominative and dative but unordered with respect to each other. More
+precisely, the graph encodes the following orderings of cases:</p>
 <ol type="1">
 <li><span class="math inline">\(\mathrm{Nom} &lt;
 \mathrm{Acc}\)</span>,</li>
@@ -407,7 +414,7 @@ important modification to Blake’s hierarchy.</p>
 \mathrm{Dat}\)</span>,</li>
 <li><span class="math inline">\(\mathrm{Dat} &lt;
 \mathrm{others}\)</span>,</li>
-<li>all the orders that follow from this:
+<li>all the orders that follow from the orders above:
 <ul>
 <li><span class="math inline">\(\mathrm{Nom} &lt;
 \mathrm{Dat}\)</span>,</li>
@@ -416,22 +423,22 @@ important modification to Blake’s hierarchy.</p>
 <li><span class="math inline">\(\mathrm{Acc} &lt;
 \mathrm{others}\)</span>,</li>
 <li><span class="math inline">\(\mathrm{Gen} &lt;
-\mathrm{others}\)</span>).</li>
+\mathrm{others}\)</span>.</li>
 </ul></li>
 </ol>
-<p>But crucially, genitive and accusative are now unordered with respect
-to each other. Monotonicity is a restriction on what a function may map
-<span class="math inline">\(x\)</span> and <span
+<p>Crucially, since genitive and accusative are now unordered with
+respect to each other, monotonicity no longer applies to them.
+Monotonicity is a restriction on what a function may map <span
+class="math inline">\(x\)</span> and <span
 class="math inline">\(y\)</span> to if <span
 class="math inline">\(x\)</span> and <span
 class="math inline">\(y\)</span> are ordered with respect to each other.
-But monotonicity has nothing to say for cases where no such ordering
-holds. If there is no order between <span
-class="math inline">\(x\)</span> and <span
-class="math inline">\(y\)</span>, then it does not matter whether <span
-class="math inline">\(f(x) \leq f(y)\)</span> or the other way round.
-Without an ordering between accusative and genitive, it becomes possible
-for accusative and dative to be syncretic to the exclusion of
+Monotonicity has nothing to say for cases where no such ordering holds.
+If there is no order between <span class="math inline">\(x\)</span> and
+<span class="math inline">\(y\)</span>, then it does not matter whether
+<span class="math inline">\(f(x) \leq f(y)\)</span> or the other way
+round. Without an ordering between accusative and genitive, it becomes
+possible for accusative and dative to be syncretic to the exclusion of
 genitive.</p>
 <div class="example">
 <p>Suppose that accusative and dative are both mapped to the same
