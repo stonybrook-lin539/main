@@ -40,7 +40,12 @@
 <ul>
 <li><a href="#relations-basic-notation">Relations: Basic notation</a>
 <ul>
-<li><a href="#basic-notation">Basic notation</a></li>
+<li><a href="#infix-notation">Infix notation</a></li>
+<li><a href="#more-complex-examples">More complex examples</a></li>
+<li><a href="#arity-of-relations">Arity of relations</a></li>
+<li><a href="#x-mathrelr-and-mathrelr-y-notation"><span
+class="math inline">\(x \mathrel{R}\)</span> and <span
+class="math inline">\(\mathrel{R} y\)</span> notation</a></li>
 <li><a href="#relations-versus-functions">Relations versus
 functions</a></li>
 <li><a href="#recap">Recap</a></li>
@@ -76,16 +81,21 @@ class="math inline">\(R\)</span> iff <span
 class="math inline">\(x\)</span> is a biological child of <span
 class="math inline">\(y\)</span>.</p>
 </div>
-<h2 id="basic-notation">Basic notation</h2>
+<h2 id="infix-notation">Infix notation</h2>
 <p>Given some relation <span class="math inline">\(R\)</span>, we write
 <span class="math inline">\(x \mathrel{R} y\)</span> to indicate that
 <span class="math inline">\(R\)</span> relates <span
 class="math inline">\(x\)</span> to <span
-class="math inline">\(y\)</span>. Note that <span
+class="math inline">\(y\)</span>. We could also write <span
+class="math inline">\(R(x, y)\)</span>, but the <strong>infix
+notation</strong> <span class="math inline">\(x \mathrel{R} y\)</span>
+is more common and also highlights that <span
+class="math inline">\(R\)</span> is not a function.</p>
+<p>Note that without additional assumptions, <span
 class="math inline">\(x \mathrel{R} y\)</span> does not imply that <span
-class="math inline">\(y \mathrel{R} x\)</span> also holds, nor that
-<span class="math inline">\(y \mathrel{R} x\)</span> doesn’t hold.
-Either one may be the case.</p>
+class="math inline">\(y \mathrel{R} x\)</span> also holds, nor does it
+imply that that <span class="math inline">\(y \mathrel{R} x\)</span>
+doesn’t hold. Either one may be the case.</p>
 <div class="example">
 <p>One relation you know very well is the “less than” relation <span
 class="math inline">\(&lt;\)</span> over numbers. When we write <span
@@ -106,22 +116,42 @@ John: <em>John</em>-<em>Mary</em>, and <em>John</em>-<em>Sue</em>. Using
 <span class="math inline">\(\mathrm{John} \mathrel{S}
 \mathrm{Mary}\)</span> and <span class="math inline">\(\mathrm{John}
 \mathrel{S} \mathrm{Sue}\)</span>.</p>
-<p>In contrast to <span class="math inline">\(&lt;\)</span>, the sibling
-relation is <strong>symmetric</strong>. That is to say, if Mary is a
-sibling of John, then John is also a sibling of Mary. Therefore we also
-have <span class="math inline">\(\mathrm{Mary} \mathrel{S}
-\mathrm{John}\)</span> and <span class="math inline">\(\mathrm{Sue}
-\mathrel{S} \mathrm{John}\)</span>.</p>
-<p>The relation is also <strong>transitive</strong>. If John is a
-sibling of Mary, and Sue is a sibling of John, then Sue is a sibling of
-Mary. So it also holds that <span class="math inline">\(\mathrm{Mary}
-\mathrel{S} \mathrm{Sue}\)</span>, and via symmetry we also get <span
+<p>But the sibling relation is an example of a relation where <span
+class="math inline">\(x \mathrel{R} y\)</span> implies <span
+class="math inline">\(y \mathrel{R} x\)</span>. It simply is impossible
+for John to be a sibling of Mary without Mary also being a sibling of
+John. Therefore we also have <span class="math inline">\(\mathrm{Mary}
+\mathrel{S} \mathrm{John}\)</span> and <span
 class="math inline">\(\mathrm{Sue} \mathrel{S}
-\mathrm{Mary}\)</span>.</p>
-<p>Overall, we have <span class="math inline">\(x \mathrel{S} y\)</span>
+\mathrm{John}\)</span>.</p>
+<p>And of course if <span class="math inline">\(x\)</span> is a sibling
+of <span class="math inline">\(y\)</span> and <span
+class="math inline">\(y\)</span> is a sibling of some <span
+class="math inline">\(z\)</span> distinct from <span
+class="math inline">\(x\)</span>, then <span
+class="math inline">\(x\)</span> is a sibling of <span
+class="math inline">\(z\)</span>. So it also holds that <span
+class="math inline">\(\mathrm{Mary} \mathrel{S} \mathrm{Sue}\)</span>,
+and since <span class="math inline">\(x \mathrel{S} y\)</span> implies
+<span class="math inline">\(y \mathrel{S} x\)</span>, we also have <span
+class="math inline">\(\mathrm{Sue} \mathrel{S} \mathrm{Mary}\)</span>.
+Overall, we have <span class="math inline">\(x \mathrel{S} y\)</span>
 where <span class="math inline">\(x, y \in \left \{ \mathrm{John},
 \mathrm{Mary}, \mathrm{Sue} \right \}\)</span> and <span
 class="math inline">\(x \neq y\)</span>.</p>
+</div>
+<p>Keep in mind that relations can establish infinitely many connections
+between objects.</p>
+<div class="example">
+<p>Consider once more the “less than” relation <span
+class="math inline">\(&lt;\)</span> over numbers. We saw that <span
+class="math inline">\(5 &lt; 7\)</span> holds, but of course we also
+have <span class="math inline">\(5 &lt; 6\)</span>, <span
+class="math inline">\(5 &lt; 8\)</span>, <span class="math inline">\(5
+&lt; 9\)</span>, and so on. The relation <span
+class="math inline">\(&lt;\)</span> establishes connections between
+<span class="math inline">\(5\)</span> and infinitely many other
+numbers.</p>
 </div>
 <div class="example">
 <p>The <strong>substring relation</strong> <span
@@ -129,46 +159,46 @@ class="math inline">\(\sqsubseteq\)</span> holds between two strings
 <span class="math inline">\(u\)</span> and <span
 class="math inline">\(v\)</span> iff <span
 class="math inline">\(u\)</span> is a substring of <span
-class="math inline">\(v\)</span>. That is to say, <span
-class="math inline">\(u \subseteq v\)</span> iff there are <span
-class="math inline">\(w, w&#39; \in \Sigma^*\)</span> such that <span
-class="math inline">\(w \cdot u \cdot w&#39; = v\)</span>. Note that for
-any given string <span class="math inline">\(u\)</span>, there are
-infinitely many <span class="math inline">\(v\)</span> that <span
-class="math inline">\(u\)</span> is a substring of. Even if the alphabet
+class="math inline">\(v\)</span>. For instance, <span
+class="math inline">\(\mathit{ab}\)</span> is a substring of <span
+class="math inline">\(\mathit{abaa}\)</span> and <span
+class="math inline">\(\mathit{aaab}\)</span> and <span
+class="math inline">\(\mathit{bbabaa}\)</span>, among many others, and
+it is also a substring of itself. In fact, it holds for any arbitrary
+string <span class="math inline">\(u\)</span> that there are infinitely
+many <span class="math inline">\(v\)</span> such that <span
+class="math inline">\(u \sqsubseteq v\)</span>. Even if the alphabet
 contains only <span class="math inline">\(a\)</span>, the string <span
-class="math inline">\(aa\)</span> is a substring of <span
-class="math inline">\(aaa\)</span>, <span
-class="math inline">\(aaaa\)</span>, <span
-class="math inline">\(aaaaa\)</span>, and so on, ad infinitum. It is
-also a substring of itself (in this case, <span class="math inline">\(w
-= w&#39; = \varepsilon\)</span>).</p>
+class="math inline">\(\mathit{aa}\)</span> is a substring of <span
+class="math inline">\(\mathit{aaa}\)</span>, <span
+class="math inline">\(\mathit{aaaa}\)</span>, <span
+class="math inline">\(\mathit{aaaaa}\)</span>, and so on, ad infinitum.
+Hence <span class="math inline">\(\sqsubseteq\)</span> contains
+infinitely many statements of the form <span
+class="math inline">\(\mathit{aa} R v\)</span>, where <span
+class="math inline">\(v\)</span> is some string.</p>
 </div>
+<h2 id="more-complex-examples">More complex examples</h2>
+<p>There are no restrictions on what kind of objects may be related by a
+relation. Relations can be defined over individuals, sets, even
+functions and other relations.</p>
 <div class="example">
-<p>Relations can be defined over more complex objects like sets. An
-example of this is the subset relation <span
-class="math inline">\(\subseteq\)</span>. The set <span
-class="math inline">\(\left \{ 1 \right \}\)</span> is a subset of
-infinitely many other sets: <span class="math inline">\(\left \{ 0,1
-\right \}\)</span>, <span class="math inline">\(\left \{ 1,2 \right
-\}\)</span>, <span class="math inline">\(\left \{ 0,1,2 \right
-\}\)</span>, <span class="math inline">\(\left \{ 1,3 \right
-\}\)</span>, and so on.</p>
-</div>
-<div class="example">
-<p>Just like a function can take multiple arguments to return a single
-output, a relation can connect multiple elements. In the real world, the
-“jointly conceived” relation <span class="math inline">\(J\)</span>
-would connect two individuals to their offspring. So the expression
-<span class="math display">\[\mathrm{John}, \mathrm{Mary} \mathrel{R}
-\mathrm{Sue}\]</span> encodes that John and Mary are the biological
-parents of Sue (let’s just hope that those are not the same people as in
-the first example).</p>
+<p>The subset relation <span class="math inline">\(\subseteq\)</span> is
+a relation between sets. The set <span class="math inline">\(\left \{ 1
+\right \}\)</span> is a subset of infinitely many other sets: <span
+class="math inline">\(\left \{ 0,1 \right \}\)</span>, <span
+class="math inline">\(\left \{ 1,2 \right \}\)</span>, <span
+class="math inline">\(\left \{ 0,1,2 \right \}\)</span>, <span
+class="math inline">\(\left \{ 1,3 \right \}\)</span>, and so on. Not
+all sets are connected via the subset relation. For instance, neither
+<span class="math inline">\(\left \{ 1 \right \} \subseteq \left \{ 2
+\right \}\)</span> nor <span class="math inline">\(\left \{ 2 \right \}
+\subseteq \left \{ 1 \right \}\)</span> hold.</p>
 </div>
 <div class="example">
 <p>Here is an example of a very abstract relation. Consider the space of
-all possible functions from real numbers to real numbers — that’s a lot
-of functions. Now let’s define a boundedness relation <span
+all possible functions from natural numbers to natural numbers — that’s
+a lot of functions. Now let’s define a boundedness relation <span
 class="math inline">\(B\)</span> which relates function <span
 class="math inline">\(f\)</span> to function <span
 class="math inline">\(g\)</span> iff <span class="math inline">\(f(x)
@@ -180,33 +210,75 @@ class="math inline">\(f \mathrel{B} g\)</span>, but not <span
 class="math inline">\(g \mathrel{B} f\)</span>.</p>
 <p>Many functions aren’t related via <span
 class="math inline">\(B\)</span> at all. One example of this is <span
-class="math inline">\(f(x) = -x + 1\)</span> and <span
-class="math inline">\(g(x) = x^2\)</span>. It is the case that <span
-class="math inline">\(f(x) \leq g(x)\)</span> for all <span
-class="math inline">\(x \geq 1\)</span>, but <span
-class="math inline">\(f(0) = 1 &gt; 0 = g(0)\)</span>.</p>
+class="math inline">\(f(x) = x + 1000\)</span> and <span
+class="math inline">\(g(x) = x^2\)</span>. For large values of <span
+class="math inline">\(x\)</span>, it holds that <span
+class="math inline">\(f(x) \leq g(x)\)</span>: <span
+class="math inline">\(f(100) = 100 + 1000 = 1,100\)</span>, which is
+less than <span class="math inline">\(g(100) = 100^2 = 10,000\)</span>.
+But for small values, we get the opposite: <span
+class="math inline">\(f(1) = 1 + 1000 = 1,001\)</span> but <span
+class="math inline">\(g(1) = 1^2 = 1\)</span>.</p>
 </div>
-<p>We will mostly be dealing with the special case of <strong>binary
-relations</strong> where exactly one element is related to some other
-element.</p>
+<h2 id="arity-of-relations">Arity of relations</h2>
+<p>All of the examples we have seen so far where <strong>binary</strong>
+relations where a single element is related to some other element. But
+just like functions can take multiple arguments and map them to a single
+value, a relation can connect multiple elements.</p>
 <div class="example">
-<p>Almost all relations above are binary relations. The only exception
-is the “jointly conceived” relation <span
-class="math inline">\(J\)</span>, which is a ternary relation as it
-relates three elements.</p>
+<p>Consider the “jointly conceived” relation <span
+class="math inline">\(J\)</span>. For instance, John and Mary may have
+jointly conceived Sue, but John may have also jointly conceived and Bill
+with Flora. We could think of this as a ternary relation relating two
+parents to one of their offspring, and we could write this as follows:
+<span class="math display">\[\mathrm{John}, \mathrm{Mary} \mathrel{J}
+\mathrm{Sue}\]</span> and <span class="math display">\[\mathrm{John},
+\mathrm{Flora} \mathrel{J} \mathrm{Bill}.\]</span></p>
+<p>You might be wondering why this could not be a binary relation as
+indicated below:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{John} \mathrel{J}
+\mathrm{Sue}\)</span></li>
+<li><span class="math inline">\(\mathrm{Mary} \mathrel{J}
+\mathrm{Sue}\)</span></li>
+<li><span class="math inline">\(\mathrm{John} \mathrel{J}
+\mathrm{Bill}\)</span></li>
+<li><span class="math inline">\(\mathrm{Flora} \mathrel{J}
+\mathrm{Bill}\)</span></li>
+</ul>
+<p>We can still infer that Sue was jointly conceived by John and Mary,
+and that Bill was jointly conceived by John and Flora. That is true,
+but:</p>
+<ol type="1">
+<li>This is an extra inference step we have to make, the relation no
+longer captures this fact. It is just because of our world knowledge
+about how conception works that we know how to reconstruct the relation
+we are actually interested in.</li>
+<li>If <span class="math inline">\(\mathrel{J}\)</span> were just a
+binary relation, then it would be natural to add, say, <span
+class="math inline">\(\mathrm{John} \mathrel{J} \mathrm{Diana}\)</span>
+to the statements above. But without a matching statement like <span
+class="math inline">\(\mathrm{Mary} \mathrel{J} \mathrm{Diana}\)</span>,
+this would mean that John jointly conceived Diana all by himself, which
+makes no sense. It seems more appropriate, then, to model this as a
+ternary relation.</li>
+</ol>
 </div>
+<p>We will be dealing exclusively with binary relations, so you do not
+have to worry about relations of higher arity and why one might want to
+use them in some cases.</p>
+<h2 id="x-mathrelr-and-mathrelr-y-notation"><span
+class="math inline">\(x \mathrel{R}\)</span> and <span
+class="math inline">\(\mathrel{R} y\)</span> notation</h2>
 <p>Given a binary relation <span class="math inline">\(R\)</span>, <span
-class="math inline">\(a \mathrel{R}\)</span> is the set of objects that
-<span class="math inline">\(a\)</span> is related to. Similarly, <span
-class="math inline">\(\mathrel{R} b\)</span> is the set of objects that
-are related to <span class="math inline">\(b\)</span>. <span
-class="math display">\[
-a \mathrel{R} \mathrel{\mathop:}=\left \{  b \mid a \mathrel{R} b \right
-\}
-\]</span> <span class="math display">\[
-\mathrel{R} b \mathrel{\mathop:}=\left \{  a \mid a \mathrel{R} b \right
-\}
-\]</span></p>
+class="math inline">\(x \mathrel{R}\)</span> is the set of objects that
+<span class="math inline">\(x\)</span> is related to, i.e. the set of
+<span class="math inline">\(y\)</span> such that <span
+class="math inline">\(x \mathrel{R} y\)</span> holds. Similarly, <span
+class="math inline">\(\mathrel{R} y\)</span> is the set of objects that
+are related to <span class="math inline">\(y\)</span>, i.e. the set of
+<span class="math inline">\(x\)</span> such that <span
+class="math inline">\(x \mathrel{R} y\)</span> holds.</p>
 <div class="example">
 <p>Suppose that the parent-of relation <span
 class="math inline">\(P\)</span> establishes the following relations
@@ -253,7 +325,7 @@ class="math inline">\(a\)</span> is the left side and <span
 class="math inline">\(b\)</span> the right side. If there cannot be more
 than one choice for <span class="math inline">\(b\)</span>, then the
 right side of <span class="math inline">\(a \mathrel{R} b\)</span> is
-uniquely determined.</p>
+uniquely determined by <span class="math inline">\(a\)</span>.</p>
 <p>The bottom line: every function is a relation, but not every relation
 is a function. If <span class="math inline">\(a\)</span> is related to
 two elements or more (i.e. <span class="math inline">\(\left | a
@@ -261,17 +333,21 @@ two elements or more (i.e. <span class="math inline">\(\left | a
 class="math inline">\(R\)</span> cannot be a function.</p>
 <div class="exercise">
 <p>For each one of the following, say whether it is a function or just a
-relation.</p>
+relation. If you have to make additional assumptions, state them
+explicitly.</p>
 <ul>
 <li>the parent-of relation (e.g. <span class="math inline">\(j
 \mathrel{P} m\)</span> for “John is a parent of Mary”)</li>
-<li>the parent-of relation in a world where the one-child policy is
-enforced globally</li>
+<li>the parent-of relation in a world where a strict one-child policy
+has been enforced globally</li>
 <li>the relation between a car’s license plate and its owners</li>
-<li>the prefix relation, where <span class="math inline">\(u\)</span> is
-a prefix of <span class="math inline">\(v\)</span> iff there is some
-<span class="math inline">\(w \in \Sigma^*\)</span> such that <span
-class="math inline">\(v = u \cdot w\)</span></li>
+<li>the prefix relation, where string <span
+class="math inline">\(u\)</span> is a prefix of string <span
+class="math inline">\(v\)</span> iff there is some string <span
+class="math inline">\(w \in \Sigma^*\)</span> such that <span
+class="math inline">\(v = u \cdot w\)</span> (for example, <span
+class="math inline">\(\mathit{ab}\)</span> is a prefix of <span
+class="math inline">\(\mathit{abbaaa}\)</span>)</li>
 </ul>
 </div>
 <div class="exercise">
@@ -282,22 +358,22 @@ class="math inline">\(x \mathrel{R}\)</span>.</p>
 </div>
 <h2 id="recap">Recap</h2>
 <ul>
-<li>Relations are a generalization of functions in that a single input
-can be related to many distinct outputs.</li>
-<li>Given some relation <span class="math inline">\(R\)</span>, we write
-<span class="math inline">\(x \mathrel{R} y\)</span> to indicate that
-<span class="math inline">\(R\)</span> relates <span
+<li>Relations are a generalization of functions in that a single element
+can be related to many distinct elements.</li>
+<li>Given some binary relation <span class="math inline">\(R\)</span>,
+we write <span class="math inline">\(x \mathrel{R} y\)</span> to
+indicate that <span class="math inline">\(R\)</span> relates <span
 class="math inline">\(x\)</span> to <span
 class="math inline">\(y\)</span>.</li>
-<li>We mostly focus on binary relations.</li>
-<li>For binary relations, we have the following notation: <span
-class="math display">\[
-a \mathrel{R} \mathrel{\mathop:}=\left \{  b \mid a \mathrel{R} b \right
-\}
-\]</span> <span class="math display">\[
-\mathrel{R} b \mathrel{\mathop:}=\left \{  a \mid a \mathrel{R} b \right
-\}
-\]</span></li>
+<li>For binary relations, we have the following notation:
+<ul>
+<li><span class="math inline">\(x \mathrel{R}\)</span> is the set of all
+<span class="math inline">\(y\)</span> such that <span
+class="math inline">\(x \mathrel{R} y\)</span>.</li>
+<li><span class="math inline">\(\mathrel{R} y\)</span> is the set of all
+<span class="math inline">\(x\)</span> such that <span
+class="math inline">\(x \mathrel{R} y\)</span>.</li>
+</ul></li>
 </ul>
 </div>
 </div>
