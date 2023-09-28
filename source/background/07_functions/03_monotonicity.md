@@ -133,12 +133,30 @@ See the unit on universals for various linguistic applications of monotonicity, 
 ## Isotonicity and antitonicity
 
 Monotonicity is actually an umbrella term for two distinct properties: **isotonic** (**monotonic increasing**) and **antitonic** (**monotonic decreasing**).
+In both cases, the mapping from elements of the domain to elements of the co-domain must respect the order of the domain in a specific sense.
+Suppose that we have a function $f$ from some domain $D$ to some co-domain $C$.
+As usual, thees are sets, but they are special sets in that each one has an order defined over its elements.
+Let us call these orders $\leq_D$ and $\leq_C$, respectively.
+Then an isotonic function preserves the order over the domain: if $x \leq_D y$ in the domain, then $f(x) \leq_C f(y)$ in the co-domain.
+And an antitonic function preserves the mirror image: if $x \leq_D y$ in the domain, then $f(x) \geq_C f(y)$ in the co-domain.
 
-::: definition
-Let $A$ and $B$ be arbitrary sets and $\leq_A$ and $\leq_B$ ordering relations over these respective sets.
-Then a function $f: A \rightarrow B$ is **isotonic** (or **monotonic increasing**) iff $x \leq_A y$ implies $f(x) \leq_B f(y)$.
-We call $f$ **antitonic** (or **monotonic decreasing**) iff $x \leq_A y$ implies $f(y) \leq_B f(x)$.
-A function is **monotonic** iff it is isotonic or antitonic.
+::: example
+The function $f$ from natural numbers to natural numbers with $x \mapsto x+1$ is monotonic increasing.
+If $x \leq y$, then it necessarily holds that $x + 1 \leq y + 1$, and thus $f(x) \leq f(y)$.
+:::
+
+::: example
+Suppose we order the set of all strings over alphabet $\Sigma$ such that $u \leq_D w$ iff there is some string $v$ such that $w = u \stringcat v$.
+Intuitively, $w$ is the result of adding 0 or more symbols to $u$.
+Hence we have $\String{aab} \leq \String{aaba}$ and $\String{aab} \leq \String{aab}$, but $\String{aab} \not\leq \String{abaa}$.
+Now let $f: \Sigma^* \rightarrow \mathbb{N}$ be the function that maps every strings to its length (i.e. $x \mapsto \length{x}$), and the we order string lengths with $\leq$ in the usual fashion.
+Then $f$ is isotonic.
+
+In order to see this, consider two arbitrary strings $u$ and $w$ with $u \leq_D w$.
+By definition, then, $w \is u \stringcat v$ for some $v \in \Sigma^*$.
+But then $\length{w} = \length{u} + \length{v}$, and since strings cannot have negative lengths, it must hold that $\length{u} \leq \length{u} + \length{v}$.
+This in turn implies that $f(u) \leq f(w)$.
+Since $u$ and $w$ were arbitrary, $f(u) \leq f(w)$ truly holds for every choice of $u$ and $w$ with $u \leq_D w$, exactly as required by the definition of monotonic increasing functions.
 :::
 
 ::: exercise
@@ -150,9 +168,19 @@ For each one of the following functions say whether it is isotonic, antitonic, o
 - $f: \mathbb{R} \rightarrow \mathbb{R}$, $x \mapsto x^2$
 - $f: \mathbb{R} \rightarrow \mathbb{R}$, $x \mapsto \frac{x}{2}$
 - $f: \mathbb{N} \rightarrow \mathbb{N}$, $f(n)$ is $1$ if $n = 0$ and $n \mult f(n-1)$ otherwise
-
 :::
 
 ::: exercise
 Given an example of a function that is both isotonic and antitonic.
+:::
+
+## Recap
+
+- If the domain and co-domain of a function each have an order defined over them, we can ask whether the function is **monotonic**.
+
+::: definition
+Let $A$ and $B$ be arbitrary sets and $\leq_A$ and $\leq_B$ ordering relations over these respective sets.
+Then a function $f: A \rightarrow B$ is **isotonic** (or **monotonic increasing**) iff $x \leq_A y$ implies $f(x) \leq_B f(y)$.
+We call $f$ **antitonic** (or **monotonic decreasing**) iff $x \leq_A y$ implies $f(y) \leq_B f(x)$.
+A function is **monotonic** iff it is isotonic or antitonic.
 :::

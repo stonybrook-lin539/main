@@ -11,7 +11,7 @@
       xmin=-10,xmax=10,ymin=-10,ymax=10,
       xtick distance=5,
       ytick distance=5,
-      title={$j(x) = 5\sqrt{|x + 2|} - \frac{5|x|}{3}$},
+      % title={$j(x) = 5\sqrt{|x + 2|} - \frac{5|x|}{3}$},
       grid=both,
       grid style={thin,densely dotted,black!20}]
       \addplot[domain=-10:10,samples=250,blue,thick] {5 * sqrt(abs(x)) - (5 * abs(x) / 3)};

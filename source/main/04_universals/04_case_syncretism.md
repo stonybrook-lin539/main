@@ -200,28 +200,31 @@ The resulting order is not trichotomous because there are at least two distinct 
 Trichotomy is a natural starting point for linguistic hierarchies, but it isn't a necessary one.
 In contrast to the \*ABA generalization, monotonicity is also a meaningful concept if we consider **partial orders**.
 In a partial order, some elements may be unordered with respect to some other elements.
-This allows us to make a small but important modification to Blake's hierarchy.
+This allows us to make a small but important modification to Blake's hierarchy: allow accusative and genitive to be unordered with respect to each other.
+We can depict this new hierarchy in the form of a graph
 
 ~~~ {.include-tikz size=mid}
 blake_partialorder.tikz
 ~~~
 
-This graph encodes the following orderings of cases:
+In this graph, the vertical axis corresponds to the order induced by $<$.
+The graph is, essentially, the result of rotation Blake' case hierarchy 90 degrees clockwise and then rearranging accusative and genitive so that they are still between nominative and dative but unordered with respect to each other.
+More precisely, the graph encodes the following orderings of cases:
 
 1. $\mathrm{Nom} < \mathrm{Acc}$,
 1. $\mathrm{Nom} < \mathrm{Gen}$,
 1. $\mathrm{Acc} < \mathrm{Dat}$,
 1. $\mathrm{Gen} < \mathrm{Dat}$,
 1. $\mathrm{Dat} < \mathrm{others}$,
-1. all the orders that follow from this:
+1. all the orders that follow from the orders above:
     - $\mathrm{Nom} < \mathrm{Dat}$,
     - $\mathrm{Nom} < \mathrm{others}$,
     - $\mathrm{Acc} < \mathrm{others}$,
-    - $\mathrm{Gen} < \mathrm{others}$).
+    - $\mathrm{Gen} < \mathrm{others}$.
 
-But crucially, genitive and accusative are now unordered with respect to each other.
+Crucially, since genitive and accusative are now unordered with respect to each other, monotonicity no longer applies to them.
 Monotonicity is a restriction on what a function may map $x$ and $y$ to if $x$ and $y$ are ordered with respect to each other.
-But monotonicity has nothing to say for cases where no such ordering holds.
+Monotonicity has nothing to say for cases where no such ordering holds.
 If there is no order between $x$ and $y$, then it does not matter whether $f(x) \leq f(y)$ or the other way round.
 Without an ordering between accusative and genitive, it becomes possible for accusative and dative to be syncretic to the exclusion of genitive.
 

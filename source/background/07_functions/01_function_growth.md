@@ -207,10 +207,10 @@ For each one of the formulas below, right down its simplified version in Big-O n
 ## Recap
 
 - For numerical functions, we can distinguish four subtypes: constant, linear, polynomial, exponential
-- constant: $f(x) = c$
-- linear: $f(x) = kx + d$
-- polynomial: $f(x) = k_n x^n + k_{n-1} x^{n-1} + \cdots + k_1 x^1 + k_0 x^0$
-- exponential: $f(x) = k (b^x)$
+    - constant: $f(x) = c$
+    - linear: $f(x) = kx + d$
+    - polynomial: $f(x) = k_n x^n + k_{n-1} x^{n-1} + \cdots + k_1 x^1 + k_0 x^0$
+    - exponential: $f(x) = k (b^x)$
 - The Big-O notation shows the part of the function $f(x)$ that grows most quickly as we consider larger and larger values for $x$.
 
 <!-- fixme: add some figures -->

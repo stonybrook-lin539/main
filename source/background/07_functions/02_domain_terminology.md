@@ -7,8 +7,11 @@ pagetitle: >-
 
 Every function has a **domain** and a **co-domain**.
 The domain is the set of objects from which its arguments can be drawn, and the **co-domain** is the set of objects from which outputs can be drawn.
-A function is undefined on any arguments that do not belong to its domain.
+
+## Notation
+
 One commonly writes $f: D \rightarrow C$ to indicate that $f$ is a function from domain $D$ to co-domain $C$.
+A function is always undefined on all arguments that do not belong to its domain.
 
 ::: example
 Consider the function $f(x) = x +1$.
@@ -57,6 +60,8 @@ But there are also many natural numbers in the co-domain that can never be the o
 Explain why there is no natural number $x$ such that $f$ from the example above maps $x$ to $4$.
 :::
 
+## Total and partial functions
+
 In the example above, the function $f$ is **partial** because it is not defined on all values of the domain.
 A **total** function, on the other hand, maps every element of its domain to some element of its co-domain.
 Fields differ in whether they take total or partial functions to be the default.
@@ -74,6 +79,8 @@ Let $E$ be the set of English first names.
 Then the function $f: E \rightarrow \setof{0,1}$ maps $n$ to $1$ iff $n$ contains at least three syllables.
 :::
 
+## The $\mapsto$ notation
+
 Irrespective of how one defines the domain and co-domain, and irrespective of whether a function is total or partial, the mapping from arguments to outputs can be defined in various ways, e.g. in plain English, or as a formula like $f(x) = \frac{(x + x^2 + 5)^{x+1}}{1000^x}$.
 For very simple functions whose name was already mentioned, one often writes $x \mapsto y$ instead of $f(x) = y$.
 
@@ -81,7 +88,7 @@ For very simple functions whose name was already mentioned, one often writes $x 
 Instead of $f(x) = 5 \mult x - 3$, we may simply write $x \mapsto 5 \mult x - 3$.
 :::
 
-The same notation can be used to indicate $f(x)$ for specific values $x$.
+The same notation can be used to indicate $f(x)$ for specific choices of $x$.
 
 ::: example
 Instead of $f(2) = 7$, we may simply write $2 \mapsto 7$.
@@ -97,5 +104,6 @@ The first is used when specifying the domain and co-domain, whereas the latter i
   The domain specifies the set that inputs can be drawn from, and the co-domain is the set that outputs can be drawn from.
 - The standard notation is *function name: domain $\rightarrow$ co-domain*, e.g. $f: \Sigma^* \rightarrow \mathbb{N}$.
 - A function is **total** if it is defined for all elements of its domain.
+  Otherwise it is **partial**.
 - When the function we are defining is already clear from context, we may write $x \mapsto y$ instead of $f(x) = y$.
   For example, $x \mapsto 2^x - 5$ is an alternative to $f(x) = 2^x - 5$.

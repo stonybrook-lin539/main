@@ -1,12 +1,19 @@
 ---
 pagetitle: >-
-    Range
+    Range and surjections
 ---
 
-## Range
+# Range and surjections
 
-For many functions it won't be the case that the every value in their domain is actually a possible output of a function.
+We already saw that functions can be total or partial.
+Total functions map each element of their domain to some element of the co-domain, whereas partial functions are undefined on some elements of their domain.
+A similar split can be found for co-domains, where there may be some elements in the co-domain that no elements of the domain are mapped to.
+This is why we have to distinguish a function's co-domain from its **range**.
+
+## Definition of range
+
 Given a function $f: D \rightarrow C$, we use the term **range** to refer to the set of elements of $C$ that are an output for at least one input in $D$.
+More precisely, $c \in C$ is in the range of $f$ iff there is some $d \in D$ such that $d \mapsto c$.
 
 ::: example
 Consider the function $f: \mathbb{N} \rightarrow \mathbb{N}$ with $x \mapsto 2x$.
@@ -40,4 +47,17 @@ As in many other exercises, getting the correct answer is less important than gi
 1. the child-of kinship relation among humans, limited to women (for instance, $\mathrm{child}(\mathrm{Sue}) = \mathrm{Mary}$ iff Sue is a child of Mary)
 1. a benchmark that sorts graphics card models by their speed for neutral network training
 
+:::
+
+## Surjective functions
+
+In the special case where a function's range is identical to it's co-domain, we say that the function is **surjective** or **onto**.
+Hence if we say that, say, $f$ is a function from $D$ onto $C$, the use of the tiny word *onto* signals that $f$ is surjective, and hence every $c\in C$ has some $d \in D$ such that $f(d) = c$.
+
+## Recap
+
+::: definition
+The **range** of a function $f: D \rightarrow C$ is the set of all $c \in C$ such that there is some $d \in D$ with $f(d) = c$.
+The range of $f$ is sometimes denoted $\mathrm{range}(f)$ or $\mathrm{ran}(f)$.
+If $\mathrm{range}(f) = C$, then $f$ is a **surjection**.
 :::
