@@ -65,6 +65,12 @@ unit only covers the intuition behind orders, and the formal definitions
 are left to the next one.</p>
 <h2 id="examples-of-ordered-sets">Examples of ordered sets</h2>
 <div class="example">
+<p>The standard way of reciting the alphabet in English can be regarded
+as an order on the set <span class="math inline">\(\left \{
+a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z \right
+\}\)</span>.</p>
+</div>
+<div class="example">
 <p>The prototypical example of an order is the “equal or less than”
 relation <span class="math inline">\(\leq\)</span> over the set <span
 class="math inline">\(\mathbb{N}\)</span> of natural numbers. While the
@@ -73,8 +79,29 @@ class="math inline">\(\leq\)</span> to define the usual order over it
 with <span class="math inline">\(0\)</span> at the beginning, followed
 by <span class="math inline">\(1\)</span>, which is followed by <span
 class="math inline">\(2\)</span>, and so on.</p>
-</div>
+<p>We can draw this as a graph as in the figure below, where each node
+is a number and we draw arrows between them to indicate their order. For
+readability, we include the minimal number of arrows that are needed to
+infer the order relation. For instance, we do not include an arrow from
+<span class="math inline">\(0\)</span> to <span
+class="math inline">\(2\)</span> because we already have an arrow from
+<span class="math inline">\(0\)</span> to <span
+class="math inline">\(1\)</span> and another from <span
+class="math inline">\(1\)</span> to <span
+class="math inline">\(2\)</span>, and we know that <span
+class="math inline">\(0 \leq 1\)</span> and <span
+class="math inline">\(1 \leq 2\)</span> implies <span
+class="math inline">\(0 \leq 2\)</span> because of how the relation
+<span class="math inline">\(\leq\)</span> works.</p>
 <p><img src="natnum_lessthan.svg" alt="natnum_lessthan.svg" /></p>
+<p>However, the full definition of <span
+class="math inline">\(\leq\)</span> as a set of statements of the form
+<span class="math inline">\(x \leq y\)</span> would still have to
+include <span class="math inline">\(0 \leq 2\)</span>, <span
+class="math inline">\(0 \leq 3\)</span>, and so on, even though those
+could in principle be inferred. When we look at a relation of a set of
+such statements, the set always contains all statements.</p>
+</div>
 <div class="example">
 <p>We could have defined a very different kind of order over <span
 class="math inline">\(\mathbb{N}\)</span>. Let <span
@@ -97,13 +124,33 @@ class="math inline">\(R\)</span> such that <span class="math inline">\(x
 \mathrel{R} y\)</span> iff <span class="math inline">\(f(x) &lt;
 f(y)\)</span>. That’s a very different way of ordering the natural
 numbers, but it’s still an order.</p>
-</div>
+<p>We can again visualize this order in terms of nodes connected by
+arrows. For simplicity, we only consider the natural numbers from 0 to
+45.</p>
 <p><img src="natnum_digitsum.svg" alt="natnum_digitsum.svg" /></p>
-<div class="example">
-<p>The standard way of reciting the alphabet in English can be regarded
-as an order on the set <span class="math inline">\(\left \{
-a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z \right
-\}\)</span>.</p>
+<p>Intuitively speaking, the order splits the set of natural numbers
+into 10 layers such that each layer represents one of the ten possible
+values for the recursive digit sum function: 0, 1, 2, 3, and so on, all
+the way up to 9. Each layer consists of all the numbers with the
+corresponding recursive digit sum. For example, the layer of numbers
+(from 0 to 45) whose recursive digit sum is 1 contains the numbers 1,
+10, 19, 28, and 37. None of these numbers are ordered with respect to
+each other, which is why they aren’t connected to each other by arrows.
+But each number in this layer is ordered before each number in the layer
+of numbers with recursive digit sum 2, and thus we have an arrow from
+each number in layer 1 to each number in layer 2. It is also true that
+each number in layer 1 is ordered before each number in layer 3, but
+again we do not include these arrows in the figure because that would
+unnecessary clutter to what is already a very busy figure.</p>
+<p>If we were to expand the figure to properly depict this order for all
+natural numbers, the figure would still have the geometry above in terms
+of 10 layers where layers for lower digit sums are ordered before layers
+with higher digit sums. What would change, though, is that each layer
+would have to contain infinitely many numbers. For instance, layer 1
+would contain 1, 10, 19, 28, 37, 46, 55, 64, 73, 82, 91, 100, 109, 118,
+127, 136, and so on. Obviously it is impossible to actually draw an
+infinitely large layer, which is why the figure only depicts an
+illustrative part of the whole order.</p>
 </div>
 <h2 id="not-every-binary-relation-is-an-order">Not every binary relation
 is an order</h2>
