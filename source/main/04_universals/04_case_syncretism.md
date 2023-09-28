@@ -6,7 +6,7 @@ pagetitle: >-
 # Monotonicity in case syncretism
 
 :::prereqs
-- relations (notation, basic orders)
+- relations (basic notation, intuition behind order relations)
 :::
 
 Monotonicity also seems to play a role in a phenomenon called **case syncretism**.
