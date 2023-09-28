@@ -3,6 +3,10 @@ pagetitle: >-
     Monotonicity
 ---
 
+:::prereqs
+- functions (basic notation, domain and co-domain)
+:::
+
 # Monotonicity
 
 When the domain and co-domain of a function each have an order defined over them, one can ask whether the function is order-preserving.

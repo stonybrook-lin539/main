@@ -6,8 +6,8 @@ pagetitle: >-
 # Cardinality
 
 :::prereqs
-- sets (basic notation, operations)
 - functions (basic notation, domain terminology)
+- sets (basic notation, operations)
 :::
 
 Sets can be compared based on how many elements they contain.

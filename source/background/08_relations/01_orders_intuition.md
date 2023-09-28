@@ -5,6 +5,11 @@ pagetitle: >-
 
 # Order relations: the intuition
 
+::: prereqs
+- relations (basic notation)
+- sets (basic notation)
+:::
+
 A binary relation $R$ can be combined with a set $S$ to define an **ordered set**.
 Think of it as follows: whereas the elements of a normal set are just floating around in limbo with no ties between them, an ordered set uses some ordering relation $R$ to lock its elements into place.
 This unit only covers the intuition behind orders, and the formal definitions are left to the next one.

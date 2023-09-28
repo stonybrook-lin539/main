@@ -5,6 +5,10 @@ pagetitle: >-
 
 # Function growth and Big O notation
 
+:::prereqs
+- functions (basic notation)
+:::
+
 Even though functions aren't limited to mappings from numbers to numbers, this is certainly one of the most commonly encountered types of functions.
 We can classify these functions based on how quickly the output grows relative to the input.
 

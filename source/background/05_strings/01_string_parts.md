@@ -4,6 +4,10 @@ pagetitle: Parts of strings
 
 # Parts of strings
 
+:::prereqs
+- strings (basic notation)
+:::
+
 ## Substrings
 
 A **substring** is a continuous part of a string.

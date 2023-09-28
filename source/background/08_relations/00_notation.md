@@ -6,7 +6,8 @@ pagetitle: >-
 # Relations: Basic notation
 
 ::: prereqs
-- functions (basics)
+- functions (basic notation)
+- sets (basic notation)
 :::
 
 Relations are similar to functions in that they establish connections between objects.
