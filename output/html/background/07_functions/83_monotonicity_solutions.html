@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Monotonicity (Solutions)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#monotonicity-solutions">Monotonicity (Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="monotonicity-solutions">Monotonicity (Solutions)</h1>
+<div class="exercise">
+<p>For each one of the following functions, say whether it is
+monotonic.</p>
+<ul>
+<li><span class="math inline">\(i(x) = x^3 + 3x^2\)</span></li>
+</ul>
+<p><img src="monotonicity_i.svg" alt="monotonicity_i.svg" /></p>
+<ul>
+<li><span class="math inline">\(j(x) = 5 \sqrt{|x+2|} -
+\frac{5|x|}{3}\)</span></li>
+</ul>
+<p><img src="monotonicity_j.svg" alt="monotonicity_j.svg" /></p>
+<ul>
+<li><span class="math inline">\(k(x) = 2\)</span></li>
+</ul>
+<p><img src="monotonicity_k.svg" alt="monotonicity_k.svg" /></p>
+<ul>
+<li><span class="math inline">\(l(x) = 2x - 2^{x-4} + 3\)</span></li>
+</ul>
+<p><img src="monotonicity_l.svg" alt="monotonicity_l.svg" /></p>
+<div class="solution">
+<ol type="1">
+<li>Not monotonic</li>
+<li>Not monotonic</li>
+<li>Monotonic</li>
+<li>Not monotonic</li>
+</ol>
+</div>
+<div class="solution_explained">
+<p>The functions <span class="math inline">\(i\)</span>, <span
+class="math inline">\(j\)</span>, and <span
+class="math inline">\(l\)</span> all change direction at some point. The
+function <span class="math inline">\(k\)</span> is a constant function,
+it neither goes up nor down. Since that entails never changing
+direction, it is monotonic.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Give another example of a function that is not monotonic.</p>
+<div class="solution">
+<p>The function <span class="math inline">\(f\)</span> that maps even
+numbers to <span class="math inline">\(0\)</span> and odd numbers to
+<span class="math inline">\(1\)</span>.</p>
+</div>
+<div class="solution_explained">
+<p>The sky is the limit here, there is no shortage of functions that are
+not monotonic. For example, take a function from natural numbers to
+natural numbers that maps <span class="math inline">\(100\)</span> to
+<span class="math inline">\(0\)</span> and every other number to <span
+class="math inline">\(1\)</span>. This function is not monotonic. But
+instead of <span class="math inline">\(100\)</span>, we could have
+picked <span class="math inline">\(1\)</span>, or <span
+class="math inline">\(3\)</span>, or <span
+class="math inline">\(17\)</span>, or some other natural number that is
+not <span class="math inline">\(0\)</span>, and the result would have
+been a non-monotonic function. This already shows us that there are
+infinitely many functions that are not monotonic.</p>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the following functions say whether it is monotonic
+increasing, monotonic decreasing, or neither.</p>
+<ol type="1">
+<li><span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto
+-x\)</span></li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto x -
+10\)</span></li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto
+x^2\)</span></li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto
+\frac{x}{2}\)</span></li>
+<li><span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{N}\)</span>, <span class="math inline">\(f(n)\)</span> is <span
+class="math inline">\(1\)</span> if <span class="math inline">\(n =
+0\)</span> and <span class="math inline">\(n \times f(n-1)\)</span>
+otherwise</li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li><span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto -x\)</span>
+is monotonic decreasing</li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto x -
+10\)</span> is monotonic increasing</li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto x^2\)</span>
+is neither</li>
+<li><span class="math inline">\(f: \mathbb{R} \rightarrow
+\mathbb{R}\)</span>, <span class="math inline">\(x \mapsto
+\frac{x}{2}\)</span> is monotonic increasing</li>
+<li><span class="math inline">\(f: \mathbb{N} \rightarrow
+\mathbb{N}\)</span>, <span class="math inline">\(f(n)\)</span> is <span
+class="math inline">\(1\)</span> if <span class="math inline">\(n =
+0\)</span> and <span class="math inline">\(n \times f(n-1)\)</span>
+otherwise is monotonic increasing</li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>If <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are natural numbers such that <span
+class="math inline">\(x \leq y\)</span>, then it must be the case that
+<span class="math inline">\(-x \geq -y\)</span>. For example, <span
+class="math inline">\(1 \leq 5\)</span>, and <span
+class="math inline">\(-1 \geq -5\)</span>.</li>
+<li>If <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are reals such that <span
+class="math inline">\(x \leq y\)</span>, then <span
+class="math inline">\(x - 10 \leq y - 10\)</span>. For example, <span
+class="math inline">\(-1 \leq 1\)</span> and <span
+class="math inline">\(-11 \leq -9\)</span>.</li>
+<li>It suffices to consider two concrete cases here. Suppose <span
+class="math inline">\(x = -5\)</span> and <span class="math inline">\(y
+= 1\)</span>. Then <span class="math inline">\(x \leq y\)</span>, but
+<span class="math inline">\(x^2 = 25 \geq 1 = y^2\)</span>. On the other
+hand, if <span class="math inline">\(x = 5\)</span> and <span
+class="math inline">\(y = 10\)</span>, then <span
+class="math inline">\(x^2 = 25 \leq 100 = y^2\)</span>. Hence we
+sometimes have <span class="math inline">\(f(x) \leq f(y)\)</span> and
+sometimes <span class="math inline">\(f(x) \geq f(y)\)</span>, which
+means that <span class="math inline">\(f\)</span> is neither monotonic
+increasing nor monotonic decreasing.</li>
+<li>This might be easiest to understand by drawing a diagram, but we can
+also consider some representative values: <span
+class="math inline">\(f(-10) = -5\)</span>, <span
+class="math inline">\(f(-6) = -3\)</span>, <span
+class="math inline">\(f(-1) = -0.5\)</span>, <span
+class="math inline">\(f(0) = 0\)</span>, <span
+class="math inline">\(f(1) = 0.5\)</span>, <span
+class="math inline">\(f(6) = 3\)</span>, and <span
+class="math inline">\(f(10) = 5\)</span>. As you can see, whenever <span
+class="math inline">\(x \leq y\)</span>, it holds that <span
+class="math inline">\(f(x) \leq f(y)\)</span>.</li>
+<li>The hardest part here is to understand the definition of <span
+class="math inline">\(f\)</span>. We start out with <span
+class="math inline">\(f(0) = 1\)</span>. We then have <span
+class="math inline">\(f(1) = 1 \times f(0) = 1 \times 1 = 1\)</span>.
+After that, <span class="math inline">\(f(2) = 2 \times f(1) = 2 \times
+1 = 2\)</span>, and <span class="math inline">\(f(3) = 3 \times f(2) = 3
+\times 2 = 6\)</span>. Then <span class="math inline">\(f(4) = 4 \times
+f(3) = 4 \times 6 = 24\)</span>, and so on. As you might have noticed,
+<span class="math inline">\(f\)</span> is just the factorial, that is to
+say <span class="math inline">\(f(n) = n!\)</span>. And if <span
+class="math inline">\(x \leq y\)</span>, then it always holds that <span
+class="math inline">\(x! \leq y!\)</span> because <span
+class="math inline">\(y!\)</span> is the result of taking <span
+class="math inline">\(x!\)</span> and multiplying if with the numbers
+between <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> (including <span
+class="math inline">\(y\)</span> itself). For example, <span
+class="math inline">\(2 \leq 4\)</span>, and <span
+class="math inline">\(4! = 4 \times 3 \times 2! = 24\)</span>, which is
+necessarily greater than <span class="math inline">\(2! =
+2\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Given an example of a function that is both monotonic increasing and
+monotonic decreasing.</p>
+<div class="solution">
+<p>The constant function <span class="math inline">\(k(x) = 2\)</span>
+from earlier on.</p>
+</div>
+<div class="solution_explained">
+<p>There are several cases where a function is both monotonic increasing
+and monotonic decreasing.</p>
+<p>The more intuitive case arises with constant functions, where all
+inputs are mapped to the same fixed output: since we have <span
+class="math inline">\(f(x) = f(y)\)</span> for all <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, it holds that <span
+class="math inline">\(f(x) \leq_B f(y)\)</span> and <span
+class="math inline">\(f(y) \leq_B f(x)\)</span> irrespective of whether
+we have <span class="math inline">\(x \leq_A y\)</span> or <span
+class="math inline">\(y \leq_A x\)</span>.</p>
+<p>Another case arises if <span class="math inline">\(A\)</span> has
+only one member <span class="math inline">\(x\)</span>. In this case, we
+only have <span class="math inline">\(x \leq_A x\)</span>, and obviously
+both <span class="math inline">\(f(x) \leq_B f(x)\)</span> and <span
+class="math inline">\(f(x) \geq_B f(x)\)</span> always hold.</p>
+<p>Finally, we could also be dealing with the degenerate scenario where
+<span class="math inline">\(\leq_A\)</span> does not order any elements
+of <span class="math inline">\(A\)</span>. Perhaps <span
+class="math inline">\(A\)</span> is the empty set, or perhaps it is a
+non-empty set but <span class="math inline">\(\leq_A\)</span> is the
+empty order relation that does not actually order any elements. In this
+case, both monotonicity properties are trivially true for every function
+<span class="math inline">\(f\)</span> with domain <span
+class="math inline">\(A\)</span>. The reasoning is as follows: in order
+to show that <span class="math inline">\(f\)</span> is not monotonic
+increasing, we would need two <span class="math inline">\(x\)</span> and
+<span class="math inline">\(y\)</span> such that <span
+class="math inline">\(x \leq_A y\)</span> but <span
+class="math inline">\(f(x) \not\leq_A f(y)\)</span>. But we already know
+that there are no <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(x
+\leq_A y\)</span>, hence there are no counterexamples to <span
+class="math inline">\(f\)</span> being monotonic increasing, which means
+that it is monotonic increasing. The same reasoning also establishes
+that <span class="math inline">\(f\)</span> is monotonic decreasing.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

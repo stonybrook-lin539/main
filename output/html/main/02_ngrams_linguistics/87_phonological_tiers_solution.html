@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Making n-grams more powerful: Phonological tiers
+(Solutions)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a
+href="#making-n-grams-more-powerful-phonological-tiers-solutions">Making
+n-grams more powerful: Phonological tiers (Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1
+id="making-n-grams-more-powerful-phonological-tiers-solutions">Making
+n-grams more powerful: Phonological tiers (Solutions)</h1>
+<div class="exercise">
+<p>Write an 11-gram grammar that generates… you know what, no, don’t do
+that, life is too short to write 11-gram grammars. Instead, try to
+estimate how many <span class="math inline">\(11\)</span>-grams a
+negative <span class="math inline">\(n\)</span>-gram grammar would need
+so that it can generate <em>hasxintilawas</em> and
+<em>haʃxintilawaʃ</em> but still rules out <em>hasxintilawaʃ</em> and
+<em>haʃxinitilawas</em>. You may make the following simplifying
+assumptions:</p>
+<ul>
+<li>The only vowel and consonants are those that occur in the words
+above.</li>
+<li>There are no restrictions on the syllable template. That is to say,
+each position may be any one of the available vowels and consonants
+irrespective of the surrounding context.</li>
+</ul>
+<div class="solution">
+<p>2 billion</p>
+</div>
+<div class="solution_explained">
+<p>The two words contain 10 symbols:</p>
+<ol type="1">
+<li>h</li>
+<li>a</li>
+<li>s</li>
+<li>x</li>
+<li>i</li>
+<li>n</li>
+<li>t</li>
+<li>l</li>
+<li>w</li>
+<li>ʃ</li>
+</ol>
+<p>A negative 11-gram grammar has to contain all 11-grams that start
+with <em>s</em> and end with <em>ʃ</em>, of which there are <span
+class="math inline">\(10^9 = 1,000,000,000\)</span> because there are 9
+positions between <em>s</em> and <em>ʃ</em>, each one of which can be
+filled by one out of the ten symbols above. The grammar also has to
+contain all 11-ngrams that start with <em>ʃ</em> and end with
+<em>s</em>, of which there are also <span class="math inline">\(10^9 =
+1,000,000,000\)</span>.</p>
+<p>Keep in mind that these are just the numbers for generating strings
+where <em>s</em> and <em>ʃ</em> are separated by exactly 9 symbols, as
+this is all that is needed for a grammar that generates
+<em>hasxintilawas</em> and <em>haʃxintilawaʃ</em> but not
+<em>hasxintilawaʃ</em> and <em>haʃxinitilawas</em>. If we also want to
+cover the cases where the two sibilants are separated by less than 9
+symbols, we have to add another <span class="math inline">\(2 \times 9
+\times 10^9\)</span> 11-grams to the grammar, for a total of 20 billion
+<span class="math inline">\(11\)</span>-grams. That’s quite the grammar
+(admittedly we could make the grammar smaller by allowing <span
+class="math inline">\(n\)</span>-grams of varying lengths, but it would
+still be huge).</p>
+</div>
+</div>
+<div class="exercise">
+<p>Actually, Samala has even longer words with instances of sibilant
+harmony. For example, <em>ʃtajanowonowaʃ</em> is attested whereas
+<em>stajanowonowaʃ</em> is illicit. Are 11-grams still enough to handle
+this? If not, what is the new value of <span
+class="math inline">\(n\)</span>, and how does that alter your estimate
+of a negative <span class="math inline">\(n\)</span>-gram grammars size?
+Would you say that this is a large grammar?</p>
+<div class="solution">
+<p>The grammar now needs to use 14-grams, and the grammar would have to
+contain at least 2 trillion 14-grams (<span class="math inline">\(2
+\times 10^12 = 2,000,000,000,000\)</span>). The grammar was already
+large before, but this is tremendous increase in size.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Carry out the same calculations for</p>
+<ul>
+<li><em>haʃxintilawaʃ</em>,</li>
+<li><em>haʃxinitilawas</em>, and</li>
+<li><em>ʃtajanowonowaʃ</em>.</li>
+</ul>
+<p>That is to say, write down their tiers (or draw them), and then
+indicate whether the tier is well-formed or ill-formed according to the
+negative bigram grammar above.</p>
+<div class="solution">
+<ul>
+<li>The sibilant tier of <em>haʃxintilawaʃ</em> is <em>ʃʃ</em>, which is
+well-formed.</li>
+<li>The sibilant tier of <em>haʃxinitilawas</em> is <em>ʃs</em>, which
+is ill-formed.</li>
+<li>The sibilant tier of<em>ʃtajanowonowaʃ</em> is <em>ʃʃ</em>, which is
+well-formed.</li>
+</ul>
+</div>
+</div>
+<div class="exercise">
+<p>As an abstract example, suppose that our alphabet consists of <span
+class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and <span
+class="math inline">\(c\)</span>, and that all symbols except <span
+class="math inline">\(c\)</span> should be projected on the tier. What
+is the tier of <span
+class="math inline">\(\mathit{aabaccacb}\)</span>?</p>
+<div class="solution">
+<p><span class="math inline">\(\mathit{aabaab}\)</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the strings below, construct its vowel harmony tier
+and say whether the tier is well-formed according to the negative bigram
+grammar above.</p>
+<ol type="1">
+<li>CBCGBCB</li>
+<li>CGMCBCM</li>
+<li>CB</li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li>BBB, well-formed</li>
+<li>MBM, ill-formed</li>
+<li>B, well-formed</li>
+</ol>
+</div>
+<div class="solution_explained">
+<ol type="1">
+<li>After removing all instances of C and G from the string, we are left
+with BBB, which does not contain any instances of the forbidden bigrams
+BM and MB.</li>
+<li>Removal of C and G yields the vowel tier MBM, which is clearly
+illicit as it contains MB (and also BM).</li>
+<li>After removing the single instance of C, we are left with B, which
+does not contain any forbidden bigrams.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Now let us also consider words with the neutral vowel class H, for
+instance the illicit CBCHCHCM. Do we need to make any modifications to
+the vowel harmony tier or the negative bigram grammar? If so, what are
+those modifications?</p>
+<div class="solution">
+<p>No, we can keep everything as is. Since neutral vowels do not matter
+for the purposes of vowel harmony, they should not be projected onto the
+vowel harmony tier. This means that the illicit CBCHCHCM has the tier
+BM, which is correctly ruled out as illicit by our unmodified bigram
+grammar.</p>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the following, say whether it is true or false.
+Justify your answer.</p>
+<ol type="1">
+<li>The size of the negative bigram grammar regulating the vowel harmony
+tier is not contingent on the syllable structure of Korean.</li>
+<li>The size of the negative bigram grammar regulating the vowel harmony
+tier is not contingent on the number of consonants in Korean.</li>
+<li>The size of the negative bigram grammar regulating the vowel harmony
+tier is not contingent on the number of vowels in Korean.</li>
+<li>The size of the negative bigram grammar regulating the vowel harmony
+tier is not contingent on any fixed upper bound on the length of
+words.</li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li>True. Since we only project vowels and ignore other materials like
+consonants, syllables can be arbitrarily complex without affecting the
+shape of tiers, and consequently the bigram grammar does not need to be
+altered.</li>
+<li>True. The size of the bigram grammar regulating the shape of tiers
+is independent of the number of consonants because consonants are not
+projected onto the tier in the first place.</li>
+<li>False. While we used abstract symbols like B, M, and H, these are
+just shorthands for classes of vowels. Once we replace B, M, and H by
+their corresponding vowels, the number of bigrams is contingent on the
+overall number of vowels.</li>
+<li>True. Two vowels on the vowel harmony tier can be arbitrarily far
+apart in the string — for example, CBCM and CBCHCHCHCHCHCHCHCHCM have
+exactly the same vowel harmony tier.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
