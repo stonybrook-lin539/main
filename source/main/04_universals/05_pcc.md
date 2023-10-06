@@ -7,6 +7,7 @@ pagetitle: >-
 
 :::prereqs
 - tuples (basics, crossproduct)
+- relations (partial orders)
 :::
 
 Monotonicity can be successfully invoked to explain a number of phenomena, from $^*$ABA effects in adjectival gradation and person syncretism in pronouns to the behavior of *ever* and case syncretism patterns.
@@ -140,20 +141,20 @@ The pairs with identical components represent elements along the diagonal and th
 But we will still include them for now.
 The question is how do we sort these 9 elements into a hierarchy?
 
-Ideally, our answer should be based on the existing person hierarchy $1 < 2 < 3$.
+Ideally, our answer should be based on the existing person hierarchy $1 > 2 > 3$.
 This is actually fairly easy.
 Given a set $S$ ordered by some relation $R$, one can order pairs over this set by extending the order **pointwise**.
-That is to say, $\tuple{u,v} \mathrel{R} \tuple{x,y}$ iff both $u \mathrel{R} x$ and $v \mathrel{R} y$ hold.
+That is to say, $\tuple{x,y} \mathrel{R} \tuple{x',y'}$ iff both $x \mathrel{R} x'$ and $y \mathrel{R} y'$ hold.
 We are defining the order of the tuples in terms of the order between their components.
 
 ::: example
-When the person hierarchy is extended in a pointwise fashion, $\tuple{2,1} < \tuple{3,3}$ because $2 < 3$ and $1 < 3$.
-Similarly, $\tuple{2,1} < \tuple{3,1}$ because $2 < 3$ and $1 = 1$, and $\tuple{1,2} < \tuple{1,3}$ because $1 = 1$ and $2 < 3$.
-On the other hand, $\tuple{2,1}$ and $\tuple{1,3}$ are unordered with respect to each other because $2 > 1$ and $1 < 3$.
+When the person hierarchy is extended in a pointwise fashion, $\tuple{2,1} > \tuple{3,3}$ because $2 > 3$ and $1 > 3$.
+Similarly, $\tuple{2,1} > \tuple{3,1}$ because $2 > 3$ and $1 = 1$, and $\tuple{1,2} > \tuple{1,3}$ because $1 = 1$ and $2 > 3$.
+On the other hand, $\tuple{2,1}$ and $\tuple{1,3}$ are unordered with respect to each other because $2 < 1$ and $1 > 3$.
 :::
 
 ::: exercise
-Fill each gap with $<$, $>$, or $=$ as appropriate.
+Fill each gap with $<$, $>$, or $=$ as appropriate and indicate how this follows from the pointwise definition of $<$.
 If none of the three fit, leave the gap empty.
 
 
@@ -165,19 +166,30 @@ If none of the three fit, leave the gap empty.
 
 :::
 
-Extending $1 < 2 < 3$ in this pointwise fashion yields the hierarchy below.
+Extending $1 > 2 > 3$ in this pointwise fashion yields the hierarchy below (to reduce clutter, tuple brackets are omitted in all figures).
 
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_wrong.tikz
 ~~~
 
-For clarity, let's remove all elements where IO and DO are the same, as we have already excluded them from the PCC.
+This is a partial order with $\tuple{1,1}$ at the very top and $\tuple{3,3}$ at the very bottom.
+With each step down in the hierarchy, either the first or the second component of the pair changes to a less prominent value.
+For instance, there are two ways to go down from $\tuple{1,1}$, one taking us to $\tuple{2,1}$, the other to $\tuple{1,2}$.
+And from $\tuple{2,1}$ there are two ways down, leading to $\tuple{3,1}$ and $\tuple{2,2}$.
+This continues until one reaches $\tuple{3,3}$ at the bottom.
+
+But remember that we do not actually care about the diagonals, i.e. pairs of the form $\tuple{x,x}$, so let's remove them from the hierarchy.
+After removal of $\tuple{1,1}$, $\tuple{2,2}$, and $\tuple{3,3}$, we are left with the structure below.
 
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_wrong_reduced.tikz
 ~~~
 
-Now that we have a hierarchy, we can formulate the following hypothesis: every PCC is a monotonically increasing map from the person-person hierarchy.
+There are now two separate top points, which are $\tuple{1,2}$ and $\tuple{2,1}$, and there are two separate bottom points $\tuple{2,3}$ and $\tuple{3,2}$.
+From $\tuple{1,2}$ we can go down to $\tuple{1,3}$ and from there to $\tuple{2,3}$, or alternatively, we can go straight from $\tuple{1,2}$ to $\tuple{3,2}$ (because $\tuple{2,2}$, which previously lay between the two, is no longer part of the hierarchy).
+Similarly, a step down from $\tuple{2,1}$ either takes us directly to $\tuple{2,3}$ or to $\tuple{3,1}$, from where one can go to $\tuple{3,2}$.
+
+Now that we have this *person-person hierarchy*, we can formulate the following hypothesis: every PCC is a monotonically increasing map from the person-person hierarchy.
 But a map to what?
 Well, PCCs either permit a combination, or forbid it.
 We can represent this by True (T) for allowed, and False (F) for forbidden.
@@ -202,6 +214,9 @@ pcc_2.tikz
 This structure is commonly referred to as **2** (it has only two values, after all).
 So now we can ask whether PCCs are monotonically increasing maps from the person-person hierarchy to **2**.
 At least for the W-PCC, this is indeed the case.
+All of the following elements of the person-person hierarchy are mapped to T: $\tuple{1,2}$, $\tuple{1,3}$, $\tuple{2,1}$, and $\tuple{2,3}$.
+The only elements mapped to F are $\tuple{3,1}$ and $\tuple{3,2}$.
+This is a monotonic increasing map, which becomes more apparent if we use arrows to visualize what gets mapped to what.
 
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_wrong_wpcc.tikz
@@ -212,6 +227,8 @@ It is indeed a monotonically increasing mapping from person combinations to True
 
 But things don't quite work the way they should.
 The U-PCC, for instance, is not monotonically increasing.
+The only thing that changes relative to the W-PCC is that $\tuple{2,1}$ is now mapped to F instead of T.
+But this change creates a problem.
 
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_wrong_upcc.tikz
@@ -219,8 +236,6 @@ pcc_hierarchy_wrong_upcc.tikz
 
 ::: exercise
 Pick two pairs $x$ and $y$ and use them to show that the U-PCC is not a monotonically increasing map.
-
-*Hint:* What's the main difference between the W-PCC and the U-PCC?
 :::
 
 ::: exercise
@@ -242,29 +257,29 @@ Similarly, our hierarchy bottoms out at $\tuple{3,3}$, whereas the bottom-left c
 This suggests a somewhat unintuitive fix: use the reversed person hierarchy for the second component.
 
 Given an ordering relation $R$, its **inverse** $\inv{R}$ is the result of literally reversing the order.
-So if $x$ is related to $y$ via $R$ (formally, $x \mathrel{R} y$), then $y$ is related to $x$ via $\inv{R}$ ($y \mathrel{\inv{R}} x$).
-The reverse of $1 < 2 < 3$ is $3 < 2 < 1$.
-Let us use $\prec$ for this reversed order to clearly separate it from $<$.
-Then we have $1 < 2 < 3$ but $3 \prec 2 \prec 1$.
-Whereas before we used $<$ for both the first and the second component of the IO-DO pairs, we will now use $<$ for the first component and $\prec$ for the second.
+So if $x$ is related to $y$ via $R$ (formally, $x \mathrel{R} y$), then $y$ is related to $x$ via $\inv{R}$ (in symbols, $y \mathrel{\inv{R}} x$).
+The reverse of $1 > 2 > 3$ is $3 > 2 > 1$.
+Let us use $\prec$ for this reversed order to clearly separate it from the default person hierarchy $>$.
+Then we have $1 > 2 > 3$ but $3 \prec 2 \prec 1$.
+Whereas before we used $>$ for both the first and the second component of the IO-DO pairs, we will now use $>$ for the first component and $\prec$ for the second.
 
-- **First component hierarchy**: $1 < 2 < 3$
+- **First component hierarchy**: $1 > 2 > 3$
 - **Second component hierarchy**: $3 \prec 2 \prec 1$
 
 We will also use $\triangleleft$ for the order in the person-person hierarchy, just to keep the three relations visually separated.
-In the pointwise definition, we now use $<$ for the first component and $\prec$ for the second.
+In the pointwise definition, we now use $>$ for the first component and $\prec$ for the second.
 So $\tuple{u,v} \triangleleft \tuple{x,y}$ iff both of the following hold:
 
-- $u < x$ or $u = x$, and
+- $u > x$ or $u = x$, and
 - $v \prec y$ or $v = y$.
 
 ::: example
-With this revised definition, we have $\tuple{2,3} \triangleleft \tuple{3,1}$ because $2 < 3$ and $3 \prec 1$.
+With this revised definition, we have $\tuple{2,3} \triangleleft \tuple{3,1}$ because $2 > 3$ and $3 \prec 1$.
 But for the very same reason, $\tuple{2,1}$ and $\tuple{3,3}$ are unordered with respect to each other.
 :::
 
 ::: exercise
-Fill each gap with $\triangleleft$, $\triangleright$, or $=$ as appropriate.
+Fill each gap with $\triangleleft$, $\triangleright$, or $=$ as appropriate and indicate how this follows from the pointwise definition of $<$.
 If none of the three fit, leave the gap empty.
 
 
@@ -284,16 +299,30 @@ Explain why $\triangleleft$ is a weak partial order.
 :::
 
 The full person-person hierarchy now looks a bit different, although the overall geometry stays the same.
+Instead of $\tuple{1,1}$ we now have $\tuple{1,3}$ at the top, and instead of $\tuple{3,3}$ at the bottom we now find $\tuple{3,1}$.
+And a step down means either changing the first component to a less prominent person (for instance going from $1$ to $2$) or replacing the second component with a more prominent person (for instance going from $3$ to $2$).
 
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_right.tikz
 ~~~
 
-And after removal of the irrelevant pairs, we get the following:
+After removal of the irrelevant pairs $\tuple{1,1}$, $\tuple{2,2}$, $\tuple{3,3}$, we get the following:
 
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_right_reduced.tikz
 ~~~
+
+In words:
+
+- $\tuple{1,3} \triangleleft \tuple{1,2}$
+- $\tuple{1,3} \triangleleft \tuple{2,3}$
+- $\tuple{1,2} \triangleleft \tuple{2,1}$
+- $\tuple{1,2} \triangleleft \tuple{3,2}$
+- $\tuple{2,3} \triangleleft \tuple{2,1}$
+- $\tuple{2,3} \triangleleft \tuple{3,2}$
+- $\tuple{2,1} \triangleleft \tuple{3,1}$
+- $\tuple{3,2} \triangleleft \tuple{3,1}$
+- all the ordering that can be inferred from this (e.g. $\tuple{1,3} \triangleleft \tuple{3,1}$ via transitivity)
 
 Over this hierarchy, both the W-PCC and the U-PCC are monotonically increasing maps.
 This is illustrated in the figures below.
@@ -303,9 +332,13 @@ Nodes without boxes around them are mapped to F.
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_right_wpcc.tikz
 ~~~
+
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_right_upcc.tikz
 ~~~
+
+In the U-PCC, the only elements that aren't boxed are $\tuple{3,2}$ and $\tuple{3,1}$ at the bottom of the hierarchy.
+With the W-PCC, $\tuple{2,1}$ isn't boxed either, effectively cutting the hierarchy into two halves --- the bottom half consisting of $\tuple{2,1}$, $\tuple{3,2}$, and $\tuple{3,1}$ only contains elements mapped to F, and the top half with $\tuple{1,2}$, $\tuple{2,3}$, and $\tuple{1,3}$ only contains elements mapped to T.
 
 ::: exercise
 Redraw the figures above with arrows pointing towards T and F as we did earlier on in this unit.
@@ -313,10 +346,11 @@ Confirm for yourself that this is indeed a monotonically increasing map.
 :::
 
 ::: exercise
-Draw the corresponding pictures (with boxes instead of arrows) for the S(trong)-PCC and the M(e first)-PCC.
+Verify for yourself that the S(trong)-PCC and the M(e first)-PCC are monotonic increasing over this revised hierarchy.
+You may do so by drawing the corresponding pictures with boxes or arrows, or by listing how these figures would differ from the one for the U-PCC.
 :::
 
-## Summary
+## Taking stock
 
 Where are we at this point?
 Well, all the attested types of PCCs are monotonically increasing maps over a specific person-person hierarchy.
@@ -341,3 +375,10 @@ You can represent them in the pictorial format used above.
 Monotonicity, then, does not tell the whole story; for each domain there are additional factors to take into consideration.
 But monotonicity is sufficient to carve out a broad range of options that need to be whittled down a bit by additional restrictions.
 It is truly remarkable how much linguistic work can be done by such a simple mathematical concept.
+
+## Recap
+
+- Person Case Constraints (PCCs) are restrictions on combinations of direct object and indirect object clitics.
+- Even though PCCs look very odd at first glance, they are found across many languages and hence should have a natural explanation.
+- The attested PCCs are monotonic functions from a specific person-person hierarchy into $\mathbf{2}$, which is the set $\setof{\mathrm{T(rue)}, \mathrm{F{alse}}}$ with the order $F < T$.
+- The person-person hierarchy is constructed pointwise from the default person hierarchy and its inverse.
