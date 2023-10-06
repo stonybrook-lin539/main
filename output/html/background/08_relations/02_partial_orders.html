@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Partial orders</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#partial-orders">Partial orders</a>
+<ul>
+<li><a href="#definition-of-partial-orders">Definition of partial
+orders</a></li>
+<li><a href="#transitivity">Transitivity</a></li>
+<li><a href="#antisymmetry">Antisymmetry</a></li>
+<li><a href="#irreflexivity">(Ir)Reflexivity</a></li>
+<li><a href="#a-note-on-asymmetry-and-strict-partial-orders">A note on
+asymmetry and strict partial orders</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="partial-orders">Partial orders</h1>
+<p>There are numerous types of order relations, but arguably the most
+common one is <strong>partial orders</strong>. Intuitively, a partial
+order is a linear order (also called total order) where we have removed
+some orderings between elements. Formally, though, things are defined
+exactly the other way round: linear orders are a special case of partial
+orders. Hence we will first define partial orders before turning to
+linear orders in the next unit.</p>
+<h2 id="definition-of-partial-orders">Definition of partial orders</h2>
+<p>Partial orders can be defined very succinctly, but doing so requires
+specialized vocabulary.</p>
+<div class="definition">
+<p>A <strong>partial order</strong> is a binary relation <span
+class="math inline">\(R\)</span> that is</p>
+<ul>
+<li><strong>transitive</strong>: for all <span class="math inline">\(x,
+y, z\)</span>, <span class="math inline">\(x \mathrel{R} y\)</span> and
+<span class="math inline">\(y \mathrel{R} z\)</span> jointly imply <span
+class="math inline">\(x \mathrel{R} z\)</span>, and</li>
+<li><strong>antisymmetric</strong>: for all <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, if <span class="math inline">\(x
+\mathrel{R} y\)</span>, and <span class="math inline">\(y \mathrel{R}
+x\)</span> then <span class="math inline">\(x = y\)</span>, and</li>
+<li>either <strong>reflexive</strong> or <strong>irreflexive</strong>:
+<ul>
+<li><strong>reflexive</strong>: for all <span
+class="math inline">\(x\)</span>, it holds that <span
+class="math inline">\(x \mathrel{R} x\)</span>,</li>
+<li><strong>irreflexive</strong>: there is no <span
+class="math inline">\(x\)</span> such that <span class="math inline">\(x
+\mathrel{R} x\)</span>.</li>
+</ul></li>
+</ul>
+<p>If the partial order is reflexive, it is a <strong>weak partial
+order</strong>. If it is irreflexive, it is a <strong>strict partial
+order</strong>.</p>
+</div>
+<p>This is a very abstract definition. In order to truly understand it,
+you have to develop an intuitive grasp of what each property means.</p>
+<h2 id="transitivity">Transitivity</h2>
+<p>In a nutshell, transitivity says “Whatever you can reach in two
+steps, you can reach in one step”.</p>
+<p>Suppose you have some set <span class="math inline">\(D\)</span> of
+objects with a binary relation <span class="math inline">\(R\)</span>
+defined over them. For example, we may have the set of natural numbers
+(0, 1, 2, ) with the <em>strictly less than</em> relation <span
+class="math inline">\(&lt;\)</span>, where we have <span
+class="math inline">\(3 &lt; 5\)</span> and <span
+class="math inline">\(4 &lt; 5\)</span>, but not <span
+class="math inline">\(5 &lt; 5\)</span> (although <span
+class="math inline">\(5 \leq 5\)</span>). We can think of these as
+structures where the set specifies the collection of building blocks and
+the relation connects these building blocks, putting them into a
+particular structural configuration. We can move through <span
+class="math inline">\(D\)</span> along <span
+class="math inline">\(R\)</span>: if we are at <span
+class="math inline">\(x \in D\)</span>, we can move to any <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(x
+\mathrel{R} y\)</span>. And from <span class="math inline">\(y\)</span>,
+we can move on to any <span class="math inline">\(z\)</span> such that
+<span class="math inline">\(y \mathrel{R} z\)</span>, and so on.</p>
+<div class="example">
+<p>From the natural number <span class="math inline">\(5\)</span>, we
+can move to <span class="math inline">\(17\)</span> via <span
+class="math inline">\(&lt;\)</span>, and from there to <span
+class="math inline">\(329\)</span>.</p>
+</div>
+<p>This movement metaphor is useful for understanding transitivity and
+other properties of relations. Some relations are such that whatever can
+be reached in two steps can also be reached in one step. So <span
+class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} z\)</span> entail that we also have
+<span class="math inline">\(x \mathrel{R} z\)</span> — the ability to
+move from <span class="math inline">\(x\)</span> to <span
+class="math inline">\(z\)</span> via <span
+class="math inline">\(y\)</span> implies that we can move directly from
+<span class="math inline">\(x\)</span> to <span
+class="math inline">\(z\)</span> without a stop at <span
+class="math inline">\(y\)</span>. This is what it means for a relation
+to be <strong>transitive</strong>.</p>
+<div class="definition">
+<p>A binary relation <span class="math inline">\(R\)</span> over <span
+class="math inline">\(D\)</span> is <strong>transitive</strong> iff for
+all <span class="math inline">\(x,y,z \in D\)</span> it holds that <span
+class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} z\)</span> jointly imply <span
+class="math inline">\(x \mathrel{R} z\)</span>.</p>
+</div>
+<div class="example">
+<p>The human ancestor relation <span class="math inline">\(A\)</span> is
+transitive. Your mother is one of your ancestors, and every ancestor of
+your mother is an ancestor of yourself. So <span class="math inline">\(x
+\mathrel{A} y\)</span> and <span class="math inline">\(y \mathrel{A}
+z\)</span> imply <span class="math inline">\(x \mathrel{A}
+z\)</span>.</p>
+</div>
+<div class="example">
+<p>The human parent-of relation is not transitive. There can be <span
+class="math inline">\(x\)</span>, <span
+class="math inline">\(y\)</span>, and <span
+class="math inline">\(z\)</span> such that <span
+class="math inline">\(x\)</span> is the parent of <span
+class="math inline">\(y\)</span>, <span class="math inline">\(y\)</span>
+is the parent of <span class="math inline">\(z\)</span>, but <span
+class="math inline">\(x\)</span> is not the parent of <span
+class="math inline">\(z\)</span>. In fact, that is how things are
+supposed to go in the real world and every deviation from this case is
+very problematic.</p>
+</div>
+<p>Crucially, for a relation to be transitive it is not enough to have
+some case where <span class="math inline">\(x \mathrel{R} y\)</span> and
+<span class="math inline">\(y \mathrel{R} z\)</span> jointly imply <span
+class="math inline">\(x \mathrel{R} z\)</span>. This has to hold in all
+cases, including those where <span class="math inline">\(x\)</span>,
+<span class="math inline">\(y\)</span>, and <span
+class="math inline">\(z\)</span> are not necessarily all distinct.</p>
+<div class="example">
+<p>Consider the sibling relation <span class="math inline">\(S\)</span>.
+There certainly are instances of transitivity. If John is a sibling of
+Mary and Mary is a sibling of Sue, then John is a sibling of Sue.
+However, even though John is a sibling of Mary and Mary is a sibling of
+John, John is not his own sibling. In formal terms, we have <span
+class="math inline">\(\text{John} \mathrel{S} \text{Mary}\)</span> and
+<span class="math inline">\(\text{Mary} \mathrel{S}
+\text{John}\)</span>, yet <span class="math inline">\(\text{John}
+\not\mathrel{S} \text{John}\)</span>.</p>
+</div>
+<div class="example">
+<p>Let’s consider one more example of a relation that may look
+transitive but is not. You may love your parents, your parents love
+their parents, and you love your grandparents. So this is a case where
+we have <span class="math inline">\(x \mathrel{R} y\)</span>, <span
+class="math inline">\(y \mathrel{R} z\)</span>, and <span
+class="math inline">\(x \mathrel{R} z\)</span>. But this does not make
+love a transitive relation — it is perfectly possible for a person you
+love to love somebody that you do not love at all.</p>
+</div>
+<p>The examples above show that a relation is transitive only if there
+isn’t even a single counterexample to transitivity. If there is even one
+choice of <span class="math inline">\(x\)</span>, <span
+class="math inline">\(y\)</span>, and <span
+class="math inline">\(z\)</span> such that <span class="math inline">\(x
+\mathrel{R} y\)</span>, <span class="math inline">\(y \mathrel{R}
+z\)</span>, but <span class="math inline">\(x \not\mathrel{R}
+z\)</span>, then <span class="math inline">\(R\)</span> is not
+transitive.</p>
+<p>Intuitively, transitivity tells us that whatever can be reached in
+two steps can be reached in one step. But this actually implies that
+anything that can be reached in a finite number of steps can be reached
+in one step. This follows by iterated invocation of transitivity.
+Suppose that <span class="math inline">\(a \mathrel{R} b\)</span>, <span
+class="math inline">\(b \mathrel{R} c\)</span>, and <span
+class="math inline">\(c \mathrel{R} d\)</span>. This is shown
+pictorially below.</p>
+<p><img src="transitivity1.svg" alt="transitivity1.svg" /></p>
+<p>Then by transitivity, we also have <span class="math inline">\(a
+\mathrel{R} c\)</span>.</p>
+<p><img src="transitivity2.svg" alt="transitivity2.svg" /></p>
+<p>But then, again by transitivity, we must also have <span
+class="math inline">\(a \mathrel{R} d\)</span> because of <span
+class="math inline">\(a \mathrel{R} c\)</span> and <span
+class="math inline">\(c \mathrel{R} d\)</span>.</p>
+<p><img src="transitivity3.svg" alt="transitivity3.svg" /></p>
+<p>Since we can apply the same argument over and over again, anything
+that can be reached with a finite number of steps can also be reached in
+a single step.</p>
+<p>It is also important to keep in mind that some relations can be
+trivially transitive. Transitivity can be violated only if there are
+<span class="math inline">\(x\)</span>, <span
+class="math inline">\(y\)</span>, and <span
+class="math inline">\(z\)</span> such that both <span
+class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} z\)</span> hold. If that is not the
+case, the relation is trivially transitive because there is no
+configuration where it violates transitivity.</p>
+<div class="example">
+<p>Consider the relation with <span class="math inline">\(a_1
+\mathrel{R} a_2\)</span>, <span class="math inline">\(b_1 \mathrel{R}
+b_2\)</span>, <span class="math inline">\(c_1 \mathrel{R} c_2\)</span>,
+and <span class="math inline">\(d_1 \mathrel{R} d_2\)</span>. It is also
+depicted below.</p>
+<p><img src="transitivity_trivial.svg"
+alt="transitivity_trivial.svg" /></p>
+<p>Here there is no way of choosing <span
+class="math inline">\(x\)</span>, <span
+class="math inline">\(y\)</span>, and <span
+class="math inline">\(z\)</span> such that we have both <span
+class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} z\)</span>. Consequently,
+transitivity holds because we cannot produce any counterexample to the
+claim that the relation is transitive.</p>
+</div>
+<p>Transitivity also does not imply that we every element is reachable
+from any other element in a single step. Nodes may still be unreachable
+from certain positions.</p>
+<div class="example">
+<p>In the example above, there is no way at all to move from <span
+class="math inline">\(a_2\)</span> to any other element.</p>
+</div>
+<div class="example">
+<p>The relation <span class="math inline">\(&lt;\)</span> over natural
+numbers is transitive. Yet it does not follow that <span
+class="math inline">\(5\)</span> can be reached from <span
+class="math inline">\(8\)</span>, only the opposite holds: <span
+class="math inline">\(8\)</span> can be reached from <span
+class="math inline">\(5\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Consider the relation <span class="math inline">\(\sim\)</span> over
+natural numbers such that <span class="math inline">\(x \mathrel{\sim}
+y\)</span> iff <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are both odd or <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are both even. Is this relation
+transitive? Justify your answer.</p>
+</div>
+<div class="exercise">
+<p>Consider the relation <span class="math inline">\(\not\sim\)</span>
+over natural number such that <span class="math inline">\(x
+\mathrel{\not\sim} y\)</span> iff either <span
+class="math inline">\(x\)</span> is odd and <span
+class="math inline">\(y\)</span> is even or <span
+class="math inline">\(x\)</span> is even and <span
+class="math inline">\(y\)</span> is odd. Is this relation transitive?
+Justify your answer.</p>
+</div>
+<h2 id="antisymmetry">Antisymmetry</h2>
+<p>Antisymmetry can be thought of in two different ways that build on
+the metaphor of relations as adding arrows to the elements of a set:</p>
+<ul>
+<li>“If the order relation has any loops at all, those must be
+self-loops.”</li>
+<li>“If <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are distinct, then they cannot be
+mutually related.”</li>
+</ul>
+<p>Here a loop is a sequence of arrows that leads from an element back
+to itself. A self-loop is the special case of a loop where there is a
+single arrow that directly goes from the element back to itself. And
+“mutually related” means that there are arrows from one element to the
+other and the other way round.</p>
+<p>These are intuitive interpretations of two equivalents definition of
+antisymmetry.</p>
+<div class="definition">
+<p>A binary relation <span class="math inline">\(R\)</span> over <span
+class="math inline">\(D\)</span> is <strong>antisymmetric</strong> iff
+<span class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} x\)</span> jointly imply <span
+class="math inline">\(x = y\)</span> for all <span
+class="math inline">\(x, y \in D\)</span>.</p>
+</div>
+<div class="definition">
+<p>A binary relation <span class="math inline">\(R\)</span> over <span
+class="math inline">\(D\)</span> is <strong>antisymmetric</strong> iff
+it holds for all <span class="math inline">\(x, y \in D\)</span> that
+<span class="math inline">\(x \neq y\)</span> implies <span
+class="math inline">\(x \not\mathrel{R} y\)</span> or <span
+class="math inline">\(y \not\mathrel{R} x\)</span> (or both).</p>
+</div>
+<div class="example">
+<p>Consider again the set of natural numbers with the relation <span
+class="math inline">\(&lt;\)</span>, which is antisymmetric. Let us see
+how this follows from the first definition.</p>
+<p>There are no natural numbers <span class="math inline">\(x\)</span>
+and <span class="math inline">\(y\)</span> such that <span
+class="math inline">\(x &lt; y\)</span> and <span
+class="math inline">\(y &lt; x\)</span> both hold. But then <span
+class="math inline">\(&lt;\)</span> is trivially antisymmetric. This is
+because the only way a relation <span class="math inline">\(R\)</span>
+can fail to be antisymmetric is if there is a counterexample to
+antisymmetry. A counterexample would require <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> such that</p>
+<ol type="1">
+<li><span class="math inline">\(x \mathrel{R} y\)</span>, and</li>
+<li><span class="math inline">\(y \mathrel{R} x\)</span>, and</li>
+<li><span class="math inline">\(x \neq y\)</span>.</li>
+</ol>
+<p>But if we cannot even find any <span class="math inline">\(x\)</span>
+and <span class="math inline">\(y\)</span> such that <span
+class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} x\)</span>, then clearly there is no
+such counterexample.</p>
+</div>
+<div class="example">
+<p>Let us look one more time at the natural numbers with <span
+class="math inline">\(&lt;\)</span>, but this time we will use the
+second definition. It requires that <span class="math inline">\(x \neq
+y\)</span> entails <span class="math inline">\(x \not\mathrel{R}
+y\)</span> or <span class="math inline">\(y \not\mathrel{R} x\)</span>
+(or both). But this is obviously the case for <span
+class="math inline">\(&lt;\)</span>. For instance, <span
+class="math inline">\(3 \neq 5\)</span> and we have <span
+class="math inline">\(3 &lt; 5\)</span> but <span
+class="math inline">\(5 \not&lt; 3\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Give two arguments modeled after the ones above to show that <span
+class="math inline">\(\leq\)</span> over the set of natural numbers is
+antisymmetric.</p>
+</div>
+<div class="exercise">
+<p>Earlier on we encountered the human ancestor relation. Is this
+relation antisymmetric?</p>
+</div>
+<div class="exercise">
+<p>Given an example to show that the human sibling relation is not
+antisymmetric.</p>
+</div>
+<div class="exercise">
+<p>Give an example to show that <span
+class="math inline">\(\sim\)</span> as defined in a previous example is
+not antisymmetric.</p>
+</div>
+<div class="exercise">
+<p>Is <span class="math inline">\(\not\sim\)</span> as defined in a
+previous example antisymmetric? Justify your answer.</p>
+</div>
+<h2 id="irreflexivity">(Ir)Reflexivity</h2>
+<p>Reflexivity and irreflexivity are much easier to understand that
+transitivity and, in particular, antisymmetry. Intuitively, they are
+statements about the presence of self-loops.</p>
+<ol type="1">
+<li><em>Reflexivity</em>: “Every element must have a self-loop.”</li>
+<li><em>Irreflexivity</em>: “No element may have a self-loop.”</li>
+</ol>
+<div class="definition">
+<p>Let <span class="math inline">\(R\)</span> be a binary relation over
+<span class="math inline">\(D\)</span>. Then <span
+class="math inline">\(R\)</span> is <strong>reflexive</strong> iff <span
+class="math inline">\(x \mathrel{R} x\)</span> holds for every <span
+class="math inline">\(x \in D\)</span>.</p>
+</div>
+<div class="definition">
+<p>Let <span class="math inline">\(R\)</span> be a binary relation over
+<span class="math inline">\(D\)</span>. Then <span
+class="math inline">\(R\)</span> is <strong>irreflexive</strong> iff
+there is no <span class="math inline">\(x \in D\)</span> such that <span
+class="math inline">\(x \mathrel{R} x\)</span>.</p>
+</div>
+<p>If there is at least one element that is not related to itself, then
+the relation is not reflexive. If there is at least one element that is
+related to itself, then the relation is not irreflexive. If it is
+neither reflexive nor irreflexive, it is
+<strong>non-reflexive</strong>.</p>
+<div class="example">
+<p>The human parent-of relation is irreflexive because nobody can be
+their own parent.</p>
+</div>
+<div class="example">
+<p>Similarly, <span class="math inline">\(&lt;\)</span> over natural
+numbers is irreflexive because no number can be strictly less than
+itself. However, <span class="math inline">\(\leq\)</span> is reflexive
+because <span class="math inline">\(x \leq x\)</span> for every number
+<span class="math inline">\(x\)</span>.</p>
+</div>
+<div class="example">
+<p>Another reflexive relation is the relation induced by the identity
+function <span class="math inline">\(\mathrm{id}\)</span>, which maps
+every element to itself. This is shown below for the set <span
+class="math inline">\(\left \{ 1,2,3,4 \right \}\)</span> with the
+identity relation:</p>
+<p><img src="1234.svg" alt="1234.svg" /></p>
+</div>
+<div class="example">
+<p>Suppose that John voted for Mary, and Mary voted for herself. We can
+represent this as a relation <span class="math inline">\(V\)</span> such
+that <span class="math inline">\(\text{John} \mathrel{V}
+\text{Mary}\)</span> and <span class="math inline">\(\text{Mary}
+\mathrel{V} \text{Mary}\)</span>. This relation is not reflexive because
+<span class="math inline">\(\text{John} \not\mathrel{V}
+\text{John}\)</span>. But it isn’t irreflexive either because <span
+class="math inline">\(\text{Mary} \mathrel{V} \text{Mary}\)</span>.
+Hence it is non-reflexive.</p>
+</div>
+<div class="example">
+<p>Here’s a surprising one: there is a relation that is both reflexive
+and irreflexive. It’s the <strong>empty relation</strong> <span
+class="math inline">\(R\)</span>, whose domain is the empty set <span
+class="math inline">\(\emptyset\)</span>. In this case, there is no
+<span class="math inline">\(x \in D\)</span> such that <span
+class="math inline">\(x \mathrel{R} x\)</span>, which means that <span
+class="math inline">\(R\)</span> is irreflexive. But there’s also no
+<span class="math inline">\(x \in D\)</span> such that <span
+class="math inline">\(x \not\mathrel{R} x\)</span>, which is the same as
+saying that <span class="math inline">\(x \mathrel{R} x\)</span> holds
+for every <span class="math inline">\(x \in D\)</span> (there simply
+happens to be no <span class="math inline">\(x\)</span> at all in <span
+class="math inline">\(D\)</span>). Consequently, <span
+class="math inline">\(R\)</span> is also reflexive.</p>
+</div>
+<div class="exercise">
+<p>There is no relation that is reflexive, and irreflexive, and
+non-reflexive. Explain why!</p>
+</div>
+<div class="exercise">
+<p>For each one of the following relations, say whether it is reflexive,
+irreflexive, or non-reflexive. Justify your answers! If you have to make
+additional assumptions, explain what they are.</p>
+<ul>
+<li>the “younger than” relation</li>
+<li>the “sums to 10” relation over natural numbers (<span
+class="math inline">\(x \mathrel{R} y\)</span> iff <span
+class="math inline">\(x + y = 10\)</span>)</li>
+<li>the “at least as rich as” relation</li>
+<li>the “voted for the same candidate” relation</li>
+<li>the “parent-of” relation over humans in a world with time
+travel</li>
+<li>the “reverse” relation over words (<span class="math inline">\(x
+\mathrel{R} y\)</span> iff <span class="math inline">\(x\)</span> is
+<span class="math inline">\(y\)</span> read backwards;
+e.g. <em>deer</em> and <em>reed</em>)</li>
+</ul>
+</div>
+<p>Note that pictures can sometimes be misleading when it comes to
+(ir)reflexivity. Consider the figure below.</p>
+<p><img src="irreflexivity_violated.svg"
+alt="irreflexivity_violated.svg" /></p>
+<p>Here we have two elements <span class="math inline">\(a\)</span> and
+<span class="math inline">\(b\)</span> with an arrow from <span
+class="math inline">\(a\)</span> to <span
+class="math inline">\(b\)</span> and another from <span
+class="math inline">\(b\)</span> to <span
+class="math inline">\(a\)</span>. It looks like this relation is
+irreflexive because no element has a self-loop. But it is common style
+for such figures to omit all connections that can be inferred via
+transitivity. So if this figure actually depicts a transitivity
+relation, then <span class="math inline">\(a \mathrel{R} b\)</span> and
+<span class="math inline">\(b \mathrel{R} a\)</span> implies <span
+class="math inline">\(a \mathrel{R} a\)</span> because of transitivity.
+A clear violation of irreflexivity. In fact, transitivity would also
+entail <span class="math inline">\(b \mathrel{R} b\)</span>, rendering
+<span class="math inline">\(R\)</span> reflexive.</p>
+<h2 id="a-note-on-asymmetry-and-strict-partial-orders">A note on
+asymmetry and strict partial orders</h2>
+<p>Sometimes strict partial orders are given a definition that looks
+different but is actually equivalent to the one we used above. Instead
+of antisymmetry, this definition uses <strong>asymmetry</strong>.</p>
+<div class="definition">
+<p>A <strong>strict partial order</strong> is a binary relation <span
+class="math inline">\(R\)</span> that is</p>
+<ul>
+<li><strong>transitive</strong>: for all <span class="math inline">\(x,
+y, z\)</span>, <span class="math inline">\(x \mathrel{R} y\)</span> and
+<span class="math inline">\(y \mathrel{R} z\)</span> jointly imply <span
+class="math inline">\(x \mathrel{R} z\)</span>, and</li>
+<li><strong>asymmetric</strong>: for all <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, if <span class="math inline">\(x
+\mathrel{R} y\)</span> then <span class="math inline">\(y
+\not\mathrel{R} x\)</span>.</li>
+</ul>
+</div>
+<div class="exercise">
+<p>Explain in intuitive terms why the two definitions of strict partial
+orders are equivalent.</p>
+<p><em>Hint:</em> You have to explain why asymmetry is essentially the
+combination of antisymmetry and irreflexivity.</p>
+</div>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Partial orders allow some elements to be unordered with respect to
+each other, but it is not a case of anything goes. Very specific
+properties must be met in order for a binary relation to be a partial
+order.</li>
+</ul>
+<div class="definition">
+<p>A <strong>partial order</strong> is a binary relation <span
+class="math inline">\(R\)</span> that is transitive, antisymmetric, and
+either reflexive or irreflexive. If the partial order is reflexive, it
+is a <strong>weak partial order</strong>. If it is irreflexive, it is a
+<strong>strict partial order</strong>.</p>
+</div>
+<ul>
+<li>Strict partial orders are sometimes defined as binary relations that
+are transitive and asymmetric. This definition is equivalent to the one
+above.</li>
+</ul>
+<div class="definition">
+<p>A binary relation <span class="math inline">\(R\)</span> over <span
+class="math inline">\(D\)</span> is</p>
+<ul>
+<li><strong>transitive</strong> iff for all <span
+class="math inline">\(x,y,z \in D\)</span> it holds that <span
+class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} z\)</span> jointly imply <span
+class="math inline">\(x \mathrel{R} z\)</span>.</li>
+<li><strong>antisymmetric</strong> iff <span class="math inline">\(x
+\mathrel{R} y\)</span> and <span class="math inline">\(y \mathrel{R}
+x\)</span> jointly imply <span class="math inline">\(x = y\)</span> for
+all <span class="math inline">\(x, y \in D\)</span> (or equivalently, if
+<span class="math inline">\(x \neq y\)</span> implies <span
+class="math inline">\(x \not\mathrel{R} y\)</span> or <span
+class="math inline">\(y \not\mathrel{R} x\)</span> or both).</li>
+<li><strong>asymmetric</strong> iff <span class="math inline">\(x
+\mathrel{R} y\)</span> implies <span class="math inline">\(y
+\not\mathrel{R} x\)</span> for all <span class="math inline">\(x,y \in
+D\)</span>.</li>
+<li><strong>reflexive</strong> iff <span class="math inline">\(x
+\mathrel{R} x\)</span> holds for every <span class="math inline">\(x \in
+D\)</span>.</li>
+<li><strong>irreflexive</strong> iff there is no <span
+class="math inline">\(x \in D\)</span> such that <span
+class="math inline">\(x \mathrel{R} x\)</span>.</li>
+<li><strong>non-reflexive</strong> if it is neither reflexive nor
+irreflexive.</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

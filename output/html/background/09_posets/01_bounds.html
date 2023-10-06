@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Lower bounds and upper bounds</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#lower-bounds-and-upper-bounds">Lower bounds and upper
+bounds</a>
+<ul>
+<li><a href="#bounds-for-single-elements">Bounds for single
+elements</a></li>
+<li><a href="#generalizing-bounds-to-subsets">Generalizing bounds to
+subsets</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="lower-bounds-and-upper-bounds">Lower bounds and upper
+bounds</h1>
+<p>Suppose that we have some poset <span class="math inline">\(\left
+\langle S, \leq \right \rangle\)</span>, where <span
+class="math inline">\(\leq\)</span> is an arbitrary partial order. Given
+a set <span class="math inline">\(x \in S\)</span>, we can ask which
+elements are less than <span class="math inline">\(x\)</span> and which
+elements are greater than <span class="math inline">\(x\)</span>. These
+are the <strong>lower bounds</strong> and <strong>upper bounds</strong>
+of <span class="math inline">\(x\)</span>. This is an important notion,
+and it can be generalized from a single member of <span
+class="math inline">\(S\)</span> to whole subsets of <span
+class="math inline">\(S\)</span>.</p>
+<h2 id="bounds-for-single-elements">Bounds for single elements</h2>
+<p>The definition for lower and upper bounds of a single element in a
+poset is straightforward.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(\left \langle S, \leq \right
+\rangle\)</span> be an arbitrary poset and <span
+class="math inline">\(x\)</span> an arbitrary member of <span
+class="math inline">\(S\)</span>. Then <span class="math inline">\(y \in
+S\)</span> is a <strong>lower bound</strong> for <span
+class="math inline">\(x\)</span> iff <span class="math inline">\(y \leq
+x\)</span>. We call <span class="math inline">\(y\)</span> an
+<strong>upper bound</strong> iff <span class="math inline">\(x \leq
+y\)</span>.</p>
+</div>
+<div class="example">
+<p>Consider the poset below, which consists of all subsets of <span
+class="math inline">\(\left \{ 1,2,3 \right \}\)</span> ordered by the
+subset relation <span class="math inline">\(\subseteq\)</span>.</p>
+<p><img src="lattice_123.svg" alt="lattice_123.svg" /></p>
+<p>The upper bounds of <span class="math inline">\(\left \{ 1 \right
+\}\)</span> are <span class="math inline">\(\left \{ 1 \right
+\}\)</span>, <span class="math inline">\(\left \{ 1,2 \right
+\}\)</span>, <span class="math inline">\(\left \{ 1,3 \right
+\}\)</span>, and <span class="math inline">\(\left \{ 1,2,3 \right
+\}\)</span>. Its lower bounds are <span class="math inline">\(\left \{ 1
+\right \}\)</span> and <span
+class="math inline">\(\emptyset\)</span>.</p>
+</div>
+<div class="example">
+<p>Thinking of upper and lower bounds in pictorial terms may strengthen
+your intuitions. In the figure below, upper bounds are in dashed boxes,
+and lower bounds in dashed circles. We underline <span
+class="math inline">\(\left \{ 1 \right \}\)</span> to indicate that
+this is the element for which we are computing upper and lower
+bounds.</p>
+<p><img src="lattice_123_bounds1.svg"
+alt="lattice_123_bounds1.svg" /></p>
+</div>
+<div class="exercise">
+<p>Draw corresponding diagrams indicating the upper and lower bounds
+of</p>
+<ul>
+<li><span class="math inline">\(\left \{ 1,3 \right \}\)</span></li>
+<li><span class="math inline">\(\emptyset\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Say whether the following is true or false, and justify your answer:
+if <span class="math inline">\(\left \langle S, \leq \right
+\rangle\)</span> is a poset, then it holds for all <span
+class="math inline">\(x, y \in S\)</span> that <span
+class="math inline">\(y\)</span> is both an upper and a lower bound for
+<span class="math inline">\(x\)</span> iff <span class="math inline">\(x
+= y\)</span>.</p>
+</div>
+<h2 id="generalizing-bounds-to-subsets">Generalizing bounds to
+subsets</h2>
+<p>While it can be interesting to know the lower and upper bounds for a
+given element, very often we want to know the bounds for multiple
+elements. For instance, which elements are such that they are greater
+than both <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>? To this end, we generalize bounds from
+elements of a poset to subsets of the poset. We say that <span
+class="math inline">\(y\)</span> is an upper (or lower) bound for subset
+<span class="math inline">\(T\)</span> iff <span
+class="math inline">\(y\)</span> is an upper (or lower) bound for every
+member of <span class="math inline">\(T\)</span>.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(\left \langle S, \leq \right
+\rangle\)</span> be a poset and <span class="math inline">\(T\)</span>
+and arbitrary subset of <span class="math inline">\(S\)</span>. Then the
+set of <strong>upper bounds</strong> of <span
+class="math inline">\(T\)</span> is <span
+class="math display">\[\mathrm{ub}(T) \mathrel{\mathop:}=\left \{  y \in
+S \mid x \leq y \text{ for all } x \in T \right \}.\]</span> Similarly,
+the set of <strong>lower bounds</strong> of <span
+class="math inline">\(T\)</span> is <span
+class="math display">\[\mathrm{lb}(T) \mathrel{\mathop:}=\left \{  y \in
+S \mid y \leq x \text{ for all } x \in T \right \}.\]</span></p>
+</div>
+<div class="example">
+<p>Consider the poset <span class="math inline">\(\left \langle \left \{
+0,1,2,3,4 \right \}, \leq \right \rangle\)</span>, the set of the first
+five natural numbers ordered in the usual fashion via <span
+class="math inline">\(\leq\)</span>. The lower bounds of <span
+class="math inline">\(2\)</span> and <span
+class="math inline">\(4\)</span> are <span
+class="math inline">\(0\)</span>, <span
+class="math inline">\(1\)</span>, and <span
+class="math inline">\(2\)</span> as these are the only elements that are
+less than <span class="math inline">\(2\)</span> and less than <span
+class="math inline">\(4\)</span>. More succinctly, <span
+class="math inline">\(\mathrm{lb}(\left \{ 2,4 \right \}) = \left \{
+0,1,2 \right \}\)</span>.</p>
+<p>The only upper bound of <span class="math inline">\(2\)</span> and
+<span class="math inline">\(4\)</span> is <span
+class="math inline">\(4\)</span> as no other member of the carrier <span
+class="math inline">\(\left \{ 0,1,2,3,4 \right \}\)</span> is greater
+than both of those numbers. Hence we write <span
+class="math inline">\(\mathrm{ub}(\left \{ 2,4 \right \}) = \left \{ 4
+\right \}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Given some arbitrary poset <span class="math inline">\(\left \langle
+S, \leq \right \rangle\)</span>, what are <span
+class="math inline">\(\mathrm{lb}(\emptyset)\)</span> and <span
+class="math inline">\(\mathrm{ub}(\emptyset)\)</span>? Justify your
+answer.</p>
+</div>
+<div class="example">
+<p>Consider once more the poset of all subsets of <span
+class="math inline">\(\left \{ 1,2,3 \right \}\)</span> ordered by the
+subset relation <span class="math inline">\(\subseteq\)</span>.</p>
+<p><img src="lattice_123.svg" alt="lattice_123.svg" /></p>
+<p>The upper bounds of <span class="math inline">\(\left \{ 1 \right
+\}\)</span> and <span class="math inline">\(\left \{ 2 \right
+\}\)</span> are <span class="math inline">\(\left \{ 1,2 \right
+\}\)</span> and <span class="math inline">\(\left \{ 1,2,3 \right
+\}\)</span>. Their only lower bound is <span
+class="math inline">\(\emptyset\)</span>. In mathematical notation, this
+is <span class="math display">\[\mathrm{lb}(\left \{  \left \{ 1 \right
+\}, \left \{ 2 \right \}  \right \}) = \left \{  \left \{ 1,2 \right \},
+\left \{ 1,2,3 \right \}  \right \}\]</span> and <span
+class="math display">\[\mathrm{ub}(\left \{  \left \{ 1 \right \}, \left
+\{ 2 \right \}  \right \}) = \left \{  \emptyset  \right
+\}.\]</span></p>
+<p>Yes, those are sets of sets. You have to keep in mind that <span
+class="math inline">\(\mathrm{lb}\)</span> and <span
+class="math inline">\(\mathrm{ub}\)</span> always apply to the set of
+things whose lower and upper bounds we want to compute. In the case at
+hand, these things themselves are sets, so <span
+class="math inline">\(\mathrm{lb}\)</span> and <span
+class="math inline">\(\mathrm{ub}\)</span> take a set of sets as their
+argument. And since they return a set of things that are lower/upper
+bounds, we get back a set of sets.</p>
+<p>We can also depict this in the graphical format that we used for the
+lower and upper bounds of individual elements.</p>
+<p><img src="lattice_123_bounds1-2.svg"
+alt="lattice_123_bounds1-2.svg" /></p>
+</div>
+<div class="example">
+<p>Given the same poset, the upper bounds of <span
+class="math inline">\(\left \{ 1 \right \}\)</span> are <span
+class="math inline">\(\left \{ 1 \right \}\)</span>, <span
+class="math inline">\(\left \{ 1,2 \right \}\)</span>, <span
+class="math inline">\(\left \{ 1,3 \right \}\)</span>, and <span
+class="math inline">\(\left \{ 1,2,3 \right \}\)</span>, while the lower
+bounds are <span class="math inline">\(\left \{ 1 \right \}\)</span> and
+<span class="math inline">\(\emptyset\)</span>. Hence we have <span
+class="math inline">\(\mathrm{ub}(\left \{ \left \{ 1 \right \} \right
+\}) = \left \{ \left \{ 1 \right \}, \left \{ 1,2 \right \}, \left \{
+1,3 \right \}, \left \{ 1,2,3 \right \} \right \}\)</span> and <span
+class="math inline">\(\mathrm{lb}(\left \{ \left \{ 1 \right \} \right
+\}) = \left \{ \emptyset, \left \{ 1 \right \} \right \}\)</span>. Again
+the notation is slightly confusing as we are looking at sets of elements
+of the poset, and these elements just so happen to be sets themselves.
+Relying once more on our graphical format, we see that <span
+class="math inline">\(\mathrm{ub}(\left \{ \left \{ 1 \right \} \right
+\})\)</span> and <span class="math inline">\(\mathrm{lb}(\left \{ \left
+\{ 1 \right \} \right \})\)</span> yield the same upper and lower bounds
+that we computed for <span class="math inline">\(\left \{ 1 \right
+\}\)</span> at the beginning of this unit.</p>
+<p><img src="lattice_123_bounds1.svg"
+alt="lattice_123_bounds1.svg" /></p>
+</div>
+<div class="exercise">
+<p>Explain why the set of upper bounds of some element <span
+class="math inline">\(x\)</span> of a poset is identical to <span
+class="math inline">\(\mathrm{ub}(\left \{ x \right \})\)</span>.</p>
+</div>
+<div class="example">
+<p>One more example with the same poset. The upper bounds of <span
+class="math inline">\(\left \{ 2 \right \}\)</span>, <span
+class="math inline">\(\left \{ 3 \right \}\)</span>, and <span
+class="math inline">\(\left \{ 2,3 \right \}\)</span> are <span
+class="math inline">\(\left \{ 2,3 \right \}\)</span> and <span
+class="math inline">\(\left \{ 1,2,3 \right \}\)</span>, whereas their
+only lower bound is <span class="math inline">\(\emptyset\)</span>. We
+write this more succinctly as <span
+class="math inline">\(\mathrm{ub}(\left \{ \left \{ 2 \right \}, \left
+\{ 3 \right \}, \left \{ 2,3 \right \} \right \}) = \left \{ \left \{
+2,3 \right \} \left \{ 1,2,3 \right \} \right \}\)</span> and <span
+class="math inline">\(\mathrm{lb}(\left \{ \left \{ 2 \right \}, \left
+\{ 3 \right \}, \left \{ 2,3 \right \} \right \}) = \left \{ \emptyset
+\right \}\)</span>. Once again we can also depict this in the graphical
+format:</p>
+<p><img src="lattice_123_bounds2-3-23.svg"
+alt="lattice_123_bounds2-3-23.svg" /></p>
+</div>
+<div class="exercise">
+<p>Given the poset in the previous example, compute all of the
+following:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{ub}(\left \{ \left \{ 1,2 \right
+\}, \left \{ 2,3 \right \} \right \})\)</span></li>
+<li><span class="math inline">\(\mathrm{lb}(\left \{ \left \{ 1,2 \right
+\}, \left \{ 2,3 \right \} \right \})\)</span></li>
+<li><span class="math inline">\(\mathrm{ub}(\left \{ \emptyset \right
+\})\)</span></li>
+<li><span class="math inline">\(\mathrm{ub}(\emptyset)\)</span></li>
+<li><span class="math inline">\(\mathrm{lb}(\left \{ \emptyset, \left \{
+1,2,3 \right \} \right \})\)</span></li>
+<li><span class="math inline">\(\mathrm{lb}(\left \{ \left \{ 1 \right
+\}, \left \{ 2,3 \right \}, \left \{ 1,2,3 \right \} \right
+\})\)</span></li>
+<li><span class="math inline">\(\mathrm{ub}(\left \{ \left \{ 1 \right
+\}, \left \{ 2 \right \}, \left \{ 3 \right \} \right \})\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Consider <span class="math inline">\(\left \langle \left \{ 0,1,2,3,4
+\right \}, \leq \right \rangle\)</span>, the set of the first five
+natural numbers ordered in the usual fashion via <span
+class="math inline">\(\leq\)</span>. Using the pictorial format
+described above, indicate the lower and upper bounds for the following
+subsets:</p>
+<ul>
+<li><span class="math inline">\(\left \{ 2 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 1,4 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 2,3 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,3 \right \}\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Since <span class="math inline">\(\mathrm{lb}\)</span> and <span
+class="math inline">\(\mathrm{ub}\)</span> are functions from sets to
+sets, the output of one can be the input for the other. Compute <span
+class="math inline">\(\mathrm{lb}(\mathrm{ub}({\left \{ 0,3 \right
+\}}))\)</span> over <span class="math inline">\(\left \{ 0,1,2,3,4
+\right \}\)</span> ordered by <span class="math inline">\(\leq\)</span>.
+By comparison, what is <span
+class="math inline">\(\mathrm{ub}(\mathrm{lb}(\left \{ 0,3 \right
+\}))\)</span>?</p>
+</div>
+<div class="exercise">
+<p>Now consider <span class="math inline">\(\left \langle \mathbb{N},
+\leq \right \rangle\)</span> instead, the set of all natural numbers
+ordered via <span class="math inline">\(\leq\)</span>. For each one of
+the following statements, say whether it is true or false and justify
+your answer.</p>
+<ul>
+<li>Any two natural numbers <span class="math inline">\(x\)</span> and
+<span class="math inline">\(y\)</span> have infinitely many upper
+bounds.</li>
+<li>Any two natural numbers <span class="math inline">\(x\)</span> and
+<span class="math inline">\(y\)</span> have infinitely many lower
+bounds.</li>
+</ul>
+</div>
+<div class="example">
+<p>Note that the existence of upper and lower bounds isn’t guaranteed
+once we move from individual elements of the posets to subsets. Take for
+instance the poset <span class="math inline">\(\left \langle \left \{
+1,2 \right \}, R \right \rangle\)</span> where <span
+class="math inline">\(x \mathrel{R} y\)</span> iff <span
+class="math inline">\(x = y\)</span>.
+<!-- You should convince yourself that this is a poset (i.e. that $R$ transitive, antisymmetric, and reflexive). -->
+Yes, this is still a poset (there is an order, and it is partial). In
+this case, <span class="math inline">\(\mathrm{lb}(\left \{ 1,2 \right
+\}) = \emptyset\)</span> because there simply is no <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(y
+\mathrel{R} 1\)</span> and <span class="math inline">\(y \mathrel{R}
+2\)</span>. In other words, <span class="math inline">\(1\)</span> and
+<span class="math inline">\(2\)</span> don’t have any lower bounds. For
+the same reason, they don’t have any upper bounds either.</p>
+</div>
+<div class="exercise">
+<p>You might think that the poset in the previous example is somehow
+defective or pathological because no element is related to any element
+except itself. But that’s not really the issue, as is witnessed by the
+structure below.</p>
+<p><img src="poset_nobounds.svg" alt="poset_nobounds.svg" /></p>
+<p>Find the smallest subset <span class="math inline">\(S\)</span> such
+that <span class="math inline">\(\mathrm{ub}(S) = \emptyset\)</span> and
+<span class="math inline">\(\mathrm{lb}(S) = \emptyset\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Say whether the following is true or false, and justify your
+answer:</p>
+<p>Given some poset <span class="math inline">\(\left \langle S, \leq
+\right \rangle\)</span>, it holds for every finite subset <span
+class="math inline">\(\left \{ s_1, \ldots, s_n \right \}\)</span> of
+<span class="math inline">\(S\)</span> that <span
+class="math display">\[\mathrm{ub}(\left \{ s_1, \ldots, s_n \right \})
+= \mathrm{ub}(\left \{ s_1 \right \}) \cap \mathrm{ub}(\left \{ s_2
+\right \} \cap \cdots \cap \mathrm{ub}(\left \{ s_n \right
+\})\]</span></p>
+</div>
+<div class="exercise">
+<p>Say whether the following is true or false, and justify your
+answer:</p>
+<p>Given some poset <span class="math inline">\(\left \langle S, \leq
+\right \rangle\)</span>, it holds for every finite subset <span
+class="math inline">\(\left \{ s_1, \ldots, s_n \right \}\)</span> of
+<span class="math inline">\(S\)</span> that <span
+class="math display">\[\mathrm{lb}(\left \{ s_1, \ldots, s_n \right \})
+= \mathrm{lb}(\left \{ s_1 \right \}) \cup \mathrm{lb}(\left \{ s_2
+\right \} \cup \cdots \cup \mathrm{lb}(\left \{ s_n \right
+\})\]</span></p>
+</div>
+</div>
+</div>
+</body>
+</html>

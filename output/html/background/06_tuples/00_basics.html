@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Tuples: The basics</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#tuples-the-basics">Tuples: The basics</a>
+<ul>
+<li><a href="#notation">Notation</a></li>
+<li><a href="#identity">Identity</a></li>
+<li><a href="#concatenation">Concatenation</a></li>
+<li><a href="#the-empty-tuple">The empty tuple</a></li>
+<li><a href="#difference-to-strings">Difference to strings</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<div class="prereqs">
+<ul>
+<li>sets (basic notation)</li>
+</ul>
+</div>
+<h1 id="tuples-the-basics">Tuples: The basics</h1>
+<p>Like sets, tuples are collections of elements. Tuples also allow an
+element to be present multiple times, so they are not idempotent. And
+tuples also care about the order of the elements. This makes them very
+similar to strings, but tuples are more general because they can contain
+arbitrary objects, including other tuples.</p>
+<h2 id="notation">Notation</h2>
+<p>An <span class="math inline">\(n\)</span>-tuple <span
+class="math inline">\(u\)</span> consists of exactly <span
+class="math inline">\(n\)</span> elements. We also say that <span
+class="math inline">\(u\)</span> has <strong>length</strong> <span
+class="math inline">\(n\)</span> One also writes <span
+class="math inline">\(\left | u \right | = n\)</span> to indicate that
+the tuple <span class="math inline">\(u\)</span> has length <span
+class="math inline">\(n\)</span>, and in this case we say that <span
+class="math inline">\(u\)</span> has <span
+class="math inline">\(n\)</span> components. Tuples are usually written
+between pointy brackets, e.g. the pair <span class="math inline">\(\left
+\langle a,b \right \rangle\)</span>, the triple <span
+class="math inline">\(\left \langle a,b,c \right \rangle\)</span>, or
+the <span class="math inline">\(1\)</span>-tuple <span
+class="math inline">\(\left \langle a \right \rangle\)</span>.</p>
+<div class="example">
+<p>The pair <span class="math inline">\(\left \langle a,b \right
+\rangle\)</span> is of length <span class="math inline">\(2\)</span>.
+Its first component is <span class="math inline">\(a\)</span>, its
+second component is <span class="math inline">\(b\)</span>.</p>
+<p>The pair <span class="math inline">\(\left \langle a,a \right
+\rangle\)</span> is also of length <span
+class="math inline">\(2\)</span>. Its first component is <span
+class="math inline">\(a\)</span>, and its second component is also <span
+class="math inline">\(a\)</span>.</p>
+</div>
+<p>Tuples may contain complex objects, including other tuples. The
+content of these objects is not considered when computing a tuples
+length.</p>
+<div class="example">
+<p>Consider <span class="math inline">\(\left \langle a,b \right
+\rangle\)</span> and <span class="math inline">\(\left \langle a,\left
+\{ b,c \right \} \right \rangle\)</span>. They are distinct tuples, but
+they are both of length 2.</p>
+</div>
+<div class="exercise">
+<p>For each one of the following tuples, compute its length.</p>
+<ul>
+<li><span class="math inline">\(\left \langle a,b,a \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,\left \langle b \right
+\rangle,a \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,\left \langle b,a \right
+\rangle \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \left \{ a,b \right \},
+\left \langle a \right \rangle \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \left \langle a, b,\left
+\{ a,a \right \} \right \rangle \right \rangle\)</span></li>
+</ul>
+</div>
+<p>Sometimes we are only interested in a specific component of a tuple.
+In this case, we write <span class="math inline">\(\pi_i(u)\)</span> for
+the <span class="math inline">\(i\)</span>-th component of <span
+class="math inline">\(u\)</span>. Sometimes this is also called the
+<span class="math inline">\(i\)</span>-th <strong>projection</strong> of
+<span class="math inline">\(u\)</span>.</p>
+<div class="example">
+<p>Consider once more the pair <span class="math inline">\(\left \langle
+a,b \right \rangle\)</span>. Here <span
+class="math inline">\(\pi_1(\left \langle a,b \right \rangle) =
+a\)</span> and <span class="math inline">\(\pi_2(\left \langle a,b
+\right \rangle) = b\)</span>.</p>
+<p>For the pair <span class="math inline">\(\left \langle a,a \right
+\rangle\)</span>, <span class="math inline">\(\pi_1(\left \langle a,a
+\right \rangle)\)</span> and <span class="math inline">\(\pi_2(\left
+\langle a,a \right \rangle)\)</span> are both <span
+class="math inline">\(a\)</span>.</p>
+</div>
+<p>Note that <span class="math inline">\(\pi_i(u)\)</span> is undefined
+if <span class="math inline">\(u\)</span> is not a tuple or if <span
+class="math inline">\(i\)</span> exceeds the length of <span
+class="math inline">\(u\)</span>.</p>
+<div class="example">
+<p>There is no defined value for <span class="math inline">\(\pi_3(\left
+\langle a,b \right \rangle)\)</span> because <span
+class="math inline">\(\left \langle a,b \right \rangle\)</span> has only
+two components and thus cannot have a third component. Similarly, <span
+class="math inline">\(\pi_3(\left \{ a,b,c \right \})\)</span> is
+undefined because sets only have elements, not components.</p>
+</div>
+<div class="exercise">
+<p>For each one of the formulas below, what is its value?</p>
+<ul>
+<li><span class="math inline">\(\pi_3(\left \langle a,b,c,d \right
+\rangle)\)</span></li>
+<li><span class="math inline">\(\pi_8(\left \langle a,b,c,d \right
+\rangle)\)</span></li>
+<li><span class="math inline">\(\pi_0(\left \langle a,b,c,d \right
+\rangle)\)</span></li>
+<li><span class="math inline">\(\pi_3(\left \langle a,b,\left \langle
+c,d \right \rangle \right \rangle)\)</span></li>
+<li><span class="math inline">\(\pi_1(\pi_3(\left \langle a,b,\left
+\langle c,d \right \rangle \right \rangle))\)</span></li>
+</ul>
+</div>
+<h2 id="identity">Identity</h2>
+<p>Two tuples <span class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> are identical iff they are of the same
+length <span class="math inline">\(n\)</span> and agree on all their
+components: for all <span class="math inline">\(0 &lt; i \leq
+n\)</span>, it must hold that <span class="math inline">\(\pi_i(u) =
+\pi_i(v)\)</span>.</p>
+<div class="example">
+<p>The pair <span class="math inline">\(\left \langle a,a \right
+\rangle\)</span> is distinct from the 1-tuple <span
+class="math inline">\(\left \langle a \right \rangle\)</span>, the
+triple <span class="math inline">\(\left \langle a,a,a \right
+\rangle\)</span>, or the <span class="math inline">\(4\)</span>-tuple
+<span class="math inline">\(\left \langle a,a,a,a \right
+\rangle\)</span> because all these tuples have distinct length.</p>
+</div>
+<div class="example">
+<p>The tuple <span class="math inline">\(\left \langle 3,5 \right
+\rangle\)</span> is distinct from the tuple <span
+class="math inline">\(\left \langle 5,3 \right \rangle\)</span>. While
+they have the same length, they differ on their first component: <span
+class="math inline">\(\pi_1(\left \langle 3,5 \right \rangle) = 3 \neq 5
+= \pi_1(\left \langle 5,3 \right \rangle)\)</span>. They also differ on
+their second component, but we don’t even need to consider this because
+disagreeing on a single component is enough to render tuples
+distinct.</p>
+</div>
+<div class="exercise">
+<p>Explain why <span class="math inline">\(\left \langle a,b \right
+\rangle = \left \langle b,a \right \rangle\)</span> implies <span
+class="math inline">\(a = b\)</span>.</p>
+</div>
+<p>This definition of identity of tuples immediately implies two crucial
+properties:</p>
+<ol type="1">
+<li>In contrast to sets, tuples are not idempotent.</li>
+<li>In contrast to sets, tuples care about order.</li>
+</ol>
+<div class="exercise">
+<p>Fill in the gaps with <span class="math inline">\(=\)</span> and
+<span class="math inline">\(\neq\)</span> as appropriate, assuming that
+<span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are distinct elements:</p>
+<ul>
+<li><span class="math inline">\(\left \langle a \right \rangle \_ \left
+\langle b \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,b,a \right \rangle \_
+\left \langle a,b,b \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,b,a,a \right \rangle \_
+\left \langle a,b,a,a \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,a,b,a \right \rangle \_
+\left \langle a,b,a,a \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,a,b,a \right \rangle \_
+\left \langle a,a,\left \{ b \right \},a \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,a,b,a \right \rangle \_
+\left \langle a,\left \langle a,b \right \rangle,a \right
+\rangle\)</span></li>
+</ul>
+</div>
+<p>Note that just like <span class="math inline">\(a \neq \left \{ a
+\right \}\)</span>, it also holds that <span class="math inline">\(a
+\neq \left \langle a \right \rangle\)</span>. A container with <span
+class="math inline">\(a\)</span> in it is not the same thing as <span
+class="math inline">\(a\)</span> by itself.</p>
+<h2 id="concatenation">Concatenation</h2>
+<p>Two tuples <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> can be concatenated into a single large
+tuple <span class="math inline">\(a \cdot b\)</span> that contains all
+elements of <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>, in the same order.</p>
+<div class="definition">
+<p>Given an <span class="math inline">\(m\)</span>-tuple <span
+class="math inline">\(a \mathrel{\mathop:}=\left \langle a_1, \ldots,
+a_m \right \rangle\)</span> and an <span
+class="math inline">\(n\)</span>-tuple <span class="math inline">\(b
+\mathrel{\mathop:}=\left \langle b_1, \ldots, b_n \right
+\rangle\)</span>, their <strong>concatenation</strong> is the <span
+class="math inline">\(m+n\)</span>-tuple <span class="math inline">\(a
+\cdot b \mathrel{\mathop:}=\left \langle a_1, \ldots, a_m, b_1, \ldots,
+b_n \right \rangle\)</span>.</p>
+</div>
+<p>Tuple concatenation is associative. This means that for any tuples
+<span class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and <span
+class="math inline">\(c\)</span>, it holds that <span
+class="math inline">\(a \cdot(b \cdot c) = (a \cdot b) \cdot
+c\)</span>.</p>
+<div class="example">
+<p>The concatenation of <span class="math inline">\(\left \langle x,y
+\right \rangle\)</span> and <span class="math inline">\(\left \langle z
+\right \rangle\)</span> is <span class="math inline">\(\left \langle
+x,y,z \right \rangle\)</span>. If we concatenate <span
+class="math inline">\(\left \langle x,y,z \right \rangle\)</span> and
+<span class="math inline">\(\left \langle y,y,y \right \rangle\)</span>,
+we get <span class="math inline">\(\left \langle x,y,z,y,y,y \right
+\rangle\)</span>.</p>
+<p>We could have gotten the same result by proceeding in a different
+order. We first concatenate <span class="math inline">\(\left \langle z
+\right \rangle\)</span> and <span class="math inline">\(\left \langle
+y,y,y \right \rangle\)</span> into <span class="math inline">\(\left
+\langle z,y,y,y \right \rangle\)</span>. We then concatenate <span
+class="math inline">\(\left \langle x,y \right \rangle\)</span> and
+<span class="math inline">\(\left \langle z,y,y,y \right
+\rangle\)</span> to obtain <span class="math inline">\(\left \langle
+x,y,z,y,y,y \right \rangle\)</span>. That’s indeed the same output as
+before. Overall, then, <span class="math display">\[(\left \langle x,y
+\right \rangle \cdot\left \langle z \right \rangle) \cdot\left \langle
+y,y,y \right \rangle = \left \langle x,y \right \rangle \cdot(\left
+\langle z \right \rangle \cdot\left \langle y,y,y \right \rangle) =
+\left \langle x,y,z,y,y,y,y \right \rangle.\]</span></p>
+</div>
+<div class="exercise">
+<p>Calculate the result of the following concatenations.</p>
+<ul>
+<li><span class="math inline">\(\left \langle a,b \right \rangle
+\cdot((\left \langle c \right \rangle \cdot\left \langle a,b \right
+\rangle) \cdot\left \langle a,c,e \right \rangle)\)</span></li>
+<li><span class="math inline">\((\left \langle a,b \right \rangle
+\cdot\left \langle c \right \rangle) \cdot(\left \langle a,b \right
+\rangle \cdot\left \langle a,c,e \right \rangle)\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Write down all possible ways of obtaining <span
+class="math inline">\(\left \langle a,b,c,d \right \rangle\)</span> via
+concatenation of tuples whose length is at least <span
+class="math inline">\(1\)</span>. For instance, one possible way is
+<span class="math inline">\(\left \langle a,b \right \rangle \cdot\left
+\langle c, d \right \rangle\)</span>, but there’s several more.</p>
+</div>
+<div class="exercise">
+<p>Tuple concatenation is not commutative. That is to say, for some
+tuples <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> it is not the case that <span
+class="math inline">\(a \cdot b = b \cdot a\)</span>. Illustrate this
+with an example.</p>
+</div>
+<p>Keep in mind that tuple concatenation is only defined for tuples.</p>
+<div class="example">
+<p>None of the following are valid instances of tuple concatenation:</p>
+<ul>
+<li><span class="math inline">\(\left \langle a,b \right \rangle \cdot
+5\)</span></li>
+<li><span class="math inline">\(\left \langle a,b \right \rangle
+\cdot\left \{ 5 \right \}\)</span></li>
+</ul>
+</div>
+<h2 id="the-empty-tuple">The empty tuple</h2>
+<p>Remember that strings had a special empty string <span
+class="math inline">\(\varepsilon\)</span>. The tuple-counterpart for
+this is the <strong>empty tuple</strong> <span
+class="math inline">\(\left \langle  \right \rangle\)</span>. It is the
+only 0-tuple. With respect to concatenation, the empty tuple behaves
+like <span class="math inline">\(0\)</span> with respect to addition.
+That is to say, concatenating a tuple with the empty tuple does not
+change said tuple.</p>
+<div class="exercise">
+<p>Compute <span class="math inline">\(\left \langle a \right \rangle
+\cdot\left \langle  \right \rangle\)</span> and <span
+class="math inline">\(\left \langle  \right \rangle \cdot\left \langle
+a,a,a \right \rangle\)</span>.</p>
+</div>
+<h2 id="difference-to-strings">Difference to strings</h2>
+<p>Strings can be regarded tuples over some fixed alphabet of symbols.
+For instance, the string <span
+class="math inline">\(\mathit{abc}\)</span> can be viewed as the tuple
+<span class="math inline">\(\left \langle a,b,c \right \rangle\)</span>.
+However, tuples are more general because their elements do not need to
+be symbols of some alphabet. Just like sets (and multisets, if you have
+encountered those already), tuples can contain arbitrary objects. So a
+tuple may consist of sets, multisets, other tuples, functions,
+relations, any combination of those, and much, much more.</p>
+<div class="example">
+<p>All of the following are valid tuples, but none of them are possible
+strings:</p>
+<ul>
+<li><span class="math inline">\(\left \langle \left \{ 5, -5 \right \},
+25 \right \rangle\)</span> is a pair that consists of the set <span
+class="math inline">\(\left \{ 5, -5 \right \}\)</span> and the number
+<span class="math inline">\(25\)</span>.</li>
+<li><span class="math inline">\(\left \langle \mathbb{N}, \mathbb{N},
+\mathbb{N} \right \rangle\)</span> is a triple where each component is
+the set of natural numbers.</li>
+<li><span class="math inline">\(\left \langle \mathbb{N}, \left \{ 3,7,
+\left \{ 112 \right \} \right \}, +, - \right \rangle\)</span> is a
+<span class="math inline">\(4\)</span>-tuple that consists of the set of
+natural numbers, the set <span class="math inline">\(\left \{ 3,7, \left
+\{ 112 \right \} \right \}\)</span>, and the operations of addition and
+subtraction.</li>
+<li><span class="math inline">\(\left \langle a, \left \langle b, \left
+\langle  \right \rangle, \left \langle c \right \rangle, \left \langle
+d,e \right \rangle, b \right \rangle, \left \{ 1,2,3, \left
+\langle  \right \rangle \right \} \right \rangle\)</span> is triple that
+consists of <span class="math inline">\(a\)</span>, the 5-tuple <span
+class="math inline">\(\left \langle b, \left \langle , \right \rangle
+\left \langle c \right \rangle, \left \langle d,e \right \rangle, b
+\right \rangle\)</span>, and the set <span class="math inline">\(\left
+\{ 1,2,3, \left \langle  \right \rangle \right \}\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Does the concatenation of <span class="math inline">\(\left \langle
+a,b \right \rangle\)</span> and <span class="math inline">\(\left
+\langle c \right \rangle\)</span> yield the same result as the
+concatenation of <span class="math inline">\(\left \langle a,b \right
+\rangle\)</span> and <span class="math inline">\(\left \langle \left
+\langle c \right \rangle \right \rangle\)</span>? Justify your
+answer!</p>
+</div>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Tuples can be regarded as a generalization of strings. In fact,
+strings are often defined as just a shorthand notation for tuples.</li>
+<li>The <strong>length</strong> of <span
+class="math inline">\(n\)</span>-tuple <span
+class="math inline">\(u\)</span> is denoted <span
+class="math inline">\(\left | u \right |\)</span>, and we say that <span
+class="math inline">\(u\)</span> has <span
+class="math inline">\(n\)</span> <strong>components</strong>.</li>
+<li>The <span class="math inline">\(i\)</span>-th component of <span
+class="math inline">\(n\)</span>-tuple <span
+class="math inline">\(u\)</span> (for <span class="math inline">\(0 &lt;
+i \leq n\)</span>) is denoted <span
+class="math inline">\(\pi_i(u)\)</span>, which is also called the <span
+class="math inline">\(i\)</span>-th <strong>projection</strong> of <span
+class="math inline">\(u\)</span>.</li>
+</ul>
+<div class="definition">
+<p>Two tuples <span class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> are identical iff all of the following
+hold:</p>
+<ol type="1">
+<li><span class="math inline">\(\left | u \right | = \left | v \right
+|\)</span>, and</li>
+<li>for all <span class="math inline">\(0 &lt; i \leq \left | u \right
+|\)</span>, <span class="math inline">\(\pi_i(u) = \pi(v)\)</span>.</li>
+</ol>
+</div>
+<ul>
+<li>Like strings, tuples are ordered (<span class="math inline">\(\left
+\langle a,b \right \rangle \neq \left \langle b,a \right
+\rangle\)</span>) and lack idempotency (<span
+class="math inline">\(\left \langle a \right \rangle \neq \left \langle
+a,a \right \rangle\)</span>).</li>
+<li>Tuples can be concatenated (<span class="math inline">\(u \cdot
+v\)</span>), again just like strings.</li>
+<li>The empty tuple <span class="math inline">\(\left \langle  \right
+\rangle\)</span> contains no elements at all. It is the
+tuple-counterpart to the empty string <span
+class="math inline">\(\varepsilon\)</span>.</li>
+<li>In contrast to strings, tuples can consist of objects of arbitrary
+complexity, not just symbols drawn from a fixed alphabet.</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;"><strong>unordered</strong></th>
+<th style="text-align: center;"><strong>idempotent</strong></th>
+<th style="text-align: center;"><strong>can only contain
+symbols</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">sets</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">N</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">multisets</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">tuples</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">strings</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">Y</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>

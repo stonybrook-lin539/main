@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Partially ordered sets (posets)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#partially-ordered-sets-posets">Partially ordered sets
+(posets)</a>
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#visualizing-posets">Visualizing posets</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="partially-ordered-sets-posets">Partially ordered sets
+(posets)</h1>
+<div class="prereqs">
+<ul>
+<li>tuples (basics)</li>
+<li>relations (partial orders)</li>
+</ul>
+</div>
+<p>While sets are unstructured, they can be combined with an ordering
+relation to yield a structured object. Usually, this will be a partial
+order. A set with a partial order defined over it is a <strong>partially
+ordered set</strong> or simply <strong>poset</strong>.</p>
+<h2 id="definition">Definition</h2>
+<p>In mathematical terms, a poset is usually treated as a tuple <span
+class="math inline">\(\left \langle S, R \right \rangle\)</span> that
+consists of the set <span class="math inline">\(S\)</span> and the order
+<span class="math inline">\(R\)</span> defined over its elements. Don’t
+attach too much significance to this, it is just a matter of notation
+and you wouldn’t want to apply the usual tuple operations to these
+objects. For instance, we wouldn’t want to concatenate the posets <span
+class="math inline">\(\left \langle S_1, R_1 \right \rangle\)</span> and
+<span class="math inline">\(\left \langle S_2, R_2 \right
+\rangle\)</span> to get a 4-tuple <span class="math inline">\(\left
+\langle S_1, R_1, S_2, R_2 \right \rangle\)</span>, that doesn’t make
+much sense.</p>
+<div class="definition">
+<p>A <strong>partially ordered set</strong>, or simple
+<strong>poset</strong>, is a pair <span class="math inline">\(\left
+\langle S, R \right \rangle\)</span> such that <span
+class="math inline">\(S\)</span> is some set and <span
+class="math inline">\(R\)</span> is a partial order over <span
+class="math inline">\(S\)</span>.</p>
+</div>
+<p>Sometimes, <span class="math inline">\(S\)</span> is also called the
+<strong>carrier</strong> of the poset <span class="math inline">\(\left
+\langle S, R \right \rangle\)</span>.</p>
+<div class="example">
+<p>The set of natural numbers is <span class="math inline">\(\mathbb{N}
+\mathrel{\mathop:}=\left \{ 0, 1, 2, 3, \ldots \right \}\)</span>. By
+itself, it has no internal order. But of course we can order the natural
+numbers according to the familiar relation <span
+class="math inline">\(\leq\)</span>, and then we get the poset <span
+class="math inline">\(\left \langle \mathbb{N}, \leq \right
+\rangle\)</span>. The carrier of <span class="math inline">\(\left
+\langle \mathbb{N}, \leq \right \rangle\)</span> is <span
+class="math inline">\(\mathbb{N}\)</span>.</p>
+</div>
+<div class="example">
+<p>We can take the set <span class="math inline">\(H\)</span> of all
+humans that ever lived or are currently alive. We then order this set by
+the ancestor relation. Since that is a partial order, the result is a
+poset.</p>
+</div>
+<h2 id="visualizing-posets">Visualizing posets</h2>
+<p>Often it is very useful to visualize posets. In this case, elements
+of the set are represented as nodes in a figure, and arrows between the
+nodes indicate that they are related via the order relation. Here is
+what this looks like for the natural numbers ordered by <span
+class="math inline">\(\leq\)</span>.</p>
+<p><img src="natnum_lessthan_redundant.svg"
+alt="natnum_lessthan_redundant.svg" /></p>
+<p>This figure has multiple elements:</p>
+<ol type="1">
+<li>A node for each natural number <span
+class="math inline">\(n\)</span>.</li>
+<li>An arrow connecting each <span class="math inline">\(n\)</span> to
+<span class="math inline">\(n+1\)</span>.</li>
+<li>An arrow connecting each <span class="math inline">\(n\)</span> to
+itself (because <span class="math inline">\(\leq\)</span> is
+reflexive).</li>
+<li>An arrow connecting each <span class="math inline">\(n\)</span> to
+<span class="math inline">\(n+2\)</span>, <span
+class="math inline">\(n+3\)</span>, and so on (because <span
+class="math inline">\(\leq\)</span> is transitive).</li>
+</ol>
+<p>The result is pretty convoluted because of the abundance of arrows.
+It is customary to omit arrows that can be inferred from the properties
+of the order. First one omits all arrows that can be inferred from
+transitivity. That is to say, if there is an arrow from <span
+class="math inline">\(x\)</span> to <span
+class="math inline">\(y\)</span> and another arrow from <span
+class="math inline">\(y\)</span> to <span
+class="math inline">\(z\)</span>, we do not need an arrow from <span
+class="math inline">\(x\)</span> to <span
+class="math inline">\(z\)</span>.</p>
+<p><img src="natnum_lessthan_loops.svg"
+alt="natnum_lessthan_loops.svg" /></p>
+<p>And if we know that the ordering relation <span
+class="math inline">\(R\)</span> is reflexive, then we do not need all
+the loops either.</p>
+<p><img src="natnum_lessthan_simplified.svg"
+alt="natnum_lessthan_simplified.svg" /></p>
+<p><strong>Caution:</strong> due to these conventions, a depiction of
+<span class="math inline">\(\left \langle \mathbb{N}, \leq \right
+\rangle\)</span> will look the same as one for <span
+class="math inline">\(\left \langle \mathbb{N}, &lt; \right
+\rangle\)</span>, but those are different posets.</p>
+<div class="exercise">
+<p>Take the set <span class="math inline">\(\mathbb{Z}
+\mathrel{\mathop:}=\left \{ 0, -1, 1, -2, 2, -3, 3, \ldots \right
+\}\)</span> of integers. Let <span class="math inline">\(x \prec
+y\)</span> iff <span class="math inline">\(x^2 \leq y^2\)</span>. Sketch
+or describe in words a figure of the poset <span
+class="math inline">\(\left \langle \mathbb{Z}, \prec \right
+\rangle\)</span>. Avoid all arrows that can be inferred from the general
+properties of <span class="math inline">\(\prec\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Let <span class="math inline">\(S\)</span> be the set of all
+substrings of the word <em>poset</em>. Draw or describe in words the
+poset <span class="math inline">\(\left \langle S, \sqsubset \right
+\rangle\)</span>, where <span class="math inline">\(\sqsubset\)</span>
+is the proper substring relation: <span class="math inline">\(x
+\sqsubset y\)</span> iff <span class="math inline">\(x \neq y\)</span>
+and there are (possibly empty) strings <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> such that <span class="math inline">\(u
+\cdot x \cdot v = y\)</span>.</p>
+<p>Now suppose that we used <span
+class="math inline">\(\sqsubseteq\)</span> instead: <span
+class="math inline">\(x \sqsubseteq y\)</span> iff <span
+class="math inline">\(x \sqsubset y\)</span> or <span
+class="math inline">\(x = y\)</span>. Do you have to change anything
+about your figure or description?</p>
+</div>
+</div>
+</div>
+</body>
+</html>
