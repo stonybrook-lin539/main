@@ -33,6 +33,7 @@ Let $f$ be a function that takes as its input a number $n$ and returns $n+1$ on 
 
 - Is $f$ a function?
 - What if $f$ instead takes two arguments: a number $n$, and the name of the day of the week.
+  Is this version of $f$ a function?
 
 :::
 

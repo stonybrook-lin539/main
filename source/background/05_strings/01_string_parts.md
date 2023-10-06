@@ -1,5 +1,6 @@
 ---
-pagetitle: Parts of strings
+pagetitle: >-
+    Parts of strings
 ---
 
 # Parts of strings

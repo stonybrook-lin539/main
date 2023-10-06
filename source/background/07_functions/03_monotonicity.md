@@ -164,7 +164,7 @@ Since $u$ and $w$ were arbitrary, $f(u) \leq f(w)$ truly holds for every choice 
 :::
 
 ::: exercise
-For each one of the following functions say whether it is isotonic, antitonic, or neither.
+For each one of the following functions say whether it is monotonic increasing, monotonic decreasing, or neither.
 
 
 - $f: \mathbb{N} \rightarrow \mathbb{R}$, $x \mapsto -x$
@@ -175,7 +175,7 @@ For each one of the following functions say whether it is isotonic, antitonic, o
 :::
 
 ::: exercise
-Given an example of a function that is both isotonic and antitonic.
+Given an example of a function that is both monotonic increasing and monotonic decreasing.
 :::
 
 ## Recap

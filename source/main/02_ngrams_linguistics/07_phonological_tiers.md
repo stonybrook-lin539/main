@@ -90,7 +90,7 @@ Actually, Samala has even longer words with instances of sibilant harmony.
 For example, *ʃtajanowonowaʃ* is attested whereas *stajanowonowaʃ* is illicit.
 Are 11-grams still enough to handle this?
 If not, what is the new value of $n$, and how does that alter your estimate of a negative $n$-gram grammars size?
-Would you say that is a large grammar?
+Would you say that this is a large grammar?
 :::
 
 Samala's long-distance sibilant harmony can be handled by $n$-gram grammars, but not in an elegant fashion.
@@ -168,7 +168,7 @@ That is to say, write down their tiers (or draw them), and then indicate whether
 
 ::: exercise
 As an abstract example, suppose that our alphabet consists of $a$, $b$, and $c$, and that all symbols except $c$ should be projected on the tier.
-What is the tier of $\mathit{aabaccacb}$?
+What is the tier of $\String{aabaccacb}$?
 :::
 
 ::: example

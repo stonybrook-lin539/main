@@ -9,7 +9,7 @@ pagetitle: >-
 - tuples (basics, crossproduct)
 :::
 
-Monotonicity can be successfully invoked to explain $^*$ABA effects for adjectival gradation and person syncretism in pronouns, as well as case syncretism patterns.
+Monotonicity can be successfully invoked to explain a number of phenomena, from $^*$ABA effects in adjectival gradation and person syncretism in pronouns to the behavior of *ever* and case syncretism patterns.
 But languages do many other quirky things, and one particularly quirky thing is the **Person Case Constraint**, short PCC.
 
 
@@ -25,7 +25,7 @@ Exemplify their use with specific sentences.
 :::
 
 English does not allow combinations of clitics like *I showed'er'em*.
-Other languages do, but usually not all combinations are okay.
+Other languages do, but often not all combinations are okay.
 That's what the PCC is about: if two pronouns belong to the same verb, the pronouns must have certain person values.
 An example of the PCC can be seen in certain dialects of French.
 The sentence *Roger me leur a présenté* 'Roger has shown me to them' is ungrammatical.

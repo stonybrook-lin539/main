@@ -43,13 +43,13 @@ Assuming the same alphabet as in the previous exercise,
 write a bigram grammar (it may be positive or negative) that requires every word to start with
 *a*
 and end with
-*f*.
+*s*.
 :::
 
 ::: exercise
 Assuming the same alphabet as before,
-write a trigram grammar (it may be positive or negative) for "penultimate *f*":
-if a word has at least two symbols, then the last but one symbol must be *f*.
+write a trigram grammar (it may be positive or negative) for "penultimate *s*":
+if a word has at least two symbols, then the last but one symbol must be *s*.
 :::
 
 ::: exercise
@@ -67,7 +67,7 @@ Assume furthermore that the English subject verb agreement system works as follo
 if the subject does not contain an adjective (like *old*),
 then use the inflected verb form; otherwise, use the base form.
 So we would get *The old man snore* but *The man snores*.
-Write a trigram grammar that captures this unnatural condition.
+Write a trigram grammar (it may be positive or negative) that captures this unnatural condition.
 :::
 
 These exercises show that our models **overgenerate** from a typological perspective.
