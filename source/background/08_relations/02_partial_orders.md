@@ -5,6 +5,11 @@ pagetitle: >-
 
 # Partial orders
 
+::: prereqs
+- relations (basic notation)
+- sets (basic notation)
+:::
+
 There are numerous types of order relations, but arguably the most common one is **partial orders**.
 Intuitively, a partial order is a linear order (also called total order) where we have removed some orderings between elements.
 Formally, though, things are defined exactly the other way round: linear orders are a special case of partial orders.

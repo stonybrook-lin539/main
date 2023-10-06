@@ -3,11 +3,12 @@ pagetitle: >-
     Tuples: The basics
 ---
 
+# Tuples: The basics
+
 ::: prereqs
 - sets (basic notation)
 :::
 
-# Tuples: The basics
 
 Like sets, tuples are collections of elements.
 Tuples also allow an element to be present multiple times, so they are not idempotent.

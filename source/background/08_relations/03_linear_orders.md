@@ -5,6 +5,9 @@ pagetitle: >-
 
 # Linear orders (aka total orders)
 
+::: prereqs
+- relations (basic notation, partial orders)
+:::
 A **linear order** (also called a **total order**) is the special case of a partial order where all elements are ordered with respect to each other.
 The formal definition only requires us to add one simple property to the definition of partial orders.
 But which property that is depends on whether the order is a weak partial order or a strict partial order.
