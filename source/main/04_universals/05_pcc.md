@@ -6,7 +6,7 @@ pagetitle: >-
 # Person Case Constraints
 
 :::prereqs
-- tuples (basics, crossproduct)
+- tuples (basics)
 - relations (partial orders)
 :::
 
