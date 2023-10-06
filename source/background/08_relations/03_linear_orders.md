@@ -65,7 +65,7 @@ Third, I always confuse the terms *semi-connex* and *connex* --- which is a nice
 Trichotomy is not a meaningful restriction on weak partial orders because every weak partial order is already trichotomous by virtue of being reflexive.
 
 ::: exercise
-Explain in intuitive terms why this holds.
+Explain in intuitive terms why reflexivity implies trichotomy.
 :::
 
 Instead, the step from a weak partial order to a weak linear order requires the stronger property of **connexity**.
