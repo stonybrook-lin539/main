@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Linear orders (aka total orders)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#linear-orders-aka-total-orders">Linear orders (aka total
+orders)</a>
+<ul>
+<li><a href="#strict-linear-orders">Strict linear orders</a></li>
+<li><a href="#weak-linear-orders">Weak linear orders</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="linear-orders-aka-total-orders">Linear orders (aka total
+orders)</h1>
+<p>A <strong>linear order</strong> (also called a <strong>total
+order</strong>) is the special case of a partial order where all
+elements are ordered with respect to each other. The formal definition
+only requires us to add one simple property to the definition of partial
+orders. But which property that is depends on whether the order is a
+weak partial order or a strict partial order.</p>
+<h2 id="strict-linear-orders">Strict linear orders</h2>
+<p>A strict linear order is the special case of a relation that is both
+a strict partial order and trichotomous.</p>
+<div class="definition">
+<p>A binary relation <span class="math inline">\(R\)</span> over set
+<span class="math inline">\(D\)</span> is <strong>trichotomous</strong>
+(or <strong>semi-connex</strong>) iff for all <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> in <span
+class="math inline">\(D\)</span> at least one of the following
+holds:</p>
+<ol type="1">
+<li><span class="math inline">\(x \mathrel{R} y\)</span>,</li>
+<li><span class="math inline">\(y \mathrel{R} x\)</span>,</li>
+<li><span class="math inline">\(x = y\)</span>.</li>
+</ol>
+</div>
+<div class="definition">
+<p>A <strong>strict linear order</strong> (or <strong>strict total
+order</strong>) is a strict partial order that is trichotomous.</p>
+</div>
+<div class="example">
+<p>The relation <span class="math inline">\(&lt;\)</span> over the set
+of natural numbers is trichotomous because no matter what numbers <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> we pick, it must be the case <span
+class="math inline">\(x &lt; y\)</span>, <span class="math inline">\(y
+&lt; x\)</span>, or <span class="math inline">\(x = y\)</span>.</p>
+</div>
+<div class="example">
+<p>The human ancestor relation is not trichotomous. For instance, if
+John and Mary have the same parents, then John is not an ancestor of
+Mary, Mary is not an ancestor of John, and Mary and John are not the
+same individual.</p>
+</div>
+<div class="exercise">
+<p>For each one of the following relations, say whether it is
+trichotomous.</p>
+<ul>
+<li>the “strictly taller than” relation over humans</li>
+<li>the “exactly as tall” relation over humans</li>
+<li>the “strictly taller than and at least as heavy” relation over
+humans</li>
+</ul>
+</div>
+<div class="exercise">
+<p>Give another real-world example of a strict partial order that is not
+trichotomous and hence not a strict linear order.</p>
+</div>
+<div class="remark">
+<p>Some mathematicians use <strong>trichotomous</strong> only for the
+special case where exactly one of <span class="math inline">\(x =
+y\)</span>, <span class="math inline">\(x \mathrel{R} y\)</span>, and
+<span class="math inline">\(y \mathrel{R} x\)</span> holds. If there is
+an <span class="math inline">\(x\)</span> and a <span
+class="math inline">\(y\)</span> such that at least two of those cases
+are met, these mathematicians would consider the relation semi-connex
+but not trichotomous. In this usage, trichotomy is a special case of
+semi-connexity.</p>
+<p>I like to use <em>trichotomous</em> as a synonym for
+<em>semi-connex</em> rather than a special case. There are three reasons
+for this. First, I have never come across a relation in linguistics
+where it would have been crucial to make a distinction between
+semi-connex and trichotomous. Second, the term <em>semi-connex</em>
+could mean just about anything when you first encounter it, whereas
+<em>trichotomous</em> already tells you that this is going to be about
+satisfaction of three different scenarios. Third, I always confuse the
+terms <em>semi-connex</em> and <em>connex</em> — which is a nice segue
+to the next section.</p>
+</div>
+<h2 id="weak-linear-orders">Weak linear orders</h2>
+<p>Trichotomy is not a meaningful restriction on weak partial orders
+because every weak partial order is already trichotomous by virtue of
+being reflexive.</p>
+<div class="exercise">
+<p>Explain in intuitive terms why this holds.</p>
+</div>
+<p>Instead, the step from a weak partial order to a weak linear order
+requires the stronger property of <strong>connexity</strong>. This is
+simply trichotomy without the case of <span class="math inline">\(x =
+y\)</span>.</p>
+<div class="definition">
+<p>A binary relation <span class="math inline">\(R\)</span> over set
+<span class="math inline">\(D\)</span> is <strong>connex</strong> iff
+for all <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> in <span
+class="math inline">\(D\)</span> at least one of the following
+holds:</p>
+<ol type="1">
+<li><span class="math inline">\(x \mathrel{R} y\)</span>,</li>
+<li><span class="math inline">\(y \mathrel{R} x\)</span>.</li>
+</ol>
+</div>
+<div class="definition">
+<p>A <strong>weak linear order</strong> (or <strong>weak total
+order</strong>) is a weak partial order that is connex.</p>
+</div>
+<div class="example">
+<p>The relation <span class="math inline">\(\leq\)</span> over the set
+of natural numbers is connex. Either <span class="math inline">\(x =
+y\)</span>, in which case we trivially have <span
+class="math inline">\(x \leq y\)</span> because that is the same as
+<span class="math inline">\(x \leq x\)</span> and <span
+class="math inline">\(\leq\)</span> is reflexive. Or, if <span
+class="math inline">\(x \neq y\)</span>, then it must be the case that
+<span class="math inline">\(x &lt; y\)</span>, which implies <span
+class="math inline">\(x \leq y\)</span>, or <span
+class="math inline">\(y &lt; x\)</span>, which implies <span
+class="math inline">\(y \leq x\)</span>.</p>
+</div>
+<div class="example">
+<p>The “at least as tall” relation over humans is connex. If <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are the same human being, then
+trivially <span class="math inline">\(x\)</span> is at least as tall as
+<span class="math inline">\(y\)</span> because everybody is at least as
+tall as themselves. If <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are distinct, then <span
+class="math inline">\(x\)</span> may be shorter than <span
+class="math inline">\(y\)</span>, taller than <span
+class="math inline">\(y\)</span>, or exactly as tall as <span
+class="math inline">\(y\)</span>. But this means that either <span
+class="math inline">\(x\)</span> is at least as tall as <span
+class="math inline">\(y\)</span>, or <span
+class="math inline">\(y\)</span> is at least as tall as <span
+class="math inline">\(x\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Indicate in the table below which properties hold of the respective
+relations.</p>
+<p><em>Remarks</em>:</p>
+<ul>
+<li>Assume suitable sets that the relations are defined over. For
+instance, the substring relation is defined over the set of all possible
+strings, and the subset relation should be defined over all possible
+sets.</li>
+<li>The substring relation <span
+class="math inline">\(\sqsubseteq\)</span> is defined as follows: <span
+class="math inline">\(x \sqsubseteq y\)</span> iff there are strings
+<span class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> in <span
+class="math inline">\(\Sigma^*\)</span> such that <span
+class="math inline">\(y = u \cdot x \cdot v\)</span>.</li>
+<li>The lexicographic order <span class="math inline">\(\prec_l\)</span>
+refers to how words would be ordered in a dictionary, e.g. <span
+class="math inline">\(\text{aardvark} \prec_l \text{apple} \prec_l
+\text{be} \prec_l \text{bet} \prec_l \text{zoom}\)</span>. You should
+assume that no word can be ordered before itself.</li>
+<li>For some relations, you might want to justify why you think they (do
+not) satisfy a certain property.</li>
+</ul>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Properties</strong></th>
+<th style="text-align: left;"><span
+class="math inline">\(\sqsubseteq\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(\subsetneq\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(\subseteq\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(\prec_l\)</span></th>
+<th style="text-align: center;">at least as tall as</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">transitive</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">reflexive</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">irreflexive</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">antisymmetric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">trichotomous</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">connex</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, say for each relation whether it is
+a weak partial order, a weak linear order, a strict partial order, or a
+strict linear order.</p>
+</div>
+<h2 id="recap">Recap</h2>
+<div class="definition">
+<p>A <strong>strict linear order</strong> (or <strong>strict total
+order</strong>) is a strict partial order that is trichotomous. A
+<strong>weak linear order</strong> (or <strong>weak total
+order</strong>) is a weak partial order that is connex.</p>
+</div>
+<div class="definition">
+<p>A binary relation <span class="math inline">\(R\)</span> over set
+<span class="math inline">\(D\)</span> is</p>
+<ul>
+<li><strong>connex</strong> iff for all <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> in <span
+class="math inline">\(D\)</span> at least one of the following holds:
+<span class="math inline">\(x \mathrel{R} y\)</span> or <span
+class="math inline">\(y \mathrel{R} x\)</span>.</li>
+<li><strong>trichotomous</strong> iff for all <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> in <span
+class="math inline">\(D\)</span> at least one of the following holds:
+<span class="math inline">\(x \mathrel{R} y\)</span> or <span
+class="math inline">\(y \mathrel{R} x\)</span> or <span
+class="math inline">\(x = y\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
