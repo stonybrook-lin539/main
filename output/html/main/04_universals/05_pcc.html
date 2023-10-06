@@ -47,7 +47,8 @@
 <li><a href="#first-attempt">First attempt</a></li>
 <li><a href="#a-minor-fix-reversal">A minor fix: Reversal</a></li>
 </ul></li>
-<li><a href="#summary">Summary</a></li>
+<li><a href="#taking-stock">Taking stock</a></li>
+<li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -56,7 +57,8 @@
 <h1 id="person-case-constraints">Person Case Constraints</h1>
 <div class="prereqs">
 <ul>
-<li>tuples (basics, crossproduct)</li>
+<li>tuples (basics)</li>
+<li>relations (partial orders)</li>
 </ul>
 </div>
 <p>Monotonicity can be successfully invoked to explain a number of
@@ -299,40 +301,43 @@ diagonal and thus aren’t of importance to us. But we will still include
 them for now. The question is how do we sort these 9 elements into a
 hierarchy?</p>
 <p>Ideally, our answer should be based on the existing person hierarchy
-<span class="math inline">\(1 &lt; 2 &lt; 3\)</span>. This is actually
+<span class="math inline">\(1 &gt; 2 &gt; 3\)</span>. This is actually
 fairly easy. Given a set <span class="math inline">\(S\)</span> ordered
 by some relation <span class="math inline">\(R\)</span>, one can order
 pairs over this set by extending the order <strong>pointwise</strong>.
-That is to say, <span class="math inline">\(\left \langle u,v \right
-\rangle \mathrel{R} \left \langle x,y \right \rangle\)</span> iff both
-<span class="math inline">\(u \mathrel{R} x\)</span> and <span
-class="math inline">\(v \mathrel{R} y\)</span> hold. We are defining the
-order of the tuples in terms of the order between their components.</p>
+That is to say, <span class="math inline">\(\left \langle x,y \right
+\rangle \mathrel{R} \left \langle x&#39;,y&#39; \right \rangle\)</span>
+iff both <span class="math inline">\(x \mathrel{R} x&#39;\)</span> and
+<span class="math inline">\(y \mathrel{R} y&#39;\)</span> hold. We are
+defining the order of the tuples in terms of the order between their
+components.</p>
 <div class="example">
 <p>When the person hierarchy is extended in a pointwise fashion, <span
-class="math inline">\(\left \langle 2,1 \right \rangle &lt; \left
+class="math inline">\(\left \langle 2,1 \right \rangle &gt; \left
 \langle 3,3 \right \rangle\)</span> because <span
-class="math inline">\(2 &lt; 3\)</span> and <span
-class="math inline">\(1 &lt; 3\)</span>. Similarly, <span
-class="math inline">\(\left \langle 2,1 \right \rangle &lt; \left
+class="math inline">\(2 &gt; 3\)</span> and <span
+class="math inline">\(1 &gt; 3\)</span>. Similarly, <span
+class="math inline">\(\left \langle 2,1 \right \rangle &gt; \left
 \langle 3,1 \right \rangle\)</span> because <span
-class="math inline">\(2 &lt; 3\)</span> and <span
+class="math inline">\(2 &gt; 3\)</span> and <span
 class="math inline">\(1 = 1\)</span>, and <span
-class="math inline">\(\left \langle 1,2 \right \rangle &lt; \left
+class="math inline">\(\left \langle 1,2 \right \rangle &gt; \left
 \langle 1,3 \right \rangle\)</span> because <span
 class="math inline">\(1 = 1\)</span> and <span class="math inline">\(2
-&lt; 3\)</span>. On the other hand, <span class="math inline">\(\left
+&gt; 3\)</span>. On the other hand, <span class="math inline">\(\left
 \langle 2,1 \right \rangle\)</span> and <span
 class="math inline">\(\left \langle 1,3 \right \rangle\)</span> are
 unordered with respect to each other because <span
-class="math inline">\(2 &gt; 1\)</span> and <span
-class="math inline">\(1 &lt; 3\)</span>.</p>
+class="math inline">\(2 &lt; 1\)</span> and <span
+class="math inline">\(1 &gt; 3\)</span>.</p>
 </div>
 <div class="exercise">
 <p>Fill each gap with <span class="math inline">\(&lt;\)</span>, <span
 class="math inline">\(&gt;\)</span>, or <span
-class="math inline">\(=\)</span> as appropriate. If none of the three
-fit, leave the gap empty.</p>
+class="math inline">\(=\)</span> as appropriate and indicate how this
+follows from the pointwise definition of <span
+class="math inline">\(&lt;\)</span>. If none of the three fit, leave the
+gap empty.</p>
 <ul>
 <li><span class="math inline">\(\left \langle 3,3 \right \rangle \_
 \left \langle 2,2 \right \rangle\)</span></li>
@@ -346,19 +351,62 @@ fit, leave the gap empty.</p>
 \left \langle 3,1 \right \rangle\)</span></li>
 </ul>
 </div>
-<p>Extending <span class="math inline">\(1 &lt; 2 &lt; 3\)</span> in
-this pointwise fashion yields the hierarchy below.</p>
+<p>Extending <span class="math inline">\(1 &gt; 2 &gt; 3\)</span> in
+this pointwise fashion yields the hierarchy below (to reduce clutter,
+tuple brackets are omitted in all figures).</p>
 <p><img src="pcc_hierarchy_wrong.svg"
 alt="pcc_hierarchy_wrong.svg" /></p>
-<p>For clarity, let’s remove all elements where IO and DO are the same,
-as we have already excluded them from the PCC.</p>
+<p>This is a partial order with <span class="math inline">\(\left
+\langle 1,1 \right \rangle\)</span> at the very top and <span
+class="math inline">\(\left \langle 3,3 \right \rangle\)</span> at the
+very bottom. With each step down in the hierarchy, either the first or
+the second component of the pair changes to a less prominent value. For
+instance, there are two ways to go down from <span
+class="math inline">\(\left \langle 1,1 \right \rangle\)</span>, one
+taking us to <span class="math inline">\(\left \langle 2,1 \right
+\rangle\)</span>, the other to <span class="math inline">\(\left \langle
+1,2 \right \rangle\)</span>. And from <span class="math inline">\(\left
+\langle 2,1 \right \rangle\)</span> there are two ways down, leading to
+<span class="math inline">\(\left \langle 3,1 \right \rangle\)</span>
+and <span class="math inline">\(\left \langle 2,2 \right
+\rangle\)</span>. This continues until one reaches <span
+class="math inline">\(\left \langle 3,3 \right \rangle\)</span> at the
+bottom.</p>
+<p>But remember that we do not actually care about the diagonals,
+i.e. pairs of the form <span class="math inline">\(\left \langle x,x
+\right \rangle\)</span>, so let’s remove them from the hierarchy. After
+removal of <span class="math inline">\(\left \langle 1,1 \right
+\rangle\)</span>, <span class="math inline">\(\left \langle 2,2 \right
+\rangle\)</span>, and <span class="math inline">\(\left \langle 3,3
+\right \rangle\)</span>, we are left with the structure below.</p>
 <p><img src="pcc_hierarchy_wrong_reduced.svg"
 alt="pcc_hierarchy_wrong_reduced.svg" /></p>
-<p>Now that we have a hierarchy, we can formulate the following
-hypothesis: every PCC is a monotonically increasing map from the
-person-person hierarchy. But a map to what? Well, PCCs either permit a
-combination, or forbid it. We can represent this by True (T) for
-allowed, and False (F) for forbidden.</p>
+<p>There are now two separate top points, which are <span
+class="math inline">\(\left \langle 1,2 \right \rangle\)</span> and
+<span class="math inline">\(\left \langle 2,1 \right \rangle\)</span>,
+and there are two separate bottom points <span
+class="math inline">\(\left \langle 2,3 \right \rangle\)</span> and
+<span class="math inline">\(\left \langle 3,2 \right \rangle\)</span>.
+From <span class="math inline">\(\left \langle 1,2 \right
+\rangle\)</span> we can go down to <span class="math inline">\(\left
+\langle 1,3 \right \rangle\)</span> and from there to <span
+class="math inline">\(\left \langle 2,3 \right \rangle\)</span>, or
+alternatively, we can go straight from <span class="math inline">\(\left
+\langle 1,2 \right \rangle\)</span> to <span class="math inline">\(\left
+\langle 3,2 \right \rangle\)</span> (because <span
+class="math inline">\(\left \langle 2,2 \right \rangle\)</span>, which
+previously lay between the two, is no longer part of the hierarchy).
+Similarly, a step down from <span class="math inline">\(\left \langle
+2,1 \right \rangle\)</span> either takes us directly to <span
+class="math inline">\(\left \langle 2,3 \right \rangle\)</span> or to
+<span class="math inline">\(\left \langle 3,1 \right \rangle\)</span>,
+from where one can go to <span class="math inline">\(\left \langle 3,2
+\right \rangle\)</span>.</p>
+<p>Now that we have this <em>person-person hierarchy</em>, we can
+formulate the following hypothesis: every PCC is a monotonically
+increasing map from the person-person hierarchy. But a map to what?
+Well, PCCs either permit a combination, or forbid it. We can represent
+this by True (T) for allowed, and False (F) for forbidden.</p>
 <div class="example">
 <p>The U-PCC allows 1IO-2DO but not 2IO-1DO. We can view it as a
 function <span class="math inline">\(f\)</span> such that <span
@@ -381,7 +429,17 @@ class="math inline">\(1 &lt; 0\)</span>. As a picture:</p>
 <p>This structure is commonly referred to as <strong>2</strong> (it has
 only two values, after all). So now we can ask whether PCCs are
 monotonically increasing maps from the person-person hierarchy to
-<strong>2</strong>. At least for the W-PCC, this is indeed the case.</p>
+<strong>2</strong>. At least for the W-PCC, this is indeed the case. All
+of the following elements of the person-person hierarchy are mapped to
+T: <span class="math inline">\(\left \langle 1,2 \right
+\rangle\)</span>, <span class="math inline">\(\left \langle 1,3 \right
+\rangle\)</span>, <span class="math inline">\(\left \langle 2,1 \right
+\rangle\)</span>, and <span class="math inline">\(\left \langle 2,3
+\right \rangle\)</span>. The only elements mapped to F are <span
+class="math inline">\(\left \langle 3,1 \right \rangle\)</span> and
+<span class="math inline">\(\left \langle 3,2 \right \rangle\)</span>.
+This is a monotonic increasing map, which becomes more apparent if we
+use arrows to visualize what gets mapped to what.</p>
 <p><img src="pcc_hierarchy_wrong_wpcc.svg"
 alt="pcc_hierarchy_wrong_wpcc.svg" /></p>
 <p>For the W-PCC, there are no two pairs <span
@@ -391,15 +449,16 @@ class="math inline">\(y\)</span> such that <span class="math inline">\(x
 f(y)\)</span>. It is indeed a monotonically increasing mapping from
 person combinations to True/False.</p>
 <p>But things don’t quite work the way they should. The U-PCC, for
-instance, is not monotonically increasing.</p>
+instance, is not monotonically increasing. The only thing that changes
+relative to the W-PCC is that <span class="math inline">\(\left \langle
+2,1 \right \rangle\)</span> is now mapped to F instead of T. But this
+change creates a problem.</p>
 <p><img src="pcc_hierarchy_wrong_upcc.svg"
 alt="pcc_hierarchy_wrong_upcc.svg" /></p>
 <div class="exercise">
 <p>Pick two pairs <span class="math inline">\(x\)</span> and <span
 class="math inline">\(y\)</span> and use them to show that the U-PCC is
 not a monotonically increasing map.</p>
-<p><em>Hint:</em> What’s the main difference between the W-PCC and the
-U-PCC?</p>
 </div>
 <div class="exercise">
 <p>Continuing the previous exercise, show that the U-PCC isn’t a
@@ -433,34 +492,35 @@ class="math inline">\(R\)</span> (formally, <span
 class="math inline">\(x \mathrel{R} y\)</span>), then <span
 class="math inline">\(y\)</span> is related to <span
 class="math inline">\(x\)</span> via <span
-class="math inline">\(R^{-1}\)</span> (<span class="math inline">\(y
-\mathrel{R^{-1}} x\)</span>). The reverse of <span
-class="math inline">\(1 &lt; 2 &lt; 3\)</span> is <span
-class="math inline">\(3 &lt; 2 &lt; 1\)</span>. Let us use <span
+class="math inline">\(R^{-1}\)</span> (in symbols, <span
+class="math inline">\(y \mathrel{R^{-1}} x\)</span>). The reverse of
+<span class="math inline">\(1 &gt; 2 &gt; 3\)</span> is <span
+class="math inline">\(3 &gt; 2 &gt; 1\)</span>. Let us use <span
 class="math inline">\(\prec\)</span> for this reversed order to clearly
-separate it from <span class="math inline">\(&lt;\)</span>. Then we have
-<span class="math inline">\(1 &lt; 2 &lt; 3\)</span> but <span
+separate it from the default person hierarchy <span
+class="math inline">\(&gt;\)</span>. Then we have <span
+class="math inline">\(1 &gt; 2 &gt; 3\)</span> but <span
 class="math inline">\(3 \prec 2 \prec 1\)</span>. Whereas before we used
-<span class="math inline">\(&lt;\)</span> for both the first and the
+<span class="math inline">\(&gt;\)</span> for both the first and the
 second component of the IO-DO pairs, we will now use <span
-class="math inline">\(&lt;\)</span> for the first component and <span
+class="math inline">\(&gt;\)</span> for the first component and <span
 class="math inline">\(\prec\)</span> for the second.</p>
 <ul>
 <li><strong>First component hierarchy</strong>: <span
-class="math inline">\(1 &lt; 2 &lt; 3\)</span></li>
+class="math inline">\(1 &gt; 2 &gt; 3\)</span></li>
 <li><strong>Second component hierarchy</strong>: <span
 class="math inline">\(3 \prec 2 \prec 1\)</span></li>
 </ul>
 <p>We will also use <span class="math inline">\(\triangleleft\)</span>
 for the order in the person-person hierarchy, just to keep the three
 relations visually separated. In the pointwise definition, we now use
-<span class="math inline">\(&lt;\)</span> for the first component and
+<span class="math inline">\(&gt;\)</span> for the first component and
 <span class="math inline">\(\prec\)</span> for the second. So <span
 class="math inline">\(\left \langle u,v \right \rangle \triangleleft
 \left \langle x,y \right \rangle\)</span> iff both of the following
 hold:</p>
 <ul>
-<li><span class="math inline">\(u &lt; x\)</span> or <span
+<li><span class="math inline">\(u &gt; x\)</span> or <span
 class="math inline">\(u = x\)</span>, and</li>
 <li><span class="math inline">\(v \prec y\)</span> or <span
 class="math inline">\(v = y\)</span>.</li>
@@ -469,7 +529,7 @@ class="math inline">\(v = y\)</span>.</li>
 <p>With this revised definition, we have <span
 class="math inline">\(\left \langle 2,3 \right \rangle \triangleleft
 \left \langle 3,1 \right \rangle\)</span> because <span
-class="math inline">\(2 &lt; 3\)</span> and <span
+class="math inline">\(2 &gt; 3\)</span> and <span
 class="math inline">\(3 \prec 1\)</span>. But for the very same reason,
 <span class="math inline">\(\left \langle 2,1 \right \rangle\)</span>
 and <span class="math inline">\(\left \langle 3,3 \right
@@ -479,8 +539,10 @@ and <span class="math inline">\(\left \langle 3,3 \right
 <p>Fill each gap with <span
 class="math inline">\(\triangleleft\)</span>, <span
 class="math inline">\(\triangleright\)</span>, or <span
-class="math inline">\(=\)</span> as appropriate. If none of the three
-fit, leave the gap empty.</p>
+class="math inline">\(=\)</span> as appropriate and indicate how this
+follows from the pointwise definition of <span
+class="math inline">\(&lt;\)</span>. If none of the three fit, leave the
+gap empty.</p>
 <ul>
 <li><span class="math inline">\(\left \langle 3,3 \right \rangle \_
 \left \langle 2,2 \right \rangle\)</span></li>
@@ -503,12 +565,50 @@ order.</p>
 order must satisfy, and explain for each one why it holds.</p>
 </div>
 <p>The full person-person hierarchy now looks a bit different, although
-the overall geometry stays the same.</p>
+the overall geometry stays the same. Instead of <span
+class="math inline">\(\left \langle 1,1 \right \rangle\)</span> we now
+have <span class="math inline">\(\left \langle 1,3 \right
+\rangle\)</span> at the top, and instead of <span
+class="math inline">\(\left \langle 3,3 \right \rangle\)</span> at the
+bottom we now find <span class="math inline">\(\left \langle 3,1 \right
+\rangle\)</span>. And a step down means either changing the first
+component to a less prominent person (for instance going from <span
+class="math inline">\(1\)</span> to <span
+class="math inline">\(2\)</span>) or replacing the second component with
+a more prominent person (for instance going from <span
+class="math inline">\(3\)</span> to <span
+class="math inline">\(2\)</span>).</p>
 <p><img src="pcc_hierarchy_right.svg"
 alt="pcc_hierarchy_right.svg" /></p>
-<p>And after removal of the irrelevant pairs, we get the following:</p>
+<p>After removal of the irrelevant pairs <span
+class="math inline">\(\left \langle 1,1 \right \rangle\)</span>, <span
+class="math inline">\(\left \langle 2,2 \right \rangle\)</span>, <span
+class="math inline">\(\left \langle 3,3 \right \rangle\)</span>, we get
+the following:</p>
 <p><img src="pcc_hierarchy_right_reduced.svg"
 alt="pcc_hierarchy_right_reduced.svg" /></p>
+<p>In words:</p>
+<ul>
+<li><span class="math inline">\(\left \langle 1,3 \right \rangle
+\triangleleft \left \langle 1,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 1,3 \right \rangle
+\triangleleft \left \langle 2,3 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 1,2 \right \rangle
+\triangleleft \left \langle 2,1 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 1,2 \right \rangle
+\triangleleft \left \langle 3,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,3 \right \rangle
+\triangleleft \left \langle 2,1 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,3 \right \rangle
+\triangleleft \left \langle 3,2 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 2,1 \right \rangle
+\triangleleft \left \langle 3,1 \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 3,2 \right \rangle
+\triangleleft \left \langle 3,1 \right \rangle\)</span></li>
+<li>all the ordering that can be inferred from this (e.g. <span
+class="math inline">\(\left \langle 1,3 \right \rangle \triangleleft
+\left \langle 3,1 \right \rangle\)</span> via transitivity)</li>
+</ul>
 <p>Over this hierarchy, both the W-PCC and the U-PCC are monotonically
 increasing maps. This is illustrated in the figures below. For
 simplicity, boxes are used to indicate that a combination is mapped to
@@ -517,16 +617,32 @@ T. Nodes without boxes around them are mapped to F.</p>
 alt="pcc_hierarchy_right_wpcc.svg" /></p>
 <p><img src="pcc_hierarchy_right_upcc.svg"
 alt="pcc_hierarchy_right_upcc.svg" /></p>
+<p>In the U-PCC, the only elements that aren’t boxed are <span
+class="math inline">\(\left \langle 3,2 \right \rangle\)</span> and
+<span class="math inline">\(\left \langle 3,1 \right \rangle\)</span> at
+the bottom of the hierarchy. With the W-PCC, <span
+class="math inline">\(\left \langle 2,1 \right \rangle\)</span> isn’t
+boxed either, effectively cutting the hierarchy into two halves — the
+bottom half consisting of <span class="math inline">\(\left \langle 2,1
+\right \rangle\)</span>, <span class="math inline">\(\left \langle 3,2
+\right \rangle\)</span>, and <span class="math inline">\(\left \langle
+3,1 \right \rangle\)</span> only contains elements mapped to F, and the
+top half with <span class="math inline">\(\left \langle 1,2 \right
+\rangle\)</span>, <span class="math inline">\(\left \langle 2,3 \right
+\rangle\)</span>, and <span class="math inline">\(\left \langle 1,3
+\right \rangle\)</span> only contains elements mapped to T.</p>
 <div class="exercise">
 <p>Redraw the figures above with arrows pointing towards T and F as we
 did earlier on in this unit. Confirm for yourself that this is indeed a
 monotonically increasing map.</p>
 </div>
 <div class="exercise">
-<p>Draw the corresponding pictures (with boxes instead of arrows) for
-the S(trong)-PCC and the M(e first)-PCC.</p>
+<p>Verify for yourself that the S(trong)-PCC and the M(e first)-PCC are
+monotonic increasing over this revised hierarchy. You may do so by
+drawing the corresponding pictures with boxes or arrows, or by listing
+how these figures would differ from the one for the U-PCC.</p>
 </div>
-<h2 id="summary">Summary</h2>
+<h2 id="taking-stock">Taking stock</h2>
 <p>Where are we at this point? Well, all the attested types of PCCs are
 monotonically increasing maps over a specific person-person hierarchy.
 So PCCs, which looked truly befuddling at the beginning of this section,
@@ -562,6 +678,21 @@ monotonicity is sufficient to carve out a broad range of options that
 need to be whittled down a bit by additional restrictions. It is truly
 remarkable how much linguistic work can be done by such a simple
 mathematical concept.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Person Case Constraints (PCCs) are restrictions on combinations of
+direct object and indirect object clitics.</li>
+<li>Even though PCCs look very odd at first glance, they are found
+across many languages and hence should have a natural explanation.</li>
+<li>The attested PCCs are monotonic functions from a specific
+person-person hierarchy into <span
+class="math inline">\(\mathbf{2}\)</span>, which is the set <span
+class="math inline">\(\left \{ \mathrm{T(rue)}, \mathrm{F{alse}} \right
+\}\)</span> with the order <span class="math inline">\(F &lt;
+T\)</span>.</li>
+<li>The person-person hierarchy is constructed pointwise from the
+default person hierarchy and its inverse.</li>
+</ul>
 </div>
 </div>
 </body>
