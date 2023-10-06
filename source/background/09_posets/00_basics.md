@@ -7,7 +7,7 @@ pagetitle: >-
 
 :::prereqs
 - tuples (basics)
-- relations (partial orders)
+- relations (order relation intuitions)
 :::
 
 While sets are unstructured, they can be combined with an ordering relation to yield a structured object.
