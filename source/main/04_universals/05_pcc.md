@@ -107,7 +107,7 @@ But what are we supposed to do with this?
 In contrast to person syncretism, the PCC doesn't care about individual person values, it cares about their combinations.
 
 We can represent the combination of two person features $x$ and $y$ as a pair $\tuple{x, y}$.
-As a convention, the first component of the pair will indicate the row in the corresponding table, the second the column.
+In contrast to sets, these pairs are ordered: the first component of the pair will indicate the row in the corresponding table, the second the column.
 So the pairs first give the IO person, then the DO person.
 
 ::: example
@@ -329,16 +329,20 @@ This is illustrated in the figures below.
 For simplicity, boxes are used to indicate that a combination is mapped to T.
 Nodes without boxes around them are mapped to F.
 
+- W-PCC
+
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_right_wpcc.tikz
 ~~~
+
+- U-PCC
 
 ~~~ {.include-tikz size=mid}
 pcc_hierarchy_right_upcc.tikz
 ~~~
 
-In the U-PCC, the only elements that aren't boxed are $\tuple{3,2}$ and $\tuple{3,1}$ at the bottom of the hierarchy.
-With the W-PCC, $\tuple{2,1}$ isn't boxed either, effectively cutting the hierarchy into two halves --- the bottom half consisting of $\tuple{2,1}$, $\tuple{3,2}$, and $\tuple{3,1}$ only contains elements mapped to F, and the top half with $\tuple{1,2}$, $\tuple{2,3}$, and $\tuple{1,3}$ only contains elements mapped to T.
+In the W-PCC, the only elements that aren't boxed are $\tuple{3,2}$ and $\tuple{3,1}$ at the bottom of the hierarchy.
+With the U-PCC, $\tuple{2,1}$ isn't boxed either, effectively cutting the hierarchy into two halves --- the bottom half consisting of $\tuple{2,1}$, $\tuple{3,2}$, and $\tuple{3,1}$ only contains elements mapped to F, and the top half with $\tuple{1,2}$, $\tuple{2,3}$, and $\tuple{1,3}$ only contains elements mapped to T.
 
 ::: exercise
 Redraw the figures above with arrows pointing towards T and F as we did earlier on in this unit.
