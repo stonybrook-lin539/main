@@ -110,7 +110,6 @@ Fill in $=$, $\subsetneq$, or $\supsetneq$ as appropriate.
 - $\setof{a,b} \_ \setof{a}$
 - $\setof{a,b} \_ \setof{\setof{a}}$
 - $\setof{a,a,b,c} \_ \setof{b,b,a,c}$
-- $\setof{1,2,3} \_ \setof{n + 5 \mid n \in \setof{-4, -3}}$
 - $\emptyset \_ \setof{a}$
 - $\emptyset \_ \setof{\emptyset}$
 
