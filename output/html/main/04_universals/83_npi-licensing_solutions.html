@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>NPIs and monotonicity (Solutions)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#npis-and-monotonicity-solutions">NPIs and monotonicity
+(Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="npis-and-monotonicity-solutions">NPIs and monotonicity
+(Solutions)</h1>
+<div class="exercise">
+<p>Consider the sentence <em>every student slept</em>. Does it allow for
+similar inferences via entailment?</p>
+<div class="solution">
+<p>Yes. If <em>every student slept</em>, then both of the following are
+true:</p>
+<ol type="1">
+<li>Every male student slept.</li>
+<li>Every sophomore slept.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Construct such an argument that <em>every</em> is downward
+entailing.</p>
+<div class="solution">
+<p>We can do this by substituting just a few terms in the example:</p>
+<p>Let <span class="math inline">\(A\)</span> be the set of all
+students. The sentence <em>Every student slept</em> asserts for each
+student <span class="math inline">\(s \in A\)</span> that <span
+class="math inline">\(s\)</span> did in fact sleep. Suppose this is
+true. Then <em>Every X slept</em> is necessarily true if X denotes some
+set <span class="math inline">\(B \subseteq A\)</span> because we
+already know for each <span class="math inline">\(s \in B\)</span> that
+<span class="math inline">\(s\)</span> did sleep. Since there is no
+subset of <span class="math inline">\(A\)</span> for which this
+entailment fails, <em>every</em> is indeed downward entailing.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Represent the following sentences in terms of this functional
+notation:</p>
+<ol type="1">
+<li>No professor writes good lecture notes.</li>
+<li>Every professor could earn more in industry.</li>
+<li>This professor, no student likes.</li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li>No(professor, writes good lecture notes)</li>
+<li>Every(professor, could earn more in industry)</li>
+<li>No(student, likes this professor)</li>
+</ol>
+</div>
+<div class="solution_explained">
+<p>The central thing to keep in mind here is that the arguments are
+determined by meaning, not the linear order in the string. The first
+argument expresses what we are quantifying over, the second one what is
+being done. For the first two examples, this is straight-forward. For
+the third example, we have to figure out first that <em>this
+professor</em> is the object of <em>likes</em>. So the sentence means
+the same as <em>no student likes this professor</em>, even though the
+word order is different.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Show that <em>no</em> is downward entailing with respect to Y.</p>
+<div class="solution">
+<p>Consider a concrete example first. Suppose <em>No student runs</em>
+is true. Then <em>No student runs a 5k</em> is also true. The set of
+individuals that run a 5k is a subset of the individuals that run, so we
+made an inference from a set <span class="math inline">\(S\)</span> (the
+set of runners) to a subset of <span class="math inline">\(S\)</span>
+(the set of 5k runners), which means that we have downward
+entailment.</p>
+<p>More generally, if <span
+class="math inline">\(\mathrm{No}(X,Y)\)</span> is true, then there is
+no individual <span class="math inline">\(i \in X\)</span> such that
+<span class="math inline">\(i\)</span> belongs to the set of individuals
+that do <span class="math inline">\(Y\)</span>. But then <span
+class="math inline">\(i\)</span> cannot belong to any subset of <span
+class="math inline">\(Y\)</span>, either. Or in set-theoretic terms: if
+<span class="math inline">\(\mathrm{No}(X,Y)\)</span> is true, then
+<span class="math inline">\(X \cap Y = \emptyset\)</span>, which implies
+<span class="math inline">\(X \cap Z = \emptyset\)</span> for every
+subset <span class="math inline">\(Z\)</span> of <span
+class="math inline">\(Y\)</span>. This shows that <em>no</em> is
+downward entailing with respect to <span
+class="math inline">\(Y\)</span>.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Construct an example for downward entailment similar to the one above
+for upward entailment.</p>
+<div class="solution">
+<p>Again this only requires swapping out a few words:</p>
+<p>Consider the sentences <em>No student ran a 5k</em> and <em>No
+student ran</em>. Clearly if the latter is true, the former must be too.
+We also know already that the set of students that ran a 5k (call it
+<span class="math inline">\(5k\)</span>) is a subset of the students
+that ran (call it <span class="math inline">\(R\)</span>). So we have
+<span class="math inline">\(5k \subseteq R\)</span>.</p>
+<p>Now suppose that <em>no student</em><span class="math inline">\((R) =
+1\)</span>. Then <em>no student</em><span class="math inline">\((5k)
+\geq 1\)</span> because <span class="math inline">\(5k \subseteq
+R\)</span> and the function is monotonically decreasing. So the fact
+that the sentence is true for <span class="math inline">\(R\)</span>
+entails that it is true for every subset of <span
+class="math inline">\(R\)</span>. This is exactly what it means to be
+downward entailing.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Alternatively, we may view downward entailment as a monotonically
+increasing function if sets are ordered by the superset relation instead
+of subset. Explain why!</p>
+<div class="solution">
+<p>By ordering sets by the superset relation instead of the subset
+relation, we flip their order: if we previously had <span
+class="math inline">\(X &lt; Y\)</span> (i.e. <span
+class="math inline">\(X \subseteq Y\)</span>), we now have <span
+class="math inline">\(Y &lt; X\)</span> (i.e. <span
+class="math inline">\(Y \supseteq X\)</span>). Downward entailment means
+that if a statement is true with respect to <span
+class="math inline">\(Y\)</span>, then it is true with respect to every
+<span class="math inline">\(X\)</span> that <span
+class="math inline">\(Y\)</span> is a superset of. But in our new
+ordering, that’s every <span class="math inline">\(X\)</span> such that
+<span class="math inline">\(Y &lt; X\)</span>. Hence downward entailment
+can be rephrased as follows: if <span class="math inline">\(f(Y) =
+1\)</span>, then <span class="math inline">\(f(X) \geq 1\)</span> for
+every <span class="math inline">\(X &gt; Y\)</span>. And that is an
+instance of being monotonically increasing.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Determine whether <em>some</em> is right downward entailing or right
+upward entailing. What does this predict for the distribution of
+<em>ever</em> in a sentence with <em>some</em>, and does this prediction
+match your intuitions?</p>
+<div class="solution">
+<p>Consider the sentences <em>Some student ran</em> and <em>Some student
+ran a 5k</em>. Since the latter entails the former, <em>some</em> is
+right upward entailing. Hence we expect <em>Some student should ever
+sleep in class</em> to be illicit, which it is indeed.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Determine whether <em>some</em> is left downward entailing or left
+upward entailing. What does this predict for the distribution of
+<em>ever</em> in a sentence with <em>some</em>, and does this prediction
+match your intuitions?</p>
+<div class="solution">
+<p>Consider the sentences <em>Some student ran</em> and <em>Some
+sophomore ran</em>. Since the latter entails the former, <em>some</em>
+is right upward entailing. Hence we expect <em>Some student who ever
+slept in class should get a degree</em> to be illicit, which it is
+indeed.</p>
+</div>
+</div>
+<div class="exercise">
+<p>In the case of adjectival gradation, the formal universal of
+monotonicity had to be supplemented with the ordering <em>positive</em>
+<span class="math inline">\(&lt;\)</span> <em>comparative</em> <span
+class="math inline">\(&lt;\)</span> superlative, a substantive
+universal. In this unit, we again used monotonicity as a formal
+universal to restrict the distribution of <em>ever</em>. What is the
+substantive universal we had to combine monotonicity with? Does this
+strike you as a language-specific universal, or is it more likely an
+aspect of human cognition in general?</p>
+<div class="solution">
+<p>The substantive universal is the order of sets in terms of supersets.
+This is not a language-specific aspect of human cognition, it is an
+instance of the general ability to group objects and individuals into
+groups and to establish relations between those groups.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
