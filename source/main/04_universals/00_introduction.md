@@ -1,6 +1,6 @@
 ---
 pagetitle: >-
-    Introduction: What's to come, and what you should know already
+    What's to come, and what you should know already
 ---
 
 # What's to come, and what you should know already
