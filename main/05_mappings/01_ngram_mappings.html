@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Generalizing n-grams to mappings: a failed attempt</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a
+href="#generalizing-n-grams-to-mappings-a-failed-attempt">Generalizing
+n-grams to mappings: a failed attempt</a>
+<ul>
+<li><a href="#underlying-representations-and-rewrite-rules">Underlying
+representations and rewrite rules</a></li>
+<li><a href="#n-grams-for-mappings">N-grams for mappings</a></li>
+<li><a href="#problems-with-mapping-n-grams">Problems with mapping
+n-grams</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="generalizing-n-grams-to-mappings-a-failed-attempt">Generalizing
+n-grams to mappings: a failed attempt</h1>
+<h2 id="underlying-representations-and-rewrite-rules">Underlying
+representations and rewrite rules</h2>
+<p>Our mathematical investigation of language started with phonotactics,
+i.e. the laws that govern the distribution of sounds in a word. We chose
+phonotactics as our starting point because it is complex enough to run
+into some interesting issues, yet it is simple enough that we get to
+avoid many complicating factors. But now that we are more comfortable
+with the mathematical view of language, it is time to confront some of
+these complicating factors head-on. For instance, phonology is more than
+just phonotactics. Phonology isn’t really about determining whether a
+given string is a possible word, it is about establishing connections
+between strings.</p>
+<div class="example">
+<p>We have seen several examples of word-final devoicing, e.g. in
+German. The German word for <em>song</em> is <em>li:t</em> in the
+singular, with a voiceless <em>t</em>, but <em>li:der</em> in the plural
+with a voiced <em>d</em> (actually, a phonetician will tell you that
+German has a constricted-glottis distinction rather than a voicing
+distinction, but that doesn’t matter for this example). Once we remove
+the plural marker from <em>li:der</em> we are left with the stem
+<em>li:d</em>. This is distinct from <em>li:t</em>, yet native speakers
+of German somehow know that these are both just different outputs of the
+same lexical item for <em>song</em>. They know that these two forms are
+phonologically related to each other.</p>
+</div>
+<p>Given these relations between surface forms, phonologists have argued
+that phonology actually involves <strong>underlying
+representations</strong> (URs) that are modified via <strong>rewrite
+rules</strong> to yield the surface forms that we actually see.</p>
+<div class="example">
+<p>One could say that German has a UR <em>li:d</em> for <em>song</em>.
+If we want the plural of that, we use a rewrite rule that appends the
+plural marker <em>er</em> to this UR, yielding <em>li:der</em>. The
+singular of <em>li:d</em>, on the other hand, has no special marker, so
+the rule for singular would not add any pronounced material to the UR.
+But this means that the UR is subject to the rewrite rule for word-final
+devoicing, which replaces <em>d</em> with <em>t</em>, yielding
+<em>li:t</em>. Hence both <em>li:der</em> and <em>li:t</em> are surface
+forms of the same UR <em>li:d</em>, which explains why native speakers
+of German can recognize them as related forms even though they only
+share <em>l</em> and <em>i:</em>.</p>
+</div>
+<p>There are many excellent phonology textbooks that explain the
+appropriate use of URs and rewrite rules in great detail. We do not need
+to worry about these details, but we do want to be able to say something
+about these proposals from a mathematical perspective. Are they more
+powerful than the n-gram models we used for phonotactics? Are there
+certain normal forms that we can use to make our life as researchers
+easier, just like we could switch between positive and negative n-gram
+grammars as we see fit? Just what exactly are we claiming about
+phonology if we say it can be described in terms of mappings from URs to
+surface forms?</p>
+<h2 id="n-grams-for-mappings">N-grams for mappings</h2>
+<p>In previous chapters, it usually worked well for us to take a simple
+model, ideally one we have encountered before, and make some small
+tweaks to it in order to capture some new phenomenon. It sure seems like
+a good idea, then, to try to take our familiar n-gram grammars and
+generalize them in a way that allows them to capture mappings.</p>
+<p>Suppose, then, that we use an enriched format of n-grams where one
+specific symbol in the n-gram can be rewritten as something else.
+Instead of the n-gram <em>abc</em>, we would now have a mapping n-gram
+<em>ab[d]c</em> to indicate that <em>b</em> can be rewritten as
+<em>d</em>, provided that <em>b</em> is surrounded by <em>a</em> and
+<em>c</em>. Given some UR, padded out with edge markers, we build the
+corresponding surface form by moving through the UR from left to right
+and checking for each symbol <span class="math inline">\(\sigma\)</span>
+whether there is a matching mapping n-gram. If there is not, we add
+<span class="math inline">\(\sigma\)</span> to the surface form. But if
+there is such a matching mapping n-gram, we instead a new symbol to the
+surface form according to the rewrite specification in the mapping
+n-gram.</p>
+<div class="example">
+<p>When we looked at word-final devoicing as a phonotactic constraint,
+we treated it as a ban against voiced segments like <em>d</em>,
+<em>v</em>, or <em>z</em> at the end of the word. Formally, we captured
+this with the bigrams <em>d&lt;</em> and <em>v&lt;</em> and
+<em>z&lt;</em>. If we want to treat word-final devoicing as a mapping,
+we have to rewrite URs such that word-final <em>d</em>, <em>v</em>, and
+<em>z</em> become <em>t</em>, <em>f</em>, and <em>s</em>, respectively.
+The corresponding bigrams look as follows:</p>
+<ul>
+<li>d[t]&lt;</li>
+<li>v[f]&lt;</li>
+<li>z[s]&lt;</li>
+</ul>
+<p>Now consider how these n-grams are used to map German <em>li:d</em>
+to the surface form <em>li:t</em>. First, since they are bigrams, we
+have to pad out <em>li:d</em> with one edge marker on each side,
+yielding <em>&gt;li:d&lt;</em>. Then, we move through this string from
+left to right, checking each symbol. If we find a matching configuration
+for some symbol, we carry out the corresponding rewrite step:</p>
+<ul>
+<li><em>&gt;</em>, no match, add <em>&gt;</em> to surface form</li>
+<li><em>l</em>, no match, add <em>l</em> to surface form</li>
+<li><em>i:</em>, no match, add <em>i:</em> to surface form</li>
+<li><em>d</em>, matched by <em>d&lt;</em>, add <em>t</em> to surface
+form</li>
+<li>&lt;, no match, add &lt; to surface form</li>
+</ul>
+<p>The only matching configuration is <em>d&lt;</em>, so we replace
+<em>d</em> with <em>t</em> while keeping everything else the same. After
+removal of edge markers, we are left with <em>li:t</em>.</p>
+</div>
+<div class="exercise">
+<p>The English plural marker has multiple forms that are phonologically
+conditioned. Roughly speaking, we get</p>
+<ol type="1">
+<li><em>es</em> after <em>s</em>, <em>z</em>, <em>ʃ</em>, and
+<em>tʃ</em>,</li>
+<li><em>s</em> after any other voiceless consonants (e.g. <em>t</em>,
+<em>k</em>),</li>
+<li><em>z</em> everywhere else (that is to say, after vowels and voiced
+consonants).</li>
+</ol>
+<p>Assume that a form like <em>gases</em> is underlyingly <em>gasP</em>,
+where P is a single abstract symbol indicating plural. Provide a list of
+n-grams that rewrite P as the correct surface form. For simplicity, you
+may assume that the alphabet only consists of <em>g</em>, <em>s</em>,
+<em>t</em>, <em>a</em>, and <em>e</em>.</p>
+</div>
+<div class="exercise">
+<p>Specify the mapping n-grams for intervocalic voicing. You may assume
+that the alphabet only consists of <em>a</em>, <em>o</em>, <em>s</em>,
+<em>z</em>, and <em>l</em>.</p>
+</div>
+<h2 id="problems-with-mapping-n-grams">Problems with mapping
+n-grams</h2>
+<p>Our mapping n-grams have multiple problems. First of all, it is
+unclear what should be done when we have multiple matching mapping
+n-grams.</p>
+<div class="example">
+<p>Suppose that we have some language German’ that works exactly like
+German except that it also has a ban against clusters that consist of a
+nasal followed by a voiced plosive. When such a cluster is encountered,
+the voiced plosive is removed. For instance, <em>nd</em> is reduced to
+<em>n</em>. We can capture this with the mapping bigram <em>nd[<span
+class="math inline">\(\varepsilon\)</span>]</em>, where replacing
+<em>d</em> with the empty string amounts to removal of <em>d</em>. But
+then we run into an issue with words like <em>land</em> (which has the
+same meaning as English <em>land</em>). According to the mapping bigram
+<em>nd[<span class="math inline">\(\varepsilon\)</span>], we should
+delete </em>d* and thus end up with <em>lan</em>. But the mapping bigram
+<em>d[t]&lt;</em> for word-final devoicing requires us to replace
+<em>d</em> with <em>t</em> so we get <em>lant</em>. Well, which one is
+it?</p>
+</div>
+<p>Phonologists avoids issues of this kind by assuming that rewrite
+rules are ordered. If two rules <span class="math inline">\(R_1\)</span>
+and <span class="math inline">\(R_2\)</span> could both apply, we always
+apply <span class="math inline">\(R_1\)</span> first. If this means that
+<span class="math inline">\(R_2\)</span> can on longer apply, we skip
+that rewrite rule.</p>
+<div class="example">
+<p>Suppose that word-final devoicing precedes all other rules of
+German’. Then <em>land</em> must be realized as <em>lant</em> because
+<em>d[t]&lt;</em> takes precedence over <em>nd[<span
+class="math inline">\(\varepsilon\)</span>]</em>.</p>
+</div>
+<p>While this certainly fixes the problem, it is quite a deviation from
+n-gram grammars, which we defined as sets exactly because there is no
+order between the n-grams. Of course we could now go from sets to
+posets, but that opens a giant can of worms: can we use any partial
+order, or does it have to be linear order, or something in between like
+a lattice? That’s a lot of added complexity that we would like to
+avoid.</p>
+<p>But beyond this impediment to our own laziness, there are also some
+serious empirical issues. Iterative processes, for example, seem to be
+impossible to capture this way. You might remember the case of vowel
+harmony. In terms of phonotactics, vowel harmony is a ban against vowels
+of distinct harmony classes appearing in the same word. But as a mapping
+from URs to surface forms, it means that a vowel that isn’t in the right
+harmony class is replaced with a vowel that does meet the harmony
+requirement. Crucially, vowel harmony can apply iteratively, with the
+replacement of one vowel triggering the replacement of the next vowel
+after that. This seems to be impossible to pull off with mapping
+n-grams.</p>
+<div class="example">
+<p>Suppose that we have a language with two classes of harmonic vowels:
+bright (B) and dark (D). If a B is followed by a D (ignoring vowels),
+then D is replaced by B. But crucially, this replacement can itself
+trigger another replacement of a D by a B. Such a sequence of rewrite
+steps is shown below.</p>
+<ol type="1">
+<li>CBCDCD</li>
+<li>CBCBCD</li>
+<li>CBCBCB</li>
+</ol>
+<p>This would not work with mapping n-grams. Suppose our input is
+<em>CBCDCD</em>. We go through the string from left to right and
+incrementally build up a surface form. Suppose we use mapping trigrams
+like <em>BCD[B]</em>. This will allow us to rewrite the first <em>D</em>
+in <em>CBCDCD</em> with <em>B</em>. At that point, the surface form is
+<em>CBCB</em>. However, the UR is still <em>CBCDCD</em> because we are
+not making any changes to the UR, we are simply building a corresponding
+surface form from scratch. But then, once we reach the second <em>D</em>
+in the UR, the mapping trigram <em>BCD[B]</em> does not actually match —
+the context in the UR is <em>DCD</em>, not <em>BCD</em>. And since we
+can build arbitrarily long URs of this form, this problem will arise
+even if we use ludicrously large n-grams, e.g. 17-grams.</p>
+</div>
+<p>The problem here is that we use URs to determine whether a mapping
+n-gram has a match, and since URs do not change, we miss cases where
+application of an earlier rewrite step did actually yield a matching
+configuration. We could fix this by allowing mapping n-grams to specify
+whether the match should be checked for the UR or the surface form. But
+that’s yet another complicating factor in what is quickly becoming a
+much more complicated system than the simple n-gram grammars we had for
+phonotactics.</p>
+<div class="exercise">
+<p>Matching n-grams also run into issues with unbounded processes like
+sibilant harmony. Suppose that <em>s</em> becomes <em>ʃ</em> after
+<em>ʃ</em>, no matter how far the two are apart. For instance,
+<em>ʃtojowonowas</em> would become <em>ʃtojowonowaʃ</em>. Explain why
+this cannot be handled with matching n-grams if the number of
+intervening segments is truly unbounded.</p>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, suggest a way matching n-grams
+could be amended to handle such unbounded dependencies.</p>
+</div>
+<p>Finally, matching n-grams do not seem to address the primary reason
+why we moved to mappings in the first place: native speakers’ ability to
+quickly and effortlessly establish relations between strings. Matching
+n-grams provide an easy way to map a UR to a surface form, but speakers
+primarily do the opposite, they map surface forms to URs in order to
+establish whether they are connected in some way. This is a messy
+process with mapping n-grams.</p>
+<div class="exercise">
+<p>Suppose you are given the following mapping n-grams.</p>
+<ol type="1">
+<li>n[m]p</li>
+<li>mp[<span class="math inline">\(\varepsilon\)</span>]</li>
+<li>a[a:]mp</li>
+<li>a:[a]&lt;</li>
+</ol>
+<p>Which of the following are URs from which one can obtain the surface
+form <em>a:mpa</em>? Assume that the mapping n-grams must match the UR,
+not the surface form or something else.</p>
+<ol type="1">
+<li>ampa:</li>
+<li>ampa</li>
+<li>a:mpa:</li>
+<li>a:mpa</li>
+<li>anpa:</li>
+<li>anpa</li>
+<li>a:npa:</li>
+<li>a:npa</li>
+</ol>
+</div>
+<p>We could plow ahead and fix all these issues with brute-force
+stipulations, idiosyncratic additions and restrictions, and quite
+generally just keep hammering away at the problem until we’ve pushed
+that square peg through the round hole. Or we could take the hint that
+we’re not quite thinking about this the right way and look for an
+alternative. In the next unit, we’ll take a mathematically more natural
+starting point and we will see that this gives us pretty much everything
+one could want for phonology.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Phonotactics is a very reductionist view of phonology. A native
+speaker’s mental grammar of phonology isn’t just a collection of
+well-formedness conditions, it allows them to identify principled
+connections between strings that may look very different.</li>
+<li>Phonologists capture this by positing a split between surface forms
+and <strong>underlying representations</strong>, with the former
+obtained from the latter via rewrite rules.</li>
+<li>Extending n-grams from phonotactics to mappings does not work well
+and runs into issues with rule ordering, iterativity, and recoverability
+of URs.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
