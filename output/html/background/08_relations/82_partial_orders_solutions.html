@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Partial orders (Solutions)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#partial-orders-solutions">Partial orders
+(Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="partial-orders-solutions">Partial orders (Solutions)</h1>
+<div class="exercise">
+<p>Consider the relation <span class="math inline">\(\sim\)</span> over
+natural numbers such that <span class="math inline">\(x \mathrel{\sim}
+y\)</span> iff <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are both odd or <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are both even. Is this relation
+transitive? Justify your answer.</p>
+<div class="solution">
+<p>Yes, this relation is transitive. Suppose <span
+class="math inline">\(x \mathrel{\sim} y\)</span> and <span
+class="math inline">\(y \mathrel{\sim} z\)</span> are both true. Then
+either <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are both odd, or they are both even. We
+assume w.l.o.g. that <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are both odd. If <span
+class="math inline">\(y\)</span> is odd, then <span
+class="math inline">\(y \mathrel{\sim} z\)</span> implies that <span
+class="math inline">\(z\)</span> is odd. But then it follows from the
+definition of <span class="math inline">\(\mathrel{\sim}\)</span> that
+<span class="math inline">\(x \mathrel{\sim} z\)</span> holds because
+<span class="math inline">\(x\)</span> and <span
+class="math inline">\(z\)</span> are both odd.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Consider the relation <span class="math inline">\(\not\sim\)</span>
+over natural number such that <span class="math inline">\(x
+\mathrel{\not\sim} y\)</span> iff either <span
+class="math inline">\(x\)</span> is odd and <span
+class="math inline">\(y\)</span> is even or <span
+class="math inline">\(x\)</span> is even and <span
+class="math inline">\(y\)</span> is odd. Is this relation transitive?
+Justify your answer.</p>
+<div class="solution">
+<p>No, this relation is not transitive. Suppose that <span
+class="math inline">\(x \mathrel{\not\sim} y\)</span> and <span
+class="math inline">\(y \mathrel{\not\sim} z\)</span> are both true.
+Then either <span class="math inline">\(x\)</span> is odd and <span
+class="math inline">\(y\)</span> is even, or <span
+class="math inline">\(x\)</span> is even and <span
+class="math inline">\(y\)</span> is odd. We assume w.l.o.g. that <span
+class="math inline">\(x\)</span> is odd and <span
+class="math inline">\(y\)</span> is even. If <span
+class="math inline">\(y\)</span> is even, then <span
+class="math inline">\(y \mathrel{\not\sim} z\)</span> implies that <span
+class="math inline">\(z\)</span> is odd. But then it follows from the
+definition of <span class="math inline">\(\mathrel{\not\sim}\)</span>
+that <span class="math inline">\(x \mathrel{\not\sim} z\)</span> does
+not hold because <span class="math inline">\(x\)</span> and <span
+class="math inline">\(z\)</span> are both odd.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Give two arguments modeled after the ones above to show that <span
+class="math inline">\(\leq\)</span> over the set of natural numbers is
+antisymmetric.</p>
+<div class="solution">
+<ol type="1">
+<li>Let <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> be natural numbers such that <span
+class="math inline">\(x \leq y\)</span> and <span
+class="math inline">\(y \leq x\)</span>. This can only be the case if
+<span class="math inline">\(x = y\)</span>. Since this holds for every
+possible choice of <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, we see that <span
+class="math inline">\(\leq\)</span> obeys antisymmetry.</li>
+<li>Let <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> be natural numbers such that <span
+class="math inline">\(x \neq y\)</span>. Then at least one of the
+following must not hold: <span class="math inline">\(x \leq y\)</span>
+or <span class="math inline">\(y \leq x\)</span>. But this is of course
+true. For example, if <span class="math inline">\(x = 7\)</span> and
+<span class="math inline">\(y = 5\)</span>, then it does not hold that
+<span class="math inline">\(x \leq y\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="exercise">
+<p>Earlier on we encountered the human ancestor relation. Is this
+relation antisymmetric?</p>
+<div class="solution">
+<p>In a world without time travel, it is antisymmetric. In a world with
+time travel, it might not be antisymmetric.</p>
+</div>
+<div class="solution_explained">
+<p>Antisymmetry trivially holds of any relation <span
+class="math inline">\(R\)</span> for which one cannot find any <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> such that both <span
+class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} x\)</span> hold. This is the case of
+the human ancestor relation in the real world. If <span
+class="math inline">\(x\)</span> is an ancestor of <span
+class="math inline">\(y\)</span>, then <span
+class="math inline">\(y\)</span> cannot be an ancestor of <span
+class="math inline">\(x\)</span>. Antisymmetry holds because we cannot
+even find any scenario where it could be possibly violated.</p>
+<p>But now consider the case of Futurama’s Philip J. Fry, who
+(spoilers!) travels back in time, does the nasties with his grandma, and
+ends up fathering his own father. This means that Fry is an ancestor of
+his father, and of course Fry’s father is an ancestor of Fry. Yet Fry
+and his father are not the same person. Antisymmetry is violated.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Given an example to show that the human sibling relation is not
+antisymmetric.</p>
+<div class="solution">
+<p>Cersei Lannister is a sibling of Jaime Lannister, and Jaime Lannister
+is a sibling of Cersei Lannister, yet the two are not the same
+person.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Give an example to show that <span
+class="math inline">\(\sim\)</span> as defined in a previous example is
+not antisymmetric.</p>
+<div class="solution">
+<p>Let <span class="math inline">\(x \mathrel{\mathop:}=1\)</span> and
+<span class="math inline">\(y \mathrel{\mathop:}=3\)</span>. Then <span
+class="math inline">\(x \sim y\)</span> and <span
+class="math inline">\(y \sim x\)</span>, yet <span
+class="math inline">\(x \neq y\)</span>.</p>
+</div>
+</div>
+<div class="exercise">
+<p>Is <span class="math inline">\(\not\sim\)</span> as defined in a
+previous example antisymmetric? Justify your answer.</p>
+<div class="solution">
+<p>No, it is not antisymmetric, for the very same reason as in the
+previous exercise. Suppose <span class="math inline">\(x
+\mathrel{\mathop:}=1\)</span> and <span class="math inline">\(y
+\mathrel{\mathop:}=2\)</span>. Then <span class="math inline">\(x
+\not\sim y\)</span> and <span class="math inline">\(y \not\sim
+x\)</span> yet <span class="math inline">\(x \neq y\)</span>.</p>
+</div>
+</div>
+<div class="exercise">
+<p>There is no relation that is reflexive, and irreflexive, and
+non-reflexive. Explain why!</p>
+<div class="solution">
+<p>A relation <span class="math inline">\(R\)</span> is non-reflexive
+iff there is some <span class="math inline">\(x\)</span> such that <span
+class="math inline">\(x \mathrel{R} x\)</span> and some <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(y
+\not\mathrel{R} y\)</span>. But <span class="math inline">\(x
+\mathrel{R} x\)</span> rules out that <span
+class="math inline">\(R\)</span> is irreflexive, and <span
+class="math inline">\(y \not\mathrel{R} y\)</span> rules out that <span
+class="math inline">\(R\)</span> is reflexive. So non-reflexivity is
+incompatible with reflexivity, and it is also incompatible with
+irreflexivity.</p>
+<p>Note, however, that reflexivity and irreflexivity are not
+incompatible. Any relation <span class="math inline">\(R\)</span> over
+the empty set is both reflexive and irreflexive: since there is no <span
+class="math inline">\(x \in \emptyset\)</span> such that <span
+class="math inline">\(x \not\mathrel{R} x\)</span>, we have no
+counterexample to <span class="math inline">\(R\)</span> being
+reflexive, and since there is no <span class="math inline">\(x \in
+\emptyset\)</span> such that <span class="math inline">\(x \mathrel{R}
+x\)</span>, we have no counterexample to <span
+class="math inline">\(R\)</span> being irreflexive.</p>
+</div>
+</div>
+<div class="exercise">
+<p>For each one of the following relations, say whether it is reflexive,
+irreflexive, or non-reflexive. Justify your answers! If you have to make
+additional assumptions, explain what they are.</p>
+<ol type="1">
+<li>the “younger than” relation</li>
+<li>the “sums to 10” relation over natural numbers (<span
+class="math inline">\(x \mathrel{R} y\)</span> iff <span
+class="math inline">\(x + y = 10\)</span>)</li>
+<li>the “at least as rich as” relation</li>
+<li>the “voted for the same candidate” relation</li>
+<li>the “parent-of” relation over humans in a world with time
+travel</li>
+<li>the “reverse” relation over words (<span class="math inline">\(x
+\mathrel{R} y\)</span> iff <span class="math inline">\(x\)</span> is
+<span class="math inline">\(y\)</span> read backwards;
+e.g. <em>deer</em> and <em>reed</em>)</li>
+</ol>
+<div class="solution">
+<ol type="1">
+<li>the “younger than” relation: irreflexive because no individual or
+object <span class="math inline">\(x\)</span> is younger than
+themselves.</li>
+<li>the “sums to 10” relation (<span class="math inline">\(x \mathrel{R}
+y\)</span> iff <span class="math inline">\(x + y = 10\)</span>):
+non-reflexive; since <span class="math inline">\(3 + 3 \neq 10\)</span>,
+we do not have <span class="math inline">\(3 \mathrel{R} 3\)</span>, but
+we do have <span class="math inline">\(5 \mathrel{R} 5\)</span> as <span
+class="math inline">\(5 + 5 = 10\)</span></li>
+<li>the “at least as rich as” relation: reflexive because every
+individual is at least as rich as themselves</li>
+<li>the “voted for the same candidate” relation: reflexive; although it
+is weird to say that Arnold Schwarzenegger voted for the same candidate
+as Arnold Schwarzenegger, it is certainly true</li>
+<li>the “parent-of” relation over humans in a world with time travel:
+non-reflexive or irreflexive. In a normal world this would be
+irreflexive because no human can be their own parent. But in a world
+with time travel some person <span class="math inline">\(x\)</span>
+could travel back in time, do the nasties with their parent of the
+opposite sex, and end up fathering/mothering themselves, which would
+mean the relation is no longer irreflexive but just non-reflexive. Then
+again, human offspring randomly inherits 50% of each parent’s DNA, so
+the odds of this act resulting in exactly the same human <span
+class="math inline">\(x\)</span> that traveled back in time are
+basically null, making the relation irreflexive after all. Then again,
+this could be a predestination paradox, in which case the offspring of
+<span class="math inline">\(x\)</span> must be <span
+class="math inline">\(x\)</span> because otherwise there would be no
+<span class="math inline">\(x\)</span> to go back in time to father
+<span class="math inline">\(x\)</span>. In that case the relation would
+be non-reflexive. You know what, forget about it, time travel is
+weird.</li>
+<li>the “reverse” relation over words (<span class="math inline">\(x
+\mathrel{R} y\)</span> iff <span class="math inline">\(x\)</span> is
+<span class="math inline">\(y\)</span> read backwards;
+e.g. <em>deer</em> and <em>reed</em>): non-reflexive. We have <span
+class="math inline">\(x \mathrel{R} x\)</span> if <span
+class="math inline">\(x\)</span> is a palindrome, e.g. <em>kayak</em>
+and <em>rotator</em>, but for most words <span class="math inline">\(x
+\not\mathrel{R} x\)</span>, e.g. <em>relation</em> or, ironically,
+<em>palindrome</em>.</li>
+</ol>
+</div>
+</div>
+<ul>
+<li><strong>transitive</strong>: for all <span class="math inline">\(x,
+y, z\)</span>, <span class="math inline">\(x \mathrel{R} y\)</span> and
+<span class="math inline">\(y \mathrel{R} z\)</span> jointly imply <span
+class="math inline">\(x \mathrel{R} z\)</span>, and</li>
+<li><strong>asymmetric</strong>: for all <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>, if <span class="math inline">\(x
+\mathrel{R} y\)</span> then <span class="math inline">\(y
+\not\mathrel{R} x\)</span>. :::</li>
+</ul>
+<div class="exercise">
+<p>Explain in intuitive terms why the two definitions of strict partial
+orders are equivalent.</p>
+<p><em>Hint:</em> You have to explain why asymmetry is essentially the
+combination of antisymmetry and irreflexivity.</p>
+<div class="solution">
+<p>We have to show that a relation is asymmetric iff it is both
+antisymmetric and irreflexive. Intuitively, this clearly holds. The
+definition of asymmetry says that the relation must not contain any
+loops, whereas antisymmetry says that the only permitted loops are
+self-loops, which in turn are ruled out by irreflexivity.</p>
+<p>More formally, suppose that <span class="math inline">\(R\)</span> is
+asymmetric. Then for all <span class="math inline">\(x\)</span> and
+<span class="math inline">\(y\)</span>, <span class="math inline">\(x
+\mathrel{R} y\)</span> entails <span class="math inline">\(y
+\not\mathrel{R} x\)</span>. But then antisymmetry trivially holds
+because there are no <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> such that both <span
+class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} x\)</span>. In addition, asymmetry
+enforces that <span class="math inline">\(x \mathrel{R} x\)</span>
+entails <span class="math inline">\(x \not\mathrel{R} x\)</span>. Since
+this is a contradiction, the only way asymmetry can hold is if there is
+no <span class="math inline">\(x\)</span> such that <span
+class="math inline">\(x \mathrel{R} x\)</span>. In other words, <span
+class="math inline">\(R\)</span> is irreflexive.</p>
+<p>In the other direction, suppose that <span
+class="math inline">\(R\)</span> is antisymmetric and irreflexive. Then
+<span class="math inline">\(x \mathrel{R} y\)</span> and <span
+class="math inline">\(y \mathrel{R} x\)</span> imply <span
+class="math inline">\(x = y\)</span>. But if <span
+class="math inline">\(x = y\)</span>, then <span class="math inline">\(x
+\mathrel{R} y\)</span> is actually <span class="math inline">\(x
+\mathrel{R} x\)</span>, which violates irreflexivity. Hence there must
+not be any <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> such that <span class="math inline">\(x
+\mathrel{R} y\)</span> and <span class="math inline">\(y \mathrel{R}
+x\)</span> are both true. In other words, <span class="math inline">\(x
+\mathrel{R} y\)</span> implies <span class="math inline">\(y
+\not\mathrel{R} x\)</span>, which is exactly the definition of
+asymmetry.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
