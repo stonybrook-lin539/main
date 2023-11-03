@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Phonological processes as transductions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#phonological-processes-as-transductions">Phonological
+processes as transductions</a>
+<ul>
+<li><a href="#progressive-assimilation">Progressive
+assimilation</a></li>
+<li><a
+href="#regressive-assimilation-the-delayed-output-strategy-and-the-final-emission-trick">Regressive
+assimilation, the delayed output strategy, and the final emission
+trick</a></li>
+<li><a
+href="#iterativityspreading-for-vowel-harmony">Iterativity/spreading for
+vowel harmony</a></li>
+<li><a href="#unboundedness-tiers-and-blocking">Unboundedness, tiers,
+and blocking</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="phonological-processes-as-transductions">Phonological processes
+as transductions</h1>
+<p>We have spent a fair amount of time on FSTs by now, but we still
+haven’t seen a truly compelling reason for using them as a formal model
+of phonology. So far, our only observation has been that FSTs allow us
+to rewrite one string into another, which would allow us to do relate
+underlying representations (URs) in phonology to their corresponding
+surface forms. But this is really underselling FSTs as a model of
+phonology. What is impressive about FSTs is that they use a single core
+mechanic — connecting finitely many states via transitions that have
+input:output labels — yet get tremendous phonological mileage out of it.
+FSTs can handle local processes like assimilation and word-final
+devoicing, iterated local processes like vowel harmony, unbounded
+dependencies and tiers, blocking, rule ordering, and much more. They
+truly are a phonological swiss army knife, except that it is a swiss
+army knife that does everything with just one blade.</p>
+<h2 id="progressive-assimilation">Progressive assimilation</h2>
+<p>Let us start with a very simple example. In colloquial speech,
+<em>n</em> often is pronounced <em>m</em> immediately after <em>p</em>.
+For example, somebody might say <em>cap’m</em> instead of <em>cap’n</em>
+as the short form of <em>captain</em>. This is an instance of
+<strong>progressive assimilation</strong>. Phonologists would describe
+this with a <strong>rewrite rule</strong> of the form</p>
+<p><span class="math display">\[\mathrm{n} \rightarrow \mathrm{m} \mid
+\mathrm{p} \_\]</span></p>
+<p>which is read as “<em>n</em> becomes <em>m</em> in any context where
+<em>n</em> immediately appears to the right of <em>p</em>”.</p>
+<p>We can also express this progressive assimilation very easily in the
+form of an FST. Again we may use the tabular format or the graph-based
+one in order to specify the FST. For the sake of succinctness, we assume
+that the only input symbols are <em>m</em>, <em>n</em>, <em>p</em>, and
+<em>x</em>. A realistic FST would have many more input symbols, but they
+would all be treated exactly the same as <em>x</em> here.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>P</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;">m:m, n:n, x:x</td>
+<td style="text-align: center;">p:p</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>P</strong></td>
+<td style="text-align: center;">m:m, n:m, x:x</td>
+<td style="text-align: center;">p:p</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p><img src="progressiveassimilation.svg"
+alt="progressiveassimilation.svg" /></p>
+<p>This transducer leaves almost all input symbols unchanged. If it sees
+a <em>p</em>, it moves into the state <em>P</em>, and only at this
+point, if the next symbol it sees is <em>n</em>, does it do some
+rewriting and output <em>m</em> instead. The key strategy is to switch
+from the default state <em>0</em> to the special state <em>P</em> when
+the conditions for rewriting <em>n</em> as <em>m</em> are met. Once we
+are in the state, we go back to <em>0</em> the moment the conditions for
+assimilation are no longer met, either because we have already carried
+out the assimilation step, or because we have encountered other input
+symbols that have disrupted the conditions for assimilation.</p>
+<div class="exercise">
+<p>Many language do not like consonant clusters of three or more
+consonants in a row. Using the strategy illustrated above, construct an
+FST that deletes all consonants in a cluster except the first two. For
+the sake of simplicity, assume that the input alphabet only consists of
+C for consonants and V for vowels. For example, you may have the input
+string CCVCCCCV, and it should be rewritten as CCVCCV.</p>
+</div>
+<h2
+id="regressive-assimilation-the-delayed-output-strategy-and-the-final-emission-trick">Regressive
+assimilation, the delayed output strategy, and the final emission
+trick</h2>
+<p>Whereas progressive assimilation proceeds from left-to-right,
+<strong>regressive assimilation</strong> proceeds from right-to-left.
+For example, the word <em>white board</em> is commonly pronounced like
+<em>wipe board</em> because the <em>b</em> in <em>board</em> causes the
+preceding <em>t</em> in <em>white</em> to become a <em>p</em>. The
+rewrite rule for that would be</p>
+<p><span class="math display">\[\mathrm{t} \rightarrow \mathrm{p} \mid
+\_ \mathrm{b}\]</span></p>
+<p>Notice how the conditioning environment now occurs after the sound
+that undergoes assimilation. At first sight it may seem that our FST
+cannot handle regressive assimilation patterns. Since the FST moves
+through the input from left-to-right and does not get to look ahead, it
+does not know what to do when it encounters a <em>t</em>. Maybe it will
+be followed by a <em>b</em>, in which case it should be rewritten as
+<em>p</em>, or maybe <em>t</em> won’t be followed by <em>b</em>, in
+which case it should stay a <em>t</em>. How could the FST figure out
+which one is the right option?</p>
+<p>One solution is to use a non-deterministic FST like the one
+below.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>P</strong></td>
+<td style="text-align: center;"><strong>T</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;">b:b, p:p, x:x</td>
+<td style="text-align: center;">t:p</td>
+<td style="text-align: center;">t:t</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>P</strong></td>
+<td style="text-align: center;">b:b</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>T</strong></td>
+<td style="text-align: center;">p:p, t:t, x:x</td>
+<td style="text-align: center;">t:p</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p><img src="regressiveassimilation.svg"
+alt="regressiveassimilation.svg" /></p>
+<div class="exercise">
+<p>Explain in your own words how this non-deterministic FST ensures that
+<em>t</em> is rewritten as <em>p</em> iff it occurs immediately before
+<em>b</em>.</p>
+</div>
+<p>Ideally, though, we avoid non-determinism unless it is absolutely
+necessary, and it is not necessary at all for regressive assimilation.
+Rather than having the FST make a guess about whether the current
+<em>t</em> should be rewritten as <em>t</em> or <em>p</em>, we can make
+it hold off on the rewriting until more of the input string has been
+seen. This is the <strong>delayed output strategy</strong>, and it
+exploits the fact that the output of a transition can also be the empty
+string <span class="math inline">\(\varepsilon\)</span> or a sequence of
+output symbols.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>T</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;">b:b, p:p, x:x</td>
+<td style="text-align: center;">t:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>T</strong></td>
+<td style="text-align: center;">b:pb, p:tp, x:tx</td>
+<td style="text-align: center;">t:t</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+</tbody>
+</table>
+<p><img src="regressiveassimilation_delayedoutput.svg"
+alt="regressiveassimilation_delayedoutput.svg" /></p>
+<p>This deterministic FST deletes <em>t</em> upon encountering it, but
+it switches to a different state <em>T</em> to keep track of the fact
+that a <em>t</em> has been deleted. When it encounters a <em>b</em>, a
+<em>p</em>, or an <em>x</em>, the transducer transitions from <em>T</em>
+back to the default state <em>0</em>. However, in doing so it also
+reinserts the deleted <em>t</em>, or rather, <em>t</em> or <em>p</em>
+depending on the symbol: with <em>p</em> and <em>x</em>, the deleted
+<em>t</em> is reinserted, whereas with <em>b</em>, a <em>p</em> is
+reinserted instead. Hence a <em>t</em> followed by a <em>b</em>
+undergoes assimilation via a two-step procedure: deletion of <em>t</em>
+and rewriting of <em>b</em> as <em>pb</em>. And this two-step procedure
+is exactly what the delayed output strategy is about.</p>
+<div class="exercise">
+<p>For each one of the following input strings, compute the output
+produced by the FST above.</p>
+<ol type="1">
+<li>xxptbx</li>
+<li>txptbx</li>
+<li>txptttbx</li>
+</ol>
+</div>
+<div class="exercise">
+<p>What is the role of the transition <em>t:t</em> from state <em>T</em>
+to <em>T</em>?</p>
+</div>
+<p>Unfortunately, though, there is a significant problem with the FST
+above. As currently defined, it cannot process any input strings that
+end in <em>t</em>.</p>
+<div class="example">
+<p>Consider the UR <em>xt</em>, which corresponds to the input string
+<em>xt&lt;</em>. The transducer starts in state <em>0</em>, rewrites
+<em>x</em> as <em>x</em>, and transitions to state <em>0</em>. After
+that, it sees <em>t</em> in the input and transitions from <em>0</em> to
+<em>T</em> while outputting nothing. It then reads in <em>&lt;</em>, but
+since <em>T</em> is not a final state, the FST gets stuck and no output
+is produced at all. We could fix this by making <em>T</em> final, but
+then we run into a different problem: the word-final <em>t</em> is
+deleted and never reinserted, and thus we end up with the incorrect
+output <em>x</em> instead of <em>xt</em>.</p>
+</div>
+<p>The solution to this is rather simple: the special outgoing edge of
+final states does not have to be labeled <em>&lt;:<span
+class="math inline">\(\varepsilon\)</span></em>, it can be any label
+with <em>&lt;</em> as the input symbol. In other words, we can use &lt;
+to add the final piece of the output string. This is the <strong>final
+emission trick</strong>.</p>
+<p>The revised FST is shown below. Note that the column
+<strong>Final</strong> of the table no specifies the symbols added to
+the output when the FST stops in this state.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>T</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;">b:b, p:p, x:x</td>
+<td style="text-align: center;">t:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>T</strong></td>
+<td style="text-align: center;">b:pb, p:tp, x:tx</td>
+<td style="text-align: center;">t:t</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(t)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="regressiveassimilation_delayedoutput_finalemission.svg"
+alt="regressiveassimilation_delayedoutput_finalemission.svg" /></p>
+<div class="example">
+<p>Consider once more the UR <em>xt</em> and its corresponding input
+string <em>xt&lt;</em>. After rewriting <em>x</em> as <em>x</em>, the
+FST is in state <em>T</em>. It next reads in <em>t</em> and outputs the
+empty string so that the output string is still just <em>x</em>. But
+now, when it encounters &lt;, it adds <em>t</em> to the output string,
+correctly yielding <em>xt</em> as the surface form of the UR
+<em>xt</em>.</p>
+</div>
+<div class="exercise">
+<p>In a previous chapter, we encountered the process of word-final
+devoicing in German. Inspired by this phenomenon, define an FST that
+uses the delayed output strategy and the final emission trick in order
+to replace word-final <em>z</em> with <em>s</em> and word-final
+<em>v</em> with <em>f</em>. You may write a table or draw a graph.</p>
+</div>
+<div class="exercise">
+<p>The process of intervocalic voicing is also familiar from an earlier
+chapter. Suppose that <em>s</em> is subject to intervocalic voicing::
+<span class="math inline">\(\mathrm{s} \rightarrow \mathrm{z} \mid
+\mathrm{V} \_ \mathrm{V}\)</span>. You may assume that the only input
+symbols are <em>s</em>, <em>z</em>, <em>x</em>, and <em>V</em> (and of
+course &lt;). Define an FST for intervocalic voicing. You may write a
+table or draw a graph.</p>
+<p>Does your FST use the delayed output strategy? What about the final
+emission trick?</p>
+</div>
+<div class="exercise">
+<p>The delayed output strategy does not work if the conditioning context
+can be arbitrarily far to the right of the target. Suppose, for
+instance, that <em>t</em> would become <em>p</em> if there is a
+<em>b</em> somewhere to the right of <em>t</em>, no matter how far apart
+the two are. This cannot be captured with the delayed output strategy.
+Explain why!</p>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, can you imagine a way to handle
+such regressive long-distance phenomena with an FST?</p>
+</div>
+<h2 id="iterativityspreading-for-vowel-harmony">Iterativity/spreading
+for vowel harmony</h2>
+<p>Another process we are familiar with by now is vowel harmony. We
+described Korean vowel harmony as a ban against mixing bright vowels (B)
+and mid-dark vowels (M) in the same word. But vowel harmony is actually
+a process that changes non-harmonic vowels in the UR to harmonic vowels
+in the surface form. Suppose, then, that if the first vowel is B, all
+other vowels in the word become B, and if the first vowel is M, all
+other vowels in the word become M. Can we do this with an FST? Why yes,
+of course we can, just see below (assuming that our only input symbols
+are <em>B</em>, <em>M</em>, and <em>x</em> for anything else).</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>B</strong></td>
+<td style="text-align: center;"><strong>M</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;">x:x</td>
+<td style="text-align: center;">B:B</td>
+<td style="text-align: center;">M:M</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>B</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">B:B, M:B, x:x</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>M</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">B:M, M:M, x:x</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="vowelharmony.svg" alt="vowelharmony.svg" /></p>
+<p>This FST starts out in the default state <em>0</em>, but the very
+first time it encounters <em>B</em> or <em>M</em>, it switches into the
+corresponding state. Once it is in one of those states, it rewrites all
+vowels into harmonic vowels.</p>
+<div class="exercise">
+<p>For each one of the URs below, compute the corresponding surface
+form. Don’t forget to add &lt; at the end of the input string.</p>
+<ol type="1">
+<li>xBxxM</li>
+<li>MxxBxxBxxM</li>
+<li>MxxxxxxxxB</li>
+</ol>
+</div>
+<div class="exercise">
+<p>The high dark vowels (H) are neutral vowels. They can occur together
+with B or M, and they do not undergo vowel harmony. That is to say, H
+stays H. Revise the FST above so that it also handles H correctly.</p>
+</div>
+<div class="exercise">
+<p>Suppose that vowel harmony were not iterative. That is to say, the
+first vowel only controls the harmony for the second vowel, after that
+the third vowel controls the harmony for the fourth vowel, and so on.
+For instance, <em>xBxMxMxB</em> would come out as <em>xBxBxMxM</em>.
+Modify the FST above so that it captures this pattern.</p>
+</div>
+<div class="exercise">
+<p>Now suppose that vowel harmony is even more restricted so that
+harmony never involves more than the first two vowels in the word. For
+example, <em>xBxMxMxB</em> would now come out as <em>xBxBxMxB</em>.
+Modify the FST above so that it captures this pattern.</p>
+</div>
+<h2 id="unboundedness-tiers-and-blocking">Unboundedness, tiers, and
+blocking</h2>
+<p>Another harmony process we have encountered before is sibilant
+harmony in Samala, which was noteworthy because it seems to be able to
+span arbitrary distances. All sibilants in the word must be harmonic
+with the very first sibilant. If the first sibilant is <em>s</em>, then
+any subsequent instances of <em>ʃ</em> become <em>s</em>. And if the
+first sibilant is <em>ʃ</em>, then any subsequent instances of
+<em>s</em> become <em>ʃ</em> When we first encountered this phenomenon,
+we modeled it with tiers, but no such addition is needed for FSTs to
+capture the unbounded nature of sibilant harmony. In fact, the can
+pretty much recycle our FST for vowel harmony.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>ESS</strong></td>
+<td style="text-align: center;"><strong>ESH</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;">x:x</td>
+<td style="text-align: center;">s:s</td>
+<td style="text-align: center;">ʃ:ʃ</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>ESS</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">s:s, ʃ:s, x:x</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>ESH</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">s:ʃ, ʃ:ʃ, x:x</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="sibilantharmony.svg" alt="sibilantharmony.svg" /></p>
+<div class="exercise">
+<p>Slovenian has a version of sibilant harmony that is similar to
+Samala, except that harmony is blocked by an intervening <em>t</em>.
+That is to say, the first sibilant after a <em>t</em> does not need to
+be harmonic with any of the sibilants to its left, but the sibilants to
+its right must be harmonic with that sibilant (unless another <em>t</em>
+intervenes). Hence we get the following mappings between URs and surface
+forms:</p>
+<ul>
+<li><em>xxsxxʃ</em> becomes <em>xsxxs</em></li>
+<li><em>xxstxʃ</em> becomes <em>xstxʃ</em></li>
+<li><em>xxstxʃxs</em> becomes <em>xstxʃxʃ</em></li>
+<li><em>xxstxʃts</em> becomes <em>xstxʃts</em></li>
+</ul>
+<p>Modify the FST above so that it incorporates blocking by
+<em>t</em>.</p>
+</div>
+<p>We could look at many other phenomena, but the central point should
+be clear by now: the simple and elegant mechanism of connecting states
+via transitions allows us to capture wide range of phonological
+phenomena. No extra tweaks or extensions are required to capture
+locality, unboundedness, iterativity, tiers, blocking, and much more.
+They are all particular instantiations of the same basic machinery.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>FSTs allow us model a variety of phonological phenomena as the
+rewriting of URs into surface forms.</li>
+<li>Without any extra machinery, FSTs can express
+<ul>
+<li>locally bounded phenomena (progressive and regressive), and</li>
+<li>unbounded phenomena/tier-based phenomena, and</li>
+<li>iterative phenomena and spreading, and</li>
+<li>phenomena that involve blocking.</li>
+</ul></li>
+<li>Rewriting steps that are conditioned by subsequent material require
+the <strong>delayed output strategy</strong>: delete the symbol, then
+reinsert it later on when the conditioning context has been fully read
+in.</li>
+<li>The <strong>final emission trick</strong> allows us to rewrite &lt;
+as a sequence of 0 or more input symbols.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
