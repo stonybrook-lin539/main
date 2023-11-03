@@ -15,8 +15,8 @@ Phonology isn't really about determining whether a given string is a possible wo
 
 ::: example
 We have seen several examples of word-final devoicing, e.g. in German.
-The German word for *song* is *li:t* in the singular, with a voiceless *t*, but *li:dɐ* in the plural with a voiced *d* (actually, a phonetician will tell you that German has a constricted-glottis distinction rather than a voicing distinction, but that doesn't matter for this example).
-Once we remove the plural marker from *li:dɐ* we are left with the stem *li:d*.
+The German word for *song* is *li:t* in the singular, with a voiceless *t*, but *li:der* in the plural with a voiced *d* (actually, a phonetician will tell you that German has a constricted-glottis distinction rather than a voicing distinction, but that doesn't matter for this example).
+Once we remove the plural marker from *li:der* we are left with the stem *li:d*.
 This is distinct from *li:t*, yet native speakers of German somehow know that these are both just different outputs of the same lexical item for *song*.
 They know that these two forms are phonologically related to each other.
 :::
@@ -25,10 +25,10 @@ Given these relations between surface forms, phonologists have argued that phono
 
 ::: example
 One could say that German has a UR *li:d* for *song*.
-If we want the plural of that, we use a rewrite rule that appends the plural marker *ɐ* to this UR, yielding *li:dɐ*.
+If we want the plural of that, we use a rewrite rule that appends the plural marker *er* to this UR, yielding *li:der*.
 The singular of *li:d*, on the other hand, has no special marker, so the rule for singular would not add any pronounced material to the UR.
 But this means that the UR is subject to the rewrite rule for word-final devoicing, which replaces *d* with *t*, yielding *li:t*.
-Hence both *li:dɐ* and *li:t* are surface forms of the same UR *li:d*, which explains why native speakers of German can recognize them as related forms even though they only share *l* and *i:*.
+Hence both *li:der* and *li:t* are surface forms of the same UR *li:d*, which explains why native speakers of German can recognize them as related forms even though they only share *l* and *i:*.
 :::
 
 There are many excellent phonology textbooks that explain the appropriate use of URs and rewrite rules in great detail.
