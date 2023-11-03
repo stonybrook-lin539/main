@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Finite-state recognition as Boolean matrix
+multiplication</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a
+href="#finite-state-recognition-as-boolean-matrix-multiplication">Finite-state
+recognition as Boolean matrix multiplication</a>
+<ul>
+<li><a href="#generators-and-recognizers">Generators and
+recognizers</a></li>
+<li><a href="#boolean-matrix-multiplication">Boolean matrix
+multiplication</a></li>
+<li><a
+href="#fsa-recognition-as-boolean-matrix-multiplication-the-intuition">FSA
+recognition as Boolean matrix multiplication: the intuition</a></li>
+<li><a
+href="#fsa-recognition-as-boolean-matrix-multiplication-formal-procedure">FSA
+recognition as Boolean matrix multiplication: Formal procedure</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1
+id="finite-state-recognition-as-boolean-matrix-multiplication">Finite-state
+recognition as Boolean matrix multiplication</h1>
+<div class="prereqs">
+<ul>
+<li>linear algebra (not in background section yet)
+<ul>
+<li>matrices</li>
+<li>matrix multiplication</li>
+</ul></li>
+</ul>
+</div>
+<h2 id="generators-and-recognizers">Generators and recognizers</h2>
+<p>Finite-state automata can be used as <strong>generators</strong> or
+as <strong>recognizers</strong>. As a generator, an FSA is used to
+produce well-formed strings, similar to how linguistics may use a phrase
+structure grammar to generate well-formed sentences. As a recognizer,
+the FSA is given a string as input and has to decide whether this string
+is well-formed. That is to say, the string has to describe a valid path
+from an initial state to some final state. Recognition is the more
+common use of FSAs.</p>
+<p>Since recognition is a very common of FSAs in practical applications,
+one would like it to be as fast as possible. We already know that
+deterministic automata can be much faster than non-deterministic ones,
+so determinization can be an important step of a fast FSA
+implementation. However, there is a very different route which has the
+advantage of reducing FSA recognition to a process that has already been
+heavily optimized: matrix multiplication. Matrix multiplication is
+essential in tons of applications, in particular high-performance
+scientific computing. Thousands of smart minds have thought long and
+hard about how matrix multiplication can be done as quickly as possible.
+By reducing FSA recognition to matrix multiplication, we can use
+standard packages for matrix multiplication and harness all those speed
+improvements for free.</p>
+<h2 id="boolean-matrix-multiplication">Boolean matrix
+multiplication</h2>
+<p>Instead of standard matrix multiplication, we will be using
+<strong>Boolean matrix multiplication</strong>. It works just like
+standard matrix multiplication, except that the only values we can have
+are the two Boolean values 0 and 1. Matrices with other values cannot be
+used in Boolean matrix multiplication. As long as we start with matrices
+that only contain 0s and 1s, almost everything will work just fine. The
+only problem is addition, which has to be capped at 1: whenever we would
+get a value above 1, we just use 1 instead.</p>
+<div class="example">
+<p>Consider the following formula, with <span
+class="math inline">\(\otimes\)</span> used for matrix
+multiplication.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+  0 &amp; 1 &amp; 1\\
+  1 &amp; 0 &amp; 1\\
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+  0 &amp; 0\\
+  1 &amp; 1\\
+  1 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p>With normal matrix multiplication, this would yield the following
+matrix:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    2 &amp; 1\\
+    1 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p>With Boolean matrix multiplication, the 2 is capped to 1,
+yielding</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    1 &amp; 1\\
+    1 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+</div>
+<div class="exercise">
+<p>For each one of the following equations, give its result under
+Boolean matrix multiplication. If the output is undefined, say so.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    0 &amp; 1\\
+    1 &amp; 1\\
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+    1\\
+    1\\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    0 &amp; 1\\
+    1 &amp; 2\\
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+    1 &amp; 0\\
+    1 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    0 &amp; 1\\
+    1 &amp; 1\\
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+    1 &amp; 0\\
+    1 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    0 &amp; 1\\
+    1 &amp; 1\\
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+    1 &amp; 0\\
+    1 &amp; 0\\
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+    0 &amp; 0 &amp; 1 &amp; 1\\
+    0 &amp; 1 &amp; 0 &amp; 1\\
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+    1\\
+    1\\
+    0\\
+    1\\
+\end{bmatrix}
+\]</span></p>
+</div>
+<p>Boolean matrix multiplication is actually quite a bit easier than
+standard matrix multiplication since we only need to determine if a cell
+should be filled by 0 or 1. And this is is pretty simple. Suppose we are
+trying to compute the product of row <span
+class="math inline">\(r\)</span> in the first matrix and column <span
+class="math inline">\(c\)</span> in the second matrix. As usual, we
+multiply the <span class="math inline">\(i\)</span>-th value of <span
+class="math inline">\(r\)</span> with the <span
+class="math inline">\(i\)</span>-th value of <span
+class="math inline">\(c\)</span> and then add them all up. But we
+actually do not need to consider each <span
+class="math inline">\(i\)</span>. First of all, if the <span
+class="math inline">\(i\)</span>-th value in <span
+class="math inline">\(r\)</span> or <span
+class="math inline">\(c\)</span> is 0, then obviously multiplication
+will return 0. But 0 does not add anything to the addition step. Hence
+the <span class="math inline">\(i\)</span>-th values of <span
+class="math inline">\(r\)</span> and <span
+class="math inline">\(c\)</span> are of interest to us only if they are
+both <span class="math inline">\(1\)</span>. In that case, the <span
+class="math inline">\(i\)</span>-th values contribute 1 to the addition
+step. But remember that addition is capped at 1, so as soon as we have
+at least 1 it does not matter whether the other values multiply out to 0
+or 1. For this reason, Boolean matrix multiplication follows a very
+simple recipe:</p>
+<ol type="1">
+<li>Suppose you are looking at row <span class="math inline">\(r
+\mathrel{\mathop:}=r_1 \cdots r_n\)</span> of the first matrix and
+column <span class="math inline">\(c \mathrel{\mathop:}=c_1 \cdots
+c_n\)</span> of the second matrix.</li>
+<li>For each <span class="math inline">\(i\)</span> such that <span
+class="math inline">\(r_i = 1\)</span>, check the value of <span
+class="math inline">\(c_i\)</span>.
+<ol type="1">
+<li>If <span class="math inline">\(c_i = 1\)</span>, the product of
+<span class="math inline">\(r\)</span> and <span
+class="math inline">\(c\)</span> is 1.</li>
+<li>If there is no <span class="math inline">\(i\)</span> with <span
+class="math inline">\(c_i = 1\)</span>, the product of <span
+class="math inline">\(r\)</span> and <span
+class="math inline">\(c\)</span> is 0.</li>
+</ol></li>
+</ol>
+<div class="example">
+<p>Calculating the matrix product of the two matrices below might
+usually take you quite a while.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1\\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+    1 &amp; 1\\
+    0 &amp; 0\\
+    1 &amp; 0\\
+    1 &amp; 0\\
+    1 &amp; 1\\
+    1 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p>But it is very easy with our shortcut for Boolean matrix
+multiplication.</p>
+<p><strong>Row 1 &amp; Column 1</strong>: Only the 2nd, 4th, and 6th
+value of Row 1 are not 0. We check the 2nd value of Column 1, which is
+0. At this point, the final result is still unclear. We move on to the
+4th value, which is 1. We stop and fill in 1.</p>
+<p><strong>Row 1 &amp; Column 2</strong>: We already know that we only
+need to check the 2nd, 4th, or 6th value of Column 2. All three of them
+are 0, so we have to fill in 0.</p>
+<p><strong>Row 2</strong>: Since all values of Row 2 are 0, we can
+immediately fill in 0 for all columns of that row.</p>
+<p>The final matrix is shown below:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    1 &amp; 0\\
+    0 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+</div>
+<div class="exercise">
+<p>Recompute the values for the formulas from the previous exercise,
+using the faster procedure now. Write down the relevant steps as in the
+example above. Skip any formulas that you said were not well-defined for
+Boolean matrix multiplication.</p>
+</div>
+<h2
+id="fsa-recognition-as-boolean-matrix-multiplication-the-intuition">FSA
+recognition as Boolean matrix multiplication: the intuition</h2>
+<p>In order to reduce finite-state recognition to Boolean matrix
+multiplication, we need a method for translating a given FSA into a
+collection of matrices. The method is actually fairly easy, and it works
+for both deterministic and non-deterministic automata. However, the
+automaton must not contain any <span
+class="math inline">\(\varepsilon\)</span>-transitions (there is an
+algorithm for removing such transitions).</p>
+<p>We will start with a concrete example as the translation procedure is
+a little abstract when written out in formal terms.</p>
+<div class="example">
+<p>Consider once more the familiar automaton for the language <span
+class="math inline">\(a(\mathit{baa})^*\)</span>. To avoid confusion,
+the states have been renamed X, Y, and Z.</p>
+<p><img src="abaa_relabeled.svg" alt="abaa_relabeled.svg" /></p>
+<p>This automataon uses an alphabet with only two symbols, <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>. For each one of these symbols, we
+create a matrix that records how we can transition from one state into
+another via this symbol. Since the automaton has 3 states, we create two
+3-by-3 matrices, one for <span class="math inline">\(a\)</span> and for
+<span class="math inline">\(b\)</span>. At this point, both matrices are
+empty, but for increased clarity we label each row and column with a
+state of the automaton.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    a &amp; X &amp; Y &amp; Z\\
+    X &amp;   &amp;   &amp;  \\
+    Y &amp;   &amp;   &amp;  \\
+    Z &amp;   &amp;   &amp;  \\
+\end{bmatrix}
+%
+\qquad
+%
+\begin{bmatrix}
+    b &amp; X &amp; Y &amp; Z\\
+    X &amp;   &amp;   &amp;  \\
+    Y &amp;   &amp;   &amp;  \\
+    Z &amp;   &amp;   &amp;  \\
+\end{bmatrix}
+\]</span></p>
+<p>We now have to look at the transitions of the automaton in order to
+fill these matrices. We only have one transition leaving X, which goes
+to Y via <span class="math inline">\(a\)</span>. We put a <span
+class="math inline">\(1\)</span> in the first row and second column of
+the <span class="math inline">\(a\)</span>-matrix.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    a &amp; X &amp; Y &amp; Z\\
+    X &amp;   &amp; 1 &amp;  \\
+    Y &amp;   &amp;   &amp;  \\
+    Z &amp;   &amp;   &amp;  \\
+\end{bmatrix}
+%
+\qquad
+%
+\begin{bmatrix}
+    b &amp; X &amp; Y &amp; Z\\
+    X &amp;   &amp;   &amp;  \\
+    Y &amp;   &amp;   &amp;  \\
+    Z &amp;   &amp;   &amp;  \\
+\end{bmatrix}
+\]</span></p>
+<p>Intuitively, the row of the matrix indicates which state we are
+currently in, and the column tells us which state we can transition
+into. So the <span class="math inline">\(a\)</span>-matrix now encodes
+the fact that we can move from X to Y via <span
+class="math inline">\(a\)</span>.</p>
+<p>This leaves us with two transitions. One goes from Y to Z via <span
+class="math inline">\(b\)</span>, so we have to add a <span
+class="math inline">\(1\)</span> in the Y-row and Z-column of the <span
+class="math inline">\(b\)</span>-matrix. The other one goes from <span
+class="math inline">\(Z\)</span> to <span
+class="math inline">\(X\)</span> via <span
+class="math inline">\(a\)</span>, which means that the <span
+class="math inline">\(a\)</span>-matrix also should have a <span
+class="math inline">\(1\)</span> in row <span
+class="math inline">\(Z\)</span>, column <span
+class="math inline">\(X\)</span>.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    a &amp; X &amp; Y &amp; Z\\
+    X &amp;   &amp; 1 &amp;  \\
+    Y &amp;   &amp;   &amp;  \\
+    Z &amp; 1 &amp;   &amp;  \\
+\end{bmatrix}
+%
+\qquad
+%
+\begin{bmatrix}
+    b &amp; X &amp; Y &amp; Z\\
+    X &amp;   &amp;   &amp;  \\
+    Y &amp;   &amp;   &amp; 1\\
+    Z &amp;   &amp;   &amp;  \\
+\end{bmatrix}
+\]</span></p>
+<p>We have looked at all the transitions. Any cell that is still empty
+gets a 0.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    a &amp; X &amp; Y &amp; Z\\
+    X &amp; 0 &amp; 1 &amp; 0\\
+    Y &amp; 0 &amp; 0 &amp; 0\\
+    Z &amp; 1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\qquad
+%
+\begin{bmatrix}
+    b &amp; X &amp; Y &amp; Z\\
+    X &amp; 0 &amp; 0 &amp; 0\\
+    Y &amp; 0 &amp; 0 &amp; 1\\
+    Z &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p>We are almost done with the translation. We also have to define a
+matrix <span class="math inline">\(I\)</span> for the initial states and
+a matrix <span class="math inline">\(F\)</span> for the final states.
+Intuitively, the initial state matrix records whether we can transition
+into a given state at the very beginning. So it uses states as columns.
+The final state matrix records whether we can transition out of a state
+at the very end. Hence it uses states as rows.</p>
+<p><span class="math display">\[
+I \mathrel{\mathop:}=
+\begin{bmatrix}
+    X &amp; Y &amp; Z\\
+    1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\qquad
+%
+F \mathrel{\mathop:}=
+\begin{bmatrix}
+    X &amp; 0 \\
+    Y &amp; 1 \\
+    Z &amp; 0 \\
+\end{bmatrix}
+\]</span></p>
+<p>And that’s it. Remember that <span class="math inline">\(X\)</span>,
+<span class="math inline">\(Y\)</span>, and <span
+class="math inline">\(Z\)</span> aren’t part of the matrices above,
+they’re just labels that have been added for the sake of clarity.</p>
+</div>
+<p>Given a matrix representation of an FSA, it is very easy to check
+whether a string is recognized by the automaton. Just replace each
+symbol by the corresponding matrix, put <span
+class="math inline">\(I\)</span> at the very beginning of the formula,
+and <span class="math inline">\(F\)</span> at the very end. Then perform
+Boolean matrix multiplication on all the matrices. The string is
+accepted iff the final product is 1.</p>
+<div class="example">
+<p>We already know that the automaton above accepts the string <span
+class="math inline">\(\mathit{abaa}\)</span>. Let’s see how we get the
+same result via Boolean matric multiplication. We have to construct a
+formula that evaluates to 1.</p>
+<p>First, we replace each <span class="math inline">\(a\)</span> in the
+string by the matrix for <span class="math inline">\(a\)</span>, and
+each <span class="math inline">\(b\)</span> by the matrix for <span
+class="math inline">\(b\)</span>:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    a &amp; X &amp; Y &amp; Z\\
+    X &amp; 0 &amp; 1 &amp; 0\\
+    Y &amp; 0 &amp; 0 &amp; 0\\
+    Z &amp; 1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\otimes
+%
+\begin{bmatrix}
+    b &amp; X &amp; Y &amp; Z\\
+    X &amp; 0 &amp; 0 &amp; 0\\
+    Y &amp; 0 &amp; 0 &amp; 1\\
+    Z &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\otimes
+%
+\begin{bmatrix}
+    a &amp; X &amp; Y &amp; Z\\
+    X &amp; 0 &amp; 1 &amp; 0\\
+    Y &amp; 0 &amp; 0 &amp; 0\\
+    Z &amp; 1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\otimes
+%
+\begin{bmatrix}
+    a &amp; X &amp; Y &amp; Z\\
+    X &amp; 0 &amp; 1 &amp; 0\\
+    Y &amp; 0 &amp; 0 &amp; 0\\
+    Z &amp; 1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p>Then we add <span class="math inline">\(I\)</span> at the front and
+<span class="math inline">\(F\)</span> at the end. The result is shown
+below, with labels removed to simplify the matrix multiplication
+step:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\otimes
+%
+\begin{bmatrix}
+    0 &amp; 1 &amp; 0\\
+    0 &amp; 0 &amp; 0\\
+    1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\otimes
+%
+\begin{bmatrix}
+    0 &amp; 0 &amp; 0\\
+    0 &amp; 0 &amp; 1\\
+    0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\otimes
+%
+\begin{bmatrix}
+    0 &amp; 1 &amp; 0\\
+    0 &amp; 0 &amp; 0\\
+    1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\otimes
+%
+\begin{bmatrix}
+    0 &amp; 1 &amp; 0\\
+    0 &amp; 0 &amp; 0\\
+    1 &amp; 0 &amp; 0\\
+\end{bmatrix}
+%
+\otimes
+%
+\begin{bmatrix}
+    0\\
+    1\\
+    0\\
+\end{bmatrix}
+\]</span></p>
+<p>And now we just solve this formula. It’s best to do so from left to
+right as this keeps the matrices fairly small. The end result is 1, as
+expected.</p>
+</div>
+<div class="exercise">
+<p>Solve the equation in the example above in two ways:</p>
+<ul>
+<li>proceeding from left to right, starting with the first matrix,</li>
+<li>proceeding from left to right but starting with the second matrix;
+only multiply with the first matrix at the very end.</li>
+</ul>
+<p>Both routes return the same result because matrix multiplication is
+associative. But one will be much less work for you than the other.</p>
+</div>
+<div class="exercise">
+<p>Use Boolean matrix multiplication to determine for each one of the
+following strings whether it is a member of <span
+class="math inline">\(a(\mathit{baa})^*\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\mathit{aab}\)</span></li>
+<li><span class="math inline">\(\mathit{aba}\)</span></li>
+<li><span class="math inline">\(a\)</span></li>
+<li><span class="math inline">\(\varepsilon\)</span></li>
+</ul>
+</div>
+<p>With a bit of practice, you’ll notice that resolving the matrix
+multiplication formulas from left to right captures a specific
+intuition. You always end up with a 1-dimensional matrix (i.e. a
+vector). A 1 in column <span class="math inline">\(i\)</span> means that
+the automaton might currently be in the state corresponding to this
+column. In a deterministic automaton like the one above, exactly one
+column has a 1, all others are 0. This is also called a <strong>one-hot
+vector</strong>. With non-deterministic automata, the matrix may contain
+multiple 1s as there are multiple states the automaton could possibly be
+in.</p>
+<div class="exercise">
+<p>Consider the non-deterministic FSA below for <span
+class="math inline">\(a^+b^*\)</span>.</p>
+<p><img src="aplusb_nondet.svg" alt="aplusb_nondet.svg" /></p>
+<p>Construct the corresponding matrices for this automaton. Then use
+matrix multiplication to determine for each one of the following strings
+whether it is recognized by the automaton. Solve the equations from left
+to right and pay close attention to how the distribution of <span
+class="math inline">\(1\)</span>s reflects which states the automaton
+may be in.</p>
+<ul>
+<li><span class="math inline">\(\mathit{a}\)</span></li>
+<li><span class="math inline">\(\mathit{ab}\)</span></li>
+<li><span class="math inline">\(\mathit{aaab}\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, determinize the automaton. Then
+repeat the previous steps using the deterministic automaton instead.</p>
+</div>
+<h2
+id="fsa-recognition-as-boolean-matrix-multiplication-formal-procedure">FSA
+recognition as Boolean matrix multiplication: Formal procedure</h2>
+<p>This section specifies the translation in formal terms.</p>
+<ol type="1">
+<li>Suppose that we have an automaton <span class="math inline">\(A
+\mathrel{\mathop:}=\left \langle \Sigma, Q, I, F, \Delta \right
+\rangle\)</span> such that <span class="math inline">\(Q
+\mathrel{\mathop:}=\left \{ q_1, \ldots, q_n \right \}\)</span>.</li>
+<li>For each <span class="math inline">\(\sigma \in \Sigma\)</span>, we
+construct a matrix <span class="math inline">\(A_\sigma\)</span> with
+<span class="math inline">\(n\)</span> rows and <span
+class="math inline">\(n\)</span> columns. We fill the cell <span
+class="math inline">\(c_{i,j}\)</span> in row <span
+class="math inline">\(i\)</span> and column <span
+class="math inline">\(j\)</span> with 1 if <span
+class="math inline">\(A\)</span> allows us to transition from state
+<span class="math inline">\(q_i\)</span> to <span
+class="math inline">\(q_j\)</span> via <span
+class="math inline">\(\sigma\)</span> (<span class="math inline">\(1
+\leq i,j \leq n\)</span>). Otherwise, it is filled with <span
+class="math inline">\(0\)</span>.</li>
+<li>The <span class="math inline">\(1\)</span>-by-<span
+class="math inline">\(n\)</span> matrix <span
+class="math inline">\(A_I\)</span> contains a <span
+class="math inline">\(1\)</span> in column <span
+class="math inline">\(i\)</span> if <span class="math inline">\(q_i \in
+I\)</span>, and <span class="math inline">\(0\)</span> otherwise (<span
+class="math inline">\(1 \leq i \leq n\)</span>).</li>
+<li>The <span class="math inline">\(n\)</span>-by-<span
+class="math inline">\(1\)</span> matrix <span
+class="math inline">\(A_F\)</span> contains a <span
+class="math inline">\(1\)</span> in row <span
+class="math inline">\(i\)</span> if <span class="math inline">\(q_i \in
+F\)</span>, and <span class="math inline">\(0\)</span> otherwise (<span
+class="math inline">\(1 \leq i \leq n\)</span>).</li>
+<li>We recursively define a translation function <span
+class="math inline">\(t_A\)</span> from strings over <span
+class="math inline">\(\Sigma\)</span> to matrix multiplication formulas.
+First, <span class="math inline">\(t_A(\varepsilon)
+\mathrel{\mathop:}=A_F\)</span>. Given <span class="math inline">\(a \in
+\Sigma\)</span> and <span class="math inline">\(u \in \Sigma^*\)</span>,
+<span class="math inline">\(t_A(au) \mathrel{\mathop:}=A_a \otimes
+t_A(u)\)</span>.</li>
+<li>A string <span class="math inline">\(s \in \Sigma^*\)</span> is
+recognized by <span class="math inline">\(A\)</span> iff <span
+class="math inline">\(A_I \otimes t_A(s) = 1\)</span>.</li>
+</ol>
+<div class="exercise">
+<p>Carefully read through the definition above. Try to make sense of it
+based on the previously established intuition. Write down anything you
+do not understand, and discuss it in class.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
