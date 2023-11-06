@@ -57,7 +57,7 @@ And thus the game begins:
   He draws a heart.
   Following his rules, he return the heart to the bag, places a heart on the output token tray, and then it is Mary's turn.
 - Mary draws a spade, and she decides to go with option one: she places two clubs, and she also gets the next turn (and of course she returns the spade she drew to the input token bag).
-- Mary then draws another heart and places a heart on the output tray as prescribed by her rules.
+- Mary then draws another heart and places a diamond on the output tray as prescribed by her rules.
   John thus gets the next turn.
 - John decides to use his special power to place a club without drawing from the input bag.
 Doing so allows him to keep his turn.
@@ -67,7 +67,7 @@ Doing so allows him to keep his turn.
   He draws the special token {{{R}}}, signalling the end of the game.
   But fortunately John's rules designate him as a final player, and thus the game is won.
 
-John and Mary celebrate their victory by writing down their victory string *heart-club-club-heart-club-club*, which they obtained from the sequence *heart-spade-heart-{{{R}}}* of input tokens.
+John and Mary celebrate their victory by writing down their victory string *heart-club-club-diamond-club-club*, which they obtained from the sequence *heart-spade-heart-{{{R}}}* of input tokens.
 :::
 
 ::: exercise

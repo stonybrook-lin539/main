@@ -257,10 +257,10 @@ Slovenian has a version of sibilant harmony that is similar to Samala, except th
 That is to say, the first sibilant after a *t* does not need to be harmonic with any of the sibilants to its left, but the sibilants to its right must be harmonic with that sibilant (unless another *t* intervenes).
 Hence we get the following mappings between URs and surface forms:
 
-- *xxsxxʃ* becomes *xsxxs*
-- *xxstxʃ* becomes *xstxʃ*
-- *xxstxʃxs* becomes *xstxʃxʃ*
-- *xxstxʃts* becomes *xstxʃts*
+- *xxsxxʃ* becomes *xxsxxs*
+- *xxstxʃ* becomes *xxstxʃ*
+- *xxstxʃxs* becomes *xxstxʃxʃ*
+- *xxstxʃts* becomes *xxstxʃts*
 
 Modify the FST above so that it incorporates blocking by *t*.
 :::

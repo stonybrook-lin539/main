@@ -82,7 +82,7 @@ Upon closer inspection of the FST, we can deduce what kind of rewrite process it
 
 1. The states $E$ and $O$ keep track of whether, so far, we have seen an even or an odd number of *a*s in the input.
 1. Every other *a* (i.e. every *a* after an odd number of *a*s) is rewritten as *b*.
-1. If a *b* has an odd number of *a*s, we delete it, and otherwise we replace it with *bb*.
+1. If a *b* has an odd number of *a*s, we delete it, and otherwise we replace it with *cc*.
 1. Do not change anything else.
 
 ::: exercise
