@@ -39,7 +39,16 @@
 <p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
 <ul>
 <li><a href="#rule-ordering-via-cascades-and-composition">Rule ordering
-via cascades and composition</a></li>
+via cascades and composition</a>
+<ul>
+<li><a href="#ordering-effects-with-fsts">Ordering effects with
+FSTs</a></li>
+<li><a href="#incremental-cascades-the-intuition">Incremental cascades:
+the intuition</a></li>
+<li><a href="#from-an-fst-cascade-to-a-cascade-fst">From an FST cascade
+to a cascade FST</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -48,10 +57,1187 @@ via cascades and composition</a></li>
 cascades and composition</h1>
 <div class="prereqs">
 <ul>
-<li>relations(closure)</li>
+<li>tuples(crossproduct) <!-- - relations(composition, closure) --></li>
 </ul>
 </div>
-<p>to be done</p>
+<p>During our discussion of mapping n-grams, we saw that problems can
+arise if a context is compatible with multiple ways of rewriting the
+string: which rewrite step should we carry out first? Phonologists
+resolve this problem by assuming that the set of phonological rules is
+totally ordered. If two rules are both applicable, the total order tells
+us which one to apply first. This practice is known as <strong>rule
+ordering</strong> in phonology. While rule ordering certainly solves
+this problem, it poses profound questions: Why should grammars allow for
+rule ordering? Does rule ordering increase the power of the grammar? The
+surprising answer offered by finite-state transducers is that rule
+ordering does not increase power because every grammar with rule
+ordering corresponds to one without rule ordering. And that is because
+every grammar with rewrite rules can be flattened into a grammar with
+just a single rewrite rule. Let’s see how one arrives at this surprising
+conclusion.</p>
+<h2 id="ordering-effects-with-fsts">Ordering effects with FSTs</h2>
+<p>We should first confirm that the issue of rule ordering is a real one
+in FST-land. That is to say, if we have two FSTs, can we apply them in
+sequence, and does it matter in what order we apply them? The answer to
+both is a resounding Yes.</p>
+<p>First, applying two FSTs <em>X</em> and <em>Y</em> in sequence to
+some underlying representation <em>u</em> can be understood as feeding
+<em>u</em> into <em>X</em> to obtain some intermediate form <em>i</em>,
+which is then used as the input for <em>Y</em> to produce the surface
+form <em>s</em>. This sounds abstract but is actually pretty trivial
+when dealing with concrete examples of <em>X</em> and <em>Y</em>,
+e.g. nasal deletion and nasalization.</p>
+<div class="example">
+<p>Suppose that we have a phonological grammar with two rewrite rules.
+One deletes nasals that occur immediately before voiceless plosives. For
+simplicity, let us assume that the only voiceless plosive is <em>p</em>
+and the only nasal is <em>n</em>.</p>
+<p><span class="math display">\[\mathrm{n} \rightarrow \varepsilon\mid
+\_ \mathrm{p}\]</span></p>
+<p>The other rewrite rule enforces that a non-nasalized vowel becomes
+nasalized before a nasal. Again let us simplify this by assuming that
+there is only one nasal <em>n</em>, one non-nasalized vowel <em>a</em>,
+and its nasalized counterpart <em>ã</em>.</p>
+<p><span class="math display">\[\mathrm{a} \rightarrow
+\mathrm{\tilde{a}} \mid \_ \mathrm{n}\]</span></p>
+<p>Each one of these rules can be represented as a transducer that uses
+the delayed output strategy we encountered in an earlier unit. These
+FSTs are shown below, both in the tabular format and as graphs. For ease
+of exposition, the transducers only contain transitions for <em>n</em>,
+<em>p</em>, <em>a</em>, and <em>ã</em>, but additional transitions would
+be easy to add.</p>
+<p>(((<strong>Note by TG</strong>: to make things easier later on in
+this unit, the behavior of final states is changed so that &lt; is
+always rewritten as some string with &lt; at the end. This is different
+from previous units, where &lt; would be rewritten as a string without
+&lt;. I will update these earlier units accordingly at a later
+point.)))</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>X</strong></td>
+<td style="text-align: center;"><strong>Del?</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>X</strong></td>
+<td style="text-align: center;">p:p, a:a, ã:ã</td>
+<td style="text-align: center;">n:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Del?</strong></td>
+<td style="text-align: center;">p:p, a:na, ã:nã</td>
+<td style="text-align: center;">n:n</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(n&lt;)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="nasaldeletion.svg" alt="nasaldeletion.svg" /></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>Y</strong></td>
+<td style="text-align: center;"><strong>Nas?</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Y</strong></td>
+<td style="text-align: center;">n:n, p:p, ã:ã</td>
+<td style="text-align: center;">a:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Nas?</strong></td>
+<td style="text-align: center;">n:ãn, p:ap, ã:aã</td>
+<td style="text-align: center;">a:a</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(a&lt;)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="nasalization.svg" alt="nasalization.svg" /></p>
+<p>Notice how the nasal deletion transducer is almost exactly the same
+as the nasalization transducer, except that their transitions have
+slightly different labels and their initial states have different names
+(which doesn’t matter mathematically because the names of states are
+immaterial for the transduction). All of this will hopefully make the
+next few examples easier to follow.</p>
+</div>
+<div class="exercise">
+<p>For each one of the two transducers, write down the surface form that
+it maps the following URs to:</p>
+<ol type="1">
+<li>an</li>
+<li>anpa</li>
+<li>ãpaannap</li>
+<li>ãpaannpan</li>
+</ol>
+</div>
+<p>Now suppose that we have a UR like <em>anp</em>. What should be the
+surface form of that? If nasal deletion applies before nasalization, we
+should get <em>ap</em>. If nasalization applies before nasal deletion,
+it should be <em>ãp</em>. This corresponds exactly to the order in which
+we apply the two FSTs.</p>
+<div class="example">
+<p>Suppose that we feed the UR <em>anp</em> into the FST for nasal
+deletion. This produces the output <em>ap</em> as the UR contains
+<em>n</em> followed by <em>p</em>, triggering deletion of
+<em>n</em>.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Current State</th>
+<th style="text-align: center;">Input</th>
+<th style="text-align: center;">Output</th>
+<th style="text-align: center;">New State</th>
+<th style="text-align: left;">Remaining input string</th>
+<th style="text-align: left;">Output string built so far</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: left;">anp</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: left;">np</td>
+<td style="text-align: left;">a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Del?</td>
+<td style="text-align: left;">p</td>
+<td style="text-align: left;">a</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Del?</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">ap</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ap&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>If we now take this output <em>ap</em> and use it as the input for
+the FST for nasalization, we again get the output <em>ap</em> because
+there is no nasal that could trigger nasalization <em>a</em>.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Current State</th>
+<th style="text-align: center;">Input</th>
+<th style="text-align: center;">Output</th>
+<th style="text-align: center;">New State</th>
+<th style="text-align: left;">Remaining input string</th>
+<th style="text-align: left;">Output string built so far</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: left;">ap</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: left;">p</td>
+<td style="text-align: left;">a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">ap</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ap&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>Applying the nasal deletion FST before the nasalization FST thus maps
+the UR <em>anp</em> to the surface form <em>ap</em>.</p>
+<p>Now suppose that we use the opposite order. We take the UR
+<em>anp</em> and feed it into the nasalization FST. This will yield
+<em>ãnp</em> as the <em>n</em> after <em>a</em> causes the latter to be
+nasalized.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Current State</th>
+<th style="text-align: center;">Input</th>
+<th style="text-align: center;">Output</th>
+<th style="text-align: center;">New State</th>
+<th style="text-align: left;">Remaining input string</th>
+<th style="text-align: left;">Output string built so far</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: left;">anp</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Nas?</td>
+<td style="text-align: left;">np</td>
+<td style="text-align: left;"><span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Nas?</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">ãn</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: left;">p</td>
+<td style="text-align: left;">ãn</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">ãnp</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ãnp&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>And when we take the output <em>ãnp</em> and use it as the input for
+the nasal deletion FST, it produces the output string <em>ãp</em> as the
+<em>n</em> before <em>p</em> is deleted.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Current State</th>
+<th style="text-align: center;">Input</th>
+<th style="text-align: center;">Output</th>
+<th style="text-align: center;">New State</th>
+<th style="text-align: left;">Remaining input string</th>
+<th style="text-align: left;">Output string built so far</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: left;">ãnp</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">ã</td>
+<td style="text-align: center;">ã</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: left;">np</td>
+<td style="text-align: left;">ã</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Del?</td>
+<td style="text-align: left;">p</td>
+<td style="text-align: left;">ã</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Del?</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">ãp</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ãp&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>We see, then, that the order in which we run FSTs can change the
+final output.</p>
+</div>
+<div class="exercise">
+<p>For each one of the two ways of ordering the nasal deletion FST and
+the nasalization FST, indicate the final output form obtained from the
+URs listed below:</p>
+<ol type="1">
+<li>an</li>
+<li>anpa</li>
+<li>ãpaannap</li>
+<li>ãpaannpan</li>
+</ol>
+</div>
+<p>When we take multiple FSTs and run them in sequence, using the output
+of one as the input to the next, we are building a
+<strong>cascade</strong> of transducers. The example above is a cascade
+of two transducers, but any finite number of FSTs can be arranged to
+form a cascade.</p>
+<div class="exercise">
+<p>Suppose that the example grammar contains a third rewrite rule that
+inserts <em>p</em> at the end of the word. Write down an FST that
+implements this rewrite rule (you may give a table or a graph). With
+three FSTs, there are six possible cascades:</p>
+<ol type="1">
+<li>nasal deletion, nasalization, p-insertion</li>
+<li>nasal deletion, p-insertion, nasalization</li>
+<li>nasalization, nasal deletion, p-insertion</li>
+<li>nasalization, p-insertion, nasal deletion</li>
+<li>p-insertion, nasal deletion, nasalization</li>
+<li>p-insertion, nasalization, nasal deletion</li>
+</ol>
+<p>For each one of those cascades, write down the final output obtained
+from the UR <em>ãpaannpan</em>.</p>
+</div>
+<p>Just as with rewrite rules in phonology, changing the order of
+transducers in the cascade can greatly affect the final output produced
+by this cascade. This is one more instance, then, where FSTs make it
+easy to capture a common aspect of phonology.</p>
+<p>However, things do not stop here. The truly amazing thing about FSTs
+are that they can give rise to such ordering effects without any
+cascades. That is because every cascade can be replaced with just a
+single FST!</p>
+<h2 id="incremental-cascades-the-intuition">Incremental cascades: the
+intuition</h2>
+<p>When we built the transducer cascade above, we ran the FSTs in
+series. That is to say, we took the whole input, fed it into the first
+FST, took the output from that, and fed it into the second FST to obtain
+the final output. But with FSTs, we could have done this in an
+incremental fashion instead where we run each input symbol through the
+whole cascade before moving on to the next input symbol.</p>
+<div class="example">
+<p>Consider once more the cascade of nasal deletion followed by
+nasalization, applied to the UR <em>anp</em>. Let us see what happens if
+we use this cascade to rewrite the UR one symbol at a time.</p>
+<ol type="1">
+<li>Since the UR is <em>anp</em>, the input string is
+<em>anp&lt;</em>.</li>
+<li>The first input symbol is <em>a</em>. The nasal deletion FST starts
+in state <em>X</em>, rewrites <em>a</em> as <em>a</em>, and stays in
+state <em>X</em>. The nasalization FST starts in state <em>X</em>, takes
+the output <em>a</em> as its input, rewrites it as the empty string, and
+changes to state <em>Nas?</em>. At this point, we have rewritten
+<em>a</em> as the empty string, the nasal deletion FST is in state
+<em>X</em>, and the nasalization FST is in state <em>Nas?</em>.</li>
+<li>The next input symbol is <em>n</em>. This causes the nasal deletion
+FST to from state <em>X</em> to state <em>Del?</em>, rewriting
+<em>n</em> as the empty string. Since we have no non-empty output from
+the nasal deletion FST, we have nothing to feed into the nasalization
+FST and have to skip it. Hence the nasalization FST does nothing and
+remains in state <em>Nas?</em>. At this point, we have rewritten
+<em>n</em> as the empty string, the nasal deletion FST is in state
+<em>Del?</em>, and the nasalization FST is in state <em>Nas?</em>.</li>
+<li>Now the magic happens. We feed <em>p</em> into the nasal deletion
+FST, which outputs <em>p</em> and moves from <em>Del?</em> to
+<em>X</em>. We then feed the output <em>p</em> into the nasalization
+FST, which is currently in state <em>Nas?</em>. It outputs <em>ap</em>
+and moves to state <em>Y</em>.</li>
+<li>We feed in the last symbol, which is &lt;. The nasal deletion FST,
+which is in state <em>X</em>, rewrites this as &lt; and stops. We then
+feed &lt; into the nasalization FST (which is in state <em>Y</em>). It
+also rewrites &lt; as &lt; and stops.</li>
+</ol>
+<p>We have finished processing the input string, and in doing so we
+produced the output string <em>ap&lt;</em>, which corresponds to the
+surface form <em>ap</em>.</p>
+</div>
+<p>Plain English isn’t a good way of keeping track of such incremental
+applications of transducer cascades. Instead, a tabular format is more
+succinct and easier to follow. The table has five columns:</p>
+<ul>
+<li><strong>Input symbol</strong>: the symbol of the input string that
+we are currently feeding into the transducer cascade</li>
+<li><strong>New state of FST1</strong>: what state the first FST is in
+<strong>after</strong> rewriting the input symbol</li>
+<li><strong>Intermediate</strong>: the output produced by the first FST
+from the input symbol; this output serves as the input to the second
+FST</li>
+<li><strong>New state of FST2</strong>: what state the first FST is in
+<strong>after</strong> rewriting the input symbol</li>
+<li><strong>Final output</strong>: the output produced from the input
+symbol; reading this column from top to bottom yields the output
+string</li>
+</ul>
+<div class="example">
+<p>The lengthy English description above can be condensed to the table
+below.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input symbol</th>
+<th style="text-align: center;">New state of FST1</th>
+<th style="text-align: center;">Intermediate</th>
+<th style="text-align: center;">New state of FST2</th>
+<th style="text-align: center;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">Nas?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">Del?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Nas?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">ap</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: center;">&lt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="example">
+<p>Now consider the cascade where nasalization applies before nasal
+deletion. This will rewrite <em>anp&lt;</em> as <em>ãp&lt;</em>. If you
+don’t believe me (and you shouldn’t), check the table below.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input symbol</th>
+<th style="text-align: center;">New state of FST1</th>
+<th style="text-align: center;">Intermediate</th>
+<th style="text-align: center;">New state of FST2</th>
+<th style="text-align: center;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">Nas?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">ãn</td>
+<td style="text-align: center;">Del?</td>
+<td style="text-align: center;">ã</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">p</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: center;">&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>The only complication here is that the nasalization transducer, when
+rewriting <em>n</em>, doesn’t just output a single symbol but the string
+<em>ãn</em>. However, this does not change the overall procedure: we
+feed <em>ãn</em> into the nasal deletion transducer, which is in state
+X, and check what it produces from that input and what state it ends up
+in.</p>
+</div>
+<div class="exercise">
+<p>For each one of the two ways of ordering the nasal deletion FST and
+the nasalization FST, write down a table like the one above that
+indicates how <em>ãpaannpan</em> is rewritten in an incremental fashion
+(keep in mind that we add &lt; at the end of the UR).</p>
+</div>
+<p>You may be wondering what we gain from using this clunky incremental
+way of running the cascade. It seems much more intuitive to run the
+cascade in serial mode, with the first FST processing the whole input,
+then second FST processing the whole output of the first FST, and so on.
+Well, the difference is that — hard as it may be to see — the
+incremental way of running the cascade is a single finite-state
+transduction!</p>
+<div class="example">
+<p>Consider once more the table for nasal deletion followed by
+nasalization, applied to <em>anp</em>. It is repeated here for your
+convenience.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input symbol</th>
+<th style="text-align: center;">New state of FST1</th>
+<th style="text-align: center;">Intermediate</th>
+<th style="text-align: center;">New state of FST2</th>
+<th style="text-align: center;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">Nas?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">Del?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Nas?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">ap</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: center;">&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>Suppose that we remove the third column from this table and fuse the
+second and fourth column into one, giving us the table below.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input symbol</th>
+<th style="text-align: center;">New state</th>
+<th style="text-align: center;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">X-Y</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">X-Nas?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">Del-Nas?</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">X-Y</td>
+<td style="text-align: center;">ap</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Stop</td>
+<td style="text-align: center;">&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>What does this table say if we read it literally? It says that we
+start in state <em>X-Y</em> and change into state <em>X-Nas?</em> after
+rewriting <em>a</em> as the empty string. We then rewrite <em>n</em> as
+the empty string and change into state <em>Del-Nas?</em>. After that,
+<em>p</em> is rewritten as <em>ap</em> and we change into state
+<em>X-Y</em>, before we finally read in &lt;, output &lt;, and stop.
+That’s not a cascade of transductions, that’s just a transduction!</p>
+</div>
+<div class="exercise">
+<p>Construct the corresponding table for the cascade where nasalization
+precedes nasal deletion.</p>
+</div>
+<h2 id="from-an-fst-cascade-to-a-cascade-fst">From an FST cascade to a
+cascade FST</h2>
+<p>What the intuitive discussion above is getting at is that every
+cascade of FSTs can be replaced by a single FST that immediately
+rewrites an input string into the output string produced by the cascade.
+We may call this a <strong>cascade FST</strong>, even though that is not
+a common term in the literature. It is more common to call such an FST
+the <strong>composition</strong> of the cascade.</p>
+<p>The cascade FST can be constructed automatically using the
+incremental processing metaphor above. The states of the cascade FST are
+tuples where each component corresponds to the state of one of the
+transducers in the cascade: the first component records the state of the
+first transducers, the second component records the state of the second
+transducer, and so on, for all of the finitely many FSTs that make up
+the cascade. In formal terms, the set of states of the FST that computes
+the cascade of FSTs <em>U</em> and <em>V</em> is the crossproduct of
+<span class="math inline">\(Q_U\)</span> and <span
+class="math inline">\(Q_V\)</span>, where <span
+class="math inline">\(Q_U\)</span> is the set of states of <span
+class="math inline">\(U\)</span> and <span
+class="math inline">\(Q_V\)</span> is the set of states of <span
+class="math inline">\(V\)</span>, respectively.</p>
+<div class="example">
+<p>For the cascade of nasal deletion followed by nasalization, the
+cascade FST has four states:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \langle \mathrm{X},\mathrm{Y}
+\right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \mathrm{X},\mathrm{Nas?}
+\right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \mathrm{Del?},\mathrm{Y}
+\right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle
+\mathrm{Del?},\mathrm{Nas?} \right \rangle\)</span></li>
+</ol>
+</div>
+<p>We then have to determine how the cascade FST moves between these
+tuple states. But that is just the process of incremental rewriting that
+we used in the preceding section. For each input symbol <em>x</em>, we
+test whether the cascade FST can move from one state to the other, and
+what output the FST would produce if we do so. More precisely:</p>
+<ul>
+<li>In order to construct an FST <span class="math inline">\(Q\)</span>
+that computes the cascade of FSTs <span class="math inline">\(U\)</span>
+and <span class="math inline">\(V\)</span>, do the following:
+<ul>
+<li>For every state <span class="math inline">\(u_1\)</span> of <span
+class="math inline">\(U\)</span> and transition <span
+class="math inline">\(x:y\)</span> from <span
+class="math inline">\(u_1\)</span> to <span
+class="math inline">\(u_2\)</span>, do the following:
+<ul>
+<li>if <span class="math inline">\(y:z\)</span> is transition in <span
+class="math inline">\(V\)</span> from <span
+class="math inline">\(v_1\)</span> to <span
+class="math inline">\(v_2\)</span>, add to <span
+class="math inline">\(Q\)</span> a transition <span
+class="math inline">\(x:z\)</span> from <span
+class="math inline">\(\left \langle u_1,v_1 \right \rangle\)</span> to
+<span class="math inline">\(\left \langle u_2,v_2 \right
+\rangle\)</span>.</li>
+</ul></li>
+<li>A state <span class="math inline">\(\left \langle u_1, v_1 \right
+\rangle\)</span> of <span class="math inline">\(Q\)</span> is initial
+iff <span class="math inline">\(u_1\)</span> is an initial state of
+<span class="math inline">\(U\)</span> and <span
+class="math inline">\(v_1\)</span> is an initial state of <span
+class="math inline">\(V\)</span>.</li>
+</ul></li>
+</ul>
+<div class="example">
+<p>As we saw in the previous example, the FST <span
+class="math inline">\(Q\)</span> that computes the cascade of nasal
+deletion followed by nasalization has four states. Let us start with a
+blank transition table for <span class="math inline">\(Q\)</span> and
+mark all initial states. To reduce visual clutter, we write the states
+in the form <em>u-v</em> instead of <span class="math inline">\(\left
+\langle u,v \right \rangle\)</span>.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>X-Y</strong></td>
+<td style="text-align: center;"><strong>X-Nas?</strong></td>
+<td style="text-align: center;"><strong>Del-Y</strong></td>
+<td style="text-align: center;"><strong>Del?-Nas?</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>X-Y</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>X-Nas?</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Del?-Y</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Del?-Nas?</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>We now follow the procedure above to fill in this transition table
+one cell after the other.</p>
+<ol type="1">
+<li>We consider all transitions out of state <em>X</em> of the nasal
+deletion FST:
+<ul>
+<li><em>p:p</em> goes to <em>X</em>:
+<ul>
+<li>there is a transition <em>p:p</em> from <em>Y</em> to <em>Y</em>; we
+add <em>p:p</em> as a transition from <em>X-Y</em> to <em>X-Y</em></li>
+<li>there is a transition <em>p:ap</em> from <em>Nas?</em> to
+<em>Y</em>; we add <em>p:ap</em> as a transition from <em>X-Nas?</em> to
+<em>X-Y</em></li>
+</ul></li>
+<li>similarly for <em>ã:ã</em></li>
+<li><em>a:a</em> goes to <em>X</em>:
+<ul>
+<li>there is a transition <em>a:<span
+class="math inline">\(\varepsilon\)</span> from </em>Y* to
+<em>Nas?</em>; we add <em>a:<span
+class="math inline">\(\varepsilon\)</span></em> as a transition from
+<em>X-Y</em> to <em>X-Nas?</em></li>
+<li>there is a transition <em>a:a</em> from <em>Nas?</em> to
+<em>Nas?</em>; we add <em>a:a</em> as a transition from <em>X-Nas?</em>
+to <em>X-Nas?</em></li>
+</ul></li>
+<li><em>n:<span class="math inline">\(\varepsilon\)</span></em> goes to
+<em>Del?</em>:
+<ul>
+<li>there is a (trivial) transition <em><span
+class="math inline">\(\varepsilon\)</span>:<span
+class="math inline">\(\varepsilon\)</span></em> from <em>Y</em> to
+<em>Y</em>; we add <em>n:<span
+class="math inline">\(\varepsilon\)</span></em> from <em>X-Y</em> to
+<em>Del?-Y</em></li>
+<li>there is a (trivial) transition <em><span
+class="math inline">\(\varepsilon\)</span>:<span
+class="math inline">\(\varepsilon\)</span></em> from <em>Nas?</em> to
+<em>Nas?</em>; we add <em>n:<span
+class="math inline">\(\varepsilon\)</span></em> from <em>X-Nas?</em> to
+<em>Del?-Nas?</em></li>
+</ul></li>
+<li>the final transition <em>&lt;:&lt;</em>:
+<ul>
+<li>there is a final transition <em>&lt;:&lt;</em> from <em>Y</em>; we
+add final <em>&lt;:&lt;</em> from <em>X-Y</em></li>
+<li>there is a final transition <em>&lt;:a&lt;</em> from <em>Nas?</em>;
+we add final <em>&lt;:a&lt;</em> from <em>X-Nas?</em></li>
+</ul></li>
+</ul></li>
+<li>We consider all transitions out of state <em>Del?</em> of the nasal
+deletion FST:
+<ul>
+<li><em>p:p</em> goes to <em>X</em>:
+<ul>
+<li>there is a transition <em>p:p</em> from <em>Y</em> to <em>Y</em>; we
+add <em>p:p</em> as a transition from <em>Del?-Y</em> to
+<em>X-Y</em></li>
+<li>there is a transition <em>p:ap</em> from <em>Nas?</em> to
+<em>Y</em>; we add <em>p:ap</em> as a transition from <em>Del?-Nas?</em>
+to <em>X-Y</em></li>
+</ul></li>
+<li><em>ã:nã</em> goes to <em>X</em>:
+<ul>
+<li>there is a transition <em>n:n</em> from <em>Y</em> to <em>Y</em> and
+<em>ã:ã</em> from <em>Y</em> to <em>Y</em>; we add <em>ã:nã</em> as a
+transition from <em>Del?-Y</em> to <em>X-Y</em></li>
+<li>there is a transition <em>n:ãn</em> from <em>Nas?</em> to <em>Y</em>
+and <em>ã:ã</em> from <em>Y</em> to <em>Y</em>: we add <em>ã:ãnã</em> as
+a transition from <em>Del?-Nas?</em> to <em>X-Y</em></li>
+</ul></li>
+<li><em>a:na</em> goes to <em>X</em>:
+<ul>
+<li>there is a transition <em>n:n</em> from <em>Y</em> to <em>Y</em> and
+a transition <em>a:<span class="math inline">\(\varepsilon\)</span></em>
+from <em>Y</em> to <em>Nas?</em>; we add <em>a:n</em> as a transition
+from <em>Del?-Y</em> to <em>X-Nas?</em></li>
+<li>there is a transition <em>n:ãn</em> from <em>Nas?</em> to <em>Y</em>
+and transition <em>a:<span
+class="math inline">\(\varepsilon\)</span></em> from <em>Y</em> to
+<em>Nas?</em>; we add <em>a:ãn</em> as a transition from
+<em>Del?-Nas?</em> to <em>X-Y</em></li>
+</ul></li>
+<li><em>n:n</em> goes to <em>Del?</em>:
+<ul>
+<li>there is a transition <em>n:n</em> from <em>Y</em> to <em>Y</em>; we
+add <em>n:n</em> as a transition from <em>Del?-Y</em> to
+<em>Del?-Y</em></li>
+<li>there is a transition <em>n:ãn</em> from <em>Nas?</em> to
+<em>Y</em>; we add <em>n:ãn</em> as a transition from <em>Del?-Nas?</em>
+to <em>Del?-Y</em></li>
+</ul></li>
+<li>the final transition <em>&lt;:n&lt;</em>:
+<ul>
+<li>there is a transition <em>n:n</em> from <em>Y</em> to <em>Y</em> and
+final transition <em>&lt;:&lt;</em> from <em>Y</em>; we add final
+transition <em>&lt;:n&lt;</em> from <em>Del?-Y</em></li>
+<li>there is a transition <em>n:ãn</em> from <em>Nas?</em> to <em>Y</em>
+and final transition <em>&lt;:&lt;</em> from <em>Y</em>; we add final
+transition <em>&lt;:ãn&lt;</em> from <em>Del?-Nas?</em></li>
+</ul></li>
+</ul></li>
+</ol>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>X-Y</strong></td>
+<td style="text-align: center;"><strong>X-Nas?</strong></td>
+<td style="text-align: center;"><strong>Del-Y</strong></td>
+<td style="text-align: center;"><strong>Del?-Nas?</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>X-Y</strong></td>
+<td style="text-align: center;">p:p, ã:ã</td>
+<td style="text-align: center;">a:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">n:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>X-Nas?</strong></td>
+<td style="text-align: center;">p:ap, ã:aã</td>
+<td style="text-align: center;">a:a</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">n:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(a&lt;)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Del?-Y</strong></td>
+<td style="text-align: center;">p:p, ã:nã</td>
+<td style="text-align: center;">a:n</td>
+<td style="text-align: center;">n:n</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(n&lt;)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Del?-Nas?</strong></td>
+<td style="text-align: center;">p:ap, ã:anã, a:ãn</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">n:ãn</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(ãn&lt;)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="nasaldeletion_nasalization.svg"
+alt="nasaldeletion_nasalization.svg" /></p>
+<p>When we apply the cascade FST above to the UR <em>anp</em> (i.e. the
+input string <em>anp&lt;</em>), it correctly rewrites it as the surface
+form <em>ap</em> (i.e. the output string <em>ap&lt;</em>).</p>
+</div>
+<div class="exercise">
+<p>Compute the surface forms that the cascade transducer in the example
+above produces from the URs listed below:</p>
+<ol type="1">
+<li>an</li>
+<li>anpa</li>
+<li>ãpaannap</li>
+<li>ãpaannpan</li>
+</ol>
+</div>
+<p>The cascade FST implements a specific rule ordering without using any
+explicit rule ordering mechanism. It is the details of the transitions
+that make this an FST that applies nasal deletion before nasalization
+rather than the other way round.</p>
+<div class="exercise">
+<p>Construct the cascade FST for nasalization followed by nasal deletion
+(hint: the states are <em>Y-X</em>, <em>Nas?-X</em>, <em>Y-Del?</em>,
+and <em>Nas?-Del?</em>). What are the differences to the cascade FST
+from the example above? If both FSTs had meaningless state names like 0,
+1, 2, 3, would it be easy to tell which FST represents which rule
+ordering?</p>
+</div>
+<div class="exercise">
+<p>Compute the surface forms the cascade FST that implements
+nasalization followed by nasal deletion produces from the following
+URs:</p>
+<ol type="1">
+<li>an</li>
+<li>anpa</li>
+<li>ãpaannap</li>
+<li>ãpaannpan</li>
+</ol>
+</div>
+<div class="exercise">
+<p>The cascade FST construction above only specifies the case when the
+cascade involves exactly two transducers. Explain why this is sufficient
+to also reduce cascades with more than two FSTs to a single FST.</p>
+</div>
+<p>Cascade FSTs are certainly convoluted and often contain parts that
+make no sense in isolation. For example, the cascade FST in the example
+above contains a transition that rewrites <em>a</em> as <em>n</em>,
+which would be a bizarre phonological process and seems to have nothing
+to do with nasal deletion or nasalization. This transition is vital to
+make the whole FST work correctly, but this means that it cannot be
+understood without understanding the FST as a whole. That’s not nice
+from a scientific perspective, we want our models to be transparent and
+easily interpretable. But that’s not an argument against FSTs. FSTs tell
+us that we can safely factorize our model by positing small, easily
+understood rewrite rules that we apply in a specific order. It is safe
+to do so because it is just a different way of specifying FSTs — if we
+want a single FST, we can always take this sequence of rules and flatten
+it to a single FST that directly rewrites URs as surface forms.</p>
+<p>This isn’t just a nice engineering trick, it has linguistic
+ramifications. If all of phonology can be described with FSTs, then it
+is not immediately clear what it means to say that phonology has rule
+ordering. We can replace the rule ordering with a single rewrite rule
+corresponding to the cascade FST. And we could take any single rewrite
+rule (i.e. FST) and decompose it into multiple ordered rewrite rules
+(i.e. a cascade of FSTs). None of that would affect the mapping form URs
+to surface forms. To the extent that there are empirical arguments for
+rule ordering, they would have to link rule ordering to some additional
+property: processing claims, acquisition claims, typological claims. But
+then it might still be possible to recast those claims in a way that
+they work with cascade FSTs, too. This is yet another instance where the
+mathematical perspective urges us to practice <em>ontological
+modesty</em>: if there are many different ways to say a thing, we should
+not get too attached to one of them as more cognitively real than the
+others.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>A <strong>cascade</strong> is a sequence of finitely many
+transductions run in sequence, with the output of one transduction
+serving as the input for the next one.</li>
+<li>Cascades can be run in an incremental, symbol-by-symbol fashion
+rather than reading in the whole input string at once.</li>
+<li>If the cascade consists entirely of FSTs, it can be flattened to a
+single FST, the cascade FST, that computes the same transduction as the
+whole cascade.</li>
+<li>The set of states of the cascade FST is the crossproduct of the sets
+of states of the FSTs making up the cascade.</li>
+<li>In order to construct an FST <span class="math inline">\(Q\)</span>
+that computes the cascade of FSTs <span class="math inline">\(U\)</span>
+and <span class="math inline">\(V\)</span>, do the following:
+<ul>
+<li>For every state <span class="math inline">\(u_1\)</span> of <span
+class="math inline">\(U\)</span> and transition <span
+class="math inline">\(x:y\)</span> from <span
+class="math inline">\(u_1\)</span> to <span
+class="math inline">\(u_2\)</span>, do the following:
+<ul>
+<li>if <span class="math inline">\(y:z\)</span> is transition in <span
+class="math inline">\(V\)</span> from <span
+class="math inline">\(v_1\)</span> to <span
+class="math inline">\(v_2\)</span>, add to <span
+class="math inline">\(Q\)</span> a transition <span
+class="math inline">\(x:z\)</span> from <span
+class="math inline">\(\left \langle u_1,v_1 \right \rangle\)</span> to
+<span class="math inline">\(\left \langle u_2,v_2 \right
+\rangle\)</span>.</li>
+</ul></li>
+<li>A state <span class="math inline">\(\left \langle u_1, v_1 \right
+\rangle\)</span> of <span class="math inline">\(Q\)</span> is initial
+iff <span class="math inline">\(u_1\)</span> is an initial state of
+<span class="math inline">\(U\)</span> and <span
+class="math inline">\(v_1\)</span> is an initial state of <span
+class="math inline">\(V\)</span>.</li>
+</ul></li>
+</ul>
 </div>
 </div>
 </body>
