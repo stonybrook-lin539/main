@@ -261,16 +261,54 @@ emission trick?</p>
 <div class="solution">
 <p>The FST uses the delayed output strategy to postpone the output of
 <em>s</em> after <em>V</em>. It also uses the final emission track to
-handle <em>Vs</em> sequences at the end of the string</p>
-<div class="line-block">           | <strong>0</strong> |
-<strong>V</strong> | <strong>Vs</strong> | <strong>Initial</strong> |
-<strong>Final</strong> |<br />
-<strong>0</strong> | s:s, z:z, x:x | V:V | | Yes | Yes(<span
-class="math inline">\(\varepsilon\)</span>) |<br />
-<strong>V</strong> | z:z, x:x | V:V | s:<span
-class="math inline">\(\varepsilon\)</span> | No | Yes(<span
-class="math inline">\(\varepsilon\)</span>) |<br />
-<strong>Vs</strong> | s:ss, z:sz, x:sx | V:zV | | No | Yes(s) |</div>
+handle <em>Vs</em> sequences at the end of the string.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>V</strong></td>
+<td style="text-align: center;"><strong>Vs</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;">s:s, z:z, x:x</td>
+<td style="text-align: center;">V:V</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>V</strong></td>
+<td style="text-align: center;">z:z, x:x</td>
+<td style="text-align: center;">V:V</td>
+<td style="text-align: center;">s:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(<span
+class="math inline">\(\varepsilon\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Vs</strong></td>
+<td style="text-align: center;">s:ss, z:sz, x:sx</td>
+<td style="text-align: center;">V:zV</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(s)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="exercise">
