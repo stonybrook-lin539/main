@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Finite-state transductions as a game (Solutions)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a
+href="#finite-state-transductions-as-a-game-solutions">Finite-state
+transductions as a game (Solutions)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="finite-state-transductions-as-a-game-solutions">Finite-state
+transductions as a game (Solutions)</h1>
+<div class="exercise">
+<p>How would the game have ended if Mary had decided to go with option 2
+instead: place nothing and player 2 gets the next turn. What would have
+been the sequence on the output token tray, assuming that John does not
+use his special power at all?</p>
+<div class="solution">
+<p>John has placed a heart on the output token tray and given the next
+turn to Mary. She draws spade and decides to go with option 2, placing
+nothing and giving the turn to John. So now it is John who draws heart,
+once more placing heart and giving the next turn to Mary. Mary draws
+&lt;. Mary is not a final player, and the game is lost. Since the game
+is lost, the output token tray is cleared and no output is produced. If
+the game had been won, the output token tray would have been
+<em>heart-heart</em>.</p>
+</div>
+</div>
+<div class="exercise">
+<p>This continues the previous exercise. What if Mary’s rule sheet also
+contained the special power below? Would there be a way to use this rule
+and finish the game?</p>
+<ul>
+<li><strong>Special power:</strong> Instead of drawing an input token,
+place a diamond. Player 2 gets the next turn.</li>
+</ul>
+<div class="solution">
+<p>Suppose that instead of drawing from the bag, which will result in
+&lt;, Mary uses her special power. She places diamond and John gets the
+next turn. John draws &lt;, but this is okay because he’s a final
+player. The sequence of tokens on the output token tray is
+<em>heart-heart-diamond</em>.</p>
+</div>
+</div>
+<div class="exercise">
+<p>This one is just for fun: think about ways to spruce up this basic
+gameplay loop. If you end up with something fun, get it published and
+donate some of the proceeds to the cause of mathematical
+linguistics.</p>
+<div class="solution">
+<p>Modern board games have tons of intricate mechanics, e.g. bidding,
+action selection, deck building, or worker placement. The problem with
+the current game is that there isn’t much strategy because of the random
+draw of input tokens. It’s more like a game for toddlers, teaching
+turn-taking and the how to follow instructions. In order to make this a
+real game, there needs to be tension, conflicting goals, and
+uncertainty.</p>
+<p>Here is my proposal, which still needs playtesting: The game stays
+exactly the way described above, but there are multiple rounds. In the
+example above, Mary and John played only one round. After drawing &lt;,
+they tally up their score so far, then play again. At the end of, say, 5
+rounds, they check their total score. The goal is to get as high a score
+as possible. But here’s the twist: the players do not know each other’s
+rules and powers, and they may not talk to each other. Now this is a
+hidden information game where you have to learn each other’s rules on
+the fly over multiple rounds, and you need to be a well-oiled machine to
+get high scores.</p>
+<p>It’s still a pretty dry game — no witty banter, no take-that moments,
+no victory condition beyond beating your own high score — but at least
+it’s an actual game now. Let’s try to make it a bit juicier: secret
+player objectives! Rather then going for a single high score for all the
+players, every player has a list of secret objectives that they need to
+reach over the course of the game, e.g. “at the end of the round, gain 2
+victory points if the output token tray contains the sequence
+heart-heart-heart”. At the end of the game, the player with the most
+victory points wins. Now this is a semi-coop design: every player is
+pursuing their own goals, but there’s still the shared goal of winning
+each round because nobody can meet their objectives with an empty output
+token tray (however, depending on whether players know each other’s
+victory points, there might be a strategy to deliberately sabotage a
+round in order to stay in the lead). It would be difficult to balance
+the secret objectives and special powers, but a good designer could make
+it work. And the outcome would be something that I’d actually like to
+play!</p>
+</div>
+</div>
+<div class="exercise">
+<p>Expand this table so that it also includes the special power of
+player 1 from the exercise above (instead of drawing an input token,
+place a diamond and player 2 gets the next turn).</p>
+<div class="solution">
+<p>We have to add <em>nothing:diamond</em> to the cell in the row for
+Player 1 and the column for Player 2.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>Player 1</strong></td>
+<td style="text-align: center;"><strong>Player 2</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Player 1</strong></td>
+<td style="text-align: center;">spade:club-club</td>
+<td style="text-align: center;">heart:diamond, spade:nothing,
+nothing:diamond</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Player 2</strong></td>
+<td style="text-align: center;">heart:heart, spade:heart</td>
+<td style="text-align: center;">nothing:club</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Tables are nice and all, but humans typically need something more
+visual in order to fully take in all the information. We can use a graph
+format where each player is a circled node. Nodes are connected by
+arrows (or <strong>directed edges</strong>) that are labeled with
+expressions like <em>a:b</em> to indicate that if the player where the
+arrow originates draws an <em>a</em> and places a <em>b</em>, the player
+where the arrow ends gets the next turn. In addition, an arrow from the
+special label <em>Start</em> to a player indicates that this is an
+initial player, and every final player’s node has an outgoing arrow
+labeled &lt;:nothing.</p>
+<div class="example">
+<p>The rules for the game played by John and Mary correspond to the
+following graph.</p>
+<p><img src="game.svg" alt="game.svg" /></p>
+<p>We have two circles, one for player 1 and one for player 2. The
+special label <em>Start</em> is connected to player 1 but not player 2,
+marking the former as an initial player. Player 1 also has an outgoing
+arrow labeled &lt;:nothing, which indicates that it is a final player.
+Besides this special arrow, there are four more:</p>
+<ol type="1">
+<li>An arrow from player 1 back to itself, labeled
+<em>spade:club-club</em>. This corresponds to the cell in row 1 and
+column 1 of the table above.</li>
+<li>Another arrow goes from player 1 to player 2 and is labeled with
+<em>heart:diamond</em> and <em>spade:nothing</em>. This is the
+counterpart for the cell in row 1 and column 2.</li>
+<li>An arrow from player 2 back to itself, labeled
+<em>nothing:club</em>. This is player 2’s special power to place a club
+without drawing from the input token bag.</li>
+<li>Finally, an arrow connects player 2 to player 1, and its labels are
+<em>heart:heart</em> and <em>spade:heart</em>. This matches the cell in
+row 2 and cell 1 of the table.</li>
+</ol>
+</div>
+<div class="exercise">
+<p>How would you modify the figure above so that it also includes the
+special power of player 1 from the previous exercise (instead of drawing
+an input token, place a diamond and player 2 gets the next turn)?</p>
+<div class="solution">
+<p>We would have to add <em>nothing:diamond</em> as a third label to the
+arrow from player 1 to player 2.</p>
+<p><img src="game_poweradded.svg" alt="game_poweradded.svg" /></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
