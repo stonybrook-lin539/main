@@ -64,9 +64,10 @@ strings for all of the following inputs:</p>
 </ol>
 </div>
 </div>
-<p>::: exercise Define an FST that implements the following rewrite
-process, assuming that input strings may contain the symbols,
-<em>a</em>, <em>b</em>, or <em>c</em>:</p>
+<div class="exercise">
+<p>Define an FST that implements the following rewrite process, assuming
+that input strings may contain the symbols, <em>a</em>, <em>b</em>, or
+<em>c</em>:</p>
 <ol type="1">
 <li>If the string starts with <em>a</em>, rewrite all subsequent
 instances of <em>a</em> as <em>aa</em>.</li>
@@ -151,6 +152,7 @@ not change <em>a</em> or <em>b</em> or <em>c</em>.</li>
 <p>All states are final. This includes <em>0</em> because this FST
 should be able to take the empty string as an input, too.</p>
 </div>
+</div>
 <div class="exercise">
 <p>Using the FST from the first example of this unit, compute the output
 strings for all the inputs below. If no output is produced, say so.</p>
@@ -184,38 +186,38 @@ following the input string <em>abababb&lt;</em>. We can write down these
 paths as sequences of states, starting with the initial state. But only
 two of these paths lead us to a final state:</p>
 <ol type="1">
-<li><span class="math inline">\(E \rightarrow{a} O \rightarrow{b} E
-\rightarrow{a} O \rightarrow{b} E \rightarrow{a} O \rightarrow{b} E
-\rightarrow{b} E \rightarrow{&lt;} \mathrm{stuck}\)</span></li>
-<li><span class="math inline">\(E \rightarrow{a} O \rightarrow{b} E
-\rightarrow{a} O \rightarrow{b} E \rightarrow{a} O \rightarrow{b} O
-\rightarrow{b} O \rightarrow{&lt;} \mathrm{stop}\)</span></li>
-<li><span class="math inline">\(E \rightarrow{a} O \rightarrow{b} E
-\rightarrow{a} O \rightarrow{b} O \rightarrow{a} E \rightarrow{b} E
-\rightarrow{b} E \rightarrow{&lt;} \mathrm{stuck}\)</span></li>
-<li><span class="math inline">\(E \rightarrow{a} O \rightarrow{b} O
-\rightarrow{a} E \rightarrow{b} E \rightarrow{a} O \rightarrow{b} E
-\rightarrow{b} E \rightarrow{&lt;} \mathrm{stuck}\)</span></li>
-<li><span class="math inline">\(E \rightarrow{a} O \rightarrow{b} O
-\rightarrow{a} E \rightarrow{b} E \rightarrow{a} O \rightarrow{b} O
-\rightarrow{b} O \rightarrow{&lt;} \mathrm{stop}\)</span></li>
+<li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} E
+\xrightarrow{a} O \xrightarrow{b} E \xrightarrow{a} O \xrightarrow{b} E
+\xrightarrow{b} E \xrightarrow{&lt;} \mathrm{stuck}\)</span></li>
+<li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} E
+\xrightarrow{a} O \xrightarrow{b} E \xrightarrow{a} O \xrightarrow{b} O
+\xrightarrow{b} O \xrightarrow{&lt;} \mathrm{stop}\)</span></li>
+<li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} E
+\xrightarrow{a} O \xrightarrow{b} O \xrightarrow{a} E \xrightarrow{b} E
+\xrightarrow{b} E \xrightarrow{&lt;} \mathrm{stuck}\)</span></li>
+<li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} O
+\xrightarrow{a} E \xrightarrow{b} E \xrightarrow{a} O \xrightarrow{b} E
+\xrightarrow{b} E \xrightarrow{&lt;} \mathrm{stuck}\)</span></li>
+<li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} O
+\xrightarrow{a} E \xrightarrow{b} E \xrightarrow{a} O \xrightarrow{b} O
+\xrightarrow{b} O \xrightarrow{&lt;} \mathrm{stop}\)</span></li>
 </ol>
 <p>The two successful paths then have multiple options for rewriting the
 input string:</p>
 <ol type="1">
-<li><span class="math inline">\(E \rightarrow{a:a} O \rightarrow{b:cc} E
-\rightarrow{a:a} O \rightarrow{b:cc} E \rightarrow{a:a} O
-\rightarrow{b:\varepsilon} O \rightarrow{b:\varepsilon} O
-\rightarrow{&lt;:\varepsilon} \mathrm{stop}\)</span></li>
-<li><span class="math inline">\(E \rightarrow{a:a} O
-\rightarrow{b:\varepsilon} O \rightarrow{a:a} E \rightarrow{b:cc} E
-\rightarrow{a:a} O \rightarrow{b:\varepsilon} O
-\rightarrow{b:\varepsilon} O \rightarrow{&lt;:\varepsilon}
+<li><span class="math inline">\(E \xrightarrow{a:a} O \xrightarrow{b:cc}
+E \xrightarrow{a:a} O \xrightarrow{b:cc} E \xrightarrow{a:a} O
+\xrightarrow{b:\varepsilon} O \xrightarrow{b:\varepsilon} O
+\xrightarrow{&lt;:\varepsilon} \mathrm{stop}\)</span></li>
+<li><span class="math inline">\(E \xrightarrow{a:a} O
+\xrightarrow{b:\varepsilon} O \xrightarrow{a:a} E \xrightarrow{b:cc} E
+\xrightarrow{a:a} O \xrightarrow{b:\varepsilon} O
+\xrightarrow{b:\varepsilon} O \xrightarrow{&lt;:\varepsilon}
 \mathrm{stop}\)</span></li>
-<li><span class="math inline">\(E \rightarrow{a:a} O
-\rightarrow{b:\varepsilon} O \rightarrow{a:b} E \rightarrow{b:cc} E
-\rightarrow{a:a} O \rightarrow{b:\varepsilon} O
-\rightarrow{b:\varepsilon} O \rightarrow{&lt;:\varepsilon}
+<li><span class="math inline">\(E \xrightarrow{a:a} O
+\xrightarrow{b:\varepsilon} O \xrightarrow{a:b} E \xrightarrow{b:cc} E
+\xrightarrow{a:a} O \xrightarrow{b:\varepsilon} O
+\xrightarrow{b:\varepsilon} O \xrightarrow{&lt;:\varepsilon}
 \mathrm{stop}\)</span></li>
 </ol>
 <p>Reading just the output symbols along these paths, we get:</p>
