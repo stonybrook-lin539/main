@@ -41,8 +41,17 @@ parsing</title>
 <ul>
 <li><a
 href="#from-surface-forms-to-underlying-representations-phonological-parsing">From
-surface forms to underlying representations: phonological
-parsing</a></li>
+surface forms to underlying representations: phonological parsing</a>
+<ul>
+<li><a href="#the-challenges-of-parsing-surface-forms">The challenges of
+parsing surface forms</a></li>
+<li><a href="#fsts-can-compute-their-inverse">FSTs can compute their
+inverse</a></li>
+<li><a href="#the-problem-of-potential-urs-versus-actual-urs">The
+problem of potential URs versus actual URs</a></li>
+<li><a href="#the-lexicon-as-a-transduction">The lexicon as a
+transduction</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -52,11 +61,836 @@ id="from-surface-forms-to-underlying-representations-phonological-parsing">From
 surface forms to underlying representations: phonological parsing</h1>
 <div class="prereqs">
 <ul>
-<li>strings(parts of strings)</li>
-<li>relations(inverse)</li>
+<li>strings(parts of strings) <!-- - relations(inverse) --></li>
 </ul>
 </div>
-<p>to be done (composition, prefix trees)</p>
+<p>We now have a very good idea of how FSTs allow us to model the
+process of mapping underlying representations (URs) to their surface
+forms. But when you think about it, most of the phonological workload
+you have to deal with on a regular basis isn’t so much about mapping URs
+to surface forms. That’s what you have to do in order to produce an
+utterance, but odds are that every day you do a lot more listening than
+talking (insert some zinger about university administrators here).
+Listening presents us with the opposite challenge: we hear surface forms
+and we need to figure out their URs. That is to say, the listener has to
+<strong>parse</strong> the surface form into a UR. Parsing is a lot
+harder than one might expect at first, but FSTs allow us to use some
+very smart tricks to make the retrieval of URs very easy and
+efficient.</p>
+<h2 id="the-challenges-of-parsing-surface-forms">The challenges of
+parsing surface forms</h2>
+<p>Mathematically, switching from rewriting of URs to parsing of surface
+forms is a trivial problem. A transduction <span
+class="math inline">\(T\)</span> from URs to surface form is just a
+relation — we say that <span class="math inline">\(u \mathrel{T}
+v\)</span> iff <span class="math inline">\(v\)</span> is a surface form
+of <span class="math inline">\(u\)</span>. The mapping from surface
+forms to URs is simply the <strong>inverse</strong> of <span
+class="math inline">\(T\)</span>, denoted <span
+class="math inline">\(T^{-1}\)</span>. The definition of <span
+class="math inline">\(T^{-1}\)</span> is straight-forward: <span
+class="math inline">\(v \mathrel{T^{-1}} u\)</span> iff <span
+class="math inline">\(u \mathrel{T} v\)</span>. In other words, take
+<span class="math inline">\(T\)</span>, switch <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span>, and you have <span
+class="math inline">\(T^{-1}\)</span>. Alright, there we go, problem
+solved, time to kick back and have a brewski.</p>
+<p>Sorry to disappoint you, but this answer is not satisfying at all.
+Being able to define <span class="math inline">\(T^{-1}\)</span> is all
+nice and dandy, but we want to be able to <strong>compute</strong> it.
+The definition above isn’t really viable for that. In order to determine
+all the URs for some surface form <span
+class="math inline">\(v\)</span>, we would have to look at every UR
+<span class="math inline">\(u\)</span> and see if <span
+class="math inline">\(u \mathrel{T} v\)</span> holds. If the set of URs
+is infinite, that’s simply impossible. And even if the set of URs is
+finite, it will still contain tens of thousands of URs, and we cannot
+afford to go through each one of them and check whether it can be used
+to produce <span class="math inline">\(v\)</span>. It would take way too
+long! Also, it is linguistically implausible because it predicts that
+the time it takes a speaker to reconstruct a UR from a surface form
+grows with the number of URs the speaker knows. Nothing along those
+lines has been found in any psycholinguistic experiment. The
+mathematical definition is neither efficient nor cognitively feasible as
+a model of phonological parsing.</p>
+<h2 id="fsts-can-compute-their-inverse">FSTs can compute their
+inverse</h2>
+<p>Fortunately we do not have to look very far for a solution to the
+parsing problem as it is already baked into our treatment of UR
+rewriting as finite-state transductions. These transductions make it
+very easy to compute their inverse. Given an FST computing a
+transduction <span class="math inline">\(T\)</span>, it takes only two
+steps to construct another FST that computes <span
+class="math inline">\(T^{-1}\)</span>:</p>
+<ol type="1">
+<li><strong>Decompose output strings</strong><br />
+We convert the FST to a normal form where no transition has more than
+one output symbol. We do this by adding new states so that we can
+replace every transition with multiple output symbols into a sequence of
+transitions where each one has exactly one output symbol. Suppose that
+state <span class="math inline">\(q\)</span> has a transition
+<em>x:y</em> to state <span class="math inline">\(q&#39;\)</span> such
+that <span class="math inline">\(y \mathrel{\mathop:}=y_1 y_2 \cdots
+y_n\)</span> is a string of <span class="math inline">\(n\)</span>
+output symbols. We introduce new states of the special form <span
+class="math inline">\(q[\alpha]\)</span> where <span
+class="math inline">\(\alpha\)</span> is <span
+class="math inline">\(y\)</span> but with a comma added to indicate how
+much of <span class="math inline">\(y\)</span> we have already output.
+More formally, the new states are <span class="math inline">\(q[y_1, y_2
+\cdots y_n]\)</span>, <span class="math inline">\(q[y_1 y_2, y_3 \cdots
+y_n]\)</span>, and so on until <span class="math inline">\(q[y_1 y_2
+\cdots y_{n-1}, y_n]\)</span>. We then replace the transition
+<em>x:y</em> from <span class="math inline">\(q\)</span> to <span
+class="math inline">\(q&#39;\)</span> with a sequence of transitions:
+<span class="math inline">\(\varepsilon:y_1\)</span> from <span
+class="math inline">\(q\)</span> to <span class="math inline">\(q[y_1,
+y_2 \cdots y_n]\)</span>, <span
+class="math inline">\(\varepsilon:y_2\)</span> from <span
+class="math inline">\(q[y_1, y_2 \cdots y_n]\)</span> to <span
+class="math inline">\(q[y_1 y_2, y_3 \cdots y_n]\)</span>, and so on,
+until we finally add <span class="math inline">\(x:y_n\)</span> from
+<span class="math inline">\(q[y_1 y_2 \cdots y_{n-1}, y_n]\)</span> to
+<span class="math inline">\(q&#39;\)</span>.</li>
+<li><strong>The all-essential switcheroo</strong><br />
+For every transition, we swap its input and output symbols. For example,
+<em>x:y</em> becomes <em>y:x</em>.</li>
+</ol>
+<div class="example">
+<p>Consider once more the nasalization FST we have encountered in a
+previous unit.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>Y</strong></td>
+<td style="text-align: center;"><strong>Nas?</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Y</strong></td>
+<td style="text-align: center;">n:n, p:p, ã:ã</td>
+<td style="text-align: center;">a:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Nas?</strong></td>
+<td style="text-align: center;">n:ãn, p:ap, ã:aã</td>
+<td style="text-align: center;">a:a</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(a&lt;)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="nasalization.svg" alt="nasalization.svg" /></p>
+<p>This FST contains four transitions with more than two output symbols,
+all of which are transitions from <em>Nas?</em> to <em>Y</em>. We must
+replace them according to the instructions above. First, we introduce a
+new state <em>Nas?[ã,n]</em> and replace the <em>n:ãn</em> transition
+from <em>Nas?</em> to <em>Y</em> with two transitions: <em><span
+class="math inline">\(\varepsilon\)</span>:ã</em> from <em>Nas?</em> to
+<em>Nas?[ã,n]</em>, and <em>n:n</em> from <em>Nas?[ã,n]</em> to
+<em>Y</em>. Then we add another state <em>Nas?[a,ã]</em> and use it to
+replace the transition <em>ã:aã</em>, and we also add <em>Nas?[a,p]</em>
+to replace the <em>p:ap</em> transition. Finally, we add a new state
+<em>Nas?[a,&lt;]</em> to replace the transition <em>&lt;:a&lt;</em> out
+of <em>Nas?</em> with <em><span
+class="math inline">\(\varepsilon\)</span>:a</em> from <em>Nas?</em> to
+<em>Nas?[a,&lt;]</em>, followed by <em>&lt;:&lt;</em> out of
+<em>Nas?[a,&lt;]</em>.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>Y</strong></td>
+<td style="text-align: center;"><strong>Nas?</strong></td>
+<td style="text-align: center;"><strong>Nas?[ã,n]</strong></td>
+<td style="text-align: center;"><strong>Nas?[a,p]</strong></td>
+<td style="text-align: center;"><strong>Nas?[a,ã]</strong></td>
+<td style="text-align: center;"><strong>Nas?[a,&lt;]</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Y</strong></td>
+<td style="text-align: center;">n:n, p:p, ã:ã</td>
+<td style="text-align: center;">a:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Nas?</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">a:a</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span>:ã</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span>:a</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span>:a</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span>:a</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Nas?[ã,n]</strong></td>
+<td style="text-align: center;">n:n</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Nas?[a,p]</strong></td>
+<td style="text-align: center;">p:p</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Nas?[a,ã]</strong></td>
+<td style="text-align: center;">ã:ã</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Nas?[a,&lt;]</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="nasalization_atmostoneoutput.svg"
+alt="nasalization_atmostoneoutput.svg" /></p>
+</div>
+<div class="exercise">
+<p>In order to verify that the two transducers in the example above
+produce the same surface forms, write down the surface forms that each
+one produces for the following URs (don’t forget to include &lt; at the
+end of the input string):</p>
+<ol type="1">
+<li>an</li>
+<li>anpa</li>
+<li>ãpaannap</li>
+<li>ãpaannpan</li>
+</ol>
+</div>
+<div class="example">
+<p>Now that we have an FST for nasalization where no transition has more
+than one output symbol, we can construct the inverse of nasalization by
+swapping the input and output symbols of each transition.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>Y</strong></td>
+<td style="text-align: center;"><strong>Nas?</strong></td>
+<td style="text-align: center;"><strong>Nas?[ã,n]</strong></td>
+<td style="text-align: center;"><strong>Nas?[a,p]</strong></td>
+<td style="text-align: center;"><strong>Nas?[a,ã]</strong></td>
+<td style="text-align: center;"><strong>Nas?[a,&lt;]</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Y</strong></td>
+<td style="text-align: center;">n:n, p:p, ã:ã</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span>:a</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Nas?</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">a:a</td>
+<td style="text-align: center;">ã:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">a:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">a:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">a:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Nas?[ã,n]</strong></td>
+<td style="text-align: center;">n:n</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Nas?[a,p]</strong></td>
+<td style="text-align: center;">p:p</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Nas?[a,ã]</strong></td>
+<td style="text-align: center;">ã:ã</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Nas?[a,&lt;]</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="nasalization_atmostoneoutput_inverse.svg"
+alt="nasalization_atmostoneoutput_inverse.svg" /></p>
+</div>
+<div class="exercise">
+<p>In the previous exercise, you computed surface forms for the
+following URs:</p>
+<ol type="1">
+<li>an</li>
+<li>anpa</li>
+<li>ãpaannap</li>
+<li>ãpaannpan</li>
+</ol>
+<p>Verify that the inverse FST in the example above can produce these
+URs from the corresponding surface forms you computed.</p>
+</div>
+<p>As you can see, computing the inverse of a finite-state transduction
+is very simple. It can be a bit painful to construct the corresponding
+FST that has no transitions with multiple output symbols, but once that
+is done the rest is trivial.</p>
+<h2 id="the-problem-of-potential-urs-versus-actual-urs">The problem of
+potential URs versus actual URs</h2>
+<p>Simple as the inverse FST construction might be, it runs into a
+teeny-weeny problem: it does not do what we want it to! We are
+interested in mapping surface forms to their URs, but the inverse FST
+maps each surface form to all logically possible URs that the surface
+form could have been produced from.</p>
+<div class="example">
+<p>Consider the surface form <em>ãpaãnnap</em> of the UR
+<em>ãpaannap</em>. If we run the surface form through the inverse
+nasalization FST, we get two outputs:</p>
+<ol type="1">
+<li><em>ãpaannap</em></li>
+<li><em>ãpaãnnap</em></li>
+</ol>
+<p>The first is the actual UR we had in mind. The second one is a
+potential UR in the sense that if we feed it into the nasalization FST,
+we will get the surface form <em>ãpaãnnap</em>. But that does not mean
+that it is an actual UR of our toy language. Maybe it is, maybe it
+isn’t.</p>
+</div>
+<div class="exercise">
+<p>For an even more striking example, consider a language where
+underlying <em>a</em> is always rewritten <em>ã</em>, no matter what the
+context looks like. Write down the FST for this and construct its
+inverse (you may use tables or graphs). How many output forms does the
+inverse FST produce for the following surface forms?</p>
+<ol type="1">
+<li>ãp</li>
+<li>ãpãp</li>
+<li>ãpãpãp</li>
+<li>ãpãpãpãpãp</li>
+</ol>
+</div>
+<div class="exercise">
+<p>For another example, suppose that we have composed nasalization with
+nasal deletion into a single FST that rewrite <em>a</em> as <em>ã</em>
+before <em>n</em> and subsequently deletes <em>n</em> before <em>p</em>.
+Suppose our language contains a single UR <em>anpanpanp</em>. What is
+the surface form produced from this UR, and how many putative URs does
+the inverse FST produce from this surface form?</p>
+</div>
+<div class="exercise">
+<p>Alright, here is the worst-case scenario: suppose that underlying
+<em>n</em> is always deleted. Write down the FST for this and construct
+its inverse (you may use tables or graphs). How many output forms does
+the inverse FST produce for the surface form <em>a</em>?</p>
+</div>
+<p>The inverse construction above is behaving correctly in the sense
+that it does undo the rewrite rules implemented by the original FST. But
+it does so in all possible ways, which means that it will often produce
+strings that are not actual URs of the language.</p>
+<p>Mathematically, this isn’t much of a problem because it is easy to
+define the set of actual URs for any given surface form <span
+class="math inline">\(s\)</span>. Let <span
+class="math inline">\(\mathrm{Lex}\)</span> (short for <em>lexicon</em>)
+be the set that lists all URs of the language, and let <span
+class="math inline">\(U\)</span> be the set of putative URs the inverse
+FST produces from surface form <em>s</em>. Then the set of actual URs of
+<em>s</em> is the intersection of the two, <span
+class="math inline">\(\mathrm{Lex} \cap U\)</span>. But this is yet
+another case where the mathematical definition is not very satisfying.
+Intersection is a costly operation, and its cost grows with the size of
+<span class="math inline">\(\mathrm{Lex}\)</span> and <span
+class="math inline">\(U\)</span>. As noted at the beginning of this
+section, there is no experimental evidence that surface form parsing is
+contingent on the size of the lexicon. While intersection is the
+mathematically correct description, it once again does not tell us how
+we should actually go about computing the intersection, which is the
+part that’s most interesting from a cognitive perspective. Once again,
+though, FSTs offer a neat solution.</p>
+<h2 id="the-lexicon-as-a-transduction">The lexicon as a
+transduction</h2>
+<p>So far we have implicitly assumed that phonology operates over a
+fixed set of URs that are rewritten into surface forms. But this isn’t
+quite how modern phonology works. Many phonologists subscribe to a
+specific principle called the <strong>richness of the base</strong>.
+Richness of the base states that every random string is a possible input
+to the phonological grammar, but phonology has constraints that will
+weed out strings that aren’t URs. In other words, the set of URs isn’t
+part of the lexicon, it is part of the grammar!</p>
+<p>Richness of the base is a very natural fit for the FST model. So far,
+we have designed FSTs that, when composed into a single cascade FST
+<span class="math inline">\(T\)</span>, will rewrite URs in the mental
+lexicon as their corresponding surface forms. In other words, the
+phonological transduction is a relation between <span
+class="math inline">\(\mathrm{Lex}\)</span> and the set <span
+class="math inline">\(S\)</span> of surface forms. Richness of the base
+tells us that we should instead construct a slightly different FST <span
+class="math inline">\(T&#39;\)</span> that works for any arbitrary
+string and will still just produce the intended set of surface forms.
+That is to say, the FST <span class="math inline">\(T&#39;\)</span>
+defines a relation between <span class="math inline">\(\Sigma^*\)</span>
+and <span class="math inline">\(S\)</span>. But how could that possibly
+work? How could we get rid of the lexicon and still produce the same set
+of surface forms?</p>
+<p>The answer is surprisingly simple: represent your lexicon as a
+transducer <span class="math inline">\(L\)</span>, and compose <span
+class="math inline">\(L\)</span> with <span
+class="math inline">\(T\)</span> in order to obtain <span
+class="math inline">\(T&#39;\)</span>. There are many ways to construct
+<span class="math inline">\(L\)</span>, but a particularly simple one
+starts out with a <strong>prefix tree</strong> representation of the
+lexicon. This is a tree where the root is the empty string, each branch
+is labeled with a symbol, and a node is labeled, say, <em>abc</em> iff
+one can reach it from the root by following three edges labeled
+<em>a</em>, <em>b</em>, and <em>c</em>, respectively. If a node
+corresponds to a lexical item, it has an outgoing branch labeled
+<em>&lt;</em>. <!-- fixme: tree has not been introduced --></p>
+<div class="example">
+<p>Suppose our lexicon consist only of following URs.</p>
+<ol type="1">
+<li>an</li>
+<li>anpa</li>
+<li>ãpaannap</li>
+<li>ãpaannpan</li>
+</ol>
+<p>This corresponds to the prefix tree below.</p>
+<p><img src="prefixtree.svg" alt="prefixtree.svg" /></p>
+<p>We can also write down the prefix tree linearly by using brackets to
+indicate a step down in the tree and using commas to separate branches.
+In this format, we omit node labels and only list the edge labels.</p>
+<ul>
+<li>(a(n(&lt;, p(a(&lt;)))), ã(p(a(a(n(n(a(p(&lt;)),
+p(a(n(&lt;))))))))))</li>
+</ul>
+<p>The bracketed format highlights how the node labels are redundant and
+all the work is being done by the edge labels, but it is also very
+cluttered. We can make things more readable by dropping brackets when
+there is only one way of moving down in the prefix tree.</p>
+<ul>
+<li>(an(&lt;, pa&lt;), ãpaann(ap&lt;, pan&lt;))</li>
+</ul>
+</div>
+<p>Prefix trees have many appealing properties. For example, they are
+very easy to expand and modify.</p>
+<div class="exercise">
+<p>Suppose that the following are also URs:</p>
+<ol type="1">
+<li>ap</li>
+<li>anap</li>
+<li>ãpaa</li>
+<li>pa</li>
+</ol>
+<p>Modify the prefix tree from the example above so that it also
+includes these URs. You may draw the modified prefix tree or specify it
+in the (simplified) bracketed format.</p>
+</div>
+<div class="exercise">
+<p>Modify the prefix tree from the example above so that <em>an</em> is
+no longer a UR. You may draw the modified prefix tree or specify it in
+the (simplified) bracketed format.</p>
+</div>
+<p>But for our purposes, the appeal of prefix trees is that they are
+just a special case of FSTs. The root of the tree is the only initial
+state, and every branch labeled <em>x</em> is actually a transition
+labeled <em>x:x</em>.</p>
+<div class="example">
+<p>The prefix tree from the example above corresponds to the FST
+depicted below.</p>
+<p><img src="prefixtree_fst.svg" alt="prefixtree_fst.svg" /></p>
+<p>The tabular representation of this FST would be pretty large with
+tons of empty cells, so for once it is easier to just write down the
+transitions:</p>
+<ol type="1">
+<li><span class="math inline">\(\varepsilon\)</span> <span
+class="math inline">\(\xrightarrow{a:a}\)</span> a</li>
+<li>a <span class="math inline">\(\xrightarrow{n:n}\)</span> an</li>
+<li>an <span class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+<li>an <span class="math inline">\(\xrightarrow{p:p}\)</span> anp</li>
+<li>anp <span class="math inline">\(\xrightarrow{a:a}\)</span> anpa</li>
+<li>anpa <span
+class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+<li><span class="math inline">\(\varepsilon\)</span> <span
+class="math inline">\(\xrightarrow{\tilde{a}:\tilde{a}}\)</span> ã</li>
+<li>ã <span class="math inline">\(\xrightarrow{p:p}\)</span> ãp</li>
+<li>ãp <span class="math inline">\(\xrightarrow{a:a}\)</span> ãpa</li>
+<li>ãpa <span class="math inline">\(\xrightarrow{a:a}\)</span> ãpaa</li>
+<li>ãpaa <span class="math inline">\(\xrightarrow{n:n}\)</span>
+ãpaan</li>
+<li>ãpaan <span class="math inline">\(\xrightarrow{n:n}\)</span>
+ãpaann</li>
+<li>ãpaann <span class="math inline">\(\xrightarrow{a:a}\)</span>
+ãpaanna</li>
+<li>ãpaanna <span class="math inline">\(\xrightarrow{p:p}\)</span>
+ãpaannap</li>
+<li>ãpaannap <span
+class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+<li>ãpaann <span class="math inline">\(\xrightarrow{p:p}\)</span>
+ãpaannp</li>
+<li>ãpaannp <span class="math inline">\(\xrightarrow{a:a}\)</span>
+ãpaannpa</li>
+<li>ãpaannpa <span class="math inline">\(\xrightarrow{n:n}\)</span>
+ãpaannpan</li>
+<li>ãpaannpan <span
+class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+</ol>
+</div>
+<p>The FST obtained from a prefix tree acts like a filter. It does not
+actually change any of the input strings, but the only input strings it
+produces an output for are those that correspond to lexical items in the
+prefix tree.</p>
+<div class="exercise">
+<p>For each one of the following strings, list the corresponding output
+produced by the FST in the example above. If no output is produced at
+all, say so.</p>
+<ol type="1">
+<li>an</li>
+<li>anp</li>
+<li>ãn</li>
+<li>ãpaannap</li>
+<li>ãpaannapa</li>
+</ol>
+</div>
+<p>Now suppose that we have used this prefix tree construction in order
+to represent the lexicon as an FST <span
+class="math inline">\(L\)</span>. What happens if we compose <span
+class="math inline">\(L\)</span> with the nasalization FST? We get an
+FST that can take any arbitrary string as input but will only produce an
+output for those strings that are URs in our lexicon.</p>
+<div class="example">
+<p>The composition of the FST above with the nasalization FST yields the
+FST below.</p>
+<p><img src="lexicon_nasalization.svg"
+alt="lexicon_nasalization.svg" /></p>
+<p>Again it is easier to write down the transitions directly instead of
+using the tabular format.</p>
+<ol type="1">
+<li><span class="math inline">\(\varepsilon\)</span>-Y <span
+class="math inline">\(\xrightarrow{a:\varepsilon}\)</span> a-Nas?</li>
+<li>a-Nas? <span
+class="math inline">\(\xrightarrow{n:\tilde{a}n}\)</span> an-Y</li>
+<li>an-Y <span
+class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+<li>an-Y <span class="math inline">\(\xrightarrow{p:p}\)</span>
+anp-Y</li>
+<li>anp-Y <span
+class="math inline">\(\xrightarrow{a:\varepsilon}\)</span>
+anpa-Nas?</li>
+<li>anpa-Nas? <span
+class="math inline">\(\xrightarrow{&lt;:a&lt;}\)</span></li>
+<li><span class="math inline">\(\varepsilon\)</span>-Y <span
+class="math inline">\(\xrightarrow{\tilde{a}:\tilde{a}}\)</span>
+ã-Y</li>
+<li>ã-Y <span class="math inline">\(\xrightarrow{p:p}\)</span> ãp-Y</li>
+<li>ãp-Y <span
+class="math inline">\(\xrightarrow{a:\varepsilon}\)</span> ãpa-Nas?</li>
+<li>ãpa-Nas? <span class="math inline">\(\xrightarrow{a:a}\)</span>
+ãpaa-Nas?</li>
+<li>ãpaa-Nas? <span
+class="math inline">\(\xrightarrow{n:\tilde{a}n}\)</span> ãpaan-Y</li>
+<li>ãpaan-Y <span class="math inline">\(\xrightarrow{n:n}\)</span>
+ãpaann-Y</li>
+<li>ãpaann-Y <span
+class="math inline">\(\xrightarrow{a:\varepsilon}\)</span>
+ãpaanna-Nas?</li>
+<li>ãpaanna-Nas? <span class="math inline">\(\xrightarrow{p:ap}\)</span>
+ãpaannap-Y</li>
+<li>ãpaannap-Y <span
+class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+<li>ãpaann-Y <span class="math inline">\(\xrightarrow{p:p}\)</span>
+ãpaannp-Y</li>
+<li>ãpaannp-Y <span
+class="math inline">\(\xrightarrow{a:\varepsilon}\)</span>
+ãpaannpa-Nas?</li>
+<li>ãpaannpa-Nas? <span
+class="math inline">\(\xrightarrow{n:\tilde{a}n}\)</span>
+ãpaannpan-Y</li>
+<li>ãpaannpan-Y <span
+class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+</ol>
+</div>
+<p>Notice how the composed FST still has the same structure as the
+prefix tree, only two things have changed: the names of the states,
+which do no matter, and the actual rewrite steps carried out by the
+transitions. The only way the composition can have a different structure
+from the prefix tree is if one of the FSTs can produce multiple outputs
+from the same input.</p>
+<div class="exercise">
+<p>Consider the non-deterministic FST below, which can optionally
+rewrite up to two instances of <em>n</em> as <em>m</em>.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;">a:a, ã:ã, n:n, p:p</td>
+<td style="text-align: center;">n:m</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>1</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">a:a, ã:ã, n:n, p:p</td>
+<td style="text-align: center;">n:m</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>2</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">a:a, ã:ã, n:n, p:p</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes(&lt;)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="doublerewrite.svg" alt="doublerewrite.svg" /></p>
+<p>Compose the FST in the example above with this FST for optional
+rewriting of <em>n</em>.</p>
+</div>
+<div class="exercise">
+<p>Now consider the FST below, which inserts <em>a</em> at the beginning
+of the input if the input ends with a vowel, and <em>n</em> if it ends
+with a consonant. This is not a naturally occurring process, but
+language games like pig latin implement a more complicated version of
+this rewrite step.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><strong>C</strong></td>
+<td style="text-align: center;"><strong>V</strong></td>
+<td style="text-align: center;"><strong>Stop</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>0</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span>:n</td>
+<td style="text-align: center;"><span
+class="math inline">\(\varepsilon\)</span>:a</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>C</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">a:a, ã:ã, n:n, p:p</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">n:n, p:p</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>V</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">a:a, ã:ã, n:n, p:p</td>
+<td style="text-align: center;">a:a, ã:ã</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Stop</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p><img src="firstinsertion.svg" alt="firstinsertion.svg" /></p>
+<p>Compose the FST in the example above with this FST for word-initial
+consonant/vowel insertion. Do you get a structure distinct from the
+prefix tree FST? What if you remove all nodes from which one cannot
+reach a final state?</p>
+</div>
+<p>As we noted before, almost all phonological processes produce exactly
+one surface form for a given UR. For these processes, transducer
+composition actually gets easier if we start out with the lexical FST
+because we keep the overall arrangement of states and only change the
+specific rewriting carried out by each transition. Turning the lexicon
+into an FST isn’t just a mathematical trick, it is linguistically
+pleasing because it incorporates the lexicon into the grammar in a
+manner that makes it much easier to handle fundamental operations like
+composition — and, of course, parsing. Constructing the inverse of the
+FST in the example above is easy and gives us a transduction that
+relates surface forms only to existing URs, not all logically possible
+ones.</p>
+<div class="example">
+<p>After adding new states and switching input and output symbols on the
+transitions, we get the FST below.</p>
+<p><img src="prefixtree_fst_inverse.svg"
+alt="prefixtree_fst_inverse.svg" /></p>
+<p>Now consider once more the surface form <em>ãpaãnnap</em> of the UR
+<em>ãpaannap</em>. Earlier on, we saw that the inverse of the
+nasalization FST yields two URs for this surface form:</p>
+<ol type="1">
+<li><em>ãpaannap</em></li>
+<li><em>ãpaãnnap</em></li>
+</ol>
+<p>But the transducer above provides only one UR, which is
+<em>ãpaannap</em> as desired.</p>
+</div>
+<div class="exercise">
+<p>In a previous exercise, you computed surface forms for the URs
+below:</p>
+<ol type="1">
+<li>an</li>
+<li>anpa</li>
+<li>ãpaannap</li>
+<li>ãpaannpan</li>
+</ol>
+<p>Verify that the FST in the example above correctly maps each one of
+those surface forms to the corresponding UR in that list.</p>
+</div>
+<!-- 1.  **Make the FST *complete***   -->
+<!--     - For every state $q$ and input symbol $x$, if there is no transition out of $q$ with $x$, then we add a transition $x:x$ to a new state, which we call the **sink state**. -->
+<!--     - Keep doing this until every state, including the sink state itself, has an outgoing transition for every input symbol $x$. -->
+<!-- 1.  **Reverse the FST**   -->
+<!--     - Switch the direction of all transitions. -->
+<!--       For example, if state $q$ has a transition $x:y$ to state $q'$, we replace this with a transition $y:x$ from $q'$ to $q$ with symbol $x$. -->
+<!--     - Switch final and initial states. -->
+<!--       For example, if $q$ was final, it is now initial, and if it was initial, it is now final. -->
+<!--       If $q$ was both initial and final, it is still both. -->
+<!--  -->
 </div>
 </div>
 </body>
