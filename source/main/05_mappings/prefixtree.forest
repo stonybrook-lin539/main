@@ -1,0 +1,45 @@
+\documentclass[tikz]{standalone}
+\usepackage[linguistics]{forest}
+\usepackage[charter]{mathdesign}
+\newcommand{\emptystring}{\ensuremath{\varepsilon}}
+\newcommand{\RE}{\ensuremath{\ltimes}}
+\begin{document}
+\begin{forest}
+    [$\emptystring$
+        [a, edge label={node[above,font=\scriptsize]{a}}
+            [an, edge label={node[left,midway,font=\scriptsize]{n}}
+                [\phantom{a}, edge label={node[above,font=\scriptsize]{\RE}}]
+                [anp, edge label={node[above,font=\scriptsize]{p}}
+                    [anpa, edge label={node[left,midway,font=\scriptsize]{a}}
+                        [\phantom{a}, edge label={node[left,midway,font=\scriptsize]{\RE}}]
+                    ]
+                ]
+            ]
+        ]
+        [\~{a}, edge label={node[above,font=\scriptsize]{\~{a}}}
+            [\~{a}p, edge label={node[left,midway,font=\scriptsize]{p}}
+                [\~{a}pa, edge label={node[left,midway,font=\scriptsize]{a}}
+                    [\~{a}paa, edge label={node[left,midway,font=\scriptsize]{a}}
+                        [\~{a}paan, edge label={node[left,midway,font=\scriptsize]{n}}
+                            [\~{a}paann, edge label={node[left,midway,font=\scriptsize]{n}}
+                                [\~{a}paanna, edge label={node[above,font=\scriptsize]{a}}
+                                    [\~{a}paannap, edge label={node[left,midway,font=\scriptsize]{p}}
+                                        [\phantom{a}, edge label={node[left,midway,font=\scriptsize]{\RE}}]
+                                    ]
+                                ]
+                                [\~{a}paannp, edge label={node[above,font=\scriptsize]{p}}
+                                    [\~{a}paannpa, edge label={node[left,midway,font=\scriptsize]{a}}
+                                        [\~{a}paannpan, edge label={node[left,midway,font=\scriptsize]{n}}
+                                            [\phantom{a}, edge label={node[left,midway,font=\scriptsize]{\RE}}]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+\end{forest}
+\end{document}

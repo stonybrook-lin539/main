@@ -255,7 +255,7 @@ $if(singlesection)$
   }
   \makeatother
   \fancyhead[L]{\nouppercase{\thetitle}}
-  \fancyhead[R]{\nouppercase{\leftmark}}
+  \fancyhead[R]{}
 $elseif(singlechapter)$
   \usepackage{titletoc}
   \contentsmargin{2em}
@@ -265,12 +265,12 @@ $elseif(singlechapter)$
   \usepackage{fancyhdr}
   \pagestyle{fancy}
   \fancyhead[L]{\nouppercase{\leftmark}}
-  \fancyhead[R]{\nouppercase{\rightmark}}
+  \fancyhead[R]{}
 $else$
   \usepackage{fancyhdr}
   \pagestyle{fancy}
   \fancyhead[L]{\nouppercase{\leftmark}}
-  \fancyhead[R]{\nouppercase{\rightmark}}
+  \fancyhead[R]{}
 $endif$
 %----------------------------------------------------------------------------
 

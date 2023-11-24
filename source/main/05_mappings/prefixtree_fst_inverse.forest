@@ -1,0 +1,61 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows, calc, positioning}
+\usepackage[linguistics]{forest}
+\usepackage[charter]{mathdesign}
+\newcommand{\emptystring}{\ensuremath{\varepsilon}}
+\newcommand{\RE}{\ensuremath{\ltimes}}
+\begin{document}
+\begin{forest}
+    [$\emptystring$-Y, name=root, for tree={draw, circle, edge={->}}
+        [a-Nas?, edge label={node[above,font=\scriptsize]{$\emptystring$:a}}
+            [{an-Nas?[\~{a},n]}, edge label={node[left,midway,font=\scriptsize]{\~{a}:$\emptystring$}}
+                [an-Y, edge label={node[left,midway,font=\scriptsize]{n:n}}
+                    [\phantom{a}, draw=none, edge label={node[above,font=\scriptsize]{\RE:\RE}}]
+                    [{anp-Y[a,p]}, edge label={node[above,font=\scriptsize]{a:$\emptystring$}}
+                        [anp-Y, edge label={node[left,midway,font=\scriptsize]{p:p}}
+                            [anpa-Nas?, edge label={node[left,midway,font=\scriptsize]{$\emptystring$:a}}
+                                [{anpa-Nas?[a,\RE]}, edge label={node[left,midway,font=\scriptsize]{a:$\emptystring$}}
+                                    [\phantom{a}, draw=none, edge label={node[left,midway,font=\scriptsize]{\RE:\RE}}]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+        [\~{a}-Y, edge label={node[above,font=\scriptsize]{\~{a}:\~{a}}}
+            [\~{a}p-Y, edge label={node[left,midway,font=\scriptsize]{p:p}}
+                [\~{a}pa-Nas?, edge label={node[left,midway,font=\scriptsize]{$\emptystring$:a}}
+                    [\~{a}paa-Nas?, edge label={node[left,midway,font=\scriptsize]{a:a}}
+                        [{\~{a}paan-Nas?[\~{a},n]}, edge label={node[left,midway,font=\scriptsize]{\~{a}:$\emptystring$}}
+                            [\~{a}paan-Y, edge label={node[left,midway,font=\scriptsize]{n:n}}
+                                [\~{a}paann-Y, edge label={node[left,midway,font=\scriptsize]{n:n}}
+                                    [\~{a}paanna-Nas?, edge label={node[above,font=\scriptsize]{$\emptystring$:a}}
+                                        [{\~{a}paanna-Nas?[a,p]}, edge label={node[left,midway,font=\scriptsize]{a:\emptystring}}
+                                            [\~{a}paannap-Y, edge label={node[left,midway,font=\scriptsize]{p:p}}
+                                                [\phantom{a}, draw=none, edge label={node[left,midway,font=\scriptsize]{\RE:\RE}}]
+                                            ]
+                                        ]
+                                    ]
+                                    [\~{a}paannp-Y, edge label={node[above,font=\scriptsize]{p:p}}
+                                        [\~{a}paannpa-Nas?, edge label={node[left,midway,font=\scriptsize]{$\emptystring$:a}}
+                                            [{\~{a}paannpa-Nas?[\~{a},n]}, edge label={node[left,midway,font=\scriptsize]{\~{a}:$\emptystring$}}
+                                                [\~{a}paannpan-Y, edge label={node[left,midway,font=\scriptsize]{n:n}}
+                                                    [\phantom{a}, draw=none, edge label={node[left,midway,font=\scriptsize]{\RE:\RE}}]
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+    %
+    \node (start) [left=4em of root] {Start};
+    \draw[->] (start) to (root);
+\end{forest}
+\end{document}

@@ -1,0 +1,22 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows, automata, calc, positioning}
+\usepackage[charter]{mathdesign}
+\newcommand{\emptystring}{\ensuremath{\varepsilon}}
+\newcommand{\RE}{\ensuremath{\ltimes}}
+\begin{document}
+\begin{tikzpicture}
+    \node[state, initial] (0) at (0,0) {0};
+    \node[state] (1) [right=4em of 0] {1};
+    \node[state] (2) [right=4em of 1] {2};
+
+    \path[->]
+        (0) edge [loop above] node [above, align=center] {a:a\\\~{a}:\~{a}\\n:n\\p:p} (0)
+        (0) edge node [above, align=center] {n:m} (1)
+        (1) edge [loop above] node [above, align=center] {a:a\\\~{a}:\~{a}\\n:n\\p:p} (1)
+        (1) edge node [above, align=center] {n:m} (2)
+        (2) edge [loop above] node [above, align=center] {a:a\\\~{a}:\~{a}\\n:n\\p:p} (2)
+        (0) edge node [left, align=center] {\RE:\RE} ($(0) - (0,4em)$)
+        (1) edge node [left, align=center] {\RE:\RE} ($(1) - (0,4em)$)
+        (2) edge node [left, align=center] {\RE:\RE} ($(2) - (0,4em)$);
+\end{tikzpicture}
+\end{document}

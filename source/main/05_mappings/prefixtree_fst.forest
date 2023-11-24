@@ -1,0 +1,49 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows, calc, positioning}
+\usepackage[linguistics]{forest}
+\usepackage[charter]{mathdesign}
+\newcommand{\emptystring}{\ensuremath{\varepsilon}}
+\newcommand{\RE}{\ensuremath{\ltimes}}
+\begin{document}
+\begin{forest}
+    [$\emptystring$, name=root, for tree={draw, circle, edge={->}}
+        [a, edge label={node[above,font=\scriptsize]{a:a}}
+            [an, edge label={node[left,midway,font=\scriptsize]{n:n}}
+                [\phantom{a}, draw=none, edge label={node[above,font=\scriptsize]{\RE:\RE}}]
+                [anp, edge label={node[above,font=\scriptsize]{p:p}}
+                    [anpa, edge label={node[left,midway,font=\scriptsize]{a:a}}
+                        [\phantom{a}, draw=none, edge label={node[left,midway,font=\scriptsize]{\RE:\RE}}]
+                    ]
+                ]
+            ]
+        ]
+        [\~{a}, edge label={node[above,font=\scriptsize]{\~{a}:\~{a}}}
+            [\~{a}p, edge label={node[left,midway,font=\scriptsize]{p:p}}
+                [\~{a}pa, edge label={node[left,midway,font=\scriptsize]{a:a}}
+                    [\~{a}paa, edge label={node[left,midway,font=\scriptsize]{a:a}}
+                        [\~{a}paan, edge label={node[left,midway,font=\scriptsize]{n:n}}
+                            [\~{a}paann, edge label={node[left,midway,font=\scriptsize]{n:n}}
+                                [\~{a}paanna, edge label={node[above,font=\scriptsize]{a:a}}
+                                    [\~{a}paannap, edge label={node[left,midway,font=\scriptsize]{p:p}}
+                                        [\phantom{a}, draw=none, edge label={node[left,midway,font=\scriptsize]{\RE:\RE}}]
+                                    ]
+                                ]
+                                [\~{a}paannp, edge label={node[above,font=\scriptsize]{p:p}}
+                                    [\~{a}paannpa, edge label={node[left,midway,font=\scriptsize]{a:a}}
+                                        [\~{a}paannpan, edge label={node[left,midway,font=\scriptsize]{n:n}}
+                                            [\phantom{a}, draw=none, edge label={node[left,midway,font=\scriptsize]{\RE:\RE}}]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+    %
+    \node (start) [left=4em of root] {start};
+    \draw[->] (start) to (root);
+\end{forest}
+\end{document}

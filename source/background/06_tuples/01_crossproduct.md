@@ -47,7 +47,7 @@ This is different from $C \times S$, which contains
 :::
 
 ::: exercise
-Suppose $S$ consists of \emph{John}, \emph{Mary}, and \emph{the old man}, whereas $V$ contains only *slept* and *left*.
+Suppose $S$ consists of *John*, *Mary*, and *the old man*, whereas $V$ contains only *slept* and *left*.
 Compute $S \times V$.
 :::
 
@@ -101,7 +101,7 @@ What should $A^0$ be?
 
 ::: exercise
 One motivation for the exponent notation is the following equivalence: $\card{A^n} = \card{A}^n$.
-Explain why this holds.
+Explain what this means and why this holds.
 :::
 
 ::: exercise

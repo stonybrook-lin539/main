@@ -1,0 +1,18 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows, automata, calc, positioning}
+\usepackage[charter]{mathdesign}
+\newcommand{\RE}{\ensuremath{\ltimes}}
+\begin{document}
+\begin{tikzpicture}
+    \node[state, initial] (1) at (0,0) {Player 1};
+    \node[state] (2) [right=8em of 1] {Player 2};
+    \node (F) [right=5em of 2] {};
+
+    \path[->]
+        (1) edge [loop above] node [above] {spade:club-club} (1)
+        (1) edge [bend left] node [above, align=center] {heart:diamond\\spade:nothing\\nothing:diamond} (2)
+        (2) edge [bend left] node [below, align=center] {heart:heart\\spade:heart} (1)
+        (2) edge [loop above] node [above, align=center] {nothing:club} (2)
+        (2) edge node [above, align=center] {\RE:nothing} (F);
+\end{tikzpicture}
+\end{document}
