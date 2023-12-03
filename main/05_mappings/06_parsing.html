@@ -51,6 +51,7 @@ inverse</a></li>
 problem of potential URs versus actual URs</a></li>
 <li><a href="#the-lexicon-as-a-transduction">The lexicon as a
 transduction</a></li>
+<li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -195,10 +196,10 @@ class="math inline">\(\varepsilon\)</span></td>
 </table>
 <p><img src="nasalization.svg" alt="nasalization.svg" /></p>
 <p>This FST contains four transitions with more than two output symbols,
-all of which are transitions from <em>Nas?</em> to <em>Y</em>. We must
-replace them according to the instructions above. First, we introduce a
-new state <em>Nas?[ã,n]</em> and replace the <em>n:ãn</em> transition
-from <em>Nas?</em> to <em>Y</em> with two transitions: <em><span
+all of which are transitions from <em>Nas?</em>. We must replace them
+according to the instructions above. First, we introduce a new state
+<em>Nas?[ã,n]</em> and replace the <em>n:ãn</em> transition from
+<em>Nas?</em> to <em>Y</em> with two transitions: <em><span
 class="math inline">\(\varepsilon\)</span>:ã</em> from <em>Nas?</em> to
 <em>Nas?[ã,n]</em>, and <em>n:n</em> from <em>Nas?[ã,n]</em> to
 <em>Y</em>. Then we add another state <em>Nas?[a,ã]</em> and use it to
@@ -320,6 +321,11 @@ end of the input string):</p>
 <li>ãpaannap</li>
 <li>ãpaannpan</li>
 </ol>
+<p>Careful, the <span
+class="math inline">\(\varepsilon\)</span>-transitions make the
+transducer non-deterministic, so you might have to explore multiple
+paths in order to find one that actually allows you to process the input
+string.</p>
 </div>
 <div class="example">
 <p>Now that we have an FST for nasalization where no transition has more
@@ -436,11 +442,18 @@ following URs:</p>
 </ol>
 <p>Verify that the inverse FST in the example above can produce these
 URs from the corresponding surface forms you computed.</p>
+<p>Careful, the FST is non-deterministic, so it might take some effort
+to find a path that works.</p>
 </div>
 <p>As you can see, computing the inverse of a finite-state transduction
-is very simple. It can be a bit painful to construct the corresponding
-FST that has no transitions with multiple output symbols, but once that
-is done the rest is trivial.</p>
+requires no new tricks or machinery. It can be a bit painful to
+construct the corresponding FST that has no transitions with multiple
+output symbols, and since the result may be non-deterministic, it can be
+a bit harder to find a workable sequence of transitions. But
+non-deterministic FSTs are still FSTs, and with a bit of experience it
+isn’t too hard to handle the non-determinism. Overall, it is
+surprisingly simple (in particular when compared to parsing sentence
+structure, which is hard).</p>
 <h2 id="the-problem-of-potential-urs-versus-actual-urs">The problem of
 potential URs versus actual URs</h2>
 <p>Simple as the inverse FST construction might be, it runs into a
@@ -463,11 +476,12 @@ that it is an actual UR of our toy language. Maybe it is, maybe it
 isn’t.</p>
 </div>
 <div class="exercise">
-<p>For an even more striking example, consider a language where
-underlying <em>a</em> is always rewritten <em>ã</em>, no matter what the
-context looks like. Write down the FST for this and construct its
-inverse (you may use tables or graphs). How many output forms does the
-inverse FST produce for the following surface forms?</p>
+<p>For an even more striking example, consider a language that still
+uses <em>a</em>, <em>ã</em>, <em>n</em>, and <em>p</em> as above, but
+where underlying <em>a</em> is always rewritten <em>ã</em> no matter
+what the context looks like. Write down the FST for this and construct
+its inverse (you may use tables or graphs). How many output forms does
+the inverse FST produce for the following surface forms?</p>
 <ol type="1">
 <li>ãp</li>
 <li>ãpãp</li>
@@ -594,10 +608,10 @@ in the (simplified) bracketed format.</p>
 no longer a UR. You may draw the modified prefix tree or specify it in
 the (simplified) bracketed format.</p>
 </div>
-<p>But for our purposes, the appeal of prefix trees is that they are
-just a special case of FSTs. The root of the tree is the only initial
-state, and every branch labeled <em>x</em> is actually a transition
-labeled <em>x:x</em>.</p>
+<p>But for our purposes, the appeal of prefix trees is that they can be
+regarded as a special case of FSTs. The root of the tree is the only
+initial state, and every branch labeled <em>x</em> is actually a
+transition labeled <em>x:x</em>.</p>
 <div class="example">
 <p>The prefix tree from the example above corresponds to the FST
 depicted below.</p>
@@ -881,6 +895,31 @@ below:</p>
 <p>Verify that the FST in the example above correctly maps each one of
 those surface forms to the corresponding UR in that list.</p>
 </div>
+<p>So there you have it, a finite-state procedure that correctly maps
+each surface form to all the actual URs it can be produced from, rather
+than all logically possible ones. It is remarkable that FSTs provide the
+means for both the generation of surface forms from URs and for parsing
+surface forms into URs. This flexibility is why FSTs were all the rage
+for practical tasks like speech recognition and speech synthesis in the
+80s and 90s. And while this has changed in recent years with the
+overwhelming success of neural networks, FSTs still provide us a deep
+window into phonology as a grammar of rewrite processes.</p>
+<h2 id="recap">Recap</h2>
+<ol type="1">
+<li><strong>Phonological parsing</strong> is the process of mapping a
+given surface form to the URs this surface form can be obtained from. In
+the general case, parsing can be a very difficult task, but FSTs make it
+easy.</li>
+<li>Assuming the FST is in a format where no transition has more than
+one output symbol, we switch the input symbol and the output symbol of
+each transition. This yields an FST that parses each surface form into
+all <strong>logically possible</strong> URs for that surface form.</li>
+<li>In order to limit parsing to existingURs, we represent the lexicon
+as a prefix tree, turn that prefix tree into an FST, and then compose
+this FST with the cascade FST that carries out all our rewrite rules.
+Applying the inverse construction to this new FST yields an FST than
+maps every surface forms to all the <strong>existing</strong> URs.</li>
+</ol>
 <!-- 1.  **Make the FST *complete***   -->
 <!--     - For every state $q$ and input symbol $x$, if there is no transition out of $q$ with $x$, then we add a transition $x:x$ to a new state, which we call the **sink state**. -->
 <!--     - Keep doing this until every state, including the sink state itself, has an outgoing transition for every input symbol $x$. -->
