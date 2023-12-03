@@ -476,6 +476,12 @@ With non-deterministic automata, the matrix may contain multiple 1s as there are
 ::: exercise
 Consider the non-deterministic FSA below for $a^+b^*$.
 
+|           |        |          |             |           |
+| --:       | :-:    | :-:      | :-:         | :-:       |
+|           | **X**  | **Y**    | **Initial** | **Final** |
+| **X**     | a      | a        | Yes         | No        |
+| **Y**     |        | b        | No          | Yes       |
+
 ~~~ {.include-tikz size=mid}
 aplusb_nondet.tikz
 ~~~
