@@ -67,7 +67,7 @@ Consider once more the nasalization FST we have encountered in a previous unit.
 nasalization.tikz
 ~~~
 
-This FST contains four transitions with more than two output symbols, all of which are transitions from *Nas?* to *Y*.
+This FST contains four transitions with more than two output symbols, all of which are transitions from *Nas?*.
 We must replace them according to the instructions above.
 First, we introduce a new state *Nas?[ã,n]* and replace the *n:ãn* transition from *Nas?* to *Y* with two transitions: *$\emptystring$:ã* from *Nas?* to *Nas?[ã,n]*, and *n:n* from *Nas?[ã,n]* to *Y*.
 Then we add another state *Nas?[a,ã]* and use it to replace the transition *ã:aã*, and we also add *Nas?[a,p]* to replace the *p:ap* transition.
@@ -96,6 +96,7 @@ In order to verify that the two transducers in the example above produce the sam
 1. ãpaannap
 1. ãpaannpan
 
+Careful, the $\emptystring$-transitions make the transducer non-deterministic, so you might have to explore multiple paths in order to find one that actually allows you to process the input string.
 :::
 
 ::: example
@@ -125,10 +126,14 @@ In the previous exercise, you computed surface forms for the following URs:
 1. ãpaannpan
 
 Verify that the inverse FST in the example above can produce these URs from the corresponding surface forms you computed.
+
+Careful, the FST is non-deterministic, so it might take some effort to find a path that works.
 :::
 
-As you can see, computing the inverse of a finite-state transduction is very simple.
-It can be a bit painful to construct the corresponding FST that has no transitions with multiple output symbols, but once that is done the rest is trivial.
+As you can see, computing the inverse of a finite-state transduction requires no new tricks or machinery.
+It can be a bit painful to construct the corresponding FST that has no transitions with multiple output symbols, and since the result may be non-deterministic, it can be a bit harder to find a workable sequence of transitions.
+But non-deterministic FSTs are still FSTs, and with a bit of experience it isn't too hard to handle the non-determinism.
+Overall, it is surprisingly simple (in particular when compared to parsing sentence structure, which is hard).
 
 ## The problem of potential URs versus actual URs
 
@@ -149,7 +154,7 @@ Maybe it is, maybe it isn't.
 :::
 
 ::: exercise
-For an even more striking example, consider a language where underlying *a* is always rewritten *ã*, no matter what the context looks like.
+For an even more striking example, consider a language that still uses *a*, *ã*, *n*, and *p* as above, but where underlying *a* is always rewritten *ã* no matter what the context looks like.
 Write down the FST for this and construct its inverse (you may use tables or graphs).
 How many output forms does the inverse FST produce for the following surface forms?
 
@@ -250,7 +255,7 @@ Modify the prefix tree from the example above so that *an* is no longer a UR.
 You may draw the modified prefix tree or specify it in the (simplified) bracketed format.
 :::
 
-But for our purposes, the appeal of prefix trees is that they are just a special case of FSTs.
+But for our purposes, the appeal of prefix trees is that they can be regarded as a special case of FSTs.
 The root of the tree is the only initial state, and every branch labeled *x* is actually a transition labeled *x:x*.
 
 ::: example
@@ -405,6 +410,19 @@ In a previous exercise, you computed surface forms for the URs below:
 Verify that the FST in the example above correctly maps each one of those surface forms to the corresponding UR in that list.
 :::
 
+So there you have it, a finite-state procedure that correctly maps each surface form to all the actual URs it can be produced from, rather than all logically possible ones.
+It is remarkable that FSTs provide the means for both the generation of surface forms from URs and for parsing surface forms into URs.
+This flexibility is why FSTs were all the rage for practical tasks like speech recognition and speech synthesis in the 80s and 90s.
+And while this has changed in recent years with the overwhelming success of neural networks, FSTs still provide us a deep window into phonology as a grammar of rewrite processes.
+
+## Recap
+
+1. **Phonological parsing** is the process of mapping a given surface form to the URs this surface form can be obtained from.
+   In the general case, parsing can be a very difficult task, but FSTs make it easy.
+1. Assuming the FST is in a format where no transition has more than one output symbol, we switch the input symbol and the output symbol of each transition.
+   This yields an FST that parses each surface form into all **logically possible** URs for that surface form.
+1. In order to limit parsing to existingURs, we represent the lexicon as a prefix tree, turn that prefix tree into an FST, and then compose this FST with the cascade FST that carries out all our rewrite rules.
+   Applying the inverse construction to this new FST yields an FST than maps every surface forms to all the **existing** URs.
 
 <!-- 1.  **Make the FST *complete***   -->
 <!--     - For every state $q$ and input symbol $x$, if there is no transition out of $q$ with $x$, then we add a transition $x:x$ to a new state, which we call the **sink state**. -->

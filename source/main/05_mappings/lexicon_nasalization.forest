@@ -43,7 +43,7 @@
         ]
     ]
     %
-    \node (start) [left=4em of root] {Start};
+    \node (start) [left=4em of root] {start};
     \draw[->] (start) to (root);
 \end{forest}
 \end{document}

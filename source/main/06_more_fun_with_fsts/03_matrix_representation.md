@@ -6,25 +6,23 @@ pagetitle: >-
 # Finite-state recognition as Boolean matrix multiplication
 
 :::prereqs
-- linear algebra (not in background section yet)
-    - matrices
-    - matrix multiplication
+- linear algebra (matrix multiplication)
 :::
 
 ## Generators and recognizers
 
-Finite-state automata can be used as **generators** or as **recognizers**.
+Finite-state automata (FSAs) can be used as **generators** or as **recognizers**.
 As a generator, an FSA is used to produce well-formed strings, similar to how linguistics may use a phrase structure grammar to generate well-formed sentences.
 As a recognizer, the FSA is given a string as input and has to decide whether this string is well-formed.
 That is to say, the string has to describe a valid path from an initial state to some final state.
 Recognition is the more common use of FSAs.
 
 Since recognition is a very common of FSAs in practical applications, one would like it to be as fast as possible.
-We already know that deterministic automata can be much faster than non-deterministic ones, so determinization can be an important step of a fast FSA implementation.
-However, there is a very different route which has the advantage of reducing FSA recognition to a process that has already been heavily optimized: matrix multiplication.
+One route is to reduce FSA recognition to a process that has already been heavily optimized: matrix multiplication.
 Matrix multiplication is essential in tons of applications, in particular high-performance scientific computing.
 Thousands of smart minds have thought long and hard about how matrix multiplication can be done as quickly as possible.
 By reducing FSA recognition to matrix multiplication, we can use standard packages for matrix multiplication and harness all those speed improvements for free.
+And in doing so, we will actually gain a much deeper understanding of FSAs that will allow us to generalize them in various ways in subsequent units.
 
 ## Boolean matrix multiplication
 
@@ -35,37 +33,37 @@ As long as we start with matrices that only contain 0s and 1s, almost everything
 The only problem is addition, which has to be capped at 1: whenever we would get a value above 1, we just use 1 instead.
 
 ::: example
-Consider the following formula, with $\otimes$ used for matrix multiplication.
+Consider the following formula, with $\otimes$ used for Boolean matrix multiplication.
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
   0 & 1 & 1\\
   1 & 0 & 1\\
-\end{bmatrix}
+\end{pmatrix}
 \otimes
-\begin{bmatrix}
+\begin{pmatrix}
   0 & 0\\
   1 & 1\\
   1 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 With normal matrix multiplication, this would yield the following matrix:
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     2 & 1\\
     1 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 With Boolean matrix multiplication, the 2 is capped to 1, yielding
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     1 & 1\\
     1 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 :::
 
@@ -74,63 +72,63 @@ For each one of the following equations, give its result under Boolean matrix mu
 If the output is undefined, say so.
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 1\\
     1 & 1\\
-\end{bmatrix}
+\end{pmatrix}
 \otimes
-\begin{bmatrix}
+\begin{pmatrix}
     1\\ 
     1\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 1\\
     1 & 2\\
-\end{bmatrix}
+\end{pmatrix}
 \otimes
-\begin{bmatrix}
+\begin{pmatrix}
     1 & 0\\ 
     1 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 1\\
     1 & 1\\
-\end{bmatrix}
+\end{pmatrix}
 \otimes
-\begin{bmatrix}
+\begin{pmatrix}
     1 & 0\\ 
     1 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 1\\
     1 & 1\\
-\end{bmatrix}
+\end{pmatrix}
 \otimes
-\begin{bmatrix}
+\begin{pmatrix}
     1 & 0\\ 
     1 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 \otimes
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 0 & 1 & 1\\
     0 & 1 & 0 & 1\\
-\end{bmatrix}
+\end{pmatrix}
 \otimes
-\begin{bmatrix}
+\begin{pmatrix}
     1\\
     1\\
     0\\
     1\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 :::
 
@@ -155,19 +153,19 @@ For this reason, Boolean matrix multiplication follows a very simple recipe:
 Calculating the matrix product of the two matrices below might usually take you quite a while.
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 1 & 0 & 1 & 0 & 1\\
     0 & 0 & 0 & 0 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 \otimes
-\begin{bmatrix}
+\begin{pmatrix}
     1 & 1\\
     0 & 0\\
     1 & 0\\
     1 & 0\\
     1 & 1\\
     1 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 But it is very easy with our shortcut for Boolean matrix multiplication.
@@ -189,10 +187,10 @@ Since all values of Row 2 are 0, we can immediately fill in 0 for all columns of
 The final matrix is shown below:
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     1 & 0\\
     0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 :::
 
@@ -212,34 +210,42 @@ However, the automaton must not contain any $\emptystring$-transitions (there is
 We will start with a concrete example as the translation procedure is a little abstract when written out in formal terms.
 
 ::: example
-Consider once more the familiar automaton for the language $a(\String{baa})^*$.
-To avoid confusion, the states have been renamed X, Y, and Z.
+To keep things simple we will use an abstract example.
+Consider the language $a(\String{baa})^*$.
+This language is recognized by the following automaton.
+
+|           |        |          |                              |             |           |
+| --:       | :-:    | :-:      | :-:                          | :-:         | :-:       |
+|           | **X**  | **Y**    | **Z**                        | **Initial** | **Final** |
+| **X**     |        | b        |                              | Yes         | No        |
+| **Y**     |        |          | b                            | No          | Yes       |
+| **Z**     | a      |          |                              | No          | No        |
 
 ~~~ {.include-tikz size=mid}
 abaa_relabeled.tikz
 ~~~
 
-This automataon uses an alphabet with only two symbols, $a$ and $b$.
+The automaton uses an alphabet with only two symbols, $a$ and $b$.
 For each one of these symbols, we create a matrix that records how we can transition from one state into another via this symbol.
 Since the automaton has 3 states, we create two 3-by-3 matrices, one for $a$ and for $b$.
 At this point, both matrices are empty, but for increased clarity we label each row and column with a state of the automaton.
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     a & X & Y & Z\\
     X &   &   &  \\
     Y &   &   &  \\
     Z &   &   &  \\
-\end{bmatrix}
+\end{pmatrix}
 %
 \qquad
 %
-\begin{bmatrix}
+\begin{pmatrix}
     b & X & Y & Z\\
     X &   &   &  \\
     Y &   &   &  \\
     Z &   &   &  \\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 We now have to look at the transitions of the automaton in order to fill these matrices.
@@ -247,21 +253,21 @@ We only have one transition leaving X, which goes to Y via $a$.
 We put a $1$ in the first row and second column of the $a$-matrix.
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     a & X & Y & Z\\
     X &   & 1 &  \\
     Y &   &   &  \\
     Z &   &   &  \\
-\end{bmatrix}
+\end{pmatrix}
 %
 \qquad
 %
-\begin{bmatrix}
+\begin{pmatrix}
     b & X & Y & Z\\
     X &   &   &  \\
     Y &   &   &  \\
     Z &   &   &  \\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 Intuitively, the row of the matrix indicates which state we are currently in, and the column tells us which state we can transition into.
@@ -272,42 +278,42 @@ One goes from Y to Z via $b$, so we have to add a $1$ in the Y-row and Z-column 
 The other one goes from $Z$ to $X$ via $a$, which means that the $a$-matrix also should have a $1$ in row $Z$, column $X$.
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     a & X & Y & Z\\
     X &   & 1 &  \\
     Y &   &   &  \\
     Z & 1 &   &  \\
-\end{bmatrix}
+\end{pmatrix}
 %
 \qquad
 %
-\begin{bmatrix}
+\begin{pmatrix}
     b & X & Y & Z\\
     X &   &   &  \\
     Y &   &   & 1\\
     Z &   &   &  \\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 We have looked at all the transitions.
 Any cell that is still empty gets a 0.
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     a & X & Y & Z\\
     X & 0 & 1 & 0\\
     Y & 0 & 0 & 0\\
     Z & 1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \qquad
 %
-\begin{bmatrix}
+\begin{pmatrix}
     b & X & Y & Z\\
     X & 0 & 0 & 0\\
     Y & 0 & 0 & 1\\
     Z & 0 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 We are almost done with the translation.
@@ -319,19 +325,19 @@ Hence it uses states as rows.
 
 $$
 I \is
-\begin{bmatrix}
+\begin{pmatrix}
     X & Y & Z\\
     1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \qquad
 %
 F \is
-\begin{bmatrix}
+\begin{pmatrix}
     X & 0 \\
     Y & 1 \\
     Z & 0 \\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 And that's it.
@@ -345,94 +351,94 @@ The string is accepted iff the final product is 1.
 
 ::: example
 We already know that the automaton above accepts the string $\String{abaa}$.
-Let's see how we get the same result via Boolean matric multiplication.
+Let's see how we get the same result via Boolean matrix multiplication.
 We have to construct a formula that evaluates to 1.
 
-First, we replace each $a$ in the string by the matrix for $a$, and each $b$ by the matrix for $b$:
+First, we replace each $a$ in the string with the matrix for $a$, and each $b$ with the matrix for $b$:
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     a & X & Y & Z\\
     X & 0 & 1 & 0\\
     Y & 0 & 0 & 0\\
     Z & 1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \otimes
 %
-\begin{bmatrix}
+\begin{pmatrix}
     b & X & Y & Z\\
     X & 0 & 0 & 0\\
     Y & 0 & 0 & 1\\
     Z & 0 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \otimes
 %
-\begin{bmatrix}
+\begin{pmatrix}
     a & X & Y & Z\\
     X & 0 & 1 & 0\\
     Y & 0 & 0 & 0\\
     Z & 1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \otimes
 %
-\begin{bmatrix}
+\begin{pmatrix}
     a & X & Y & Z\\
     X & 0 & 1 & 0\\
     Y & 0 & 0 & 0\\
     Z & 1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 Then we add $I$ at the front and $F$ at the end.
 The result is shown below, with labels removed to simplify the matrix multiplication step:
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
     1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \otimes
 %
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 1 & 0\\
     0 & 0 & 0\\
     1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \otimes
 %
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 0 & 0\\
     0 & 0 & 1\\
     0 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \otimes
 %
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 1 & 0\\
     0 & 0 & 0\\
     1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \otimes
 %
-\begin{bmatrix}
+\begin{pmatrix}
     0 & 1 & 0\\
     0 & 0 & 0\\
     1 & 0 & 0\\
-\end{bmatrix}
+\end{pmatrix}
 %
 \otimes
 %
-\begin{bmatrix}
+\begin{pmatrix}
     0\\
     1\\
     0\\
-\end{bmatrix}
+\end{pmatrix}
 $$
 
 And now we just solve this formula.
@@ -443,18 +449,15 @@ The end result is 1, as expected.
 ::: exercise
 Solve the equation in the example above in two ways:
 
-
 - proceeding from left to right, starting with the first matrix,
 - proceeding from left to right but starting with the second matrix; only multiply with the first matrix at the very end.
 
-
-Both routes return the same result because matrix multiplication is associative.
+Both routes return the same result because matrix multiplication is associative, which means that it does not matter in what order matrix multiplication steps are resolved --- just like it does not matter whether we compute $5 \times 3 \times 2$ as $(5 \times 3) \times 2$ or as $5 \times (3 \times 2)$.
 But one will be much less work for you than the other.
 :::
 
 ::: exercise
 Use Boolean matrix multiplication to determine for each one of the following strings whether it is a member of $a(\String{baa})^*$:
-
 
 - $\String{aab}$
 - $\String{aba}$
@@ -464,7 +467,7 @@ Use Boolean matrix multiplication to determine for each one of the following str
 :::
 
 With a bit of practice, you'll notice that resolving the matrix multiplication formulas from left to right captures a specific intuition.
-You always end up with a 1-dimensional matrix (i.e. a vector).
+You always end up with a 1-dimensional matrix, which we can regard as a row vector.
 A 1 in column $i$ means that the automaton might currently be in the state corresponding to this column.
 In a deterministic automaton like the one above, exactly one column has a 1, all others are 0.
 This is also called a **one-hot vector**.
@@ -480,7 +483,6 @@ aplusb_nondet.tikz
 Construct the corresponding matrices for this automaton.
 Then use matrix multiplication to determine for each one of the following strings whether it is recognized by the automaton.
 Solve the equations from left to right and pay close attention to how the distribution of $1$s reflects which states the automaton may be in.
-
 
 - $\String{a}$
 - $\String{ab}$
@@ -498,7 +500,12 @@ Then repeat the previous steps using the deterministic automaton instead.
 
 This section specifies the translation in formal terms.
 
-1. Suppose that we have an automaton $A \is \tuple{\Sigma, Q, I, F, \Delta}$ such that $Q \is \setof{q_1, \ldots, q_n}$.
+1. Suppose that we have an automaton $A \is \tuple{\Sigma, Q, I, F, \Delta}$ such that
+    - $\Sigma$ is the alphabet,
+    - $Q \is \setof{q_1, \ldots, q_n}$ is the set of states,
+    - $I$ is the set of initial states,
+    - $F$ is the set of final states,
+    - $\Delta$ is the set of transitions.
 1. For each $\sigma \in \Sigma$, we construct a matrix $A_\sigma$ with $n$ rows and $n$ columns.
    We fill the cell $c_{i,j}$ in row $i$ and column $j$ with 1 if $A$ allows us to transition from state $q_i$ to $q_j$ via $\sigma$ ($1 \leq i,j \leq n$).
    Otherwise, it is filled with $0$.
@@ -514,3 +521,4 @@ Carefully read through the definition above.
 Try to make sense of it based on the previously established intuition.
 Write down anything you do not understand, and discuss it in class.
 :::
+
