@@ -608,6 +608,31 @@ there are multiple states the automaton could possibly be in.</p>
 <div class="exercise">
 <p>Consider the non-deterministic FSA below for <span
 class="math inline">\(a^+b^*\)</span>.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>X</strong></td>
+<td style="text-align: center;"><strong>Y</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>X</strong></td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Y</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+</tbody>
+</table>
 <p><img src="aplusb_nondet.svg" alt="aplusb_nondet.svg" /></p>
 <p>Construct the corresponding matrices for this automaton. Then use
 matrix multiplication to determine for each one of the following strings
