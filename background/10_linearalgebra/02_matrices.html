@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Matrices and matrix multiplication</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Mathematical Methods in Linguistics</a></p>
+<ul>
+<li><a href="#matrices-and-matrix-multiplication">Matrices and matrix
+multiplication</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="matrices-and-matrix-multiplication">Matrices and matrix
+multiplication</h1>
+<div class="prereqs">
+<ul>
+<li>linear algebra (vectors, dotproduct)</li>
+</ul>
+</div>
+<p>Matrices are a generalization of row vectors where we can have
+multiple columns, or alternatively, a generalization of column vectors
+where we can have multiple rows.</p>
+<div class="example">
+<p>Below is a matrix with three rows and two columns.</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    5 &amp; 2\\
+    3 &amp; 1\\
+    0 &amp; 2\\
+\end{pmatrix}
+\]</span></p>
+</div>
+<p>Like vectors, matrices can also be combined with an operation that
+combines multiplication and addition, which is called <strong>matrix
+multiplication</strong>. Whereas the dot product for vectors requires
+both vectors to have the same length, matrix multiplication requires
+that the number of columns of the first matrix must match the number of
+rows of the second matrix.</p>
+<div class="example">
+<p>Below we are trying to combine a matrix that has 3 rows and 2 columns
+with a matrix that has 2 rows and 4 columns. That is okay because the
+first matrix’s 2 columns are matched by the second matrix’s 2 row.</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    5 &amp; 2\\
+    3 &amp; 1\\
+    0 &amp; 2\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    1 &amp; 2 &amp; 0 &amp; 2\\
+    3 &amp; 0 &amp; 1 &amp; 3\\
+\end{pmatrix}
+=
+\mathbf{\color{blue!75}alright,\ let&#39;s\ do\ this!}
+\]</span></p>
+</div>
+<div class="example">
+<p>Below we are once again trying to do matrix multiplication for the
+two matrices as above, but now in the opposite order. Now the first
+matrix has 4 columns whereas the second matrix has 3 rows. Due to this
+mismatch we are not able to carry out matrix multiplication. <span
+class="math display">\[
+\begin{pmatrix}
+    1 &amp; 2 &amp; 0 &amp; 2\\
+    3 &amp; 0 &amp; 1 &amp; 3\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    5 &amp; 2\\
+    3 &amp; 1\\
+    0 &amp; 2\\
+\end{pmatrix}
+=
+\mathbf{\color{red!75}sorry,\ no\ can\ do!}
+\]</span></p>
+</div>
+<div class="exercise">
+<p>For each one of the following matrices, say whether they can be
+combined via matrix multiplication.</p>
+<ol type="1">
+<li><span class="math inline">\(\begin{pmatrix} 0 &amp; 1\\ 1 &amp; 0
+\\\end{pmatrix} \cdot \begin{pmatrix} 0 &amp; 1\\ 1 &amp; 0\\
+\end{pmatrix}\)</span></li>
+<li><span class="math inline">\(\begin{pmatrix} 0 &amp; 1\\
+\end{pmatrix} \cdot \begin{pmatrix} 0 &amp; 1\\
+\end{pmatrix}\)</span></li>
+<li><span class="math inline">\(\begin{pmatrix} 0 &amp; 1\\
+\end{pmatrix} \cdot \begin{pmatrix} 0\\ 1\\ \end{pmatrix}\)</span></li>
+<li><span class="math inline">\(\begin{pmatrix} 0\\ \end{pmatrix} \cdot
+\begin{pmatrix} 1\\ \end{pmatrix}\)</span></li>
+<li><span class="math inline">\(\begin{pmatrix} 0\\1\\ \end{pmatrix}
+\cdot \begin{pmatrix} 1\\ \end{pmatrix}\)</span></li>
+</ol>
+</div>
+<p>Given two compatible matrices, matrix multiplication proceeds as
+follows:</p>
+<ol type="1">
+<li>Write down the <strong>first row of the first matrix</strong> as a
+column vector (basically, rotate it 90 degrees clockwise)</li>
+<li>Calculate the dot product of this vector and the <strong>first
+column of the second matrix</strong>. Write down the value.</li>
+<li>Do the same with the <strong>second column of the second
+matrix</strong>, and put the result next to the one you already wrote
+down.</li>
+<li>Do the same with all other columns of the second matrix.</li>
+<li>First cycle done. Now repeat the same steps with the <strong>second
+row of the first matrix</strong>.</li>
+<li>Continue until all rows are done. You’ve got yourself a shiny new
+matrix.</li>
+</ol>
+<div class="example">
+<p>Let’s try the following matrix multiplication:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    5 &amp; 2\\
+    3 &amp; 1\\
+    0 &amp; 2\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    1 &amp; 2 &amp; 0 &amp; 2\\
+    3 &amp; 0 &amp; 1 &amp; 3\\
+\end{pmatrix}
+=
+\mathbf{???}
+\]</span></p>
+<p>We write down the first row of the first matrix as a column
+vector.</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    5\\
+    2\\
+\end{pmatrix}
+\]</span></p>
+<p>Next we have to calculate the dot products for each column of the
+second matrix.</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    5\\
+    2\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    1\\
+    3\\
+\end{pmatrix}
+=
+5 \times 1 + 2 \times 3
+=
+11
+\]</span> <span class="math display">\[
+\begin{pmatrix}
+    5\\
+    2\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    2\\
+    0\\
+\end{pmatrix}
+=
+5 \times 2 + 2 \times 0 =
+10
+\]</span> <span class="math display">\[
+\begin{pmatrix}
+    5\\
+    2\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    0\\
+    1\\
+\end{pmatrix}
+=
+5 \times 0 + 2 \times 1 =
+2
+\]</span> <span class="math display">\[
+\begin{pmatrix}
+    5\\
+    2\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    2\\
+    3\\
+\end{pmatrix}
+=
+5 \times 2 + 2 \times 3
+=
+16
+\]</span> So the first row for the new matrix is <span
+class="math inline">\((11\ 10\ 2\ 16)\)</span>. Repeating the same
+procedure with the second and third row, we can solve the full
+equation.</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    5 &amp; 2\\
+    3 &amp; 1\\
+    0 &amp; 2\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    1 &amp; 2 &amp; 0 &amp; 2\\
+    3 &amp; 0 &amp; 1 &amp; 3\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+    11 &amp; 10 &amp; 2 &amp; 16\\
+    6 &amp; 6 &amp; 1 &amp; 9\\
+    6 &amp; 0 &amp; 2 &amp; 6\\
+\end{pmatrix}
+\]</span></p>
+</div>
+<p>More formally, when we matrix multiply a matrix <span
+class="math inline">\(u\)</span> with <span
+class="math inline">\(m\)</span> rows and <span
+class="math inline">\(n\)</span> columns with a matrix <span
+class="math inline">\(v\)</span> with <span
+class="math inline">\(n\)</span> rows and <span
+class="math inline">\(p\)</span> columns, the result is a matrix <span
+class="math inline">\(w\)</span> with <span
+class="math inline">\(m\)</span> rows and <span
+class="math inline">\(p\)</span> columns such that the value in row
+<span class="math inline">\(i\)</span> and column <span
+class="math inline">\(j\)</span> is the dot product of the <span
+class="math inline">\(i\)</span>-th row of <span
+class="math inline">\(u\)</span> and the <span
+class="math inline">\(j\)</span>-th column of <span
+class="math inline">\(v\)</span>.</p>
+<div class="exercise">
+<p>Calculate the result of matrix multiplication for all of the
+following. If the result is undefined, say so.</p>
+<ol type="1">
+<li><span class="math inline">\(\begin{pmatrix} 1 &amp; 5\\ -1 &amp;
+-5\\ \end{pmatrix} \cdot \begin{pmatrix} 1 &amp; 1 &amp; 1\\ -1 &amp; -1
+&amp; -1\\ \end{pmatrix}\)</span></li>
+<li><span class="math inline">\(\begin{pmatrix} 1 &amp; 5\\ -1 &amp;
+-5\\ 1 &amp; 5\\ \end{pmatrix} \cdot \begin{pmatrix} 1 &amp; 1 &amp; 1\\
+-1 &amp; -1 &amp; -1\\ \end{pmatrix}\)</span></li>
+<li><span class="math inline">\(\begin{pmatrix} 1 &amp; 5\\ -1 &amp;
+-5\\ 1 &amp; 5\\ \end{pmatrix} \cdot \begin{pmatrix} 1 &amp; -1 &amp; 1
+&amp; -1\\ 1 &amp; 1 &amp; -1 &amp; -1\\ \end{pmatrix}\)</span></li>
+</ol>
+</div>
+</div>
+</div>
+</body>
+</html>
