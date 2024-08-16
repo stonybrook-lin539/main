@@ -1,28 +1,24 @@
 ---
 title: Mathematical Methods in Linguistics
-date: Fall 2023
+date: Fall 2024
 ---
 
-| Course          | Info                            |
-| --:             | :--                             |
-| Course#         | LIN 361/539                     |
-| Time            | Tue/Thu 10:00-11:20am           |
-| Location        | SBS S-228                       |
-| Website         | lin361.thomasgraf.net           |
-|                 | lin539.thomasgraf.net           |
-|                 |                                 |
-| Instructor      | Thomas Graf                     |
-| Email           | [coursenumber]@thomasgraf.net   |
-| Office hours    | Tue 11:30am-12:30pm             |
-|                 | Wed 10:00am-11:00am             |
-|                 | Thu 11:30am-12:30pm             |
-| Office          | SBS N-249                       |
-|                 |                                 |
-| TA              | Han Li                          |
-| TA email        | han.li.4@stonybrook.edu         |
-| TA office hours | Mon 10:00-11:00am               |
-|                 | Wed 10:00-11:00am               |
-| TA office       | SBS-N230                        |
+| Course          | Info                                           |
+| --:             | :--                                            |
+| Course#         | LIN 361/539                                    |
+| Time            | Mon/Wed 9:30-10:50am                           |
+| Location        | SBS S-228                                      |
+| Website         | lin361.thomasgraf.net (lecture notes)          |
+|                 | lin539.thomasgraf.net (source code)            |
+|                 |                                                |
+| Instructor      | Thomas Graf                                    |
+| Email           | [coursenumber]@thomasgraf.net                  |
+| Drop-in hours   | Mon 11:00am-12:00pm                            |
+|                 | Wed 2:30pm-3:30pm                              |
+|                 | Fri 10:00am-11:00pm                            |
+| Office          | SBS N-249                                      |
+|                 |                                                |
+| TA              | none `:(`                                      |
 
 
 # Course Outline
@@ -48,7 +44,7 @@ In contrast to a proper mathematics course, we also focus more on techniques and
 This means that you will learn how to work with things like functions, matrices, lattices, and finite-state automata, but you won't have to prove things about them.
 So this is more like a CS methods course than a proper math class.
 
-For more information about the content, see the [Selected Topics](#Selected-Topics) section.
+For more information about the content, consult the [Schedule](#Schedule).
 You will see that the schedule for this class is very ambitious.
 We probably won't be able to cover everything (I have taught this course many times, and I never made it all the way to the end).
 But no matter how far we get, by the end of the class you should have had enough exposure to mathematical thinking that the thought of picking up a textbook in mathematics or computational linguistics for self-study won't make you run away in horror.
@@ -74,65 +70,82 @@ Anecdotal evidence: I have run this course as an independent study with high sch
 
 ## Textbook
 
-None, but there are detailed lecture notes that will eventually become a textbook.
-The lecture notes will be made available as PDFs and HTML.
-Detailed instructions will follow in a separate announcement.
+None, but there are detailed lecture notes that I am trying to turn into a textbook.
+The lecture notes are shared as a website: <http://lin361.thomasgraf.net>
 
+# Schedule
 
-# Selected Topics
+As usual, this schedule represents the ideal scenario.
+In the real world, we probably won't get to cover all of this.
 
-A brief selection of the topics to be covered (we will probably deviate from this order):
+| Wk  | Date     | Topic                                    | Assignment                     |
+| :-- | :--      | :--                                      | :--                            |
+| 1   | M 08/26  | On-boarding                              |                                |
+|     |          |                                          |                                |
+|     |          | **Block 1: N-gram grammar**              |                                |
+| 1   | W 08/28  | N-gram grammars for phonotactics         | Pre-assessment                 |
+| 2   | M 09/02  | no class (Labor day)                     |                                |
+| 2   | W 09/04  | N-gram grammars more formally            | Homework (P/F graded)          |
+| 3   | M 09/09  | Translating between grammars             |                                |
+| 3   | W 09/11  | Adding phonological tiers                | Homework (P/F graded)          |
+| 4   | M 09/16  | N-gram grammar odds and ends             |                                |
+| 4   | W 09/18  | Q\&A and recap                           | Take-home exam (letter graded) |
+|     |          |                                          |                                |
+|     |          | **Block 2: Universals and monotonicity** |                                |
+| 5   | M 09/23  | The \*ABA generalization                 |                                |
+| 5   | W 09/25  | \*ABA continued                          | Homework (P/F graded)          |
+| 6   | M 09/30  | Negative polarity items                  |                                |
+| 6   | W 10/02  | Case syncretism                          | Homework (P/F graded)          |
+| 7   | M 10/07  | Person Case constraints                  |                                |
+| 7   | W 10/09  | Universals for learning                  | Homework (P/F graded)          |
+| 8   | M 10/14  | no class (Fall break)                    |                                |
+| 8   | W 10/16  | Q\&A and recap                           | Take-home exam (letter graded) |
+|     |          |                                          |                                |
+|     |          | **Block 3: Underlying representations**  |                                |
+| 9   | M 10/21  | Why n-grams don't work for mappings      |                                |
+| 9   | W 10/23  | Finite-state transducers                 | Homework (P/F graded)          |
+| 10  | M 10/28  | Transducers for phonology                |                                |
+| 10  | W 10/30  | Capturing rule ordering                  | Homework (P/F graded)          |
+| 11  | M 11/04  | Phonological parsing                     |                                |
+| 11  | W 11/06  | Generative capacity of FSTs              | Homework (P/F graded)          |
+| 12  | M 11/11  | Strictly local transductions             |                                |
+| 12  | W 11/13  | Two-level morphology                     | Homework (P/F graded)          |
+| 13  | M 11/18  | FSAs as Boolean matrix multiplication    |                                |
+| 13  | W 11/20  | Q\&A and recap                           | Take-home exam (letter graded) |
+| 14  | M 11/25  | final recap                              |                                |
+| 14  | W 11/27  | no classes (Thanksgiving break)          |                                |
+|     |          |                                          |                                |
+|     |          | **Block 4: Let's have fun**              |                                |
+| 15  | M 12/02  | Topic of your choice (e.g.               |                                |
+| 15  | W 12/04  | neural networks, sentence processing,    |                                |
+| 16  | M 12/09  | logic for linguistics)                   | Post-assessment                |
 
-1.  Basic mathematical objects
-    - Topics: sets, multisets, tuples
-    - Applications: bag of words model of text, n-gram models of grammaticality
+And here's a list of mathematical concepts we will master in the process:
 
-1.  Grammatical systems as mappings
-    - Topics: functions, monotonicity
-    - Applications: monotonicity as a linguistic universal in morphology, syntax, and semantics
-
-1.  Relations and orders
-    - Topics: properties of orders, posets, lattices, perhaps antimatroids
-    - Applications: string extension learners, feature systems, adjunct algebras, syntactic relations, linguistic universals, OT if we cover antimatroids
-
-1.  Graph theory (we might skip this one)
-    - Topics: (un)directed graphs, connectedness, components
-    - Application: parse forest representation, autosegmental phonology, AVMs, unification grammars
-
-1.  Automata theory
-    - Topics: finite-state automata and transducers
-    - Application: upper bounds on the complexity of phonology & morphology
-
-1.  Linear algebra
-    - Topics: vectors and vector spaces, matrices, tensor product
-    - Application: automata as boolean matrix multiplication, vector space semantics, neural networks
-
-1.  Logic
-    - Topics: propositional logic and first-order logic, types, lambda calculus
-    - Application: semantics, model-theoretic syntax, subregular linguistics, CCG
-
-1.  Abstract algebra (only got to it once)
-    - Topics: monoids, groups, semirings
-    - Application: violation semirings in OT, semiring parsing
-
-1.  Types of infinity (usually not enough time)
-    - Topics: bijections, function inverse
-    - Applications: is language infinite?
-
-1.  Probability theory (extremely unlikely)
-    - Topics: calculating probabilities with addition and multiplication
-    - Application: weighted context-free grammars, corpus-based techniques
-
-1.  Information theory (extremely unlikely)
-    - Topics: entropy, cross-entropy
-    - Application: probabilistic machine learning, surprisal for processing
-
+- sets
+- strings
+- multisets
+- tuples
+- functions
+- monotonicity
+- relations
+- orders (partial, total, weak, strict)
+- posets
+- (semi)lattices (meet, join)
+- linear algebra (vectors, dot product, matrix multiplication; possibly tensor products)
+- and depending on what fun topics we choose at the end:
+    - graphs (connectedness, components)
+    - antimatroids, with applications to OT
+    - propositional & first-order logic
+    - type theory
+    - lambda calculus
+    - information theory (entropy, cross-entropy, surprisal)
 
 # Grading
 
 ## Undergraduate students
 
-By default, 100% of your grade is determined by a (take-home) final exam.
+By default, 100% of your grade are determined by a **final exam (taken in person)**.
 But there are various things you can do throughout the semester to reduce the importance of the final exam.
 This way, students who would rather study on their own can just do that and get their grade by demonstrating their knowledge on the final exam.
 Students who participate more regularly instead get to minimize the risk that a bad final exam will ruin their grade.
@@ -140,34 +153,70 @@ Students who participate more regularly instead get to minimize the risk that a 
 1.  **Class participation (10%)**  
     Show up all the time, ask questions and participate in discussion, and you will get an A for class participation.
     That A makes up 10% of your grade.
+    If you do not meet this standard of active participation, this component is ignored for calculating your final grade.
 
 1.  **Pre-assessment (P/F; 5%)**  
     At the beginning of the semester, students are asked to take a survey to assess their prior knowledge of mathematical linguistics.
     It is perfectly normal not to know a single answer.
-    Bring the completed survey to the first session of week 2.
     Performance is P/F depending on whether a filled-out survey was submitted (answering "Don't know" on each question is perfectly fine).
     If you get a P, that is treated like an A and is worth 5% of your grade.
-
-1.  **Weekly assignments (P/F; 3% each)**  
-    A list of exercises from the lecture notes is assigned every Thursday and your answers are due the following Tuesday.
-    You should make a reasonable effort to complete the exercises, but your answers are not really graded.
-    As long as it is clear that you made an effort, you get a P, which is treated as an A and is worth 3% of your grade.
-    There will be around 10 assignments in total, making up 0% to 30% of your grade.
-
-    Full solutions will be distributed each Thursday together with the next assignment.
-
-1.  **Take-home midterm (percentage graded; 30%)**  
-    We will have a midterm, but they won't be taken in class.
-    Instead, the midterm takes the form of an extra-long homework assignment.
-    If your grade on the midterm is higher than the grade on the final exam, it makes up 30% of your grade.
-    If it is lower, we simply drop it and it does not factor into your grade (if you bomb the midterm but then shape up and turn in a great final exam, that's something to be rewarded, not punished).
+    If you get an F or do not hand in the pre-assessment, this component is ignored for calculating your final grade.
 
 1.  **Post-assessment (P/F; 5%)**  
     Exactly the same as the pre-assessment.
-    Just do it again, pat yourself on the shoulder for every question you now know the answer to, and then hand it in with the final exam.
+    Just do it again and pat yourself on the shoulder for every question you now know the answer to.
+    If you get a P, that is treated like an A and is worth 5% of your grade.
+    If you get an F or do not hand in the pre-assessment, this component is ignored for calculating your final grade.
 
-1.  **Take-home final (percentage graded; remainder)**  
-    Same deal as the midterm, but even longer and you get two weeks to work on it.
+1.  **Weekly assignments (P/F; 20% total)**  
+    A list of exercises from the lecture notes is assigned every Wednesday and your answers are due a week later in class.
+    You should make a reasonable effort to complete the exercises, but your answers are not really graded.
+    As long as it is clear that you made an effort, you get a P, which is treated as an A. 
+    There will be approximately 8 to 10 assignments, so each assignment is worth somewhere between 2% to 2.5% of your grade.
+    If you get an F or do not hand in the assignment, that is ignored for calculating your final grade.
+    Full solutions for each assignment will be distributed shortly after the assignment is collected.
+
+1.  **Three take-home exams (A-F; 20% each)**  
+    Take-home exams are longer than regular assignments and are letter graded.
+    The grade on a take-home exam counts only if it is higher than the grade on the final exam, otherwise we ignore it.
+    The reasoning behind that is that if you bomb a take-home exam but then shape up and turn in a great final exam, that's something to be rewarded, not punished.
+    Full solutions for each take-home exam will be distributed shortly after the exams are collected.
+
+Another way to look at this: if you do all the things above and do well on them, then you don't need to come to the final exam!
+
+The final grade is calculated by converting grades to points weighted by the respective percentages.
+
+| Grade | Point scale |
+| :--   | --:         |
+| A     | 10.0        |
+| A-    | 9.5         |
+| B+    | 9.0         |
+| B     | 8.5         |
+| B-    | 8.0         |
+| C+    | 7.5         |
+| C     | 7.0         |
+| C-    | 6.5         |
+| D+    | 6.0         |
+| D     | 5.5         |
+| F     | 5.0         |
+
+*Example 1*:
+Alan Turing decides that he doesn't want to do any work during the semester and instead puts everything on one card by taking only the final exam.
+He gets an A-, and thus his grade in the course is also A-.
+
+*Example 2*:
+Ada Lovelace is a very active participant in class (10% A), has handed in both the pre-assessment (5% A) and the post-assessment (5% A), got a P on 9 out of 10 assignments (18% A), and an A- on every take-home exam (60% A-).
+She decides to entirely skip the final exam (grade F).
+Her total grade is $.38 * 10.0 + .6 * 9.5 + .02 * 5.0 = 9.6$, which is just barely enough for an A.
+
+*Example 3*:
+Hal 9000 is having a rough semester.
+He handed in the pre-assessment (5% A) but not the post-assessment.
+He also handed in 5 out 10 assignments, but only 4 got a P (8% A).
+He got an A- on the first take-home exam (20% A-), a C on the second take-home exam (20% C), and didn't hand in the third take-home exam.
+The final exam went fairly well and he got a B+, which means that the C on the second take-home exam doesn't factor into the final grade.
+His total grade is $.05 * 10.0 + .08 * 10.0 + .2 * 9.5 + .67 * 9.0 = 9.231$, which is an A-.
+
 
 ## Graduate students
 
@@ -176,7 +225,7 @@ The grading is the same as for undergrads, except that:
 1.  The weekly assignments may contain exercises that are optional for undergrads but mandatory for grads.
 
 1.  Once during the semester, you have to serve as pseudo-grader.
-    You will get to look at half of the assignments, then you will meet with the TA to discuss what you think the students did well, what they struggled with, and who (if anybody) you think should not get a P due to lack of effort.
+    You will get to look at the assignments, then you will meet with me to discuss what you think the students did well, what they struggled with, and who (if anybody) you think should not get a P due to lack of effort.
 
 ## Student pseudonyms
 
@@ -184,28 +233,33 @@ Because the grad students in this course will get to look at the handed-in assig
 At the beginning of the semester, you will pick a pseudonym, and whenever you hand in an assignment, you will use that pseudonym instead of your real name.
 Detailed instructions will be sent out in a separate announcement.
 
-## Chat GPT
+## Late hand-ins
 
-You are allowed to use Chat GPT for assignments and the final exam, but if you do so, please indicate that you did.
-It won't matter for grading or anything else, but I would like to know whether students actually benefit from using Chat GPT.
+There isn't much wiggle room for late hand-ins because the solutions for all assignments and take-home exams are distributed shortly after the assignments are collected (usually within 24 hours).
+But keep in mind that these assignments are optional, so missing one or two isn't the end of the world.
+
+## ChatGPT
+
+You are allowed to use ChatGPT for assignments and the take-home exams, but if you do so, please indicate that you did.
+It won't matter for grading or anything else, but I would like to know whether students actually benefit from using ChatGPT.
 Here is some advice based on my own experimentation:
 
-1. Do not blindly copy-paste answers from Chat GPT.
+1. Do not blindly copy-paste answers from ChatGPT.
    Treat it like a discussion with a peer, be aware that said peer may well be wrong, then write up your own answer.
 
-1. Chat GPT will often get things wrong, in particular on the exercises that combine math and linguistics.
+1. ChatGPT will often get things wrong, in particular on the exercises that combine math and linguistics.
    But it can be insightful to think about what it got wrong, and why.
-   Contrast what Chat GPT does against the official solutions for exercises, and you may have quite a few epiphanies.
+   Contrast what ChatGPT does against the official solutions for exercises, and you may have quite a few epiphanies.
 
-1. Use Chat GPT selectively.
-   It can take a lot of time to convert an exercise into a prompt that Chat GPT can do something with.
+1. Use ChatGPT selectively.
+   It can take a lot of time to convert an exercise into a prompt that ChatGPT can do something with.
    It's often faster to just do things by yourself.
-   Use Chat GPT for the exercises that really have you stymied, the exercises where you don't even know how to get started.
+   Use ChatGPT for the exercises that really have you stymied, the exercises where you don't even know how to get started.
 
 ## A remark on grades
 
 Yes, this class has a grading system that is easy to game.
-You could do nothing the whole semester and then spend a day with Chat GPT to write up your take-home final.
+You could just use ChatGPT to do the weekly assignments and take-home exams and then opt out of the final exam.
 But that means you'll have paid the university a decent sum of money on a course that you learnt nothing from.
 If you're okay with that, then I'm okay with that, just like your gym doesn't mind that you pay them fifty bucks a month but never show up.
 
