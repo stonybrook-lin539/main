@@ -78,8 +78,8 @@ class="math inline">\(n\)</span>) grammar is? It’s a finite set of <span
 class="math inline">\(n\)</span>-grams such that a string is well-formed
 iff it does not contain any of the <span
 class="math inline">\(n\)</span>-grams as a substring (after adding
-<span class="math inline">\(n-1\)</span> instances of &gt; and &lt; on
-each side of the string). A positive strictly <span
+<span class="math inline">\(n-1\)</span> instances of ⋊ and ⋉ on each
+side of the string). A positive strictly <span
 class="math inline">\(n\)</span>-local grammar is the counterpart where
 a string may only consist of <span
 class="math inline">\(n\)</span>-grams that are allowed by the grammar.
@@ -185,12 +185,12 @@ class="math inline">\(2\)</span> grammar that generates this language.
 The grammar uses an extended alphabet with <span
 class="math inline">\(\$\)</span> as the edge marker.</p>
 <ul>
-<li><span class="math inline">\(\mathit{&gt;a}\)</span></li>
-<li><span class="math inline">\(\mathit{&gt;b}\)</span></li>
+<li><span class="math inline">\(\mathit{{\rtimes}a}\)</span></li>
+<li><span class="math inline">\(\mathit{{\rtimes}b}\)</span></li>
 <li><span class="math inline">\(\mathit{ab}\)</span></li>
 <li><span class="math inline">\(\mathit{ba}\)</span></li>
-<li><span class="math inline">\(\mathit{a&lt;}\)</span></li>
-<li><span class="math inline">\(\mathit{b&lt;}\)</span></li>
+<li><span class="math inline">\(\mathit{a{\ltimes}}\)</span></li>
+<li><span class="math inline">\(\mathit{b{\ltimes}}\)</span></li>
 <li>and so on</li>
 </ul>
 <p>That’s the grammar we want to learn from the examples.</p>
@@ -198,9 +198,9 @@ class="math inline">\(\$\)</span> as the edge marker.</p>
 class="math inline">\(\mathit{ab}\)</span>. We extract all the bigrams,
 giving us a short list of allowed bigrams.</p>
 <ul>
-<li><span class="math inline">\(\mathit{&gt;a}\)</span></li>
+<li><span class="math inline">\(\mathit{{\rtimes}a}\)</span></li>
 <li><span class="math inline">\(\mathit{ab}\)</span></li>
-<li><span class="math inline">\(\mathit{b&lt;}\)</span></li>
+<li><span class="math inline">\(\mathit{b{\ltimes}}\)</span></li>
 </ul>
 <p>This grammar can only generate one string, namely the example <span
 class="math inline">\(\mathit{ab}\)</span> that we derived it from.
@@ -212,12 +212,12 @@ class="math inline">\(\mathit{baba}\)</span>. Once again we extract the
 bigrams and add them to what we have so far, giving us the list
 below.</p>
 <ul>
-<li><span class="math inline">\(\mathit{&gt;a}\)</span></li>
-<li><span class="math inline">\(\mathit{&gt;b}\)</span></li>
+<li><span class="math inline">\(\mathit{{\rtimes}a}\)</span></li>
+<li><span class="math inline">\(\mathit{{\rtimes}b}\)</span></li>
 <li><span class="math inline">\(\mathit{ab}\)</span></li>
 <li><span class="math inline">\(\mathit{ba}\)</span></li>
-<li><span class="math inline">\(\mathit{a&lt;}\)</span></li>
-<li><span class="math inline">\(\mathit{b&lt;}\)</span></li>
+<li><span class="math inline">\(\mathit{a{\ltimes}}\)</span></li>
+<li><span class="math inline">\(\mathit{b{\ltimes}}\)</span></li>
 </ul>
 <p>Lo and behold, it’s the grammar for the target language. Two examples
 were enough to learn the whole infinite set of well-formed strings!</p>
@@ -326,33 +326,35 @@ distinct bigram grammars over <span
 class="math inline">\(\Sigma_E\)</span>.</p>
 <ul>
 <li><span class="math inline">\(\emptyset\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;&lt; \right
+<li><span class="math inline">\(\left \{ {\rtimes}{\ltimes} \right
 \}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;a \right \}\)</span></li>
-<li><span class="math inline">\(\left \{ a&lt; \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}a \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ a{\ltimes} \right
+\}\)</span></li>
 <li><span class="math inline">\(\left \{ aa \right \}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;&lt;, &gt;a \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;&lt;, a&lt; \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;&lt;, aa \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;a, a&lt; \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;a, aa \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ a&lt;, aa \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;&lt;, &gt;a, a&lt; \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;&lt;, &gt;a, aa \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;&lt;, a&lt;, aa \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;a, a&lt;, aa \right
-\}\)</span></li>
-<li><span class="math inline">\(\left \{ &gt;&lt;, &gt;a, a&lt;, aa
+<li><span class="math inline">\(\left \{ {\rtimes}{\ltimes}, {\rtimes}a
 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}{\ltimes}, a{\ltimes}
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}{\ltimes}, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}a, a{\ltimes} \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}a, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ a{\ltimes}, aa \right
+\}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}{\ltimes}, {\rtimes}a,
+a{\ltimes} \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}{\ltimes}, {\rtimes}a,
+aa \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}{\ltimes}, a{\ltimes},
+aa \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}a, a{\ltimes}, aa
+\right \}\)</span></li>
+<li><span class="math inline">\(\left \{ {\rtimes}{\ltimes}, {\rtimes}a,
+a{\ltimes}, aa \right \}\)</span></li>
 </ul>
 <p>Ordering these sets by the subset relation <span
 class="math inline">\(\subseteq\)</span> yields the following
@@ -373,8 +375,8 @@ class="math inline">\(\mathbb{G}\)</span> a
 <strong>lattice</strong>.</p>
 <div class="exercise">
 <p>Suppose <span class="math inline">\(G_1 \mathrel{\mathop:}=\left \{
-&gt;&lt;, &gt;a, aa \right \}\)</span> and <span
-class="math inline">\(G_2 \mathrel{\mathop:}=\left \{ a&lt; \right
+{\rtimes}{\ltimes}, {\rtimes}a, aa \right \}\)</span> and <span
+class="math inline">\(G_2 \mathrel{\mathop:}=\left \{ a{\ltimes} \right
 \}\)</span>. Compute <span class="math inline">\(G_{1 \wedge 2}\)</span>
 and <span class="math inline">\(G_{1 \vee 2}\)</span>.</p>
 </div>
@@ -401,12 +403,13 @@ class="math inline">\(\mathbb{G}\)</span>.</p>
 <div class="exercise">
 <p>Suppose that the lattice of grammars is as depicted above. Assume
 furthermore that the currently conjectured grammar is <span
-class="math inline">\(\left \{ &gt;&lt; \right \}\)</span>. The next
-example contains the bigrams <span class="math inline">\(&gt;a\)</span>
-and <span class="math inline">\(a&lt;\)</span>. Verify via calculation
-that <span class="math inline">\(\left \{ &gt;&lt; \right \} \cup \left
-\{ &gt;a, a&lt; \right \} = \left \{ &gt;&lt; \right \} \vee \left \{
-&gt;a, a&lt; \right \}\)</span>.</p>
+class="math inline">\(\left \{ {\rtimes}{\ltimes} \right \}\)</span>.
+The next example contains the bigrams <span
+class="math inline">\({\rtimes}a\)</span> and <span
+class="math inline">\(a{\ltimes}\)</span>. Verify via calculation that
+<span class="math inline">\(\left \{ {\rtimes}{\ltimes} \right \} \cup
+\left \{ {\rtimes}a, a{\ltimes} \right \} = \left \{ {\rtimes}{\ltimes}
+\right \} \vee \left \{ {\rtimes}a, a{\ltimes} \right \}\)</span>.</p>
 </div>
 <p>Taking the join moves us upward in <span
 class="math inline">\(\mathbb{G}\)</span> by 0 or more “levels”. Each
@@ -455,38 +458,40 @@ class="math inline">\(\mathcal{G}\)</span> are assumed to be positive.
 Then the languages generated by these grammars are as follows:</p>
 <ul>
 <li><span class="math inline">\(L(\emptyset) = \emptyset\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;&lt; \right \}) = \left
-\{ \varepsilon \right \}\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;a \right \}) =
+<li><span class="math inline">\(L(\left \{ {\rtimes}{\ltimes} \right \})
+= \left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}a \right \}) =
 \emptyset\)</span></li>
-<li><span class="math inline">\(L(\left \{ a&lt; \right \}) =
+<li><span class="math inline">\(L(\left \{ a{\ltimes} \right \}) =
 \emptyset\)</span></li>
 <li><span class="math inline">\(L(\left \{ aa \right \}) =
 \emptyset\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;&lt;, &gt;a \right \}) =
-\left \{ \varepsilon \right \}\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;&lt;, a&lt; \right \}) =
-\left \{ \varepsilon \right \}\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;&lt;, aa \right \}) =
-\left \{ \varepsilon \right \}\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;a, a&lt; \right \}) =
-\left \{ a \right \}\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;a, aa \right \}) =
-\emptyset\)</span></li>
-<li><span class="math inline">\(L(\left \{ a&lt;, aa \right \}) =
-\emptyset\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;&lt;, &gt;a, a&lt; \right
-\}) = \left \{ \varepsilon, a \right \}\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;&lt;, &gt;a, aa \right
+<li><span class="math inline">\(L(\left \{ {\rtimes}{\ltimes},
+{\rtimes}a \right \}) = \left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}{\ltimes},
+a{\ltimes} \right \}) = \left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}{\ltimes}, aa \right
 \}) = \left \{ \varepsilon \right \}\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;&lt;, a&lt;, aa \right
-\}) = \left \{ \varepsilon \right \}\)</span></li>
-<li><span class="math inline">\(L(\left \{ &gt;a, a&lt;, aa \right \}) =
-\left \{ a, aa, aaa, \ldots \right \} = a^+\)</span> (1 or more <span
+<li><span class="math inline">\(L(\left \{ {\rtimes}a, a{\ltimes} \right
+\}) = \left \{ a \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}a, aa \right \}) =
+\emptyset\)</span></li>
+<li><span class="math inline">\(L(\left \{ a{\ltimes}, aa \right \}) =
+\emptyset\)</span></li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}{\ltimes},
+{\rtimes}a, a{\ltimes} \right \}) = \left \{ \varepsilon, a \right
+\}\)</span></li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}{\ltimes},
+{\rtimes}a, aa \right \}) = \left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}{\ltimes},
+a{\ltimes}, aa \right \}) = \left \{ \varepsilon \right \}\)</span></li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}a, a{\ltimes}, aa
+\right \}) = \left \{ a, aa, aaa, \ldots \right \} = a^+\)</span> (1 or
+more <span class="math inline">\(a\)</span>s)</li>
+<li><span class="math inline">\(L(\left \{ {\rtimes}{\ltimes},
+{\rtimes}a, a{\ltimes}, aa \right \}) = \left \{ \varepsilon, a, aa,
+aaa, \ldots \right \} = a^*\)</span> (0 or more <span
 class="math inline">\(a\)</span>s)</li>
-<li><span class="math inline">\(L(\left \{ &gt;&lt;, &gt;a, a&lt;, aa
-\right \}) = \left \{ \varepsilon, a, aa, aaa, \ldots \right \} =
-a^*\)</span> (0 or more <span class="math inline">\(a\)</span>s)</li>
 </ul>
 </div>
 <p>Let us put the lattices from the two examples next to each other. We

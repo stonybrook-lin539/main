@@ -52,9 +52,9 @@ transductions as transducers (Solutions)</h1>
 <p>Using the FST from the first example of this unit, compute the output
 strings for all of the following inputs:</p>
 <ol type="1">
-<li>bba&lt;</li>
-<li>aaaaa&lt;</li>
-<li>abbb&lt;</li>
+<li>bba⋉</li>
+<li>aaaaa⋉</li>
+<li>abbb⋉</li>
 </ol>
 <div class="solution">
 <ol type="1">
@@ -157,9 +157,9 @@ should be able to take the empty string as an input, too.</p>
 <p>Using the FST from the first example of this unit, compute the output
 strings for all the inputs below. If no output is produced, say so.</p>
 <ol type="1">
-<li>a&lt;</li>
-<li>bb&lt;</li>
-<li>&lt;</li>
+<li>a⋉</li>
+<li>bb⋉</li>
+<li>⋉</li>
 </ol>
 <div class="solution">
 <ol type="1">
@@ -171,8 +171,8 @@ strings for all the inputs below. If no output is produced, say so.</p>
 </div>
 <div class="exercise">
 <p>Write down all the output strings that the FST above can produce from
-the input <em>abababb&lt;</em>. Keep in mind that the FST must be in a
-final state when reading &lt;.</p>
+the input <em>abababb⋉</em>. Keep in mind that the FST must be in a
+final state when reading ⋉.</p>
 <div class="solution">
 <ol type="1">
 <li>accacca</li>
@@ -182,25 +182,25 @@ final state when reading &lt;.</p>
 </div>
 <div class="solution_explained">
 <p>There are multiple paths one can take through the transducer by
-following the input string <em>abababb&lt;</em>. We can write down these
+following the input string <em>abababb⋉</em>. We can write down these
 paths as sequences of states, starting with the initial state. But only
 two of these paths lead us to a final state:</p>
 <ol type="1">
 <li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} E
 \xrightarrow{a} O \xrightarrow{b} E \xrightarrow{a} O \xrightarrow{b} E
-\xrightarrow{b} E \xrightarrow{&lt;} \mathrm{stuck}\)</span></li>
+\xrightarrow{b} E \xrightarrow{{\ltimes}} \mathrm{stuck}\)</span></li>
 <li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} E
 \xrightarrow{a} O \xrightarrow{b} E \xrightarrow{a} O \xrightarrow{b} O
-\xrightarrow{b} O \xrightarrow{&lt;} \mathrm{stop}\)</span></li>
+\xrightarrow{b} O \xrightarrow{{\ltimes}} \mathrm{stop}\)</span></li>
 <li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} E
 \xrightarrow{a} O \xrightarrow{b} O \xrightarrow{a} E \xrightarrow{b} E
-\xrightarrow{b} E \xrightarrow{&lt;} \mathrm{stuck}\)</span></li>
+\xrightarrow{b} E \xrightarrow{{\ltimes}} \mathrm{stuck}\)</span></li>
 <li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} O
 \xrightarrow{a} E \xrightarrow{b} E \xrightarrow{a} O \xrightarrow{b} E
-\xrightarrow{b} E \xrightarrow{&lt;} \mathrm{stuck}\)</span></li>
+\xrightarrow{b} E \xrightarrow{{\ltimes}} \mathrm{stuck}\)</span></li>
 <li><span class="math inline">\(E \xrightarrow{a} O \xrightarrow{b} O
 \xrightarrow{a} E \xrightarrow{b} E \xrightarrow{a} O \xrightarrow{b} O
-\xrightarrow{b} O \xrightarrow{&lt;} \mathrm{stop}\)</span></li>
+\xrightarrow{b} O \xrightarrow{{\ltimes}} \mathrm{stop}\)</span></li>
 </ol>
 <p>The two successful paths then have multiple options for rewriting the
 input string:</p>
@@ -208,16 +208,16 @@ input string:</p>
 <li><span class="math inline">\(E \xrightarrow{a:a} O \xrightarrow{b:cc}
 E \xrightarrow{a:a} O \xrightarrow{b:cc} E \xrightarrow{a:a} O
 \xrightarrow{b:\varepsilon} O \xrightarrow{b:\varepsilon} O
-\xrightarrow{&lt;:\varepsilon} \mathrm{stop}\)</span></li>
+\xrightarrow{{\ltimes}:\varepsilon} \mathrm{stop}\)</span></li>
 <li><span class="math inline">\(E \xrightarrow{a:a} O
 \xrightarrow{b:\varepsilon} O \xrightarrow{a:a} E \xrightarrow{b:cc} E
 \xrightarrow{a:a} O \xrightarrow{b:\varepsilon} O
-\xrightarrow{b:\varepsilon} O \xrightarrow{&lt;:\varepsilon}
+\xrightarrow{b:\varepsilon} O \xrightarrow{{\ltimes}:\varepsilon}
 \mathrm{stop}\)</span></li>
 <li><span class="math inline">\(E \xrightarrow{a:a} O
 \xrightarrow{b:\varepsilon} O \xrightarrow{a:b} E \xrightarrow{b:cc} E
 \xrightarrow{a:a} O \xrightarrow{b:\varepsilon} O
-\xrightarrow{b:\varepsilon} O \xrightarrow{&lt;:\varepsilon}
+\xrightarrow{b:\varepsilon} O \xrightarrow{{\ltimes}:\varepsilon}
 \mathrm{stop}\)</span></li>
 </ol>
 <p>Reading just the output symbols along these paths, we get:</p>

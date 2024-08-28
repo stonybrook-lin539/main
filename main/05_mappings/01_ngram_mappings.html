@@ -130,31 +130,31 @@ n-gram.</p>
 <p>When we looked at word-final devoicing as a phonotactic constraint,
 we treated it as a ban against voiced segments like <em>d</em>,
 <em>v</em>, or <em>z</em> at the end of the word. Formally, we captured
-this with the bigrams <em>d&lt;</em> and <em>v&lt;</em> and
-<em>z&lt;</em>. If we want to treat word-final devoicing as a mapping,
-we have to rewrite URs such that word-final <em>d</em>, <em>v</em>, and
-<em>z</em> become <em>t</em>, <em>f</em>, and <em>s</em>, respectively.
-The corresponding bigrams look as follows:</p>
+this with the bigrams <em>d⋉</em> and <em>v⋉</em> and <em>z⋉</em>. If we
+want to treat word-final devoicing as a mapping, we have to rewrite URs
+such that word-final <em>d</em>, <em>v</em>, and <em>z</em> become
+<em>t</em>, <em>f</em>, and <em>s</em>, respectively. The corresponding
+bigrams look as follows:</p>
 <ul>
-<li>d[t]&lt;</li>
-<li>v[f]&lt;</li>
-<li>z[s]&lt;</li>
+<li>d[t]⋉</li>
+<li>v[f]⋉</li>
+<li>z[s]⋉</li>
 </ul>
 <p>Now consider how these n-grams are used to map German <em>li:d</em>
 to the surface form <em>li:t</em>. First, since they are bigrams, we
 have to pad out <em>li:d</em> with one edge marker on each side,
-yielding <em>&gt;li:d&lt;</em>. Then, we move through this string from
-left to right, checking each symbol. If we find a matching configuration
-for some symbol, we carry out the corresponding rewrite step:</p>
+yielding <em>⋊li:d⋉</em>. Then, we move through this string from left to
+right, checking each symbol. If we find a matching configuration for
+some symbol, we carry out the corresponding rewrite step:</p>
 <ul>
-<li><em>&gt;</em>, no match, add <em>&gt;</em> to surface form</li>
+<li><em>⋊</em>, no match, add <em>⋊</em> to surface form</li>
 <li><em>l</em>, no match, add <em>l</em> to surface form</li>
 <li><em>i:</em>, no match, add <em>i:</em> to surface form</li>
-<li><em>d</em>, matched by <em>d&lt;</em>, add <em>t</em> to surface
+<li><em>d</em>, matched by <em>d⋉</em>, add <em>t</em> to surface
 form</li>
-<li>&lt;, no match, add &lt; to surface form</li>
+<li>⋉, no match, add ⋉ to surface form</li>
 </ul>
-<p>The only matching configuration is <em>d&lt;</em>, so we replace
+<p>The only matching configuration is <em>d⋉</em>, so we replace
 <em>d</em> with <em>t</em> while keeping everything else the same. After
 removal of edge markers, we are left with <em>li:t</em>.</p>
 </div>
@@ -197,7 +197,7 @@ then we run into an issue with words like <em>land</em> (which has the
 same meaning as English <em>land</em>). According to the mapping bigram
 <em>nd[<span class="math inline">\(\varepsilon\)</span>], we should
 delete </em>d* and thus end up with <em>lan</em>. But the mapping bigram
-<em>d[t]&lt;</em> for word-final devoicing requires us to replace
+<em>d[t]⋉</em> for word-final devoicing requires us to replace
 <em>d</em> with <em>t</em> so we get <em>lant</em>. Well, which one is
 it?</p>
 </div>
@@ -210,7 +210,7 @@ that rewrite rule.</p>
 <div class="example">
 <p>Suppose that word-final devoicing precedes all other rules of
 German’. Then <em>land</em> must be realized as <em>lant</em> because
-<em>d[t]&lt;</em> takes precedence over <em>nd[<span
+<em>d[t]⋉</em> takes precedence over <em>nd[<span
 class="math inline">\(\varepsilon\)</span>]</em>.</p>
 </div>
 <p>While this certainly fixes the problem, it is quite a deviation from
@@ -288,7 +288,7 @@ process with mapping n-grams.</p>
 <li>n[m]p</li>
 <li>mp[<span class="math inline">\(\varepsilon\)</span>]</li>
 <li>a[a:]mp</li>
-<li>a:[a]&lt;</li>
+<li>a:[a]⋉</li>
 </ol>
 <p>Which of the following are URs from which one can obtain the surface
 form <em>a:mpa</em>? Assume that the mapping n-grams must match the UR,

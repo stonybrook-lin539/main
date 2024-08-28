@@ -103,30 +103,29 @@ is among its bigrams (with edge markers):</p>
 <ul>
 <li>fr</li>
 <li>z</li>
-<li>&gt;&lt;</li>
-<li>&gt;s</li>
-<li>s&lt;&lt;</li>
+<li>⋊⋉</li>
+<li>⋊s</li>
+<li>s⋉⋉</li>
 </ul>
 <div class="solution">
 <ul>
 <li>fr: yes</li>
 <li>z: no</li>
-<li>&gt;&lt;: no</li>
-<li>&gt;s: yes</li>
-<li>s&lt;&lt;: no</li>
+<li>⋊⋉: no</li>
+<li>⋊s: yes</li>
+<li>s⋉⋉: no</li>
 </ul>
 <p><strong>Explanation</strong><br />
 Once we consider edge markers, the long list of bigrams from the
-previous solution gains two new members: <em>&gt;s</em> and
-<em>s&lt;</em>. Bigrams that were already on the original list without
-edge markers are still bigrams, so <em>fr</em> is still a bigram of
+previous solution gains two new members: <em>⋊s</em> and <em>s⋉</em>.
+Bigrams that were already on the original list without edge markers are
+still bigrams, so <em>fr</em> is still a bigram of
 <em>supercalifragilisticexpialidocious</em>. Similarly <em>n</em>-grams
 that do not consist of exactly two symbols are still not possible
-bigrams, which rules out <em>z</em> (only 1 symbol) and
-<em>s&lt;&lt;</em> (3 symbols). This leaves us with &gt;&lt; and &gt;s.
-The latter is one of the two new members, but the former is not. In
-fact, &gt;&lt; can never be a bigram of any string that consists of one
-or more symbols.</p>
+bigrams, which rules out <em>z</em> (only 1 symbol) and <em>s⋉⋉</em> (3
+symbols). This leaves us with ⋊⋉ and ⋊s. The latter is one of the two
+new members, but the former is not. In fact, ⋊⋉ can never be a bigram of
+any string that consists of one or more symbols.</p>
 </div>
 </div>
 <div class="exercise">
@@ -134,9 +133,9 @@ or more symbols.</p>
 edge markers, say whether it has been padded for use with a bigram
 grammar, a trigram grammar, or a 4-gram grammar.</p>
 <ul>
-<li>&gt;&gt;kbin&lt;&lt;</li>
-<li>&gt;&gt;&gt;workbench&lt;&lt;&lt;</li>
-<li>&gt;akbar&lt;</li>
+<li>⋊⋊kbin⋉⋉</li>
+<li>⋊⋊⋊workbench⋉⋉⋉</li>
+<li>⋊akbar⋉</li>
 </ul>
 <div class="solution">
 <ul>
@@ -161,43 +160,43 @@ class="math inline">\(n\)</span>-gram grammar.</p>
 following, say whether it is a bigram of the word (with edge markers), a
 trigram, a 4-gram, or none of those choices.</p>
 <ul>
-<li>&gt;fr</li>
+<li>⋊fr</li>
 <li>z</li>
-<li>do&lt;c</li>
-<li>s&lt;&lt;&lt;</li>
+<li>do⋉c</li>
+<li>s⋉⋉⋉</li>
 <li>sit</li>
 <li>cious</li>
-<li>&gt;sup</li>
+<li>⋊sup</li>
 </ul>
 <div class="solution">
 <ul>
-<li>&gt;fr: none of those choices</li>
+<li>⋊fr: none of those choices</li>
 <li>z: none of those choices</li>
-<li>do&lt;c: none of those choices</li>
-<li>s&lt;&lt;&lt;: 4-gram</li>
+<li>do⋉c: none of those choices</li>
+<li>s⋉⋉⋉: 4-gram</li>
 <li>sit: none of those choices</li>
 <li>cious: none of those choices</li>
-<li>&gt;sup: 4-gram</li>
+<li>⋊sup: 4-gram</li>
 </ul>
 <p><strong>Explanation</strong></p>
 <ul>
-<li>&gt;fr: the word starts with <em>su</em>, not <em>fr</em>, so
-<em>&gt;fr</em> does not occur in the word</li>
+<li>⋊fr: the word starts with <em>su</em>, not <em>fr</em>, so
+<em>⋊fr</em> does not occur in the word</li>
 <li>z: this is a unigram, but we are only considering bigrams, trigrams,
 and 4-grams; and even if we did consider unigrams, the word does not
 contain <em>z</em> at all</li>
-<li>do&lt;c: this is a 4-gram but it can never occur in any string
-because it is impossible to have any symbol after &lt;</li>
-<li>s&lt;&lt;&lt;: this is a 4-gram; for 4-grams, we have to assume at
-least three edge markers on each side of the string, and since the word
-ends in <em>s</em>, the string with edge markers must indeed contain
-s&lt;&lt;&lt;</li>
+<li>do⋉c: this is a 4-gram but it can never occur in any string because
+it is impossible to have any symbol after ⋉</li>
+<li>s⋉⋉⋉: this is a 4-gram; for 4-grams, we have to assume at least
+three edge markers on each side of the string, and since the word ends
+in <em>s</em>, the string with edge markers must indeed contain
+s⋉⋉⋉</li>
 <li>sit: this is a trigram, but it does not occur in the word</li>
 <li>cious: this is a 5-gram that occurs in the word, but we are only
 considering bigrams, trigrams, and 4-grams</li>
-<li>&gt;sup: this is a 4-gram and since the word starts with
-<em>sup</em>, <em>&gt;sup</em> is indeed a 4-gram of the string once we
-include edge markers</li>
+<li>⋊sup: this is a 4-gram and since the word starts with <em>sup</em>,
+<em>⋊sup</em> is indeed a 4-gram of the string once we include edge
+markers</li>
 </ul>
 </div>
 </div>
@@ -242,12 +241,12 @@ the case.</p>
 one of its bigrams illicit. The list of bigrams of <em>asola</em> is as
 follows:</p>
 <ul>
-<li>&gt;a</li>
+<li>⋊a</li>
 <li>as</li>
 <li>so</li>
 <li>ol</li>
 <li>la</li>
-<li>a&lt;</li>
+<li>a⋉</li>
 </ul>
 <p>But each one of these bigrams is also a bigram of <em>alsola</em> or
 <em>aslola</em> (or both). Hence, if one of these bigrams is deemed
@@ -278,19 +277,19 @@ consists of the following trigrams:</p>
 <li>oso</li>
 </ul>
 <p>Padding <em>a+sociale</em> with the appropriate number of edge
-markers yields <em>&gt;&gt;a+sociale&lt;&lt;</em>, the trigrams of which
-are as follows:</p>
+markers yields <em>⋊⋊a+sociale⋉⋉</em>, the trigrams of which are as
+follows:</p>
 <ul>
-<li>&gt;&gt;a</li>
-<li>&gt;a+</li>
+<li>⋊⋊a</li>
+<li>⋊a+</li>
 <li>a+s</li>
 <li>+so</li>
 <li>soc</li>
 <li>oci</li>
 <li>cia</li>
 <li>ale</li>
-<li>le&lt;</li>
-<li>e&lt;&lt;</li>
+<li>le⋉</li>
+<li>e⋉⋉</li>
 </ul>
 <p>Crucially, none of those trigrams are forbidden by the negative
 trigram grammar. Intuitively speaking, that is because the morpheme
@@ -318,22 +317,22 @@ times.</p>
 <ul>
 <li><strong>every string starts with a</strong>
 <ul>
-<li>&gt;&gt;&gt;b</li>
-<li>&gt;&gt;&gt;c</li>
+<li>⋊⋊⋊b</li>
+<li>⋊⋊⋊c</li>
 </ul></li>
 <li><strong>no string ends with c</strong>
 <ul>
-<li>c&lt;&lt;&lt;</li>
+<li>c⋉⋉⋉</li>
 </ul></li>
 <li><strong>a and c are always separated by at least two
 symbols</strong>
 <ul>
 <li><em>a must not be immediately before c</em>
 <ul>
-<li>ac&lt;&lt;</li>
-<li>aca&lt;</li>
-<li>acb&lt;</li>
-<li>acc&lt;</li>
+<li>ac⋉⋉</li>
+<li>aca⋉</li>
+<li>acb⋉</li>
+<li>acc⋉</li>
 <li>acaa</li>
 <li>acab</li>
 <li>acac</li>
@@ -343,22 +342,22 @@ symbols</strong>
 <li>acca</li>
 <li>accb</li>
 <li>accc</li>
-<li>&gt;ac&lt;</li>
-<li>&gt;aca</li>
-<li>&gt;acb</li>
-<li>&gt;acc</li>
-<li>bac&lt;</li>
+<li>⋊ac⋉</li>
+<li>⋊aca</li>
+<li>⋊acb</li>
+<li>⋊acc</li>
+<li>bac⋉</li>
 <li>baca</li>
 <li>bacb</li>
 <li>bacc</li>
-<li>cac&lt;</li>
+<li>cac⋉</li>
 <li>caca</li>
 <li>cacb</li>
 <li>cacc</li>
-<li>&gt;&gt;ac</li>
-<li>&gt;aac</li>
-<li>&gt;bac</li>
-<li>&gt;cac</li>
+<li>⋊⋊ac</li>
+<li>⋊aac</li>
+<li>⋊bac</li>
+<li>⋊cac</li>
 <li>aaac</li>
 <li>abac</li>
 <li>acac</li>
@@ -371,10 +370,10 @@ symbols</strong>
 </ul></li>
 <li><em>c must not be immediately before a</em>
 <ul>
-<li>ca&lt;&lt;</li>
-<li>caa&lt;</li>
-<li>cab&lt;</li>
-<li>cac&lt;</li>
+<li>ca⋉⋉</li>
+<li>caa⋉</li>
+<li>cab⋉</li>
+<li>cac⋉</li>
 <li>caaa</li>
 <li>caab</li>
 <li>caac</li>
@@ -384,22 +383,22 @@ symbols</strong>
 <li>caca</li>
 <li>cacb</li>
 <li>cacc</li>
-<li>&gt;ca&lt;</li>
-<li>&gt;caa</li>
-<li>&gt;cab</li>
-<li>&gt;cac</li>
-<li>bca&lt;</li>
+<li>⋊ca⋉</li>
+<li>⋊caa</li>
+<li>⋊cab</li>
+<li>⋊cac</li>
+<li>bca⋉</li>
 <li>bcaa</li>
 <li>bcab</li>
 <li>bcac</li>
-<li>cca&lt;</li>
+<li>cca⋉</li>
 <li>ccaa</li>
 <li>ccab</li>
 <li>ccac</li>
-<li>&gt;&gt;ca</li>
-<li>&gt;aca</li>
-<li>&gt;bca</li>
-<li>&gt;cca</li>
+<li>⋊⋊ca</li>
+<li>⋊aca</li>
+<li>⋊bca</li>
+<li>⋊cca</li>
 <li>aaca</li>
 <li>abca</li>
 <li>acca</li>
@@ -412,12 +411,12 @@ symbols</strong>
 </ul></li>
 <li><em>a must not be one symbol before c</em>
 <ul>
-<li>aac&lt;</li>
-<li>abc&lt;</li>
-<li>acc&lt;</li>
-<li>&gt;aac</li>
-<li>&gt;abc</li>
-<li>&gt;acc</li>
+<li>aac⋉</li>
+<li>abc⋉</li>
+<li>acc⋉</li>
+<li>⋊aac</li>
+<li>⋊abc</li>
+<li>⋊acc</li>
 <li>aaac</li>
 <li>aabc</li>
 <li>aacc</li>
@@ -430,12 +429,12 @@ symbols</strong>
 </ul></li>
 <li><em>c must not be one symbol before a</em>
 <ul>
-<li>caa&lt;</li>
-<li>cba&lt;</li>
-<li>cca&lt;</li>
-<li>&gt;caa</li>
-<li>&gt;cba</li>
-<li>&gt;cca</li>
+<li>caa⋉</li>
+<li>cba⋉</li>
+<li>cca⋉</li>
+<li>⋊caa</li>
+<li>⋊cba</li>
+<li>⋊cca</li>
 <li>acaa</li>
 <li>acba</li>
 <li>acca</li>
@@ -448,21 +447,20 @@ symbols</strong>
 </ul></li>
 </ul></li>
 </ul>
-<p>Note that we do not need to list 4-grams like <em>&gt;&gt;ba</em>
-because every string with edge markers that contains <em>&gt;&gt;ba</em>
-also contains <em>&gt;&gt;&gt;b</em>, which we already list as
-illicit.</p>
+<p>Note that we do not need to list 4-grams like <em>⋊⋊ba</em> because
+every string with edge markers that contains <em>⋊⋊ba</em> also contains
+<em>⋊⋊⋊b</em>, which we already list as illicit.</p>
 <p>Hence the switch to bigrams does not buy us much for the first two
 constraints.</p>
 <ul>
 <li><strong>every string starts with a</strong>
 <ul>
-<li>&gt;b</li>
-<li>&gt;c</li>
+<li>⋊b</li>
+<li>⋊c</li>
 </ul></li>
 <li><strong>no string ends with c</strong>
 <ul>
-<li>c&lt;</li>
+<li>c⋉</li>
 </ul></li>
 </ul>
 <p>But bigrams allow us to express much more succinctly that <em>a must
@@ -499,9 +497,9 @@ allowed to use bigrams and trigrams, instead of using 4-grams for
 everything, the giant grammar above could have been much smaller and
 could have stated the generalizations much more succinctly:</p>
 <ul>
-<li>&gt;b</li>
-<li>&gt;c</li>
-<li>c&lt;</li>
+<li>⋊b</li>
+<li>⋊c</li>
+<li>c⋉</li>
 <li>ac</li>
 <li>ca</li>
 <li>abc</li>
