@@ -79,21 +79,21 @@ to start with <em>a</em> and end with <em>s</em>.</p>
 <div class="solution">
 <p>A negative grammar provides the smallest solution:</p>
 <ul>
-<li>&gt;o</li>
-<li>&gt;s</li>
-<li>&gt;z</li>
-<li>&gt;l</li>
-<li>a&lt;</li>
-<li>o&lt;</li>
-<li>z&lt;</li>
-<li>l&lt;</li>
+<li>⋊o</li>
+<li>⋊s</li>
+<li>⋊z</li>
+<li>⋊l</li>
+<li>a⋉</li>
+<li>o⋉</li>
+<li>z⋉</li>
+<li>l⋉</li>
 </ul>
 <p>A positive grammar states more explicitly what we may start and end
 with, but then we have to add 25 additional bigrams to capture the lack
 of combinatorial restrictions within the word:</p>
 <ul>
-<li>&gt;a</li>
-<li>s&lt;</li>
+<li>⋊a</li>
+<li>s⋉</li>
 <li>any <span class="math inline">\(xy\)</span> such that <span
 class="math inline">\(x\)</span> and <span
 class="math inline">\(y\)</span> are symbols in alphabet <span
@@ -110,7 +110,7 @@ least two symbols, then the last but one symbol must be <em>s</em>.</p>
 <div class="solution">
 <p>This is again easier to do with a negative grammar. The grammar
 contains all trigrams of the form <span
-class="math inline">\(xy&lt;\)</span> such that <span
+class="math inline">\(xy{\ltimes}\)</span> such that <span
 class="math inline">\(x\)</span> is not <span
 class="math inline">\(s\)</span> and <span
 class="math inline">\(y\)</span> is any random symbol of our
@@ -118,35 +118,35 @@ alphabet:</p>
 <ul>
 <li><em>No penultimate a</em>
 <ul>
-<li>aa&lt;</li>
-<li>ao&lt;</li>
-<li>as&lt;</li>
-<li>az&lt;</li>
-<li>al&lt;</li>
+<li>aa⋉</li>
+<li>ao⋉</li>
+<li>as⋉</li>
+<li>az⋉</li>
+<li>al⋉</li>
 </ul></li>
 <li><em>No penultimate o</em>
 <ul>
-<li>oa&lt;</li>
-<li>oo&lt;</li>
-<li>os&lt;</li>
-<li>oz&lt;</li>
-<li>ol&lt;</li>
+<li>oa⋉</li>
+<li>oo⋉</li>
+<li>os⋉</li>
+<li>oz⋉</li>
+<li>ol⋉</li>
 </ul></li>
 <li><em>No penultimate z</em>
 <ul>
-<li>za&lt;</li>
-<li>zo&lt;</li>
-<li>zs&lt;</li>
-<li>zz&lt;</li>
-<li>zl&lt;</li>
+<li>za⋉</li>
+<li>zo⋉</li>
+<li>zs⋉</li>
+<li>zz⋉</li>
+<li>zl⋉</li>
 </ul></li>
 <li><em>No penultimate l</em>
 <ul>
-<li>la&lt;</li>
-<li>lo&lt;</li>
-<li>ls&lt;</li>
-<li>lz&lt;</li>
-<li>ll&lt;</li>
+<li>la⋉</li>
+<li>lo⋉</li>
+<li>ls⋉</li>
+<li>lz⋉</li>
+<li>ll⋉</li>
 </ul></li>
 </ul>
 <p>This is again a very unnatural constraint that is the result of
@@ -194,23 +194,23 @@ natural language would have such a constraint on words.</p>
 <div class="solution">
 <p>In this case, the positive grammar is slightly smaller:</p>
 <ul>
-<li>&gt;a</li>
-<li>a&lt;</li>
-<li>&gt;o</li>
-<li>o&lt;</li>
-<li>&gt;s</li>
-<li>s&lt;</li>
-<li>&gt;z</li>
-<li>z&lt;</li>
-<li>&gt;l</li>
-<li>l&lt;</li>
+<li>⋊a</li>
+<li>a⋉</li>
+<li>⋊o</li>
+<li>o⋉</li>
+<li>⋊s</li>
+<li>s⋉</li>
+<li>⋊z</li>
+<li>z⋉</li>
+<li>⋊l</li>
+<li>l⋉</li>
 </ul>
 <p>However, the negative grammar states the requirement more
 explicitly:</p>
 <ul>
 <li><em>Have at least one symbol</em>
 <ul>
-<li>&gt;&lt;</li>
+<li>⋊⋉</li>
 </ul></li>
 <li><em>Don’t have two symbols</em>
 <ul>

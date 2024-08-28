@@ -74,8 +74,9 @@ isa, isi, isu, ifi, ifa, ifu, usa, usi, usu, ufa, ufu, ufi</li>
 <li><strong>local assimilation</strong>: nb, np</li>
 <li><strong>local dissimilation</strong>: rar, rir, rur</li>
 <li><strong>penultimate stress</strong> <span
-class="math inline">\(&gt;\sigma&lt;, \sigma \acute{\sigma}&lt;, \sigma
-\sigma &lt;, \acute{\sigma} \sigma \sigma\)</span></li>
+class="math inline">\({\rtimes}\sigma{\ltimes}, \sigma
+\acute{\sigma}{\ltimes}, \sigma \sigma {\ltimes}, \acute{\sigma} \sigma
+\sigma\)</span></li>
 </ol>
 </div>
 <div class="solution_explained">
@@ -120,22 +121,22 @@ class="math inline">\(\sigma^+ \acute{\sigma} \sigma\)</span>. Based on
 this, we can deduce what must be forbidden: First, we do not want to
 allow words like <span class="math inline">\(\sigma\)</span>, so our
 grammar must contain the forbidden trigram <span
-class="math inline">\(&gt; \sigma &lt;\)</span>. We also do not want to
-allow any word with at least two syllables where stress falls on the
-last syllable, and thus we add the forbidden trigram <span
-class="math inline">\(\sigma \acute{\sigma} &lt;\)</span>. We do not
-want to allow any word that ends with two unstressed syllables, which we
-capture with the forbidden trigram <span class="math inline">\(\sigma
-\sigma &lt;\)</span>. The combination of <span
-class="math inline">\(\sigma \acute{\sigma} &lt;\)</span> and <span
-class="math inline">\(\sigma \sigma&lt;\)</span> guarantees that if a
-word has at least two syllables, the last but one is stressed. But
-that’s not quite enough, we also have to ensure that this is the only
-syllable that is stressed. That is the same as saying that we do not to
-allow any word where the stressed syllable is followed by at least two
-unstressed syllables, and thus we also forbid the trigram <span
-class="math inline">\(\acute{\sigma} \sigma \sigma\)</span>. And that’s
-it, nothing else is required.</li>
+class="math inline">\({\rtimes} \sigma {\ltimes}\)</span>. We also do
+not want to allow any word with at least two syllables where stress
+falls on the last syllable, and thus we add the forbidden trigram <span
+class="math inline">\(\sigma \acute{\sigma} {\ltimes}\)</span>. We do
+not want to allow any word that ends with two unstressed syllables,
+which we capture with the forbidden trigram <span
+class="math inline">\(\sigma \sigma {\ltimes}\)</span>. The combination
+of <span class="math inline">\(\sigma \acute{\sigma} {\ltimes}\)</span>
+and <span class="math inline">\(\sigma \sigma{\ltimes}\)</span>
+guarantees that if a word has at least two syllables, the last but one
+is stressed. But that’s not quite enough, we also have to ensure that
+this is the only syllable that is stressed. That is the same as saying
+that we do not to allow any word where the stressed syllable is followed
+by at least two unstressed syllables, and thus we also forbid the
+trigram <span class="math inline">\(\acute{\sigma} \sigma
+\sigma\)</span>. And that’s it, nothing else is required.</li>
 </ol>
 </div>
 </div>
@@ -176,18 +177,18 @@ Is one grammar significantly smaller than the other?</p>
 <div class="solution">
 <p>The positive grammar contains</p>
 <ul>
-<li>&gt;C</li>
+<li>⋊C</li>
 <li>CV</li>
 <li>VC</li>
-<li>V&lt;</li>
+<li>V⋉</li>
 </ul>
 <p>The negative grammar is of the form</p>
 <ul>
-<li>&gt;V</li>
+<li>⋊V</li>
 <li>CC</li>
 <li>VV</li>
-<li>C&lt;</li>
-<li>&gt;&lt; (which is needed to rule out the empty string)</li>
+<li>C⋉</li>
+<li>⋊⋉ (which is needed to rule out the empty string)</li>
 </ul>
 <p>The two grammars are of comparable size.</p>
 </div>
@@ -206,28 +207,28 @@ grammar significantly smaller than the other?</p>
 available substitutions for C and V.</p>
 <p>The positive grammar now contains</p>
 <ul>
-<li>instead of &gt;C: &gt;p, &gt;t, &gt;k, &gt;s, &gt;f</li>
+<li>instead of ⋊C: ⋊p, ⋊t, ⋊k, ⋊s, ⋊f</li>
 <li>instead of CV: pa, ta, ka, sa, fa</li>
 <li>instead of VC: ap, at, ak, as, af</li>
-<li>instead of V&lt;: a&lt;</li>
+<li>instead of V⋉: a⋉</li>
 </ul>
 <p>The negative grammar now contains</p>
 <ul>
-<li>instead of &gt;V: &gt;a</li>
+<li>instead of ⋊V: ⋊a</li>
 <li>instead of CC: pp, pt, pk, ps, pf, tp, tt, tk, ts, tf, kp, kt, kk,
 ks, kf, sp, st, sk, ss, sf, fp, ft, fk, fs, ff</li>
 <li>instead of VV: aa</li>
-<li>instead of C&lt;: p&lt;, t&lt;, k&lt;, s&lt;, f&lt;</li>
-<li>still &gt;&lt; (which is needed to rule out the empty string)</li>
+<li>instead of C⋉: p⋉, t⋉, k⋉, s⋉, f⋉</li>
+<li>still ⋊⋉ (which is needed to rule out the empty string)</li>
 </ul>
 <p>The positive grammar with 16 bigrams is now only half the size of the
 negative grammar with 33 bigrams. If we increased the number of vowels,
 that would bring the positive grammar closer to the negative one. Quite
 generally, if the number of vowels and consonants is the same, then the
 negative grammar will be larger than the positive one by one bigram
-(which is &gt;&lt;). The larger the difference between the number of
-vowels and the number of consonants, the more the size of the negative
-grammar will exceed that of the positive grammar.</p>
+(which is ⋊⋉). The larger the difference between the number of vowels
+and the number of consonants, the more the size of the negative grammar
+will exceed that of the positive grammar.</p>
 </div>
 </div>
 <div class="exercise">
@@ -294,10 +295,10 @@ we assume the morphemes <em>de-</em>, <em>nature</em>, <em>-al</em>,
 <em>-ize</em>, and <em>-ation</em>. The negative grammar then contains
 the following <span class="math inline">\(n\)</span>-grams:</p>
 <ol type="1">
-<li>You must start with <em>de-</em> or <em>nature</em>: &gt; -al, &gt;
--ize, &gt; -ation</li>
+<li>You must start with <em>de-</em> or <em>nature</em>: ⋊ -al, ⋊ -ize,
+⋊ -ation</li>
 <li><em>de-</em> can only be followed by <em>nature</em>: de- de-, de-
--al, de -ize, de -ation, de &lt;</li>
+-al, de -ize, de -ation, de ⋉</li>
 <li><em>nature</em> can only be followed by <em>-al</em> or the end of
 the word: nature de-, nature nature, nature -ize, nature -ation</li>
 <li><em>-al</em> can only be followed by <em>-ize</em> or the end of the
@@ -306,8 +307,8 @@ word: -al de-, -al nature, -al -al, -al -ation</li>
 the word: -ize -de, -ize nature, -ize -al, -ize -ize</li>
 <li><em>-ation</em> can only be followed by the end of the word: -ation
 -de, -ation nature, -ation -al, -ation -ize, -ation -ation</li>
-<li>Do not end in <em>denature</em> or <em>denatural</em>: de- nature
-&lt;, de- nature -al &lt;</li>
+<li>Do not end in <em>denature</em> or <em>denatural</em>: de- nature ⋉,
+de- nature -al ⋉</li>
 </ol>
 </div>
 </div>

@@ -183,14 +183,14 @@ previous unit.</p>
 <td style="text-align: center;">a:<span
 class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">Yes</td>
-<td style="text-align: center;">Yes(&lt;)</td>
+<td style="text-align: center;">Yes(⋉)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><strong>Nas?</strong></td>
 <td style="text-align: center;">n:ãn, p:ap, ã:aã</td>
 <td style="text-align: center;">a:a</td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes(a&lt;)</td>
+<td style="text-align: center;">Yes(a⋉)</td>
 </tr>
 </tbody>
 </table>
@@ -205,11 +205,11 @@ class="math inline">\(\varepsilon\)</span>:ã</em> from <em>Nas?</em> to
 <em>Y</em>. Then we add another state <em>Nas?[a,ã]</em> and use it to
 replace the transition <em>ã:aã</em>, and we also add <em>Nas?[a,p]</em>
 to replace the <em>p:ap</em> transition. Finally, we add a new state
-<em>Nas?[a,&lt;]</em> to replace the transition <em>&lt;:a&lt;</em> out
-of <em>Nas?</em> with <em><span
+<em>Nas?[a,⋉]</em> to replace the transition <em>⋉:a⋉</em> out of
+<em>Nas?</em> with <em><span
 class="math inline">\(\varepsilon\)</span>:a</em> from <em>Nas?</em> to
-<em>Nas?[a,&lt;]</em>, followed by <em>&lt;:&lt;</em> out of
-<em>Nas?[a,&lt;]</em>.</p>
+<em>Nas?[a,⋉]</em>, followed by <em>⋉:⋉</em> out of
+<em>Nas?[a,⋉]</em>.</p>
 <table style="width:100%;">
 <colgroup>
 <col style="width: 11%" />
@@ -230,7 +230,7 @@ class="math inline">\(\varepsilon\)</span>:a</em> from <em>Nas?</em> to
 <td style="text-align: center;"><strong>Nas?[ã,n]</strong></td>
 <td style="text-align: center;"><strong>Nas?[a,p]</strong></td>
 <td style="text-align: center;"><strong>Nas?[a,ã]</strong></td>
-<td style="text-align: center;"><strong>Nas?[a,&lt;]</strong></td>
+<td style="text-align: center;"><strong>Nas?[a,⋉]</strong></td>
 <td style="text-align: center;"><strong>Initial</strong></td>
 <td style="text-align: center;"><strong>Final</strong></td>
 </tr>
@@ -244,7 +244,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">Yes</td>
-<td style="text-align: center;">Yes(&lt;)</td>
+<td style="text-align: center;">Yes(⋉)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><strong>Nas?</strong></td>
@@ -295,7 +295,7 @@ class="math inline">\(\varepsilon\)</span>:a</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><strong>Nas?[a,&lt;]</strong></td>
+<td style="text-align: right;"><strong>Nas?[a,⋉]</strong></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -303,7 +303,7 @@ class="math inline">\(\varepsilon\)</span>:a</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes(&lt;)</td>
+<td style="text-align: center;">Yes(⋉)</td>
 </tr>
 </tbody>
 </table>
@@ -313,8 +313,8 @@ alt="nasalization_atmostoneoutput.svg" /></p>
 <div class="exercise">
 <p>In order to verify that the two transducers in the example above
 produce the same surface forms, write down the surface forms that each
-one produces for the following URs (don’t forget to include &lt; at the
-end of the input string):</p>
+one produces for the following URs (don’t forget to include ⋉ at the end
+of the input string):</p>
 <ol type="1">
 <li>an</li>
 <li>anpa</li>
@@ -351,7 +351,7 @@ swapping the input and output symbols of each transition.</p>
 <td style="text-align: center;"><strong>Nas?[ã,n]</strong></td>
 <td style="text-align: center;"><strong>Nas?[a,p]</strong></td>
 <td style="text-align: center;"><strong>Nas?[a,ã]</strong></td>
-<td style="text-align: center;"><strong>Nas?[a,&lt;]</strong></td>
+<td style="text-align: center;"><strong>Nas?[a,⋉]</strong></td>
 <td style="text-align: center;"><strong>Initial</strong></td>
 <td style="text-align: center;"><strong>Final</strong></td>
 </tr>
@@ -365,7 +365,7 @@ class="math inline">\(\varepsilon\)</span>:a</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">Yes</td>
-<td style="text-align: center;">Yes(&lt;)</td>
+<td style="text-align: center;">Yes(⋉)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><strong>Nas?</strong></td>
@@ -416,7 +416,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"><strong>Nas?[a,&lt;]</strong></td>
+<td style="text-align: right;"><strong>Nas?[a,⋉]</strong></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -424,7 +424,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes(&lt;)</td>
+<td style="text-align: center;">Yes(⋉)</td>
 </tr>
 </tbody>
 </table>
@@ -563,7 +563,7 @@ is labeled with a symbol, and a node is labeled, say, <em>abc</em> iff
 one can reach it from the root by following three edges labeled
 <em>a</em>, <em>b</em>, and <em>c</em>, respectively. If a node
 corresponds to a lexical item, it has an outgoing branch labeled
-<em>&lt;</em>. <!-- fixme: tree has not been introduced --></p>
+<em>⋉</em>. <!-- fixme: tree has not been introduced --></p>
 <div class="example">
 <p>Suppose our lexicon consist only of following URs.</p>
 <ol type="1">
@@ -578,15 +578,14 @@ corresponds to a lexical item, it has an outgoing branch labeled
 indicate a step down in the tree and using commas to separate branches.
 In this format, we omit node labels and only list the edge labels.</p>
 <ul>
-<li>(a(n(&lt;, p(a(&lt;)))), ã(p(a(a(n(n(a(p(&lt;)),
-p(a(n(&lt;))))))))))</li>
+<li>(a(n(⋉, p(a(⋉)))), ã(p(a(a(n(n(a(p(⋉)), p(a(n(⋉))))))))))</li>
 </ul>
 <p>The bracketed format highlights how the node labels are redundant and
 all the work is being done by the edge labels, but it is also very
 cluttered. We can make things more readable by dropping brackets when
 there is only one way of moving down in the prefix tree.</p>
 <ul>
-<li>(an(&lt;, pa&lt;), ãpaann(ap&lt;, pan&lt;))</li>
+<li>(an(⋉, pa⋉), ãpaann(ap⋉, pan⋉))</li>
 </ul>
 </div>
 <p>Prefix trees have many appealing properties. For example, they are
@@ -623,11 +622,12 @@ transitions:</p>
 <li><span class="math inline">\(\varepsilon\)</span> <span
 class="math inline">\(\xrightarrow{a:a}\)</span> a</li>
 <li>a <span class="math inline">\(\xrightarrow{n:n}\)</span> an</li>
-<li>an <span class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+<li>an <span
+class="math inline">\(\xrightarrow{{\ltimes}:{\ltimes}}\)</span></li>
 <li>an <span class="math inline">\(\xrightarrow{p:p}\)</span> anp</li>
 <li>anp <span class="math inline">\(\xrightarrow{a:a}\)</span> anpa</li>
 <li>anpa <span
-class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+class="math inline">\(\xrightarrow{{\ltimes}:{\ltimes}}\)</span></li>
 <li><span class="math inline">\(\varepsilon\)</span> <span
 class="math inline">\(\xrightarrow{\tilde{a}:\tilde{a}}\)</span> ã</li>
 <li>ã <span class="math inline">\(\xrightarrow{p:p}\)</span> ãp</li>
@@ -642,7 +642,7 @@ class="math inline">\(\xrightarrow{\tilde{a}:\tilde{a}}\)</span> ã</li>
 <li>ãpaanna <span class="math inline">\(\xrightarrow{p:p}\)</span>
 ãpaannap</li>
 <li>ãpaannap <span
-class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+class="math inline">\(\xrightarrow{{\ltimes}:{\ltimes}}\)</span></li>
 <li>ãpaann <span class="math inline">\(\xrightarrow{p:p}\)</span>
 ãpaannp</li>
 <li>ãpaannp <span class="math inline">\(\xrightarrow{a:a}\)</span>
@@ -650,7 +650,7 @@ class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
 <li>ãpaannpa <span class="math inline">\(\xrightarrow{n:n}\)</span>
 ãpaannpan</li>
 <li>ãpaannpan <span
-class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+class="math inline">\(\xrightarrow{{\ltimes}:{\ltimes}}\)</span></li>
 </ol>
 </div>
 <p>The FST obtained from a prefix tree acts like a filter. It does not
@@ -688,14 +688,14 @@ class="math inline">\(\xrightarrow{a:\varepsilon}\)</span> a-Nas?</li>
 <li>a-Nas? <span
 class="math inline">\(\xrightarrow{n:\tilde{a}n}\)</span> an-Y</li>
 <li>an-Y <span
-class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+class="math inline">\(\xrightarrow{{\ltimes}:{\ltimes}}\)</span></li>
 <li>an-Y <span class="math inline">\(\xrightarrow{p:p}\)</span>
 anp-Y</li>
 <li>anp-Y <span
 class="math inline">\(\xrightarrow{a:\varepsilon}\)</span>
 anpa-Nas?</li>
 <li>anpa-Nas? <span
-class="math inline">\(\xrightarrow{&lt;:a&lt;}\)</span></li>
+class="math inline">\(\xrightarrow{{\ltimes}:a{\ltimes}}\)</span></li>
 <li><span class="math inline">\(\varepsilon\)</span>-Y <span
 class="math inline">\(\xrightarrow{\tilde{a}:\tilde{a}}\)</span>
 ã-Y</li>
@@ -714,7 +714,7 @@ class="math inline">\(\xrightarrow{a:\varepsilon}\)</span>
 <li>ãpaanna-Nas? <span class="math inline">\(\xrightarrow{p:ap}\)</span>
 ãpaannap-Y</li>
 <li>ãpaannap-Y <span
-class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+class="math inline">\(\xrightarrow{{\ltimes}:{\ltimes}}\)</span></li>
 <li>ãpaann-Y <span class="math inline">\(\xrightarrow{p:p}\)</span>
 ãpaannp-Y</li>
 <li>ãpaannp-Y <span
@@ -724,7 +724,7 @@ class="math inline">\(\xrightarrow{a:\varepsilon}\)</span>
 class="math inline">\(\xrightarrow{n:\tilde{a}n}\)</span>
 ãpaannpan-Y</li>
 <li>ãpaannpan-Y <span
-class="math inline">\(\xrightarrow{&lt;:&lt;}\)</span></li>
+class="math inline">\(\xrightarrow{{\ltimes}:{\ltimes}}\)</span></li>
 </ol>
 </div>
 <p>Notice how the composed FST still has the same structure as the
@@ -760,7 +760,7 @@ rewrite up to two instances of <em>n</em> as <em>m</em>.</p>
 <td style="text-align: center;">n:m</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">Yes</td>
-<td style="text-align: center;">Yes(&lt;)</td>
+<td style="text-align: center;">Yes(⋉)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><strong>1</strong></td>
@@ -768,7 +768,7 @@ rewrite up to two instances of <em>n</em> as <em>m</em>.</p>
 <td style="text-align: center;">a:a, ã:ã, n:n, p:p</td>
 <td style="text-align: center;">n:m</td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes(&lt;)</td>
+<td style="text-align: center;">Yes(⋉)</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;"><strong>2</strong></td>
@@ -776,7 +776,7 @@ rewrite up to two instances of <em>n</em> as <em>m</em>.</p>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">a:a, ã:ã, n:n, p:p</td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes(&lt;)</td>
+<td style="text-align: center;">Yes(⋉)</td>
 </tr>
 </tbody>
 </table>

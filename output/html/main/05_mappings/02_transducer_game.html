@@ -76,7 +76,7 @@ lame game on its own, but it would be a good foundation to build a more
 interesting game on top of). You sit at a table, with the following
 items on it: an empty tray, a pile of “output tokens” (which may contain
 duplicates), and a bag that contains “input tokens” (without duplicates)
-and a token with the special symbol &lt;. At the beginning of a player’s
+and a token with the special symbol ⋉. At the beginning of a player’s
 turn, they blindly draw an input token from the bag and based on what
 that input token is, they place some number of output token on the tray
 (to the right of any tokens that may have been placed on the tray during
@@ -96,7 +96,7 @@ drawing an input token from the bag.</li>
 <li>The players choose freely who gets to play the very first turn, but
 the chosen player’s rules must designate them as an “initial”
 player.</li>
-<li>When a player draws the token with &lt; from the game, the player
+<li>When a player draws the token with ⋉ from the game, the player
 checks whether their rules designate them as a “final” player. If so,
 the game is won and the players write down the sequence of symbols on
 the output token tray as their “victory string”. Otherwise, the game is
@@ -106,7 +106,7 @@ lost.</li>
 <p>John and Mary have agreed to serve as playtesters for this early
 alpha version of a board game. They sit down at the table and fill their
 token bag with all the input tokens: heart, spade, and the distinguished
-token &lt;. They also have access to a large pile of output tokens
+token ⋉. They also have access to a large pile of output tokens
 consisting of hearts, diamonds and clubs. Their rule sheets are as
 follows:</p>
 <ol type="1">
@@ -151,13 +151,13 @@ drawing from the input bag. Doing so allows him to keep his turn.</li>
 club on the output token tray.</li>
 <li>Once again it is John’s turn, but he can tell from Mary’s death
 stare that she’s getting annoyed with his special power. John instead
-decides to draw from the input token bag. He draws the special token
-&lt;, signalling the end of the game. But fortunately John’s rules
-designate him as a final player, and thus the game is won.</li>
+decides to draw from the input token bag. He draws the special token ⋉,
+signalling the end of the game. But fortunately John’s rules designate
+him as a final player, and thus the game is won.</li>
 </ul>
 <p>John and Mary celebrate their victory by writing down their victory
 string <em>heart-club-club-diamond-club-club</em>, which they obtained
-from the sequence <em>heart-spade-heart-&lt;</em> of input tokens.</p>
+from the sequence <em>heart-spade-heart-⋉</em> of input tokens.</p>
 </div>
 <div class="exercise">
 <p>How would the game have ended if Mary had decided to go with option 2
@@ -241,7 +241,7 @@ arrow originates draws an <em>a</em> and places a <em>b</em>, the player
 where the arrow ends gets the next turn. In addition, an arrow from the
 special label <em>Start</em> to a player indicates that this is an
 initial player, and every final player’s node has an outgoing arrow
-labeled &lt;:nothing.</p>
+labeled ⋉:nothing.</p>
 <div class="example">
 <p>The rules for the game played by John and Mary correspond to the
 following graph.</p>
@@ -249,7 +249,7 @@ following graph.</p>
 <p>We have two circles, one for player 1 and one for player 2. The
 special label <em>Start</em> is connected to player 1 but not player 2,
 marking the former as an initial player. Player 1 also has an outgoing
-arrow labeled &lt;:nothing, which indicates that it is a final player.
+arrow labeled ⋉:nothing, which indicates that it is a final player.
 Besides this special arrow, there are four more:</p>
 <ol type="1">
 <li>An arrow from player 1 back to itself, labeled
@@ -285,9 +285,9 @@ input token, then place these output tokens (or possibly none at all),
 and <em>Player n</em> gets the next turn”. Some players may get special
 powers that allow them to place output tokens without drawing an input
 token.</li>
-<li>The game stops when a player draws the input token &lt;. If that
-player is a final player, you all win and get to keep the tokens on the
-output tray as your victory string. Otherwise, you all lose.</li>
+<li>The game stops when a player draws the input token ⋉. If that player
+is a final player, you all win and get to keep the tokens on the output
+tray as your victory string. Otherwise, you all lose.</li>
 <li>Given a specific set of players with specific rules assigned to each
 one of them, we can represent the game more compactly as a table or as a
 graph.</li>

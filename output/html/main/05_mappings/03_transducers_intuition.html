@@ -79,7 +79,7 @@ incrementally during the transduction process.</p>
 game of building an output string based on the shape of the input
 string. We also say that the FST <strong>rewrites</strong> the input
 string as (or into) the output string. It moves through the input string
-left to right and stops immediately after reading in &lt;.</p>
+left to right and stops immediately after reading in ⋉.</p>
 <div class="example">
 <p>Let us look at a mathematical example. Below is a transducer with two
 states, <span class="math inline">\(O\)</span> and <span
@@ -126,9 +126,9 @@ class="math inline">\(\varepsilon\)</span></td>
 <p>Once again we can also represent this as a graph. Since we use <span
 class="math inline">\(\varepsilon\)</span> instead of <em>nothing</em>,
 final states have an outgoing edge labeled <span
-class="math inline">\(&lt;:\varepsilon\)</span>.</p>
+class="math inline">\({\ltimes}:\varepsilon\)</span>.</p>
 <p><img src="oddeven.svg" alt="oddeven.svg" /></p>
-<p>Suppose our input string is <em>abababb&lt;</em>. The transducer will
+<p>Suppose our input string is <em>abababb⋉</em>. The transducer will
 read this string from left to right, one symbol at a time, and produce a
 corresponding output string. What output symbol is produced depends on
 the current state and the input symbol (just like in our game, where the
@@ -159,7 +159,7 @@ current player). We can display this process as a table.</p>
 <td style="text-align: center;">Start</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">E</td>
-<td style="text-align: left;">abababb&lt;</td>
+<td style="text-align: left;">abababb⋉</td>
 <td style="text-align: left;">-</td>
 </tr>
 <tr class="even">
@@ -167,7 +167,7 @@ current player). We can display this process as a table.</p>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">O</td>
-<td style="text-align: left;">bababb&lt;</td>
+<td style="text-align: left;">bababb⋉</td>
 <td style="text-align: left;">a</td>
 </tr>
 <tr class="odd">
@@ -176,7 +176,7 @@ current player). We can display this process as a table.</p>
 <td style="text-align: center;"><span
 class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">O</td>
-<td style="text-align: left;">ababb&lt;</td>
+<td style="text-align: left;">ababb⋉</td>
 <td style="text-align: left;">a</td>
 </tr>
 <tr class="even">
@@ -184,7 +184,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">b</td>
 <td style="text-align: center;">E</td>
-<td style="text-align: left;">babb&lt;</td>
+<td style="text-align: left;">babb⋉</td>
 <td style="text-align: left;">ab</td>
 </tr>
 <tr class="odd">
@@ -192,7 +192,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">b</td>
 <td style="text-align: center;">cc</td>
 <td style="text-align: center;">E</td>
-<td style="text-align: left;">abb&lt;</td>
+<td style="text-align: left;">abb⋉</td>
 <td style="text-align: left;">abcc</td>
 </tr>
 <tr class="even">
@@ -200,7 +200,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">O</td>
-<td style="text-align: left;">bb&lt;</td>
+<td style="text-align: left;">bb⋉</td>
 <td style="text-align: left;">abcca</td>
 </tr>
 <tr class="odd">
@@ -209,7 +209,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;"><span
 class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">O</td>
-<td style="text-align: left;">b&lt;</td>
+<td style="text-align: left;">b⋉</td>
 <td style="text-align: left;">abcca</td>
 </tr>
 <tr class="even">
@@ -218,12 +218,12 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;"><span
 class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">O</td>
-<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">⋉</td>
 <td style="text-align: left;">abcca</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">O</td>
-<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">⋉</td>
 <td style="text-align: center;"><span
 class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">Stop</td>
@@ -244,7 +244,7 @@ class="math inline">\(O\)</span> that has <em>b</em> as an input symbol,
 which leads us back to <span class="math inline">\(O\)</span>. But since
 the arrow is labeled <span class="math inline">\(b:
 \varepsilon\)</span>, we do not produce any output when doing this. We
-keep tracing our path through the FST, and after having read in &lt;, we
+keep tracing our path through the FST, and after having read in ⋉, we
 stop.</p>
 <p>Either way, you can see that the FST produces the output string
 <em>abcca</em> from the input string <em>abababb</em>.</p>
@@ -253,9 +253,9 @@ stop.</p>
 <p>Using the FST from the first example of this unit, compute the output
 strings for all of the following inputs:</p>
 <ol type="1">
-<li>bba&lt;</li>
-<li>aaaaa&lt;</li>
-<li>abbb&lt;</li>
+<li>bba⋉</li>
+<li>aaaaa⋉</li>
+<li>abbb⋉</li>
 </ol>
 </div>
 <p>Upon closer inspection of the FST, we can deduce what kind of rewrite
@@ -294,8 +294,8 @@ stuck in the input otherwise. And if a transducer cannot process the
 entire input, it does not produce any output at all.</p>
 <div class="example">
 <p>Suppose that the input string in the example above weren’t
-<em>abababb&lt;</em> but rather <em>acbababb&lt;</em>. At first things
-are fine. We start in the initial state <span
+<em>abababb⋉</em> but rather <em>acbababb⋉</em>. At first things are
+fine. We start in the initial state <span
 class="math inline">\(E\)</span> transition to state <span
 class="math inline">\(O\)</span> by reading in <em>a</em> and outputting
 <em>a</em>. But then we are stuck. The next symbol is <em>c</em>, but
@@ -306,21 +306,21 @@ string, we discard the output string built so far. The input string is
 not given any output whatsoever, not even a partial output.</p>
 </div>
 <p>The second secret rule is a consequence of the same issue. If the
-transducer is in some non-final state while reading in &lt;, it gets
-stuck because there is no suitable edge out of that state. Once again
-the whole output string built so far is discarded.</p>
+transducer is in some non-final state while reading in ⋉, it gets stuck
+because there is no suitable edge out of that state. Once again the
+whole output string built so far is discarded.</p>
 <div class="example">
 <p>Suppose that the input string in the example above weren’t
-<em>abababb&lt;</em> but rather <em>abababba&lt;</em>. Rather than
-ending in state <span class="math inline">\(O\)</span> after the last
-<em>b</em>, we now have to read in one more <em>a</em>. We do have a
-transition out of <span class="math inline">\(O\)</span> with <em>a</em>
-as the input symbol, so the FST is not stuck. This transition causes the
-FST to output <em>b</em> and switch to state <span
+<em>abababb⋉</em> but rather <em>abababba⋉</em>. Rather than ending in
+state <span class="math inline">\(O\)</span> after the last <em>b</em>,
+we now have to read in one more <em>a</em>. We do have a transition out
+of <span class="math inline">\(O\)</span> with <em>a</em> as the input
+symbol, so the FST is not stuck. This transition causes the FST to
+output <em>b</em> and switch to state <span
 class="math inline">\(E\)</span>. But this is where things go wrong.
-Next we read in &lt;, and since <span class="math inline">\(E\)</span>
-is not a final state, it does not have an outgoing edge with &lt; as the
-input symbol. The FST gets stuck, right before the finish line, and our
+Next we read in ⋉, and since <span class="math inline">\(E\)</span> is
+not a final state, it does not have an outgoing edge with ⋉ as the input
+symbol. The FST gets stuck, right before the finish line, and our
 beautiful output string <em>abccab</em> is simply flushed down the
 drain.</p>
 </div>
@@ -328,9 +328,9 @@ drain.</p>
 <p>Using the FST from the first example of this unit, compute the output
 strings for all the inputs below. If no output is produced, say so.</p>
 <ol type="1">
-<li>a&lt;</li>
-<li>bb&lt;</li>
-<li>&lt;</li>
+<li>a⋉</li>
+<li>bb⋉</li>
+<li>⋉</li>
 </ol>
 </div>
 <p>Given an FST and input string, then, it is not enough to trace the
@@ -351,7 +351,7 @@ with the current input.</p>
 <p>Consider once more the transducer from the first example of this
 unit, but suppose that both E and O are initial states. Then there are
 two distinct paths we could take through the FST in an effort to rewrite
-the input string <em>abababb&lt;</em>. If we start in <em>E</em>, things
+the input string <em>abababb⋉</em>. If we start in <em>E</em>, things
 pass out as in the first example, yielding <em>abcca</em>. If we start
 with <em>O</em>, things go differently.</p>
 <table style="width:100%;">
@@ -379,7 +379,7 @@ with <em>O</em>, things go differently.</p>
 <td style="text-align: center;">Start</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">O</td>
-<td style="text-align: left;">abababb&lt;</td>
+<td style="text-align: left;">abababb⋉</td>
 <td style="text-align: left;">-</td>
 </tr>
 <tr class="even">
@@ -387,7 +387,7 @@ with <em>O</em>, things go differently.</p>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">b</td>
 <td style="text-align: center;">E</td>
-<td style="text-align: left;">bababb&lt;</td>
+<td style="text-align: left;">bababb⋉</td>
 <td style="text-align: left;">b</td>
 </tr>
 <tr class="odd">
@@ -395,7 +395,7 @@ with <em>O</em>, things go differently.</p>
 <td style="text-align: center;">b</td>
 <td style="text-align: center;">cc</td>
 <td style="text-align: center;">E</td>
-<td style="text-align: left;">ababb&lt;</td>
+<td style="text-align: left;">ababb⋉</td>
 <td style="text-align: left;">bcc</td>
 </tr>
 <tr class="even">
@@ -403,7 +403,7 @@ with <em>O</em>, things go differently.</p>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">O</td>
-<td style="text-align: left;">babb&lt;</td>
+<td style="text-align: left;">babb⋉</td>
 <td style="text-align: left;">bcca</td>
 </tr>
 <tr class="odd">
@@ -412,7 +412,7 @@ with <em>O</em>, things go differently.</p>
 <td style="text-align: center;"><span
 class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">O</td>
-<td style="text-align: left;">abb&lt;</td>
+<td style="text-align: left;">abb⋉</td>
 <td style="text-align: left;">bcca</td>
 </tr>
 <tr class="even">
@@ -420,7 +420,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">a</td>
 <td style="text-align: center;">b</td>
 <td style="text-align: center;">E</td>
-<td style="text-align: left;">bb&lt;</td>
+<td style="text-align: left;">bb⋉</td>
 <td style="text-align: left;">bccab</td>
 </tr>
 <tr class="odd">
@@ -428,7 +428,7 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">b</td>
 <td style="text-align: center;">cc</td>
 <td style="text-align: center;">E</td>
-<td style="text-align: left;">b&lt;</td>
+<td style="text-align: left;">b⋉</td>
 <td style="text-align: left;">bccabcc</td>
 </tr>
 <tr class="even">
@@ -436,12 +436,12 @@ class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">b</td>
 <td style="text-align: center;">cc</td>
 <td style="text-align: center;">E</td>
-<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">⋉</td>
 <td style="text-align: left;">bccabcccc</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">E</td>
-<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">⋉</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">STUCK!!!</td>
 <td style="text-align: left;">-</td>
@@ -456,7 +456,7 @@ works out eventually.</p>
 <p>If we tweaked the FST so that both <em>O</em> and <em>E</em> are
 final states, then starting with <em>O</em> would also be a valid
 option. In this case, the FST can produce two distinct outputs for
-<em>abababb&lt;</em>, one being <em>abcca</em> (when we start in
+<em>abababb⋉</em>, one being <em>abcca</em> (when we start in
 <em>E</em>) and the other being <em>bccabcccc</em> (when we start in
 <em>O</em>).</p>
 </div>
@@ -504,13 +504,13 @@ only move to <em>E</em>, but this <em>a</em> may be rewritten as
 <em>a</em> or as <em>b</em>. And if we are in <em>O</em> and see a
 <em>b</em> in the input, we may either rewrite is as <em>cc</em> and go
 to <em>E</em>, or we may delete is as before and stay in <em>O</em>. For
-example, it now is possible to rewrite <em>abababb&lt;</em> as
+example, it now is possible to rewrite <em>abababb⋉</em> as
 <em>accacca</em>.</p>
 </div>
 <div class="exercise">
 <p>Write down all the output strings that the FST above can produce from
-the input <em>abababb&lt;</em>. Keep in mind that the FST must be in a
-final state when reading &lt;.</p>
+the input <em>abababb⋉</em>. Keep in mind that the FST must be in a
+final state when reading ⋉.</p>
 </div>
 <p>The examples above show that non-determinism can lead to multiple
 outputs for a single input string, but does not need to as some of the
@@ -543,7 +543,7 @@ no state has two or more outgoing edges that can simultaneously match
 the input.</li>
 <li>They are <strong>total</strong>, which means that we don’t have to
 worry about getting stuck. Every state has an outgoing edge for every
-possible input symbol, including &lt; (which means that every state is
+possible input symbol, including ⋉ (which means that every state is
 final).</li>
 </ol>
 <p>It is only when we push FSTs beyond the immediate task of handling
@@ -570,7 +570,7 @@ far.</li>
 <li>If there is no suitable transition, the FST is stuck and no output
 is produced.</li>
 <li>We assume that every input string ends with the distinguished symbol
-&lt;.</li>
+⋉.</li>
 <li>An FST is <strong>non-deterministic</strong> if there are choice
 points (multiple initial states and/or multiple applicable transitions).
 Otherwise it is <strong>deterministic</strong>.</li>

@@ -291,10 +291,10 @@ above. As currently defined, it cannot process any input strings that
 end in <em>t</em>.</p>
 <div class="example">
 <p>Consider the UR <em>xt</em>, which corresponds to the input string
-<em>xt&lt;</em>. The transducer starts in state <em>0</em>, rewrites
+<em>xt⋉</em>. The transducer starts in state <em>0</em>, rewrites
 <em>x</em> as <em>x</em>, and transitions to state <em>0</em>. After
 that, it sees <em>t</em> in the input and transitions from <em>0</em> to
-<em>T</em> while outputting nothing. It then reads in <em>&lt;</em>, but
+<em>T</em> while outputting nothing. It then reads in <em>⋉</em>, but
 since <em>T</em> is not a final state, the FST gets stuck and no output
 is produced at all. We could fix this by making <em>T</em> final, but
 then we run into a different problem: the word-final <em>t</em> is
@@ -302,11 +302,11 @@ deleted and never reinserted, and thus we end up with the incorrect
 output <em>x</em> instead of <em>xt</em>.</p>
 </div>
 <p>The solution to this is rather simple: the special outgoing edge of
-final states does not have to be labeled <em>&lt;:<span
+final states does not have to be labeled <em>⋉:<span
 class="math inline">\(\varepsilon\)</span></em>, it can be any label
-with <em>&lt;</em> as the input symbol. In other words, we can use &lt;
-to add the final piece of the output string. This is the <strong>final
-emission trick</strong>.</p>
+with <em>⋉</em> as the input symbol. In other words, we can use ⋉ to add
+the final piece of the output string. This is the <strong>final emission
+trick</strong>.</p>
 <p>The revised FST is shown below. Note that the column
 <strong>Final</strong> of the table no specifies the symbols added to
 the output when the FST stops in this state.</p>
@@ -348,10 +348,10 @@ class="math inline">\(\varepsilon\)</span>)</td>
 alt="regressiveassimilation_delayedoutput_finalemission.svg" /></p>
 <div class="example">
 <p>Consider once more the UR <em>xt</em> and its corresponding input
-string <em>xt&lt;</em>. After rewriting <em>x</em> as <em>x</em>, the
-FST is in state <em>T</em>. It next reads in <em>t</em> and outputs the
+string <em>xt⋉</em>. After rewriting <em>x</em> as <em>x</em>, the FST
+is in state <em>T</em>. It next reads in <em>t</em> and outputs the
 empty string so that the output string is still just <em>x</em>. But
-now, when it encounters &lt;, it adds <em>t</em> to the output string,
+now, when it encounters ⋉, it adds <em>t</em> to the output string,
 correctly yielding <em>xt</em> as the surface form of the UR
 <em>xt</em>.</p>
 </div>
@@ -368,8 +368,8 @@ chapter. Suppose that <em>s</em> is subject to intervocalic voicing::
 <span class="math inline">\(\mathrm{s} \rightarrow \mathrm{z} \mid
 \mathrm{V} \_ \mathrm{V}\)</span>. You may assume that the only input
 symbols are <em>s</em>, <em>z</em>, <em>x</em>, and <em>V</em> (and of
-course &lt;). Define an FST for intervocalic voicing. You may write a
-table or draw a graph.</p>
+course ⋉). Define an FST for intervocalic voicing. You may write a table
+or draw a graph.</p>
 <p>Does your FST use the delayed output strategy? What about the final
 emission trick?</p>
 </div>
@@ -450,7 +450,7 @@ corresponding state. Once it is in one of those states, it rewrites all
 vowels into harmonic vowels.</p>
 <div class="exercise">
 <p>For each one of the URs below, compute the corresponding surface
-form. Don’t forget to add &lt; at the end of the input string.</p>
+form. Don’t forget to add ⋉ at the end of the input string.</p>
 <ol type="1">
 <li>xBxxM</li>
 <li>MxxBxxBxxM</li>
@@ -573,8 +573,8 @@ rewriting of URs into surface forms.</li>
 the <strong>delayed output strategy</strong>: delete the symbol, then
 reinsert it later on when the conditioning context has been fully read
 in.</li>
-<li>The <strong>final emission trick</strong> allows us to rewrite &lt;
-as a sequence of 0 or more input symbols.</li>
+<li>The <strong>final emission trick</strong> allows us to rewrite ⋉ as
+a sequence of 0 or more input symbols.</li>
 </ul>
 </div>
 </div>

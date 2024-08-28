@@ -90,37 +90,37 @@ few artificial examples.</p>
 <span class="math inline">\(L\)</span> as <em>a<sub>+</sub>b</em>). This
 is very easy to express as a positive grammar:</p>
 <ol type="1">
-<li>&gt;a</li>
+<li>⋊a</li>
 <li>aa</li>
 <li>ab</li>
-<li>b&lt;</li>
+<li>b⋉</li>
 </ol>
 <p>The smallest mixed negative grammar for this language isn’t much
 bigger:</p>
 <ol type="1">
 <li>c</li>
 <li>d</li>
-<li>&gt;&lt;</li>
-<li>&gt;b</li>
+<li>⋊⋉</li>
+<li>⋊b</li>
 <li>ba</li>
 <li>bb</li>
-<li>a&lt;</li>
+<li>a⋉</li>
 </ol>
 <p>And the fixed negative grammar is huge by comparison:</p>
 <ol type="1">
-<li>&gt;&lt;</li>
-<li>&gt;b</li>
-<li>&gt;c</li>
-<li>&gt;d</li>
+<li>⋊⋉</li>
+<li>⋊b</li>
+<li>⋊c</li>
+<li>⋊d</li>
 <li>ac</li>
 <li>ad</li>
 <li>ba</li>
 <li>bb</li>
 <li>bc</li>
 <li>bd</li>
-<li>a&lt;</li>
-<li>b&lt;</li>
-<li>c&lt;</li>
+<li>a⋉</li>
+<li>b⋉</li>
+<li>c⋉</li>
 </ol>
 </div>
 <div class="example">
@@ -134,21 +134,21 @@ followed by exactly one instance of <em>b</em> or <em>c</em> or
 on.</p>
 <p>The positive grammar is still fairly small.</p>
 <ol type="1">
-<li>&gt;a</li>
+<li>⋊a</li>
 <li>aa</li>
 <li>ab</li>
 <li>ac</li>
 <li>ad</li>
-<li>b&lt;</li>
-<li>c&lt;</li>
-<li>d&lt;</li>
+<li>b⋉</li>
+<li>c⋉</li>
+<li>d⋉</li>
 </ol>
 <p>The mixed negative grammar, by comparison, grows a lot in size:</p>
 <ol type="1">
-<li>&gt;&lt;</li>
-<li>&gt;b</li>
-<li>&gt;c</li>
-<li>&gt;d</li>
+<li>⋊⋉</li>
+<li>⋊b</li>
+<li>⋊c</li>
+<li>⋊d</li>
 <li>ba</li>
 <li>bb</li>
 <li>bc</li>
@@ -161,7 +161,7 @@ on.</p>
 <li>db</li>
 <li>dc</li>
 <li>dd</li>
-<li>a&lt;</li>
+<li>a⋉</li>
 </ol>
 <p>In fact, this also happens to be the fixed negative grammar. For
 <span class="math inline">\(L\)</span>, allowing n-grams of variable
@@ -174,22 +174,22 @@ class="math inline">\(L\)</span> that contains all strings over
 <em>a</em> whose length is at least 2 (i.e. <em>aa</em>, <em>aaa</em>,
 and so on). The mixed negative grammar is incredibly small:</p>
 <ol type="1">
-<li>&gt;&lt;</li>
-<li>&gt;a&lt;</li>
+<li>⋊⋉</li>
+<li>⋊a⋉</li>
 </ol>
 <p>The fixed negative grammar looks slightly different, but has the same
 size.</p>
 <ol type="1">
-<li>&gt;&gt;&lt;</li>
-<li>&gt;a&lt;</li>
+<li>⋊⋊⋉</li>
+<li>⋊a⋉</li>
 </ol>
 <p>This time the positive grammar is the largest:</p>
 <ol type="1">
-<li>&gt;&gt;a</li>
-<li>&gt;aa</li>
+<li>⋊⋊a</li>
+<li>⋊aa</li>
 <li>aaa</li>
-<li>aa&lt;</li>
-<li>a&lt;&lt;</li>
+<li>aa⋉</li>
+<li>a⋉⋉</li>
 </ol>
 </div>
 <div class="example">
@@ -252,22 +252,22 @@ class="math inline">\(\Sigma_E^2\)</span> has <span
 class="math inline">\((2+2)^2 = 4^2 = 16\)</span> members. We can list
 them all:</p>
 <ol type="1">
-<li>&gt;&gt;</li>
-<li>&gt;&lt;</li>
-<li>&gt;a</li>
-<li>&gt;b</li>
-<li>a&gt;</li>
-<li>a&lt;</li>
+<li>⋊⋊</li>
+<li>⋊⋉</li>
+<li>⋊a</li>
+<li>⋊b</li>
+<li>a⋊</li>
+<li>a⋉</li>
 <li>aa</li>
 <li>ab</li>
-<li>b&gt;</li>
-<li>b&lt;</li>
+<li>b⋊</li>
+<li>b⋉</li>
 <li>ba</li>
 <li>bb</li>
-<li>&lt;&gt;</li>
-<li>&lt;&lt;</li>
-<li>&lt;a</li>
-<li>&lt;b</li>
+<li>⋉⋊</li>
+<li>⋉⋉</li>
+<li>⋉a</li>
+<li>⋉b</li>
 </ol>
 </div>
 <div class="exercise">
