@@ -59,8 +59,8 @@ and equivalence are not the same</a></li>
 </div>
 <div class="content">
 <h1 id="reading-mathematics">Reading mathematics</h1>
-<p>While these materials are designed to be as approachable as possible,
-a certain mathematical style of writing will be indispensable. This
+<p>While this book is designed to be as approachable as possible, a
+certain mathematical style of writing will be indispensable. This
 includes special notation, some math-specific jargon, and even a
 particular way of interpreting English sentences. Mathematicians do not
 do this to sound smarter than they are or to isolate themselves from the
@@ -154,8 +154,8 @@ never be able to reach the top. So rather than trying you give up
 immediately, or you overcompensate and rush forward in a frenzy without
 paying attention to what you’re doing. Neither approach will get you to
 the goal. In order to deal with symbol shock, you have to develop the
-central survival skills of mathematics: take your time, and keep a cool
-head.</p>
+central survival skills of mathematics: <strong>take your time</strong>,
+and <strong>keep a cool head</strong>.</p>
 <p>You cannot read math like a novel or even your average textbook. An 8
 page paper can easily keep you busy for days before you fully understand
 it. Revolutionary proofs may only span a few pages yet take trained
@@ -166,9 +166,9 @@ memory. When you see a complex formula, work through it symbol by symbol
 until you understand what’s going on. Just. Take. Your. Time.</p>
 <p>This is actually why I think that math is easier to learn from a book
 than a class. With a text, you can reread every sentence until you get
-it. You can go back 3 pages to revisit a point you thought was clear to
-you but now seems to be at odds with what you’re reading. You can’t do
-that in a lecture. But you actually have to do all those things, you
+it. You can go back three pages to revisit a point you thought was clear
+to you but now seems to be at odds with what you’re reading. You can’t
+do that in a lecture. But you actually have to do all those things, you
 have to slow down, go back, reread. Math isn’t all that hard, but you
 have to be very disciplined about it.</p>
 <p>With time, you will get much better at reading math and it will take
@@ -181,10 +181,10 @@ paper based on how I would color its math. At first, it’s all just
 black, but as I gain a deeper understanding of the objects and how they
 hang together I construct an internal coloring system for myself. So
 grammars are blue, automata green, certain variables that keep
-reoccurring are purple and teal, and so on. If you use the pdf versions
-of the units, you can literally add colors to all the symbols, and that
-way the logic of the pages will reveal itself more clearly to
-you.</p></li>
+reoccurring are purple and teal, and so on. If you have a hardcopy of
+this book in front of you, you can literally add colors to all the
+symbols, and that way the logic of the pages will reveal itself more
+clearly to you.</p></li>
 <li><p>Think about <strong>why</strong> certain symbols were chosen.
 Mathematicians care a great deal about good notation, and it really
 shows. A math paper with a well-designed notation is a pleasure to read.
@@ -231,7 +231,7 @@ more specific than it actually is.</p>
 <p>Another common pitfall arises with statements like “Every blue dragon
 is a chain smoker”. Is this claim true or false? A linguist will tell
 you that it is neither, and instead contains a presupposition violation
-(yes, linguists like their fancy terms, too). It is a presupposition
+(yes, linguists like their fancy terms). It is a presupposition
 violation because the sentence assumes that blue dragons exist, which
 they obviously do not. A mathematician doesn’t care for such linguistic
 subtleties and instead considers the statement true because there is no
@@ -244,6 +244,7 @@ you shouldn’t assume anything that isn’t stated explicitly.</p>
 you see a statement or definition, always think about the simplest
 object that satisfies it, and ask yourself how much this object can
 change before it no longer fits the description.</p>
+<p>::: Don’t assume more than what was actually said. :::</p>
 <h3 id="questioning-definitions">Questioning definitions</h3>
 <p>Speaking of definitions, you should always ask yourself why something
 is defined the way it is. I don’t mean this in some kind of
@@ -256,6 +257,9 @@ So what is it that makes a given definition useful? In exploring this
 question, you will get a much better understanding of what the
 definition even defines, and that is key to studying the kind of object
 that is being defined.</p>
+<div class="advice">
+<p>Think about why things are defined the way they are.</p>
+</div>
 <h3 id="making-definitions-concrete">Making definitions concrete</h3>
 <p>Another helpful strategy in dealing with definitions is to come up
 with two distinct lists: examples that fit the definition, and examples
@@ -296,9 +300,11 @@ exactly a logarithm is, don’t worry. For most of this class, we actually
 won’t be using the things you heard about in high school and have
 forgotten since then. Where we do need them, they’re slowly introduced
 like any other new concept. So don’t worry about this and focus on the
-important insight here: whenever you see an abstract definition, think
-about what kind of more concrete objects would (not) fit the
-definition.</p>
+important insight here.</p>
+<div class="advice">
+<p>Whenever you see an abstract definition, think about what kind of
+more concrete objects would (not) fit the definition.</p>
+</div>
 <h3 id="implication-and-equivalence-are-not-the-same">Implication and
 equivalence are not the same</h3>
 <p>English, as all natural languages, is pretty sloppy in how it
@@ -316,24 +322,35 @@ with the same language we use for implications (<span
 class="math inline">\(a\)</span> implies <span
 class="math inline">\(b\)</span>, but <span
 class="math inline">\(b\)</span> does not necessarily imply <span
-class="math inline">\(a\)</span>). In “If you don’t give me your money,
-I will shoot you”, the <em>if</em> is a biconditional, but the very same
-<em>if</em> is just an implication in “If it rains, the road is wet” (if
-it does not rain, the road may still be wet, e.g. because of a
-homeowner’s overzealous sprinklers). English does not explicitly mark
-the distinction between a biconditional and an implication, the reader
-is supposed to figure it out from context. But in mathematics, the
-distinction is very important, and this is why mathematicians explicit
-distinguish the implication <em>if</em> from the biconditional
-<em>iff</em> (which is short for <em>if and only if</em>). So pay close
-attention to whether the text uses an <em>if</em> or an
-<em>iff</em>.</p>
+class="math inline">\(a\)</span>).</p>
+<div class="example">
+<p>In “If you don’t give me your money, I will shoot you”, the
+<em>if</em> is a biconditional: whichever choice you make fully
+determines what the robber will do next. Not forking over your
+hard-earned cash implies getting shot by the robber, and getting shot by
+the robber implies that you chose not to fork over your hard-earned
+cash. But the very same <em>if</em> is just an implication in “If it
+rains, the road is wet”: if it does not rain, the road may still be wet,
+e.g. because of a homeowner’s overzealous sprinklers. Here the absence
+of rain does not imply the absence of wet roads.</p>
+</div>
+<p>English does not explicitly mark the distinction between a
+biconditional and an implication, the reader is supposed to figure it
+out from context. But in mathematics, the distinction is very important,
+and this is why mathematicians explicit distinguish the implication
+<em>if</em> from the biconditional <em>iff</em> (which is short for
+<em>if and only if</em>). So pay close attention to whether the text
+uses an <em>if</em> or an <em>iff</em>.</p>
 <div class="example">
 <p>The following is an implication but not an equivalence/biconditional:
 “If you are an actress, then you are female”. After all, not every
 female is an actress. On the other hand, “You are a bachelor iff you are
 an unmarried man” is a biconditional. Every unmarried man is a bachelor,
 and every bachelor (in the non-academic sense) is an unmarried man.</p>
+</div>
+<div class="advice">
+<p>Never confuse the conditional <em>if</em> with the biconditional
+<em>iff</em>.</p>
 </div>
 <h2 id="recap">Recap</h2>
 <ul>
