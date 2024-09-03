@@ -25,6 +25,12 @@ Where the book ventures beyond semantics, e.g. in its chapters on automata theor
 In a way, my book is the very opposite of Partee et al's in that I talk about pretty much everything except semantics.
 Overall *Mathematical Methods in Linguistics* is still an excellent read, but it should probably be called *Mathematics for Semanticists*.
 
+## Gamut (1990): Logic, Language, and Meaning (Volumes 1 & 2)
+
+This one already tells you in the title that it will be heavy on logic and meaning, i.e. semantics.
+I prefer its treatment of formal logic to that in other textbooks, and it includes less common topics such as many-valued logic.
+But as with Partee et al's *Mathematical Methods in Linguistics*, the exclusive focus on logic and semantics means that readers won't get to see most of the ways mathematics can be applied to language.
+
 ## Keenan & Moss (2016): Mathematical Structures in Languages
 
 This is a much thinner book than *Mathematical Methods in Linguistics*, and it does quite a few things to set itself apart.
