@@ -74,16 +74,20 @@ throw in the towel too early.</p>
 <p>The most salient aspect of mathematical communication is the heavy
 reliance on special symbols. This starts with formulas like <span
 class="math inline">\(f(x) = kx + d\)</span> and quickly develops into
-complex statements such as the following:</p>
-<ol type="1">
-<li><p>Let <span class="math inline">\(\mathcal{L}\)</span> be a totally
+very complex statements. Here’s a small sample for your entertainment.
+If you don’t understand a word and can feel your blood pressure spike,
+that’s exactly the point!</p>
+<div class="example">
+<p>Let <span class="math inline">\(\mathcal{L}\)</span> be a totally
 ordered collection of languages <span class="math inline">\(L_1, \ldots,
 L_n\)</span> (<span class="math inline">\(n \geq 1\)</span>) such that
 for all <span class="math inline">\(1 \leq i,j \leq n\)</span> we have
 <span class="math inline">\(L_j \not\subseteq L_i\)</span> iff <span
-class="math inline">\(i &lt; j\)</span>.</p></li>
-<li><p>For any given string <span class="math inline">\(s\)</span> and
-PCFG <span class="math inline">\(G\)</span>, the probability of <span
+class="math inline">\(i &lt; j\)</span>.</p>
+</div>
+<div class="example">
+<p>For any given string <span class="math inline">\(s\)</span> and PCFG
+<span class="math inline">\(G\)</span>, the probability of <span
 class="math inline">\(s\)</span> is <span class="math inline">\(\sum_{d
 \in D_G(s)} \prod_{r \in d} p_G(r)\)</span> where <span
 class="math inline">\(D_G(s)\)</span> is the set of derivation trees of
@@ -92,9 +96,11 @@ class="math inline">\(s\)</span>, <span class="math inline">\(r\)</span>
 is a tree bigram of a derivation tree, and <span
 class="math inline">\(p_G(r)\)</span> is the probability of <span
 class="math inline">\(r\)</span> according to <span
-class="math inline">\(G\)</span>.</p></li>
-<li><p>A <em><span class="math inline">\(k\)</span>-interval</em>, or
-simply <em><span class="math inline">\(k\)</span>-val</em>, is a <span
+class="math inline">\(G\)</span>.</p>
+</div>
+<div class="example">
+<p>A <em><span class="math inline">\(k\)</span>-interval</em>, or simply
+<em><span class="math inline">\(k\)</span>-val</em>, is a <span
 class="math inline">\(5\)</span>-tuple <span class="math inline">\(\left
 \langle k,G_l, G_r, G_o, G_f \right \rangle\)</span> such that <span
 class="math inline">\(k \geq 1\)</span> and each <span
@@ -138,15 +144,15 @@ class="math display">\[\begin{multline*}
 \end{multline*}\]</span> For any empty <span
 class="math inline">\(G\)</span>, <span
 class="math inline">\(\bigwedge_{g \in G} \neg g(x)\)</span> is always
-satisfied.</p></li>
-</ol>
-<p>Unless you’ve had previous mathematical training, these passages
-probably made your eyes glaze over and your brain freeze in horror:
+satisfied.</p>
+</div>
+<p>Unless you’ve had previous mathematical training, these examples
+probably make your eyes glaze over and your brain freeze in horror:
 “What is this stuff? What’s <span class="math inline">\(i\)</span>
 again, why is there a big sigma, and what is the subscript there? Why
 can’t they just say what they mean in plain English? I can’t understand
 this, it’s hopeless, I’m just not made for math.” Don’t despair, you’ve
-just experienced <em>symbol shock</em>.</p>
+just experienced <strong>symbol shock</strong>.</p>
 <p>Symbol shock refers to the phenomenon that just looking at a page of
 math can be so disheartening that you can’t think clearly. It’s like
 being at the base of Mount Everest, looking up, and feeling that you’ll
@@ -218,22 +224,26 @@ other stumbling blocks</h2>
 <p>Mathematical writing is also peculiar because, as we linguists like
 to say, implicatures are often cancelled implicitly. That’s a smarty
 pants way of saying that only the literal meaning is the intended one.
-So the phrase “Let <span class="math inline">\(S\)</span> be a set
+For the uninitiated reader, it is easy to miss something important by
+assuming that a mathematical statement is more specific than it actually
+is.</p>
+<div class="example">
+<p>The phrase “Let <span class="math inline">\(S\)</span> be a set
 containing two odd numbers” does not entail that <span
 class="math inline">\(S\)</span> only contains two odd numbers. It could
 contain all kinds of additional things, including other odd numbers, but
 at the very least it contains two odd numbers. If we wanted the set to
 contain two odd numbers and nothing else, we would have written “Let
 <span class="math inline">\(S\)</span> be a set containing exactly two
-odd numbers, and nothing else”. Tricky, hmm? For the uninitiated reader,
-it is easy to miss something important by assuming that the statement is
-more specific than it actually is.</p>
-<p>Another common pitfall arises with statements like “Every blue dragon
-is a chain smoker”. Is this claim true or false? A linguist will tell
-you that it is neither, and instead contains a presupposition violation
-(yes, linguists like their fancy terms). It is a presupposition
-violation because the sentence assumes that blue dragons exist, which
-they obviously do not. A mathematician doesn’t care for such linguistic
+odd numbers, and nothing else”. Tricky, hmm?</p>
+</div>
+<p>Another common pitfall arises with statements that use
+<em>every</em>. Consider the sentence “Every blue dragon is a chain
+smoker”. Is this claim true or false? A linguist will tell you that it
+is neither, and instead contains a presupposition violation (yes,
+linguists like their fancy terms). It is a presupposition violation
+because the sentence assumes that blue dragons exist, which they
+obviously do not. A mathematician doesn’t care for such linguistic
 subtleties and instead considers the statement true because there is no
 counterexample to prove it wrong: there exists no blue dragon that isn’t
 a chain smoker, and hence “Every blue dragon is a chain smoker” is true.
@@ -244,7 +254,9 @@ you shouldn’t assume anything that isn’t stated explicitly.</p>
 you see a statement or definition, always think about the simplest
 object that satisfies it, and ask yourself how much this object can
 change before it no longer fits the description.</p>
-<p>::: Don’t assume more than what was actually said. :::</p>
+<div class="advice">
+<p>Don’t assume more than what was actually said.</p>
+</div>
 <h3 id="questioning-definitions">Questioning definitions</h3>
 <p>Speaking of definitions, you should always ask yourself why something
 is defined the way it is. I don’t mean this in some kind of
@@ -267,13 +279,15 @@ that do not fit the definition. Both are equally important. Sometimes a
 definition may be so abstract and general that it is hard to see what
 would not fit the definition. In seeking out those examples, you gain a
 much better idea of the defined class of objects.</p>
-<p>To give just one example, an <em>algebra</em> is a set <span
-class="math inline">\(S\)</span> with a function <span
-class="math inline">\(+\)</span> that takes elements of <span
-class="math inline">\(S\)</span> as input and produces elements of <span
-class="math inline">\(S\)</span> as its output. We also say that <span
-class="math inline">\(S\)</span> is <em>closed under <span
-class="math inline">\(+\)</span></em>. That is a very general
+<div class="example">
+<p>For the sake of illustration, let us skip ahead to an advanced
+concept we will encounter much later in this book:</p>
+<p>An <em>algebra</em> is a set <span class="math inline">\(S\)</span>
+with a function <span class="math inline">\(+\)</span> that takes
+elements of <span class="math inline">\(S\)</span> as input and produces
+elements of <span class="math inline">\(S\)</span> as its output. We
+also say that <span class="math inline">\(S\)</span> is <em>closed under
+<span class="math inline">\(+\)</span></em>. That is a very general
 definition, and one can immediately think of tons of algebras:</p>
 <ul>
 <li>the natural numbers (0, 1, 2, 3, …) with addition: you take two
@@ -294,13 +308,14 @@ natural numbers with division, for instance. The natural numbers are 0,
 can take two natural numbers as input and return something that is not a
 natural number. Hence the natural numbers with division is not an
 algebra.</p>
-<p>If all those examples got you confused because you don’t quite
-remember the difference between natural numbers and integers, or what
-exactly a logarithm is, don’t worry. For most of this class, we actually
-won’t be using the things you heard about in high school and have
-forgotten since then. Where we do need them, they’re slowly introduced
-like any other new concept. So don’t worry about this and focus on the
-important insight here.</p>
+</div>
+<p>If you’re confused ow because you don’t quite remember the difference
+between natural numbers and integers, or what exactly a logarithm is,
+don’t worry. For most of this class, we actually won’t be using the
+things you heard about in high school and have forgotten since then.
+Where we do need them, they’re slowly introduced like any other new
+concept. So don’t worry about this and focus on the important insight
+here.</p>
 <div class="advice">
 <p>Whenever you see an abstract definition, think about what kind of
 more concrete objects would (not) fit the definition.</p>
