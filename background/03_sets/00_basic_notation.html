@@ -251,11 +251,16 @@ a,a,a,a,a,a,c,a,a,a,a,a,a \right \}\)</span></li>
 <p>The sentence <em>If police police police, then police police
 police</em> actually uses two different word types. It just just so
 happens that both are pronounced and spelled <em>police</em>. But one is
-the noun <em>police</em>, the other one the verb <em>police</em>. So we
-might want to annotate the string as follows: <em>If police[N] police[V]
-police[N], then police[N] police[V] police[N]</em>. Assume that words
-are annotated with their part of speech in this fashion. Then what would
-be the corresponding set of words?</p>
+the <strong>noun</strong> <em>police</em>, the other one the
+<strong>verb</strong> <em>police</em>. We can use the <strong>parts of
+speech</strong> N and V, respectively, to distinguish between the noun
+<em>police</em> and the verb <em>police</em>. Let us add parts of speech
+to all the words in the string (we use C for the
+<strong>complementizers</strong> <em>if</em> and <em>then</em>):
+<em>If[C] police[N] police[V] police[N], then[C] police[N] police[V]
+police[N]</em>. What would be the corresponding set of words for this
+string (i.e. where we now distinguish between <em>police[N]</em> and
+<em>police[V]</em>)?</p>
 </div>
 <p>Again it is important to keep in mind that these regularities only
 hold with respect to the elements of a set, not what may be contained by
