@@ -366,7 +366,7 @@ Explain why, given this assumption, your negative trigram grammar for intervocal
 
 ## A look at German
 
-Unlike English, German is perfectly fine with words that starts with *kn*.
+Unlike English, German is perfectly fine with words that start with *kn*.
 But just like English, it does not like words that start with *rb*.
 We can capture this by writing a trigram grammar for German that contains the forbidden trigram *{{{L}}}rb*.
 But German also has a process known as word-final devoicing: voiced sounds become voiceless at the end of a word.
