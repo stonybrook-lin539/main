@@ -589,15 +589,19 @@ class="math inline">\(k\)</span>.</p></li>
 <li><p>Consider once more the illicit string, whatever it may be.
 Somewhere inside the string is an offending instance of the illicit
 <span class="math inline">\(n\)</span>-gram <span
-class="math inline">\(g\)</span>. There must be symbols to its left and
-right, at the very least some edge markers. We know this because <span
-class="math inline">\(n &lt; k \leq 2k - 2\)</span>. But <span
-class="math inline">\(G&#39;\)</span> contains every <span
-class="math inline">\(n\)</span>-gram of length <span
-class="math inline">\(k\)</span> that contains <span
+class="math inline">\(g\)</span>. Now keep in mind that 1) by assumption
+<span class="math inline">\(n &lt; k\)</span>, and 2) we just
+established that every string is at least of length <span
+class="math inline">\(2k - 2\)</span>, which is at least as big as <span
+class="math inline">\(k\)</span>. Hence there must be symbols to the
+left and/or right of <span class="math inline">\(g\)</span>, at the very
+least some edge markers. But <span class="math inline">\(G&#39;\)</span>
+contains every <span class="math inline">\(n\)</span>-gram of length
+<span class="math inline">\(k\)</span> that contains <span
 class="math inline">\(g\)</span> as a substring. So if a string contains
 <span class="math inline">\(g\)</span>, it also contains at least one of
-these illicit <span class="math inline">\(n\)</span>-grams.</p></li>
+these illicit <span class="math inline">\(n\)</span>-grams of <span
+class="math inline">\(G&#39;\)</span>.</p></li>
 </ul>
 <div class="example">
 <p>Continuing the previous example, consider the word <em>dadd</em>. It
@@ -662,9 +666,30 @@ to explain what exactly is intended at each step of the proof. The next
 unit will present the same proof in mathematical notation, and while it
 may be initially harder for you, this format will be a lot easier for
 you once you have some experience.</p>
-<p>In fact, this is why it is so helpful to learn math. Many things are
-intuitive enough that they can be explained in plain English. But it is
-clumsy, imprecise, and takes longer. Specialized notation and
+<p>In fact, the mathematical notation will make it very easy to see the
+intuition that underlies the proof above. We are, effectively,
+exploiting a part-whole relation between <span
+class="math inline">\(n\)</span>-grams of different length. Think of it
+as follows: Suppose we have a rule system that allows us to build balls,
+cubes, and pyramids from wood, metal, or plastic. We now get a new
+guidelines that says “don’t build anything wooden”. This is essentially
+a unigram constraint <em>*wooden</em>. But since what we can build it
+limited to balls, cubes, and pyramids, we could just as well say “don’t
+build any wooden balls, wooden cubes, or wooden pyramids”. That is to
+say, we could replace the unigram with the collection of bigrams
+<em>*wooden balls</em>, <em>*wooden cubes</em>, and <em>*wooden
+pyramids</em>. Either way, we will only be building metal and plastic
+balls, cubes, and pyramids from here on out. The strategy above does the
+very same thing, replacing each short <span
+class="math inline">\(n\)</span>-gram with a collection of longer <span
+class="math inline">\(n\)</span>-grams that cover all logically possible
+ways the short <span class="math inline">\(n\)</span>-gram can be
+combined with other symbols.</p>
+<p>This idea might have gotten lost among the walls of text above, but
+the very succinct mathematical exposition in the next unit will make it
+crystal-clear. In fact, this is why it is so helpful to learn math. Many
+things are intuitive enough that they can be explained in plain English.
+But it is clumsy, imprecise, and takes longer. Specialized notation and
 terminology makes things easier to talk and think about, not harder.</p>
 <h2 id="recap">Recap</h2>
 <ul>
@@ -686,163 +711,6 @@ unspecified, e.g. the length of the n-grams. In addition, we do not need
 to worry about accidental gaps or biases in our simulations because a
 proof states explicitly which assumptions it is built on.</li>
 </ul>
-<!-- We remove the $n$-gram $g$ from the grammar $G$, and instead add in a number of "padded" variants of $g$:  -->
-<!--  -->
-<!-- - Construct every possible $n$-gram of length $k - i$. -->
-<!--   For each such $n$-gram, put it **in front of** $g$ and add the result back to $G$. -->
-<!--  -->
-<!--   ::: example -->
-<!--   Suppose *G* contains the bigram *z{{{R}}}*, the trigram *{{{L}}}kn*, and the 4-gram *akzn*. -->
-<!--   Assume furthermore that the only possible sounds are *a*, *k*, *z*, and *n*. -->
-<!--  -->
-<!--   We have to pad out *z{{{R}}}* from a bigram to a 4-gram. -->
-<!--   The length difference between a bigram and a 4-gram is 2, so we have to put bigrams in front of *z{{{R}}}*. -->
-<!--   The list of possible (and useful) bigrams is as follows: -->
-<!--  -->
-<!--   - -->
-<!--   {{{L}}}{{{L}}} -->
-<!--   {{{L}}}{{{R}}}, -->
-<!--   {{{R}}}{{{R}}}, -->
-<!--   {{{L}}}a, -->
-<!--   {{{L}}}k, -->
-<!--   {{{L}}}z, -->
-<!--   {{{L}}}n, -->
-<!--   a{{{R}}}, -->
-<!--   aa, -->
-<!--   ak, -->
-<!--   az, -->
-<!--   an, -->
-<!--   k{{{R}}}, -->
-<!--   ka, -->
-<!--   kk, -->
-<!--   kz, -->
-<!--   kn, -->
-<!--   z{{{R}}}, -->
-<!--   za, -->
-<!--   zk, -->
-<!--   zz, -->
-<!--   zn, -->
-<!--   n{{{R}}}, -->
-<!--   na, -->
-<!--   nk, -->
-<!--   nz, -->
-<!--   nn -->
-<!--  -->
-<!--   So we remove *z{{{R}}}* from $G$ and instead add all of the following. -->
-<!--   Note that not all of those 4-grams are useful, but that doesn't matter here. -->
-<!--  -->
-<!--   - -->
-<!--   {{{L}}}{{{L}}}z{{{R}}}, -->
-<!--   {{{L}}}{{{R}}}z{{{R}}}, -->
-<!--   {{{R}}}{{{R}}}z{{{R}}}, -->
-<!--   {{{L}}}az{{{R}}}, -->
-<!--   {{{L}}}kz{{{R}}}, -->
-<!--   {{{L}}}zz{{{R}}}, -->
-<!--   {{{L}}}nz{{{R}}}, -->
-<!--   a{{{R}}}z{{{R}}}, -->
-<!--   aaz{{{R}}}, -->
-<!--   akz{{{R}}}, -->
-<!--   azz{{{R}}}, -->
-<!--   anz{{{R}}}, -->
-<!--   k{{{R}}}z{{{R}}}, -->
-<!--   kaz{{{R}}}, -->
-<!--   kkz{{{R}}}, -->
-<!--   kzz{{{R}}}, -->
-<!--   knz{{{R}}}, -->
-<!--   z{{{R}}}z{{{R}}}, -->
-<!--   zaz{{{R}}}, -->
-<!--   zkz{{{R}}}, -->
-<!--   zzz{{{R}}}, -->
-<!--   znz{{{R}}}, -->
-<!--   n{{{R}}}z{{{R}}}, -->
-<!--   naz{{{R}}}, -->
-<!--   nkz{{{R}}}, -->
-<!--   nzz{{{R}}}, -->
-<!--   nnz{{{R}}} -->
-<!--  -->
-<!--   ::: -->
-<!--  -->
-<!-- - Construct every possible $n$-gram of length $k - i$. -->
-<!--   For each such $n$-gram, put it **after** $g$ and add the result back to $G$. -->
-<!--  -->
-<!--   ::: example -->
-<!--   We also add the following 4-grams to $G$: -->
-<!--  -->
-<!--   - -->
-<!--   z{{{R}}}{{{L}}}{{{L}}}, -->
-<!--   z{{{R}}}{{{L}}}{{{R}}}, -->
-<!--   z{{{R}}}{{{R}}}{{{R}}}, -->
-<!--   z{{{R}}}{{{L}}}a, -->
-<!--   z{{{R}}}{{{L}}}k, -->
-<!--   z{{{R}}}{{{L}}}z, -->
-<!--   z{{{R}}}{{{L}}}n, -->
-<!--   z{{{R}}}aa, -->
-<!--   z{{{R}}}ak, -->
-<!--   z{{{R}}}az, -->
-<!--   z{{{R}}}an, -->
-<!--   z{{{R}}}a{{{R}}}, -->
-<!--   z{{{R}}}ka, -->
-<!--   z{{{R}}}kk, -->
-<!--   z{{{R}}}kz, -->
-<!--   z{{{R}}}kn, -->
-<!--   z{{{R}}}k{{{R}}}, -->
-<!--   z{{{R}}}za, -->
-<!--   z{{{R}}}zk, -->
-<!--   z{{{R}}}zz, -->
-<!--   z{{{R}}}zn, -->
-<!--   z{{{R}}}z{{{R}}}, -->
-<!--   z{{{R}}}na, -->
-<!--   z{{{R}}}nk, -->
-<!--   z{{{R}}}nz, -->
-<!--   z{{{R}}}nn, -->
-<!--   z{{{R}}}n{{{R}}} -->
-<!--  -->
-<!--   Except for *z{{{R}}}{{{R}}}{{{R}}}* these are all useless because {{{R}}} cannot occur between two symbols that aren't edge markers. -->
-<!--   But we add them anyways to stick with the procedure. -->
-<!--   ::: -->
-<!--  -->
-<!-- - Finally, pick any two $n$-grams of length $i'$ and $i''$ such that $i' + i + i'' = k$ (remember that $i$ is the length of the n-gram $g$ that must padded out, and $k$ is the length of the longest $n$-gram in the grammar). -->
-<!--   Sandwich $g$ between those $n$-grams and add the result to the grammar $G$. -->
-<!--  -->
-<!--   ::: example -->
-<!--   Since the difference between a 4-gram and a bigram is $2$, each one of the two "sandwich" $n$-grams must have length $1$. -->
-<!--   So we add the following: -->
-<!--  -->
-<!--   - -->
-<!--   {{{L}}}z{{{R}}}{{{L}}}, -->
-<!--   {{{L}}}z{{{R}}}{{{R}}}, -->
-<!--   {{{L}}}z{{{R}}}a, -->
-<!--   {{{L}}}z{{{R}}}k, -->
-<!--   {{{L}}}z{{{R}}}z, -->
-<!--   {{{L}}}z{{{R}}}n, -->
-<!--   az{{{R}}}a, -->
-<!--   az{{{R}}}k, -->
-<!--   az{{{R}}}z, -->
-<!--   az{{{R}}}n, -->
-<!--   az{{{R}}}{{{L}}}, -->
-<!--   az{{{R}}}{{{R}}}, -->
-<!--   kz{{{R}}}a, -->
-<!--   kz{{{R}}}k, -->
-<!--   kz{{{R}}}z, -->
-<!--   kz{{{R}}}n, -->
-<!--   kz{{{R}}}{{{L}}}, -->
-<!--   kz{{{R}}}{{{R}}}, -->
-<!--   zz{{{R}}}a, -->
-<!--   zz{{{R}}}k, -->
-<!--   zz{{{R}}}z, -->
-<!--   zz{{{R}}}n, -->
-<!--   zz{{{R}}}{{{L}}}, -->
-<!--   zz{{{R}}}{{{R}}}, -->
-<!--   nz{{{R}}}a, -->
-<!--   nz{{{R}}}k, -->
-<!--   nz{{{R}}}z, -->
-<!--   nz{{{R}}}n, -->
-<!--   nz{{{R}}}{{{L}}}, -->
-<!--   nz{{{R}}}{{{R}}} -->
-<!--  -->
-<!--   Again there are many useless $n$-grams, but we do not care. -->
-<!--   ::: -->
-<!--  -->
 </div>
 </div>
 </body>
