@@ -157,14 +157,14 @@ scalability), and think about how they’re instantiated in the proof.</p>
 bigrams and trigrams in a single grammar. This is not a very precise
 question. What exactly constitutes a problem? If you have to write on a
 tiny piece of paper that can barely hold a single bigram, adding a
-trigram to the mix creates problems. That’s obviously not our concern
-here. Remember that we use negative <span
-class="math inline">\(n\)</span>-gram grammars as a model of natural
-language phonotactics. So their job is to describe which potential words
-are well-formed and which are ill-formed. We would have a problem if
-this failed for some reason: a word is both well-formed or ill-formed, a
-word that is ill-formed suddenly becomes well-formed when bigrams and
-trigrams are mixed, or the other way round.</p>
+trigram to the mix creates problems. Such pesky tribulations of daily
+life are obviously not our concern here. Remember that we use negative
+<span class="math inline">\(n\)</span>-gram grammars as a model of
+natural language phonotactics. So their job is to describe which
+potential words are well-formed and which are ill-formed. We would have
+a problem if this failed for some reason: a word is both well-formed or
+ill-formed, a word that is ill-formed suddenly becomes well-formed when
+bigrams and trigrams are mixed, or the other way round.</p>
 <p>We will show that none of these issues ever arise; we do so by
 establishing a <strong>normal form theorem</strong>. Whenever a grammar
 contains <span class="math inline">\(n\)</span>-grams of different
@@ -212,9 +212,12 @@ class="math inline">\(n\)</span>-gram is assumed to have length <span
 class="math inline">\(k\)</span>. Since each position is filled by
 either a sound or one of two edge markers (⋊ or ⋉), there are <span
 class="math inline">\(\left | \Sigma \right | + 2\)</span> choices for
-each position. Consequently, there are at most <span
-class="math inline">\((\left | \Sigma \right |+2)^k\)</span> different
-<span class="math inline">\(n\)</span>-grams of length <span
+each one of those <span class="math inline">\(k\)</span> positions.
+Consequently, there are at most <span
+class="math inline">\(\overbrace{(\left | \Sigma \right |+2) \times
+\cdots \times (\left | \Sigma+2) \right |{k\ \mathrm{times}} = (\left |
+\Sigma \right |+2)^k\)</span> different <span
+class="math inline">\(n\)</span>-grams of length <span
 class="math inline">\(k\)</span>. This implies that for every possible
 value of <span class="math inline">\(k\)</span>, there are only finitely
 many <span class="math inline">\(n\)</span>-grams of length <span
