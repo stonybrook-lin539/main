@@ -92,9 +92,9 @@ class="math inline">\(d\)</span>.</p>
 over which the strings are built. This is called an
 <strong>alphabet</strong>. Alphabets are often given labels like <span
 class="math inline">\(\Sigma\)</span> or <span
-class="math inline">\(\Omega\)</span>. A string over alphabet <span
-class="math inline">\(\Sigma\)</span> is also called a <span
-class="math inline">\(\Sigma\)</span>-string.</p>
+class="math inline">\(\Omega\)</span>. A string <strong>over alphabet
+<span class="math inline">\(\Sigma\)</span></strong> is also called a
+<strong><span class="math inline">\(\Sigma\)</span>-string</strong>.</p>
 <div class="example">
 <p>The set of Latin characters (A-Z, a-z) is an alphabet that’s familiar
 to all of you. Strings over it include:</p>
@@ -271,7 +271,7 @@ string built over <span class="math inline">\(\Sigma\)</span>”. On the
 other hand <span class="math inline">\(\Sigma^+\)</span> only contains
 those strings whose length is at least 1, or in other words, whose
 length is positive. And <span class="math inline">\(+\)</span> is a
-common abbreviation for positive (just think of batteries).</p>
+common abbreviation for positive (e.g. with batteries).</p>
 <div class="exercise">
 <p>Enumerate the five shortest members of <span
 class="math inline">\(\left \{ a \right \}^*\)</span>.</p>
@@ -303,18 +303,19 @@ v \cdot w\)</span>.</p>
 <em>concatenation</em> and <em>associative</em> below:</p>
 <ul>
 <li><span class="math inline">\((\mathit{concatenation}
-\cdot\mathit{is}) \cdot\mathit{associative} = \mathit{concatenation is
+\cdot\mathit{is}) \cdot\mathit{associative} = \mathit{concatenation is}
+\cdot\mathit{associative} = \mathit{concatenation is
 associative}\)</span></li>
 <li><span class="math inline">\(\mathit{concatenation} \cdot(\mathit{is}
-\cdot\mathit{associative}) = \mathit{concatenation is
-associative}\)</span></li>
+\cdot\mathit{associative}) = \mathit{concatenation} \cdot\mathit{is
+associative} = \mathit{concatenation is associative}\)</span></li>
 </ul>
 </div>
 <p>Even though concatenation is associative, it is not
 <strong>commutative</strong>. That is to say, <span
 class="math inline">\(u \cdot v\)</span> and <span
-class="math inline">\(v \cdot u\)</span> are not necessarily the
-same.</p>
+class="math inline">\(v \cdot u\)</span> are not necessarily the same.
+They might be, but it’s not guaranteed.</p>
 <div class="example">
 <p>Let <span class="math inline">\(u
 \mathrel{\mathop:}=\text{house}\)</span> and <span
@@ -345,6 +346,11 @@ class="math inline">\(v\)</span> is the empty string.</p>
 <p>Is the following true or false? If <span class="math inline">\(u \neq
 v\)</span>, then <span class="math inline">\(\mathit{uv} \neq
 \mathit{vu}\)</span>?</p>
+</div>
+<div class="exercise">
+<p>Is the following true or false? If <span
+class="math inline">\(\mathit{uv} \neq \mathit{vu}\)</span>, then <span
+class="math inline">\(u \neq v\)</span>$?</p>
 </div>
 <h2 id="recap">Recap</h2>
 <ul>
