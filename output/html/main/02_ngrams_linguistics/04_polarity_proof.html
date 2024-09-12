@@ -56,12 +56,12 @@ Equivalence of positive and negative grammars</h1>
 </div>
 <p>This section defines both negative and positive versions of <span
 class="math inline">\(n\)</span>-gram grammars and shows that they are
-expressively equivalent. Like in the section on the equivalence of mixed
-and fixed <span class="math inline">\(n\)</span>-gram grammars, this is
-accomplished by a <strong>constructive</strong> proof. A proof is
-constructive if it doesn’t just derive the existence of some object, but
-gives a concrete procedure for constructing this object. In the case at
-hand, the proof shows how to construct a positive grammar from a
+expressively equivalent. Like in the section on the equivalence of
+strict and mixed <span class="math inline">\(n\)</span>-gram grammars,
+this is accomplished by a <strong>constructive</strong> proof. A proof
+is constructive if it doesn’t just derive the existence of some object,
+but gives a concrete procedure for constructing this object. In the case
+at hand, the proof shows how to construct a positive grammar from a
 negative one, and the other way around.</p>
 <div class="definition">
 <p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
@@ -109,58 +109,92 @@ class="math inline">\(L(G)\)</span>, contains all strings that are
 well-formed with respect to <span class="math inline">\(G\)</span>, and
 only those.</p>
 </div>
+<div class="definition">
+<p>A <strong>(strict) <span class="math inline">\(n\)</span>-gram
+grammar</strong> <span class="math inline">\(G\)</span> over alphabet
+<span class="math inline">\(\Sigma\)</span> is a finite set of strings
+drawn from <span class="math inline">\(\Sigma^E_n\)</span> (<span
+class="math inline">\(n \geq 1\)</span>). A <span
+class="math inline">\(\Sigma\)</span>-string <span
+class="math inline">\(s\)</span> is well-formed with respect to</p>
+<ul>
+<li>the <strong>negative</strong> interpretation of <span
+class="math inline">\(G\)</span> iff no <span
+class="math inline">\(n\)</span>-gram that is a factor of <span
+class="math inline">\(s\)</span> is a member of <span
+class="math inline">\(G\)</span>,</li>
+<li>the <strong>positive</strong> interpretation of <span
+class="math inline">\(G\)</span> iff every <span
+class="math inline">\(n\)</span>-gram that is a factor of <span
+class="math inline">\(s\)</span> is also a member of <span
+class="math inline">\(G\)</span>.</li>
+</ul>
+<p>The <strong>negative stringset</strong> or <strong>negative language
+of <span class="math inline">\(G\)</span></strong>, denoted <span
+class="math inline">\(N(G)\)</span>, is the set of all strings that are
+well-formed with respect to <span class="math inline">\(G\)</span> under
+its negative interpretation. Similarly, <span
+class="math inline">\(P(G)\)</span> is the <strong>positive
+stringset/language of <span
+class="math inline">\(G\)</span></strong>.</p>
+</div>
+<p>Note that the definition above does not treat positive and negative
+as a fundamental split between types of grammars but rather as different
+ways of interpreting the same grammar. This is mostly for mathematical
+convenience, but it goes to show that there are many ways of formalizing
+the same basic idea.</p>
 <div class="theorem">
 <p>For every <span class="math inline">\(n\)</span>-gram grammar <span
 class="math inline">\(G\)</span> there exists a grammar <span
 class="math inline">\(G&#39;\)</span> such that <span
-class="math inline">\(L(P(G)) = L(N(G&#39;))\)</span> and <span
-class="math inline">\(L(N(G)) = L(P(G&#39;))\)</span>.</p>
+class="math inline">\(P(G) = N(G&#39;)\)</span> and <span
+class="math inline">\(N(G) = P(G&#39;)\)</span>.</p>
 </div>
 <div class="proof">
-<p>We assume w.l.o.g. that <span class="math inline">\(G\)</span> is a
-positive grammar and denote it by <span
-class="math inline">\(P\)</span>. We define a negative counterpart <span
-class="math inline">\(N\)</span> as <span
-class="math inline">\(\Sigma_E^n - P\)</span> and show that <span
-class="math inline">\(L(P) = L(N)\)</span>.</p>
-<p>First, every <span class="math inline">\(s \in L(P)\)</span> is
-necessarily a member of <span class="math inline">\(L(N)\)</span>.
+<p>Let <span class="math inline">\(G&#39; \mathrel{\mathop:}=\Sigma_E^n
+- G\)</span>. We show w.l.o.g. that <span class="math inline">\(P(G) =
+N(G&#39;)\)</span>.</p>
+<p>First, every <span class="math inline">\(s \in P(G)\)</span> is
+necessarily a member of <span class="math inline">\(N(G&#39;)\)</span>.
 Assume towards a contradiction that <span class="math inline">\(s \notin
-L(N)\)</span>. Then there must be some <span class="math inline">\(g \in
-N\)</span> such that <span class="math inline">\({\rtimes}^{n-1} s
-{\ltimes}^{n-1} = u \cdot g \cdot v\)</span> (<span
-class="math inline">\(u,v, \in \Sigma_E^*\)</span>). But since <span
-class="math inline">\(N \mathrel{\mathop:}=\Sigma_E^n - P\)</span>,
-<span class="math inline">\(g \in N\)</span> implies <span
-class="math inline">\(g \notin P\)</span>, wherefore <span
-class="math inline">\(s \notin L(P)\)</span>. As this contradicts our
-initial assumption that <span class="math inline">\(s \in L(P)\)</span>,
-it cannot be the case that <span class="math inline">\(s \notin
-L(N)\)</span>. So <span class="math inline">\(s \in L(N)\)</span> after
-all.</p>
-<p>In the other direction, suppose that <span class="math inline">\(s
-\notin L(P)\)</span>. Then by definition there are <span
-class="math inline">\(u, v \in \Sigma_E^*\)</span> and <span
-class="math inline">\(\Sigma_E^n \ni g \notin P\)</span> such that <span
+N(G&#39;)\)</span>. Then there must be some <span
+class="math inline">\(g \in G&#39;\)</span> such that <span
 class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1} = u \cdot g
-\cdot v\)</span>. But then <span class="math inline">\(g \in N\)</span>,
-which entails <span class="math inline">\(s \notin L(N)\)</span>.</p>
-<p>This shows that <span class="math inline">\(s \in L(P)\)</span> iff
-<span class="math inline">\(s \in L(N)\)</span>. As <span
+\cdot v\)</span> (<span class="math inline">\(u,v, \in
+\Sigma_E^*\)</span>). But since <span class="math inline">\(G&#39;
+\mathrel{\mathop:}=\Sigma_E^n - G\)</span>, <span
+class="math inline">\(g \in G&#39;\)</span> implies <span
+class="math inline">\(g \notin G\)</span>, wherefore <span
+class="math inline">\(s \notin P(G)\)</span>. As this contradicts our
+initial assumption that <span class="math inline">\(s \in P(G)\)</span>,
+it cannot be the case that <span class="math inline">\(s \notin
+N(G&#39;)\)</span>. So <span class="math inline">\(s \in
+N(G&#39;)\)</span> after all.</p>
+<p>In the other direction, suppose that <span class="math inline">\(s
+\notin P(G)\)</span>. Then by definition there are <span
+class="math inline">\(u, v \in \Sigma_E^*\)</span> and <span
+class="math inline">\(\Sigma_E^n \ni g \notin G\)</span> such that <span
+class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1} = u \cdot g
+\cdot v\)</span>. But then <span class="math inline">\(g \in
+G&#39;\)</span>, which entails <span class="math inline">\(s \notin
+N(G&#39;)\)</span>.</p>
+<p>This shows that <span class="math inline">\(s \in P(G)\)</span> iff
+<span class="math inline">\(s \in N(G&#39;)\)</span>. As <span
 class="math inline">\(s\)</span> was arbitrary, this holds for all
-strings and establishes <span class="math inline">\(L(P) =
-L(N)\)</span>, which concludes our proof.</p>
+strings and establishes <span
+class="math inline">\(P(G)=N(G&#39;)\)</span>, which concludes our
+proof.</p>
 </div>
 <p>Again you should not feel heartbroken if you can’t make sense of the
 proof yet. Take a deep breath, don’t panic, and try to translate the
 symbol salad into English in your head. Consider for example this part
 of the proof:</p>
-<ul>
-<li>Then there must be some <span class="math inline">\(g \in N\)</span>
-such that <span class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1}
-= u \cdot g \cdot v\)</span> (<span class="math inline">\(u,v, \in
-\Sigma_E^*\)</span>).</li>
-</ul>
+<blockquote>
+<p>Then there must be some <span class="math inline">\(g \in
+G&#39;\)</span> such that <span class="math inline">\({\rtimes}^{n-1} s
+{\ltimes}^{n-1} = u \cdot g \cdot v\)</span> (<span
+class="math inline">\(u,v, \in \Sigma_E^*\)</span>).</p>
+</blockquote>
 <p>This just says that the negative grammar necessarily contains some
 <span class="math inline">\(n\)</span>-gram <span
 class="math inline">\(g\)</span> that occurs in the string <span
