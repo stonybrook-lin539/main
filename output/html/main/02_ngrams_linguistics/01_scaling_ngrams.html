@@ -236,15 +236,16 @@ there are <span class="math inline">\((\left | \Sigma \right |+2)^k =
 useful. In particular, no word ever contains an edge marker in the
 middle, so <em>a⋊a</em> and <em>a⋉a</em> serve no purpose. It is also
 impossible for ⋉ to occur to the left of ⋊, which rules out trigrams
-like <em>⋉a⋊</em> and <em>⋉⋊a</em>. Filtering out those useless trigrams
-leaves us with the following:</p>
+like <em>⋉a⋊</em> and <em>⋉⋊a</em>. And since we only have <span
+class="math inline">\(k-1\)</span> edge markers on each end of the
+string, we do not need ⋊⋊⋊ or ⋉⋉⋉ either. Filtering out those useless
+trigrams leaves us with the following:</p>
 <table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -252,24 +253,20 @@ leaves us with the following:</p>
 <td style="text-align: center;">daa</td>
 <td style="text-align: center;">⋊aa</td>
 <td style="text-align: center;">⋊⋊a</td>
-<td style="text-align: center;">⋊⋊⋊</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">aad</td>
 <td style="text-align: center;">dad</td>
 <td style="text-align: center;">⋊ad</td>
 <td style="text-align: center;">⋊⋊d</td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">aa⋉</td>
 <td style="text-align: center;">da⋉</td>
 <td style="text-align: center;">⋊a⋉</td>
 <td style="text-align: center;">⋊⋊⋉</td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -280,13 +277,11 @@ leaves us with the following:</p>
 <td style="text-align: center;">dda</td>
 <td style="text-align: center;">⋊da</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">add</td>
 <td style="text-align: center;">ddd</td>
 <td style="text-align: center;">⋊dd</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
@@ -294,10 +289,8 @@ leaves us with the following:</p>
 <td style="text-align: center;">dd⋉</td>
 <td style="text-align: center;">⋊d⋉</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -308,10 +301,8 @@ leaves us with the following:</p>
 <td style="text-align: center;">d⋉⋉</td>
 <td style="text-align: center;">⋊⋉⋉</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">⋉⋉⋉</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -358,11 +349,10 @@ is. Let us keep track of this by marking it in bold face in our table of
 possible trigrams.</p>
 <table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -370,24 +360,20 @@ possible trigrams.</p>
 <td style="text-align: center;">daa</td>
 <td style="text-align: center;">⋊aa</td>
 <td style="text-align: center;">⋊⋊a</td>
-<td style="text-align: center;">⋊⋊⋊</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">aad</td>
 <td style="text-align: center;">dad</td>
 <td style="text-align: center;">⋊ad</td>
 <td style="text-align: center;">⋊⋊d</td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">aa⋉</td>
 <td style="text-align: center;">da⋉</td>
 <td style="text-align: center;">⋊a⋉</td>
 <td style="text-align: center;">⋊⋊⋉</td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -398,13 +384,11 @@ possible trigrams.</p>
 <td style="text-align: center;">dda</td>
 <td style="text-align: center;">⋊da</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">add</td>
 <td style="text-align: center;">ddd</td>
 <td style="text-align: center;">⋊dd</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
@@ -412,10 +396,8 @@ possible trigrams.</p>
 <td style="text-align: center;">dd⋉</td>
 <td style="text-align: center;">⋊d⋉</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -426,10 +408,8 @@ possible trigrams.</p>
 <td style="text-align: center;">d⋉⋉</td>
 <td style="text-align: center;">⋊⋉⋉</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">⋉⋉⋉</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -444,11 +424,10 @@ bigram, we replace it with every trigram that contains the substring
 every trigram that contains <em>dd</em>: add, dda, ddd, dd⋉, ⋊dd.</p>
 <table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -456,24 +435,20 @@ every trigram that contains <em>dd</em>: add, dda, ddd, dd⋉, ⋊dd.</p>
 <td style="text-align: center;">daa</td>
 <td style="text-align: center;">⋊aa</td>
 <td style="text-align: center;">⋊⋊a</td>
-<td style="text-align: center;">⋊⋊⋊</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">aad</td>
 <td style="text-align: center;">dad</td>
 <td style="text-align: center;">⋊ad</td>
 <td style="text-align: center;">⋊⋊d</td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">aa⋉</td>
 <td style="text-align: center;">da⋉</td>
 <td style="text-align: center;">⋊a⋉</td>
 <td style="text-align: center;">⋊⋊⋉</td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -484,13 +459,11 @@ every trigram that contains <em>dd</em>: add, dda, ddd, dd⋉, ⋊dd.</p>
 <td style="text-align: center;"><strong>dda</strong></td>
 <td style="text-align: center;">⋊da</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><strong>add</strong></td>
 <td style="text-align: center;"><strong>ddd</strong></td>
 <td style="text-align: center;"><strong>⋊dd</strong></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
@@ -498,10 +471,8 @@ every trigram that contains <em>dd</em>: add, dda, ddd, dd⋉, ⋊dd.</p>
 <td style="text-align: center;"><strong>dd⋉</strong></td>
 <td style="text-align: center;">⋊d⋉</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -512,10 +483,8 @@ every trigram that contains <em>dd</em>: add, dda, ddd, dd⋉, ⋊dd.</p>
 <td style="text-align: center;">d⋉⋉</td>
 <td style="text-align: center;">⋊⋉⋉</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">⋉⋉⋉</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
