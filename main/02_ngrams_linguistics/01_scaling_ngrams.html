@@ -641,19 +641,20 @@ exploiting a part-whole relation between <span
 class="math inline">\(n\)</span>-grams of different length. Think of it
 as follows: Suppose we have a rule system that allows us to build balls,
 cubes, and pyramids from wood, metal, or plastic. We now get a new
-guidelines that says “don’t build anything wooden”. This is essentially
-a unigram constraint <em>*wooden</em>. But since what we can build it
-limited to balls, cubes, and pyramids, we could just as well say “don’t
-build any wooden balls, wooden cubes, or wooden pyramids”. That is to
-say, we could replace the unigram with the collection of bigrams
-<em>*wooden balls</em>, <em>*wooden cubes</em>, and <em>*wooden
-pyramids</em>. Either way, we will only be building metal and plastic
-balls, cubes, and pyramids from here on out. The strategy above does the
-very same thing, replacing each short <span
-class="math inline">\(n\)</span>-gram with a collection of longer <span
-class="math inline">\(n\)</span>-grams that cover all logically possible
-ways the short <span class="math inline">\(n\)</span>-gram can be
-combined with other symbols.</p>
+guidelines that says “don’t build anything wooden”. You can think of
+this as a unigram constraint against <em>wooden</em>. But since what we
+can build it limited to balls, cubes, and pyramids, we could just as
+well say “don’t build any wooden balls, wooden cubes, or wooden
+pyramids”. That is to say, we could replace the unigram with the
+collection of bigram constraints that an <em>wooden balls</em>,
+<em>wooden cubes</em>, and <em>wooden pyramids</em>. Either way, we will
+from here on out only be building balls, cubes, and pyramids that are
+metal or plastic. The strategy above does the very same thing, replacing
+each short <span class="math inline">\(n\)</span>-gram with a collection
+of longer <span class="math inline">\(n\)</span>-grams that cover all
+logically possible ways the short <span
+class="math inline">\(n\)</span>-gram can be combined with other
+symbols.</p>
 <p>This idea might have gotten lost among the walls of text above, but
 the very succinct mathematical exposition in the next unit will make it
 crystal-clear. In fact, this is why it is so helpful to learn math. Many
