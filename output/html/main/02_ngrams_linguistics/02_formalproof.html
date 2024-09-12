@@ -150,8 +150,9 @@ is ruled out by <span class="math inline">\(G\)</span>.</p>
 <div class="definition">
 <p>A <strong>mixed negative <span class="math inline">\(n\)</span>-gram
 grammar</strong> <span class="math inline">\(G\)</span> is a finite set
-of strings drawn from the sets <span
-class="math inline">\(\Sigma_E^1\)</span>, , <span
+of strings such that each string is drawn from <span
+class="math inline">\(\Sigma_E^1\)</span>, or <span
+class="math inline">\(\Sigma_E^2\)</span>, or , or <span
 class="math inline">\(\Sigma_E^n\)</span>. The well-formedness of string
 <span class="math inline">\(s\)</span> with respect to <span
 class="math inline">\(G\)</span> is defined as before, and so is <span
@@ -186,6 +187,14 @@ class="math inline">\(G&#39;\)</span> such that <span
 class="math inline">\(L(G) = L(G&#39;)\)</span>.</p>
 </div>
 <div class="proof">
+<p>If <span class="math inline">\(n = 1\)</span>, this is true by
+definition: as every <span class="math inline">\(n\)</span>-gram is at
+least of length of 1, all <span class="math inline">\(n\)</span>-grams
+of <span class="math inline">\(G\)</span> are members of <span
+class="math inline">\(\Sigma_E^1\)</span>, making <span
+class="math inline">\(G\)</span> a strict negative <span
+class="math inline">\(n\)</span>-gram grammar. Suppose, then, that <span
+class="math inline">\(n \geq 2\)</span>.</p>
 <p>Let <span class="math inline">\(G&#39;\)</span> be the smallest set
 containing all strings of the form <span class="math inline">\(u \cdot g
 \cdot v\)</span> such that</p>
@@ -198,7 +207,9 @@ n\)</span>.</li>
 </ol>
 <p>We show that <span class="math inline">\(L(G) = L(G&#39;)\)</span> by
 showing that <span class="math inline">\(s \notin L(G)\)</span> iff
-<span class="math inline">\(s \notin L(G&#39;)\)</span>.</p>
+<span class="math inline">\(s \notin L(G&#39;)\)</span> (this
+immediately entails that <span class="math inline">\(s \in L(G) iff s
+\in L(G&#39;)\)</span>).</p>
 <p>Suppose <span class="math inline">\(s \notin L(G)\)</span>. Then by
 definition there must be some <span
 class="math inline">\(k\)</span>-gram <span class="math inline">\(g \in
@@ -213,7 +224,7 @@ class="math inline">\(v&#39;\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> such that <span
 class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1} = u&#39; \cdot g
 \cdot v&#39;\)</span>. But since <span class="math inline">\(\left |
-{\rtimes}^{n-1} s {\ltimes}^{n-1} \right | &gt; n\)</span>, there must
+{\rtimes}^{n-1} s {\ltimes}^{n-1} \right | \geq n\)</span>, there must
 also be strings <span class="math inline">\(u_1, u_2, v_1, v_2\)</span>
 over <span class="math inline">\(\Sigma_E\)</span> such that</p>
 <ol type="1">
