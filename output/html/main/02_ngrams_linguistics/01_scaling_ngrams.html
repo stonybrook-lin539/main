@@ -195,10 +195,9 @@ class="math inline">\(k\)</span>.</p>
 </div>
 <h3 id="proof">Proof</h3>
 <p>We start with a few key observations.</p>
-<ul>
-<li><p>Every language has only finitely many sounds. The precise number
-does not matter here, it could be 2, it could be 2 trillion trillion.
-The important thing is that it is finite. We use <span
+<p>First, every language has only finitely many sounds. The precise
+number does not matter here, it could be 2, it could be 2 trillion
+trillion. The important thing is that it is finite. We use <span
 class="math inline">\(\left | \Sigma \right |\)</span> as the special
 symbol for this number.</p>
 <div class="example">
@@ -206,22 +205,23 @@ symbol for this number.</p>
 <em>b</em>, <em>m</em>, <em>d</em>, <em>g</em>, and <em>h</em>, then
 <span class="math inline">\(\left | \Sigma \right |\)</span> for that
 specific language is <span class="math inline">\(8\)</span>.</p>
-</div></li>
-<li><p>As stated in the theorem, the longest <span
-class="math inline">\(n\)</span>-gram is assumed to have length <span
+</div>
+<p>Second, the theorem assumes that the longest <span
+class="math inline">\(n\)</span>-gram is of length <span
 class="math inline">\(k\)</span>. Since each position is filled by
 either a sound or one of two edge markers (⋊ or ⋉), there are <span
 class="math inline">\(\left | \Sigma \right | + 2\)</span> choices for
-each one of those <span class="math inline">\(k\)</span> positions.
-Consequently, there are at most <span
-class="math inline">\(\overbrace{(\left | \Sigma \right |+2) \times
-\cdots \times (\left | \Sigma+2) \right |)}^{k\ \mathrm{times}} = (\left
-| \Sigma \right |+2)^k\)</span> different <span
+each one of those <span class="math inline">\(k\)</span> positions. This
+allows us to precisely calculate the number of distinct <span
 class="math inline">\(n\)</span>-grams of length <span
-class="math inline">\(k\)</span>. This implies that for every possible
-value of <span class="math inline">\(k\)</span>, there are only finitely
-many <span class="math inline">\(n\)</span>-grams of length <span
-class="math inline">\(k\)</span>. Note that this also implies that <span
+class="math inline">\(k\)</span>:</p>
+<p><span class="math display">\[\overbrace{(\left | \Sigma \right |+2)
+\times \cdots \times (\left | \Sigma+2) \right |)}^{k\ \mathrm{times}} =
+(\left | \Sigma \right |+2)^k\]</span></p>
+<p>Crucially, this implies that for every possible value of <span
+class="math inline">\(k\)</span>, there are only finitely many <span
+class="math inline">\(n\)</span>-grams of length <span
+class="math inline">\(k\)</span>. And that in turn implies that <span
 class="math inline">\(G\)</span> contains only finitely many <span
 class="math inline">\(n\)</span>-grams.</p>
 <div class="example">
@@ -313,9 +313,14 @@ trigrams leaves us with the following:</p>
 <p>But even if we had included all useless trigrams, that would not
 change the fact that there are only finitely many trigrams over
 <em>a</em>, <em>d</em>, and the edge markers.</p>
-</div></li>
-</ul>
-<p>Now suppose that we pick one of the finitely many <span
+</div>
+<div class="exercise">
+<p>Calculate the number of bigrams that only use <em>a</em>, <em>b</em>,
+<em>c</em>, and edge markers. Write down a table with all those bigrams,
+including useless ones. How many of the bigrams are useless?</p>
+</div>
+<p>These observations form the starting point for our conversion
+procedure. Suppose that we pick one of the finitely many <span
 class="math inline">\(n\)</span>-grams of our grammar <span
 class="math inline">\(G\)</span>. Call this <span
 class="math inline">\(n\)</span>-gram <span
@@ -331,9 +336,9 @@ class="math inline">\(k\)</span>. More precisely, we replace <span
 class="math inline">\(g\)</span> with every possible <span
 class="math inline">\(n\)</span>-gram of length <span
 class="math inline">\(k\)</span> that contains <span
-class="math inline">\(g\)</span> as a <em>substring</em>. By this we
-mean that <span class="math inline">\(g\)</span> occurs inside of these
-<span class="math inline">\(n\)</span>-grams.</p>
+class="math inline">\(g\)</span> as a <strong>substring</strong>. By
+this we mean that <span class="math inline">\(g\)</span> occurs inside
+of these <span class="math inline">\(n\)</span>-grams.</p>
 <div class="example">
 <p>Consider once more our toy language that only has the sounds
 <em>a</em> and <em>d</em>. We have already constructed the set of all
@@ -498,12 +503,41 @@ class="math inline">\(n\)</span>-grams, all of which are trigrams. Those
 are exactly the six trigrams that are marked in bold above: ada, add,
 dda, ddd, dd⋉, ⋊dd.</p>
 </div>
-<p>The new grammar <span class="math inline">\(G&#39;\)</span>
-constructed this way is equivalent to <span
-class="math inline">\(G\)</span>. By “equivalent” we mean that the
-following holds for every string: <span class="math inline">\(G\)</span>
-and <span class="math inline">\(G&#39;\)</span> both deem the string
-well-formed, or <span class="math inline">\(G\)</span> and <span
+<p>Carrying out the procedure above for each one of the finitely many
+<span class="math inline">\(n\)</span>-grams in our original grammar
+<span class="math inline">\(G\)</span> yields a new grammar <span
+class="math inline">\(G&#39;\)</span> where all <span
+class="math inline">\(n\)</span>-grams are of length <span
+class="math inline">\(k\)</span>.</p>
+<div class="exercise">
+<p>Suppose that the grammar <span class="math inline">\(G\)</span> in
+the example above had also contained the unigram <em>d</em> in addition
+to <em>dd</em> and <em>ada</em>. Using the procedure above, construct
+the corresponding negative trigram grammar <span
+class="math inline">\(G&#39;\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Now suppose instead that <span class="math inline">\(G\)</span> had
+only contained the unigram <em>d</em>. Using the procedure above,
+construct the corresponding negative trigram grammar <span
+class="math inline">\(G&#39;\)</span>. Do you notice anything? What
+might this tell you about <span class="math inline">\(G\)</span> in the
+previous exercise?</p>
+</div>
+<div class="exercise">
+<p>Now suppose that the inventory of sounds also contains <em>b</em> in
+addition to <em>a</em> and <em>d</em>. Using the procedure above,
+construct the negative trigram grammar for the original grammar <span
+class="math inline">\(G\)</span> that contains only <em>dd</em> and
+<em>ada</em>.</p>
+</div>
+<p>Crucially, the new grammar <span
+class="math inline">\(G&#39;\)</span> constructed this way is equivalent
+to our original grammar <span class="math inline">\(G\)</span>. By
+“equivalent” we mean that the following holds for every string: <span
+class="math inline">\(G\)</span> and <span
+class="math inline">\(G&#39;\)</span> both deem the string well-formed,
+or <span class="math inline">\(G\)</span> and <span
 class="math inline">\(G&#39;\)</span> both deem the string ill-formed.
 There is no string that is well-formed for <span
 class="math inline">\(G\)</span> but ill-formed for <span
@@ -624,6 +658,23 @@ class="math inline">\(G\)</span>, one obtains a grammar <span
 class="math inline">\(G&#39;\)</span> that is equivalent to <span
 class="math inline">\(G\)</span> but only contains <span
 class="math inline">\(n\)</span>-grams of a fixed length.</p>
+<div class="exercise">
+<p>Let <span class="math inline">\(G\)</span> be our example grammar
+containing <em>dd</em> and <em>ada</em>, and <span
+class="math inline">\(G&#39;\)</span> the equivalent grammar containing
+<em>ada</em>, <em>add</em>, <em>dda</em>, <em>ddd</em>, <em>dd⋉</em>,
+and <em>⋊dd</em>. For each one of the following strings, say whether it
+is deemed well-formed by <span class="math inline">\(G\)</span> and/or
+<span class="math inline">\(G&#39;\)</span>. If a grammar considers a
+string ill-formed, indicate which forbidden <span
+class="math inline">\(n\)</span>-grams it contains.</p>
+<ul>
+<li>aadaa</li>
+<li>aaaaa</li>
+<li>dadda</li>
+<li>dd</li>
+</ul>
+</div>
 <h2 id="some-thoughts">Some thoughts</h2>
 <p>You might cry foul at this point. I promised you that proofs are easy
 and quickly written down with a few lines, and the one above is neither.
