@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Union, intersection, and complement of sets</title>
+  <title>Operations: Union, intersection, and complement of sets</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -81,8 +81,8 @@ empty container is not nothing.</p>
 very important role to play. Just like the introduction of <span
 class="math inline">\(0\)</span> was a tremendous breakthrough that made
 arithmetic a lot more elegant and internally consistent, operations on
-sets would not nearly be as well-behaved without the empty set. You will
-see some examples of that right away.</p>
+sets would not be as well-behaved without the empty set. You will see
+some examples of that right away.</p>
 <div class="exercise">
 <p>For each one of the statements below, say whether it is true or
 false.</p>
@@ -107,9 +107,18 @@ class="math inline">\(A \cup B\)</span> is the set that contains</p>
 <li>nothing else.</li>
 </ul>
 <p>This means that the union of two sets is the result of taking
-everything that belongs to at least one set. So union builds bigger sets
+everything that belongs to at least one set. Union builds bigger sets
 from smaller sets. This makes it something like the set counterpart of
 addition over numbers.</p>
+<div class="definition">
+<p>Given two sets <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>, their <strong>union</strong> <span
+class="math inline">\(A \cup B\)</span> is the smallest set such that
+<span class="math inline">\(x \in A \cup B\)</span> iff <span
+class="math inline">\(x\)</span> is a member of at least one of <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span>.</p>
+</div>
 <div class="example">
 <p>The union of <span class="math inline">\(\left \{ 1 \right
 \}\)</span> and <span class="math inline">\(\left \{ 2,3,4 \right
@@ -117,7 +126,10 @@ addition over numbers.</p>
 \}\)</span>. The union of <span class="math inline">\(\left \{ 1,2
 \right \}\)</span> and <span class="math inline">\(\left \{ 3,4 \right
 \}\)</span> is also <span class="math inline">\(\left \{ 1,2,3,4 \right
-\}\)</span>.</p>
+\}\)</span>. And the union of <span class="math inline">\(\left \{ 1,2
+\right \}\)</span> and <span class="math inline">\(\left \{ 1,2,3,4
+\right \}\)</span> is just <span class="math inline">\(\left \{ 1,2,3,4
+\right \}\)</span> itself.</p>
 </div>
 <div class="exercise">
 <p>Compute the union of the following:</p>
