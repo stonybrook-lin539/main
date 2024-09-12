@@ -350,23 +350,184 @@ possible (and useful) trigrams for this language in the previous
 example. Now suppose that we have a negative grammar <span
 class="math inline">\(G\)</span> that contains two <span
 class="math inline">\(n\)</span>-grams, one being the trigram
-<em>ada</em> and the other the bigram <em>dd</em>. Let us indicate this
-by making them boldface in our table.</p>
+<em>ada</em> and the other the bigram <em>dd</em>.</p>
 <p>We want to convert <span class="math inline">\(G\)</span> into an
 equivalent grammar <span class="math inline">\(G&#39;\)</span> that only
 uses trigrams. Since <em>ada</em> is already a trigram, we keep it as
-is. But <em>dd</em> is a bigram and thus has to be replaced with every
-trigram that contains the substring <em>dd</em>. Consulting the list
-from the previous example, we see that these are</p>
-<ul>
-<li>add, dda, ddd, dd⋉, ⋊dd</li>
-</ul>
+is. Let us keep track of this by marking it in bold face in our table of
+possible trigrams.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">aaa</td>
+<td style="text-align: center;">daa</td>
+<td style="text-align: center;">⋊aa</td>
+<td style="text-align: center;">⋊⋊a</td>
+<td style="text-align: center;">⋊⋊⋊</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">aad</td>
+<td style="text-align: center;">dad</td>
+<td style="text-align: center;">⋊ad</td>
+<td style="text-align: center;">⋊⋊d</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">aa⋉</td>
+<td style="text-align: center;">da⋉</td>
+<td style="text-align: center;">⋊a⋉</td>
+<td style="text-align: center;">⋊⋊⋉</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>ada</strong></td>
+<td style="text-align: center;">dda</td>
+<td style="text-align: center;">⋊da</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">add</td>
+<td style="text-align: center;">ddd</td>
+<td style="text-align: center;">⋊dd</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ad⋉</td>
+<td style="text-align: center;">dd⋉</td>
+<td style="text-align: center;">⋊d⋉</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">a⋉⋉</td>
+<td style="text-align: center;">d⋉⋉</td>
+<td style="text-align: center;">⋊⋉⋉</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">⋉⋉⋉</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>The only other <span class="math inline">\(n\)</span>-gram in <span
+class="math inline">\(G\)</span> is <em>dd</em>. As <em>dd</em> is a
+bigram, we replace it with every trigram that contains the substring
+<em>dd</em>. So let us go through our table of trigrams and also mark
+every trigram that contains <em>dd</em>: add, dda, ddd, dd⋉, ⋊dd.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">aaa</td>
+<td style="text-align: center;">daa</td>
+<td style="text-align: center;">⋊aa</td>
+<td style="text-align: center;">⋊⋊a</td>
+<td style="text-align: center;">⋊⋊⋊</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">aad</td>
+<td style="text-align: center;">dad</td>
+<td style="text-align: center;">⋊ad</td>
+<td style="text-align: center;">⋊⋊d</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">aa⋉</td>
+<td style="text-align: center;">da⋉</td>
+<td style="text-align: center;">⋊a⋉</td>
+<td style="text-align: center;">⋊⋊⋉</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>ada</strong></td>
+<td style="text-align: center;"><strong>dda</strong></td>
+<td style="text-align: center;">⋊da</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>add</strong></td>
+<td style="text-align: center;"><strong>ddd</strong></td>
+<td style="text-align: center;"><strong>⋊dd</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ad⋉</td>
+<td style="text-align: center;"><strong>dd⋉</strong></td>
+<td style="text-align: center;">⋊d⋉</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">a⋉⋉</td>
+<td style="text-align: center;">d⋉⋉</td>
+<td style="text-align: center;">⋊⋉⋉</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">⋉⋉⋉</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
 <p>After the replacement step, we are left with a negative grammar <span
 class="math inline">\(G&#39;\)</span> that contains six forbidden <span
-class="math inline">\(n\)</span>-grams, all of which are trigrams:</p>
-<ul>
-<li>ada, add, dda, ddd, dd⋉, ⋊dd</li>
-</ul>
+class="math inline">\(n\)</span>-grams, all of which are trigrams. Those
+are exactly the six trigrams that are marked in bold above: ada, add,
+dda, ddd, dd⋉, ⋊dd.</p>
 </div>
 <p>The new grammar <span class="math inline">\(G&#39;\)</span>
 constructed this way is equivalent to <span
