@@ -64,52 +64,6 @@ but gives a concrete procedure for constructing this object. In the case
 at hand, the proof shows how to construct a positive grammar from a
 negative one, and the other way around.</p>
 <div class="definition">
-<p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
-<span class="math inline">\(\Sigma_E\)</span> its extension with the
-edge marker symbols <span class="math inline">\({\rtimes}, {\ltimes}
-\notin \Sigma\)</span>. An <span class="math inline">\(n\)</span>-gram
-over <span class="math inline">\(\Sigma_E\)</span> is an element of
-<span class="math inline">\(\Sigma_E^n\)</span> (<span
-class="math inline">\(n \geq 1\)</span>). An <span
-class="math inline">\(n\)</span>-gram grammar <span
-class="math inline">\(G\)</span> over alphabet <span
-class="math inline">\(\Sigma\)</span> is a finite set of <span
-class="math inline">\(n\)</span>-grams over <span
-class="math inline">\(\Sigma_E\)</span>. Every <span
-class="math inline">\(n\)</span>-gram grammar has a
-<strong>polarity</strong> interpretation:</p>
-<ul>
-<li>Under the negative interpretation of <span
-class="math inline">\(G\)</span> (also denoted <span
-class="math inline">\(N(G)\)</span>), a string <span
-class="math inline">\(s\)</span> over <span
-class="math inline">\(\Sigma\)</span> is well-formed with respect to
-<span class="math inline">\(G\)</span> iff there are no <span
-class="math inline">\(u, v\)</span> over <span
-class="math inline">\(\Sigma_E\)</span> and no <span
-class="math inline">\(g \in G\)</span> such that <span
-class="math inline">\({\rtimes}^{n-1} \cdot s \cdot{\ltimes}^{n-1} = u
-\cdot g \cdot v\)</span>.</li>
-<li>Under the positive interpretation of <span
-class="math inline">\(G\)</span> (also denoted <span
-class="math inline">\(P(G)\)</span>), a string <span
-class="math inline">\(s\)</span> over <span
-class="math inline">\(\Sigma\)</span> is well-formed with respect to
-<span class="math inline">\(G\)</span> iff for all <span
-class="math inline">\(u, v\)</span> over <span
-class="math inline">\(\Sigma_E\)</span> and <span
-class="math inline">\(g \in \Sigma_E^n\)</span> such that <span
-class="math inline">\({\rtimes}^{n-1} \cdot s \cdot{\ltimes}^{n-1} = u
-\cdot g \cdot v\)</span>, it holds that <span class="math inline">\(g
-\in G\)</span>.</li>
-</ul>
-<p>The <strong>language of <span
-class="math inline">\(G\)</span></strong>, denoted <span
-class="math inline">\(L(G)\)</span>, contains all strings that are
-well-formed with respect to <span class="math inline">\(G\)</span>, and
-only those.</p>
-</div>
-<div class="definition">
 <p>A <strong>(strict) <span class="math inline">\(n\)</span>-gram
 grammar</strong> <span class="math inline">\(G\)</span> over alphabet
 <span class="math inline">\(\Sigma\)</span> is a finite set of strings
@@ -126,7 +80,7 @@ class="math inline">\(G\)</span>,</li>
 <li>the <strong>positive</strong> interpretation of <span
 class="math inline">\(G\)</span> iff every <span
 class="math inline">\(n\)</span>-gram that is a factor of <span
-class="math inline">\(s\)</span> is also a member of <span
+class="math inline">\(s\)</span> is a member of <span
 class="math inline">\(G\)</span>.</li>
 </ul>
 <p>The <strong>negative stringset</strong> or <strong>negative language
