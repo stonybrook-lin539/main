@@ -93,25 +93,33 @@ negative grammars</h2>
 <p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
 <span class="math inline">\(\Sigma_E\)</span> its extension with edge
 marker symbols <span class="math inline">\({\rtimes}, {\ltimes} \notin
-\Sigma\)</span>. An <span class="math inline">\(n\)</span>-gram over
-<span class="math inline">\(\Sigma_E\)</span> is an element of <span
+\Sigma\)</span>. A string drawn from <span
 class="math inline">\(\Sigma_E^n\)</span>, where <span
-class="math inline">\(n \geq 1\)</span>. A <strong>(strict) negative
-<span class="math inline">\(n\)</span>-gram grammar</strong> <span
-class="math inline">\(G\)</span> over alphabet <span
-class="math inline">\(\Sigma\)</span> is a finite set of <span
-class="math inline">\(n\)</span>-grams over <span
-class="math inline">\(\Sigma_E\)</span>. A string <span
+class="math inline">\(n \geq 1\)</span>, is also called an <strong><span
+class="math inline">\(n\)</span>-gram</strong>. Given string <span
 class="math inline">\(s\)</span> over <span
-class="math inline">\(\Sigma\)</span> is well-formed with respect to
-<span class="math inline">\(G\)</span> iff there are no <span
-class="math inline">\(u, v\)</span> over <span
-class="math inline">\(\Sigma_E\)</span> and no <span
-class="math inline">\(g \in G\)</span> such that <span
+class="math inline">\(\Sigma\)</span>, we say that <span
+class="math inline">\(n\)</span>-gram <span
+class="math inline">\(g\)</span> is a <strong>factor</strong> of <span
+class="math inline">\(s\)</span> iff there are strings <span
+class="math inline">\(u, v \in \Sigma_E^*\)</span> such that <span
 class="math inline">\({\rtimes}^{n-1} \cdot s \cdot{\ltimes}^{n-1} = u
-\cdot g \cdot v\)</span>. The <strong>language of <span
+\cdot g \cdot v\)</span>.</p>
+</div>
+<div class="definition">
+<p>A <strong>(strict) negative <span
+class="math inline">\(n\)</span>-gram grammar</strong> <span
+class="math inline">\(G\)</span> over alphabet <span
+class="math inline">\(\Sigma\)</span> is a finite set of strings drawn
+from <span class="math inline">\(\Sigma_E^n\)</span> (<span
+class="math inline">\(n \geq 1\)</span>). A <span
+class="math inline">\(\Sigma\)</span>-string <span
+class="math inline">\(s\)</span> is well-formed with respect to <span
+class="math inline">\(G\)</span> iff no <span class="math inline">\(g
+\in G\)</span> is a factor of <span class="math inline">\(s\)</span>.
+The <strong>stringset</strong> or <strong>language of <span
 class="math inline">\(G\)</span></strong>, denoted <span
-class="math inline">\(L(G)\)</span>, contains all strings that are
+class="math inline">\(L(G)\)</span>, is the set of all strings that are
 well-formed with respect to <span class="math inline">\(G\)</span>, and
 only those.</p>
 </div>
@@ -131,21 +139,21 @@ are no strings <span class="math inline">\(u\)</span> and <span
 class="math inline">\(v\)</span> such that <span
 class="math inline">\({\rtimes}\mathit{CVCV}{\ltimes} = u
 \cdot\mathit{CC} \cdot v\)</span>, which means that <span
-class="math inline">\(\mathit{CVCVCV}\)</span> does not contain the
-forbidden bigram <span class="math inline">\(\mathit{CC}\)</span>. But
-clearly <span class="math inline">\({\rtimes}\mathit{CVCV}{\ltimes} =
+class="math inline">\(\mathit{CC}\)</span> is not a factor of <span
+class="math inline">\(\mathit{CVCVCV}\)</span>. But clearly <span
+class="math inline">\({\rtimes}\mathit{CVCV}{\ltimes} =
 {\rtimes}\mathit{C} \cdot\mathit{VC} \cdot\mathit{V}{\ltimes}\)</span>.
-So <span class="math inline">\(\mathit{VC}\)</span> is a component of
-<span class="math inline">\(\mathit{CVCV}\)</span>, and as a result the
-string is ruled out by <span class="math inline">\(G\)</span>.</p>
+So <span class="math inline">\(\mathit{VC}\)</span> is a factor of <span
+class="math inline">\(\mathit{CVCV}\)</span>, and as a result the string
+is ruled out by <span class="math inline">\(G\)</span>.</p>
 </div>
 <div class="definition">
 <p>A <strong>mixed negative <span class="math inline">\(n\)</span>-gram
 grammar</strong> <span class="math inline">\(G\)</span> is a finite set
-of strings over <span class="math inline">\(\Sigma_E\)</span> such that
-<span class="math inline">\(n\)</span> is the length of the longest
-string in <span class="math inline">\(G\)</span>. The well-formedness of
-string <span class="math inline">\(s\)</span> with respect to <span
+of strings drawn from the sets <span
+class="math inline">\(\Sigma_E^1\)</span>, , <span
+class="math inline">\(\Sigma_E^n\)</span>. The well-formedness of string
+<span class="math inline">\(s\)</span> with respect to <span
 class="math inline">\(G\)</span> is defined as before, and so is <span
 class="math inline">\(L(G)\)</span>.</p>
 </div>
@@ -164,7 +172,9 @@ instance of the forbidden bigram <span
 class="math inline">\(\mathit{CC}\)</span>. However, <span
 class="math inline">\(\mathit{{\rtimes}{\rtimes}CVCVVCV{\ltimes}{\ltimes}}
 = \mathit{{\rtimes}{\rtimes}CVC} \cdot\mathit{VVC}
-\cdot\mathit{V{\ltimes}{\ltimes}}\)</span>, and as a result the string
+\cdot\mathit{V{\ltimes}{\ltimes}}\)</span>. In plain English: <span
+class="math inline">\(\mathit{VVC}\)</span> is a factor of <span
+class="math inline">\(\mathit{CVCVVCV}\)</span>. As a result, the string
 is ruled out by <span class="math inline">\(G\)</span>.</p>
 </div>
 <h2 id="normal-form-theorem">Normal form theorem</h2>
@@ -182,7 +192,7 @@ containing all strings of the form <span class="math inline">\(u \cdot g
 <ol type="1">
 <li><span class="math inline">\(g \in G\)</span>, and</li>
 <li><span class="math inline">\(u \in \Sigma^*\)</span>, and</li>
-<li><span class="math inline">\(v \in \Sigma^*v\)</span>, and</li>
+<li><span class="math inline">\(v \in \Sigma^*\)</span>, and</li>
 <li><span class="math inline">\(\left | u \cdot g \cdot v \right | =
 n\)</span>.</li>
 </ol>
@@ -190,18 +200,27 @@ n\)</span>.</li>
 showing that <span class="math inline">\(s \notin L(G)\)</span> iff
 <span class="math inline">\(s \notin L(G&#39;)\)</span>.</p>
 <p>Suppose <span class="math inline">\(s \notin L(G)\)</span>. Then by
-definition there must be some <span class="math inline">\(g \in
-G\)</span> and strings <span class="math inline">\(u\)</span> and <span
+definition there must be some <span
+class="math inline">\(k\)</span>-gram <span class="math inline">\(g \in
+G\)</span> with <span class="math inline">\(k \leq n\)</span> and
+strings <span class="math inline">\(u\)</span> and <span
 class="math inline">\(v\)</span> over <span
 class="math inline">\(\Sigma_E\)</span> such that <span
-class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1} = u \cdot g
-\cdot v\)</span>. But since <span class="math inline">\(\left |
+class="math inline">\({\rtimes}^{k-1} s {\ltimes}^{k-1} = u \cdot g
+\cdot v\)</span>. This trivially entails that there are also strings
+<span class="math inline">\(u&#39;\)</span> and <span
+class="math inline">\(v&#39;\)</span> over <span
+class="math inline">\(\Sigma_E\)</span> such that <span
+class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1} = u&#39; \cdot g
+\cdot v&#39;\)</span>. But since <span class="math inline">\(\left |
 {\rtimes}^{n-1} s {\ltimes}^{n-1} \right | &gt; n\)</span>, there must
 also be strings <span class="math inline">\(u_1, u_2, v_1, v_2\)</span>
 over <span class="math inline">\(\Sigma_E\)</span> such that</p>
 <ol type="1">
-<li><span class="math inline">\(u = u_1 \cdot u_2\)</span>, and</li>
-<li><span class="math inline">\(v = v_1 \cdot v_2\)</span>, and</li>
+<li><span class="math inline">\(u&#39; = u_1 \cdot u_2\)</span>,
+and</li>
+<li><span class="math inline">\(v&#39; = v_1 \cdot v_2\)</span>,
+and</li>
 <li><span class="math inline">\(\left | u_2 \cdot g \cdot v_1 \right | =
 n\)</span>.</li>
 </ol>
@@ -219,8 +238,10 @@ class="math inline">\(g&#39;\)</span> and <span
 class="math inline">\(v&#39;\)</span> over <span
 class="math inline">\(\Sigma\)</span> such that <span
 class="math inline">\(g = u&#39; \cdot g&#39; \cdot v&#39;\)</span> and
-<span class="math inline">\(g&#39; \in G\)</span>. It follows that <span
-class="math inline">\(s \notin L(G)\)</span>.</p>
+<span class="math inline">\(g&#39; \in G\)</span>. Hence <span
+class="math inline">\(g&#39; \in G\)</span> is a factor of <span
+class="math inline">\(s\)</span>, an thus <span class="math inline">\(s
+\notin L(G)\)</span> by definition.</p>
 </div>
 <p>And there you have it. All the ground we’ve covered in dozens of
 pages so far, condensed into less than one page. That’s the power of
