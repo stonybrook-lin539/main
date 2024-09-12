@@ -256,7 +256,7 @@ rather than forbidden.</p>
 <div class="example">
 <p>The list of bigrams above is <em>⋊ de-</em>, <em>de- nature</em>,
 <em>nature -al</em>, <em>-al -ize</em>, <em>-ize -ation</em>, <em>-ation
-⋉</em>. If this is interpreted as positive bigram grammar, then only
+⋉</em>. If this is interpreted as a positive bigram grammar, then only
 <em>denaturalization</em> is well-formed. A string like <em>nature -al
 -ize -ation -de</em> is illicit because it contains the bigram
 <em>-ation de-</em>, which is not part of the positive grammar and thus
@@ -370,25 +370,76 @@ grammar generating this language consists of</p>
 <li><em>a⋉</em> (you may end with <em>a</em>).</li>
 </ol>
 <p>Now compare this to the list of all possible bigrams over <em>a</em>,
-<em>b</em>, and the edge markers ⋊ and ⋉ (we ignore useless bigrams such
-as ⋉⋊, which can never occur in a string):</p>
-<ol type="1">
-<li><em>⋊⋉</em>,</li>
-<li><em>⋊a</em>,</li>
-<li><em>⋊b</em>,</li>
-<li><em>a⋉</em>,</li>
-<li><em>aa</em>,</li>
-<li><em>ab</em>,</li>
-<li><em>b⋉</em>,</li>
-<li><em>ba</em>,</li>
-<li><em>bb</em>.</li>
-</ol>
-<p>Notice anything? Each one of those bigrams is either in the negative
-grammar or in the positive one, but never in both. So in order to
-convert a positive grammar to a negative one, or the other way round, it
-suffices to first compute all possible <span
+<em>b</em>, and the edge markers ⋊ and ⋉. Useless bigrams such as ⋉⋊,
+which can never occur in a string, are listed in parenthesis.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">(⋊⋊)</td>
+<td style="text-align: center;">⋊a</td>
+<td style="text-align: center;">⋊b</td>
+<td style="text-align: center;">⋊⋉</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(a⋊)</td>
+<td style="text-align: center;">aa</td>
+<td style="text-align: center;">ab</td>
+<td style="text-align: center;">a⋉</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">(b⋊)</td>
+<td style="text-align: center;">ba</td>
+<td style="text-align: center;">bb</td>
+<td style="text-align: center;">b⋉</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(⋉⋊)</td>
+<td style="text-align: center;">(⋉a)</td>
+<td style="text-align: center;">(⋉b)</td>
+<td style="text-align: center;">(⋉⋉)</td>
+</tr>
+</tbody>
+</table>
+<p>Notice anything? With the exception of the useless bigrams, each
+bigram in this table is either in the negative grammar or in the
+positive one, but never in both. Here, let me highlight it for you, with
+the <span class="math inline">\(n\)</span>-grams of the negative grammar
+in <em>italics</em> and those of the positive grammar in
+<strong>boldface</strong>.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">(⋊⋊)</td>
+<td style="text-align: center;"><strong>⋊a</strong></td>
+<td style="text-align: center;"><em>⋊b</em></td>
+<td style="text-align: center;"><em>⋊⋉</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(a⋊)</td>
+<td style="text-align: center;"><em>aa</em></td>
+<td style="text-align: center;"><strong>ab</strong></td>
+<td style="text-align: center;"><strong>a⋉</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">(b⋊)</td>
+<td style="text-align: center;"><strong>ba</strong></td>
+<td style="text-align: center;"><em>bb</em></td>
+<td style="text-align: center;"><em>b⋉</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(⋉⋊)</td>
+<td style="text-align: center;">(⋉a)</td>
+<td style="text-align: center;">(⋉b)</td>
+<td style="text-align: center;">(⋉⋉)</td>
+</tr>
+</tbody>
+</table>
+<p>So in order to convert a positive grammar to a negative one, or the
+other way round, it suffices to first compute all possible <span
 class="math inline">\(n\)</span>-grams and then remove all those that
-are in the grammar that is to be converted to the opposite polarity.</p>
+are in the original grammar The remainder (<em>modulo</em> useless <span
+class="math inline">\(n\)</span>-grams) is the corresponding grammar of
+the opposite polarity.</p>
 <div class="example">
 <p>Suppose our alphabet contains only <em>a</em> and that the only
 well-formed string is <em>aa</em>. This would be the case if we have a
