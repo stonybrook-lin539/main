@@ -114,11 +114,11 @@ from smaller sets. This makes it something like the set counterpart of
 addition over numbers.</p>
 <div class="definition">
 <p>Given two sets <span class="math inline">\(A\)</span> and <span
-class="math inline">\(B\)</span>, their <strong>union</strong> <span
-class="math inline">\(A \cup B\)</span> is the smallest set such that
-<span class="math inline">\(x \in A \cup B\)</span> iff <span
-class="math inline">\(x\)</span> is a member of at least one of <span
-class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> and object <span
+class="math inline">\(x\)</span>, <span class="math inline">\(x\)</span>
+is a member of the <strong>union</strong> <span class="math inline">\(A
+\cup B\)</span> iff <span class="math inline">\(x\)</span> is a member
+of at least one of <span class="math inline">\(A\)</span> and <span
 class="math inline">\(B\)</span>.</p>
 </div>
 <div class="example">
@@ -209,13 +209,17 @@ class="math inline">\(n\)</span>.</p>
 </div>
 <h2 id="intersection">Intersection</h2>
 <p>Intersection is the opposite of union in that it builds smaller sets
-rather than bigger ones. Given two sets <span
+rather than bigger ones.</p>
+<div class="definition">
+<p>Given two sets <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> and object <span
+class="math inline">\(x\)</span>, <span class="math inline">\(x\)</span>
+is a member of the <strong>intersection</strong> <span
+class="math inline">\(A \cap B\)</span> iff <span
+class="math inline">\(x\)</span> is a member of both <span
 class="math inline">\(A\)</span> and <span
-class="math inline">\(B\)</span>, their <strong>intersection</strong>
-<span class="math inline">\(A \cap B\)</span> is the set that contains
-only those elements that belong to <span
-class="math inline">\(A\)</span> as well as <span
 class="math inline">\(B\)</span>.</p>
+</div>
 <div class="example">
 <p>The intersection of <span class="math inline">\(\left \{ 1 \right
 \}\)</span> and <span class="math inline">\(\left \{ 2,3,4 \right
@@ -223,9 +227,9 @@ class="math inline">\(B\)</span>.</p>
 the intersection of <span class="math inline">\(\left \{ 1,2 \right
 \}\)</span> and <span class="math inline">\(\left \{ 3,4 \right
 \}\)</span>. But the intersection of <span class="math inline">\(\left
-\{ 1,2 \right \}\)</span> and <span class="math inline">\(\left \{ 2,3,4
-\right \}\)</span> is <span class="math inline">\(\left \{ 2 \right
-\}\)</span>.</p>
+\{ 1,2,3 \right \}\)</span> and <span class="math inline">\(\left \{
+2,3,4 \right \}\)</span> is <span class="math inline">\(\left \{ 2,3
+\right \}\)</span>.</p>
 </div>
 <div class="exercise">
 <p>Compute the intersection of the following:</p>
@@ -261,20 +265,46 @@ the intersection of <span class="math inline">\(\left \{ 1,2 \right
 \emptyset\)</span> no matter what the set <span
 class="math inline">\(A\)</span> looks like. This is similar to how
 <span class="math inline">\(n \cdot 0 = 0\)</span> irrespective of the
-value of <span class="math inline">\(n\)</span>. So intersection is akin
-to multiplication for sets. Like multiplication, intersection is
-associative, so that <span class="math inline">\((A \cap B) \cap C = A
-\cap (B \cap C)\)</span>. This mirrors the fact that <span
-class="math inline">\((5 \cdot 4) \cdot 2 = 5 \cdot (4 \cdot
-2)\)</span>. Intersection is also commutative, again just like
+value of <span class="math inline">\(n\)</span>.
+<!-- fixme: multiplication symbol --> So intersection is akin to
+multiplication for sets. Like multiplication, intersection is
+<strong>associative</strong>, so that <span class="math inline">\((A
+\cap B) \cap C = A \cap (B \cap C)\)</span>. This mirrors the fact that
+<span class="math inline">\((5 \cdot 4) \cdot 2 = 5 \cdot (4 \cdot
+2)\)</span>.</p>
+<div class="example">
+<p>Is is easy to show that <span class="math inline">\((\left \{ a,b,c
+\right \} \cap \left \{ b,c,d \right \}) \cap \left \{ c,d,e \right \} =
+\left \{ a,b,c \right \} \cap (\left \{ b,c,d \right \} \cap \left \{
+c,d,e \right \})\)</span>:</p>
+<p><span class="math display">\[
+(\left \{ a,b,c \right \} \cap \left \{ b,c,d \right \}) \cap \left \{
+c,d,e \right \} =
+\left \{ b,c \right \} \cap \left \{ c,d,e \right \} =
+\left \{ c \right \} =
+\left \{ a,b,c \right \} \cap \left \{ b,c,d \right \} =
+\left \{ a,b,c \right \} \cap (\left \{ b,c,d \right \} \cap \left \{
+c,d,e \right \})
+\]</span></p>
+</div>
+<p>Intersection is also <strong>commutative</strong>, again just like
 multiplication: <span class="math inline">\(A \cap B = B \cap
 A\)</span>, and <span class="math inline">\(m \cdot n = n \cdot
 m\)</span>.</p>
+<div class="example">
+<p>It is easy to see that <span class="math inline">\(\left \{ a,b
+\right \} \cap \left \{ b,c \right \} = \left \{ b \right \} = \left \{
+b,c \right \} \cap \left \{ a,b \right \}\)</span>. And just as
+obviously <span class="math inline">\(\left \{ a,b \right \} \cap
+\emptyset = \emptyset = \emptyset \cap \left \{ a,b \right
+\}\)</span>.</p>
+</div>
 <p>The one difference between intersection and multiplication seems to
 be that the former produces something smaller and the latter something
 bigger. But as we will learn later, this isn’t really all that
 important, and the two operations are indeed very close counterparts in
-an abstract sense.</p>
+an abstract sense.
+<!-- fixme: vague reference to abstract algebra, not in lecture notes yet --></p>
 <h2 id="relative-complement">Relative complement</h2>
 <p>Given the set-counterparts for <span class="math inline">\(+\)</span>
 and <span class="math inline">\(\cdot\)</span>, you probably expect one
@@ -298,25 +328,29 @@ complement of <span class="math inline">\(\left \{ 3,4,5 \right
 \}\)</span> is <span class="math inline">\(\left \{ 2,3 \right \} -
 \left \{ 3,4,5 \right \} = \left \{ 2 \right \}\)</span>.</p>
 </div>
-<p>Relative complement is <strong>not</strong> associative in the
-general case. For example, <span class="math inline">\((\left \{ 0,1
-\right \} - \left \{ 0 \right \}) - \left \{ 1 \right \} =
-\emptyset\)</span>, whereas <span class="math inline">\(\left \{ 0,1
-\right \} - (\left \{ 0 \right \} - \left \{ 1 \right \}) = \left \{ 1
-\right \}\)</span>. Since associativity requires that the order of
-evaluation may never matter, this one example where it does matter is
-sufficient to show that associativity does not hold. That doesn’t mean
-that there are never cases where one can’t change the order of
-evaluation at all. For instance, <span class="math inline">\((\left \{
-0,1 \right \} - \left \{ 0 \right \}) - \left \{ 2 \right \} = \left \{
-1 \right \} = \left \{ 0,1 \right \} - (\left \{ 0 \right \} - \left \{
-2 \right \})\)</span>. But that is merely a coincidence. That relative
-complement is not associative mirrors subtraction for numbers, where
-<span class="math inline">\((5 - 2) - 3 = 0 \neq 6 = 5 - (2
--3)\)</span>. Commutativity does not hold for relative complement
-either, as is shown by <span class="math inline">\(\left \{ 5 \right \}
-- \left \{ 5,4 \right \} = \emptyset \neq \left \{ 4 \right \} = \left
-\{ 5,4 \right \} - \left \{ 5 \right \}\)</span>.</p>
+<p>Relative complement is <strong>not associative</strong> in the
+general case.</p>
+<div class="example">
+<p>Consider <span class="math inline">\((\left \{ 0,1 \right \} - \left
+\{ 0 \right \}) - \left \{ 1 \right \} = \emptyset\)</span>, whereas
+<span class="math inline">\(\left \{ 0,1 \right \} - (\left \{ 0 \right
+\} - \left \{ 1 \right \}) = \left \{ 1 \right \}\)</span>. Since
+associativity requires that the order of evaluation may never matter,
+this one example where it does matter is sufficient to show that
+associativity does not hold.</p>
+</div>
+<p>That doesn’t mean that there are never cases where one can’t change
+the order of evaluation at all. For instance, <span
+class="math inline">\((\left \{ 0,1 \right \} - \left \{ 0 \right \}) -
+\left \{ 2 \right \} = \left \{ 1 \right \} = \left \{ 0,1 \right \} -
+(\left \{ 0 \right \} - \left \{ 2 \right \})\)</span>. But that is
+merely a coincidence. That relative complement is not associative
+mirrors subtraction for numbers, where <span class="math inline">\((5 -
+2) - 3 = 0 \neq 6 = 5 - (2 -3)\)</span>.</p>
+<p>Commutativity does not hold for relative complement either, as is
+shown by <span class="math inline">\(\left \{ 5 \right \} - \left \{ 5,4
+\right \} = \emptyset \neq \left \{ 4 \right \} = \left \{ 5,4 \right \}
+- \left \{ 5 \right \}\)</span>.</p>
 <div class="exercise">
 <p>Give a concrete example where <span class="math inline">\(A - B = B -
 A\)</span>. Then make a single change to <span
@@ -325,8 +359,8 @@ class="math inline">\(A\)</span> such that <span class="math inline">\(A
 </div>
 <p>If <span class="math inline">\(A\)</span> is clear from context, we
 just write <span class="math inline">\(\overline{B}\)</span> for <span
-class="math inline">\(A - B\)</span> and call it the complement of <span
-class="math inline">\(B\)</span>.</p>
+class="math inline">\(A - B\)</span> and call it the <strong>complement
+of <span class="math inline">\(B\)</span></strong>.</p>
 <div class="example">
 <p>Given some fixed <span class="math inline">\(A
 \mathrel{\mathop:}=\left \{ 0,1,2,3 \right \}\)</span>, we have <span
