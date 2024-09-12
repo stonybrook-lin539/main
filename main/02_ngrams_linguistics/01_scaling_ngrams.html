@@ -215,8 +215,8 @@ class="math inline">\(\left | \Sigma \right | + 2\)</span> choices for
 each one of those <span class="math inline">\(k\)</span> positions.
 Consequently, there are at most <span
 class="math inline">\(\overbrace{(\left | \Sigma \right |+2) \times
-\cdots \times (\left | \Sigma+2) \right |^{k\ \mathrm{times}} = (\left |
-\Sigma \right |+2)^k\)</span> different <span
+\cdots \times (\left | \Sigma+2) \right |)}^{k\ \mathrm{times}} = (\left
+| \Sigma \right |+2)^k\)</span> different <span
 class="math inline">\(n\)</span>-grams of length <span
 class="math inline">\(k\)</span>. This implies that for every possible
 value of <span class="math inline">\(k\)</span>, there are only finitely
@@ -240,10 +240,11 @@ like <em>⋉a⋊</em> and <em>⋉⋊a</em>. Filtering out those useless trigrams
 leaves us with the following:</p>
 <table>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -251,20 +252,24 @@ leaves us with the following:</p>
 <td style="text-align: center;">daa</td>
 <td style="text-align: center;">⋊aa</td>
 <td style="text-align: center;">⋊⋊a</td>
+<td style="text-align: center;">⋊⋊⋊</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">aad</td>
 <td style="text-align: center;">dad</td>
 <td style="text-align: center;">⋊ad</td>
 <td style="text-align: center;">⋊⋊d</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">aa⋉</td>
 <td style="text-align: center;">da⋉</td>
 <td style="text-align: center;">⋊a⋉</td>
-<td style="text-align: center;">⋊⋊⋊</td>
+<td style="text-align: center;">⋊⋊⋉</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -275,20 +280,24 @@ leaves us with the following:</p>
 <td style="text-align: center;">dda</td>
 <td style="text-align: center;">⋊da</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">add</td>
 <td style="text-align: center;">ddd</td>
 <td style="text-align: center;">⋊dd</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">ad⋉</td>
 <td style="text-align: center;">dd⋉</td>
 <td style="text-align: center;">⋊d⋉</td>
-<td style="text-align: center;">⋊⋊⋉</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -298,13 +307,15 @@ leaves us with the following:</p>
 <td style="text-align: center;">a⋉⋉</td>
 <td style="text-align: center;">d⋉⋉</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">⋊⋉⋉</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">⋉⋉⋉</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">⋉⋉⋉</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -339,7 +350,8 @@ possible (and useful) trigrams for this language in the previous
 example. Now suppose that we have a negative grammar <span
 class="math inline">\(G\)</span> that contains two <span
 class="math inline">\(n\)</span>-grams, one being the trigram
-<em>ada</em> and the other the bigram <em>dd</em>.</p>
+<em>ada</em> and the other the bigram <em>dd</em>. Let us indicate this
+by making them boldface in our table.</p>
 <p>We want to convert <span class="math inline">\(G\)</span> into an
 equivalent grammar <span class="math inline">\(G&#39;\)</span> that only
 uses trigrams. Since <em>ada</em> is already a trigram, we keep it as
