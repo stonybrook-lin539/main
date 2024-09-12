@@ -284,7 +284,9 @@ class="math inline">\(\Sigma\)</span> and <span
 class="math inline">\(n\)</span>. We can make this more visual by
 drawing a table, where rows indicate the size of the alphabet (plus both
 edge markers) and columns indicate the length of the <span
-class="math inline">\(n\)</span>-grams.</p>
+class="math inline">\(n\)</span>-grams. Each cell tells us how many
+<span class="math inline">\(n\)</span>-grams there are for that specific
+combination of those two values.</p>
 <table style="width:100%;">
 <colgroup>
 <col style="width: 16%" />
@@ -382,10 +384,11 @@ class="math inline">\(n\)</span>-grams.</p>
 <p>As you can see, the numbers grow quite a bit from the top to the
 bottom, but much faster from left to right. In other words, <span
 class="math inline">\(n\)</span> plays a much bigger role in determining
-the size <span class="math inline">\(\Sigma_E^n\)</span>. The number of
-bigrams over an alphabet with 100 symbols (including edge markers) is
-still smaller than the number of 5-grams over an alphabet with 7
-symbols. Our upper bound grows <strong>exponentially</strong> with <span
+the size of <span class="math inline">\(\Sigma_E^n\)</span>. The number
+of bigrams over an alphabet with 100 symbols (including edge markers) is
+10,000, which is still smaller than the number of 5-grams over an
+alphabet with 7 symbols (i.e. 16,807). Our upper bound grows
+<strong>exponentially</strong> with <span
 class="math inline">\(n\)</span>, but only <strong>polynomially</strong>
 with <span class="math inline">\(\Sigma\)</span>.</p>
 <p>What does this tell us? While we can freely choose between fixed
@@ -408,6 +411,50 @@ class="math inline">\(\Sigma_E^6\)</span> is 4,096, and <span
 class="math inline">\(\Sigma_E^{10}\)</span> is 1,048,576. That’s more
 than the number of trigrams over an alphabet with close to 100
 symbols.</p>
+</div>
+<div class="exercise">
+<p>Calculate the number of 100-grams over an alphabet with 3 symbols
+(including edge markers) and compare it to the number of trigrams over
+an alphabet with 100 symbols.</p>
+</div>
+<div class="example">
+<p>The age of the universe is estimated to be around <span
+class="math inline">\(436, 000, 000, 000, 000, 000\)</span> seconds.
+That’s 436 quadrillion seconds, which one can also write mathematically
+as <span class="math inline">\(4.36 \times 10^17\)</span>. This means
+that given an alphabet with 8 symbols plus 2 edge markers, the set of
+all 18-grams already exceeds the number of seconds since the Big Bang.
+And it doesn’t do that by just a slim margin. If, starting from the
+birth of the universe, you had been listing all 18-grams over that
+alphabet with edge markers, uttering two 18-grams per second, you still
+wouldn’t be done for another 128 quadrillion seconds, which is 4 billion
+years (I’ve rounded this a bit for your convenience). Needless to say,
+we should be skeptical if our investigation ever leads us to conclude
+that natural languages use <span class="math inline">\(n\)</span>-grams
+with a large value for <span class="math inline">\(n\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Natural languages tend to use much more than just 8 distinct sounds.
+In fact, some languages have been argued to use close to a 100 distinct
+sounds. Calculate the smallest value of <span
+class="math inline">\(n\)</span> for which the number of <span
+class="math inline">\(n\)</span>-grams over an alphabet with 100 symbols
+(including edge markers) exceeds the number of seconds since the Big
+Bang.</p>
+</div>
+<div class="exercise">
+<p>N-grams have also been used to model sentences, which each word
+corresponding to a position of the <span
+class="math inline">\(n\)</span>-gram. For example, <em>John likes</em>
+would be a bigram and <em>bought these truffles</em> would be a trigram.
+Native speakers of English know at least 10,000 distinct words, and
+that’s if we count distinct surface forms such as <em>buy</em> and
+<em>buys</em> as a single word.</p>
+<p>Given an alphabet with 10,000 distinct symbols (including edge
+markers), what is the smallest value of <span
+class="math inline">\(n\)</span> such that the number of <span
+class="math inline">\(n\)</span>-grams is greater than the age of the
+universe in seconds?</p>
 </div>
 <h2 id="recap">Recap</h2>
 <ul>
