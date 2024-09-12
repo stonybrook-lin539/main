@@ -67,57 +67,126 @@ the examples were limited to specific phenomena. If <span
 class="math inline">\(n\)</span>-gram grammars are supposed to provide a
 model of phonotactics or morphotactics, it isn’t enough to show that
 individual phenomena in those domains can be described with those
-grammars. We already know that word-final devoicing can be handled by
-<span class="math inline">\(n\)</span>-gram grammars, and the same is
-true for penultimate stress. But a speaker whose language displays both
-phenomena must have some grammar that takes care of both. Is this
-combined grammar also an <span class="math inline">\(n\)</span>-gram
-grammar? It is not immediately obvious that the answer to that is
-yes.</p>
+grammars. We want to know how we can turn these collections of grammars
+for individual phenomena into a single grammar. For example, we already
+know that word-final devoicing can be handled by <span
+class="math inline">\(n\)</span>-gram grammars, and the same is true for
+penultimate stress. But a speaker whose language displays both phenomena
+must have some grammar that takes care of both. Is this combined grammar
+also an <span class="math inline">\(n\)</span>-gram grammar? It is not
+immediately obvious that the answer to that is yes.</p>
 <p>There are other types of grammars for which the answer is no. Later
-on, we will encounter context-free grammars (CFGs). For CFGs, it is not
-the case that what can be jointly accomplished by two grammars can be
-done by a single grammar. The problem is mostly limited to artificial
+on, we will encounter context-free grammars (CFGs).
+<!-- fixme: will we actually encounter them? --> For CFGs, it is not the
+case that what can be jointly accomplished by two grammars can be done
+by a single grammar. The problem is mostly limited to artificial
 languages (which is interesting in itself — apparently all natural
 languages have some special property that avoids this problem). But it
 nonetheless shows that one cannot model each phenomenon with its own
 grammar and simply assume that they can all be combined into a single
 grammar of the same type.</p>
 <div class="example">
-<p>Consider the language <span class="math inline">\(L_\mathit{ab}
-\mathrel{\mathop:}=a^n b^n c^+\)</span>. This language only contains
-strings of the form <em>ab<span
-class="math inline">\(\delta\)</span></em>, <em>aabb<span
-class="math inline">\(\delta\)</span></em>, <em>aaabbb<span
-class="math inline">\(\delta\)</span></em>, and so on, where <span
-class="math inline">\(\delta\)</span> is a shorthand for 1 or more
-<em>c</em>s. So this language contains strings like <em>aabbc</em>,
-<em>abcccc</em>, or <em>aaaabbbbcc</em>, but not <em>abbc</em>.
-Intuitively, <span class="math inline">\(L_\mathit{ab}\)</span> is the
-language of strings where all <span class="math inline">\(a\)</span>
-occur before all <em>b</em>s, all <em>b</em>s occur before all
-<em>c</em>s, and the number of <em>a</em>s and <em>b</em>s must match. A
-very similar language is <span class="math inline">\(L_\mathit{bc}
-\mathrel{\mathop:}=a^+ b^n c^n\)</span>, where the number of <em>a</em>s
-is irrelevant and instead the number of <em>b</em>s and <em>c</em>s must
-match. It is easy to show that there is a CFG that generates <span
+<p>Consider the following three string languages:</p>
+<ul>
+<li><span class="math inline">\(L_\mathit{ab} \mathrel{\mathop:}=a^n b^n
+c^*\)</span></li>
+<li><span class="math inline">\(L_\mathit{bc} \mathrel{\mathop:}=a^* b^n
+c^n\)</span></li>
+<li><span class="math inline">\(L_\mathit{abc} \mathrel{\mathop:}=a^n
+b^n c^n\)</span></li>
+</ul>
+<p>All three contain only strings that are built over <em>a</em>,
+<em>b</em>, and <em>c</em> such that all <em>a</em>s precede all
+<em>b</em>s and all <em>b</em>s precede all <em>c</em>s. But they differ
+in the additional restrictions that are met by the strings:</p>
+<ul>
+<li><span class="math inline">\(L_\mathit{ab}\)</span>: the number of
+<em>a</em>s must match the number of <em>b</em>s</li>
+<li><span class="math inline">\(L_\mathit{bc}\)</span>: the number of
+<em>b</em>s must match the number of <em>c</em>s</li>
+<li><span class="math inline">\(L_\mathit{abc}\)</span>: both of the
+matching conditions above</li>
+</ul>
+<p>Here is a table with a few example strings and whether they are
+contained in the language or not.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><strong>String</strong></th>
+<th style="text-align: center;"><span
+class="math inline">\(L_\mathit{ab}\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(L_\mathit{bc}\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(L_\mathit{abc}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\in\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\in\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\in\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">a</td>
+<td style="text-align: center;"><span
+class="math inline">\(\notin\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\notin\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\notin\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">ab</td>
+<td style="text-align: center;"><span
+class="math inline">\(\in\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\notin\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\notin\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">bbcc</td>
+<td style="text-align: center;"><span
+class="math inline">\(\notin\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\in\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\notin\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">aaabbbccc</td>
+<td style="text-align: center;"><span
+class="math inline">\(\in\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\in\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\in\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>It is easy to show that there is a CFG that generates <span
 class="math inline">\(L_\mathit{ab}\)</span>, and similarly that there
 is a CFG that generates <span
 class="math inline">\(L_\mathit{bc}\)</span>. Since we haven’t discussed
-CFGs yet, we won’t show those grammars here. The important thing is just
-that both <span class="math inline">\(L_\mathit{ab}\)</span> and <span
-class="math inline">\(L_\mathit{bc}\)</span> can be generated by
-CFGs.</p>
-<p>But now consider what happens if we combine the conditions of both
-languages. This yields the language <span
-class="math inline">\(L_\mathit{abc} \mathrel{\mathop:}=a^n b^n
-c^n\)</span>, where the number of <em>a</em>s must match the number of
-<em>b</em>s and the number of <em>b</em>s must match the number of
-<em>c</em>s. So <em>aabbcc</em> would be a string of <span
-class="math inline">\(L_\mathit{abc}\)</span>, but not <em>abbcc</em>,
-<em>abbc</em>, or <em>aaabbc</em>. This language cannot be generated by
-any CFG. Even though each individual matching condition can be captured
-by a CFG, their combination cannot.</p>
+CFGs yet, we won’t show those grammars here.
+<!-- fixme: yet? we might never --> The important thing is that even
+though <span class="math inline">\(L_\mathit{ab}\)</span> and <span
+class="math inline">\(L_\mathit{bc}\)</span> can be generated by CFGs,
+<span class="math inline">\(L_\mathit{abc}\)</span> cannot! Even though
+each individual matching condition can be captured by a CFG, their
+combination cannot.</p>
 </div>
 <p>Fortunately, <span class="math inline">\(n\)</span>-gram grammars are
 not like CFGs and can be combined in a very simple fashion.</p>
