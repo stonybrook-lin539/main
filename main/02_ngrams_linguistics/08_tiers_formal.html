@@ -326,17 +326,117 @@ class="math inline">\(s\)</span> itself is irrelevant because said tier
 looks exactly the same as <span class="math inline">\(s\)</span>.</p>
 </div>
 <p>The fact that every <span class="math inline">\(n\)</span>-gram
-grammar is a tier <span class="math inline">\(n\)</span>-gram grammar
-not only tells us that this is a very natural generalization, it also
-makes it easy to generalize our findings about <span
+grammar is a particularly simple tier <span
+class="math inline">\(n\)</span>-gram grammar not only tells us that we
+are dealing with a very natural generalization, it also makes it easy to
+generalize our findings about <span
 class="math inline">\(n\)</span>-gram grammars to tier <span
 class="math inline">\(n\)</span>-gram grammars. This barely requires any
 work at all. We just have to take the procedures we already know and
-carry them out for each tier.</p>
-<p>Consider the case of polarity conversion, i.e. that every positive
-<span class="math inline">\(n\)</span>-gram grammar has an equivalent
-negative <span class="math inline">\(n\)</span>-gram grammar and the
-other way round. This also holds for tier <span
+carry them out for all the subgrammars of a given tier <span
+class="math inline">\(n\)</span>-gram grammar. For example, converting a
+mixed tier <span class="math inline">\(n\)</span>-gram grammar to a
+strict one is simply a matter of converting all subgrammars.</p>
+<div class="example">
+<p>Below is a tier <span class="math inline">\(n\)</span>-gram grammar
+over alphabet <span class="math inline">\(\left \{ a,b,c \right
+\}\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\left \langle  bb, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bab, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}a, \left \{
+a,b,c \right \} \right \rangle\)</span></li>
+</ul>
+<p>This grammar enforces two constraints: no string may start with
+<em>a</em>, and if <em>b</em> ever occurs somewhere to the right of
+another <em>b</em>, then there must be at least two <em>a</em>s between
+those <em>b</em>s.</p>
+<p>The <span class="math inline">\(n\)</span>-grams vary in length, but
+we can fix that in the familiar fashion. First, observe that there are
+two distinct subgrammars here:</p>
+<ul>
+<li><span class="math inline">\(G_\left \{ a,b \right \}\)</span>
+contains both the bigram <span class="math inline">\(bb\)</span> and the
+trigram <span class="math inline">\(bab\)</span>, making it a mixed
+grammar. We will have to convert this into a strict trigram
+grammar.</li>
+<li><span class="math inline">\(G_\left \{ a,b,c \right \}\)</span>
+contains only the bigram <span
+class="math inline">\({\rtimes}a\)</span>. This means it is already a
+strict grammar, but it is a string bigram grammar. We will have to
+convert this to a trigram grammar, too.</li>
+</ul>
+<p>The conversion of <span class="math inline">\(G_\left \{ a,b \right
+\}\)</span> to a strict trigram grammar proceeds in the usual
+fashion.</p>
+<p>The only minor complication is that the set of trigrams we have to
+construct depends on the tier alphabet. For <span
+class="math inline">\(G_\left \{ a,b \right \}\)</span>, we construct
+the set of all trigrams over edge markers, <span
+class="math inline">\(a\)</span>, and <span
+class="math inline">\(b\)</span>. We do not include <span
+class="math inline">\(c\)</span> here because that isn’t part of the
+tier alphabet. We then keep all the trigrams that contain an <span
+class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(G_\left \{ a,b \right \}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\left \langle  {\rtimes}bb, \left \{ a,b
+\right \} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  abb, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bba, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bbb, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bb{\ltimes}, \left \{ a,b
+\right \} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bab, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+</ul>
+<p>When converting <span class="math inline">\(G_\left \{ a,b,c \right
+\}\)</span> to trigrams, we do have to consider <span
+class="math inline">\(c\)</span>, too, because it is part of that tier’s
+alphabet. So now we construct the set of all trigrams over edge markers,
+<span class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and <span
+class="math inline">\(c\)</span>, and again we keep all trigrams that
+contain an <span class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(G_\left \{ a,b,c \right \}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\left \langle  {\rtimes}{\rtimes}a,
+\left \{ a,b,c \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}aa, \left \{
+a,b,c \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}ab, \left \{
+a,b,c \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}ac, \left \{
+a,b,c \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}a{\ltimes},
+\left \{ a,b,c \right \}  \right \rangle\)</span></li>
+</ul>
+<p>The set that contains these 11 trigrams is a tier trigram grammar
+<span class="math inline">\(G&#39;\)</span> that generates exactly the
+same string language.</p>
+</div>
+<div class="exercise">
+<p>For each one of the strings below, show whether it is generated by
+<span class="math inline">\(G\)</span> and/or <span
+class="math inline">\(G&#39;\)</span> from the example above. Do so by
+specifying the relevant tiers of each string (you may draw them or write
+them out) and indicating which factors, if any, are forbidden.</p>
+<ul>
+<li>abc</li>
+<li>cabc</li>
+<li>bcccbcacb</li>
+<li>baccacabcccaab</li>
+</ul>
+</div>
+<p>Now consider the case of polarity conversion, i.e. that every
+positive <span class="math inline">\(n\)</span>-gram grammar has an
+equivalent negative <span class="math inline">\(n\)</span>-gram grammar
+and the other way round. This also holds for tier <span
 class="math inline">\(n\)</span>-gram grammars.</p>
 <div class="example">
 <p>Let <span class="math inline">\(G\)</span> be the tier bigram grammar
@@ -384,31 +484,40 @@ bigram of <span class="math inline">\(G\)</span>. All we have done is
 take the original procedure and carry it out for each tier of <span
 class="math inline">\(G\)</span>.</p>
 </div>
-<p>Note that we do not even have to write an entirely new proof to show
-that polarity conversion is always possible for tier <span
-class="math inline">\(n\)</span>-gram grammars. Instead, a simple
-<strong>lemma</strong> suffices. A <strong>lemma</strong> is a theorem
-that isn’t very interesting on its own but helps us in establishing
-things that are interesting.</p>
+<p>If you’ve paid attention throughout this chapter, you’ll probably
+interject now that we can’t just look at a few examples and conclude
+that things work. No, we need to give a proof! You are quite right,
+except that we don’t need new proofs for the two constructions above.
+Instead, we can just reuse the proofs for <span
+class="math inline">\(n\)</span>-gram grammars, thanks to the nifty
+<strong>lemma</strong> below. A <strong>lemma</strong> is a theorem that
+isn’t very interesting on its own but saves us some work nonetheless —
+in the case at hand, it saves us from having to come up with new
+proofs.</p>
 <div class="lemma">
 <p>Let <span class="math inline">\(G\)</span> and <span
 class="math inline">\(G&#39;\)</span> be tier <span
-class="math inline">\(n\)</span>-gram grammars over <span
-class="math inline">\(\Sigma\)</span> such that every tier <span
-class="math inline">\(T\)</span> of <span
-class="math inline">\(G\)</span> is also a tier of <span
-class="math inline">\(G&#39;\)</span>, and the other way round. Then
-<span class="math inline">\(G\)</span> and <span
-class="math inline">\(G&#39;\)</span> generate the same string language
-if for every tier <span class="math inline">\(T\)</span> of <span
-class="math inline">\(G\)</span>/<span
-class="math inline">\(G&#39;\)</span>, there is no</p>
+class="math inline">\(n\)</span>-gram grammars that each have exactly
+<span class="math inline">\(j\)</span> subgrammars, which we refer to as
+<span class="math inline">\(G_1, \ldots, G_j\)</span> and <span
+class="math inline">\(G&#39;_1, \ldots, G&#39;_j\)</span>, respectively.
+Then <span class="math inline">\(L(G) = L(G&#39;)\)</span> if <span
+class="math inline">\(L(G_i) = L(G&#39;_i)\)</span> for all <span
+class="math inline">\(1 \leq i \leq j\)</span>.</p>
+</div>
+<div class="proof">
+<p>This follows immediately from the fact that, by definition, a string
+is well-formed with respect to a tier <span
+class="math inline">\(n\)</span>-gram grammar iff it is well-formed with
+respect to all its subgrammars. Yes, that’s it, no more work needed.</p>
 </div>
 <div class="exercise">
 <p>Note that the lemma uses <em>if</em> instead of <em>iff</em>. Can you
-think of a case where two grammars disagree on the well-formedness of
-specific tiers but still generate the same string language?</p>
+think of a case where <span class="math inline">\(L(G_i) \neq
+L(G&#39;_i)\)</span> yet <span class="math inline">\(L(G) =
+L(G&#39;)\)</span>?</p>
 </div>
+<p>This lemma</p>
 <ul>
 <li>mixed can be made strict</li>
 <li>polarity conversion still the same</li>
