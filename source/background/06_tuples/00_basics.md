@@ -185,7 +185,7 @@ Compute $\tuple{a} \tuplecat \tuple{}$ and $\tuple{} \tuplecat \tuple{a,a,a}$.
 
 ## Difference to strings
 
-Strings can be regarded tuples over some fixed alphabet of symbols.
+Strings can be regarded as tuples over some fixed alphabet of symbols.
 For instance, the string $\String{abc}$ can be viewed as the tuple $\tuple{a,b,c}$.
 However, tuples are more general because their elements do not need to be symbols of some alphabet.
 Just like sets (and multisets, if you have encountered those already), tuples can contain arbitrary objects.
@@ -219,7 +219,7 @@ Justify your answer!
 Two tuples $u$ and $v$ are identical iff all of the following hold:
 
 1. $\length{u} = \length{v}$, and
-1. for all $0 < i \leq \length{u}$, $\pi_i(u) = \pi(v)$.
+1. for all $0 < i \leq \length{u}$, $\pi_i(u) = \pi_i(v)$.
 :::
 
 - Like strings, tuples are ordered ($\tuple{a,b} \neq \tuple{b,a}$) and lack idempotency ($\tuple{a} \neq \tuple{a,a}$).

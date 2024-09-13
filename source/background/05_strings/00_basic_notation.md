@@ -31,13 +31,13 @@ Caution: $\{$ and $\}$ can be symbols just like $m$, $a$, or $d$.
 
 When talking about strings, one usually fixes a finite set of symbols over which the strings are built.
 This is called an **alphabet**.
+It is common but not necessary to require alphabets to contain at least one symbol.
 Alphabets are often given labels like $\Sigma$ or $\Omega$.
-A string over alphabet $\Sigma$ is also called a $\Sigma$-string.
+A string **over alphabet $\Sigma$** is also called a **$\Sigma$-string**.
 
 ::: example
 The set of Latin characters (A-Z, a-z) is an alphabet that's familiar to all of you.
 Strings over it include:
-
 
 - string
 - alphabet
@@ -177,7 +177,7 @@ Here's a little bit of background to make it easier for you to remember the diff
 As you might know from search engines, the Kleene star `*` is sometimes used as a wildcard that matches everything.
 So $\Sigma^*$ can be translated as "every string built over $\Sigma$".
 On the other hand $\Sigma^+$ only contains those strings whose length is at least 1, or in other words, whose length is positive.
-And $+$ is a common abbreviation for positive (just think of batteries).
+And $+$ is a common abbreviation for positive (e.g. with batteries).
 
 ::: exercise
 Enumerate the five shortest members of $\setof{a}^*$.
@@ -202,13 +202,14 @@ This means that if we carry out multiple concatenations, it does not matter in w
 ::: example
 It does not matter in which order we combine *is* with *concatenation* and *associative* below:
 
-- $(\mathit{concatenation} \stringcat \mathit{is}) \stringcat \mathit{associative} = \mathit{concatenation is associative}$
-- $\mathit{concatenation} \stringcat (\mathit{is} \stringcat \mathit{associative}) = \mathit{concatenation is associative}$
+- $(\mathit{concatenation} \stringcat \mathit{is}) \stringcat \mathit{associative} = \mathit{concatenation is} \stringcat \mathit{associative} = \mathit{concatenation is associative}$
+- $\mathit{concatenation} \stringcat (\mathit{is} \stringcat \mathit{associative}) = \mathit{concatenation} \stringcat \mathit{is associative} = \mathit{concatenation is associative}$
 
 :::
 
 Even though concatenation is associative, it is not **commutative**.
 That is to say, $u \stringcat v$ and $v \stringcat u$ are not necessarily the same.
+They might be, but it's not guaranteed.
 
 ::: example
 Let $u \is \text{house}$ and $v \is \text{boat}$.
@@ -228,6 +229,11 @@ Give an example of distinct $u$ and $v$ such that $\mathit{uv} = \mathit{vu}$ an
 ::: exercise
 Is the following true or false?
 If $u \neq v$, then $\mathit{uv} \neq \mathit{vu}$?
+:::
+
+::: exercise
+Is the following true or false?
+If $\mathit{uv} \neq \mathit{vu}$, then $u \neq v$?
 :::
 
 ## Recap

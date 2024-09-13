@@ -146,7 +146,7 @@ This is a **positive $n$-gram grammar**, where the $n$-grams list what sequences
 
 ::: example
 The list of bigrams above is *{{{L}}} de-*, *de- nature*, *nature -al*, *-al -ize*, *-ize -ation*, *-ation {{{R}}}*.
-If this is interpreted as positive bigram grammar, then only *denaturalization* is well-formed.
+If this is interpreted as a positive bigram grammar, then only *denaturalization* is well-formed.
 A string like *nature -al -ize -ation -de* is illicit because it contains the bigram *-ation de-*, which is not part of the positive grammar and thus forbidden.
 If one adds *nature {{{R}}}* to the grammar, then *nature* can also be generated.
 :::
@@ -229,21 +229,30 @@ The positive grammar, on the other hand, contains
 1. *ba* (*b* may be followed by *a*),
 1. *a{{{R}}}* (you may end with *a*).
 
-Now compare this to the list of all possible bigrams over *a*, *b*, and the edge markers {{{L}}} and {{{R}}} (we ignore useless bigrams such as {{{R}}}{{{L}}}, which can never occur in a string):
+Now compare this to the list of all possible bigrams over *a*, *b*, and the edge markers {{{L}}} and {{{R}}}.
+Useless bigrams such as {{{R}}}{{{L}}}, which can never occur in a string, are listed in parenthesis.
 
-1. *{{{L}}}{{{R}}}*,
-1. *{{{L}}}a*,
-1. *{{{L}}}b*,
-1. *a{{{R}}}*,
-1. *aa*,
-1. *ab*,
-1. *b{{{R}}}*,
-1. *ba*,
-1. *bb*.
+|                  |            |              |                  |
+| :-:              | :-:        | :-:          | :-:              |
+| ({{{L}}}{{{L}}}) | {{{L}}}a   | {{{L}}}b     | {{{L}}}{{{R}}}  |
+| (a{{{L}}})       | aa         | ab           | a{{{R}}}         |
+| (b{{{L}}})       | ba         | bb           | b{{{R}}}         |
+| ({{{R}}}{{{L}}}) | ({{{R}}}a) | ({{{R}}}b)   | ({{{R}}}{{{R}}}) |
 
 Notice anything?
-Each one of those bigrams is either in the negative grammar or in the positive one, but never in both.
-So in order to convert a positive grammar to a negative one, or the other way round, it suffices to first compute all possible $n$-grams and then remove all those that are in the grammar that is to be converted to the opposite polarity.
+With the exception of the useless bigrams, each bigram in this table is either in the negative grammar or in the positive one, but never in both.
+Here, let me highlight it for you, with the $n$-grams of the negative grammar in *italics* and those of the positive grammar in **boldface**.
+
+|                  |                |              |                  |
+| :-:              | :-:            | :-:          | :-:              |
+| ({{{L}}}{{{L}}}) | **{{{L}}}a**   | *{{{L}}}b*   | *{{{L}}}{{{R}}}* |
+| (a{{{L}}})       | *aa*           | **ab**       | **a{{{R}}}**     |
+| (b{{{L}}})       | **ba**         | *bb*         | *b{{{R}}}*       |
+| ({{{R}}}{{{L}}}) | ({{{R}}}a)     | ({{{R}}}b)   | ({{{R}}}{{{R}}}) |
+
+So in order to convert a positive grammar to a negative one, or the other way round, it suffices to first compute all possible $n$-grams and then remove all those that are in the original grammar.
+The remainder (*modulo* useless $n$-grams) is the corresponding grammar of the opposite polarity.
+
 
 ::: example
 Suppose our alphabet contains only *a* and that the only well-formed string is *aa*.
@@ -318,7 +327,7 @@ It is up to you whether you want to use a positive or a negative grammar.
 If you use a negative grammar, it can be in the mixed format, with $n$-grams of varying lengths.
 :::
 
-## An important take-home message
+## The moral of more is more
 
 The next section will give a formal proof that the simple conversion strategy laid out above will always result in an equivalent grammar.
 By "equivalent" we mean that the two grammars generate exactly the same strings --- there is no string such that the two grammars disagree on whether the string is well-formed or ill-formed.
@@ -329,17 +338,18 @@ Linguistics is driven by the search for **the** correct description of linguisti
 Linguists want the "source code" of the language program that runs in the human brain, not just any implementation that exhibits the same behavior.
 To a linguist, true understanding of language is achieved when we have found the one and only true model.
 If it looks like we have multiple equally viable analyses, descriptions, theories, or formalisms, then that just shows that we don't know enough about language yet to tease them apart.
-Our mathematical findings show us that things aren't that simple, this quest for *the* one unique correct specification does not work for abstract concepts.
+Our mathematical findings show us that things aren't that simple, this quest for **the** one unique correct specification does not work for abstract concepts.
 And all linguistic concepts are abstract.
 When dealing with abstract ideas, you want to be able to conceptualize them in as many distinct ways as possible.
 True understanding comes from the ability to describe one and the same thing in many different ways, each one with its unique advantages and its unique opportunities for new insights.
 
-Now admittedly there is more linguistic data than just what strings are well-formed or ill-formed.
+Now you might say that there is more linguistic data than just what strings are well-formed or ill-formed, and perhaps that data will tell us exactly is going on with language in the human mind.
 For example, we can put native speakers into fMRI machines to get an inkling of an idea of what computations occur in a native speaker's brain when they are asked to determine whether a word is well-formed.
 But the data one obtains this way is very different in nature from the models linguists operate with.
-The brain data has to be given a specific interpretation in order to link it to linguistic models, and there are many different plausible implementations to choose from.
+The brain data has to be given a specific interpretation in order to link it to linguistic models, a **linking hypothesis**.
+Unsurprisingly, there are many plausible linking hypotheses to choose from.
 Just like there may not be such a thing as **the** correct grammar, there may not be such a thing as **the** correct linking hypothesis.
-We may well be living in a world where grammar $G$ plus linking hypothesis $L$ makes exactly the same predictions as grammar $G'$ with linking hypothesis $L'$.
+We may well be living in a world where grammar $G$ plus linking hypothesis $H$ makes exactly the same predictions as grammar $G'$ with linking hypothesis $H'$.
 
 Rather than reject this scenario or trying to argue it away, we should embrace it.
 The conventional wisdom that true understanding of language means having converged on exactly one way of looking at language has it exactly the wrong way around.

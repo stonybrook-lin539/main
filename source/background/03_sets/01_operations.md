@@ -1,9 +1,9 @@
 ---
 pagetitle: >-
-    Union, intersection, and complement of sets
+    Operations: Union, intersection, and complement of sets
 ---
 
-# Union, intersection, and complement of sets
+# Operations: Union, intersection, and complement of sets
 
 :::prereqs
 - sets (basic notation)
@@ -27,7 +27,7 @@ At the same time, the empty set is not simply nothing because it is still a set.
 A set is not nothing, just like an empty container is not nothing.
 
 The empty set may seem rather useless to you, but it actually has a very important role to play.
-Just like the introduction of $0$ was a tremendous breakthrough that made arithmetic a lot more elegant and internally consistent, operations on sets would not nearly be as well-behaved without the empty set.
+Just like the introduction of $0$ was a tremendous breakthrough that made arithmetic a lot more elegant and internally consistent, operations on sets would not be as well-behaved without the empty set.
 You will see some examples of that right away.
 
 ::: exercise
@@ -50,12 +50,17 @@ Given two sets $A$ and $B$, their **union** $A \cup B$ is the set that contains
 - nothing else.
 
 This means that the union of two sets is the result of taking everything that belongs to at least one set.
-So union builds bigger sets from smaller sets.
+Union builds bigger sets from smaller sets.
 This makes it something like the set counterpart of addition over numbers.
+
+::: definition
+Given two sets $A$ and $B$, $x$ is a member of the **union** $A \cup B$ iff $x$ is a member of at least one of $A$ and $B$.
+:::
 
 ::: example
 The union of $\setof{1}$ and $\setof{2,3,4}$ is $\setof{1,2,3,4}$.
 The union of $\setof{1,2}$ and $\setof{3,4}$ is also $\setof{1,2,3,4}$.
+And the union of $\setof{1,2}$ and $\setof{1,2,3,4}$ is just $\setof{1,2,3,4}$ itself.
 :::
 
 ::: exercise
@@ -82,10 +87,30 @@ Compute the union of the following:
 
 Union is **associative**, which means that $(A \cup B) \cup C = A \cup (B \cup C)$.
 This is just like $(5 + 4) + 3 = 5 + (4 + 3)$.
-It is also **commutative**.
+
+::: example
+Is is easy to show that
+$(\setof{a} \cup \setof{b}) \cup \setof{c} = \setof{a} \cup (\setof{b} \cup \setof{c})$:
+
+$$
+(\setof{a} \cup \setof{b}) \cup \setof{c} =
+\setof{a,b} \cup \setof{c} =
+\setof{a,b,c} =
+\setof{a} \cup \setof{b,c} =
+\setof{a} \cup (\setof{b} \cup \setof{c})
+$$
+
+:::
+
+Union is also **commutative**.
 That is to say, the order of arguments does not matter: $A \cup B = B \cup A$.
 This again mirrors addition, where $5 + 3 = 3 + 5$.
 Also note that $A \cup \emptyset = A$ for any set $A$, just like $n + 0 = n$ for any number $n$.
+
+::: example
+It is easy to see that $\setof{a} \cup \setof{b} = \setof{a,b} = \setof{b} \cup \setof{a}$.
+And just as obviously $\setof{a,b} \cup \emptyset = \emptyset \cup \setof{a,b} = \setof{a,b}$.
+:::
 
 ::: exercise
 Compute the union of the following in a step-wise fashion:
@@ -95,14 +120,18 @@ Compute the union of the following in a step-wise fashion:
 
 :::
 
+
 ## Intersection
 
 Intersection is the opposite of union in that it builds smaller sets rather than bigger ones.
-Given two sets $A$ and $B$, their **intersection** $A \cap B$ is the set that contains only those elements that belong to $A$ as well as $B$.
+
+::: definition
+Given two sets $A$ and $B$, $x$ is a member of the **intersection** $A \cap B$ iff $x$ is a member of both $A$ and $B$.
+:::
 
 ::: example
 The intersection of $\setof{1}$ and $\setof{2,3,4}$ is $\emptyset$, and so is the intersection of $\setof{1,2}$ and $\setof{3,4}$.
-But the intersection of $\setof{1,2}$ and $\setof{2,3,4}$ is $\setof{2}$.
+But the intersection of $\setof{1,2,3}$ and $\setof{2,3,4}$ is $\setof{2,3}$.
 :::
 
 ::: exercise
@@ -129,19 +158,47 @@ Compute the intersection of the following:
 
 Note that $A \cap \emptyset = \emptyset$ no matter what the set $A$ looks like.
 This is similar to how $n \cdot 0 = 0$ irrespective of the value of $n$.
+<!-- fixme: multiplication symbol -->
 So intersection is akin to multiplication for sets.
-Like multiplication, intersection is associative, so that $(A \cap B) \cap C = A \cap (B \cap C)$.
+Like multiplication, intersection is **associative**, so that $(A \cap B) \cap C = A \cap (B \cap C)$.
 This mirrors the fact that $(5 \cdot 4) \cdot 2 = 5 \cdot (4 \cdot 2)$.
-Intersection is also commutative, again just like multiplication:
+
+::: example
+Is is easy to show that
+$(\setof{a,b,c} \cap \setof{b,c,d}) \cap \setof{c,d,e} = \setof{a,b,c} \cap (\setof{b,c,d} \cap \setof{c,d,e})$:
+
+$$
+(\setof{a,b,c} \cap \setof{b,c,d}) \cap \setof{c,d,e} =
+\setof{b,c} \cap \setof{c,d,e} =
+\setof{c} =
+\setof{a,b,c} \cap \setof{b,c,d} =
+\setof{a,b,c} \cap (\setof{b,c,d} \cap \setof{c,d,e})
+$$
+
+:::
+
+Intersection is also **commutative**, again just like multiplication:
 $A \cap B = B \cap A$, and $m \cdot n = n \cdot m$.
+
+::: example
+It is easy to see that $\setof{a,b} \cap \setof{b,c} = \setof{b} = \setof{b,c} \cap \setof{a,b}$.
+And just as obviously $\setof{a,b} \cap \emptyset = \emptyset = \emptyset \cap \setof{a,b}$.
+:::
 
 The one difference between intersection and multiplication seems to be that the former produces something smaller and the latter something bigger.
 But as we will learn later, this isn't really all that important, and the two operations are indeed very close counterparts in an abstract sense.
+<!-- fixme: vague reference to abstract algebra, not in lecture notes yet -->
 
 ## Relative complement
 
 Given the set-counterparts for $+$ and $\cdot$, you probably expect one for subtraction, too.
 It exists, indeed, and is called **relative complement**.
+
+::: definition
+Given two sets $A$ and $B$, $x$ is a member of the **complement of $B$ relative to $A$** iff $x$ is a member of $A$ but not $B$.
+The set of all such $x$ is denoted $A - B$ (sometimes $A \setminus B$).
+:::
+
 Given two sets $A$ and $B$, their relative complement is written $A - B$ (sometimes $A \setminus B$).
 The *complement of $B$ relative to $A$* contains all members of $A$ that are not members of $B$.
 
@@ -150,13 +207,18 @@ The complement of $\setof{2}$ relative to $\setof{1,2,3}$ is $\setof{1,2,3} - \s
 The complement of $\setof{3,4,5}$ relative to $\setof{2,3}$ is $\setof{2,3} - \setof{3,4,5} = \setof{2}$.
 :::
 
-Relative complement is **not** associative in the general case.
-For example, $(\setof{0,1} - \setof{0}) - \setof{1} = \emptyset$, whereas $\setof{0,1} - (\setof{0} - \setof{1}) = \setof{1}$.
+Relative complement is **not associative** in the general case.
+
+::: example
+Consider $(\setof{0,1} - \setof{0}) - \setof{1} = \emptyset$, whereas $\setof{0,1} - (\setof{0} - \setof{1}) = \setof{1}$.
 Since associativity requires that the order of evaluation may never matter, this one example where it does matter is sufficient to show that associativity does not hold.
+:::
+
 That doesn't mean that there are never cases where one can't change the order of evaluation at all.
 For instance, $(\setof{0,1} - \setof{0}) - \setof{2} = \setof{1} = \setof{0,1} - (\setof{0} - \setof{2})$.
 But that is merely a coincidence.
 That relative complement is not associative mirrors subtraction for numbers, where $(5 - 2) - 3 = 0 \neq 6 = 5 - (2 -3)$.
+
 Commutativity does not hold for relative complement either, as is shown by $\setof{5} - \setof{5,4} = \emptyset \neq \setof{4} = \setof{5,4} - \setof{5}$.
 
 ::: exercise
@@ -164,7 +226,7 @@ Give a concrete example where $A - B = B - A$.
 Then make a single change to $A$ such that $A - B \neq B - A$.
 :::
 
-If $A$ is clear from context, we just write $\overline{B}$ for $A - B$ and call it the complement of $B$.
+If $A$ is clear from context, we just write $\overline{B}$ for $A - B$ and call it the **complement of $B$**.
 
 ::: example
 Given some fixed $A \is \setof{0,1,2,3}$, we have $\overline{\setof{1,3}} = \setof{0,2}$.
@@ -188,6 +250,29 @@ Explain why this holds.
 
 *Hint*: By definition, $\overline{\overline{B}} = A - \overline{B} = A - (A - B)$.
 :::
+
+## Pictures for set operations
+
+If we represent the sets $A$ and $B$ as overlapping circles, then we can use shading to indicate what parts of $A$ and or $B$ are picked out by the respective operations.
+
+~~~ {.include-tikz size=mid}
+set_intersection.tikz
+~~~
+
+~~~ {.include-tikz size=mid}
+set_union.tikz
+~~~
+
+~~~ {.include-tikz size=mid}
+set_complement.tikz
+~~~
+
+## Mnemonics for notation
+
+Beginners tend to confuse $\cap$ and $\cup$.
+Here is a mnemonic:
+The term *union* starts with *u*, and $\cup$ looks like a stylized U.
+By contrast, $\cap$ looks like a bit like a stylized, minimalist A, and $A \cap B$ contains all $x$ that are members of $A$ **a**nd $B$.
 
 ## Recap
 

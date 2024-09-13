@@ -41,7 +41,8 @@ Sets are often written as lists with curly braces around them.
 So $\setof{a, b, c, d}$ denotes the set containing $a$, $b$, $c$, $d$.
 Here $a$, $b$, $c$, $d$ are some arbitrary objects.
 This is known as **list notation**.
-More complex sets are defined with [**set-builder notation**, which will be covered in a later unit](./fixme).
+More complex sets are defined with **set-builder notation**, which will be covered in a later unit.
+<!-- fixme: add link to unit -->
 
 ::: example
 Consider the string *If John slept, then Mary left*.
@@ -78,6 +79,9 @@ Then it holds that $\mathit{left} \in W$ and $\mathit{right} \notin W$.
 But it is not the case that $\mathit{then} \notin W$ or $\mathit{awake} \in W$.
 :::
 
+You might be wondering why we use the symbol $\in$ for set membership.
+The following mnemonic, while historically inaccurate, may help you with remembering the notation: $\in$ looks like a stylized *E*, and $x \in S$ means that $x$ is an *E*lement of $S$.
+
 Sometimes $\ni$ is used as the mirror image of $\in$.
 For example, $a \in S$ could also be written as $S \ni a$.
 
@@ -97,7 +101,7 @@ Put $\in$, $\ni$, $\notin$, $\not\ni$ in the gaps below as appropriate:
 :::
 
 Sets can contain arbitrary objects, including other sets.
-However, the members of a set are just the elements immediately contained by the set, not what might in turn by contained inside of those elements.
+However, the members of a set are just the elements immediately contained by the set, not what might in turn be contained inside of those elements.
 
 ::: example
 The set $\setof{a, \setof{b}}$ has two members: $a$ and $\setof{b}$.
@@ -206,17 +210,18 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 ::: exercise
 The sentence *If police police police, then police police police* actually uses two different word types.
 It just just so happens that both are pronounced and spelled *police*.
-But one is the noun *police*, the other one the verb *police*.
-So we might want to annotate the string as follows:
-*If police[N] police[V] police[N], then police[N] police[V] police[N]*.
-Assume that words are annotated with their part of speech in this fashion.
-Then what would be the corresponding set of words?
+But one is the **noun** *police*, the other one the **verb** *police*.
+We can use the **parts of speech** N and V, respectively, to distinguish between the noun *police* and the verb *police*.
+Let us add parts of speech to all the words in the string (we use C for the **complementizers** *if* and *then*):
+*If[C] police[N] police[V] police[N], then[C] police[N] police[V] police[N]*.
+What would be the corresponding set of words for this string (i.e. where we now distinguish between *police[N]* and *police[V]*)?
 :::
 
-Again it is important to keep in mind that these regularities only hold with respect to the elements of a set, not what may be contained by those elements.
+It is important to keep in mind that idempotency only holds with respect to the elements of a set, not what may be contained by those elements.
 
 ::: example
 Even though $\setof{a} = \setof{a,a}$, it is not the case that $\setof{a} = \setof{a, \setof{a}}$.
+The former is the set containing $a$, the other is the set containing $a$ and the set of $a$.
 :::
 
 ::: exercise

@@ -30,7 +30,7 @@ But this has several downsides:
 - **No guarantees**  
   Just because your simulations produce a certain result does not mean that things always work this way.
   If you ask 1000 people if they've ever read Werner Schwab's *Fäkaliendramen* (feces dramas), the answers will probably all be No.
-  But if your sample happened to include mostly literature buffs, you'll hear Yes a lot more often.
+  But if your sample happened to include lots of Austrian literature buffs, you'll hear Yes a lot more often.
   Similarly, the grammars you construct for your simulation might exhibit a special property that allows them to pass the test.
   There might still be grammars that do not display this property and fail.
   If you construct the grammars with a program, your code might be written in a way that only produces grammars of a specific type.
@@ -48,7 +48,7 @@ Computer-aided simulations are a very common tool nowadays, but that does not me
 They are hard to design, often require significant resources, and do not provide complete insight into how the specific aspects of a system determine its behavior.
 That's not to say that simulations are a bad thing --- if you are dealing with a very complex system, they're often the best tool at your disposal.
 But there are other tools around, and in many cases they are a superior choice.
-Mathematics furnishes the best tool of them all: proofs!
+Mathematics furnishes the most powerful tool of them all: proofs!
 
 A mathematical proof starts out from a fixed set of assumptions and shows how these assumptions entail a specific property.
 We will see a concrete example in a moment, but let's first focus on the specific advantages of proofs:
@@ -57,7 +57,7 @@ We will see a concrete example in a moment, but let's first focus on the specifi
   Hard proofs are very, very hard.
   They are much harder than designing a simulation.
   But unless you are a professional mathematician, most proofs you'll ever see are fairly easy.
-  And easy proofs are very, very easy.
+  And easy proofs require very little effort.
   You can often work them out in less than 30 minutes, and they only take a few lines to write down.
 
 - **Guarantees**  
@@ -82,7 +82,7 @@ Our initial question is whether there is any problem with mixing bigrams and tri
 This is not a very precise question.
 What exactly constitutes a problem?
 If you have to write on a tiny piece of paper that can barely hold a single bigram, adding a trigram to the mix creates problems.
-That's obviously not our concern here.
+Such pesky tribulations of daily life are obviously not our concern here.
 Remember that we use negative $n$-gram grammars as a model of natural language phonotactics.
 So their job is to describe which potential words are well-formed and which are ill-formed.
 We would have a problem if this failed for some reason: a word is both well-formed or ill-formed, a word that is ill-formed suddenly becomes well-formed when bigrams and trigrams are mixed, or the other way round.
@@ -106,68 +106,65 @@ Then there exists an equivalent negative grammar $G'$ such that every $n$-gram o
 
 We start with a few key observations.
 
-- Every language has only finitely many sounds.
-  The precise number does not matter here, it could be 2, it could be 2 trillion trillion.
-  The important thing is that it is finite.
-  We use $\card{\Sigma}$ as the special symbol for this number.
+First, every language has only finitely many sounds.
+The precise number does not matter here, it could be 2, it could be 2 trillion trillion.
+The important thing is that it is finite.
+We use $\card{\Sigma}$ as the special symbol for this number.
 
-  ::: example
-  If a language only has the sounds *a*, *u*, *i*, *b*, *m*, *d*, *g*, and *h*, then $\card{\Sigma}$ for that specific language is $8$.
-  :::
+::: example
+If a language only has the sounds *a*, *u*, *i*, *b*, *m*, *d*, *g*, and *h*, then $\card{\Sigma}$ for that specific language is $8$.
+:::
 
-- As stated in the theorem, the longest $n$-gram is assumed to have length $k$.
-  Since each position is filled by either a sound or one of two edge markers ({{{L}}} or {{{R}}}), there are $\card{\Sigma} + 2$ choices for each position.
-  Consequently, there are at most $(\card{\Sigma}+2)^k$ different $n$-grams of length $k$.
-  This implies that for every possible value of $k$, there are only finitely many $n$-grams of length $k$.
-  Note that this also implies that $G$ contains only finitely many $n$-grams.
+Second, the theorem assumes that the longest $n$-gram is of length $k$.
+Since each position is filled by either a sound or one of two edge markers ({{{L}}} or {{{R}}}), there are $\card{\Sigma} + 2$ choices for each one of those $k$ positions.
+This allows us to precisely calculate the number of distinct $n$-grams of length $k$:
 
-  ::: example
-  Suppose that the language only has the sounds *a* and *d*, barely enough for *dada*.
-  It's value for $\card{\Sigma}$ is $2$.
-  Let us calculate how many trigrams there are.
-  Since we are dealing with trigrams, $k=3$.
-  Given the formula above, this means there are $(\card{\Sigma}+2)^k = (2+2)^3 = 4^3 = 64$ different trigrams.
-  Not all of them are ever useful.
-  In particular, no word ever contains an edge marker in the middle, so *a{{{L}}}a* and *a{{{R}}}a* serve no purpose.
-  It is also impossible for {{{R}}} to occur to the left of {{{L}}}, which rules out trigrams like *{{{R}}}a{{{L}}}* and *{{{R}}}{{{L}}}a*.
-  Filtering out those useless trigrams leaves us with the following list:
+$$\overbrace{(\card{\Sigma}+2) \times \cdots \times (\card{\Sigma+2)})}^{k\ \mathrm{times}} = (\card{\Sigma}+2)^k$$
 
-  -
-  aaa,
-  aad,
-  aa{{{R}}},
-  ada,
-  add,
-  ad{{{R}}},
-  a{{{R}}}{{{R}}},
-  daa,
-  dad,
-  da{{{R}}},
-  dda,
-  ddd,
-  dd{{{R}}},
-  d{{{R}}}{{{R}}},
-  {{{L}}}aa,
-  {{{L}}}ad,
-  {{{L}}}a{{{R}}},
-  {{{L}}}da,
-  {{{L}}}dd,
-  {{{L}}}d{{{R}}},
-  {{{L}}}{{{L}}}a,
-  {{{L}}}{{{L}}}d,
-  {{{L}}}{{{L}}}{{{L}}},
-  {{{L}}}{{{L}}}{{{R}}},
-  {{{L}}}{{{R}}}{{{R}}},
-  {{{R}}}{{{R}}}{{{R}}}
+Crucially, this implies that for every possible value of $k$, there are only finitely many $n$-grams of length $k$.
+And that in turn implies that $G$ contains only finitely many $n$-grams.
 
-  But even if we had included all useless trigrams, that would not change the fact that there are only finitely many trigrams over *a*, *d*, and the edge markers.
-  :::
+::: example
+Suppose that the language only has the sounds *a* and *d*, barely enough for *dada*.
+It's value for $\card{\Sigma}$ is $2$.
+Let us calculate how many trigrams there are.
+Since we are dealing with trigrams, $k=3$.
+Given the formula above, this means there are $(\card{\Sigma}+2)^k = (2+2)^3 = 4^3 = 64$ different trigrams.
+Not all of them are ever useful.
+In particular, no word ever contains an edge marker in the middle, so *a{{{L}}}a* and *a{{{R}}}a* serve no purpose.
+It is also impossible for {{{R}}} to occur to the left of {{{L}}}, which rules out trigrams like *{{{R}}}a{{{L}}}* and *{{{R}}}{{{L}}}a*.
+And since we only have $k-1$ edge markers on each end of the string, we do not need {{{L}}}{{{L}}}{{{L}}} or {{{R}}}{{{R}}}{{{R}}} either.
+Filtering out those useless trigrams leaves us with the following:
 
-Now suppose that we pick one of the finitely many $n$-grams of our grammar $G$.
+
+|                    |                   |                        |                           |
+| :-:                | :-:               | :-:                    | :-:                       |
+| aaa                | daa               | {{{L}}}aa              | {{{L}}}{{{L}}}a           |
+| aad                | dad               | {{{L}}}ad              | {{{L}}}{{{L}}}d           |
+| aa{{{R}}}          | da{{{R}}}         | {{{L}}}a{{{R}}}        | {{{L}}}{{{L}}}{{{R}}}     |
+|                    |                   |                        |                           |
+| ada                | dda               | {{{L}}}da              |                           |
+| add                | ddd               | {{{L}}}dd              |                           |
+| ad{{{R}}}          | dd{{{R}}}         | {{{L}}}d{{{R}}}        |                           |
+|                    |                   |                        |                           |
+| a{{{R}}}{{{R}}}    | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
+|                    |                   |                        |                           |
+
+But even if we had included all useless trigrams, that would not change the fact that there are only finitely many trigrams over *a*, *d*, and the edge markers.
+:::
+
+::: exercise
+Calculate the number of bigrams that only use *a*, *b*, *c*, and edge markers.
+Write down a table with all those bigrams, including useless ones.
+How many of the bigrams are useless?
+:::
+
+These observations form the starting point for our conversion procedure.
+Suppose that we pick one of the finitely many $n$-grams of our grammar $G$.
 Call this $n$-gram $g$.
 If the length of $g$ is already $k$, we do not need to do anything to make it an $n$-gram of length $k$.
 But if its length $i$ is strictly less than $k$, we need to replace $g$ by something equivalent of length $k$.
-More precisely, we replace $g$ with every possible $n$-gram of length $k$ that contains $g$ as a *substring*.
+More precisely, we replace $g$ with every possible $n$-gram of length $k$ that contains $g$ as a **substring**.
 By this we mean that $g$ occurs inside of these $n$-grams.
 
 ::: example
@@ -177,19 +174,65 @@ Now suppose that we have a negative grammar $G$ that contains two $n$-grams, one
 
 We want to convert $G$ into an equivalent grammar $G'$ that only uses trigrams.
 Since *ada* is already a trigram, we keep it as is.
-But *dd* is a bigram and thus has to be replaced with every trigram that contains the substring *dd*.
-Consulting the list from the previous example, we see that these are
+Let us keep track of this by marking it in bold face in our table of possible trigrams.
 
-- add, dda, ddd, dd{{{R}}}, {{{L}}}dd
+|                    |                   |                        |                           |
+| :-:                | :-:               | :-:                    | :-:                       |
+| aaa                | daa               | {{{L}}}aa              | {{{L}}}{{{L}}}a           |
+| aad                | dad               | {{{L}}}ad              | {{{L}}}{{{L}}}d           |
+| aa{{{R}}}          | da{{{R}}}         | {{{L}}}a{{{R}}}        | {{{L}}}{{{L}}}{{{R}}}     |
+|                    |                   |                        |                           |
+| **ada**            | dda               | {{{L}}}da              |                           |
+| add                | ddd               | {{{L}}}dd              |                           |
+| ad{{{R}}}          | dd{{{R}}}         | {{{L}}}d{{{R}}}        |                           |
+|                    |                   |                        |                           |
+| a{{{R}}}{{{R}}}    | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
+|                    |                   |                        |                           |
 
-After the replacement step, we are left with a negative grammar $G'$ that contains six forbidden $n$-grams, all of which are trigrams:
+The only other $n$-gram in $G$ is *dd*.
+As *dd* is a bigram, we replace it with every trigram that contains the substring *dd*.
+So let us go through our table of trigrams and also mark every trigram that contains *dd*: add, dda, ddd, dd{{{R}}}, {{{L}}}dd.
 
-- ada, add, dda, ddd, dd{{{R}}}, {{{L}}}dd
+|                    |                   |                        |                           |
+| :-:                | :-:               | :-:                    | :-:                       |
+| aaa                | daa               | {{{L}}}aa              | {{{L}}}{{{L}}}a           |
+| aad                | dad               | {{{L}}}ad              | {{{L}}}{{{L}}}d           |
+| aa{{{R}}}          | da{{{R}}}         | {{{L}}}a{{{R}}}        | {{{L}}}{{{L}}}{{{R}}}     |
+|                    |                   |                        |                           |
+| **ada**            | **dda**           | {{{L}}}da              |                           |
+| **add**            | **ddd**           | **{{{L}}}dd**          |                           |
+| ad{{{R}}}          | **dd{{{R}}}**     | {{{L}}}d{{{R}}}        |                           |
+|                    |                   |                        |                           |
+| a{{{R}}}{{{R}}}    | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
+|                    |                   |                        |                           |
+
+After the replacement step, we are left with a negative grammar $G'$ that contains six forbidden $n$-grams, all of which are trigrams.
+Those are exactly the six trigrams that are marked in bold above: ada, add, dda, ddd, dd{{{R}}}, {{{L}}}dd.
 
 :::
 
-The new grammar $G'$ constructed this way is equivalent to $G$.
-By "equivalent" we mean that the following holds for every string: $G$ and $G'$ both deem the string well-formed, or $G$ and $G'$ both deem the string ill-formed.
+Carrying out the procedure above for each one of the finitely many $n$-grams in our original grammar $G$ yields a new grammar $G'$ where all $n$-grams are of length $k$.
+
+::: exercise
+Suppose that the grammar $G$ in the example above had also contained the unigram *d* in addition to *dd* and *ada*.
+Using the procedure above, construct the corresponding negative trigram grammar $G'$.
+:::
+
+::: exercise
+Now suppose instead that $G$ had only contained the unigram *d*.
+Using the procedure above, construct the corresponding negative trigram grammar $G'$.
+Do you notice anything?
+What might this tell you about $G$ in the previous exercise?
+:::
+
+::: exercise
+Now suppose that the inventory of sounds also contains *b* in addition to *a* and *d*.
+Using the procedure above, construct the negative trigram grammar for the original grammar $G$ that contains only *dd* and *ada*.
+:::
+
+Crucially, the new grammar $G'$ constructed this way is equivalent to our original grammar $G$.
+By "equivalent" we mean that the following holds for every string:
+$G$ and $G'$ both deem the string well-formed, or $G$ and $G'$ both deem the string ill-formed.
 There is no string that is well-formed for $G$ but ill-formed for $G'$, or the other way around.
 
 To see this, suppose that some string is ill-formed according to $G$.
@@ -216,10 +259,10 @@ Then some $n$-gram $g$ of $G$ must occur in the string, otherwise the string wou
 
   - Consider once more the illicit string, whatever it may be.
     Somewhere inside the string is an offending instance of the illicit $n$-gram $g$.
-    There must be symbols to its left and right, at the very least some edge markers.
-    We know this because $n < k \leq 2k - 2$.
+    Now keep in mind that 1) by assumption $n < k$, and 2) we just established that every string is at least of length $2k - 2$, which is at least as big as $k$.
+    Hence there must be symbols to the left and/or right of $g$, at the very least some edge markers.
     But $G'$ contains every $n$-gram of length $k$ that contains $g$ as a substring.
-    So if a string contains $g$, it also contains at least one of these illicit $n$-grams.
+    So if a string contains $g$, it also contains at least one of these illicit $n$-grams of $G'$.
 
   ::: example
   Continuing the previous example, consider the word *dadd*.
@@ -252,6 +295,17 @@ Suppose that a string is ruled out by $G'$ because it contains the $n$-gram $g$.
 Since $G$ and $G'$ agree on which strings are illicit, they necessarily agree on which strings are well-formed.
 So by carrying out the procedure above for every $n$-gram of $G$, one obtains a grammar $G'$ that is equivalent to $G$ but only contains $n$-grams of a fixed length.
 
+::: exercise
+Let $G$ be our example grammar containing *dd* and *ada*, and $G'$ the equivalent grammar containing *ada*, *add*, *dda*, *ddd*, *dd{{{R}}}*, and *{{{L}}}dd*.
+For each one of the following strings, say whether it is deemed well-formed by $G$ and/or $G'$.
+If a grammar considers a string ill-formed, indicate which forbidden $n$-grams it contains.
+
+- aadaa
+- aaaaa
+- dadda
+- dd
+
+:::
 
 ## Some thoughts
 
@@ -262,6 +316,18 @@ But that's because everything was explained in plain English rather than mathema
 This made the proof harder to read and much longer, and it also means that we had to rely on examples to explain what exactly is intended at each step of the proof.
 The next unit will present the same proof in mathematical notation, and while it may be initially harder for you, this format will be a lot easier for you once you have some experience.
 
+In fact, the mathematical notation will make it very easy to see the intuition that underlies the proof above.
+We are, effectively, exploiting a part-whole relation between $n$-grams of different length.
+Think of it as follows:
+Suppose we have a rule system that allows us to build balls, cubes, and pyramids from wood, metal, or plastic.
+We now get a new guidelines that says "don't build anything wooden".
+You can think of this as a unigram constraint against *wooden*.
+But since what we can build it limited to balls, cubes, and pyramids, we could just as well say "don't build any wooden balls, wooden cubes, or wooden pyramids".
+That is to say, we could replace the unigram with the collection of bigram constraints that an *wooden balls*, *wooden cubes*, and *wooden pyramids*.
+Either way, we will from here on out only be building balls, cubes, and pyramids that are metal or plastic.
+The strategy above does the very same thing, replacing each short $n$-gram with a collection of longer $n$-grams that cover all logically possible ways the short $n$-gram can be combined with other symbols.
+
+This idea might have gotten lost among the walls of text above, but the very succinct mathematical exposition in the next unit will make it crystal-clear.
 In fact, this is why it is so helpful to learn math.
 Many things are intuitive enough that they can be explained in plain English.
 But it is clumsy, imprecise, and takes longer.
@@ -269,169 +335,10 @@ Specialized notation and terminology makes things easier to talk and think about
 
 ## Recap
 
-- In a **fixed** negative $n$-gram grammar, all $n$-grams must have the same length.
+- In a **strict** negative $n$-gram grammar, all $n$-grams must have the same length.
   In a **mixed** negative $n$-gram grammar, this requirement is lifted and $n$-grams may be of different lengths.
-- Every mixed negative $n$-gram grammar can be converted into an equivalent fixed negative $n$-gram grammar.
+- Every mixed negative $n$-gram grammar can be converted into an equivalent strict negative $n$-gram grammar.
   This is an instance of a **normal form theorem**.
 - We can use mathematical proofs to establish results that are guaranteed to hold whenever the conditions assumed by the proof are met.
   In contrast to simulations, proofs allow us to leave some parameters unspecified, e.g. the length of the n-grams.
   In addition, we do not need to worry about accidental gaps or biases in our simulations because a proof states explicitly which assumptions it is built on.
-
-
-<!-- We remove the $n$-gram $g$ from the grammar $G$, and instead add in a number of "padded" variants of $g$:  -->
-<!--  -->
-<!-- - Construct every possible $n$-gram of length $k - i$. -->
-<!--   For each such $n$-gram, put it **in front of** $g$ and add the result back to $G$. -->
-<!--  -->
-<!--   ::: example -->
-<!--   Suppose *G* contains the bigram *z{{{R}}}*, the trigram *{{{L}}}kn*, and the 4-gram *akzn*. -->
-<!--   Assume furthermore that the only possible sounds are *a*, *k*, *z*, and *n*. -->
-<!--  -->
-<!--   We have to pad out *z{{{R}}}* from a bigram to a 4-gram. -->
-<!--   The length difference between a bigram and a 4-gram is 2, so we have to put bigrams in front of *z{{{R}}}*. -->
-<!--   The list of possible (and useful) bigrams is as follows: -->
-<!--  -->
-<!--   - -->
-<!--   {{{L}}}{{{L}}} -->
-<!--   {{{L}}}{{{R}}}, -->
-<!--   {{{R}}}{{{R}}}, -->
-<!--   {{{L}}}a, -->
-<!--   {{{L}}}k, -->
-<!--   {{{L}}}z, -->
-<!--   {{{L}}}n, -->
-<!--   a{{{R}}}, -->
-<!--   aa, -->
-<!--   ak, -->
-<!--   az, -->
-<!--   an, -->
-<!--   k{{{R}}}, -->
-<!--   ka, -->
-<!--   kk, -->
-<!--   kz, -->
-<!--   kn, -->
-<!--   z{{{R}}}, -->
-<!--   za, -->
-<!--   zk, -->
-<!--   zz, -->
-<!--   zn, -->
-<!--   n{{{R}}}, -->
-<!--   na, -->
-<!--   nk, -->
-<!--   nz, -->
-<!--   nn -->
-<!--  -->
-<!--   So we remove *z{{{R}}}* from $G$ and instead add all of the following. -->
-<!--   Note that not all of those 4-grams are useful, but that doesn't matter here. -->
-<!--  -->
-<!--   - -->
-<!--   {{{L}}}{{{L}}}z{{{R}}}, -->
-<!--   {{{L}}}{{{R}}}z{{{R}}}, -->
-<!--   {{{R}}}{{{R}}}z{{{R}}}, -->
-<!--   {{{L}}}az{{{R}}}, -->
-<!--   {{{L}}}kz{{{R}}}, -->
-<!--   {{{L}}}zz{{{R}}}, -->
-<!--   {{{L}}}nz{{{R}}}, -->
-<!--   a{{{R}}}z{{{R}}}, -->
-<!--   aaz{{{R}}}, -->
-<!--   akz{{{R}}}, -->
-<!--   azz{{{R}}}, -->
-<!--   anz{{{R}}}, -->
-<!--   k{{{R}}}z{{{R}}}, -->
-<!--   kaz{{{R}}}, -->
-<!--   kkz{{{R}}}, -->
-<!--   kzz{{{R}}}, -->
-<!--   knz{{{R}}}, -->
-<!--   z{{{R}}}z{{{R}}}, -->
-<!--   zaz{{{R}}}, -->
-<!--   zkz{{{R}}}, -->
-<!--   zzz{{{R}}}, -->
-<!--   znz{{{R}}}, -->
-<!--   n{{{R}}}z{{{R}}}, -->
-<!--   naz{{{R}}}, -->
-<!--   nkz{{{R}}}, -->
-<!--   nzz{{{R}}}, -->
-<!--   nnz{{{R}}} -->
-<!--  -->
-<!--   ::: -->
-<!--  -->
-<!-- - Construct every possible $n$-gram of length $k - i$. -->
-<!--   For each such $n$-gram, put it **after** $g$ and add the result back to $G$. -->
-<!--  -->
-<!--   ::: example -->
-<!--   We also add the following 4-grams to $G$: -->
-<!--  -->
-<!--   - -->
-<!--   z{{{R}}}{{{L}}}{{{L}}}, -->
-<!--   z{{{R}}}{{{L}}}{{{R}}}, -->
-<!--   z{{{R}}}{{{R}}}{{{R}}}, -->
-<!--   z{{{R}}}{{{L}}}a, -->
-<!--   z{{{R}}}{{{L}}}k, -->
-<!--   z{{{R}}}{{{L}}}z, -->
-<!--   z{{{R}}}{{{L}}}n, -->
-<!--   z{{{R}}}aa, -->
-<!--   z{{{R}}}ak, -->
-<!--   z{{{R}}}az, -->
-<!--   z{{{R}}}an, -->
-<!--   z{{{R}}}a{{{R}}}, -->
-<!--   z{{{R}}}ka, -->
-<!--   z{{{R}}}kk, -->
-<!--   z{{{R}}}kz, -->
-<!--   z{{{R}}}kn, -->
-<!--   z{{{R}}}k{{{R}}}, -->
-<!--   z{{{R}}}za, -->
-<!--   z{{{R}}}zk, -->
-<!--   z{{{R}}}zz, -->
-<!--   z{{{R}}}zn, -->
-<!--   z{{{R}}}z{{{R}}}, -->
-<!--   z{{{R}}}na, -->
-<!--   z{{{R}}}nk, -->
-<!--   z{{{R}}}nz, -->
-<!--   z{{{R}}}nn, -->
-<!--   z{{{R}}}n{{{R}}} -->
-<!--  -->
-<!--   Except for *z{{{R}}}{{{R}}}{{{R}}}* these are all useless because {{{R}}} cannot occur between two symbols that aren't edge markers. -->
-<!--   But we add them anyways to stick with the procedure. -->
-<!--   ::: -->
-<!--  -->
-<!-- - Finally, pick any two $n$-grams of length $i'$ and $i''$ such that $i' + i + i'' = k$ (remember that $i$ is the length of the n-gram $g$ that must padded out, and $k$ is the length of the longest $n$-gram in the grammar). -->
-<!--   Sandwich $g$ between those $n$-grams and add the result to the grammar $G$. -->
-<!--  -->
-<!--   ::: example -->
-<!--   Since the difference between a 4-gram and a bigram is $2$, each one of the two "sandwich" $n$-grams must have length $1$. -->
-<!--   So we add the following: -->
-<!--  -->
-<!--   - -->
-<!--   {{{L}}}z{{{R}}}{{{L}}}, -->
-<!--   {{{L}}}z{{{R}}}{{{R}}}, -->
-<!--   {{{L}}}z{{{R}}}a, -->
-<!--   {{{L}}}z{{{R}}}k, -->
-<!--   {{{L}}}z{{{R}}}z, -->
-<!--   {{{L}}}z{{{R}}}n, -->
-<!--   az{{{R}}}a, -->
-<!--   az{{{R}}}k, -->
-<!--   az{{{R}}}z, -->
-<!--   az{{{R}}}n, -->
-<!--   az{{{R}}}{{{L}}}, -->
-<!--   az{{{R}}}{{{R}}}, -->
-<!--   kz{{{R}}}a, -->
-<!--   kz{{{R}}}k, -->
-<!--   kz{{{R}}}z, -->
-<!--   kz{{{R}}}n, -->
-<!--   kz{{{R}}}{{{L}}}, -->
-<!--   kz{{{R}}}{{{R}}}, -->
-<!--   zz{{{R}}}a, -->
-<!--   zz{{{R}}}k, -->
-<!--   zz{{{R}}}z, -->
-<!--   zz{{{R}}}n, -->
-<!--   zz{{{R}}}{{{L}}}, -->
-<!--   zz{{{R}}}{{{R}}}, -->
-<!--   nz{{{R}}}a, -->
-<!--   nz{{{R}}}k, -->
-<!--   nz{{{R}}}z, -->
-<!--   nz{{{R}}}n, -->
-<!--   nz{{{R}}}{{{L}}}, -->
-<!--   nz{{{R}}}{{{R}}} -->
-<!--  -->
-<!--   Again there are many useless $n$-grams, but we do not care. -->
-<!--   ::: -->
-<!--  -->

@@ -6,9 +6,10 @@ pagetitle: >-
 # Functions: Basic notation
 
 **Functions**, also called **maps** or **mappings**, are ubiquitous in mathematics.
-The laymen usually thinks of things like $f(x) = x + 1$ when they hear the word *function*, but the concept is much more general.
-Anything can be thought of as a function as long as it takes a fixed number of **arguments** as its input and converts them to some output.
-Crucially, the output is not allowed to vary while the input is kept the same.
+When the laymen hears the term *function*, they usually thinks of things like $f(x) = x + 1$.
+But the concept is much more general.
+Anything can be thought of as a function as long as it takes a fixed number of **arguments** as its input and returns some output.
+Crucially, the output is not allowed to vary when the input is kept the same.
 
 ::: example
 Sticking with numbers, suppose $f(x)$ randomly maps $x$ to either $x+2$ or $x \mult 2$.
@@ -28,6 +29,18 @@ A dirty Dodge Viper comes out as a clean Dodge Viper, and a clean Audi A4 still 
 The output is always perfectly predictable from the input.
 :::
 
+::: example
+English has a construction where a word is doubled and its beginning replaced with *shm*, as in *rules shmules* or *fancy shmancy*.
+This construction, called **shm-reduplication**, is borrowed from Yiddish and conveys a kind of derision.
+We can regard this as a function that takes a word as its input and returns the corresponding *shm*-form.
+:::
+
+::: exercise
+Speakers vary as to what they accept as the correct *shm*-reduplicant for some words.
+For example, some speakers turn *breakfast* into *shmeakfast*, replacing both *b* and *r*, whereas other only replace *b*, yielding *shmreakfast*.
+Explain why this does not contradict the claim that *shm*-reduplication can be regarded as a function.
+:::
+
 ::: exercise
 Let $f$ be a function that takes as its input a number $n$ and returns $n+1$ on a workday and $n+2$ on the weekend.
 
@@ -40,7 +53,8 @@ Let $f$ be a function that takes as its input a number $n$ and returns $n+1$ on 
 The fact that functions cannot map one and the same input to multiple outputs is known as **right uniqueness**.
 Right uniqueness guarantees that functions are deterministic in the sense that one can predict the output from the input with 100% accuracy.
 
-**Caution**: The functions used in programming languages are not necessarily functions in the mathematical sense because their output can vary even if the input stays the same.
+**Caution**: The functions used in programming languages are not necessarily functions in the mathematical sense.
+In programming, the output of a function can vary even if the arguments to the function stay the same.
 
 ``` jupyterpython
 import random

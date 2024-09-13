@@ -1,5 +1,5 @@
 ---
-pagetitle: N-grams models of grammaticality
+pagetitle: N-gram models of grammaticality
 ---
 
 # N-gram models of grammaticality
@@ -15,7 +15,7 @@ And the trained linguist may find some of the content here overly simplistic, bu
 
 English has a large number of different sounds, but not all combinations are possible.
 For instance, *blink* is a word but *kbinl* is not.
-And *kbinl* will never be a word of English because it does not obey English **phonotactics**, i.e. the laws that govern the sequence of sounds.
+And *kbinl* will never be a word of English because it does not obey English **phonotactics**, i.e. the laws that govern in what order sounds may be arranged.
 This is what separates *kbinl* from *kobinal* or *karbinolium*.
 None of them are existing words of English, but *kobinal* and *karbinolium* are potential words.
 We can give them a meaning, start using them, and no native speaker of English will have a problem picking them up.
@@ -26,9 +26,9 @@ It is also what makes it hard for English speakers to learn other languages.
 German, for example, is very happy to start a word with *k* and *n*, as in *Knoblauch*, the German word for garlic. 
 English has words that are spelled with *kn* at the start, like *knight*, but the *k* is never pronounced.
 In terms of pronunciation, *knight* and *night* are the same word, and a native speaker of English would never pronounce *knight* with a *k* at the beginning.
-Phonotactics is one of the most basic aspects of natural language.
+Phonotactics is one of the most basic aspects of **natural language**.
 By natural language I mean languages like English, Chinese, Tongan, Inuktitut, various dialects of Italian, or the specific language that you grew up with.
-This is in contrast to formal languages, which includes languages designed by humans (e.g. Esperanto, Klingon, Quenya), programming languages like Python or Brainfuck (yes, seriously), or the strands of DNA in your body (yes, we can describe that mathematically as a particular kind of language).
+This is in contrast to **formal languages**, which includes languages designed by humans (e.g. Esperanto, Klingon, Quenya), programming languages like Python or Brainfuck (yes, seriously), or the strands of DNA in your body (yes, we can describe that mathematically as a particular kind of language).
 Linguists seek to gain a deeper understanding of the laws, principles, and regularities of natural languages, and this includes the laws of natural language phonotactics.
 Linguists want to do this at both the language-specific level and across languages, and this yields very different questions even if we consider just phonotactics:
 
@@ -166,7 +166,7 @@ Which one of the following is among its bigrams (with edge markers):
 
 :::
 
-(For the particular observant readers: Yes, bigrams with edge markers are still not quite enough to detect that the consonant cluster *kn* occurred at the beginning of a word, but we will get there soon.)
+(For particularly observant readers: Yes, bigrams with edge markers are still not quite enough to detect that the consonant cluster *kn* occurred at the beginning of a word, but we will get there soon.)
 
 ## Bigram grammars
 
@@ -200,7 +200,7 @@ The forbidden sequence is not *kb*, but rather *{{{L}}}kb*.
 And the ban against starting English words with *kn* does not mean that *kn* is a forbidden sequence, it means that *{{{L}}}kn* is forbidden.
 These are not bigrams, they are **trigrams**.
 
-## n-gram grammars
+## From bigram grammars to n-gram grammars
 
 We can generalize the notion of bigram to sequences of arbitrary length.
 A trigram is a sequence of three elements, a 4-gram contains four elements, and quite generally, an **n-gram** consists of **n** elements.
@@ -236,7 +236,8 @@ for n in [2, 3, 4]:
 One problem with large $n$-grams is that some words may be shorter than $n$ even after edge markers have been added.
 Just what are the 4-grams of *{{{L}}}a{{{R}}}*?
 There's many ways this could be fixed.
-We will use a method that is conceptually simple even though it can get awkward in practice: if the grammar uses $n$-grams, we pad out the word with $n-1$ edge markers.
+We will use a method that is conceptually simple even though may seem awkward at first: if the grammar uses $n$-grams, we pad out the word with $n-1$ edge markers.
+In a later unit, you will see why this actually makes a lot of sense.
 
 ::: example
 Consider now the bigrams, trigrams, and 4-grams of *kobinal* with edge markers {{{L}}} and {{{R}}}.
@@ -268,7 +269,7 @@ The 4-grams are computed over *{{{L}}}{{{L}}}{{{L}}}kobinal{{{R}}}{{{R}}}{{{R}}}
 *inal*,
 *nal{{{R}}}*,
 *al{{{R}}}{{{R}}}*,
-and *l{{{R}}}{{{R}}}{{{R}}}*.
+and *l{{{R}}}{{{R}}}*.
 
 For *banana*,
 the bigrams are now
@@ -360,7 +361,7 @@ Explain in detail why this is the case.
 Intervocalic voicing in Italian does not always apply.
 The word *asociale*, comparable to English *anti-social*, has a voiceless *s* between *a* and *o*.
 However, linguists would argue that this word is more complex because it is built from two separate parts *a* and *sociale* that are fused together into a single word.
-In technical terms, *a* and *sociale* are two separate *morphemes*, and we should represent *asociale* more accurately as *a+sociale* with the morpheme boundary *+* between *a* and *s*.
+In technical terms, *a* and *sociale* are two separate **morphemes**, and we should represent *asociale* more accurately as *a+sociale* with the morpheme boundary symbol *+* between *a* and *s*.
 Explain why, given this assumption, your negative trigram grammar for intervocalic voicing correctly predicts *a+sociale* to be well-formed.
 :::
 
@@ -378,6 +379,7 @@ We now have a forbidden trigram *{{{L}}}rb* and a forbidden bigram *z{{{R}}}*.
 Are we allowed to mix bigrams and trigrams this way?
 More generally, can every negative $n$-gram grammar also contain $k$-grams, where $k < n$?
 Could this create inconsistencies, or make negative $n$-gram grammars more powerful?
+The answers is not obvious at this point.
 
 ::: exercise
 Consider the formal language where all strings are sequences of *a*, *b*, and *c* such that
@@ -387,17 +389,29 @@ Consider the formal language where all strings are sequences of *a*, *b*, and *c
 - *a* and *c* are always separated by at least two symbols.
 
 Write a negative 4-gram grammar for this language.
-Then write an equivalent negative grammar that mixes bigrams and 4-grams.
+**Caution:** This will be a big grammar.
+Try to write down all the 4-grams, and once you get sick of it, you can use a template like "xcyc where x and y are *a* or *b* or *c*" (this specific template is just an example, it isn't needed for the constraints above).
+
+Now that you are appropriately enraged, write an equivalent negative grammar that mixes bigrams, trigrams and 4-grams.
 Which one strikes you as a more direct description of the constraints above?
+Which one gave you less grief?
 :::
 
 ## Studying formalisms ~ studying language
 
+Let's take stock.
+We started out with some very profound questions: how can we describe the phonotactic laws we find in specific languages, and more generally, what separates a possible law of phonotactics from an impossible one?
+We have proposed $n$-gram grammars as a model of phonotactics.
+Even though they are very simple, they seem flexible enough to capture quite a lot of phonotactics.
+We quickly realized that bigrams are sometimes too short to state the relevant conditions, but it is easy to take a step up to trigrams or 4-grams.
+But we also saw that we sometimes need to use $n$-grams of different lengths, which seems quite a bit more complicated than grammars where all $n$-grams have the same length.
+But that is just a hunch, we do not know whether this is actually true.
+
 This isn't just a mathematical curiosity, it is a profound question about human cognition.
 If we take seriously the notion that negative $n$-gram grammar provide a model of phonotactics, then whatever knowledge a native speaker of English has about English phonotactics is in some sense similar to our negative $n$-gram models.
-Of course this involves numerous abstraction steps --- we should not expect MRIs and other tools of neuroscience to find anything like the *negative n-gram center* of the brain where words get broken down into their $n$-grams and each $n$-gram is checked for correctness.
+Of course this involves numerous abstraction steps --- we should not expect MRIs and other tools of neuroscience to find anything like the *negative $n$-gram center* of the brain where words get broken down into their $n$-grams and each $n$-gram is checked for correctness.
 But we are making a cognitive commitment that phonotactics involves reasoning steps comparable to those of a negative $n$-gram grammar and not something completely different, like keeping track of the number of consonants and penalizing words with an even number of consonants.
-That kind of "even-consonant filter" would be something completely unlike what the negative $n$-gram grammar are doing, and it would be a fundamental change to what we think is going on in a speaker's mind when they determine that, say, *kbinl* is not a possible word of English.
+That kind of "even-consonant filter" would be something completely unlike what the negative $n$-gram grammars are doing, and it would be a fundamental change to what we think is going on in a speaker's mind when they determine that, say, *kbinl* is not a possible word of English.
 
 But what about more innocuous changes like allowing $n$-grams of various lengths?
 Is that just a matter of notational convenience, or does it fundamentally change the model and hence the cognitive commitments that come from adopting this model?
@@ -414,7 +428,7 @@ Linguistic results tend to be very specific and detailed, but among the many pie
 Mathematics allows us to study formalisms at a more general level, and this in turn enables us to make discoveries that would be unattainable with linguistic methods.
 For example, we will be able to show that allowing $n$-grams of varying length does not fundamentally change our negative $n$-gram model, and this will be true no matter how long the $n$-grams are.
 We can make claims that are provably correct for every negative $n$-gram grammar.
-And we can do that even though are infinitely many such grammars (because there are infinitely many values $n$ may take) and it is impossible to ever look at each one of them.
+And we can do that even though there are infinitely many such grammars (because there are infinitely many values $n$ may take) and it is impossible to ever look at each one of them.
 Our mathematical proof will also tell us exactly why this fact holds and under what circumstances it would no longer go through.
 And by extension, the mathematics tells us that there is a whole class of models that are equivalent to ours in terms of what they claim about the nature of an English speaker's cognitive ability to distinguish the well-formed *blink* from the ill-formed *kbinl*.
 Buckle up everyone, we have some mathematical analysis to do!
@@ -424,7 +438,7 @@ Buckle up everyone, we have some mathematical analysis to do!
 
 - An **n-gram** is a sequence of **n** symbols.
 - The special symbols {{{L}}} and {{{R}}} are **edge markers** for the left and right edge of the word, respectively.
-- A **negative n-gram grammar** is a finite collection of forbidden $n$-grams.
+- A **negative $n$-gram grammar** is a finite collection of forbidden $n$-grams.
 - In order to determine whether a negative $n$-gram grammar deems a given string well-formed or ill-formed, we carry out the following steps:
     1. Pad out the string with $n-1$ instances of {{{L}}} and $n-1$ instances of {{{R}}}.
     1. Look at all the $n$-grams of the string augmented with edge markers.

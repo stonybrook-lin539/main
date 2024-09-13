@@ -1,0 +1,29 @@
+\documentclass[tikz,svgnames,x11names]{standalone}
+\newcommand{\thesetsize}{5.5em}
+\newcommand{\thesetdistance}{4em}
+\newcommand{\thelabeldistance}{3em}
+\begin{document}
+\begin{tikzpicture}[
+    set/.style = {circle,minimum size=\thesetsize}]
+
+    \node[set,
+          label={[label distance=\thelabeldistance]135:$A$},
+          ] (A) at (0,0) {};
+    \node[set,
+          label={[label distance=\thelabeldistance]45:$B$},
+          ] (B) at (\thesetdistance,0) {};
+
+    % highlight operation
+    \begin{scope}
+        \fill[Red3] (\thesetdistance,0) circle (\thesetsize);
+        \fill[Red3] (0,0) circle (\thesetsize);
+    \end{scope}
+    
+    % draw circles around sets
+    \foreach \x in {0, \thesetdistance}
+        \draw[thick,black] (\x,0) circle (\thesetsize);
+
+    % operation label
+    \node[text=white] at (2em,0) {$A \cup B$};
+\end{tikzpicture}
+\end{document}

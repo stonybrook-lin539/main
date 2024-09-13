@@ -9,6 +9,10 @@ pagetitle: >-
 - strings (basic notation)
 :::
 
+It is often important to refer to specific substructures of a string.
+The most important notion is that of **substring**, with the special cases of **prefix** and **suffix**.
+But for some applications, **subsequences** are also relevant.
+
 ## Substrings
 
 A **substring** is a continuous part of a string.
@@ -30,6 +34,8 @@ The string $\String{abcd}$ has 11 substrings:
 
 :::
 
+Some authors like to write $u \sqsubseteq v$ to indicate that $u$ is a substring of $v$.
+
 Note that
 
 1. the empty string is a substring of every string, and
@@ -41,27 +47,65 @@ A substring $u$ of $v$ is a **proper** substring iff $u \neq v$.
 All the strings listed above are proper substrings of $\String{abcd}$, except $\String{abcd}$ itself.
 :::
 
+If $u$ is substring that spans from the very beginning of $v$, we call it a **prefix**.
+And if $u$ is a substring that spans to the end of $v$, we call it a **suffix**.
+Make sure not to confuse these with the linguistic notions of prefix and suffix, which work very differently.
+
+::: example
+Among the strings listed above, all of the following are prefixes of $\String{abcd}$:
+
+- $\emptystring$ (if you find this confusing, check the formal definition below)
+- $\String{a}$
+- $\String{ab}$
+- $\String{abc}$
+- $\String{abcd}$
+
+And the all of the following are suffixes of $\String{abcd}$:
+
+- $\emptystring$ (if you find this confusing, check the formal definition below)
+- $\String{d}$
+- $\String{cd}$
+- $\String{bcd}$
+- $\String{abcd}$
+:::
+
 ::: exercise
-For each one of the gaps below, enter $\sqsubseteq$, $\sqsubsetneq$, or $\not\sqsubseteq$ depending on whether the first string is a substring of the second string, a proper substring, or neither:
+For every string $u$, there are two substrings that are both prefixes and suffixes of $u$.
+What are they?
+For which string are these two substrings not distinct?
+:::
 
+Substrings, prefixes, and suffixes are formally defined via concatenation.
 
-- $\String{a} \_ \String{aaaa}$
-- $\String{a} \_ \String{b}$
-- $\emptystring \_ \String{b}$
-- $\emptystring \_ \emptystring$
-- $\String{aa} \_ \String{abbbca}$
-- $\String{bc} \_ \String{abbbca}$
-- $\String{cb} \_ \String{abbbca}$
+::: definition
+Given $\Sigma$-strings $u$ and $v$, $u$ is a **substring** of $v$ ($u \sqsubseteq v$) iff there are $x, y \in \Sigma^*$ such that $v = x \stringcat u \stringcat y$.
+We furthermore call $u$
+
+- a **proper substring** iff $u \neq v$,
+- a **prefix** iff $y = \emptystring$,
+- a **suffix** iff $x = \emptystring$.
+:::
+
+::: exercise
+For each one of the string pairs below, indicate whether the first string is a substring of the second string, a proper substring, or neither:
+
+- $\String{a}\ \&\ \String{aaaa}$
+- $\String{a}\ \&\ \String{b}$
+- $\emptystring\ \&\ \String{b}$
+- $\emptystring\ \&\ \emptystring$
+- $\String{aa}\ \&\ \String{abbbca}$
+- $\String{bc}\ \&\ \String{abbbca}$
+- $\String{cb}\ \&\ \String{abbbca}$
 
 :::
 
 ## Subsequence
 
-A **subsequence** is a discontinuous part of a string that preserves the order between the symbols.
+Whereas substrings must be continuous, **subsequences** are allowed to also be discontinuous.
+However, a subsequence need not be discontinuous.
 
 ::: example
-The string $\String{abcd}$ has subsequences:
-
+The string $\String{abcd}$ has 15 subsequences:
 
 - $\emptystring$
 - $\String{a}$
@@ -79,23 +123,39 @@ The string $\String{abcd}$ has subsequences:
 - $\String{bcd}$
 - $\String{abcd}$
 
-
 Note that $\String{ca}$ is not a subsequence of $\String{abcd}$, but it is a subsequence of $\String{abcda}$.
 :::
 
-Just like substrings, a subsequence $u$ of $v$ is proper iff $u \neq v$.
+::: exercise
+How many subsequences does the string $\String{aaaa}$ have?
+:::
+
+Just like substrings, a subsequence $u$ of $v$ is **proper** iff $u \neq v$.
+
+The formal definition of subsequences is quite a bit more verbose than that of substrings.
+This is because the option of discontinuity requires the use of additional string variables that can be interleaved with the subsequence in order to obtain the original string.
+
+::: definition
+Let $v$ be a $\Sigma$-string and $u \is u_1 u_2 \cdots u_n$ a member of $\Sigma^n$.
+Then $u$ is a **subsequence** of $v$ iff there are strings $x_0, x_1, \ldots, x_{n+1} \in \Sigma^*$ such that
+
+$$
+v = x_0 \stringcat u_1 \stringcat x_1 \stringcat u_2 \stringcat x_2 \ldots \stringcat u_n \stringcat x_{n+1}
+$$
+
+A subsequence $u$ of $v$ is **proper** iff $u \neq v$.
+:::
 
 ::: exercise
-For each one of the gaps below, enter $\sqsubseteq$, $\sqsubsetneq$, or $\not\sqsubseteq$ depending on whether the first string is a subsequence of the second string, a proper subsequence, or neither:
+For each one of the string pairs below, indicate whether the first string is a subsequence of the second string, a proper subsequence, or neither:
 
-
-- $\String{a} \_ \String{aaaa}$
-- $\String{a} \_ \String{b}$
-- $\emptystring \_ \String{b}$
-- $\emptystring \_ \emptystring$
-- $\String{aa} \_ \String{abbbca}$
-- $\String{bc} \_ \String{abbbca}$
-- $\String{cb} \_ \String{abbbca}$
+- $\String{a}\ \&\ \String{aaaa}$
+- $\String{a}\ \&\ \String{b}$
+- $\emptystring\ \&\ \String{b}$
+- $\emptystring\ \&\ \emptystring$
+- $\String{aa}\ \&\ \String{abbbca}$
+- $\String{bc}\ \&\ \String{abbbca}$
+- $\String{cb}\ \&\ \String{abbbca}$
 
 :::
 
@@ -105,4 +165,11 @@ Every substring of some string $s$ is also a subsequence of $s$, but not the oth
 Justify your answer.
 :::
 
-fixme: add prefixes and suffixes
+## Recap
+
+- A **substring** is a continuous part of a string.
+  Initial substrings are called **prefixes**, and final ones are called **suffixes**.
+- A **subsequence** is a discontinuous part of a string.
+- The empty string is a substring, a prefix, a suffix, and a subsequence of every string.
+- Every string *s* is both a substring and a subsequence of itself.
+  The substrings and subsequences of *s* that are distinct from *s* are **proper**.

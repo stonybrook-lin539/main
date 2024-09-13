@@ -1,61 +1,285 @@
 ---
 pagetitle: >-
-    The mathematics of tiers (work in progress)
+    The mathematics of tiers
 ---
 
-# The mathematics of tiers (work in progress)
+# The mathematics of tiers
+
+:::prereqs
+- functions (domains and co-domains)
+- tuples (pairs)
+:::
 
 Tiers are a nice linguistic metaphor, but what is going on here at a formal level?
-Exactly the same thing as with stop word removal.
-We have a function that removes all irrelevant elements, and then we apply a specific procedure to the output of this function.
-For stop word removal, that follow-up procedure was the construction of a bag of words.
-With tier projection, we instead test the output for well-formedness with respect to an $n$-gram grammar.
+How do we specify tiers, and how significant a modification are tiers?
+Also, what exactly is the cognitive intuition behind tiers?
+These are great questions with some great answers.
 
-## The mathematics of tiers
+## Tier projection as a mapping
 
-Remember that $\mathit{del}_S$ is a function that takes a string as its input and deletes all symbols that belong $S$.
-Tier projection works pretty much the same, except that one usually specifies which symbols to keep rather than which to delete.
-So given a set $T$ of tier symbols, $\mathit{del}_T$ takes a string as its input and keeps only those symbols that belong to $T$.
-This difference is very similar to the split between positive and negative grammars: $T$ specifies what may be kept, $S$ what must not be kept.
-We can unify stop word removal and tier projection to a single function $\mathit{del}_X$, where $X$ is some set with a specified polarity.
-With $\mathit{del}_{^+X}$, only the symbols in $X$ are kept, whereas $\mathit{del}_{^-X}$ removes all symbols that belong to $X$ (and only those).
+Mathematically, tiers are easily defined as the output of a **tier projection** function $\tau$ (this is the Greek letter *tau*).
+Each type of tier comes with its own projection function $\tau_T$, which takes a string *s* as its only argument.
+Here $T$ is the **tier alphabet**, i.e. the set of symbols that should be projected onto said tier.
+The tier projection function $\tau_T$ then deletes every symbol from string *s* that isn't a member of $T$.
+
+::: definition
+Given alphabets $\Sigma$ and $T$, the **tier projection** function $\tau_T: \Sigma^* \rightarrow T^*$ maps each $\Sigma$-string $s$ to the longest subsequence $u$ of $s$ such that $u$ is a $T$-string.
+:::
+
+::: example
+Consider once more the case of Samala sibilant harmony.
+Since the set of sibilants contains only *s* and *ʃ*, the tier alphabet $T$ for the sibilant tier contains those two symbols and nothing else.
+And $\tau_T(\String{hasxintilawas}) = \String{ss}$.
+:::
+
+::: example
+As an abstract example, consider the set of all strings over $a$, $b$, and $c$.
+Then the $a$-tier of $\String{abbca}$ would be $\tau_\setof{a}(\String{abbca}) = \String{aa}$, whereas the tier of $a$s and $b$s would be $\tau_\setof{a,b}(\String{abbca}) = \String{abba}$.
+:::
 
 ::: exercise
-Compute the values for all of the following:
+Look at the list below, which shows $\Sigma$-strings being mapped to $T$-strings by some tier projection function.
+Write down the smallest possible tier alphabet $T$ that gives rise to all these mappings.
 
-
-- $\mathit{del}_{^-\setof{a,b}}(\mathit{aaccbad})$
-- $\mathit{del}_{^+\setof{a,b}}(\mathit{aaccbad})$
-- $\mathit{del}_{^+\setof{a,b}}(\mathit{aababad})$
-- $\mathit{del}_{^-\setof{a,b}}(\mathit{aababad})$
-- $\mathit{del}_{^-\setof{a,b}}(\emptystring)$
-- $\mathit{del}_{^+\setof{a,b}}(\emptystring)$
+1. $\String{aaca} \mapsto \String{aaa}$
+1. $\String{cabab} \mapsto \String{abab}$
+1. $\String{bbdbe} \mapsto \String{bbdbe}$
 
 :::
 
-You might think that this isn't a true unification, we have just moved the difference between stop word removal and tier projection into the polarity distinction.
-But just as with $n$-gram grammars, polarity doesn't actually matter.
-For every set $A$ of symbols drawn from some fixed alphabet $\Sigma$, there is some set $B$ such that $\mathit{del}_{^-A}(s) = \mathit{del}_{^+B}(s)$ and $\mathit{del}_{^+A}(s) = \mathit{del}_{^-B}$ for every string $s$ over $\Sigma$.
-
 ::: exercise
-Explain why this holds.
-Illustrate your argument with a few examples.
+Compute each one of the following:
+
+1. $\tau_\setof{a}(\String{abca})$
+1. $\tau_\setof{a,b}(\String{abca})$
+1. $\tau_\setof{a,b,c}(\String{abca})$
+1. $\tau_\setof{a,b}(\String{ccc})$
+1. $\tau_\setof{a,b,c}(\emptystring)$
+1. $\tau_\emptyset(\String{abc})$
 :::
 
-This is a pretty nifty result.
-Intuitively, stop word removal and tier projection seem completely unrelated.
-One is about cleaning up data for practical applications, the other about simplifying linguistic analysis.
-But mathematically, they are exactly the same thing.
-In later units, we will see many more examples of this unifying power of math.
+::: exercise
+Explain why, per the definition above, the domain of $\tau_T$ is $\Sigma^*$ while its co-domain is $T^*$.
+:::
+
+
+## Adding tiers to $n$-gram grammars
+
+Now that we have a formal way to specify tiers, it is very easy to graft tiers onto $n$-gram grammars by tying $n$-grams to specific tiers.
+The idea is that each $n$-gram now says explicitly which tier it applies to.
+
+::: definition
+A **(strict) negative tier $n$-gram grammar** over alphabet $\Sigma$ is a finite set of pairs $\tuple{g_i, T_i}$ such that
+
+- each $T_i$ is a finite set of symbols drawn from $\Sigma$, and
+- $g_i \in T_i^n$.
+
+We call $T$ a **tier of $G$** iff $\tuple{g, T} \in G$ for some $g$, and the set of all such $g$ is the **$T$-subgrammar $G_T$** of $G$.
+A $\Sigma$-string $s$ is well-formed with respect to $G_T$ iff no $n$-gram that is a factor of $\tau_T(s)$ is a member of $G_T$.
+It is well-formed with respect to $G$ iff it is well-formed with respect to $G_T$ for every tier $T$ of $G$.
+The **stringset/language generated by $G$** is the set $L(G)$ that contains all strings, and only those, that are well-formed with respect to $G$.
+:::
+
+(The definition above uses the term **factor** that was first introduced in the formal definition of negative $n$-gram grammars.
+We call an $n$-gram a factor of string $s$ iff it is an $n$-gram of ${{{L}}}^{n-1} s {{{R}}}^{n-1}$.)
+
+::: example
+Recall that we captured Korean vowel harmony by projecting all bright vowels (B) and all mid dark vowels (M) onto a dedicated tier and banning BM and MB on this tier. 
+More formally: let $G$ be the set
+$\setof{
+\tuple{\mathrm{BM}, \setof{\mathrm{B}, \mathrm{M}}},
+\tuple{\mathrm{MB}, \setof{\mathrm{B}, \mathrm{M}}}
+}$.
+Then $L(G)$ is the set of strings that obey Korean vowel harmony.
+
+Let us see how this works according to the definition above.
+Consider the string *CCBCBCM*, where *C* is a catch-all for consonants, as usual.
+This string is well-formed with respect to $G$ iff it is well-formed with respect to every subgrammar of $G$.
+But $G$ contains only one subgrammar, which is $G_{\setof{\mathrm{B}, \mathrm{M}}} \is \setof{\mathrm{BM}, \mathrm{MB}}$.
+By definition, *CCBCBCM* is well-formed with respect to $G_{\setof{\mathrm{B}, \mathrm{M}}}$ iff $\tau_\setof{\mathrm{B}, \mathrm{M}}$ has no factor that is an element of $G_\setof{\mathrm{B}, \mathrm{M}}$.
+But $\tau_\setof{\mathrm{B}, \mathrm{M}}(\String{CCBCBCM}) = \String{BBM}$ contains the factor *BM*, which is in fact a member of $G_\setof{\mathrm{B}, \mathrm{M}}$.
+Hence *CCBCBCM* is not well-formed with respect to the subgrammar $G_\setof{\mathrm{B}, \mathrm{M}}$ and hence isn't well-formed with respect to the tier bigram grammar $G$ either.
+:::
+
+::: exercise
+The example above uses abstract symbols like B and M instead of the actual vowels.
+Suppose that the only bright vowels of Korean are *a* and *u*, and the only mid dark vowel is *o* (just to be clear, this is not at all how Korean works).
+Adapt $G$ above to use these vowels instead of B and M.
+:::
 
 ::: exercise
 The term **culminativity** refers to the property that every word has exactly one primary stress.
-Suppose that our alphabet is $\setof{\sigma, \acute{\sigma}}$, where $\sigma$ denotes an unstressed syllable and $\acute{\sigma}$ one with primary stress.
-Specify a set $^+T$ of tier symbols and a bigram grammar $G$ to capture culminativity (*hint*: {{{L}}} and {{{R}}} can be used with tiers, too).
+Suppose that our alphabet is $\{ V, \acute{V} \}$, where $V$ denotes the vowel of an unstressed syllable and $\acute{V}$ the vowel of a syllable with primary stress (we assume for simplicity that every syllable has exactly one vowel).
+Propose a negative tier bigram grammar $G$ such that $L(G)$ is the set of all strings over $V$ and $\acute{V}$ that obey culminativity.
+
+*Hint*: {{{L}}} and {{{R}}} can be used with tiers, too.
 :::
 
-key properties preserved because it's still just $n$-gram grammars, but over a tier instead of the string itself
+::: exercise
+This continues the previous exercises.
+Suppose that $a$ and $u$ are bright vowels in unstressed syllables and $o$ is a mid dark vowel in an unstressed syllable, whereas $\acute{a}$, $\acute{u}$, and $\acute{o}$ are their counterparts in stressed syllables.
+Propose a tier bigram grammar $G$ such that $L(G)$ is the set of all strings that obey both Korean vowel harmony and culminativity.
 
-- The stop word removal function $\mathit{del}$ is also the function for constructing phonological tiers.
-- Math allows us to unify things that look very different at the surface.
-  In particular, linguistic theory and language technology seem like very different beasts, but they actually share a lot of math.
+*Hint*: You will need two subgrammars for this.
+:::
+
+::: exercise
+Only one word in the definition of negative tier $n$-gram grammars has to be changed in order to have a definition of positive tier $n$-gram grammars instead.
+What is the relevant change?
+:::
+
+## A big change without big changes
+
+Even though tiers make $n$-gram grammars a lot more flexible and greatly broaden their empirical coverage, they are a fairly innocuous change from a mathematical perspective.
+First, observe that the $n$-gram grammars we had been looking at before the introduction of tiers can be regarded as just a special case of tier $n$-gram grammars where all $n$-grams use the tier projection $\tau_\Sigma$.
+
+::: example
+Remember our negative bigram grammar $G$ for CV syllable templates?
+The grammar uses the alphabet $\Sigma \is \setof{ \mathrm{C}, \mathrm{V} }$ and consists of four forbidden bigrams:
+
+1. ${{{L}}}\mathrm{V}$
+1. $\mathrm{CC}$
+1. $\mathrm{VV}$
+1. $\mathrm{C}{{{R}}}$
+
+But we can also regard this as a tier bigram grammar $G'$ that contains the following pairs:
+
+1. $\tuple{ {{{L}}}\mathrm{V}, \Sigma}$
+1. $\tuple{ \mathrm{CC}, \Sigma}$
+1. $\tuple{ \mathrm{VV}, \Sigma}$
+1. $\tuple{ \mathrm{C}{{{R}}}, \Sigma}$
+
+Or in other words, $G$ is simply the $\Sigma$-subgrammar of $G'$, which happens to have no other subgrammars.
+
+Crucially, $G$ and $G'$ generate exactly the same string language.
+That's because no matter what string $s$ over $\Sigma$ one picks, it always holds that $\tau_\Sigma(s) = s$.
+That the n-grams of $G'$ apply to a tier of $s$ instead of $s$ itself is irrelevant because said tier looks exactly the same as $s$.
+:::
+
+The fact that every $n$-gram grammar is a particularly simple tier $n$-gram grammar not only tells us that we are dealing with a very natural generalization, it also makes it easy to generalize our findings about $n$-gram grammars to tier $n$-gram grammars.
+This barely requires any work at all.
+We just have to take the procedures we already know and carry them out for all the subgrammars of a given tier $n$-gram grammar.
+For example, converting a mixed tier $n$-gram grammar to a strict one is simply a matter of converting all subgrammars.
+
+::: example
+Below is a tier $n$-gram grammar over alphabet $\setof{a,b,c}$.
+
+- $\tuple{ bb, \setof{a,b}}$
+- $\tuple{ bab, \setof{a,b}}$
+- $\tuple{ {{{L}}}a, \setof{a,b,c}}$
+
+This grammar enforces two constraints: no string may start with *a*, and if *b* ever occurs somewhere to the right of another *b*, then there must be at least two *a*s between those *b*s.
+
+The $n$-grams vary in length, but we can fix that in the familiar fashion.
+First, observe that there are two distinct subgrammars here:
+
+- $G_\setof{a,b}$ contains both the bigram $bb$ and the trigram $bab$, making it a mixed grammar.
+  We will have to convert this into a strict trigram grammar.
+- $G_\setof{a,b,c}$ contains only the bigram ${{{L}}}a$.
+  This means it is already a strict grammar, but it is a string bigram grammar.
+  We will have to convert this to a trigram grammar, too.
+
+The conversion of $G_\setof{a,b}$ to a strict trigram grammar proceeds in the usual fashion.
+
+The only minor complication is that the set of trigrams we have to construct depends on the tier alphabet.
+For $G_\setof{a,b}$, we construct the set of all trigrams over edge markers, $a$, and $b$.
+We do not include $c$ here because that isn't part of the tier alphabet.
+We then keep all the trigrams that contain an $n$-gram of $G_\setof{a,b}$:
+
+- $\tuple{ {{{L}}}bb, \setof{a,b}}$
+- $\tuple{ abb, \setof{a,b}}$
+- $\tuple{ bba, \setof{a,b}}$
+- $\tuple{ bbb, \setof{a,b}}$
+- $\tuple{ bb{{{R}}}, \setof{a,b}}$
+- $\tuple{ bab, \setof{a,b}}$
+
+When converting $G_\setof{a,b,c}$ to trigrams, we do have to consider $c$, too, because it is part of that tier's alphabet.
+So now we construct the set of all trigrams over edge markers, $a$, $b$, and $c$, and again we keep all trigrams that contain an $n$-gram of $G_\setof{a,b,c}$:
+
+- $\tuple{ {{{L}}}{{{L}}}a, \setof{a,b,c} }$
+- $\tuple{ {{{L}}}aa, \setof{a,b,c} }$
+- $\tuple{ {{{L}}}ab, \setof{a,b,c} }$
+- $\tuple{ {{{L}}}ac, \setof{a,b,c} }$
+- $\tuple{ {{{L}}}a{{{R}}}, \setof{a,b,c} }$
+
+The set that contains these 11 trigrams is a tier trigram grammar $G'$ that generates exactly the same string language.
+:::
+
+::: exercise
+For each one of the strings below, show whether it is generated by $G$ and/or $G'$ from the example above.
+Do so by specifying the relevant tiers of each string (you may draw them or write them out) and indicating which factors, if any, are forbidden.
+
+- abc
+- cabc
+- bcccbcacb
+- baccacabcccaab
+
+:::
+
+Now consider the case of polarity conversion, i.e. that every positive $n$-gram grammar has an equivalent negative $n$-gram grammar and the other way round.
+This also holds for tier $n$-gram grammars.
+
+::: example
+Let $G$ be the tier bigram grammar over alphabet $\setof{a,b}$ that contains the following pairs, and only those:
+
+- $\tuple{ {{{L}}}{{{R}}}, \setof{a} }$
+- $\tuple{ bb, \setof{b} }$
+
+Here $N(G)$ (i.e. the string language under the negative interpretation of $G$) consists of all strings that contain at least one $a$ and at most one $b$.
+
+We can construct another tier bigram grammar $G'$ such that $N(G) = P(G')$.
+This grammar looks as follows:
+
+- $\tuple{ {{{L}}}a, \setof{a} }$
+- $\tuple{ a{{{R}}}, \setof{a} }$
+- $\tuple{ {{{L}}}{{{R}}}, \setof{b} }$
+- $\tuple{ {{{L}}} b, \setof{b} }$
+- $\tuple{ b {{{R}}}, \setof{b} }$
+
+Does this look familiar to you?
+For each tier $T$ of $G$, $G'$ contains every pair $\tuple{g, T}$ such that $g$ is a bigram but $\tuple{g, T}$ isn't a member of $G$.
+Just like in the original conversion procedure for $n$-gram grammars, $G'$ contains every bigram that isn't a bigram of $G$.
+All we have done is take the original procedure and carry it out for each tier of $G$.
+:::
+
+If you've paid attention throughout this chapter, you'll probably interject now that we can't just look at a few examples and conclude that things work.
+No, we need to give a proof!
+You are quite right, except that we don't need any new proofs for the two constructions above.
+Instead, we can just reuse the proofs for $n$-gram grammars, thanks to the nifty **lemma** below.
+A **lemma** is a theorem that isn't very interesting on its own but saves us some work nonetheless --- in the case at hand, it saves us from having to come up with new proofs.
+
+::: lemma
+Let $G$ and $G'$ be tier $n$-gram grammars that are both positive or both negative, and that each have exactly $j \geq 0$ subgrammars $G_1, \ldots, G_j$ and $G'_1, \ldots, G'_j$, respectively.
+Then $L(G) = L(G')$ if $L(G_i) = L(G'_i)$ for all $1 \leq i \leq j$.
+:::
+
+::: proof
+By definition, a string is well-formed with respect to a tier $n$-gram grammar iff it is well-formed with respect to all its subgrammars.
+
+Yes, that's it, we're done here.
+Please move on.
+:::
+
+::: exercise
+Note that the lemma uses *if* instead of *iff*.
+This allows for cases where $L(G_i) \neq L(G'_i)$ yet $L(G) = L(G')$ nonetheless.
+Given an example of such a case.
+:::
+
+The lemma guarantees that any kind of operation on $n$-gram grammars that does not affect their string language can be applied to subgrammars without changing the string language of the tier $n$-gram grammar.
+If you want to modify a tier $n$-gram grammar in some manner without changing the string language it generates, you'll want to figure out a way to modify its subgrammars without changing their string languages.
+And this is exactly what we did for converting from mixed grammars to strict grammars, and for the polarity conversion.
+Similar insights can be used to show that just as with negative $n$-gram grammars, $L(G) \cap L(G') = L(G \cup G')$ for negative tier $n$-ngram grammars.
+All the things we have done with $n$-gram grammars, we can do with tier $n$-gram grammars!
+
+If you think about it, this is quite remarkable.
+The addition of tier feels like a major modification, and it does greatly boost the range of phenomena we can capture with $n$-grams.
+But mathematically, barely anything has changed.
+The definitions are very similar, we can still use the familiar techniques we used with $n$-gram grammars, and we didn't even need any new proofs.
+Without math, the introduction of tiers might have put us back to square one in terms of our understanding of the formalism.
+But since we took the time to probe the mathematical depths of $n$-gram grammars, adding tiers turned out to be effortless.
+I've said it before and I'll say it again: math is for lazy people!
+
+## Recap
+
+<!-- fixme -->
