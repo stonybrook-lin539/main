@@ -155,19 +155,19 @@ class="math inline">\(u \neq v\)</span>,</li>
 string is a substring of the second string, a proper substring, or
 neither:</p>
 <ul>
-<li><span class="math inline">\(\mathit{a} \ &amp;\
+<li><span class="math inline">\(\mathit{a}\ \&amp;\
 \mathit{aaaa}\)</span></li>
-<li><span class="math inline">\(\mathit{a} \ &amp;\
+<li><span class="math inline">\(\mathit{a}\ \&amp;\
 \mathit{b}\)</span></li>
-<li><span class="math inline">\(\varepsilon\ &amp;\
+<li><span class="math inline">\(\varepsilon\ \&amp;\
 \mathit{b}\)</span></li>
-<li><span class="math inline">\(\varepsilon\ &amp;\
+<li><span class="math inline">\(\varepsilon\ \&amp;\
 \varepsilon\)</span></li>
-<li><span class="math inline">\(\mathit{aa} \ &amp;\
+<li><span class="math inline">\(\mathit{aa}\ \&amp;\
 \mathit{abbbca}\)</span></li>
-<li><span class="math inline">\(\mathit{bc} \ &amp;\
+<li><span class="math inline">\(\mathit{bc}\ \&amp;\
 \mathit{abbbca}\)</span></li>
-<li><span class="math inline">\(\mathit{cb} \ &amp;\
+<li><span class="math inline">\(\mathit{cb}\ \&amp;\
 \mathit{abbbca}\)</span></li>
 </ul>
 </div>
@@ -199,28 +199,47 @@ subsequence of <span class="math inline">\(\mathit{abcd}\)</span>, but
 it is a subsequence of <span
 class="math inline">\(\mathit{abcda}\)</span>.</p>
 </div>
+<div class="exercise">
+<p>How many subsequences does the string <span
+class="math inline">\(\mathit{aaaa}\)</span> have?</p>
+</div>
 <p>Just like substrings, a subsequence <span
 class="math inline">\(u\)</span> of <span
 class="math inline">\(v\)</span> is proper iff <span
+class="math inline">\(u \neq v\)</span>. The formal definition of
+subsequences is quite a bit more verbose than that of substrings.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(v\)</span> be a <span
+class="math inline">\(\Sigma\)</span>-string and <span
+class="math inline">\(u \mathrel{\mathop:}=u_1 u_2 \cdots u_n \in
+\Sigma^n\)</span>. Then <span class="math inline">\(u\)</span> is a
+<strong>subsequence</strong> of <span class="math inline">\(v\)</span>
+iff there are <span class="math inline">\(x_0, x_1, \ldots, x_{n+1} \in
+\Sigma^*\)</span> such that</p>
+<p><span class="math display">\[
+v = x_0 \cdot u_1 \cdot x_1 \cdot\ldots \cdot u_n \cdot x_{n+1}
+\]</span> A subsequence <span class="math inline">\(u\)</span> of <span
+class="math inline">\(v\)</span> is proper iff <span
 class="math inline">\(u \neq v\)</span>.</p>
+</div>
 <div class="exercise">
-<p>For each one of the gaps below, enter <span
-class="math inline">\(\sqsubseteq\)</span>, <span
-class="math inline">\(\sqsubsetneq\)</span>, or <span
-class="math inline">\(\not\sqsubseteq\)</span> depending on whether the
-first string is a subsequence of the second string, a proper
-subsequence, or neither:</p>
+<p>For each one of the string pairs below, indicate whether the first
+string is a subsequence of the second string, a proper subsequence, or
+neither:</p>
 <ul>
-<li><span class="math inline">\(\mathit{a} \_
+<li><span class="math inline">\(\mathit{a}\ \&amp;\
 \mathit{aaaa}\)</span></li>
-<li><span class="math inline">\(\mathit{a} \_ \mathit{b}\)</span></li>
-<li><span class="math inline">\(\varepsilon\_ \mathit{b}\)</span></li>
-<li><span class="math inline">\(\varepsilon\_ \varepsilon\)</span></li>
-<li><span class="math inline">\(\mathit{aa} \_
+<li><span class="math inline">\(\mathit{a}\ \&amp;\
+\mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\ \&amp;\
+\mathit{b}\)</span></li>
+<li><span class="math inline">\(\varepsilon\ \&amp;\
+\varepsilon\)</span></li>
+<li><span class="math inline">\(\mathit{aa}\ \&amp;\
 \mathit{abbbca}\)</span></li>
-<li><span class="math inline">\(\mathit{bc} \_
+<li><span class="math inline">\(\mathit{bc}\ \&amp;\
 \mathit{abbbca}\)</span></li>
-<li><span class="math inline">\(\mathit{cb} \_
+<li><span class="math inline">\(\mathit{cb}\ \&amp;\
 \mathit{abbbca}\)</span></li>
 </ul>
 </div>
