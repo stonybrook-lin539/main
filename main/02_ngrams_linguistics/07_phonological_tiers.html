@@ -63,14 +63,19 @@ like <em>un-</em>, <em>re-</em>, <em>-ly</em>, <em>-ize</em>,
 these grammars. Positive and negative grammars are equally powerful, and
 the larger the value of <span class="math inline">\(n\)</span>, the more
 patterns can be captured with <span
-class="math inline">\(n\)</span>-gram grammars. But is there something
-like a cutoff point of language, some value of <span
+class="math inline">\(n\)</span>-gram grammars. But we also saw that
+grammar size grows exponentially as we increase <span
+class="math inline">\(n\)</span>. Ideally, we don’t end up positing
+grammars whose number of <span class="math inline">\(n\)</span>-grams
+exceeds the number of seconds since the Big Bang. So is there something
+like a small cutoff point of language, some value of <span
 class="math inline">\(n\)</span> that allows us to handle all aspects of
-phonotactics and morphotactics? The answer is no, and in fact, things
-are even worse: there are phenomena that we cannot capture with our
+phonotactics and morphotactics? The answer is No. The problem isn’t just
+that there isn’t a small cutoff point, there does not seem to be such a
+cutoff point at all! There are phenomena that we cannot capture with our
 current <span class="math inline">\(n\)</span>-gram grammars no matter
 how large a value of <span class="math inline">\(n\)</span> we pick.
-That’s not good, but not too hard to fix, either.</p>
+That’s not good, but not overly hard to fix either.</p>
 <h2 id="the-limits-of-n-gram-grammars">The limits of <span
 class="math inline">\(n\)</span>-gram grammars</h2>
 <p>We already know that (positive/negative) <span
