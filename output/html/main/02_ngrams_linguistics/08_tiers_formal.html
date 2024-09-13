@@ -42,6 +42,7 @@
 <ul>
 <li><a href="#tier-projection-as-a-mapping">Tier projection as a
 mapping</a></li>
+<li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -173,35 +174,56 @@ stringset/language of <span
 class="math inline">\(G\)</span></strong>.</p>
 </div>
 <div class="example">
-<p>Recall that the sibilant tier in Samala contains only <em>s</em> and
-<em>ʃ</em>, and that this tier must not contain <em>ss</em> or
-<em>ʃʃ</em>. This is captured by the tier bigram grammar <span
-class="math inline">\(\left \{  \left \langle ss, \left \{ s,ʃ \right \}
-\right \rangle, \left \langle ʃʃ, \left \{ s,ʃ \right \} \right
-\rangle  \right \}\)</span> under its negative interpretation.</p>
+<p>Recall that we captured Korean vowel harmony by projecting all bright
+vowels (B) and all mid dark vowels (M) onto a dedicated tier and banning
+BM and MB on this tier. More formally: let <span
+class="math inline">\(G\)</span> be the set <span
+class="math inline">\(\left \{  \left \langle \mathrm{BM}, \left \{
+\mathrm{B}, \mathrm{M} \right \} \right \rangle, \left \langle
+\mathrm{MB}, \left \{ \mathrm{B}, \mathrm{M} \right \} \right
+\rangle  \right \}\)</span>. Then <span
+class="math inline">\(N(G)\)</span> is the set of strings that obey
+Korean vowel harmony.</p>
+</div>
+<div class="exercise">
+<p>The example above uses abstract symbols like B and M instead of the
+actual vowels. Suppose that the only bright vowels of Korean are
+<em>a</em> and <em>u</em>, and the only mid dark vowel is <em>o</em>
+(just to be clear, this is not at all how Korean works). Adapt <span
+class="math inline">\(G\)</span> above to use these vowels instead of B
+and M.</p>
 </div>
 <div class="exercise">
 <p>The term <strong>culminativity</strong> refers to the property that
 every word has exactly one primary stress. Suppose that our alphabet is
-<span class="math inline">\(\left \{ \sigma, \acute{\sigma} \right
-\}\)</span>, where <span class="math inline">\(\sigma\)</span> denotes
-an unstressed syllable and <span
-class="math inline">\(\acute{\sigma}\)</span> one with primary stress.
-Specify a set <span class="math inline">\(^+T\)</span> of tier symbols
-and a bigram grammar <span class="math inline">\(G\)</span> to capture
-culminativity (<em>hint</em>: ⋊ and ⋉ can be used with tiers, too).</p>
+<span class="math inline">\(\left \{ V, \acute{V} \right \}\)</span>,
+where <span class="math inline">\(V\)</span> denotes the vowel of an
+unstressed syllable and <span class="math inline">\(\acute{V}\)</span>
+the vowel of a syllable with primary stress (we assume for simplicity
+that every syllable has exactly one vowel). Propose a tier bigram
+grammar <span class="math inline">\(G\)</span> such that <span
+class="math inline">\(N(G)\)</span> is the set of all strings over <span
+class="math inline">\(V\)</span> and <span
+class="math inline">\(\acute{V}\)</span> that obey culminativity.</p>
+<p><em>Hint</em>: ⋊ and ⋉ can be used with tiers, too.</p>
 </div>
-<p>key properties preserved because it’s still just <span
-class="math inline">\(n\)</span>-gram grammars, but over a tier instead
-of the string itself</p>
-<ul>
-<li>The stop word removal function <span
-class="math inline">\(\mathit{del}\)</span> is also the function for
-constructing phonological tiers.</li>
-<li>Math allows us to unify things that look very different at the
-surface. In particular, linguistic theory and language technology seem
-like very different beasts, but they actually share a lot of math.</li>
-</ul>
+<div class="exercise">
+<p>This continues the previous exercises. Suppose that <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(u\)</span> are bright vowels in unstressed
+syllables and <span class="math inline">\(o\)</span> is a mid dark vowel
+in an unstressed syllable, whereas <span
+class="math inline">\(\acute{a}\)</span>, <span
+class="math inline">\(\acute{u}\)</span>, and <span
+class="math inline">\(\acute{o}\)</span> are their counterparts in
+stressed syllables. Propose a tier bigram grammar <span
+class="math inline">\(G\)</span> such that <span
+class="math inline">\(N(G)\)</span> is the set of all strings that obey
+both Korean vowel harmony and culminativity.</p>
+<p><em>Hint</em>: You will need two separate tiers.</p>
+</div>
+<h2 id="recap">Recap</h2>
+<p>fixme</p>
 </div>
 </div>
 </body>
