@@ -48,13 +48,13 @@
 <div class="content">
 <h1 id="functions-basic-notation">Functions: Basic notation</h1>
 <p><strong>Functions</strong>, also called <strong>maps</strong> or
-<strong>mappings</strong>, are ubiquitous in mathematics. The laymen
-usually thinks of things like <span class="math inline">\(f(x) = x +
-1\)</span> when they hear the word <em>function</em>, but the concept is
-much more general. Anything can be thought of as a function as long as
-it takes a fixed number of <strong>arguments</strong> as its input and
-converts them to some output. Crucially, the output is not allowed to
-vary while the input is kept the same.</p>
+<strong>mappings</strong>, are ubiquitous in mathematics. When the
+laymen hears the term <em>function</em>, they usually thinks of things
+like <span class="math inline">\(f(x) = x + 1\)</span>. But the concept
+is much more general. Anything can be thought of as a function as long
+as it takes a fixed number of <strong>arguments</strong> as its input
+and returns some output. Crucially, the output is not allowed to vary
+when the input is kept the same.</p>
 <div class="example">
 <p>Sticking with numbers, suppose <span
 class="math inline">\(f(x)\)</span> randomly maps <span
@@ -90,6 +90,22 @@ dirty Dodge Viper comes out as a clean Dodge Viper, and a clean Audi A4
 still comes out as a clean Audi A4. The output is always perfectly
 predictable from the input.</p>
 </div>
+<div class="example">
+<p>English has a construction where a word is doubled and its beginning
+replaced with <em>shm</em>, as in <em>rules shmules</em> or <em>fancy
+shmancy</em>. This construction, called
+<strong>shm-reduplication</strong>, is borrowed from Yiddish and conveys
+a kind of derision. We can regard this as a function that takes a word
+as its input and returns the corresponding <em>shm</em>-form.</p>
+</div>
+<div class="exercise">
+<p>Speakers vary as to what they accept as the correct
+<em>shm</em>-reduplicant for some words. For example, some speakers turn
+<em>breakfast</em> into <em>shmeakfast</em>, replacing both <em>b</em>
+and <em>r</em>, whereas other only replace <em>b</em>, yielding
+<em>shmreakfast</em>. Explain why this does not contradict the claim
+that <em>shm</em>-reduplication can be regarded as a function.</p>
+</div>
 <div class="exercise">
 <p>Let <span class="math inline">\(f\)</span> be a function that takes
 as its input a number <span class="math inline">\(n\)</span> and returns
@@ -108,8 +124,9 @@ outputs is known as <strong>right uniqueness</strong>. Right uniqueness
 guarantees that functions are deterministic in the sense that one can
 predict the output from the input with 100% accuracy.</p>
 <p><strong>Caution</strong>: The functions used in programming languages
-are not necessarily functions in the mathematical sense because their
-output can vary even if the input stays the same.</p>
+are not necessarily functions in the mathematical sense. In programming,
+the output of a function can vary even if the arguments to the function
+stay the same.</p>
 <!-- ```python -->
 <!-- import random -->
 <!-- import re -->
