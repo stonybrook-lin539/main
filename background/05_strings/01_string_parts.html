@@ -209,15 +209,18 @@ class="math inline">\(u\)</span> of <span
 class="math inline">\(v\)</span> is <strong>proper</strong> iff <span
 class="math inline">\(u \neq v\)</span>.</p>
 <p>The formal definition of subsequences is quite a bit more verbose
-than that of substrings.</p>
+than that of substrings. This is because the option of discontinuity
+requires the use of additional string variables that can be interleaved
+with the subsequence in order to obtain the original string.</p>
 <div class="definition">
 <p>Let <span class="math inline">\(v\)</span> be a <span
 class="math inline">\(\Sigma\)</span>-string and <span
-class="math inline">\(u \mathrel{\mathop:}=u_1 u_2 \cdots u_n \in
-\Sigma^n\)</span>. Then <span class="math inline">\(u\)</span> is a
-<strong>subsequence</strong> of <span class="math inline">\(v\)</span>
-iff there are <span class="math inline">\(x_0, x_1, \ldots, x_{n+1} \in
-\Sigma^*\)</span> such that</p>
+class="math inline">\(u \mathrel{\mathop:}=u_1 u_2 \cdots u_n\)</span> a
+member of <span class="math inline">\(\Sigma^n\)</span>. Then <span
+class="math inline">\(u\)</span> is a <strong>subsequence</strong> of
+<span class="math inline">\(v\)</span> iff there are strings <span
+class="math inline">\(x_0, x_1, \ldots, x_{n+1} \in \Sigma^*\)</span>
+such that</p>
 <p><span class="math display">\[
 v = x_0 \cdot u_1 \cdot x_1 \cdot\ldots \cdot u_n \cdot x_{n+1}
 \]</span> A subsequence <span class="math inline">\(u\)</span> of <span
