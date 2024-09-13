@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>The mathematics of tiers (work in progress)</title>
+  <title>How to think of tiers (work in progress)</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -38,88 +38,115 @@
 <nav id="TOC" role="doc-toc">
 <p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
 <ul>
-<li><a href="#the-mathematics-of-tiers-work-in-progress">The mathematics
-of tiers (work in progress)</a>
+<li><a href="#how-to-think-of-tiers">How to think of tiers</a>
 <ul>
-<li><a href="#the-mathematics-of-tiers">The mathematics of
-tiers</a></li>
+<li><a href="#tier-projection-as-a-mapping">Tier projection as a
+mapping</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 <div class="content">
-<h1 id="the-mathematics-of-tiers-work-in-progress">The mathematics of
-tiers (work in progress)</h1>
-<p>Tiers are a nice linguistic metaphor, but what is going on here at a
-formal level? Exactly the same thing as with stop word removal. We have
-a function that removes all irrelevant elements, and then we apply a
-specific procedure to the output of this function. For stop word
-removal, that follow-up procedure was the construction of a bag of
-words. With tier projection, we instead test the output for
-well-formedness with respect to an <span
-class="math inline">\(n\)</span>-gram grammar.</p>
-<h2 id="the-mathematics-of-tiers">The mathematics of tiers</h2>
-<p>Remember that <span class="math inline">\(\mathit{del}_S\)</span> is
-a function that takes a string as its input and deletes all symbols that
-belong <span class="math inline">\(S\)</span>. Tier projection works
-pretty much the same, except that one usually specifies which symbols to
-keep rather than which to delete. So given a set <span
-class="math inline">\(T\)</span> of tier symbols, <span
-class="math inline">\(\mathit{del}_T\)</span> takes a string as its
-input and keeps only those symbols that belong to <span
-class="math inline">\(T\)</span>. This difference is very similar to the
-split between positive and negative grammars: <span
-class="math inline">\(T\)</span> specifies what may be kept, <span
-class="math inline">\(S\)</span> what must not be kept. We can unify
-stop word removal and tier projection to a single function <span
-class="math inline">\(\mathit{del}_X\)</span>, where <span
-class="math inline">\(X\)</span> is some set with a specified polarity.
-With <span class="math inline">\(\mathit{del}_{^+X}\)</span>, only the
-symbols in <span class="math inline">\(X\)</span> are kept, whereas
-<span class="math inline">\(\mathit{del}_{^-X}\)</span> removes all
-symbols that belong to <span class="math inline">\(X\)</span> (and only
-those).</p>
-<div class="exercise">
-<p>Compute the values for all of the following:</p>
+<h1 id="how-to-think-of-tiers">How to think of tiers</h1>
+<div class="prereqs">
 <ul>
-<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
-\}}(\mathit{aaccbad})\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
-\}}(\mathit{aaccbad})\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
-\}}(\mathit{aababad})\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
-\}}(\mathit{aababad})\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^-\left \{ a,b \right
-\}}(\varepsilon)\)</span></li>
-<li><span class="math inline">\(\mathit{del}_{^+\left \{ a,b \right
-\}}(\varepsilon)\)</span></li>
+<li>functions (domains and co-domains)</li>
+<li>tuples (pairs)</li>
 </ul>
 </div>
-<p>You might think that this isn’t a true unification, we have just
-moved the difference between stop word removal and tier projection into
-the polarity distinction. But just as with <span
-class="math inline">\(n\)</span>-gram grammars, polarity doesn’t
-actually matter. For every set <span class="math inline">\(A\)</span> of
-symbols drawn from some fixed alphabet <span
-class="math inline">\(\Sigma\)</span>, there is some set <span
-class="math inline">\(B\)</span> such that <span
-class="math inline">\(\mathit{del}_{^-A}(s) =
-\mathit{del}_{^+B}(s)\)</span> and <span
-class="math inline">\(\mathit{del}_{^+A}(s) =
-\mathit{del}_{^-B}\)</span> for every string <span
-class="math inline">\(s\)</span> over <span
-class="math inline">\(\Sigma\)</span>.</p>
-<div class="exercise">
-<p>Explain why this holds. Illustrate your argument with a few
-examples.</p>
+<p>Tiers are a nice linguistic metaphor, but what is going on here at a
+formal level? How do we specify tiers, and how significant a
+modification are tiers? Also, what exactly is the cognitive intuition
+behind tiers? These are great questions with some great answers.</p>
+<h2 id="tier-projection-as-a-mapping">Tier projection as a mapping</h2>
+<p>Mathematically, tiers are easily defined as the output of a
+<strong>tier projection</strong> function <span
+class="math inline">\(\tau\)</span> (this is the Greek letter
+<em>tau</em>). Each type of tier comes with its own projection function
+<span class="math inline">\(\tau_T\)</span>, which takes a string
+<em>s</em> as its only argument. Here <span
+class="math inline">\(T\)</span> is a <strong>tier alphabet</strong>,
+i.e. a set of symbols that should be projected onto said tier. The tier
+projection function <span class="math inline">\(\tau_T\)</span> then
+deletes every symbol from string <em>s</em> that isn’t a member of <span
+class="math inline">\(T\)</span>.</p>
+<div class="definition">
+<p>Given alphabets <span class="math inline">\(\Sigma\)</span> and <span
+class="math inline">\(T\)</span>, the <strong>tier projection</strong>
+function <span class="math inline">\(\tau_T: \Sigma^* \rightarrow
+T^*\)</span> maps each <span
+class="math inline">\(\Sigma\)</span>-string <span
+class="math inline">\(s\)</span> to the longest subsequence <span
+class="math inline">\(u\)</span> of <span
+class="math inline">\(s\)</span> such that <span
+class="math inline">\(u\)</span> is a <span
+class="math inline">\(T\)</span>-string.</p>
 </div>
-<p>This is a pretty nifty result. Intuitively, stop word removal and
-tier projection seem completely unrelated. One is about cleaning up data
-for practical applications, the other about simplifying linguistic
-analysis. But mathematically, they are exactly the same thing. In later
-units, we will see many more examples of this unifying power of
-math.</p>
+<div class="example">
+<p>Consider once more the case of Samala sibilant harmony. Since the set
+of sibilants contains only <em>s</em> and <em>ʃ</em>, the tier alphabet
+<span class="math inline">\(T\)</span> for the sibilant tier contains
+those two symbols and nothing else. And <span
+class="math inline">\(\tau_T(\mathit{hasxintilawas}) =
+\mathit{ss}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Explain why the domain of <span class="math inline">\(\tau_T\)</span>
+is <span class="math inline">\(\Sigma^*\)</span> while its co-domain is
+<span class="math inline">\(T^*\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Look at the list below, which shows <span
+class="math inline">\(\Sigma\)</span>-strings being mapped to <span
+class="math inline">\(T\)</span>-strings by some tier projection
+function. Write down the smallest possible tier alphabet <span
+class="math inline">\(T\)</span> that gives rise to these mappings.</p>
+<ul>
+<li><span class="math inline">\(\mathit{aaca} \mapsto
+\mathit{aaa}\)</span></li>
+<li><span class="math inline">\(\mathit{cabab} \mapsto
+\mathit{abab}\)</span></li>
+<li><span class="math inline">\(\mathit{bbdbe} \mapsto
+\mathit{bbdbe}\)</span></li>
+</ul>
+</div>
+<p>Now that we have a formal way to specify tiers, it is very easy to
+graft that onto <span class="math inline">\(n\)</span>-gram grammars by
+tying <span class="math inline">\(n\)</span>-grams to specific
+tiers.</p>
+<div class="definition">
+<p>A <strong>tier <span class="math inline">\(n\)</span>-gram
+grammar</strong> over alphabet <span
+class="math inline">\(\Sigma\)</span> is a finite set of pairs <span
+class="math inline">\(\left \langle g_i, T_i \right \rangle\)</span>
+(<span class="math inline">\(m \geq 0\)</span>) such that</p>
+<ul>
+<li>each <span class="math inline">\(T_i\)</span> is a finite set of
+symbols drawn from <span class="math inline">\(\Sigma\)</span>,</li>
+<li><span class="math inline">\(g_i \in T_i^n\)</span>.</li>
+</ul>
+<p>We call <span class="math inline">\(T\)</span> a <strong>tier of
+<span class="math inline">\(G\)</span></strong> iff <span
+class="math inline">\(\left \langle g, T \right \rangle \in G\)</span>
+for some <span class="math inline">\(g\)</span>. A <span
+class="math inline">\(\Sigma\)</span>-string <span
+class="math inline">\(s\)</span> is well-formed with respect to</p>
+<ul>
+<li>the <strong>negative</strong> interpretation of <span
+class="math inline">\(G\)</span> iff there is no <span
+class="math inline">\(\left \langle g,T \right \rangle \in G\)</span>
+such that <span class="math inline">\(g\)</span> is a factor of <span
+class="math inline">\(\tau_T(s)\)</span>,</li>
+<li>the <strong>positive</strong> interpretation of <span
+class="math inline">\(G\)</span> iff for every tier <span
+class="math inline">\(T\)</span> of <span
+class="math inline">\(G\)</span> and factor <span
+class="math inline">\(g\)</span> of <span
+class="math inline">\(\tau_T(s)\)</span>, it holds that <span
+class="math inline">\(\left \langle g, T \right \rangle \in
+G\)</span>.</li>
+</ul>
+</div>
 <div class="exercise">
 <p>The term <strong>culminativity</strong> refers to the property that
 every word has exactly one primary stress. Suppose that our alphabet is
