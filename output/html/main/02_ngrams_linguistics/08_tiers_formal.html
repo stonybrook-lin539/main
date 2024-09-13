@@ -169,8 +169,8 @@ symbols drawn from <span class="math inline">\(\Sigma\)</span>, and</li>
 <p>We call <span class="math inline">\(T\)</span> a <strong>tier of
 <span class="math inline">\(G\)</span></strong> iff <span
 class="math inline">\(\left \langle g, T \right \rangle \in G\)</span>
-for some <span class="math inline">\(g\)</span>, and we call the set of
-all such <span class="math inline">\(g\)</span> the <strong><span
+for some <span class="math inline">\(g\)</span>, and the set of all such
+<span class="math inline">\(g\)</span> is the <strong><span
 class="math inline">\(T\)</span>-subgrammar <span
 class="math inline">\(G_T\)</span></strong> of <span
 class="math inline">\(G\)</span>. A <span
@@ -207,10 +207,28 @@ class="math inline">\(\left \{  \left \langle \mathrm{BM}, \left \{
 \rangle  \right \}\)</span>. Then <span
 class="math inline">\(L(G)\)</span> is the set of strings that obey
 Korean vowel harmony.</p>
-<p>Note that <span class="math inline">\(G\)</span> only contains one
-subgrammar, which is <span class="math inline">\(G_{\left \{ \mathrm{B},
-\mathrm{M} \right \}} \mathrel{\mathop:}=\left \{ \mathrm{BM},
-\mathrm{MB} \right \}\)</span>.</p>
+<p>Let us see how this works according to the definition above. Consider
+the string <em>CCBCBCM</em>, where <em>C</em> is a catch-all for
+consonants, as usual. This string is well-formed with respect to <span
+class="math inline">\(G\)</span> iff it is well-formed with respect to
+every subgrammar of <span class="math inline">\(G\)</span>. But <span
+class="math inline">\(G\)</span> contains only one subgrammar, which is
+<span class="math inline">\(G_{\left \{ \mathrm{B}, \mathrm{M} \right
+\}} \mathrel{\mathop:}=\left \{ \mathrm{BM}, \mathrm{MB} \right
+\}\)</span>. By definition, <em>CCBCBCM</em> is well-formed with respect
+to <span class="math inline">\(G_{\left \{ \mathrm{B}, \mathrm{M} \right
+\}\)</span> iff <span class="math inline">\(\tau_\left \{ \mathrm{B},
+\mathrm{M} \right \}\)</span> has no factor that is an element of <span
+class="math inline">\(G_\left \{ \mathrm{B}, \mathrm{M} \right
+\}\)</span>. But <span class="math inline">\(\tau_\left \{ \mathrm{B},
+\mathrm{M} \right \}(\mathit{CCBCBCM}) = \mathit{BBM}\)</span> contains
+the factor <em>BM</em>, which is a member of <span
+class="math inline">\(G_\left \{ \mathrm{B}, \mathrm{M} \right
+\}\)</span>. Hence <em>CCBCBCM</em> is not well-formed with respect to
+the subgrammar <span class="math inline">\(G_\left \{ \mathrm{B},
+\mathrm{M} \right \}\)</span> and hence isn’t well-formed with respect
+to the tier bigram grammar <span class="math inline">\(G\)</span>
+either.</p>
 </div>
 <div class="exercise">
 <p>The example above uses abstract symbols like B and M instead of the
