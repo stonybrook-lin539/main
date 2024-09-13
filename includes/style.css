@@ -326,7 +326,7 @@ th, td {
 }
 
 .definition:before { content: "Definition "counter(definition)"."; }
-.theorem:before { content: "Theorem" counter(theorem)"."; }
+.theorem:before { content: "Theorem " counter(theorem)"."; }
 .lemma:before { content: "Lemma "counter(theorem)"."; }
 .corollary:before { content: "Corollary "counter(theorem)"."; }
 .proposition:before { content: "Proposition "counter(theorem)"."; }
