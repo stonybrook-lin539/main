@@ -176,10 +176,11 @@ class="math inline">\(G_T\)</span></strong> of <span
 class="math inline">\(G\)</span>. A <span
 class="math inline">\(\Sigma\)</span>-string <span
 class="math inline">\(s\)</span> is well-formed with respect to <span
-class="math inline">\(G_T\)</span> iff there is no <span
-class="math inline">\(g \in G_T\)</span> that is a factor of <span
-class="math inline">\(\tau_T(s)\)</span>. It is well-formed with respect
-to <span class="math inline">\(G\)</span> iff it is well-formed with
+class="math inline">\(G_T\)</span> iff no <span
+class="math inline">\(n\)</span>-gram that is a factor of <span
+class="math inline">\(\tau_T(s)\)</span> is a member of <span
+class="math inline">\(G_T\)</span>. It is well-formed with respect to
+<span class="math inline">\(G\)</span> iff it is well-formed with
 respect to <span class="math inline">\(G_T\)</span> for every tier <span
 class="math inline">\(T\)</span> of <span
 class="math inline">\(G\)</span>. The <strong>stringset/language
@@ -206,10 +207,10 @@ class="math inline">\(\left \{  \left \langle \mathrm{BM}, \left \{
 \rangle  \right \}\)</span>. Then <span
 class="math inline">\(L(G)\)</span> is the set of strings that obey
 Korean vowel harmony.</p>
-<p>Note that since <span class="math inline">\(G\)</span> only contains
-the one tier above, it is identical to the subgrammar for that tier. In
-other words, <span class="math inline">\(G = G_\left \{ \mathrm{B},
-\mathrm{M} \right \}\)</span>.</p>
+<p>Note that <span class="math inline">\(G\)</span> only contains one
+subgrammar, which is <span class="math inline">\(G_{\left \{ \mathrm{B},
+\mathrm{M} \right \}} \mathrel{\mathop:}=\left \{ \mathrm{BM},
+\mathrm{MB} \right \}\)</span>.</p>
 </div>
 <div class="exercise">
 <p>The example above uses abstract symbols like B and M instead of the
@@ -246,11 +247,14 @@ stressed syllables. Propose a tier bigram grammar <span
 class="math inline">\(G\)</span> such that <span
 class="math inline">\(L(G)\)</span> is the set of all strings that obey
 both Korean vowel harmony and culminativity.</p>
-<p><em>Hint</em>: You will need two separate tiers.</p>
+<p><em>Hint</em>: You will need two subgrammars for this.</p>
 </div>
 <div class="exercise">
-<p>Give a definition for positive tier <span
-class="math inline">\(n\)</span>-gram grammars.</p>
+<p>Only one word in the definition of negative tier <span
+class="math inline">\(n\)</span>-gram grammars has to be changed in
+order to have a definition of positive tier <span
+class="math inline">\(n\)</span>-gram grammars instead. What is the
+relevant change?</p>
 </div>
 <h2 id="a-big-change-without-big-changes">A big change without big
 changes</h2>
