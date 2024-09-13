@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>How to think of tiers (work in progress)</title>
+  <title>The mathematics of tiers</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -38,7 +38,7 @@
 <nav id="TOC" role="doc-toc">
 <p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
 <ul>
-<li><a href="#how-to-think-of-tiers">How to think of tiers</a>
+<li><a href="#the-mathematics-of-tiers">The mathematics of tiers</a>
 <ul>
 <li><a href="#tier-projection-as-a-mapping">Tier projection as a
 mapping</a></li>
@@ -52,7 +52,7 @@ changes</a></li>
 </nav>
 </div>
 <div class="content">
-<h1 id="how-to-think-of-tiers">How to think of tiers</h1>
+<h1 id="the-mathematics-of-tiers">The mathematics of tiers</h1>
 <div class="prereqs">
 <ul>
 <li>functions (domains and co-domains)</li>
@@ -70,11 +70,11 @@ class="math inline">\(\tau\)</span> (this is the Greek letter
 <em>tau</em>). Each type of tier comes with its own projection function
 <span class="math inline">\(\tau_T\)</span>, which takes a string
 <em>s</em> as its only argument. Here <span
-class="math inline">\(T\)</span> is a <strong>tier alphabet</strong>,
-i.e. a set of symbols that should be projected onto said tier. The tier
-projection function <span class="math inline">\(\tau_T\)</span> then
-deletes every symbol from string <em>s</em> that isn’t a member of <span
-class="math inline">\(T\)</span>.</p>
+class="math inline">\(T\)</span> is the <strong>tier alphabet</strong>,
+i.e. the set of symbols that should be projected onto said tier. The
+tier projection function <span class="math inline">\(\tau_T\)</span>
+then deletes every symbol from string <em>s</em> that isn’t a member of
+<span class="math inline">\(T\)</span>.</p>
 <div class="definition">
 <p>Given alphabets <span class="math inline">\(\Sigma\)</span> and <span
 class="math inline">\(T\)</span>, the <strong>tier projection</strong>
@@ -95,10 +95,19 @@ those two symbols and nothing else. And <span
 class="math inline">\(\tau_T(\mathit{hasxintilawas}) =
 \mathit{ss}\)</span>.</p>
 </div>
-<div class="exercise">
-<p>Explain why the domain of <span class="math inline">\(\tau_T\)</span>
-is <span class="math inline">\(\Sigma^*\)</span> while its co-domain is
-<span class="math inline">\(T^*\)</span>.</p>
+<div class="example">
+<p>As an abstract example, consider the set of all strings over <span
+class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and <span
+class="math inline">\(c\)</span>. Then the <span
+class="math inline">\(a\)</span>-tier of <span
+class="math inline">\(\mathit{abba}\)</span> would be <span
+class="math inline">\(\tau_\left \{ a \right \}(\mathit{abbca}) =
+\mathit{aa}\)</span>, whereas the tier of <span
+class="math inline">\(a\)</span>s and <span
+class="math inline">\(b\)</span>s would be <span
+class="math inline">\(\tau_\left \{ a,b \right \}(\mathit{abbca}) =
+\mathit{abba}\)</span>.</p>
 </div>
 <div class="exercise">
 <p>Look at the list below, which shows <span
@@ -130,6 +139,12 @@ mappings.</p>
 <li><span
 class="math inline">\(\tau_\emptyset(\mathit{abc})\)</span></li>
 </ol>
+</div>
+<div class="exercise">
+<p>Explain why, per the definition above, the domain of <span
+class="math inline">\(\tau_T\)</span> is <span
+class="math inline">\(\Sigma^*\)</span> while its co-domain is <span
+class="math inline">\(T^*\)</span>.</p>
 </div>
 <h2 id="adding-tiers-to-n-gram-grammars">Adding tiers to <span
 class="math inline">\(n\)</span>-gram grammars</h2>
@@ -231,6 +246,8 @@ both Korean vowel harmony and culminativity.</p>
 <h2 id="a-big-change-without-big-changes">A big change without big
 changes</h2>
 <ul>
+<li>SL is special case where all pairs use <span
+class="math inline">\(\Sigma\)</span> as their tier</li>
 <li>mixed can be made strict</li>
 <li>polarity conversion still the same</li>
 <li>combination via intersection/union</li>
