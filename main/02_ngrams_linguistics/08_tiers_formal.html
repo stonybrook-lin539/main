@@ -100,7 +100,8 @@ is <span class="math inline">\(\Sigma^*\)</span> while its co-domain is
 class="math inline">\(\Sigma\)</span>-strings being mapped to <span
 class="math inline">\(T\)</span>-strings by some tier projection
 function. Write down the smallest possible tier alphabet <span
-class="math inline">\(T\)</span> that gives rise to these mappings.</p>
+class="math inline">\(T\)</span> that gives rise to all these
+mappings.</p>
 <ol type="1">
 <li><span class="math inline">\(\mathit{aaca} \mapsto
 \mathit{aaa}\)</span></li>
@@ -114,12 +115,12 @@ class="math inline">\(T\)</span> that gives rise to these mappings.</p>
 <p>Compute each one of the following:</p>
 <ol type="1">
 <li><span class="math inline">\(\tau_\left \{ a \right
-\}(\mathit{abc})\)</span></li>
+\}(\mathit{abca})\)</span></li>
 <li><span class="math inline">\(\tau_\left \{ a,b \right
-\}(\mathit{abc})\)</span></li>
+\}(\mathit{abca})\)</span></li>
 <li><span class="math inline">\(\tau_\left \{ a,b \right
-\}(\mathit{c})\)</span></li>
-<li><span class="math inline">\(\tau_\left \{ a,b \right
+\}(\mathit{ccc})\)</span></li>
+<li><span class="math inline">\(\tau_\left \{ a,b,c \right
 \}(\varepsilon)\)</span></li>
 <li><span
 class="math inline">\(\tau_\emptyset(\mathit{abc})\)</span></li>
@@ -127,8 +128,9 @@ class="math inline">\(\tau_\emptyset(\mathit{abc})\)</span></li>
 </div>
 <p>Now that we have a formal way to specify tiers, it is very easy to
 graft that onto <span class="math inline">\(n\)</span>-gram grammars by
-tying <span class="math inline">\(n\)</span>-grams to specific
-tiers.</p>
+tying <span class="math inline">\(n\)</span>-grams to specific tiers.
+The idea is that each <span class="math inline">\(n\)</span>-gram now
+says explicitly which tier it applies to.</p>
 <div class="definition">
 <p>A (strict) <strong>tier <span class="math inline">\(n\)</span>-gram
 grammar</strong> over alphabet <span
@@ -169,6 +171,14 @@ its negative interpretation. Similarly, <span
 class="math inline">\(P(G)\)</span> is the <strong>positive
 stringset/language of <span
 class="math inline">\(G\)</span></strong>.</p>
+</div>
+<div class="example">
+<p>Recall that the sibilant tier in Samala contains only <em>s</em> and
+<em>ʃ</em>, and that this tier must not contain <em>ss</em> or
+<em>ʃʃ</em>. This is captured by the tier bigram grammar <span
+class="math inline">\(\left \{  \left \langle ss, \left \{ s,ʃ \right \}
+\right \rangle, \left \langle ʃʃ, \left \{ s,ʃ \right \} \right
+\rangle  \right \}\)</span> under its negative interpretation.</p>
 </div>
 <div class="exercise">
 <p>The term <strong>culminativity</strong> refers to the property that
