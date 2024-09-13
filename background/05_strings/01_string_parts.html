@@ -42,6 +42,7 @@
 <ul>
 <li><a href="#substrings">Substrings</a></li>
 <li><a href="#subsequence">Subsequence</a></li>
+<li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -141,9 +142,8 @@ class="math inline">\(v\)</span> (<span class="math inline">\(u
 u \cdot y\)</span>. We furthermore call <span
 class="math inline">\(u\)</span></p>
 <ul>
-<li>a <strong>proper substring</strong> iff at least one of <span
-class="math inline">\(x\)</span> and <span
-class="math inline">\(y\)</span> is not the empty string,</li>
+<li>a <strong>proper substring</strong> iff <span
+class="math inline">\(u \neq v\)</span>,</li>
 <li>a <strong>prefix</strong> iff <span class="math inline">\(y =
 \varepsilon\)</span>,</li>
 <li>a **suffix* iff <span class="math inline">\(x =
@@ -175,7 +175,7 @@ neither:</p>
 <p>A <strong>subsequence</strong> is a discontinuous part of a string
 that preserves the order between the symbols.</p>
 <div class="example">
-<p>The string <span class="math inline">\(\mathit{abcd}\)</span> has
+<p>The string <span class="math inline">\(\mathit{abcd}\)</span> has 15
 subsequences:</p>
 <ul>
 <li><span class="math inline">\(\varepsilon\)</span></li>
@@ -230,7 +230,19 @@ string <span class="math inline">\(s\)</span> is also a subsequence of
 <span class="math inline">\(s\)</span>, but not the other way round.
 Justify your answer.</p>
 </div>
-<p>fixme: add prefixes and suffixes</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>A <strong>substring</strong> is a continuous part of a string.
+Initial substrings are called <strong>prefixes</strong>, and final ones
+are called <strong>suffixes</strong>.</li>
+<li>A <strong>subsequence</strong> is a discontinuous part of a
+string.</li>
+<li>The empty string is a substring, a prefix, a suffix, and a
+subsequence of every string.</li>
+<li>Every string <em>s</em> is both a substring and a subsequence of
+itself. The substrings and subsequences of <em>s</em> that are distinct
+from <em>s</em> are <strong>proper</strong>.</li>
+</ul>
 </div>
 </div>
 </body>
