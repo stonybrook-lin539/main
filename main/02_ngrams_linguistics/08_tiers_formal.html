@@ -517,12 +517,21 @@ think of a case where <span class="math inline">\(L(G_i) \neq
 L(G&#39;_i)\)</span> yet <span class="math inline">\(L(G) =
 L(G&#39;)\)</span>?</p>
 </div>
-<p>This lemma</p>
-<ul>
-<li>mixed can be made strict</li>
-<li>polarity conversion still the same</li>
-<li>combination via intersection/union</li>
-</ul>
+<p>The lemma guarantees that any kind of operation on <span
+class="math inline">\(n\)</span>-gram grammars that does not affect
+their string language can be applied to subgrammars without changing the
+string language of the tier <span class="math inline">\(n\)</span>-gram
+grammar. If you want to modify a tier <span
+class="math inline">\(n\)</span>-gram grammar in some manner without
+changing the string language it generates, you’ll want to figure out a
+way to modify its subgrammars without changing their string languages.
+And this is exactly what we did for converting from mixed grammars to
+strict grammars, and for the polarity conversion. Similar insights can
+be used to show that just as with negative <span
+class="math inline">\(n\)</span>-gram grammars, <span
+class="math inline">\(L(G) \cap L(G&#39;) = L(G \cup G&#39;)\)</span>
+for negative tier <span class="math inline">\(n\)</span>-ngram
+grammars.</p>
 <h2 id="recap">Recap</h2>
 <p>fixme</p>
 </div>
