@@ -42,6 +42,10 @@
 <ul>
 <li><a href="#tier-projection-as-a-mapping">Tier projection as a
 mapping</a></li>
+<li><a href="#adding-tiers-to-n-gram-grammars">Adding tiers to <span
+class="math inline">\(n\)</span>-gram grammars</a></li>
+<li><a href="#a-big-change-without-big-changes">A big change without big
+changes</a></li>
 <li><a href="#recap">Recap</a></li>
 </ul></li>
 </ul>
@@ -127,8 +131,10 @@ mappings.</p>
 class="math inline">\(\tau_\emptyset(\mathit{abc})\)</span></li>
 </ol>
 </div>
+<h2 id="adding-tiers-to-n-gram-grammars">Adding tiers to <span
+class="math inline">\(n\)</span>-gram grammars</h2>
 <p>Now that we have a formal way to specify tiers, it is very easy to
-graft that onto <span class="math inline">\(n\)</span>-gram grammars by
+graft tiers onto <span class="math inline">\(n\)</span>-gram grammars by
 tying <span class="math inline">\(n\)</span>-grams to specific tiers.
 The idea is that each <span class="math inline">\(n\)</span>-gram now
 says explicitly which tier it applies to.</p>
@@ -196,12 +202,12 @@ and M.</p>
 <div class="exercise">
 <p>The term <strong>culminativity</strong> refers to the property that
 every word has exactly one primary stress. Suppose that our alphabet is
-<span class="math inline">\(\left \{ V, \acute{V} \right \}\)</span>,
-where <span class="math inline">\(V\)</span> denotes the vowel of an
-unstressed syllable and <span class="math inline">\(\acute{V}\)</span>
-the vowel of a syllable with primary stress (we assume for simplicity
-that every syllable has exactly one vowel). Propose a tier bigram
-grammar <span class="math inline">\(G\)</span> such that <span
+<span class="math inline">\(\{ V, \acute{V} \}\)</span>, where <span
+class="math inline">\(V\)</span> denotes the vowel of an unstressed
+syllable and <span class="math inline">\(\acute{V}\)</span> the vowel of
+a syllable with primary stress (we assume for simplicity that every
+syllable has exactly one vowel). Propose a tier bigram grammar <span
+class="math inline">\(G\)</span> such that <span
 class="math inline">\(N(G)\)</span> is the set of all strings over <span
 class="math inline">\(V\)</span> and <span
 class="math inline">\(\acute{V}\)</span> that obey culminativity.</p>
@@ -222,6 +228,13 @@ class="math inline">\(N(G)\)</span> is the set of all strings that obey
 both Korean vowel harmony and culminativity.</p>
 <p><em>Hint</em>: You will need two separate tiers.</p>
 </div>
+<h2 id="a-big-change-without-big-changes">A big change without big
+changes</h2>
+<ul>
+<li>mixed can be made strict</li>
+<li>polarity conversion still the same</li>
+<li>combination via intersection/union</li>
+</ul>
 <h2 id="recap">Recap</h2>
 <p>fixme</p>
 </div>
