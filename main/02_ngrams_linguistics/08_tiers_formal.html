@@ -217,12 +217,12 @@ class="math inline">\(G\)</span> contains only one subgrammar, which is
 \}} \mathrel{\mathop:}=\left \{ \mathrm{BM}, \mathrm{MB} \right
 \}\)</span>. By definition, <em>CCBCBCM</em> is well-formed with respect
 to <span class="math inline">\(G_{\left \{ \mathrm{B}, \mathrm{M} \right
-\}\)</span> iff <span class="math inline">\(\tau_\left \{ \mathrm{B},
+\}}\)</span> iff <span class="math inline">\(\tau_\left \{ \mathrm{B},
 \mathrm{M} \right \}\)</span> has no factor that is an element of <span
 class="math inline">\(G_\left \{ \mathrm{B}, \mathrm{M} \right
 \}\)</span>. But <span class="math inline">\(\tau_\left \{ \mathrm{B},
 \mathrm{M} \right \}(\mathit{CCBCBCM}) = \mathit{BBM}\)</span> contains
-the factor <em>BM</em>, which is a member of <span
+the factor <em>BM</em>, which is in fact a member of <span
 class="math inline">\(G_\left \{ \mathrm{B}, \mathrm{M} \right
 \}\)</span>. Hence <em>CCBCBCM</em> is not well-formed with respect to
 the subgrammar <span class="math inline">\(G_\left \{ \mathrm{B},
@@ -277,7 +277,7 @@ relevant change?</p>
 <h2 id="a-big-change-without-big-changes">A big change without big
 changes</h2>
 <p>Even though tiers make <span class="math inline">\(n\)</span>-gram
-grammars a lot more flexible and greatly broadens their empirical
+grammars a lot more flexible and greatly broaden their empirical
 coverage, they are a fairly innocuous change from a mathematical
 perspective. First, observe that the <span
 class="math inline">\(n\)</span>-gram grammars we had been looking at
@@ -310,12 +310,17 @@ pairs:</p>
 <li><span class="math inline">\(\left \langle  \mathrm{C}{\ltimes},
 \Sigma \right \rangle\)</span></li>
 </ol>
-<p>These two grammars generate exactly the same string language. That’s
-because no matter what string <span class="math inline">\(s\)</span>
-over <span class="math inline">\(\Sigma\)</span> one picks, it always
-holds that <span class="math inline">\(\tau_\Sigma(s) = s\)</span>. That
-the n-grams of <span class="math inline">\(G&#39;\)</span> apply to a
-tier of <span class="math inline">\(s\)</span> instead of <span
+<p>Or in other words, <span class="math inline">\(G\)</span> is simply
+the <span class="math inline">\(\Sigma\)</span>-subgrammar of <span
+class="math inline">\(G\)</span>.</p>
+<p>Crucially, <span class="math inline">\(G\)</span> and <span
+class="math inline">\(G&#39;\)</span> generate exactly the same string
+language. That’s because no matter what string <span
+class="math inline">\(s\)</span> over <span
+class="math inline">\(\Sigma\)</span> one picks, it always holds that
+<span class="math inline">\(\tau_\Sigma(s) = s\)</span>. That the
+n-grams of <span class="math inline">\(G&#39;\)</span> apply to a tier
+of <span class="math inline">\(s\)</span> instead of <span
 class="math inline">\(s\)</span> itself is irrelevant because said tier
 looks exactly the same as <span class="math inline">\(s\)</span>.</p>
 </div>
