@@ -54,6 +54,11 @@ allow for smaller grammars</a></li>
 <div class="content">
 <h1 id="making-n-grams-more-powerful-phonological-tiers">Making n-grams
 more powerful: Phonological tiers</h1>
+<div class="prereqs">
+<ul>
+<li>strings (parts of strings)</li>
+</ul>
+</div>
 <p>We started this chapter with <span
 class="math inline">\(n\)</span>-gram grammars as a basic model for
 studying the linguistic domains of phonotactics and morphotactics,
@@ -81,7 +86,7 @@ class="math inline">\(n\)</span>-gram grammars</h2>
 <p>We already know that (positive/negative) <span
 class="math inline">\(n\)</span>-gram grammars can be used to describe
 various kinds of conditions on natural language phonotactics and
-morphotactics. This includes word-final devoicing, intervocalic voicing
+morphotactics. This includes word-final devoicing, intervocalic voicing,
 or penultimate stress, where primary stress must fall on the last but
 one syllable in a word. For some patterns, though, <span
 class="math inline">\(n\)</span>-gram grammars can be really clunky.</p>
@@ -96,13 +101,13 @@ word may mix vowels of class B with vowels of class M. Can we express
 this with an <span class="math inline">\(n\)</span>-gram grammar? Yes,
 but it isn’t exactly nice.</p>
 <p>First, we need to consider the Korean syllable template. The most
-complex syllables in Korean are of the form CGVC, where V is a vowel as
-usual, C is a consonant as usual, and G is a subtype of consonant called
-a <em>glide</em>. But there is an independent constraint that no two
-vowels can be separated by more than two consonants. All we have to do
-is to rule out that these two vowels belong to different classes, which
-we can do very easily with a negative grammar that mixes <span
-class="math inline">\(n\)</span>-grams of varying lengths:</p>
+complex syllables in Korean are of the form CGVC, where V is a vowel, C
+is a consonant, and G is a subtype of consonant called a <em>glide</em>.
+In addition, there is also a constraint that no two vowels can be
+separated by more than two consonants. All we have to do, then, is to
+rule out that these two vowels belong to different classes, which we can
+do very easily with a mixed negative <span
+class="math inline">\(n\)</span>-gram grammar:</p>
 <ul>
 <li>BM</li>
 <li>MB</li>
@@ -113,18 +118,20 @@ class="math inline">\(n\)</span>-grams of varying lengths:</p>
 </ul>
 <p>This looks pretty neat, so why did I say that <span
 class="math inline">\(n\)</span>-gram grammars do not handle this well?
-The problem is that the <span class="math inline">\(n\)</span>-gram
-grammars do not operate with abstract classes like this, they work with
-segments. Korean has 19 consonants, which means the single 4-gram BCCM
-actually corresponds to <span class="math inline">\(19 \times 19 =
-361\)</span> 4-grams. Actually, it’s even more than that because we
-haven’t yet replaced the abstract symbols B and M by the corresponding
-vowels. Even if we refrain from doing that and only replace C with all
-possible consonants, we are looking at over 700 <span
-class="math inline">\(n\)</span>-grams. Replace B and M and the count
-will be in the thousands, and if you want to pad everything out to <span
-class="math inline">\(4\)</span>-grams, it will be in the tens of
-thousands.</p>
+The problem is that we are cheating by using abstract classes like B, M,
+C, and G. In order to truly capture what combinations are allowed, we
+have to use the real sounds instead. Korean has 19 consonants, which
+means that the 4-gram BCCM actually corresponds to <span
+class="math inline">\(19 \times 19 = 361\)</span> 4-grams. Actually,
+it’s even more than that because we haven’t yet replaced the abstract
+symbols B and M by the corresponding vowels. Even if we refrain from
+doing that and only replace C in each <span
+class="math inline">\(n\)</span>-gram with all possible consonants, we
+are looking at over 700 <span class="math inline">\(n\)</span>-grams.
+Replace B and M and the count will be in the thousands, and if you want
+to pad everything out to <span class="math inline">\(4\)</span>-grams to
+get a strict negative <span class="math inline">\(n\)</span>-gram
+grammar, it will be in the tens of thousands.</p>
 </div>
 <p>That an <span class="math inline">\(n\)</span>-gram grammar of Korean
 vowel harmony needs so many <span class="math inline">\(n\)</span>-grams
@@ -140,15 +147,16 @@ inventory?</p>
 <p>For an even more extreme example, consider the case of
 <strong>Samala</strong>, which belongs to the group of Chumash languages
 spoken in southern California. Samala displays a constraint known as
-<strong>long-distance sibilant harmony</strong>. All sibilants in a word
-must agree in anteriority, no matter how far apart they are. This means
-that a word can certainly contain multiple instances of <em>s</em> or
-multiple instances of <em>ʃ</em> (ʃ is the IPA symbol corresponding to
-English <em>sh</em>). But it may never contain a mixture of the two. So
-<em>haʃxintilawaʃ</em> is well-formed, whereas <em>hasxintilawaʃ</em>
-and <em>haʃxinitilawas</em> are both ill-formed. The form
-<em>hasxintilawas</em>, while not an actual word of Samala, would also
-obey the sibilant harmony constraint.</p>
+<strong>long-distance sibilant harmony</strong>. Sibilants are sounds
+like <em>s</em> and <em>ʃ</em> (ʃ is the IPA symbol corresponding to
+English <em>sh</em>). All sibilants in a Samala word, no matter how far
+apart they are, must agree in a specific property called anteriority.
+This means that a word can certainly contain multiple instances of
+<em>s</em> or multiple instances of <em>ʃ</em>, but it may never contain
+a mixture of the two. So <em>haʃxintilawaʃ</em> is well-formed, whereas
+<em>hasxintilawaʃ</em> and <em>haʃxinitilawas</em> are both ill-formed.
+The form <em>hasxintilawas</em>, while not an actual word of Samala,
+would also obey the sibilant harmony constraint.</p>
 <p>Even a 10-gram grammar cannot capture these contrasts. A negative
 10-gram grammar that generates both <em>hasxinitilawas</em> and
 <em>haʃxintilawaʃ</em> must not forbid any of the following:</p>
@@ -172,7 +180,7 @@ so that it can generate <em>hasxintilawas</em> and
 <em>haʃxinitilawas</em>. You may make the following simplifying
 assumptions:</p>
 <ul>
-<li>The only vowel and consonants are those that occur in the words
+<li>The only vowels and consonants are those that occur in the words
 above.</li>
 <li>There are no restrictions on the syllable template. That is to say,
 each position may be any one of the available vowels and consonants
@@ -261,20 +269,38 @@ phenomena.</p>
 <h2 id="phonological-tiers-allow-for-smaller-grammars">Phonological
 tiers allow for smaller grammars</h2>
 <p>If you have some background in phonology, you might already be
-thinking that there is a very simple solution to all this: for any given
-string, we project a <strong>tier</strong> that contains only the
-segments that we care about and use an <span
-class="math inline">\(n\)</span>-gram grammar to regulate the shape of
-that tier.</p>
+thinking that there is a very simple solution to all this:
+<strong>tiers</strong>. In phonological theory, tiers are substructures
+that represent only specific parts of a word. Simplifying somewhat, we
+can model tiers as a particular kind of
+<strong>subsequence</strong>.</p>
 <div class="example">
-<p>For sibilant harmony, we want a sibilant tier that contains all
-sibilants (<em>s</em> and <em>ʃ</em>). And this sibilant tier must be
-well-formed according to a negative bigram grammar that forbids
-<em>sʃ</em> and <em>ʃs</em>. That’s one darn small grammar.</p>
-<p>The sibilant tier of <em>hasxintilawas</em> is <em>ss</em>, which is
-allowed by the negative grammar. The illicit <em>hasxintilawaʃ</em>, on
-the other hand, has the sibilant tier <em>sʃ</em>, which is not
-allowed.</p>
+<p>Consider once more the string <em>haʃxintilawaʃ</em>. Its
+<strong>vowel tier</strong> is the subsequence that contains all vowels
+but omits all other sounds: <em>aiiaa</em>. Note that the vowels appear
+in exactly the same order in the tier and the word itself.</p>
+</div>
+<div class="exercise">
+<p>The consonant tier contains all symbols that aren’t vowels. What is
+the consonant tier of <em>haʃxintilawaʃ</em>?</p>
+</div>
+<p>Tiers provide us with a new yet familiar way of using <span
+class="math inline">\(n\)</span>-gram grammars. For any given string, we
+project a tier that contains only the types of symbols that we care
+about and use an <span class="math inline">\(n\)</span>-gram grammar to
+regulate the shape of that tier.</p>
+<div class="example">
+<p>For sibilant harmony we want to construct a sibilant tier. As its
+name suggests, the sibilant tier contains all sibilants (<em>s</em> and
+<em>ʃ</em>) and nothing else. In order to enforce sibilant harmony, we
+require this tier to be well-formed according to the negative bigram
+grammar that forbids <em>sʃ</em> and <em>ʃs</em>. That’s one darn small
+grammar.</p>
+<p>The sibilant tier of the well-formed <em>hasxintilawas</em> is
+<em>ss</em>, which is allowed by the negative <span
+class="math inline">\(n\)</span>-gram grammar. The illicit
+<em>hasxintilawaʃ</em>, on the other hand, has the ill-formed sibilant
+tier <em>sʃ</em>.</p>
 <p><img src="tier_good.svg" alt="tier_good.svg" /></p>
 <p><img src="tier_bad.svg" alt="tier_bad.svg" /></p>
 </div>
@@ -285,27 +311,27 @@ allowed.</p>
 <li><em>haʃxinitilawas</em>, and</li>
 <li><em>ʃtajanowonowaʃ</em>.</li>
 </ul>
-<p>That is to say, write down their tiers (or draw them), and then
-indicate whether the tier is well-formed or ill-formed according to the
-negative bigram grammar above.</p>
+<p>That is to say, write down their sibilant tiers (or draw them), and
+then indicate whether the tier is well-formed or ill-formed according to
+the negative bigram grammar above.</p>
 </div>
 <div class="exercise">
 <p>As an abstract example, suppose that our alphabet consists of <span
 class="math inline">\(a\)</span>, <span
 class="math inline">\(b\)</span>, and <span
 class="math inline">\(c\)</span>, and that all symbols except <span
-class="math inline">\(c\)</span> should be projected on the tier. What
-is the tier of <span
+class="math inline">\(c\)</span> should be projected on a tier (which we
+might call the <em>a-b</em>-tier). What is the tier of <span
 class="math inline">\(\mathit{aabaccacb}\)</span>?</p>
 </div>
 <div class="example">
 <p>Tiers also provide a solution for Korean vowel harmony. Let us once
 again consider only words that do not contain any instances of the
 neutral vowel H. We construct a vowel harmony tier that contains every
-instance of B and M, but no consonants at all. For example, a word of
-the form CGBCBCM would have the vowel harmony tier BBM. On the vowel
-harmony tier, there must be no occurrences of BM or MB, which can easily
-be enforced by a negative bigram grammar.</p>
+instance of B and M, and nothing else. For example, a word of the form
+CGBCBCM would have the vowel harmony tier BBM. On the vowel harmony
+tier, there must be no occurrences of BM or MB, which can easily be
+enforced by a negative bigram grammar.</p>
 </div>
 <div class="exercise">
 <p>For each one of the strings below, construct its vowel harmony tier
@@ -359,6 +385,8 @@ elegant account of long-distance phenomena.</li>
 larger the grammar; large grammars are unwieldy and inefficient.</li>
 <li>Phonological <strong>tiers</strong> allow for more compact grammars
 by filtering out irrelevant material.</li>
+<li>A tier is a specific type of subsequence that contains all symbols
+of a specific type, and only those.</li>
 <li>Unless one assumes an upper bound on the length of long-distance
 dependencies, <span class="math inline">\(n\)</span>-gram grammars
 without tiers cannot capture certain phenomena.</li>
