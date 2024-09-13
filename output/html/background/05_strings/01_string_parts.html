@@ -53,6 +53,11 @@
 <li>strings (basic notation)</li>
 </ul>
 </div>
+<p>It is often important to refer to specific substructures of a string.
+The most important notion is that of <strong>substring</strong>, with
+the special cases of <strong>prefix</strong> and
+<strong>suffix</strong>. But for some applications,
+<strong>subsequences</strong> are also relevant.</p>
 <h2 id="substrings">Substrings</h2>
 <p>A <strong>substring</strong> is a continuous part of a string.</p>
 <div class="example">
@@ -72,6 +77,9 @@ substrings:</p>
 <li><span class="math inline">\(\mathit{abcd}\)</span></li>
 </ul>
 </div>
+<p>Some authors like to write <span class="math inline">\(u \sqsubseteq
+v\)</span> to indicate that <span class="math inline">\(u\)</span> is a
+substring of <span class="math inline">\(v\)</span>.</p>
 <p>Note that</p>
 <ol type="1">
 <li>the empty string is a substring of every string, and</li>
@@ -85,10 +93,60 @@ iff <span class="math inline">\(u \neq v\)</span>.</p>
 class="math inline">\(\mathit{abcd}\)</span>, except <span
 class="math inline">\(\mathit{abcd}\)</span> itself.</p>
 </div>
+<p>If <span class="math inline">\(u\)</span> is substring that spans
+from the very beginning of <span class="math inline">\(v\)</span>, we
+call it a <strong>prefix</strong>. And if <span
+class="math inline">\(u\)</span> is a substring that spans to the end of
+<span class="math inline">\(v\)</span>, we call it a
+<strong>suffix</strong>. Make sure not to confuse these with the
+linguistic notions of prefix and suffix, which work very
+differently.</p>
+<div class="example">
+<p>Among the strings listed above, all of the following are prefixes of
+<span class="math inline">\(\mathit{abcd}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\varepsilon\)</span> (if you find this
+confusing, check the formal definition below)</li>
+<li><span class="math inline">\(\mathit{a}\)</span></li>
+<li><span class="math inline">\(\mathit{ab}\)</span></li>
+<li><span class="math inline">\(\mathit{abc}\)</span></li>
+<li><span class="math inline">\(\mathit{abcd}\)</span></li>
+</ul>
+<p>And the all of the following are suffixes of <span
+class="math inline">\(\mathit{abcd}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\varepsilon\)</span> (if you find this
+confusing, check the formal definition below)</li>
+<li><span class="math inline">\(\mathit{d}\)</span></li>
+<li><span class="math inline">\(\mathit{cd}\)</span></li>
+<li><span class="math inline">\(\mathit{bcd}\)</span></li>
+<li><span class="math inline">\(\mathit{abcd}\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>For every string <span class="math inline">\(u\)</span>, there are at
+most two substrings that are both prefixes and suffixes of <span
+class="math inline">\(u\)</span>. What are they?</p>
+</div>
+<p>Substrings, prefixes, and suffixes are formally defined via
+concatenation.</p>
+<div class="definition">
+<p>Given <span class="math inline">\(\Sigma\)</span>-strings <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span>, <span class="math inline">\(u\)</span>
+is a <strong>substring</strong> of <span
+class="math inline">\(v\)</span> (<span class="math inline">\(u
+\sqsubseteq v\)</span>) iff there are <span class="math inline">\(x, y
+\in \Sigma^*\)</span> such that <span class="math inline">\(v = x \cdot
+u \cdot y\)</span>. We call <span class="math inline">\(u\)</span> a
+<strong>prefix</strong> iff <span class="math inline">\(y =
+\varepsilon\)</span>, and we call it a **suffix* iff <span
+class="math inline">\(x = \varepsilon\)</span>.</p>
+</div>
 <div class="exercise">
 <p>For each one of the gaps below, enter <span
 class="math inline">\(\sqsubseteq\)</span>, <span
-class="math inline">\(\sqsubsetneq\)</span>, or <span
+class="math inline">\(\sqsubset_p\)</span>, or <span
 class="math inline">\(\not\sqsubseteq\)</span> depending on whether the
 first string is a substring of the second string, a proper substring, or
 neither:</p>
