@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>The mathematics of tiers</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a href="#the-mathematics-of-tiers">The mathematics of tiers</a>
+<ul>
+<li><a href="#tier-projection-as-a-mapping">Tier projection as a
+mapping</a></li>
+<li><a href="#adding-tiers-to-n-gram-grammars">Adding tiers to <span
+class="math inline">\(n\)</span>-gram grammars</a></li>
+<li><a href="#a-big-change-without-big-changes">A big change without big
+changes</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="the-mathematics-of-tiers">The mathematics of tiers</h1>
+<div class="prereqs">
+<ul>
+<li>functions (domains and co-domains)</li>
+<li>tuples (pairs)</li>
+</ul>
+</div>
+<p>Tiers are a nice linguistic metaphor, but what is going on here at a
+formal level? How do we specify tiers, and how significant a
+modification are tiers? Also, what exactly is the cognitive intuition
+behind tiers? These are great questions with some great answers.</p>
+<h2 id="tier-projection-as-a-mapping">Tier projection as a mapping</h2>
+<p>Mathematically, tiers are easily defined as the output of a
+<strong>tier projection</strong> function <span
+class="math inline">\(\tau\)</span> (this is the Greek letter
+<em>tau</em>). Each type of tier comes with its own projection function
+<span class="math inline">\(\tau_T\)</span>, which takes a string
+<em>s</em> as its only argument. Here <span
+class="math inline">\(T\)</span> is the <strong>tier alphabet</strong>,
+i.e. the set of symbols that should be projected onto said tier. The
+tier projection function <span class="math inline">\(\tau_T\)</span>
+then deletes every symbol from string <em>s</em> that isn’t a member of
+<span class="math inline">\(T\)</span>.</p>
+<div class="definition">
+<p>Given alphabets <span class="math inline">\(\Sigma\)</span> and <span
+class="math inline">\(T\)</span>, the <strong>tier projection</strong>
+function <span class="math inline">\(\tau_T: \Sigma^* \rightarrow
+T^*\)</span> maps each <span
+class="math inline">\(\Sigma\)</span>-string <span
+class="math inline">\(s\)</span> to the longest subsequence <span
+class="math inline">\(u\)</span> of <span
+class="math inline">\(s\)</span> such that <span
+class="math inline">\(u\)</span> is a <span
+class="math inline">\(T\)</span>-string.</p>
+</div>
+<div class="example">
+<p>Consider once more the case of Samala sibilant harmony. Since the set
+of sibilants contains only <em>s</em> and <em>ʃ</em>, the tier alphabet
+<span class="math inline">\(T\)</span> for the sibilant tier contains
+those two symbols and nothing else. And <span
+class="math inline">\(\tau_T(\mathit{hasxintilawas}) =
+\mathit{ss}\)</span>.</p>
+</div>
+<div class="example">
+<p>As an abstract example, consider the set of all strings over <span
+class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and <span
+class="math inline">\(c\)</span>. Then the <span
+class="math inline">\(a\)</span>-tier of <span
+class="math inline">\(\mathit{abbca}\)</span> would be <span
+class="math inline">\(\tau_\left \{ a \right \}(\mathit{abbca}) =
+\mathit{aa}\)</span>, whereas the tier of <span
+class="math inline">\(a\)</span>s and <span
+class="math inline">\(b\)</span>s would be <span
+class="math inline">\(\tau_\left \{ a,b \right \}(\mathit{abbca}) =
+\mathit{abba}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Look at the list below, which shows <span
+class="math inline">\(\Sigma\)</span>-strings being mapped to <span
+class="math inline">\(T\)</span>-strings by some tier projection
+function. Write down the smallest possible tier alphabet <span
+class="math inline">\(T\)</span> that gives rise to all these
+mappings.</p>
+<ol type="1">
+<li><span class="math inline">\(\mathit{aaca} \mapsto
+\mathit{aaa}\)</span></li>
+<li><span class="math inline">\(\mathit{cabab} \mapsto
+\mathit{abab}\)</span></li>
+<li><span class="math inline">\(\mathit{bbdbe} \mapsto
+\mathit{bbdbe}\)</span></li>
+</ol>
+</div>
+<div class="exercise">
+<p>Compute each one of the following:</p>
+<ol type="1">
+<li><span class="math inline">\(\tau_\left \{ a \right
+\}(\mathit{abca})\)</span></li>
+<li><span class="math inline">\(\tau_\left \{ a,b \right
+\}(\mathit{abca})\)</span></li>
+<li><span class="math inline">\(\tau_\left \{ a,b,c \right
+\}(\mathit{abca})\)</span></li>
+<li><span class="math inline">\(\tau_\left \{ a,b \right
+\}(\mathit{ccc})\)</span></li>
+<li><span class="math inline">\(\tau_\left \{ a,b,c \right
+\}(\varepsilon)\)</span></li>
+<li><span
+class="math inline">\(\tau_\emptyset(\mathit{abc})\)</span></li>
+</ol>
+</div>
+<div class="exercise">
+<p>Explain why, per the definition above, the domain of <span
+class="math inline">\(\tau_T\)</span> is <span
+class="math inline">\(\Sigma^*\)</span> while its co-domain is <span
+class="math inline">\(T^*\)</span>.</p>
+</div>
+<h2 id="adding-tiers-to-n-gram-grammars">Adding tiers to <span
+class="math inline">\(n\)</span>-gram grammars</h2>
+<p>Now that we have a formal way to specify tiers, it is very easy to
+graft tiers onto <span class="math inline">\(n\)</span>-gram grammars by
+tying <span class="math inline">\(n\)</span>-grams to specific tiers.
+The idea is that each <span class="math inline">\(n\)</span>-gram now
+says explicitly which tier it applies to.</p>
+<div class="definition">
+<p>A <strong>(strict) negative tier <span
+class="math inline">\(n\)</span>-gram grammar</strong> over alphabet
+<span class="math inline">\(\Sigma\)</span> is a finite set of pairs
+<span class="math inline">\(\left \langle g_i, T_i \right
+\rangle\)</span> such that</p>
+<ul>
+<li>each <span class="math inline">\(T_i\)</span> is a finite set of
+symbols drawn from <span class="math inline">\(\Sigma\)</span>, and</li>
+<li><span class="math inline">\(g_i \in T_i^n\)</span>.</li>
+</ul>
+<p>We call <span class="math inline">\(T\)</span> a <strong>tier of
+<span class="math inline">\(G\)</span></strong> iff <span
+class="math inline">\(\left \langle g, T \right \rangle \in G\)</span>
+for some <span class="math inline">\(g\)</span>, and the set of all such
+<span class="math inline">\(g\)</span> is the <strong><span
+class="math inline">\(T\)</span>-subgrammar <span
+class="math inline">\(G_T\)</span></strong> of <span
+class="math inline">\(G\)</span>. A <span
+class="math inline">\(\Sigma\)</span>-string <span
+class="math inline">\(s\)</span> is well-formed with respect to <span
+class="math inline">\(G_T\)</span> iff no <span
+class="math inline">\(n\)</span>-gram that is a factor of <span
+class="math inline">\(\tau_T(s)\)</span> is a member of <span
+class="math inline">\(G_T\)</span>. It is well-formed with respect to
+<span class="math inline">\(G\)</span> iff it is well-formed with
+respect to <span class="math inline">\(G_T\)</span> for every tier <span
+class="math inline">\(T\)</span> of <span
+class="math inline">\(G\)</span>. The <strong>stringset/language
+generated by <span class="math inline">\(G\)</span></strong> is the set
+<span class="math inline">\(L(G)\)</span> that contains all strings, and
+only those, that are well-formed with respect to <span
+class="math inline">\(G\)</span>.</p>
+</div>
+<p>(The definition above uses the term <strong>factor</strong> that was
+first introduced in the formal definition of negative <span
+class="math inline">\(n\)</span>-gram grammars. We call an <span
+class="math inline">\(n\)</span>-gram a factor of string <span
+class="math inline">\(s\)</span> iff it is an <span
+class="math inline">\(n\)</span>-gram of <span
+class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1}\)</span>.)</p>
+<div class="example">
+<p>Recall that we captured Korean vowel harmony by projecting all bright
+vowels (B) and all mid dark vowels (M) onto a dedicated tier and banning
+BM and MB on this tier. More formally: let <span
+class="math inline">\(G\)</span> be the set <span
+class="math inline">\(\left \{  \left \langle \mathrm{BM}, \left \{
+\mathrm{B}, \mathrm{M} \right \} \right \rangle, \left \langle
+\mathrm{MB}, \left \{ \mathrm{B}, \mathrm{M} \right \} \right
+\rangle  \right \}\)</span>. Then <span
+class="math inline">\(L(G)\)</span> is the set of strings that obey
+Korean vowel harmony.</p>
+<p>Let us see how this works according to the definition above. Consider
+the string <em>CCBCBCM</em>, where <em>C</em> is a catch-all for
+consonants, as usual. This string is well-formed with respect to <span
+class="math inline">\(G\)</span> iff it is well-formed with respect to
+every subgrammar of <span class="math inline">\(G\)</span>. But <span
+class="math inline">\(G\)</span> contains only one subgrammar, which is
+<span class="math inline">\(G_{\left \{ \mathrm{B}, \mathrm{M} \right
+\}} \mathrel{\mathop:}=\left \{ \mathrm{BM}, \mathrm{MB} \right
+\}\)</span>. By definition, <em>CCBCBCM</em> is well-formed with respect
+to <span class="math inline">\(G_{\left \{ \mathrm{B}, \mathrm{M} \right
+\}}\)</span> iff <span class="math inline">\(\tau_\left \{ \mathrm{B},
+\mathrm{M} \right \}\)</span> has no factor that is an element of <span
+class="math inline">\(G_\left \{ \mathrm{B}, \mathrm{M} \right
+\}\)</span>. But <span class="math inline">\(\tau_\left \{ \mathrm{B},
+\mathrm{M} \right \}(\mathit{CCBCBCM}) = \mathit{BBM}\)</span> contains
+the factor <em>BM</em>, which is in fact a member of <span
+class="math inline">\(G_\left \{ \mathrm{B}, \mathrm{M} \right
+\}\)</span>. Hence <em>CCBCBCM</em> is not well-formed with respect to
+the subgrammar <span class="math inline">\(G_\left \{ \mathrm{B},
+\mathrm{M} \right \}\)</span> and hence isn’t well-formed with respect
+to the tier bigram grammar <span class="math inline">\(G\)</span>
+either.</p>
+</div>
+<div class="exercise">
+<p>The example above uses abstract symbols like B and M instead of the
+actual vowels. Suppose that the only bright vowels of Korean are
+<em>a</em> and <em>u</em>, and the only mid dark vowel is <em>o</em>
+(just to be clear, this is not at all how Korean works). Adapt <span
+class="math inline">\(G\)</span> above to use these vowels instead of B
+and M.</p>
+</div>
+<div class="exercise">
+<p>The term <strong>culminativity</strong> refers to the property that
+every word has exactly one primary stress. Suppose that our alphabet is
+<span class="math inline">\(\{ V, \acute{V} \}\)</span>, where <span
+class="math inline">\(V\)</span> denotes the vowel of an unstressed
+syllable and <span class="math inline">\(\acute{V}\)</span> the vowel of
+a syllable with primary stress (we assume for simplicity that every
+syllable has exactly one vowel). Propose a negative tier bigram grammar
+<span class="math inline">\(G\)</span> such that <span
+class="math inline">\(L(G)\)</span> is the set of all strings over <span
+class="math inline">\(V\)</span> and <span
+class="math inline">\(\acute{V}\)</span> that obey culminativity.</p>
+<p><em>Hint</em>: ⋊ and ⋉ can be used with tiers, too.</p>
+</div>
+<div class="exercise">
+<p>This continues the previous exercises. Suppose that <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(u\)</span> are bright vowels in unstressed
+syllables and <span class="math inline">\(o\)</span> is a mid dark vowel
+in an unstressed syllable, whereas <span
+class="math inline">\(\acute{a}\)</span>, <span
+class="math inline">\(\acute{u}\)</span>, and <span
+class="math inline">\(\acute{o}\)</span> are their counterparts in
+stressed syllables. Propose a tier bigram grammar <span
+class="math inline">\(G\)</span> such that <span
+class="math inline">\(L(G)\)</span> is the set of all strings that obey
+both Korean vowel harmony and culminativity.</p>
+<p><em>Hint</em>: You will need two subgrammars for this.</p>
+</div>
+<div class="exercise">
+<p>Only one word in the definition of negative tier <span
+class="math inline">\(n\)</span>-gram grammars has to be changed in
+order to have a definition of positive tier <span
+class="math inline">\(n\)</span>-gram grammars instead. What is the
+relevant change?</p>
+</div>
+<h2 id="a-big-change-without-big-changes">A big change without big
+changes</h2>
+<p>Even though tiers make <span class="math inline">\(n\)</span>-gram
+grammars a lot more flexible and greatly broaden their empirical
+coverage, they are a fairly innocuous change from a mathematical
+perspective. First, observe that the <span
+class="math inline">\(n\)</span>-gram grammars we had been looking at
+before the introduction of tiers can be regarded as just a special case
+of tier <span class="math inline">\(n\)</span>-gram grammars where all
+<span class="math inline">\(n\)</span>-grams use the tier projection
+<span class="math inline">\(\tau_\Sigma\)</span>.</p>
+<div class="example">
+<p>Remember our negative bigram grammar <span
+class="math inline">\(G\)</span> for CV syllable templates? The grammar
+uses the alphabet <span class="math inline">\(\Sigma
+\mathrel{\mathop:}=\left \{  \mathrm{C}, \mathrm{V}  \right \}\)</span>
+and consists of four forbidden bigrams:</p>
+<ol type="1">
+<li><span class="math inline">\({\rtimes}\mathrm{V}\)</span></li>
+<li><span class="math inline">\(\mathrm{CC}\)</span></li>
+<li><span class="math inline">\(\mathrm{VV}\)</span></li>
+<li><span class="math inline">\(\mathrm{C}{\ltimes}\)</span></li>
+</ol>
+<p>But we can also regard this as a tier bigram grammar <span
+class="math inline">\(G&#39;\)</span> that contains the following
+pairs:</p>
+<ol type="1">
+<li><span class="math inline">\(\left \langle  {\rtimes}\mathrm{V},
+\Sigma \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  \mathrm{CC}, \Sigma
+\right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  \mathrm{VV}, \Sigma
+\right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  \mathrm{C}{\ltimes},
+\Sigma \right \rangle\)</span></li>
+</ol>
+<p>Or in other words, <span class="math inline">\(G\)</span> is simply
+the <span class="math inline">\(\Sigma\)</span>-subgrammar of <span
+class="math inline">\(G&#39;\)</span>, which happens to have no other
+subgrammars.</p>
+<p>Crucially, <span class="math inline">\(G\)</span> and <span
+class="math inline">\(G&#39;\)</span> generate exactly the same string
+language. That’s because no matter what string <span
+class="math inline">\(s\)</span> over <span
+class="math inline">\(\Sigma\)</span> one picks, it always holds that
+<span class="math inline">\(\tau_\Sigma(s) = s\)</span>. That the
+n-grams of <span class="math inline">\(G&#39;\)</span> apply to a tier
+of <span class="math inline">\(s\)</span> instead of <span
+class="math inline">\(s\)</span> itself is irrelevant because said tier
+looks exactly the same as <span class="math inline">\(s\)</span>.</p>
+</div>
+<p>The fact that every <span class="math inline">\(n\)</span>-gram
+grammar is a particularly simple tier <span
+class="math inline">\(n\)</span>-gram grammar not only tells us that we
+are dealing with a very natural generalization, it also makes it easy to
+generalize our findings about <span
+class="math inline">\(n\)</span>-gram grammars to tier <span
+class="math inline">\(n\)</span>-gram grammars. This barely requires any
+work at all. We just have to take the procedures we already know and
+carry them out for all the subgrammars of a given tier <span
+class="math inline">\(n\)</span>-gram grammar. For example, converting a
+mixed tier <span class="math inline">\(n\)</span>-gram grammar to a
+strict one is simply a matter of converting all subgrammars.</p>
+<div class="example">
+<p>Below is a tier <span class="math inline">\(n\)</span>-gram grammar
+over alphabet <span class="math inline">\(\left \{ a,b,c \right
+\}\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\left \langle  bb, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bab, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}a, \left \{
+a,b,c \right \} \right \rangle\)</span></li>
+</ul>
+<p>This grammar enforces two constraints: no string may start with
+<em>a</em>, and if <em>b</em> ever occurs somewhere to the right of
+another <em>b</em>, then there must be at least two <em>a</em>s between
+those <em>b</em>s.</p>
+<p>The <span class="math inline">\(n\)</span>-grams vary in length, but
+we can fix that in the familiar fashion. First, observe that there are
+two distinct subgrammars here:</p>
+<ul>
+<li><span class="math inline">\(G_\left \{ a,b \right \}\)</span>
+contains both the bigram <span class="math inline">\(bb\)</span> and the
+trigram <span class="math inline">\(bab\)</span>, making it a mixed
+grammar. We will have to convert this into a strict trigram
+grammar.</li>
+<li><span class="math inline">\(G_\left \{ a,b,c \right \}\)</span>
+contains only the bigram <span
+class="math inline">\({\rtimes}a\)</span>. This means it is already a
+strict grammar, but it is a string bigram grammar. We will have to
+convert this to a trigram grammar, too.</li>
+</ul>
+<p>The conversion of <span class="math inline">\(G_\left \{ a,b \right
+\}\)</span> to a strict trigram grammar proceeds in the usual
+fashion.</p>
+<p>The only minor complication is that the set of trigrams we have to
+construct depends on the tier alphabet. For <span
+class="math inline">\(G_\left \{ a,b \right \}\)</span>, we construct
+the set of all trigrams over edge markers, <span
+class="math inline">\(a\)</span>, and <span
+class="math inline">\(b\)</span>. We do not include <span
+class="math inline">\(c\)</span> here because that isn’t part of the
+tier alphabet. We then keep all the trigrams that contain an <span
+class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(G_\left \{ a,b \right \}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\left \langle  {\rtimes}bb, \left \{ a,b
+\right \} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  abb, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bba, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bbb, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bb{\ltimes}, \left \{ a,b
+\right \} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bab, \left \{ a,b \right
+\} \right \rangle\)</span></li>
+</ul>
+<p>When converting <span class="math inline">\(G_\left \{ a,b,c \right
+\}\)</span> to trigrams, we do have to consider <span
+class="math inline">\(c\)</span>, too, because it is part of that tier’s
+alphabet. So now we construct the set of all trigrams over edge markers,
+<span class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>, and <span
+class="math inline">\(c\)</span>, and again we keep all trigrams that
+contain an <span class="math inline">\(n\)</span>-gram of <span
+class="math inline">\(G_\left \{ a,b,c \right \}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\left \langle  {\rtimes}{\rtimes}a,
+\left \{ a,b,c \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}aa, \left \{
+a,b,c \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}ab, \left \{
+a,b,c \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}ac, \left \{
+a,b,c \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}a{\ltimes},
+\left \{ a,b,c \right \}  \right \rangle\)</span></li>
+</ul>
+<p>The set that contains these 11 trigrams is a tier trigram grammar
+<span class="math inline">\(G&#39;\)</span> that generates exactly the
+same string language.</p>
+</div>
+<div class="exercise">
+<p>For each one of the strings below, show whether it is generated by
+<span class="math inline">\(G\)</span> and/or <span
+class="math inline">\(G&#39;\)</span> from the example above. Do so by
+specifying the relevant tiers of each string (you may draw them or write
+them out) and indicating which factors, if any, are forbidden.</p>
+<ul>
+<li>abc</li>
+<li>cabc</li>
+<li>bcccbcacb</li>
+<li>baccacabcccaab</li>
+</ul>
+</div>
+<p>Now consider the case of polarity conversion, i.e. that every
+positive <span class="math inline">\(n\)</span>-gram grammar has an
+equivalent negative <span class="math inline">\(n\)</span>-gram grammar
+and the other way round. This also holds for tier <span
+class="math inline">\(n\)</span>-gram grammars.</p>
+<div class="example">
+<p>Let <span class="math inline">\(G\)</span> be the tier bigram grammar
+over alphabet <span class="math inline">\(\left \{ a,b \right
+\}\)</span> that contains the following pairs, and only those:</p>
+<ul>
+<li><span class="math inline">\(\left \langle  {\rtimes}{\ltimes}, \left
+\{ a \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  bb, \left \{ b \right
+\}  \right \rangle\)</span></li>
+</ul>
+<p>Here <span class="math inline">\(N(G)\)</span> (i.e. the string
+language under the negative interpretation of <span
+class="math inline">\(G\)</span>) consists of all strings that contain
+at least one <span class="math inline">\(a\)</span> and at most one
+<span class="math inline">\(b\)</span>.</p>
+<p>We can construct another tier bigram grammar <span
+class="math inline">\(G&#39;\)</span> such that <span
+class="math inline">\(N(G) = P(G&#39;)\)</span>. This grammar looks as
+follows:</p>
+<ul>
+<li><span class="math inline">\(\left \langle  {\rtimes}a, \left \{ a
+\right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  a{\ltimes}, \left \{ a
+\right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes}{\ltimes}, \left
+\{ b \right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  {\rtimes} b, \left \{ b
+\right \}  \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle  b {\ltimes}, \left \{ b
+\right \}  \right \rangle\)</span></li>
+</ul>
+<p>Does this look familiar to you? For each tier <span
+class="math inline">\(T\)</span> of <span
+class="math inline">\(G\)</span>, <span
+class="math inline">\(G&#39;\)</span> contains every pair <span
+class="math inline">\(\left \langle g, T \right \rangle\)</span> such
+that <span class="math inline">\(g\)</span> is a bigram but <span
+class="math inline">\(\left \langle g, T \right \rangle\)</span> isn’t a
+member of <span class="math inline">\(G\)</span>. Just like in the
+original conversion procedure for <span
+class="math inline">\(n\)</span>-gram grammars, <span
+class="math inline">\(G&#39;\)</span> contains every bigram that isn’t a
+bigram of <span class="math inline">\(G\)</span>. All we have done is
+take the original procedure and carry it out for each tier of <span
+class="math inline">\(G\)</span>.</p>
+</div>
+<p>If you’ve paid attention throughout this chapter, you’ll probably
+interject now that we can’t just look at a few examples and conclude
+that things work. No, we need to give a proof! You are quite right,
+except that we don’t need any new proofs for the two constructions
+above. Instead, we can just reuse the proofs for <span
+class="math inline">\(n\)</span>-gram grammars, thanks to the nifty
+<strong>lemma</strong> below. A <strong>lemma</strong> is a theorem that
+isn’t very interesting on its own but saves us some work nonetheless —
+in the case at hand, it saves us from having to come up with new
+proofs.</p>
+<div class="lemma">
+<p>Let <span class="math inline">\(G\)</span> and <span
+class="math inline">\(G&#39;\)</span> be tier <span
+class="math inline">\(n\)</span>-gram grammars that are both positive or
+both negative, and that each have exactly <span class="math inline">\(j
+\geq 0\)</span> subgrammars <span class="math inline">\(G_1, \ldots,
+G_j\)</span> and <span class="math inline">\(G&#39;_1, \ldots,
+G&#39;_j\)</span>, respectively. Then <span class="math inline">\(L(G) =
+L(G&#39;)\)</span> if <span class="math inline">\(L(G_i) =
+L(G&#39;_i)\)</span> for all <span class="math inline">\(1 \leq i \leq
+j\)</span>.</p>
+</div>
+<div class="proof">
+<p>By definition, a string is well-formed with respect to a tier <span
+class="math inline">\(n\)</span>-gram grammar iff it is well-formed with
+respect to all its subgrammars.</p>
+<p>Yes, that’s it, we’re done here. Please move on.</p>
+</div>
+<div class="exercise">
+<p>Note that the lemma uses <em>if</em> instead of <em>iff</em>. This
+allows for cases where <span class="math inline">\(L(G_i) \neq
+L(G&#39;_i)\)</span> yet <span class="math inline">\(L(G) =
+L(G&#39;)\)</span> nonetheless. Given an example of such a case.</p>
+</div>
+<p>The lemma guarantees that any kind of operation on <span
+class="math inline">\(n\)</span>-gram grammars that does not affect
+their string language can be applied to subgrammars without changing the
+string language of the tier <span class="math inline">\(n\)</span>-gram
+grammar. If you want to modify a tier <span
+class="math inline">\(n\)</span>-gram grammar in some manner without
+changing the string language it generates, you’ll want to figure out a
+way to modify its subgrammars without changing their string languages.
+And this is exactly what we did for converting from mixed grammars to
+strict grammars, and for the polarity conversion. Similar insights can
+be used to show that just as with negative <span
+class="math inline">\(n\)</span>-gram grammars, <span
+class="math inline">\(L(G) \cap L(G&#39;) = L(G \cup G&#39;)\)</span>
+for negative tier <span class="math inline">\(n\)</span>-ngram grammars.
+All the things we have done with <span
+class="math inline">\(n\)</span>-gram grammars, we can do with tier
+<span class="math inline">\(n\)</span>-gram grammars!</p>
+<p>If you think about it, this is quite remarkable. The addition of tier
+feels like a major modification, and it does greatly boost the range of
+phenomena we can capture with <span
+class="math inline">\(n\)</span>-grams. But mathematically, barely
+anything has changed. The definitions are very similar, we can still use
+the familiar techniques we used with <span
+class="math inline">\(n\)</span>-gram grammars, and we didn’t even need
+any new proofs. Without math, the introduction of tiers might have put
+us back to square one in terms of our understanding of the formalism.
+But since we took the time to probe the mathematical depths of <span
+class="math inline">\(n\)</span>-gram grammars, adding tiers turned out
+to be effortless. I’ve said it before and I’ll say it again: math is for
+lazy people!</p>
+<h2 id="recap">Recap</h2>
+<!-- fixme -->
+</div>
+</div>
+</body>
+</html>
