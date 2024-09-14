@@ -34,7 +34,7 @@ And $\tau_T(\String{hasxintilawas}) = \String{ss}$.
 
 ::: example
 As an abstract example, consider the set of all strings over $a$, $b$, and $c$.
-Then the $a$-tier of $\String{abbca}$ would be $\tau_\setof{a}(\String{abbca}) = \String{aa}$, whereas the tier of $a$s and $b$s would be $\tau_\setof{a,b}(\String{abbca}) = \String{abba}$.
+Then the $a$-tier of $\String{abbca}$ would be $\tau_{\setof{a}}(\String{abbca}) = \String{aa}$, whereas the tier of $a$s and $b$s would be $\tau_{\setof{a,b}}(\String{abbca}) = \String{abba}$.
 :::
 
 ::: exercise
@@ -50,11 +50,11 @@ Write down the smallest possible tier alphabet $T$ that gives rise to all these 
 ::: exercise
 Compute each one of the following:
 
-1. $\tau_\setof{a}(\String{abca})$
-1. $\tau_\setof{a,b}(\String{abca})$
-1. $\tau_\setof{a,b,c}(\String{abca})$
-1. $\tau_\setof{a,b}(\String{ccc})$
-1. $\tau_\setof{a,b,c}(\emptystring)$
+1. $\tau_{\setof{a}}(\String{abca})$
+1. $\tau_{\setof{a,b}}(\String{abca})$
+1. $\tau_{\setof{a,b,c}}(\String{abca})$
+1. $\tau_{\setof{a,b}}(\String{ccc})$
+1. $\tau_{\setof{a,b,c}}(\emptystring)$
 1. $\tau_\emptyset(\String{abc})$
 :::
 
@@ -96,9 +96,9 @@ Let us see how this works according to the definition above.
 Consider the string *CCBCBCM*, where *C* is a catch-all for consonants, as usual.
 This string is well-formed with respect to $G$ iff it is well-formed with respect to every subgrammar of $G$.
 But $G$ contains only one subgrammar, which is $G_{\setof{\mathrm{B}, \mathrm{M}}} \is \setof{\mathrm{BM}, \mathrm{MB}}$.
-By definition, *CCBCBCM* is well-formed with respect to $G_{\setof{\mathrm{B}, \mathrm{M}}}$ iff $\tau_\setof{\mathrm{B}, \mathrm{M}}$ has no factor that is an element of $G_\setof{\mathrm{B}, \mathrm{M}}$.
-But $\tau_\setof{\mathrm{B}, \mathrm{M}}(\String{CCBCBCM}) = \String{BBM}$ contains the factor *BM*, which is in fact a member of $G_\setof{\mathrm{B}, \mathrm{M}}$.
-Hence *CCBCBCM* is not well-formed with respect to the subgrammar $G_\setof{\mathrm{B}, \mathrm{M}}$ and hence isn't well-formed with respect to the tier bigram grammar $G$ either.
+By definition, *CCBCBCM* is well-formed with respect to $G_{\setof{\mathrm{B}, \mathrm{M}}}$ iff $\tau_{\setof{\mathrm{B}, \mathrm{M}}}$ has no factor that is an element of $G_{\setof{\mathrm{B}, \mathrm{M}}}$.
+But $\tau_{\setof{\mathrm{B}, \mathrm{M}}}(\String{CCBCBCM}) = \String{BBM}$ contains the factor *BM*, which is in fact a member of $G_{\setof{\mathrm{B}, \mathrm{M}}}$.
+Hence *CCBCBCM* is not well-formed with respect to the subgrammar $G_{\setof{\mathrm{B}, \mathrm{M}}}$ and hence isn't well-formed with respect to the tier bigram grammar $G$ either.
 :::
 
 ::: exercise
@@ -173,18 +173,18 @@ This grammar enforces two constraints: no string may start with *a*, and if *b* 
 The $n$-grams vary in length, but we can fix that in the familiar fashion.
 First, observe that there are two distinct subgrammars here:
 
-- $G_\setof{a,b}$ contains both the bigram $bb$ and the trigram $bab$, making it a mixed grammar.
+- $G_{\setof{a,b}}$ contains both the bigram $bb$ and the trigram $bab$, making it a mixed grammar.
   We will have to convert this into a strict trigram grammar.
-- $G_\setof{a,b,c}$ contains only the bigram ${{{L}}}a$.
+- $G_{\setof{a,b,c}}$ contains only the bigram ${{{L}}}a$.
   This means it is already a strict grammar, but it is a string bigram grammar.
   We will have to convert this to a trigram grammar, too.
 
-The conversion of $G_\setof{a,b}$ to a strict trigram grammar proceeds in the usual fashion.
+The conversion of $G_{\setof{a,b}}$ to a strict trigram grammar proceeds in the usual fashion.
 
 The only minor complication is that the set of trigrams we have to construct depends on the tier alphabet.
-For $G_\setof{a,b}$, we construct the set of all trigrams over edge markers, $a$, and $b$.
+For $G_{\setof{a,b}}$, we construct the set of all trigrams over edge markers, $a$, and $b$.
 We do not include $c$ here because that isn't part of the tier alphabet.
-We then keep all the trigrams that contain an $n$-gram of $G_\setof{a,b}$:
+We then keep all the trigrams that contain an $n$-gram of $G_{\setof{a,b}}$:
 
 - $\tuple{ {{{L}}}bb, \setof{a,b}}$
 - $\tuple{ abb, \setof{a,b}}$
@@ -193,8 +193,8 @@ We then keep all the trigrams that contain an $n$-gram of $G_\setof{a,b}$:
 - $\tuple{ bb{{{R}}}, \setof{a,b}}$
 - $\tuple{ bab, \setof{a,b}}$
 
-When converting $G_\setof{a,b,c}$ to trigrams, we do have to consider $c$, too, because it is part of that tier's alphabet.
-So now we construct the set of all trigrams over edge markers, $a$, $b$, and $c$, and again we keep all trigrams that contain an $n$-gram of $G_\setof{a,b,c}$:
+When converting $G_{\setof{a,b,c}}$ to trigrams, we do have to consider $c$, too, because it is part of that tier's alphabet.
+So now we construct the set of all trigrams over edge markers, $a$, $b$, and $c$, and again we keep all trigrams that contain an $n$-gram of $G_{\setof{a,b,c}}$:
 
 - $\tuple{ {{{L}}}{{{L}}}a, \setof{a,b,c} }$
 - $\tuple{ {{{L}}}aa, \setof{a,b,c} }$
@@ -269,7 +269,7 @@ Given an example of such a case.
 The lemma guarantees that any kind of operation on $n$-gram grammars that does not affect their string language can be applied to subgrammars without changing the string language of the tier $n$-gram grammar.
 If you want to modify a tier $n$-gram grammar in some manner without changing the string language it generates, you'll want to figure out a way to modify its subgrammars without changing their string languages.
 And this is exactly what we did for converting from mixed grammars to strict grammars, and for the polarity conversion.
-Similar insights can be used to show that just as with negative $n$-gram grammars, $L(G) \cap L(G') = L(G \cup G')$ for negative tier $n$-ngram grammars.
+Similar insights can be used to show that just as with negative $n$-gram grammars, $L(G) \cap L(G') = L(G \cup G')$ for negative tier $n$-ngram grammars (that is to say, we can still combine grammars via union).
 All the things we have done with $n$-gram grammars, we can do with tier $n$-gram grammars!
 
 If you think about it, this is quite remarkable.
@@ -282,4 +282,11 @@ I've said it before and I'll say it again: math is for lazy people!
 
 ## Recap
 
-<!-- fixme -->
+- The **tier projection** for tier $T$ is a function $\tau_T$ that maps every string to its longest subsequence that only contains symbols of $T$.
+- A negative **tier $n$-gram grammar** uses $n$-grams that have been annotated to indicate which tier they apply to.
+  Formally, it is a finite set of pairs $\tuple{g, T}$ where $g$ is an $n$-gram and $T$ the tier's alphabet.
+- Given a tier $n$-gram grammar $G$, we sometimes use $G_T$ for the set of $G$'s $n$-grams that apply on tier $T$.
+  We also call this a **subgrammar** of $G$.
+- Each subgrammar is effectively a negative $n$-gram grammar that applies to a tier instead of the whole string.
+  This makes it easy to generalize our previous findings (strict VS mixed, negative VS positive, ways of combining grammars) from $n$-gram grammars to tier $n$-gram grammars.
+- A **lemma** is a theorem that may not be all that interesting in its own right but is very useful in establishing other theorems.
