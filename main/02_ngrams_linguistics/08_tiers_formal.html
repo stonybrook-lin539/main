@@ -102,11 +102,11 @@ class="math inline">\(b\)</span>, and <span
 class="math inline">\(c\)</span>. Then the <span
 class="math inline">\(a\)</span>-tier of <span
 class="math inline">\(\mathit{abbca}\)</span> would be <span
-class="math inline">\(\tau_\left \{ a \right \}(\mathit{abbca}) =
+class="math inline">\(\tau_{\left \{ a \right \}}(\mathit{abbca}) =
 \mathit{aa}\)</span>, whereas the tier of <span
 class="math inline">\(a\)</span>s and <span
 class="math inline">\(b\)</span>s would be <span
-class="math inline">\(\tau_\left \{ a,b \right \}(\mathit{abbca}) =
+class="math inline">\(\tau_{\left \{ a,b \right \}}(\mathit{abbca}) =
 \mathit{abba}\)</span>.</p>
 </div>
 <div class="exercise">
@@ -128,16 +128,16 @@ mappings.</p>
 <div class="exercise">
 <p>Compute each one of the following:</p>
 <ol type="1">
-<li><span class="math inline">\(\tau_\left \{ a \right
-\}(\mathit{abca})\)</span></li>
-<li><span class="math inline">\(\tau_\left \{ a,b \right
-\}(\mathit{abca})\)</span></li>
-<li><span class="math inline">\(\tau_\left \{ a,b,c \right
-\}(\mathit{abca})\)</span></li>
-<li><span class="math inline">\(\tau_\left \{ a,b \right
-\}(\mathit{ccc})\)</span></li>
-<li><span class="math inline">\(\tau_\left \{ a,b,c \right
-\}(\varepsilon)\)</span></li>
+<li><span class="math inline">\(\tau_{\left \{ a \right
+\}}(\mathit{abca})\)</span></li>
+<li><span class="math inline">\(\tau_{\left \{ a,b \right
+\}}(\mathit{abca})\)</span></li>
+<li><span class="math inline">\(\tau_{\left \{ a,b,c \right
+\}}(\mathit{abca})\)</span></li>
+<li><span class="math inline">\(\tau_{\left \{ a,b \right
+\}}(\mathit{ccc})\)</span></li>
+<li><span class="math inline">\(\tau_{\left \{ a,b,c \right
+\}}(\varepsilon)\)</span></li>
 <li><span
 class="math inline">\(\tau_\emptyset(\mathit{abc})\)</span></li>
 </ol>
@@ -217,16 +217,16 @@ class="math inline">\(G\)</span> contains only one subgrammar, which is
 \}} \mathrel{\mathop:}=\left \{ \mathrm{BM}, \mathrm{MB} \right
 \}\)</span>. By definition, <em>CCBCBCM</em> is well-formed with respect
 to <span class="math inline">\(G_{\left \{ \mathrm{B}, \mathrm{M} \right
-\}}\)</span> iff <span class="math inline">\(\tau_\left \{ \mathrm{B},
-\mathrm{M} \right \}\)</span> has no factor that is an element of <span
-class="math inline">\(G_\left \{ \mathrm{B}, \mathrm{M} \right
-\}\)</span>. But <span class="math inline">\(\tau_\left \{ \mathrm{B},
-\mathrm{M} \right \}(\mathit{CCBCBCM}) = \mathit{BBM}\)</span> contains
+\}}\)</span> iff <span class="math inline">\(\tau_{\left \{ \mathrm{B},
+\mathrm{M} \right \}}\)</span> has no factor that is an element of <span
+class="math inline">\(G_{\left \{ \mathrm{B}, \mathrm{M} \right
+\}}\)</span>. But <span class="math inline">\(\tau_{\left \{ \mathrm{B},
+\mathrm{M} \right \}}(\mathit{CCBCBCM}) = \mathit{BBM}\)</span> contains
 the factor <em>BM</em>, which is in fact a member of <span
-class="math inline">\(G_\left \{ \mathrm{B}, \mathrm{M} \right
-\}\)</span>. Hence <em>CCBCBCM</em> is not well-formed with respect to
-the subgrammar <span class="math inline">\(G_\left \{ \mathrm{B},
-\mathrm{M} \right \}\)</span> and hence isn’t well-formed with respect
+class="math inline">\(G_{\left \{ \mathrm{B}, \mathrm{M} \right
+\}}\)</span>. Hence <em>CCBCBCM</em> is not well-formed with respect to
+the subgrammar <span class="math inline">\(G_{\left \{ \mathrm{B},
+\mathrm{M} \right \}}\)</span> and hence isn’t well-formed with respect
 to the tier bigram grammar <span class="math inline">\(G\)</span>
 either.</p>
 </div>
@@ -357,30 +357,30 @@ those <em>b</em>s.</p>
 we can fix that in the familiar fashion. First, observe that there are
 two distinct subgrammars here:</p>
 <ul>
-<li><span class="math inline">\(G_\left \{ a,b \right \}\)</span>
+<li><span class="math inline">\(G_{\left \{ a,b \right \}}\)</span>
 contains both the bigram <span class="math inline">\(bb\)</span> and the
 trigram <span class="math inline">\(bab\)</span>, making it a mixed
 grammar. We will have to convert this into a strict trigram
 grammar.</li>
-<li><span class="math inline">\(G_\left \{ a,b,c \right \}\)</span>
+<li><span class="math inline">\(G_{\left \{ a,b,c \right \}}\)</span>
 contains only the bigram <span
 class="math inline">\({\rtimes}a\)</span>. This means it is already a
 strict grammar, but it is a string bigram grammar. We will have to
 convert this to a trigram grammar, too.</li>
 </ul>
-<p>The conversion of <span class="math inline">\(G_\left \{ a,b \right
-\}\)</span> to a strict trigram grammar proceeds in the usual
+<p>The conversion of <span class="math inline">\(G_{\left \{ a,b \right
+\}}\)</span> to a strict trigram grammar proceeds in the usual
 fashion.</p>
 <p>The only minor complication is that the set of trigrams we have to
 construct depends on the tier alphabet. For <span
-class="math inline">\(G_\left \{ a,b \right \}\)</span>, we construct
+class="math inline">\(G_{\left \{ a,b \right \}}\)</span>, we construct
 the set of all trigrams over edge markers, <span
 class="math inline">\(a\)</span>, and <span
 class="math inline">\(b\)</span>. We do not include <span
 class="math inline">\(c\)</span> here because that isn’t part of the
 tier alphabet. We then keep all the trigrams that contain an <span
 class="math inline">\(n\)</span>-gram of <span
-class="math inline">\(G_\left \{ a,b \right \}\)</span>:</p>
+class="math inline">\(G_{\left \{ a,b \right \}}\)</span>:</p>
 <ul>
 <li><span class="math inline">\(\left \langle  {\rtimes}bb, \left \{ a,b
 \right \} \right \rangle\)</span></li>
@@ -395,15 +395,15 @@ class="math inline">\(G_\left \{ a,b \right \}\)</span>:</p>
 <li><span class="math inline">\(\left \langle  bab, \left \{ a,b \right
 \} \right \rangle\)</span></li>
 </ul>
-<p>When converting <span class="math inline">\(G_\left \{ a,b,c \right
-\}\)</span> to trigrams, we do have to consider <span
+<p>When converting <span class="math inline">\(G_{\left \{ a,b,c \right
+\}}\)</span> to trigrams, we do have to consider <span
 class="math inline">\(c\)</span>, too, because it is part of that tier’s
 alphabet. So now we construct the set of all trigrams over edge markers,
 <span class="math inline">\(a\)</span>, <span
 class="math inline">\(b\)</span>, and <span
 class="math inline">\(c\)</span>, and again we keep all trigrams that
 contain an <span class="math inline">\(n\)</span>-gram of <span
-class="math inline">\(G_\left \{ a,b,c \right \}\)</span>:</p>
+class="math inline">\(G_{\left \{ a,b,c \right \}}\)</span>:</p>
 <ul>
 <li><span class="math inline">\(\left \langle  {\rtimes}{\rtimes}a,
 \left \{ a,b,c \right \}  \right \rangle\)</span></li>
@@ -531,10 +531,11 @@ strict grammars, and for the polarity conversion. Similar insights can
 be used to show that just as with negative <span
 class="math inline">\(n\)</span>-gram grammars, <span
 class="math inline">\(L(G) \cap L(G&#39;) = L(G \cup G&#39;)\)</span>
-for negative tier <span class="math inline">\(n\)</span>-ngram grammars.
-All the things we have done with <span
-class="math inline">\(n\)</span>-gram grammars, we can do with tier
-<span class="math inline">\(n\)</span>-gram grammars!</p>
+for negative tier <span class="math inline">\(n\)</span>-ngram grammars
+(that is to say, we can still combine grammars via union). All the
+things we have done with <span class="math inline">\(n\)</span>-gram
+grammars, we can do with tier <span
+class="math inline">\(n\)</span>-gram grammars!</p>
 <p>If you think about it, this is quite remarkable. The addition of tier
 feels like a major modification, and it does greatly boost the range of
 phenomena we can capture with <span
@@ -549,7 +550,38 @@ class="math inline">\(n\)</span>-gram grammars, adding tiers turned out
 to be effortless. I’ve said it before and I’ll say it again: math is for
 lazy people!</p>
 <h2 id="recap">Recap</h2>
-<!-- fixme -->
+<ul>
+<li>The <strong>tier projection</strong> for tier <span
+class="math inline">\(T\)</span> is a function <span
+class="math inline">\(\tau_T\)</span> that maps every string to its
+longest subsequence that only contains symbols of <span
+class="math inline">\(T\)</span>.</li>
+<li>A negative <strong>tier <span class="math inline">\(n\)</span>-gram
+grammar</strong> uses <span class="math inline">\(n\)</span>-grams that
+have been annotated to indicate which tier they apply to. Formally, it
+is a finite set of pairs <span class="math inline">\(\left \langle g, T
+\right \rangle\)</span> where <span class="math inline">\(g\)</span> is
+an <span class="math inline">\(n\)</span>-gram and <span
+class="math inline">\(T\)</span> the tier’s alphabet.</li>
+<li>Given a tier <span class="math inline">\(n\)</span>-gram grammar
+<span class="math inline">\(G\)</span>, we sometimes use <span
+class="math inline">\(G_T\)</span> for the set of <span
+class="math inline">\(G\)</span>’s <span
+class="math inline">\(n\)</span>-grams that apply on tier <span
+class="math inline">\(T\)</span>. We also call this a
+<strong>subgrammar</strong> of <span
+class="math inline">\(G\)</span>.</li>
+<li>Each subgrammar is effectively a negative <span
+class="math inline">\(n\)</span>-gram grammar that applies to a tier
+instead of the whole string. This makes it easy to generalize our
+previous findings (strict VS mixed, negative VS positive, ways of
+combining grammars) from <span class="math inline">\(n\)</span>-gram
+grammars to tier <span class="math inline">\(n\)</span>-gram
+grammars.</li>
+<li>A <strong>lemma</strong> is a theorem that may not be all that
+interesting in its own right but is very useful in establishing other
+theorems.</li>
+</ul>
 </div>
 </div>
 </body>
