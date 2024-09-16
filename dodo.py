@@ -133,7 +133,7 @@ HTML_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS, HIDE_SOLUTIONS,
 
 # Pandoc shared options
 PANDOC_OPTS = (
-    "-f markdown-implicit_figures"
+    " -f markdown-implicit_figures"
     # " -V showanswers"
     f" -L {CSTM_BLKS}"
     f" -L {INCL_FILE}"
@@ -149,7 +149,7 @@ LATEX_OPTS = (
 )
 
 LATEX_BOOK_OPTS = (
-    f"--template {LATEX_BOOK_TEMPLATE}"
+    f" --template {LATEX_BOOK_TEMPLATE}"
     f" -H {LATEX_PREAMBLE_BOOK}"
     " --number-sections -M secnumdepth=5"
     " --toc"
@@ -159,13 +159,13 @@ LATEX_BOOK_OPTS = (
 )
 
 LATEX_CH_OPTS = (
-    f"--metadata-file={FORMAT_SINGLECHAP}"
+    f" --metadata-file={FORMAT_SINGLECHAP}"
     f" --template {LATEX_CH_TEMPLATE}"
     " -M singlechapter"
 )
 
 LATEX_SEC_OPTS = (
-    f"--metadata-file={FORMAT_SINGLESEC}"
+    f" --metadata-file={FORMAT_SINGLESEC}"
     f" --template {LATEX_SEC_TEMPLATE}"
     " -M singlesection"
     " -M showanswers"
@@ -173,7 +173,8 @@ LATEX_SEC_OPTS = (
 )
 
 HTML_OPTS = (
-    f"--template {HTML_TEMPLATE} --toc"
+    f" -L {HIDE_SOLUTIONS}"
+    f" --template {HTML_TEMPLATE} --toc"
     # " --shift-heading-level-by=-1"
     # CSS is served from HTML root directory
     # f" -c /{CSS_NAME}"
@@ -187,7 +188,6 @@ HTML_OPTS = (
     # MODCMDS is inserted in the HTML body so that Pandoc will correctly add
     # MathJax delimiters (it will not change included headers).
     f" {MODCMDS}"
-    f" -H {HIDE_SOLUTIONS}"
 )
 
 
