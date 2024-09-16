@@ -12,7 +12,7 @@ pagetitle: >-
 
 Tiers are a nice linguistic metaphor, but what is going on here at a formal level?
 How do we specify tiers, and how significant a modification are tiers?
-Also, what exactly is the cognitive intuition behind tiers?
+Can we reuse at least some of our insights on $n$-gram grammars, or do we have to start over from square one?
 These are great questions with some great answers.
 
 ## Tier projection as a mapping
