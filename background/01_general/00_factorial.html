@@ -31,6 +31,16 @@
   };
   </script>
   <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  -- Do not show solutions
+  function Div(elem)
+    cls = elem.classes[1]
+    if cls == "solution" then
+      return {}
+    else
+      return elem
+    end
+  end
+
 </head>
 <body>
 <div class="container with-sidebar">
@@ -84,8 +94,8 @@ class="math inline">\(c\)</span>:</p>
 </ul>
 </div>
 <div class="exercise">
-<p>Write down all possible ways of ordering <span
-class="math inline">\(a\)</span>, <span
+<p>Analogous to the previous example, write down all possible ways of
+ordering <span class="math inline">\(a\)</span>, <span
 class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>
 and <span class="math inline">\(d\)</span> and confirm that this number
 is the same as <span class="math inline">\(4!\)</span>.</p>
