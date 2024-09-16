@@ -11,7 +11,7 @@
 \usepackage{tikz}
 \usepackage[linguistics]{forest}
 \usepackage{etoolbox}
-\usepackage{environ}
+\usepackage{collect}
 
 \usepackage{xcolor}
 \definecolor{magenta}{cmy}{0.0 1.0 0.0}
@@ -37,12 +37,6 @@
 
 \usepackage{enumitem}
 \setlist{partopsep=0pt}
-
-% \usepackage{titletoc}
-% \contentsmargin{2em}
-% \dottedcontents{section}[2.5em]{}{2.5em}{8pt}
-% \dottedcontents{subsection}[5em]{}{3em}{8pt}
-% \dottedcontents{subsubsection}[8.5em]{}{3.5em}{8pt}
 
 % Use document metadata in header
 % workarounds to handle declaration of metadata after header formatting
@@ -116,7 +110,7 @@
 
 % theorems, etc.
 
-\theoremstyle{normal}
+\theoremstyle{plain}
 \theoremheaderfont{\normalfont\bfseries\scshape}
 \theorembodyfont{\normalfont}
 \theoremseparator{.}
@@ -124,14 +118,14 @@
 % \newcommand{\TheoremSymbol}{\tikz{\draw (0,0) -| (.5em,.5em);}}
 % \theoremsymbol{\ensuremath{\diamondsuit}} % why doesn't the symbol appear?
 \newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
 
 \theoremsymbol{}
 % \newtheorem{conjecture}[theorem]{Conjecture}
 % \newtheorem{problem}[theorem]{Problem}
-\newtheorem{definition}[theorem]{Definition}
+\newtheorem{definition}{Definition}
 
 % proofs, etc.
 
@@ -152,12 +146,18 @@
 \theoremseparator{.}
 \newtheorem{example}{Example}
 \newtheorem{exercise}{Exercise}
-\providebool{showanswers}
-\newcommand{\exranswerlist}{}
-\NewEnviron{exranswer}{\ifbool{showanswers}{%
-  \xappto\exranswerlist{\theexercise . \BODY}}{}}
-\newenvironment{solution}[1]{\medskip\noindent\textbf{Solution}#1}{}
-\newenvironment{solution_explained}[1]{\medskip\noindent\textbf{Explanation}#1}{}
+\newtheorem{solutiontext}{Solution to Exercise}
+\theoremstyle{nonumberbreak}
+\newtheorem{solution_explained}{Explanation}{}
+\definecollection{solutions}
+\newcommand{\solution}[1]{%
+        \begin{collect}{solutions}{}{}
+            \begin{solutiontext}
+                #1
+            \end{solutiontext}
+        \end{collect}
+    }
+\pretocmd{\includecollection}{\clearpage\section*{Solutions}}{}{}
 
 % styling
 
@@ -170,4 +170,40 @@
 \tcolorboxenvironment{remark}{noframe,colback=blue!10}
 \tcolorboxenvironment{example}{noframe,colback=gray!10}
 \tcolorboxenvironment{exercise}{noframe,colback=yellow!10}
+\tcolorboxenvironment{solutiontext}{noframe,colback=yellow!10}
 
+% Crud from defining collections; in case something breaks after all with the current setup
+% \newcommand{\solution}[1]{%
+%     \begin{scontents}[store-env=solutions,print-env=false]
+%         % \begin{solutiontext}
+%             #1
+%         % \end{solutiontext}
+%     \end{scontents}}
+    
+% \newenvironment{solution}{}{}
+    % \begin{solutionstore}
+    %     \begin{solutiontext}}{%
+    %     \end{solutiontext}
+    % \end{solutionstore}}
+        
+
+% \newcommand{\exranswerlist}{}
+% \NewEnviron{exranswer}{\ifbool{showanswers}{%
+%   \xappto\exranswerlist{\theexercise . \BODY}}{}}
+
+% \makeatletter
+% \newcommand{\solution}[1]{%
+%         \@nameuse{collect}{solutions}{%
+%             \begin{solutiontext}
+%                 #1
+%             \end{solutiontext}
+%             }{}
+%         \@nameuse{endcollect}
+%     }
+% \makeatother
+% \newenvironment{solution}{%
+%     \collect{solutions}{}{}
+%     Solution to Exercise \theexercise
+%     }{%
+%     \endcollect
+%     }

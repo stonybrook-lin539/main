@@ -23,15 +23,19 @@ INCL_FILE = "filters/include-file.lua"
 LATEX_TIPA = "filters/latex-tipa.lua"
 STRIP_CODE = "filters/remove_code.lua"
 EDGEMARKERS = "filters/edgemarkers.lua"
+HIDE_SOLUTIONS = "filters/hide-solutions.lua"
 
 # Pandoc templates and includes
-LATEX_TEMPLATE = "templates/latex-custom.tex"
+LATEX_BOOK_TEMPLATE = "templates/latex-book.tex"
+LATEX_CH_TEMPLATE = "templates/latex-custom.tex"
+LATEX_SEC_TEMPLATE = "templates/latex-sections.tex"
 HTML_TEMPLATE = "templates/html-custom.html"
 FORMAT_DEFAULT = Path("includes/format.yaml")
 FORMAT_SINGLECHAP = Path("includes/format-single-chap.yaml")
 FORMAT_SINGLESEC = Path("includes/format-single-sec.yaml")
 MATHCMDS = Path("includes/mathcommands.md")
 LATEX_PREAMBLE = Path("includes/preamble.tex")
+LATEX_PREAMBLE_BOOK = Path("includes/preamble_book.tex")
 MATHJAXCALL = Path("includes/include-mathjax.html")
 
 # source files/directories
@@ -49,19 +53,28 @@ MAIN_SRCFILES = sorted(f for f in MAIN_SRCDIR.glob("**/*")
                        if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
 BG_SRCFILES = sorted(f for f in BG_SRCDIR.glob("**/*")
                      if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
-EX_SRCFILES = sorted(f for f in BG_SRCDIR.glob("**/*")
+EX_SRCFILES = sorted(f for f in EX_SRCDIR.glob("**/*")
                      if f.suffix in MD_EXTS or f.suffix == TEX_EXT)
-ALL_SRCFILES = list(chain(MAIN_SRCFILES, BG_SRCFILES, EX_SRCFILES))
+ALL_SRCFILES = list(chain(
+                    MAIN_SRCFILES,
+                    BG_SRCFILES,
+                    EX_SRCFILES
+                    ))
+BOOK_SRCFILES = list(chain(
+                    MAIN_SRCFILES,
+                    BG_SRCFILES,
+                    ))
+WEB_SRCFILES = list(chain(
+                    MAIN_SRCFILES,
+                    BG_SRCFILES,
+                    EX_SRCFILES
+                    ))
 
 SRC_MD = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in MD_EXTS
-                and "old" not in f.parts
-                and "solutions" not in f.parts
-                and "syllabus" not in f.parts)
+                and "old" not in f.parts)
 # SRC_TEX = sorted(f for f in SRCDIR.glob('**/*') if f.suffix == TEX_EXT)
 SRC_TIKZ = sorted(f for f in SRCDIR.glob('**/*') if f.suffix in TIKZ_EXTS
-                  and "old" not in f.parts
-                  and "solutions" not in f.parts
-                  and "syllabus" not in f.parts)
+                  and "old" not in f.parts)
 
 MAIN_CHAPS = sorted(d.relative_to(SRCDIR)
                     for d in MAIN_SRCDIR.glob("*") if d.is_dir())
@@ -113,8 +126,9 @@ CSS_DEST = HTMLDIR / CSS_NAME
 
 # Pandoc shared dependencies
 LATEX_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS, LATEX_TIPA,
-              LATEX_TEMPLATE, LATEX_PREAMBLE, MODCMDS]
-HTML_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS,
+              LATEX_BOOK_TEMPLATE, LATEX_CH_TEMPLATE, LATEX_SEC_TEMPLATE,
+              LATEX_PREAMBLE, LATEX_PREAMBLE_BOOK, MODCMDS]
+HTML_DEPS = [CSTM_BLKS, INCL_FILE, EDGEMARKERS, HIDE_SOLUTIONS,
              HTML_TEMPLATE, MATHJAXCALL, MODCMDS]
 
 # Pandoc shared options
@@ -127,7 +141,6 @@ PANDOC_OPTS = (
 )
 
 LATEX_OPTS = (
-    f"--template {LATEX_TEMPLATE}"
     f" --metadata-file={SRCDIR}/metadata.yaml"
     f" --metadata-file={FORMAT_DEFAULT}"
     f" -H {LATEX_PREAMBLE}"
@@ -136,19 +149,26 @@ LATEX_OPTS = (
 )
 
 LATEX_BOOK_OPTS = (
-    # "--toc --toc-depth 1"
-    # " --number-sections -M secnumdepth=1"
-    " --shift-heading-level-by=1"
+    f"--template {LATEX_BOOK_TEMPLATE}"
+    f" -H {LATEX_PREAMBLE_BOOK}"
+    " --number-sections -M secnumdepth=5"
+    " --toc"
+    " -M showanswers"
+    # " --toc-depth 1"
+    # " --shift-heading-level-by=1"
 )
 
 LATEX_CH_OPTS = (
     f"--metadata-file={FORMAT_SINGLECHAP}"
+    f" --template {LATEX_CH_TEMPLATE}"
     " -M singlechapter"
 )
 
 LATEX_SEC_OPTS = (
     f"--metadata-file={FORMAT_SINGLESEC}"
+    f" --template {LATEX_SEC_TEMPLATE}"
     " -M singlesection"
+    " -M showanswers"
     " --shift-heading-level-by=-1"
 )
 
@@ -167,6 +187,7 @@ HTML_OPTS = (
     # MODCMDS is inserted in the HTML body so that Pandoc will correctly add
     # MathJax delimiters (it will not change included headers).
     f" {MODCMDS}"
+    f" -H {HIDE_SOLUTIONS}"
 )
 
 
@@ -280,7 +301,7 @@ def task_latex_book():
     """
     Build entire book as LaTeX using Pandoc.
     """
-    infiles = [str(f) for f in ALL_SRCFILES]
+    infiles = [str(f) for f in BOOK_SRCFILES]
     outfile = TEX_BOOK
     cmd = (
         f" pandoc -t latex {PANDOC_OPTS} {LATEX_OPTS} {LATEX_BOOK_OPTS}"
@@ -435,7 +456,7 @@ def task_html_toppage():
     )
     return {
         "targets": [outfile],
-        "file_dep": [GEN_HTML_TOC, *(str(f) for f in ALL_SRCFILES)],
+        "file_dep": [GEN_HTML_TOC, *(str(f) for f in WEB_SRCFILES)],
         "actions": [cmd],
         "clean": True}
 
@@ -445,9 +466,6 @@ def task_html_sections():
     Build HTML chapters using Pandoc.
     """
     for infile in SRC_MD:
-        # srcsubdir = infile.parent
-        # incl_images = sorted(HTMLDIR / img.relative_to(srcsubdir).with_suffix(".svg")
-        #                      for img in SRC_TIKZ)
         outfile = HTMLDIR / infile.relative_to(SRCDIR).with_suffix(".html")
         cmd = (
             f"pandoc -t html {PANDOC_OPTS} {HTML_OPTS}"

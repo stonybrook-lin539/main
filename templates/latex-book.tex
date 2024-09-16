@@ -4,7 +4,6 @@
 %
 % Use variable `singlechapter` when compiling individual chapters.
 % Use variable `singlesection` when compiling individual sections.
-% Use variable `showanswers` to typeset answers at the end of the document.
 %
 
 % Options for packages loaded elsewhere
@@ -237,15 +236,6 @@ $endfor$
 %----------------------------------------------------------------------------
 % Custom additions
 
-% Code for selective inclusion of answers
-%   Variable "showanswers" controls collection
-%   Macro \exranswerlist contains answers
-$if(showanswers)$
-\usepackage{etoolbox}
-\providebool{showanswers}
-\setbool{showanswers}{$showanswers$}
-$endif$
-
 $if(singlesection)$
   \usepackage{fancyhdr}
   \pagestyle{fancy}
@@ -293,6 +283,7 @@ $endif$
 \date{$date$}
 
 \begin{document}
+\doparttoc[e]  % prepare parttoc, with no toc title
 
 % typeset title
 $if(singlesection)$
@@ -322,8 +313,11 @@ $endfor$
 % table of contents
 $if(toc)$
 {
-\setcounter{tocdepth}{$toc-depth$}
+\frontmatter
+\setcounter{tocdepth}{0}
+
 \tableofcontents
+\mainmatter
 }
 $endif$
 
@@ -331,14 +325,14 @@ $endif$
 $body$
 
 % Typeset exercise answers
-$if(showanswers)$
-\ifdefvoid{\exranswerlist}{}{
-  \pagebreak
-  \section*{Answers to Exercises}
-  \exranswerlist
-}
-$else$
-$endif$
+% $if(showanswers)$
+% \ifdefvoid{\exranswerlist}{}{
+%   \pagebreak
+%   \section*{Answers to Exercises}
+%   \exranswerlist
+% }
+% $else$
+% $endif$
 
 % Pandoc include-after-body
 $for(include-after)$

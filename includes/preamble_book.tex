@@ -1,0 +1,120 @@
+% set up all the counters for superpart-part-unit-section
+\renewcommand{\chaptername}{Unit} % see also +title.tex for parts, which redefine this
+\renewcommand{\partname}{Chapter}
+\renewcommand{\thepart}{\arabic{part}}
+\renewcommand{\thechapter}{\arabic{part}.\arabic{chapter}}
+\renewcommand{\thesection}{\arabic{section}}
+
+\makeatletter
+\@addtoreset{section}{chapter}
+\@addtoreset{chapter}{part}
+\@addtoreset{theorem}{chapter}
+\@addtoreset{lemma}{chapter}
+\@addtoreset{proposition}{chapter}
+\@addtoreset{corollary}{chapter}
+\@addtoreset{definition}{chapter}
+\@addtoreset{proof}{chapter}
+\@addtoreset{remark}{chapter}
+\@addtoreset{exercise}{chapter}
+\@addtoreset{example}{chapter}
+\@addtoreset{solutiontext}{chapter}
+\@addtoreset{solution_explained}{chapter}
+\makeatother
+
+% set up superparts
+\newcounter{superpart}
+\setcounter{superpart}{0}
+\newcommand{\superpart}[1]{%
+\clearpage
+\thispagestyle{empty}
+\refstepcounter{superpart}
+\addtocontents{toc}{{\vspace{4em}\LARGE\bfseries Part \arabic{superpart}\qquad #1}\par}
+{
+\huge\bfseries
+Part \arabic{superpart}. #1
+}
+\cleardoublepage
+\setcounter{part}{0}
+}
+
+
+% toc styling
+\usepackage{tocloft}
+\renewcommand{\cftpartfont}{\bfseries}
+\renewcommand{\cftpartpagefont}{\bfseries}
+\renewcommand{\cftpartpresnum}{Chapter~}
+\renewcommand{\cftpartaftersnum}{}
+\renewcommand{\cftpartnumwidth}{6em}
+
+\renewcommand{\cftchapfont}{}
+\renewcommand{\cftchappagefont}{}
+\renewcommand{\cftchappresnum}{Unit~}
+\renewcommand{\cftchapaftersnum}{}
+\renewcommand{\cftchapindent}{.40em}
+\renewcommand{\cftchapnumwidth}{5.6em}
+
+
+% part styling + minitoc
+\usepackage{minitoc}  % must be loaded after tocloft
+\mtcsetfont{parttoc}{chapter}{\normalfont\normalsize}  % normal fontface for chapters in parttoc
+\mtcsetfont{parttoc}{section}{\normalfont\small}
+\mtcsetrules{parttoc}{off}
+\mtcsetdepth{parttoc}{0}  % parttoc only lists units, not sections
+\mtcsetfeature{parttoc}{before}{\vspace{5em}}  % no pagebreak before parttoc
+% \ptctitle{}  % no title for parttoc
+\makeatletter
+\renewcommand\part{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+  \thispagestyle{empty}%
+  \if@twocolumn
+    \onecolumn
+    \@tempswatrue
+  \else
+    \@tempswafalse
+  \fi
+  \null\vfil
+  \secdef\@part\@spart}
+%
+% \def\@part[#1]#2{%
+%     \ifnum \c@secnumdepth >-2\relax
+%       \refstepcounter{part}%
+%       \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+%     \else
+%       \addcontentsline{toc}{part}{#1}%
+%     \fi
+%     \markboth{}{}%
+%     {\centering
+%      \interlinepenalty \@M
+%      \normalfont
+%      \ifnum \c@secnumdepth >-2\relax
+%        \huge\bfseries \partname\nobreakspace\thepart
+%        \par
+%        \vskip 20\p@
+%      \fi
+%      \Huge \bfseries #2\par
+%     }%
+%     \@endpart}
+% \def\@spart#1{%
+%     {\centering
+%      \interlinepenalty \@M
+%      \normalfont
+%      \Huge \bfseries #1\par
+%      }%
+%     \@endpart}
+\def\@endpart{%
+              % \vfil\newpage
+              \if@twoside
+               \if@openright
+                \null
+                \thispagestyle{empty}%
+                % \newpage
+               \fi
+              \fi
+              \if@tempswa
+                \twocolumn
+              \fi}
+\makeatother

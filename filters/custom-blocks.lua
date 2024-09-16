@@ -1,14 +1,20 @@
--- Filter to handle custom div blocks
-
--- Convert custom div blocks to LaTeX environments.
+-- Convert custom div blocks for LaTeX
 if FORMAT:match "latex" then
   function Div(elem)
     cls = elem.classes[1]
-    table.insert(elem.content, 1,
-      pandoc.RawBlock("latex", "\\begin{" .. cls .. "}"))
-    table.insert(elem.content,
-      pandoc.RawBlock("latex", "\\end{" .. cls .. "}"))
-    return elem
+    if cls == "solution" then
+        return {
+            pandoc.RawBlock("latex", "\\solution{"),
+            elem,
+            pandoc.RawBlock("latex", "}")
+        }
+    else
+      table.insert(elem.content, 1,
+        pandoc.RawBlock("latex", "\\begin{" .. cls .. "}"))
+      table.insert(elem.content,
+        pandoc.RawBlock("latex", "\\end{" .. cls .. "}"))
+      return elem
+    end
   end
 end
 
