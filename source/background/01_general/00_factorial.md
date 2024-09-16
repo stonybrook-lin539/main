@@ -41,7 +41,7 @@ There are $3! = 6$ ways to order $a$, $b$, and $c$:
 :::
 
 ::: exercise
-Write down all possible ways of ordering $a$, $b$, $c$ and $d$ and confirm that this number is the same as $4!$.
+Analogous to the previous example, write down all possible ways of ordering $a$, $b$, $c$ and $d$ and confirm that this number is the same as $4!$.
 :::
 
 The factorial function grows very fast, even faster than an exponential function.
