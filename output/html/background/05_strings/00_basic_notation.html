@@ -31,6 +31,16 @@
   };
   </script>
   <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  -- Do not show solutions
+  function Div(elem)
+    cls = elem.classes[1]
+    if cls == "solution" then
+      return {}
+    else
+      return elem
+    end
+  end
+
 </head>
 <body>
 <div class="container with-sidebar">
@@ -337,8 +347,9 @@ adding 0 to a number does not change that number.</p>
 of <span class="math inline">\(u \cdot v\)</span> one may simply write
 <span class="math inline">\(\mathit{uv}\)</span>.</p>
 <div class="exercise">
-<p>Give an example of distinct <span class="math inline">\(u\)</span>
-and <span class="math inline">\(v\)</span> such that <span
+<p>Give an example of distinct strings <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> such that <span
 class="math inline">\(\mathit{uv} = \mathit{vu}\)</span> and neither
 <span class="math inline">\(u\)</span> nor <span
 class="math inline">\(v\)</span> is the empty string.</p>

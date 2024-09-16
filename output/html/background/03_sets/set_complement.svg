@@ -41,13 +41,13 @@
 <path style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 94.646844 0.00159375 C 94.646844 30.263312 70.115594 54.794562 39.849969 54.794562 C 9.58825 54.794562 -14.943 30.263312 -14.943 0.00159375 C -14.943 -30.264031 9.58825 -54.795281 39.849969 -54.795281 C 70.115594 -54.795281 94.646844 -30.264031 94.646844 0.00159375 Z M 94.646844 0.00159375 " transform="matrix(1,0,0,-1,55.193,55.193)"/>
 </g>
 <g style="fill:rgb(100%,100%,100%);fill-opacity:1;">
-  <use xlink:href="#glyph0-1" x="116.06" y="58.182"/>
+  <use xlink:href="#glyph0-2" x="116.06" y="58.182"/>
 </g>
 <g style="fill:rgb(100%,100%,100%);fill-opacity:1;">
-  <use xlink:href="#glyph1-1" x="125.746" y="58.182"/>
+  <use xlink:href="#glyph1-1" x="126.331" y="58.182"/>
 </g>
 <g style="fill:rgb(100%,100%,100%);fill-opacity:1;">
-  <use xlink:href="#glyph0-2" x="135.709" y="58.182"/>
+  <use xlink:href="#glyph0-1" x="136.294" y="58.182"/>
 </g>
 </g>
 </svg>
