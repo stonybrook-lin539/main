@@ -223,7 +223,7 @@ This is fairly intuitive because adding a string of length 0 to $u$ should not c
 Sometimes concatenation is not explicitly indicated, so that instead of $u \stringcat v$ one may simply write $\mathit{uv}$.
 
 ::: exercise
-Give an example of distinct $u$ and $v$ such that $\mathit{uv} = \mathit{vu}$ and neither $u$ nor $v$ is the empty string.
+Give an example of distinct strings $u$ and $v$ such that $\mathit{uv} = \mathit{vu}$ and neither $u$ nor $v$ is the empty string.
 :::
 
 ::: exercise
