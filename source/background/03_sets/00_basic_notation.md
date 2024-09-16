@@ -64,6 +64,26 @@ Write the following as a set:
 - the colors of the rainbow,
 - all even numbers between 1 and 11
 
+::: solution
+- $\{$Bruce, Marlene, Bela$\}$
+- $\{$red, orange, yellow, green, blue, indigo, violet$\}$
+- $\setof{2,4,6,8,10}$
+
+::: solution_explained
+
+1. Suppose that your favorite actors are Bruce Campbell (*Evil Dead*), Marlene Dietrich (*The Blue Angel*, *Witness for the Prosecution*), and Bela Lugosi (*Dracula*).
+   Their first names are *Bruce*, *Marlene*, and *Bela*, so the set that contains their first names, and nothing else, is $\{$Bruce, Marlene, Bela$\}$.
+
+1. If you're like me, you probably had to look this one up, but rainbows have six colors, which are red, orange, yellow, green, blue, indigo, and violet.
+   So the set we're looking for contains these six colors.
+   We can specify that set using the names of these colors, but it would also be okay to use colored squares instead of names, colored lines, anything that conveys clearly that this is the set that contains these six colors.
+
+1. A number is even if and only if it is a multiple of 2.
+   Between 1 and 11, that's 2, 4, 6, 8, and 10.
+:::
+
+:::
+
 :::
 
 ## Elements and set membership
@@ -98,6 +118,30 @@ Put $\in$, $\ni$, $\notin$, $\not\ni$ in the gaps below as appropriate:
 - $\setof{5} \_ \setof{1,2,4,5,8}$
 - $5 \_ \setof{1,2,4,5,8} \_ 6$
 
+::: solution
+1. $5 \in \setof{1,2,4,5,8}$
+1. $6 \notin \setof{1,2,4,5,8}$
+1. $\setof{5} \notin \setof{1,2,4,5,8}$
+1. $5 \in \setof{1,2,4,5,8} \notin 6$ or $5 \in \setof{1,2,4,5,8} \not\ni 6$.
+
+::: solution_explained
+
+1. The set $\setof{1,2,4,5,8}$ has 5 as one of its members, which we write as $5 \in \setof{1,2,4,5,8}$.
+1. On the other hand, $6$ is nowhere to be found in $\setof{1,2,4,5,8}$, its only elements are $1$, $2$, $4$, $5$, and $8$.
+   Hence $6 \notin \setof{1,2,4,5,8}$.
+1. This one is a bit tricky.
+   We already know that $\setof{1,2,4,5,8}$ contains $5$, but that's not the same thing as containing $\setof{5}$, i.e. the set containing $5$.
+   None of the elements of $\setof{1,2,4,5,8}$ is $\setof{5}$.
+   By the way, this is also why $5 \notin \setof{1,2,4,\setof{5},8}$.
+   Never confuse an object with a set containing that object, the two are very different things. 
+1. We already know that $\setof{1,2,4,5,8}$ contains $5$, so the first gap must be $\in$.
+   For the second gap, there are two options.
+   If we fill the gap with $\notin$, we are saying that $\setof{1,2,4,5,8}$ is not a member of $6$, which is true, but it's an odd thing to say as $6$ isn't a set to begin with.
+   Instead, it makes more sense to fill the gap with $\not\ni$, which states that $6$ is not a member of $\setof{1,2,4,5,8}$.
+:::
+
+:::
+
 :::
 
 Sets can contain arbitrary objects, including other sets.
@@ -116,6 +160,14 @@ Put $\in$, $\ni$, $\notin$, $\not\ni$ in the gaps below as appropriate:
 - $\setof{5} \_ \setof{1,\setof{2,4},\setof{5},8}$
 - $5 \_ \setof{\setof{1,2,4,5,8}} \_ 6$
 
+::: solution
+
+- $5 \in \setof{1,\setof{2,4},5,8}$
+- $6 \notin \setof{1,\setof{2,4,5,8}}$
+- $\setof{5} \in \setof{1,\setof{2,4},\setof{5},8}$
+- $5 \notin \setof{\setof{1,2,4,5,8}} \not\ni 6$
+
+:::
 :::
 
 ## Lack of order
@@ -157,6 +209,29 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 - $\setof{a,b} \_ \setof{a,b}$
 - $\setof{b,a} \_ \setof{a,b}$
 - $\setof{b,a,c,d} \_ \setof{e,a,b,d}$
+
+::: solution
+1. $\setof{a,b} = \setof{a,b}$
+1. $\setof{b,a} = \setof{a,b}$
+1. $\setof{b,a,c,d} \neq \setof{e,a,b,d}$ (assuming that $c$ and $e$ are distinct objects)
+
+::: solution_explained
+1. Two sets are identical if they contain exactly the same elements.
+   This is clearly the case here, both sets contain $a$, both of them also contain $b$, and they contain nothing else.
+1. It may seem like $\setof{b,a}$ is different from $\setof{a,b}$, but remember that sets are unordered.
+   It does not matter in what order we write down the elements, all that matters is whether the sets have the same members.
+   And this is still the case here.
+1. Each one of the sets contains four elements, three of which are $a$, $b$, and $d$.
+   Only the first set contains $c$, and only the second set contains $e$.
+   This suggests that the sets are not equivalent.
+   However, we have to be careful here as $c$ and $e$ may just be different ways of referring to the same object.
+   As a concrete example, suppose that we are talking about sets of actors, and we are looking at the sets $\{$Arnold$\}$ and $\{$Schwarzenegger$\}$.
+   These are not actually distinct sets, they are just different ways of writing down the set that contains only the actor Arnold Schwarzenegger.
+   So remember: what matters isn't how we choose to write down a set, what matters is what it actually contains. 
+   If both $c$ and $e$ are just ways of referring to, say, the number $5$, then the two sets above are equivalent.
+:::
+
+:::
 
 :::
 
@@ -205,6 +280,25 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 - $\setof{c,b,a,a,d,c} \_ \setof{a,a,b,d,c,c,c}$
 - $\setof{a} \_ \setof{a,a,a,a,a,a,c,a,a,a,a,a,a}$
 
+::: solution
+1. $\setof{a,b} = \setof{a,a,b,b}$
+1. $\setof{b,a} = \setof{a,b,a}$
+1. $\setof{c,b,a,a,d,c} = \setof{a,a,b,d,c,c,c}$
+1. $\setof{a} \neq \setof{a,a,a,a,a,a,c,a,a,a,a,a,a}$
+
+::: solution_explained
+1. Remember, one and the same element cannot be contained in a set multiple times.
+   Either it is a member of the set, or it is not a member, it cannot be a member two times, or three times, or anything like that.
+   Hence $\setof{a,a,b,b} = \setof{a,b,b} = \setof{a,b}$.
+1. The same logic applies in this case: $\setof{a,b,a} = \setof{a,b}$, which is the same as $\setof{b,a}$ because sets are not ordered.
+1. Again we have two identical sets.
+   The first set contains $a$, $b$, $c$, $d$, and nothing else, and the same is true for the second set.
+1. Finally we have two sets that are distinct.
+   The second set could be written more compactly as $\setof{a,c}$, and that is not the same set as $\setof{a}$ because only the former contains $c$.
+:::
+
+:::
+
 :::
 
 ::: exercise
@@ -215,6 +309,26 @@ We can use the **parts of speech** N and V, respectively, to distinguish between
 Let us add parts of speech to all the words in the string (we use C for the **complementizers** *if* and *then*):
 *If[C] police[N] police[V] police[N], then[C] police[N] police[V] police[N]*.
 What would be the corresponding set of words for this string (i.e. where we now distinguish between *police[N]* and *police[V]*)?
+
+::: solution
+$\setof{
+\text{if},
+\text{police[N]},
+\text{police[V]},
+\text{then}
+}$.
+
+::: solution_explained
+We can build this set incrementally by moving from left to right through the string *If police[N] police[V] police[N], then police[N] police[V] police[N]* (ignoring capitalization).
+The string starts with *if*, so at this point our set is $\setof{\text{if}}$.
+Next we see *police[N]*, and since this is not in our set yet, we add it and obtain $\setof{\text{if}, \text{police[N]}}$.
+After that we encounter *police[V]*, which is not an element of our set yet --- the set only contains the noun *police*, not the verb *police*.
+Hence we add *police[V]*, yielding $\setof{\text{if}, \text{police[N]}, \text{police[V]}}$.
+Now the next word is *police[N]*, but since that's already in our set we do not need to add it again (there's no point in writing down the same element multiple times).
+After that we add *then*, and at this point we are done.
+Our set is $\setof{\text{if}, \text{police[N]}, \text{police[V]}, \text{then}}$, and our example sentence contains no words after *then* that aren't already members of this set.
+:::
+:::
 :::
 
 It is important to keep in mind that idempotency only holds with respect to the elements of a set, not what may be contained by those elements.
@@ -232,6 +346,25 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 - $\setof{c,b,\setof{a,a},d,c} \_ \setof{\setof{a},b,d,c,c,c}$
 - $\setof{a} \_ \setof{a,a,a,a,a,a,\setof{a},a,a,a,a,a,a}$
 
+::: solution
+
+1. $\setof{a,b} \neq \setof{a,a,b,\setof{b}}$
+1. $\setof{\setof{b},\setof{a}} = \setof{\setof{a},\setof{b},\setof{a}}$
+1. $\setof{c,b,\setof{a,a},d,c} = \setof{\setof{a},b,d,c,c,c}$
+1. $\setof{a} \neq \setof{a,a,a,a,a,a,\setof{a},a,a,a,a,a,a}$
+
+::: solution_explained
+1. Since $b$ is not the same as $\setof{b}$, $\setof{a,a,b,\setof{b}}$ contains an element that is not a member of $\setof{a,b}$, which means that the two are distinct sets.
+1. As sets do not contain duplicates, it holds that $\setof{\setof{a}, \setof{b}, \setof{a}} = \setof{\setof{a}, \setof{b}}$.
+   But sets are also unordered, so that $\setof{\setof{a}, \setof{b}} = \setof{ \setof{b}, \setof{a}}$.
+1. Again we have to keep in mind that sets do not contain duplicates, and as a result $\setof{a,a} = \setof{a}$.
+   We thus can simplify the two sets as follows:
+   $\setof{c,b,\setof{a,a},d,c} = \setof{c,b,\setof{a},d,c} = \setof{c,b,\setof{a}, d} = \setof{\setof{a},b,c,d}$
+   and
+   $\setof{\setof{a},b,d,c,c,c} = \setof{\setof{a},b,d,c} = \setof{\setof{a},b,c,d}$.
+1. We can reduce $\setof{a,a,a,a,a,a,\setof{a},a,a,a,a,a,a}$ to $\setof{a, \setof{a}}$, but since $a \neq \setof{a}$, we can see that $\setof{a, \setof{a}}$ is not the same set as $\setof{a}$.
+:::
+:::
 :::
 
 ## Recap
@@ -244,3 +377,5 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 - Occasionally, $\ni$ is used as the mirror image of $\in$.
 - While sets may contain objects that are themselves collections of other objects, these objects inside objects are not considered for set membership.
   Remember: $a \in \setof{a}$ and $\setof{a} \in \setof{\setof{a}}$, but $a \notin \setof{\setof{a}}$.
+
+\includecollection{solutions}
