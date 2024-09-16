@@ -421,17 +421,24 @@ For each one of the following, say whether it is a bigram of the word (with edge
 
 ::: solution_explained
 
-- {{{L}}}fr: the word starts with *su*, not *fr*, so *{{{L}}}fr* does not occur in the word
-- z: this is a unigram, but we are only considering bigrams, trigrams, and 4-grams; and even if we did consider unigrams, the word does not contain *z* at all
-- do{{{R}}}c: this is a 4-gram but it can never occur in any string because it is impossible to have any symbol after {{{R}}}
-- s{{{R}}}{{{R}}}{{{R}}}: this is a 4-gram; for 4-grams, we have to assume at least three edge markers on each side of the string, and since the word ends in *s*, the string with edge markers must indeed contain s{{{R}}}{{{R}}}{{{R}}}
-- sit: this is a trigram, but it does not occur in the word
-- cious: this is a 5-gram that occurs in the word, but we are only considering bigrams, trigrams, and 4-grams
-- {{{L}}}sup: this is a 4-gram and since the word starts with *sup*, *{{{L}}}sup* is indeed a 4-gram of the string once we include edge markers
+- {{{L}}}fr:
+  The word starts with *su*, not *fr*, so *{{{L}}}fr* does not occur in the word.
+- z:
+  This is a unigram, but we are only considering bigrams, trigrams, and 4-grams.
+  And even if we did consider unigrams, the word does not contain *z* at all.
+- do{{{R}}}c:
+  This is a 4-gram but it can never occur in any string because it is impossible to have any symbol after {{{R}}} (except additional instances of {{{R}}} itself).
+- s{{{R}}}{{{R}}}{{{R}}}:
+  This is a 4-gram.
+  For 4-grams, we have to assume three edge markers on each side of the string, and since the word ends in *s*, the string with edge markers must indeed contain s{{{R}}}{{{R}}}{{{R}}}.
+- sit:
+  This is a trigram, but it does not occur in the word.
+- cious:
+  This is a 5-gram that occurs in the word, but we are only considering bigrams, trigrams, and 4-grams.
+- {{{L}}}sup:
+  This is a 4-gram and since the word starts with *sup*, *{{{L}}}sup* is indeed a 4-gram of the string once we include edge markers.
 :::
-
 :::
-
 :::
 
 ::: exercise
@@ -670,7 +677,6 @@ As a result, some 4-grams may be listed multiple times.
         - ccca
 
 Note that we do not need to list 4-grams like *{{{L}}}{{{L}}}ba* because every string with edge markers that contains *{{{L}}}{{{L}}}ba* also contains *{{{L}}}{{{L}}}{{{L}}}b*, which we already list as illicit.
-
 Hence the switch to bigrams does not buy us much for the first two constraints.
 
 - **every string starts with a**
@@ -687,7 +693,8 @@ But bigrams allow us to express much more succinctly that *a must not be immedia
     - ca
 
 This eliminates dozens of 4-grams from the grammar.
-If the exercise had allowed us to use trigrams, then we could also express more succinctly that *a must not be one symbol before c* and *c must not be one symbol before a*.
+But we can do even better by replacing many of the 4-grams with trigrams.
+This allows us to express more succinctly that *a must not be one symbol before c* and *c must not be one symbol before a*.
 
 - *a must not be one symbol before c*
     - abc
@@ -704,6 +711,8 @@ So if we had been allowed to use bigrams and trigrams, instead of using 4-grams 
 - ca
 - abc
 - cba
+
+Even if one does not care about succinctness or stating generalizations as explicitly as possible, it is clear that the small grammar above is much less of a hassle to write down.
 :::
 
 :::

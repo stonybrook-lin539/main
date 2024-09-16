@@ -162,11 +162,24 @@ Put $\in$, $\ni$, $\notin$, $\not\ni$ in the gaps below as appropriate:
 
 ::: solution
 
-- $5 \in \setof{1,\setof{2,4},5,8}$
-- $6 \notin \setof{1,\setof{2,4,5,8}}$
-- $\setof{5} \in \setof{1,\setof{2,4},\setof{5},8}$
-- $5 \notin \setof{\setof{1,2,4,5,8}} \not\ni 6$
+1. $5 \in \setof{1,\setof{2,4},5,8}$
+1. $6 \notin \setof{1,\setof{2,4,5,8}}$
+1. $\setof{5} \in \setof{1,\setof{2,4},\setof{5},8}$
+1. $5 \notin \setof{\setof{1,2,4,5,8}} \not\ni 6$
 
+::: solution_explained
+This isn't all too different from the previous exercise, we just have to be careful not to get confused by all the set brackets.
+
+1. We now have the  $\setof{1, \setof{2,4}, 5, 8}$ instead of $\setof{1, 2, 4, 5, 8}$ from the previous exercise, but this difference doesn't matter for the set membership of $5$.
+1. This is another straightforward one where the change between the two exercises doesn't make a difference.
+1. Here the change is important. 
+   Before, we saw that $\setof{5} \notin \setof{1,2,4,5,8}$ because the latter contains only $5$, which is distinct from $\setof{5}$.
+   But now we do have a set that actually contains the set containing $5$.
+1. Here it is really important to read carefully.
+   We are not dealing with $\setof{1,2,4,5,8}$, which is the set containing $1$, $2$, $4$, $5$, $8$ and nothing else.
+   Instead, we have $\setof{\setof{1,2,4,5,8}}$.
+   This set has only one element, which is $\setof{1,2,4,5,8}$.
+:::
 :::
 :::
 
@@ -293,7 +306,7 @@ For each one of the following, fill the gap with $=$ or $\neq$ as appropriate:
 1. The same logic applies in this case: $\setof{a,b,a} = \setof{a,b}$, which is the same as $\setof{b,a}$ because sets are not ordered.
 1. Again we have two identical sets.
    The first set contains $a$, $b$, $c$, $d$, and nothing else, and the same is true for the second set.
-1. Finally we have two sets that are distinct.
+1. Finally we have two sets that are distinct (if one assumes that $a \neq c$).
    The second set could be written more compactly as $\setof{a,c}$, and that is not the same set as $\setof{a}$ because only the former contains $c$.
 :::
 
