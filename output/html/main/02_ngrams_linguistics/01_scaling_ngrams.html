@@ -169,14 +169,16 @@ bigrams and trigrams are mixed, or the other way round.</p>
 establishing a <strong>normal form theorem</strong>. Whenever a grammar
 contains <span class="math inline">\(n\)</span>-grams of different
 sizes, it can be converted to a grammar where all <span
-class="math inline">\(n\)</span>-grams are of the same size. This
-converted grammar is equivalent to the original in the sense that they
-make the same phonotactic judgments: the first grammar deems a word
-well-formed iff the second one does, too, and the two also agree on
-which words are ill-formed. The second grammar thus behaves exactly like
-the first, but has a normalized form without any <span
+class="math inline">\(n\)</span>-grams are of the same size. Let us call
+the former a <strong>mixed grammar</strong> and the latter a
+<strong>strict grammar</strong>. The strict grammar we construct will be
+equivalent to the original mixed one in the sense that the two make the
+same phonotactic judgments: the strict grammar deems a word well-formed
+iff the mixed grammar does, too, and the two also agree on which words
+are ill-formed. The strict grammar thus behaves exactly like the mixed
+grammar, but has a normalized form without any <span
 class="math inline">\(n\)</span>-grams of different length. That’s why
-the second grammar is called a <strong>normal form</strong> of the first
+the strict grammar is called a <strong>normal form</strong> of the mixed
 one. <strong>Theorem</strong> is just a fancy term for a statement that
 follows from a fixed set of assumptions. So we are proving a theorem
 about the existence of a normal form, hence the term <strong>normal form
@@ -509,6 +511,17 @@ dda, ddd, dd⋉, ⋊dd.</p>
 class="math inline">\(G&#39;\)</span> where all <span
 class="math inline">\(n\)</span>-grams are of length <span
 class="math inline">\(k\)</span>.</p>
+<p>Crucially, the new grammar <span
+class="math inline">\(G&#39;\)</span> constructed this way is equivalent
+to our original grammar <span class="math inline">\(G\)</span>. By
+“equivalent” we mean that the following holds for every string: <span
+class="math inline">\(G\)</span> and <span
+class="math inline">\(G&#39;\)</span> both deem the string well-formed,
+or <span class="math inline">\(G\)</span> and <span
+class="math inline">\(G&#39;\)</span> both deem the string ill-formed.
+There is no string that is well-formed for <span
+class="math inline">\(G\)</span> but ill-formed for <span
+class="math inline">\(G&#39;\)</span>, or the other way around.</p>
 <div class="exercise">
 <p>Suppose that the grammar <span class="math inline">\(G\)</span> in
 the example above had also contained the unigram <em>d</em> in addition
@@ -531,20 +544,9 @@ construct the negative trigram grammar for the original grammar <span
 class="math inline">\(G\)</span> that contains only <em>dd</em> and
 <em>ada</em>.</p>
 </div>
-<p>Crucially, the new grammar <span
-class="math inline">\(G&#39;\)</span> constructed this way is equivalent
-to our original grammar <span class="math inline">\(G\)</span>. By
-“equivalent” we mean that the following holds for every string: <span
-class="math inline">\(G\)</span> and <span
-class="math inline">\(G&#39;\)</span> both deem the string well-formed,
-or <span class="math inline">\(G\)</span> and <span
-class="math inline">\(G&#39;\)</span> both deem the string ill-formed.
-There is no string that is well-formed for <span
-class="math inline">\(G\)</span> but ill-formed for <span
-class="math inline">\(G&#39;\)</span>, or the other way around.</p>
-<p>To see this, suppose that some string is ill-formed according to
-<span class="math inline">\(G\)</span>. Then some <span
-class="math inline">\(n\)</span>-gram <span
+<p>To see that the two grammars are equivalent, suppose that some string
+is ill-formed according to <span class="math inline">\(G\)</span>. Then
+some <span class="math inline">\(n\)</span>-gram <span
 class="math inline">\(g\)</span> of <span
 class="math inline">\(G\)</span> must occur in the string, otherwise the
 string would not be deemed ill-formed by <span
