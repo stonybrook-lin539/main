@@ -89,9 +89,10 @@ We would have a problem if this failed for some reason: a word is both well-form
 
 We will show that none of these issues ever arise; we do so by establishing a **normal form theorem**.
 Whenever a grammar contains $n$-grams of different sizes, it can be converted to a grammar where all $n$-grams are of the same size.
-This converted grammar is equivalent to the original in the sense that they make the same phonotactic judgments: the first grammar deems a word well-formed iff the second one does, too, and the two also agree on which words are ill-formed.
-The second grammar thus behaves exactly like the first, but has a normalized form without any $n$-grams of different length.
-That's why the second grammar is called a **normal form** of the first one.
+Let us call the former a **mixed grammar** and the latter a **strict grammar**.
+The strict grammar we construct will be equivalent to the original mixed one in the sense that the two make the same phonotactic judgments: the strict grammar deems a word well-formed iff the mixed grammar does, too, and the two also agree on which words are ill-formed.
+The strict grammar thus behaves exactly like the mixed grammar, but has a normalized form without any $n$-grams of different length.
+That's why the strict grammar is called a **normal form** of the mixed one.
 **Theorem** is just a fancy term for a statement that follows from a fixed set of assumptions.
 So we are proving a theorem about the existence of a normal form, hence the term **normal form theorem**.
 
@@ -157,6 +158,33 @@ But even if we had included all useless trigrams, that would not change the fact
 Calculate the number of bigrams that only use *a*, *b*, *c*, and edge markers.
 Write down a table with all those bigrams, including useless ones.
 How many of the bigrams are useless?
+
+::: solution
+The number of bigrams that only use $a$, $b$, $c$, and edge markers is $(3+2)^2 = 5^2 = 25$.
+Of those, $9$ are useless.
+Those are listed in parenthesis in the table below.
+
+|                   |                |                |              |                  |
+| :-:               | :-:            | :-:            | :-:          | :-:              |
+| ({{{L}}}{{{L}}})  | {{{L}}}a       | {{{L}}}b       | {{{L}}}c     | {{{L}}}{{{R}}}   |
+| (a{{{L}}})        | aa             | ab             | ac           | a{{{R}}}         |
+| (b{{{L}}})        | ba             | bb             | bc           | b{{{R}}}         |
+| (c{{{L}}})        | ca             | cb             | cc           | c{{{R}}}         |
+| ({{{R}}}{{{L}}})  | ({{{R}}}a)     | ({{{R}}}b)     | ({{{R}}}c)   | ({{{R}}}{{{R}}}) |
+
+::: solution_explained
+With $3$ symbols $2$ edge markers, there are $5$ choices for each position of an $n$-gram.
+A bigram has $2$ positions, hence there are $5^2 = 5 \times 5 = 25$ distinct bigrams.
+
+Of those, exactly $5$ start with {{{R}}} and $5$ end with {{{L}}}, but these counts include {{{R}}}{{{L}}} twice.
+Factoring out that duplicate, there are $5 + 5 - 1 = 9$ bigrams that start with {{{R}}} or end with {{{L}}}.
+These bigrams are useless.
+That's because a bigram grammar looks at ${{{L}}} s {{{R}}}$ to evaluate the well-formedness of $s$ --- and strings of this form can never contain {{{L}}}{{{L}}} or {{{R}}}{{{R}}} (no more than one edge marker each) or any of the $7$ bigrams above (no symbols to the left of {{{L}}}, no symbols to the right of {{{R}}}).
+
+Quite generally, the set of all $n$-grams over alphabet $\Sigma$, where $n \geq 2$ and $\Sigma$ contains $s$ symbols, consists of $s^n$ $n$-grams.
+Of those $s^n$ $n$-grams, $2s - 1$ will be useless in the sense that they can never occur in any string over $\Sigma$.
+:::
+:::
 :::
 
 These observations form the starting point for our conversion procedure.
@@ -213,9 +241,36 @@ Those are exactly the six trigrams that are marked in bold above: ada, add, dda,
 
 Carrying out the procedure above for each one of the finitely many $n$-grams in our original grammar $G$ yields a new grammar $G'$ where all $n$-grams are of length $k$.
 
+Crucially, the new grammar $G'$ constructed this way is equivalent to our original grammar $G$.
+By "equivalent" we mean that the following holds for every string:
+$G$ and $G'$ both deem the string well-formed, or $G$ and $G'$ both deem the string ill-formed.
+There is no string that is well-formed for $G$ but ill-formed for $G'$, or the other way around.
+
 ::: exercise
 Suppose that the grammar $G$ in the example above had also contained the unigram *d* in addition to *dd* and *ada*.
 Using the procedure above, construct the corresponding negative trigram grammar $G'$.
+
+::: solution
+
+|                 |                 |                       |                       | 
+| :-:             | :-:             | :-:                   | :-:                   | 
+| aaa             | **daa**         | {{{L}}}aa             | {{{L}}}{{{L}}}a       | 
+| **aad**         | **dad**         | **{{{L}}}ad**         | **{{{L}}}{{{L}}}d**   | 
+| aa{{{R}}}       | **da{{{R}}}**   | {{{L}}}a{{{R}}}       | {{{L}}}{{{L}}}{{{R}}} | 
+|                 |                 |                       |                       | 
+| **ada**         | **dda**         | **{{{L}}}da**         |                       | 
+| **add**         | **ddd**         | **{{{L}}}dd**         |                       | 
+| **ad{{{R}}}**   | **dd{{{R}}}**   | **{{{L}}}d{{{R}}}**   |                       | 
+|                 |                 |                       |                       | 
+| a{{{R}}}{{{R}}} | d{{{R}}}{{{R}}} | {{{L}}}{{{R}}}{{{R}}} |                       | 
+|                 |                 |                       |                       | 
+
+::: solution_explained
+We take the table from the previous example and highlight all those trigrams that aren't yet highlighted but contain *d*.
+The result is the equivalent trigram grammar.
+Of course, a mixed grammar that forbids *d*, *dd*, and *ada* is equivalent to a strict unigram grammar that only forbids *d*.
+But realizing that takes a bit of thought, whereas the procedure for constructing an equivalent, strict trigram grammar is fully automatic.
+:::
 :::
 
 ::: exercise
@@ -223,19 +278,37 @@ Now suppose instead that $G$ had only contained the unigram *d*.
 Using the procedure above, construct the corresponding negative trigram grammar $G'$.
 Do you notice anything?
 What might this tell you about $G$ in the previous exercise?
+
+::: solution
+This is the same table as for the previous exercise.
+And as observed in the explanation of the solution for that exercise, that's because the bigram *dd* and trigram *ada* are redundant once the grammar contains the unigram *d*.
+A unigram grammar banning *d* generates exactly the same string language as the mixed grammar forbidding *d*, *dd*, and *ada*.
+This is also why our conversion procedure yields the same trigram grammar for both of them.
+:::
 :::
 
 ::: exercise
 Now suppose that the inventory of sounds also contains *b* in addition to *a* and *d*.
 Using the procedure above, construct the negative trigram grammar for the original grammar $G$ that contains only *dd* and *ada*.
+
+::: solution
+|                    |                   |                        |                           |
+| :-:                | :-:               | :-:                    | :-:                       |
+| aaa                | daa               | {{{L}}}aa              | {{{L}}}{{{L}}}a           |
+| aad                | dad               | {{{L}}}ad              | {{{L}}}{{{L}}}d           |
+| aa{{{R}}}          | da{{{R}}}         | {{{L}}}a{{{R}}}        | {{{L}}}{{{L}}}{{{R}}}     |
+|                    |                   |                        |                           |
+| **ada**            | **dda**           | {{{L}}}da              |                           |
+| **add**            | **ddd**           | **{{{L}}}dd**          |                           |
+| ad{{{R}}}          | **dd{{{R}}}**     | {{{L}}}d{{{R}}}        |                           |
+|                    |                   |                        |                           |
+| a{{{R}}}{{{R}}}    | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
+|                    |                   |                        |                           |
+
+:::
 :::
 
-Crucially, the new grammar $G'$ constructed this way is equivalent to our original grammar $G$.
-By "equivalent" we mean that the following holds for every string:
-$G$ and $G'$ both deem the string well-formed, or $G$ and $G'$ both deem the string ill-formed.
-There is no string that is well-formed for $G$ but ill-formed for $G'$, or the other way around.
-
-To see this, suppose that some string is ill-formed according to $G$.
+To see that the two grammars are equivalent, suppose that some string is ill-formed according to $G$.
 Then some $n$-gram $g$ of $G$ must occur in the string, otherwise the string would not be deemed ill-formed by $G$.
 
 - **Case 1**  

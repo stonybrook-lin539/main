@@ -95,7 +95,7 @@ print("{} with morphemes as symbols: {}-gram".format(chunk, len(("-ize", "-ation
 ::: exercise
 For each one of the following $n$-grams, say how large it is depending on what one chooses as the basic symbols that $n$-grams are built from.
 Possible choices for building blocks are typed characters, morphemes, or words.
-Not all choice may be appropriate in each case.
+Not all choices may be appropriate in each case.
 
 - *de-*
 - *mpi*
