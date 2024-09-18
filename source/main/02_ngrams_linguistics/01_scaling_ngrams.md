@@ -272,6 +272,7 @@ Of course, a mixed grammar that forbids *d*, *dd*, and *ada* is equivalent to a 
 But realizing that takes a bit of thought, whereas the procedure for constructing an equivalent, strict trigram grammar is fully automatic.
 :::
 :::
+:::
 
 ::: exercise
 Now suppose instead that $G$ had only contained the unigram *d*.
