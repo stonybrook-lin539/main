@@ -235,3 +235,4 @@ Two tuples $u$ and $v$ are identical iff all of the following hold:
 | tuples    | N             | N              | N                            |
 | strings   | N             | N              | Y                            |
 
+\includecollection{solutions}

@@ -42,6 +42,37 @@ There are $3! = 6$ ways to order $a$, $b$, and $c$:
 
 ::: exercise
 Analogous to the previous example, write down all possible ways of ordering $a$, $b$, $c$ and $d$ and confirm that this number is the same as $4!$.
+
+::: solution
+There are 24 distinct way of ordering $a$, $b$, $c$, and $d$.
+
+1. abcd
+1. abdc
+1. acbd
+1. acdb
+1. adbc
+1. adcb
+1. bacd
+1. badc
+1. bcad
+1. bcda
+1. bdac
+1. bdca
+1. cabd
+1. cadb
+1. cbad
+1. cbda
+1. cdab
+1. cdba
+1. dabc
+1. dacb
+1. dbac
+1. dbca
+1. dcab
+1. dcba
+
+This is the same as $4! = 4 \mult 3! = 4 \mult 3 \mult 2! = 4 \mult 3 \mult 2 \mult 1! = 4 \mult 3 \mult 2 \mult 1 = 24$.
+:::
 :::
 
 The factorial function grows very fast, even faster than an exponential function.
@@ -56,3 +87,5 @@ The factorial function grows very fast, even faster than an exponential function
 | 6   | 64    | 720  |
 
 Even a very fast growing exponential like $10,000^n$ will eventually grow more slowly than the factorial, even though it grows more rapidly for small values of $n$ (e.g. $10,000^{10} = 10^{4^{10}} = 10^{40}$ is much larger than $10! = 3,628,800$).
+
+\includecollection{solutions}

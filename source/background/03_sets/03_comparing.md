@@ -52,6 +52,18 @@ Complete the table below.
 | $\setof{a,b}$          | $\setof{a,a,b,b}$ |                  |                  | 
 | $\setof{\setof{a}, b}$ | $\setof{a,a,b,b}$ |                  |                  |
 
+::: solution
+
+The table looks as follows:
+
+| A             | B                 | $A \subseteq B$? | $A \supseteq B$? | 
+| :--           | :--               | :--              | :--              | 
+| $\setof{a,b}$ | $\setof{a,a,b,c}$ | Y                | N                | 
+| $\setof{a}$   | $\setof{b}$       | N                | N                | 
+| $\setof{}$    | $\setof{a}$       | Y                | N                | 
+| $\setof{a,b}$ | $\setof{a,a,b,b}$ | Y                | Y                | 
+
+:::
 :::
 
 ``` jupyterpython
@@ -71,6 +83,17 @@ else:
 ::: exercise
 Say whether the following statement is true or false and justify your answer:
 for any two sets $A$ and $B$, $A \subseteq B$ iff $A \cap B = A$.
+
+::: solution
+This statement is correct.
+We first show the right-to-left direction, then left-to-right.
+
+If $A \cap B = A$, then every element of $A$ must also be an element of $B$, i.e. $A \subseteq B$.
+
+In the other direction, if $A \subseteq B$, then every element of $A$ is an element of $B$.
+Hence $A \cap B$ is a superset of $A$.
+But as it is impossible for $A \cap B$ to a proper superset of $A$, it must be the case that $A \cap B = A$.
+:::
 :::
 
 ## Identity
@@ -89,6 +112,13 @@ The reason for this is again simple:
 ::: exercise
 Consider the set $E$ that contains all even natural numbers that are at least 0 and at most 10.
 Show that this is the same as the set that contains all $n$ such that $n = 2m$ for $m \in \setof{0,1,2,3,4,5}$.
+
+::: solution
+Let $2$ be the set of all $n$ such that $n = 2m$ for $m \in \setof{0,1,2,3,4,5}$.
+That is to say, $2 \is \setof{0, 2, 4, 6, 8, 10}$.
+It is easy to see that $2 \subseteq E$, and it also holds that $E \subseteq 2$.
+Hence $2 = E$.
+:::
 :::
 
 
@@ -104,6 +134,9 @@ In other words, $V_T \subseteq V$ yet $V_T \neq V$.
 Hence $V_T \subsetneq V$.
 :::
 
+Remember that it is possible for both $A \subseteq B$ and $B \subseteq A$ to be true --- in this case, $A = B$.
+But there can be no $A$ and $B$ such that $A \subsetneq B$ and $B \subsetneq A$.
+
 ::: exercise
 Fill in $=$, $\subsetneq$, or $\supsetneq$ as appropriate.
 
@@ -113,6 +146,13 @@ Fill in $=$, $\subsetneq$, or $\supsetneq$ as appropriate.
 - $\emptyset \_ \setof{a}$
 - $\emptyset \_ \setof{\emptyset}$
 
+::: solution
+- $\setof{a,b} \supsetneq \setof{a}$
+- $\setof{a,a,b,c} = \setof{b,b,a,c}$
+- $\setof{1,2,3} \supsetneq \setof{n + 5 \mid n \in \setof{-4, -3}}$
+- $\emptyset \subsetneq \setof{a}$
+- $\emptyset \subsetneq \setof{\emptyset}$
+:::
 :::
 
 ## Disjoint and incomparable sets
@@ -129,8 +169,13 @@ The set of English verbs and the set of English nouns, on the other hand, are in
 Many words like *water*, *cut*, *fall*, *love*, *try*, *judge*, *beat*, or *cross* can be used as nouns or verbs, but many other words are used only as nouns (*tree*, *waterfall*, *idea*, *Ferrari*) or only as verbs (*write*, *convince*, *admonish*).
 :::
 
-Remember that it is possible for both $A \subseteq B$ and $B \subseteq A$ to be true --- in this case, $A = B$.
-But there can be no $A$ and $B$ such that $A \subsetneq B$ and $B \subsetneq A$.
+While the concept of two disjoint sets is simple enough, it becomes slightly counterintuitive when we consider the empty set.
+By definition, the empty set is a subset of every set, including itself.
+But by the definition of intersection, it also holds that $A \cap \emptyset = \emptyset$ for any set $A$.
+So this means that the empty set is a subset of every set $A$ but also disjoint from it.
+In fact, $A$ could even be the empty set itself, and thus the empty set is disjoint from itself!
+This is admittedly very unintuitive, and one could amend the definition of disjoint sets above to avoid all of this.
+But this edge case is harmless enough that it doesn't really merit moving to a more complicated definition.
 
 ::: exercise
 For each line in the table, say whether the sets are disjoint, incomparable, identical, or stand in a proper subset/superset relation.
@@ -139,9 +184,20 @@ For each line in the table, say whether the sets are disjoint, incomparable, ide
 | :--             | :--                                               | 
 | $\setof{2,5,8}$ | the set of all odd numbers                        | 
 | $\setof{a,b,c}$ | $\setof{a,b} \cup (\setof{a,c} - \setof{b,d})$    | 
+| $\setof{a,b,c}$ | $(\setof{a,b} \cup \setof{a,c}) - \setof{b,d}$    | 
+| $\setof{a,b,c}$ | $(\setof{a,b} - \setof{a,c}) \cup \setof{b,d}$ | 
 | $\emptyset$     | $\setof{a,b} \cap (\setof{a,c} - \setof{b,d})$    | 
 | $\emptyset$     | $\setof{a,b} \cap (\setof{a,c} \cap \setof{b,d})$ | 
    
+::: solution
+
+1. $A \subsetneq B$
+1. $A = B$
+1. $A \supsetneq B$
+1. $A$ and $B$ are disjoint
+1. $A \subsetneq B$, and $A$ and $B$ are also disjoint
+1. $A = B$, and $A$ and $B$ are also disjoint
+:::
 :::
 
 ## Remarks on notation
@@ -194,9 +250,9 @@ Similarly, $B$ is a **proper superset** of $A$ ($B \supsetneq A$).
 Let $A$ and $B$ be arbitrary sets.
 Then $A$ and $B$ are:
 
-
 - **identical** iff $A \subseteq B$ and $B \subseteq A$ both hold,
 - **disjoint** iff $A \cap B = \emptyset$,
 - **incomparable** iff $A \not\subseteq B$ and $B \not\subseteq A$ and $A \cap B \neq \emptyset$.
-
 :::
+
+\includecollection{solutions}

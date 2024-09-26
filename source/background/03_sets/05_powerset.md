@@ -54,6 +54,17 @@ For each one of the following sets, compute its powerset.
 1. $\wp(\setof{\setof{a}})$
 1. $\wp(\wp(\emptyset))$
 
+::: solution
+
+1. $\wp(\setof{a,b}) = \setof{\emptyset, \setof{a}, \setof{b}, \setof{a,b}}$
+1. $\wp(\setof{a,b,c,d}) = \{ \emptyset, \setof{a}, \setof{b}, \setof{c}, \setof{d}, \setof{a,b}, \setof{a,c}, \setof{a,d}, \setof{b,c}, \setof{b,d}, \setof{c,d}$, $\setof{a,b,c}, \setof{a,b,d}, \setof{a,c,d}, \setof{b,c,d}, \setof{a,b,c,d} \}$
+1. $\wp(\setof{\setof{a}}) = \setof{\emptyset, \setof{\setof{a}}}$
+1. $\wp(\emptyset) = \setof{\emptyset}$
+1. $\wp(\setof{\emptyset}) = \setof{\emptyset, \setof{\emptyset}}$
+1. $\wp(\wp(\setof{\setof{a}})) = \setof{\emptyset, \setof{\emptyset}, \setof{\setof{\setof{a}}}, \setof{\emptyset, \setof{\setof{a}}}}$
+1. $\wp(\wp(\wp(\emptyset))) = \setof{\emptyset, \setof{\emptyset}, \setof{\setof{\emptyset}}, \setof{\emptyset, \setof{\emptyset}}}$
+
+:::
 :::
 
 ## Powerset notation
@@ -72,14 +83,27 @@ This is witnessed by our example set $\setof{1,2,3}$, the powerset of which has 
 
 ::: exercise
 For each set $A$ in the previous exercise, verify that $\card{\wp(A)} = 2^{\card{A}}$.
+
+::: solution
+
+1. Yes, $2^2 = 4$
+1. Yes, $2^4 = 16$
+1. Yes, $2^1 = 2$
+1. Yes, $2^0 = 1$
+1. Yes, $2^1 = 2$
+1. Yes, $2^{2^1} = 4$
+1. Yes, $2^{2^{2^0}} = 4$
+
+:::
 :::
 
+<!-- fixme -->
 <!-- But the $2^A$ notation for powersets has a deeper meaning that goes beyond mere numbers. -->
 <!-- The notation $B^A$ is sometimes used to represent the set of all functions from $A$ to $B$. -->
 <!-- And $2$ can be construed not just as the number $2$, but as any set with cardinality $2$, including $\setof{\top, \bot}$. -->
 <!-- So $2^A$ can be taken to denote the set of all functions from $A$ to $\setof{\top, \bot}$. -->
 <!-- But since functions are sets, this is exactly the class of all subsets of $A$. -->
-
+<!--  -->
 <!-- In sum, the $2^A$ notation for powersets is very pleasing on a theoretical level. -->
 <!-- But humans are a practical bunch, and since superscripts are slightly strenuous to read, $\wp(A)$ is the preferred notation for powersets. -->
 
@@ -87,3 +111,5 @@ For each set $A$ in the previous exercise, verify that $\card{\wp(A)} = 2^{\card
 
 - The powerset of a set $A$ is the set of all subsets of $A$, including $A$ itself.
 - For every finite set $A$, it holds that $\card{\wp(A)} = 2^{\card{A}}$.
+
+\includecollection{solutions}

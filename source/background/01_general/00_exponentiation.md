@@ -96,8 +96,8 @@ And this must be $1$ because no matter what the actual value $v$ of $x^n$ might 
 
 ## $x\mathrm{e}y$ notation for exponentiation
 
-fixme: to be added
+<!-- fixme: to be added -->
 
 ## The Euler number $e$ and exp notation
 
-fixme: to be added
+<!-- fixme: to be added -->

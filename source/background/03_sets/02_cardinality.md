@@ -40,6 +40,14 @@ No matter how one maps the elements of $D$ to members of $A$, at least two membe
 
 ::: exercise
 Show that $\card{\setof{3, \emptyset, 3}} \leq \card{\setof{\mathit{John}, \mathit{Mary}, \emptyset}}$ by giving a function that maps every element of the former set to some member of the latter.
+
+::: solution
+The simple solution is to define both sets via list notation: $\setof{1,3,5,7,9}$ and $\setof{0,2,4,6,8}$.
+Since both contain $5$ elements, they have the same cardinality.
+
+Alternatively, we can define a function $f$ from the first set to the second such that $f(x) = x - 1$.
+This is a bijection because for every element $y$ in the co-domain of $f$ there is exactly one $x$ in the domain of $f$ such that $f(x) = y$.
+:::
 :::
 
 Given the definition above, we have $\card{A} = \card{B}$ iff $\card{A} \leq \card{B}$ and $\card{B} \leq \card{A}$ are both true.
@@ -77,9 +85,14 @@ Hence $A$ and $B$ must have distinct cardinality.
 :::
 
 ::: exercise
-Show that
 Let $O$ be the set of all odd natural numbers that are at least $0$ and at most $9$, and $E$ the set of all even natural numbers that are at least $0$ and at most $9$.
 Show that $\card{O} = \card{E}$.
+
+::: solution
+Consider the function $f: E \rightarrow O$ with $x \mapsto x + 1$.
+This is a bijection:
+first, $f(x) \in O$ for every $x \in E$, and for every $y \in O$, there is some $x \in E$ such that $f(x) = y$.
+:::
 :::
 
 For finite sets, our intuitive notion of size closely matches the technical term of cardinality.
@@ -95,6 +108,12 @@ Hence $\card{\mathbb{N}} = \card{\mathbb{N}_+}$ even though intuitively the two 
 
 ::: exercise
 Show that the set of natural numbers has the same cardinality as the set of all even natural numbers.
+
+::: solution
+We define a function $f: \mathbb{N} \rightarrow \mathbb{N}$ with $n \mapsto 2n$.
+For every natural number $y$, there is exactly one natural number $x$ such that $f(x) = y$.
+Hence $f$ is a bijection.
+:::
 :::
 
 In a later chapter, we will see that our definition of cardinality entails that there are different "sizes" of infinity, and that we want one specific infinity size to talk about language.
@@ -109,3 +128,5 @@ In a later chapter, we will see that our definition of cardinality entails that 
     - $\card{A} = \card{B}$: there exists a bijection $f: A \rightarrow B$ (where $f$ is a **bijection** iff it is both injective and surjective).
 - When the name of function $f$ is clear from context, one may write $x \mapsto y$ instead of $f(x) = y$.
 - While cardinality is very intuitive for finite sets, it yields surprising results with infinite sets.
+
+\includecollection{solutions}

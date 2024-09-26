@@ -39,6 +39,13 @@ We can regard this as a function that takes a word as its input and returns the 
 Speakers vary as to what they accept as the correct *shm*-reduplicant for some words.
 For example, some speakers turn *breakfast* into *shmeakfast*, replacing both *b* and *r*, whereas other only replace *b*, yielding *shmreakfast*.
 Explain why this does not contradict the claim that *shm*-reduplication can be regarded as a function.
+
+::: solution
+The exercise states that speakers may vary in how they form *shm*-reduplicants.
+But this variation across speakers has no bearing on whether a given speaker's version of *shm*-reduplication is a function.
+As long as the speaker can only produce one *shm*-reduplicant for any given word, their version of *shm*-reduplication is a function.
+Only if the speaker accepts multiple *shm*-reduplicants for the same word does *shm*-reduplication cease to be a function.
+:::
 :::
 
 ::: exercise
@@ -48,6 +55,18 @@ Let $f$ be a function that takes as its input a number $n$ and returns $n+1$ on 
 - What if $f$ instead takes two arguments: a number $n$, and the name of the day of the week.
   Is this version of $f$ a function?
 
+::: solution
+1. No.
+2. Yes.
+
+::: solution_explained
+1. No, $f$ is not a function because one and the same input can produce different outputs.
+   The output is predictable if the current day of the week is known, but this does not change the fact that a single input like $5$ is sometimes mapped to $6$ and sometimes to $7$, which is not possible with functions.
+2. Yes, if we make the day of the week an argument of the function, then the output varies together with the input.
+   For example, the input consisting of the two arguments $5$ and \emph{Friday}$ is mapped to $6$, whereas the input consisting of the two arguments $5$ and \emph{Sunday} is mapped to $7$.
+   It is no longer possible for the same input, consisting of a number and a day of the week, to be mapped to two distinct outputs.
+:::
+:::
 :::
 
 The fact that functions cannot map one and the same input to multiple outputs is known as **right uniqueness**.
@@ -104,3 +123,5 @@ for _ in range(10):
 
 - A function takes a fixed number of arguments as its input and returns a single output that is uniquely determined by the inputs.
 - Functions are not limited to numbers, all kinds of things can be the input or output of a function.
+
+\includecollection{solutions}

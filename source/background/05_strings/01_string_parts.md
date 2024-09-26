@@ -97,6 +97,17 @@ For each one of the string pairs below, indicate whether the first string is a s
 - $\String{bc}\ \&\ \String{abbbca}$
 - $\String{cb}\ \&\ \String{abbbca}$
 
+::: solution
+
+- $\String{a}$ is a proper substring of $\String{aaaa}$
+- $\String{a}$ is not a substring of $\String{b}$
+- $\emptystring$ is a proper substring $\String{b}$
+- $\emptystring$ is a substring of $\emptystring$
+- $\String{aa}$ is not a substring of $\String{abbbca}$
+- $\String{bc}$ is a proper substring of $\String{abbbca}$
+- $\String{cb}$ is not a substring of $\String{abbbca}$
+
+:::
 :::
 
 ## Subsequence
@@ -105,7 +116,7 @@ Whereas substrings must be continuous, **subsequences** are allowed to also be d
 However, a subsequence need not be discontinuous.
 
 ::: example
-The string $\String{abcd}$ has 15 subsequences:
+The string $\String{abcd}$ has 16 subsequences:
 
 - $\emptystring$
 - $\String{a}$
@@ -120,6 +131,7 @@ The string $\String{abcd}$ has 15 subsequences:
 - $\String{cd}$
 - $\String{abc}$
 - $\String{abd}$
+- $\String{acd}$
 - $\String{bcd}$
 - $\String{abcd}$
 
@@ -127,7 +139,7 @@ Note that $\String{ca}$ is not a subsequence of $\String{abcd}$, but it is a sub
 :::
 
 ::: exercise
-How many subsequences does the string $\String{aaaa}$ have?
+List all distinct subsequences of the string $\String{aaaa}$. 
 :::
 
 Just like substrings, a subsequence $u$ of $v$ is **proper** iff $u \neq v$.
@@ -157,12 +169,32 @@ For each one of the string pairs below, indicate whether the first string is a s
 - $\String{bc}\ \&\ \String{abbbca}$
 - $\String{cb}\ \&\ \String{abbbca}$
 
+::: solution
+
+- $\String{a}$ is a proper subsequence of $\String{aaaa}$
+- $\String{a}$ is not a subsequence of $\String{b}$
+- $\emptystring$ is a proper subsequence of $\String{b}$
+- $\emptystring$ is a subsequence of $\emptystring$
+- $\String{aa}$ is a proper subsequence of $\String{abbbca}$
+- $\String{bc}$ is a proper subsequence of $\String{abbbca}$
+- $\String{cb}$ is not a subsequence of $\String{abbbca}$
+
+:::
 :::
 
 ::: exercise
 Say whether the following is True or False:
 Every substring of some string $s$ is also a subsequence of $s$, but not the other way round.
 Justify your answer.
+
+::: solution
+This is correct.
+A substring is a subsequence where all symbols happen to be adjacent.
+For example, $\String{ab}$ is both a substring and a subsequence of $\String{abc}$.
+
+In the other direction, not every subsequence is a substring.
+For example, $\String{ac}$ is a subsequence of $\String{abc}$ but not a substring.
+:::
 :::
 
 ## Recap
@@ -173,3 +205,5 @@ Justify your answer.
 - The empty string is a substring, a prefix, a suffix, and a subsequence of every string.
 - Every string *s* is both a substring and a subsequence of itself.
   The substrings and subsequences of *s* that are distinct from *s* are **proper**.
+
+\includecollection{solutions}
