@@ -69,12 +69,6 @@ And the all of the following are suffixes of $\String{abcd}$:
 - $\String{abcd}$
 :::
 
-::: exercise
-For every string $u$, there are two substrings that are both prefixes and suffixes of $u$.
-What are they?
-For which string are these two substrings not distinct?
-:::
-
 Substrings, prefixes, and suffixes are formally defined via concatenation.
 
 ::: definition
@@ -110,6 +104,26 @@ For each one of the string pairs below, indicate whether the first string is a s
 :::
 :::
 
+::: exercise
+For every string $u$, there are two substrings that are both prefixes and suffixes of $u$.
+What are they?
+For which string are these two substrings not distinct?
+
+::: solution
+The two substrings are $\emptystring$ and $u$ itself.
+The empty string is the only case where the two are not distinct as $u = \emptystring$.
+
+::: solution_explained
+No matter what $u$ looks like, it is the case that $u = \emptystring \stringcat u \stringcat \emptystring$.
+But by the definition of prefixes, this means that $u$ is both a prefix ($y = \emptystring$) and a suffix ($x = \emptystring$) of $u$.
+But note that we can also decompose $u$ into
+$x \stringcat \emptystring \stringcat u$ such that $x = \emptystring$, which means that $\emptystring$ is a prefix of $u$.
+Similarly, $u = u \stringcat \emptystring \string y$ with $y = \emptystring$, and thus $\emptystring$ is also a suffix of $u$.
+:::
+:::
+:::
+
+
 ## Subsequence
 
 Whereas substrings must be continuous, **subsequences** are allowed to also be discontinuous.
@@ -139,7 +153,15 @@ Note that $\String{ca}$ is not a subsequence of $\String{abcd}$, but it is a sub
 :::
 
 ::: exercise
-List all distinct subsequences of the string $\String{aaaa}$. 
+List all distinct subsequences of the string $\String{aaaa}$ (without duplicates).
+
+::: solution
+- $\emptystring$
+- a
+- aa
+- aaa
+- aaaa
+:::
 :::
 
 Just like substrings, a subsequence $u$ of $v$ is **proper** iff $u \neq v$.
