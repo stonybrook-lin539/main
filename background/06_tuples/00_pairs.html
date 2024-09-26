@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pairs</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a href="#pairs">Pairs</a>
+<ul>
+<li><a href="#notation-and-basic-concepts">Notation and basic
+concepts</a></li>
+<li><a href="#sets-vs-pairs">Sets VS pairs</a></li>
+<li><a href="#pairs-as-sets">Pairs as sets</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="pairs">Pairs</h1>
+<div class="prereqs">
+<ul>
+<li>sets (basic notation)</li>
+</ul>
+</div>
+<p><strong>Pairs</strong> are the simplest instance of
+<strong>tuples</strong>. We start with pairs because they are a very
+common use of tuples and still convey the central intuitions very
+clearly.</p>
+<h2 id="notation-and-basic-concepts">Notation and basic concepts</h2>
+<p>A <strong>pair</strong> consists of exactly two elements. We write
+<span class="math inline">\(\left \langle a, b \right \rangle\)</span>
+to denote the pair that contains <span class="math inline">\(a\)</span>
+and <span class="math inline">\(b\)</span>. We also call <span
+class="math inline">\(a\)</span> the first <strong>component</strong> of
+the pair <span class="math inline">\(\left \langle a, b \right
+\rangle\)</span>, and <span class="math inline">\(b\)</span> its second
+component. Crucially, the order of components matters.</p>
+<div class="example">
+<p>Even though <span class="math inline">\(\left \{ 1,5 \right \} =
+\left \{ 5,1 \right \}\)</span>, the pair <span
+class="math inline">\(\left \langle 1,5 \right \rangle\)</span> is
+distinct from the pair <span class="math inline">\(\left \langle 5,1
+\right \rangle\)</span>.</p>
+</div>
+<p>In formal terms, <span class="math inline">\(\left \langle a,b \right
+\rangle = \left \langle c,d \right \rangle\)</span> iff <span
+class="math inline">\(a = c\)</span> and <span class="math inline">\(b =
+d\)</span>.</p>
+<div class="example">
+<p>We have <span class="math inline">\(\left \langle 1,5 \right \rangle
+= \left \langle 1,5 \right \rangle\)</span> because <span
+class="math inline">\(1 = 1\)</span> and <span class="math inline">\(5 =
+5\)</span>. This holds even if we write the pairs differently. For
+example, let <span class="math inline">\(f(x) = x - 1\)</span>. Then
+<span class="math inline">\(\left \langle 1,5 \right \rangle = \left
+\langle f(2), f(6) \right \rangle\)</span> because <span
+class="math inline">\(1 = f(2)\)</span> and <span
+class="math inline">\(5 = f(6)\)</span>.</p>
+</div>
+<p>It is also possible for pairs to contain the same object twice.</p>
+<div class="example">
+<p>Continuing the previous example, the pair <span
+class="math inline">\(\left \langle 1, f(2) \right \rangle\)</span> is
+identical to <span class="math inline">\(\left \langle 1, 1 \right
+\rangle\)</span>. This is a perfectly valid pair.</p>
+</div>
+<p>Pairs may contain complex objects, including other pairs.</p>
+<div class="example">
+<p>The following is a pair: <span class="math inline">\(\left
+\langle  \left \{ a \right \}, \left \langle a, \left \{ a \right \}
+\right \rangle \right \rangle\)</span>. Its two components are</p>
+<ol type="1">
+<li>the set containing <span class="math inline">\(a\)</span>, and</li>
+<li>a pair that consists of
+<ol type="1">
+<li><span class="math inline">\(a\)</span> and</li>
+<li>the set containing <span class="math inline">\(a\)</span></li>
+</ol></li>
+</ol>
+</div>
+<p>Note that just like <span class="math inline">\(a \neq \left \{ a
+\right \}\)</span>, it also holds that <span class="math inline">\(a
+\neq \left \langle a \right \rangle\)</span>. A container with <span
+class="math inline">\(a\)</span> in it is not the same thing as <span
+class="math inline">\(a\)</span> by itself.</p>
+<div class="exercise">
+<p>For each one of the following, say whether it is a pair.</p>
+<ul>
+<li><span class="math inline">\(\left \langle 3, a \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a, b \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a, b \right
+\rangle\)</span> if <span class="math inline">\(a = b\)</span></li>
+<li><span class="math inline">\(\left \langle \mathit{pair} \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \left \langle 3, a \right
+\rangle, \left \langle a, b \right \rangle \right \rangle\)</span> if
+<span class="math inline">\(a = b\)</span></li>
+<li><span class="math inline">\(\left \langle 3, a, a, b \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 3, \left \{ a, a \right
+\}, b \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \left \langle a,b \right
+\rangle \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \left \{ \left \langle a,b
+\right \rangle, \left \langle c,d \right \rangle \right \} \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \left \{ a \right \},
+\left \{ a, a \right \} \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a, \left \langle b, \left
+\langle c, \left \langle d, \left \langle e, \left \langle f,g \right
+\rangle \right \rangle \right \rangle \right \rangle \right \rangle
+\right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle 1, \mathbb{N} \right
+\rangle\)</span>, where <span class="math inline">\(\mathbb{N}\)</span>
+is the set of natural numbers (0, 1, 2, 3, …)</li>
+</ul>
+</div>
+<div class="exercise">
+<p>Fill in the gaps with <span class="math inline">\(=\)</span> and
+<span class="math inline">\(\neq\)</span> as appropriate, assuming that
+<span class="math inline">\(a \neq b\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\left \langle a,b \right \rangle \_
+\left \langle b,a \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,a \right \rangle \_
+\left \langle b,b \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,b \right \rangle \_
+\left \langle \left \{ a \right \}, \left \{ b \right \} \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \left \{ a \right \},
+\left \{ b \right \} \right \rangle \_ \left \langle \left \{ a,a \right
+\}, \left \{ b,b,b \right \} \right \rangle\)</span></li>
+</ul>
+</div>
+<div class="exercise">
+<p>Fill in the gaps with <span class="math inline">\(=\)</span> and
+<span class="math inline">\(\neq\)</span> as appropriate, assuming that
+<span class="math inline">\(a = b\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\left \langle a,b \right \rangle \_
+\left \langle b,a \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,a \right \rangle \_
+\left \langle b,b \right \rangle\)</span></li>
+<li><span class="math inline">\(\left \langle a,b \right \rangle \_
+\left \langle \left \{ a \right \}, \left \{ b \right \} \right
+\rangle\)</span></li>
+<li><span class="math inline">\(\left \langle \left \{ a \right \},
+\left \{ b \right \} \right \rangle \_ \left \langle \left \{ a,a \right
+\}, \left \{ b,b,b \right \} \right \rangle\)</span></li>
+</ul>
+</div>
+<h2 id="sets-vs-pairs">Sets VS pairs</h2>
+<p>Just like sets, pairs are containers that can contain objects of
+arbitrary complexity. But unlike sets, pairs care about order and the
+same object can be contained in a pair more than once. Also, every pair
+has exactly two elements.</p>
+<p>Usually it is clear whether one should use sets or pairs. If order is
+crucial, a set won’t cut it. It it crucial to know whether we have an
+object once or twice, a set won’t cut it. But it is common to use pairs
+for mathematical convenience even in some cases where sets would
+suffice.</p>
+<div class="example">
+<p>The unit on the mathematics of tiers defined an <span
+class="math inline">\(n\)</span>-grammar with tiers as a set of
+tier-annotated <span class="math inline">\(n\)</span>-grams, which is a
+pair <span class="math inline">\(\left \langle g, T \right
+\rangle\)</span> such that <span class="math inline">\(g\)</span> is an
+<span class="math inline">\(n\)</span>-gram and <span
+class="math inline">\(T\)</span> is a tier alphabet. A concrete example
+of this would be <span class="math inline">\(\left \langle \mathit{aa},
+\left \{ a,b \right \} \right \rangle\)</span>, i.e. the bigram <span
+class="math inline">\(\mathit{aa}\)</span> over the tier that only
+contains <span class="math inline">\(a\)</span>s and <span
+class="math inline">\(b\)</span>s.</p>
+<p>Strictly speaking we do not need to use a pair here, a set would have
+been sufficient. That is because the two components of the pair are of
+different types: one is an <span class="math inline">\(n\)</span>-gram,
+the other a set of symbols. If we write, say, <span
+class="math inline">\(\left \{  \left \{ a,b \right \},
+\mathit{aa}  \right \}\)</span>, it does not matter that there is no
+linear order, we can still infer right away that <span
+class="math inline">\(\mathit{aa}\)</span> must be the bigram and <span
+class="math inline">\(\left \{ a,b \right \}\)</span> the tier alphabet.
+And we don’t have to worry about duplicates either since we always have
+exactly one <span class="math inline">\(n\)</span>-gram and one tier
+alphabet.</p>
+<p>Nonetheless it is nicer to use pairs instead of sets in this case.
+Consider the tier-annotated <span class="math inline">\(n\)</span>-gram
+<span class="math inline">\(\left \langle u, v \right \rangle\)</span>.
+Even though we used the arbitrary variables <span
+class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> here, you can still readily infer that
+<span class="math inline">\(u\)</span> is the <span
+class="math inline">\(n\)</span>-gram and <span
+class="math inline">\(v\)</span> the tier alphabet. Sure, we could have
+chosen more helpful variable names, but we didn’t have to. On the other
+hand, <span class="math inline">\(\left \{ u, v \right \}\)</span> would
+have been ambiguous as to which element is the <span
+class="math inline">\(n\)</span>-gram and which is the tier alphabet.
+Crucially, this ambiguity would remain even if we use more meaningful
+variables names, as in <span class="math inline">\(\left \{ g, T \right
+\}\)</span>. You may well have intended for <span
+class="math inline">\(g\)</span> to be the <span
+class="math inline">\(n\)</span>-gram and for <span
+class="math inline">\(T\)</span> to be the tier alphabet, but the math
+does not actually enforce that. Remember that mathematicians do not like
+to make extra assumptions: unless you explicitly say that <span
+class="math inline">\(g\)</span> is the <span
+class="math inline">\(n\)</span>-gram and <span
+class="math inline">\(T\)</span> the tier alphabet, we also have to
+consider the interpretation where <span class="math inline">\(T\)</span>
+is the tier alphabet and <span class="math inline">\(g\)</span> is the
+<span class="math inline">\(n\)</span>-gram. This will quickly become
+problematic. It is much nicer and explicit to use pairs instead because
+no matter whether you write <span class="math inline">\(\left \langle g,
+T \right \rangle\)</span>, <span class="math inline">\(\left \langle u,
+v \right \rangle\)</span>, it will always be the case that the first is
+the <span class="math inline">\(n\)</span>-gram and the second the tier
+alphabet. No ambiguity, no unintended side effects.</p>
+</div>
+<div class="exercise">
+<p>Continuing the example above, consider the tier-annotated <span
+class="math inline">\(n\)</span>-gram <span class="math inline">\(\left
+\langle \mathit{tier alphabet}, \mathit{ngram} \right \rangle\)</span>.
+Which one is the <span class="math inline">\(n\)</span>-gram, and which
+one is the tier alphabet?</p>
+</div>
+<h2 id="pairs-as-sets">Pairs as sets</h2>
+<p>The <strong>Kuratowski definition</strong> defines pairs as a
+particular kind of set: the pair <span class="math inline">\(\left
+\langle a,b \right \rangle\)</span> is equivalent to the set <span
+class="math inline">\(\left \{  \left \{ a \right \}, \left \{ a,b
+\right \} \right \}\)</span>. This definition is quite frequent in the
+linguistic literature, but the way it has been used is problematic for
+several reasons. If you are interested in this definition and why
+linguists should be careful in how they invoke it, check out the
+dedicated unit at the end of this chapter.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li><strong>Pairs</strong> are ordered containers with exactly two
+elements. We write <span class="math inline">\(\left \langle a,b \right
+\rangle\)</span> to denote the pair whose first
+<strong>component</strong> is <span class="math inline">\(a\)</span> and
+whose second component is <span class="math inline">\(b\)</span>.</li>
+<li>We have <span class="math inline">\(\left \langle a,b \right \rangle
+= \left \langle c,d \right \rangle\)</span> iff <span
+class="math inline">\(a = c\)</span> and <span class="math inline">\(b =
+d\)</span>. This implies <span class="math inline">\(\left \langle a,b
+\right \rangle \neq \left \langle b,a \right \rangle\)</span> unless
+<span class="math inline">\(a = b\)</span>.</li>
+<li>Sometimes we may pairs to avoid ambiguities and/or make the notation
+easier to read even if sets would technically suffice.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
