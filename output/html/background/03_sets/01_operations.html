@@ -45,7 +45,7 @@ Union, intersection, and complement of sets</a>
 <li><a href="#the-empty-set">The empty set</a></li>
 <li><a href="#union">Union</a></li>
 <li><a href="#intersection">Intersection</a></li>
-<li><a href="#relative-complement">Relative complement</a></li>
+<li><a href="#relative-complement">(Relative) complement</a></li>
 <li><a href="#pictures-for-set-operations">Pictures for set
 operations</a></li>
 <li><a href="#mnemonics-for-notation">Mnemonics for notation</a></li>
@@ -306,7 +306,7 @@ bigger. But as we will learn later, this isn’t really all that
 important, and the two operations are indeed very close counterparts in
 an abstract sense.
 <!-- fixme: vague reference to abstract algebra, not in lecture notes yet --></p>
-<h2 id="relative-complement">Relative complement</h2>
+<h2 id="relative-complement">(Relative) complement</h2>
 <p>Given the set-counterparts for <span class="math inline">\(+\)</span>
 and <span class="math inline">\(\cdot\)</span>, you probably expect one
 for subtraction, too. It exists, indeed, and is called <strong>relative
@@ -371,18 +371,57 @@ A\)</span>. Then make a single change to <span
 class="math inline">\(A\)</span> such that <span class="math inline">\(A
 - B \neq B - A\)</span>.</p>
 </div>
-<p>If <span class="math inline">\(A\)</span> is clear from context, we
-just write <span class="math inline">\(\overline{B}\)</span> for <span
+<p>Sometimes we may fix a specific set <span
+class="math inline">\(U\)</span> such that every set we are interested
+in can only contain elements of <span class="math inline">\(U\)</span>.
+In this case, we call <span class="math inline">\(U\)</span> our
+<strong>universe</strong>. Given a universe <span
+class="math inline">\(U\)</span>, we just <span
+class="math inline">\(\overline{B}\)</span> for <span
 class="math inline">\(A - B\)</span> and call it the <strong>complement
 of <span class="math inline">\(B\)</span></strong>.</p>
 <div class="example">
-<p>Given some fixed <span class="math inline">\(A
-\mathrel{\mathop:}=\left \{ 0,1,2,3 \right \}\)</span>, we have <span
-class="math inline">\(\overline{\left \{ 1,3 \right \}} = \left \{ 0,2
-\right \}\)</span>.</p>
+<p>There are four sets that can be built from the elements of the
+universe <span class="math inline">\(U \mathrel{\mathop:}=\left \{ 0,1
+\right \}\)</span>:</p>
+<ol type="1">
+<li><span class="math inline">\(\emptyset\)</span></li>
+<li><span class="math inline">\(\left \{ 0 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 1 \right \}\)</span></li>
+<li><span class="math inline">\(\left \{ 0,1 \right \}\)</span></li>
+</ol>
+<p>Their complements are shown below.</p>
+<ol type="1">
+<li><span class="math inline">\(\overline{\emptyset} = \left \{ 0,1
+\right \} - \emptyset = \left \{ 0,1 \right \}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ 0 \right \}} = \left
+\{ 0,1 \right \} - \left \{ 0 \right \} = \left \{ 1 \right
+\}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ 1 \right \}} = \left
+\{ 0,1 \right \} - \left \{ 1 \right \} = \left \{ 0 \right
+\}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ 0,1 \right \}} =
+\left \{ 0,1 \right \} - \left \{ 0,1 \right \} =
+\emptyset\)</span></li>
+</ol>
+<p>If we change the universe to <span class="math inline">\(\left \{
+0,1,2 \right \}\)</span>, instead, the complements also change.</p>
+<ol type="1">
+<li><span class="math inline">\(\overline{\emptyset} = \left \{ 0,1,2,3
+\right \} - \emptyset = \left \{ 0,1,2 \right \}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ 0 \right \}} = \left
+\{ 0,1,2,3 \right \} - \left \{ 0 \right \} = \left \{ 1,2 \right
+\}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ 1 \right \}} = \left
+\{ 0,1,2,3 \right \} - \left \{ 1 \right \} = \left \{ 0,2 \right
+\}\)</span></li>
+<li><span class="math inline">\(\overline{\left \{ 0,1 \right \}} =
+\left \{ 0,1,2,3 \right \} - \left \{ 0,1 \right \} = \left \{ 2 \right
+\}\)</span></li>
+</ol>
 </div>
 <div class="exercise">
-<p>Assume that the context fixes <span class="math inline">\(A
+<p>Assume that the context fixes <span class="math inline">\(U
 \mathrel{\mathop:}=\left \{ 0,1,2,3 \right \}\)</span>. Compute all of
 the following:</p>
 <ul>
@@ -399,15 +438,13 @@ the following:</p>
 </ul>
 </div>
 <div class="exercise">
-<p>No matter how one chooses <span class="math inline">\(A\)</span> and
-<span class="math inline">\(B\)</span>, it always holds that the
-complement of the complement of <span class="math inline">\(B\)</span>
-is identical to <span class="math inline">\(B\)</span> itself. In
-symbols: <span class="math inline">\(B =
-\overline{\overline{B}}\)</span>. Explain why this holds.</p>
+<p>Explain why the complement of the complement of <span
+class="math inline">\(A\)</span> is <span
+class="math inline">\(A\)</span> itself. In symbols: <span
+class="math inline">\(A = \overline{\overline{A}}\)</span>.</p>
 <p><em>Hint</em>: By definition, <span
-class="math inline">\(\overline{\overline{B}} = A - \overline{B} = A -
-(A - B)\)</span>.</p>
+class="math inline">\(\overline{\overline{A}} = U - \overline{A} = U -
+(U - A)\)</span>.</p>
 </div>
 <h2 id="pictures-for-set-operations">Pictures for set operations</h2>
 <p>If we represent the sets <span class="math inline">\(A\)</span> and

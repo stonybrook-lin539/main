@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>The Kuratowski definition of pairs</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a href="#the-kuratowski-definition-of-pairs">The Kuratowski
+definition of pairs</a>
+<ul>
+<li><a href="#pairs-as-sets">Pairs as sets</a></li>
+<li><a href="#the-logic-behind-the-long-kuratowski-definition">The logic
+behind the long Kuratowski definition</a></li>
+<li><a href="#when-does-the-kuratowski-definition-work">When does the
+Kuratowski definition work?</a></li>
+<li><a href="#do-we-want-infinitely-nested-sets">Do we want infinitely
+nested sets?</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="the-kuratowski-definition-of-pairs">The Kuratowski definition of
+pairs</h1>
+<div class="prereqs">
+<ul>
+<li>sets (basic notation, cardinality)</li>
+<li>tuples (pairs)</li>
+</ul>
+</div>
+<p>Disclaimer: This unit is different from other background units in
+that it is quite opinionated. I will talk about the Kuratowski
+definition of pairs and how linguists’ attempts to leverage it for the
+study of sentence structure have serious problems. A lot of them stem
+from a misunderstanding of the status of mathematical definitions and
+their intended usage. After reading this unit, you will hopefully have a
+deeper appreciation of these issues and stay away from such
+misapplications of math.</p>
+<h2 id="pairs-as-sets">Pairs as sets</h2>
+<p>As you have seen several times by now, mathematics provides many
+different ways of talking about the same thing. This includes the option
+to look at pairs as specific kinds of sets. In fact, there are many
+different ways of defining pairs as sets. Below is a
+far-from-comprehensive selection of such definitions.</p>
+<div class="definition">
+<p>We define the <strong>pair</strong> <span class="math inline">\(\left
+\langle a,b \right \rangle\)</span> as the set</p>
+<dl>
+<dt>Wiener</dt>
+<dd>
+<p><span class="math inline">\(\left \{  \left \{  \left \{ a \right \},
+\emptyset  \right \}, \left \{  \left \{ b \right \} \right \}  \right
+\}\)</span></p>
+</dd>
+<dt>Hausdorff</dt>
+<dd>
+<p><span class="math inline">\(\left \{  \left \{ a, 1 \right \}, \left
+\{ b, 2 \right \} \right \}\)</span></p>
+</dd>
+<dt>Kuratowski (long)</dt>
+<dd>
+<p><span class="math inline">\(\left \{  \left \{ a \right \}, \left \{
+a,b \right \} \right \}\)</span></p>
+</dd>
+<dt>Kuratowski (short)</dt>
+<dd>
+<p><span class="math inline">\(\left \{  a, \left \{ a,b \right \}
+\right \}\)</span></p>
+</dd>
+</dl>
+</div>
+<p>Note that since these are definitions, they cannot be true or false.
+The only question is whether these are useful definitions of pairs. What
+exactly this means depends on why one would want to use sets instead of
+pairs. At the very least, though, a useful definition of pairs has to
+preserve the most fundamental property of pairs: <span
+class="math inline">\(\left \langle a,b \right \rangle = \left \langle
+c,d \right \rangle\)</span> iff <span class="math inline">\(a =
+c\)</span> and <span class="math inline">\(b = d\)</span>. Let us take a
+closer look at whether that holds for the two Kuratowski
+definitions.</p>
+<h2 id="the-logic-behind-the-long-kuratowski-definition">The logic
+behind the long Kuratowski definition</h2>
+<p>According to the long Kuratowski definition, the pair <span
+class="math inline">\(\left \langle a,b \right \rangle\)</span> is
+equivalent to the set <span class="math inline">\(\left \{  \left \{ a
+\right \}, \left \{ a,b \right \}  \right \}\)</span>. The two are
+equivalent because they satisfy the same identity condition: <span
+class="math inline">\(\left \langle a,b \right \rangle = \left \langle
+c,d \right \rangle\)</span> iff <span class="math inline">\(a =
+c\)</span> and <span class="math inline">\(a = d\)</span>, and <span
+class="math inline">\(\left \{  \left \{ a \right \}, \left \{ a,b
+\right \} \right \} = \left \{  \left \{ c \right \}, \left \{ c, d
+\right \} \right \}\)</span> iff <span class="math inline">\(a =
+c\)</span> and <span class="math inline">\(b = d\)</span>. Let us verify
+that this indeed holds.</p>
+<div class="proof">
+<p>The right to left direction is trivial: if <span
+class="math inline">\(a = c\)</span> and <span class="math inline">\(b =
+d\)</span>, then <span class="math inline">\(\left \{  \left \{ a \right
+\}, \left \{ a,b \right \}  \right \} = \left \{  \left \{ c \right \},
+\left \{ c,d \right \} \right \}\)</span>. In the other direction, we
+have to consider two separate cases depending on whether <span
+class="math inline">\(a = b\)</span> or <span class="math inline">\(a
+\neq b\)</span>. In each case, we need to show that <span
+class="math inline">\(a = c\)</span> and <span class="math inline">\(b =
+d\)</span>.</p>
+<p><strong>Case 1.</strong> Suppose <span class="math inline">\(a =
+b\)</span>. Then <span class="math inline">\(\{ \{a\}, \{a,b\} \} = \{
+\{a\}, \{a, a\} \} = \{ \{a\}, \{a\} \} = \{ \{a\} \}\)</span>. But then
+<span class="math inline">\(\{ \{a\}, \{a,b\} \} = \{ \{c\}, \{c,d\}
+\}\)</span> is the same as <span class="math inline">\(\{ \{a\} \} = \{
+\{c\}, \{c,d\} \}\)</span>. This is possible only if <span
+class="math inline">\(\{ c \} = \{c ,d\}\)</span>, which implies <span
+class="math inline">\(c = d\)</span>. Hence <span
+class="math inline">\(\{ \{c\}, \{c,d\} \} = \{ \{c\}, \{c,c\} \} = \{
+\{c\}, \{c\} \} = \{\{c\}\} = \{\{a\}\}\)</span>, which entails <span
+class="math inline">\(a = c\)</span>. As we already know that <span
+class="math inline">\(a = b\)</span> and <span class="math inline">\(c =
+d\)</span>, we also conclude from <span class="math inline">\(a =
+c\)</span> that <span class="math inline">\(b = d\)</span>.</p>
+<p><strong>Case 2.</strong> Now suppose that <span
+class="math inline">\(a \neq b\)</span>. Then either <span
+class="math inline">\(\left \{ a \right \} = \left \{ c,d \right
+\}\)</span> or <span class="math inline">\(\left \{ a \right \} = \left
+\{ c \right \}\)</span>. We consider each subcase.</p>
+<p><strong>Subcase 2.1.</strong> Suppose towards a contradiction that
+<span class="math inline">\(\left \{ a \right \} = \left \{ c,d \right
+\}\)</span>. Since two sets with distinct cardinality cannot be
+identical, the equality <span class="math inline">\(\{a\} =
+\{c,d\}\)</span> holds only if <span class="math inline">\(c =
+d\)</span>. Then <span class="math inline">\(\{ \{a\}, \{a,b\} \} = \{
+\{c\}, \{c,d\} \} = \{ \{c\}, \{c\} \}\)</span>. But then we have both
+<span class="math inline">\(\left \{ a \right \} = \left \{ c \right
+\}\)</span> and <span class="math inline">\(\left \{ a,b \right \} =
+\left \{ c \right \}\)</span>. This is impossible unless <span
+class="math inline">\(a = b\)</span>, but by our initial assumption for
+Case 2, <span class="math inline">\(a \neq b\)</span>. This is a
+contradiction, disproving the assumption of Subcase 2.1 that <span
+class="math inline">\(\left \{ a \right \} = \left \{ c,d \right
+\}\)</span>. We conclude that <span class="math inline">\(\left \{ a
+\right \} \neq \left \{ c,d \right \}\)</span> after all.</p>
+<p><strong>Subcase 2.2.</strong> Assume, then, that <span
+class="math inline">\(\left \{ a \right \} = \left \{ c \right \} \neq
+\left \{ c,d \right \}\)</span>. This implies that <span
+class="math inline">\(a = c\)</span>, so it only remains for us to show
+that <span class="math inline">\(b = d\)</span>. Note that <span
+class="math inline">\(c \neq d\)</span> because we assume <span
+class="math inline">\(\left \{ c \right \} \neq \left \{ c,d \right
+\}\)</span>. Given all these (in)equalities, <span
+class="math inline">\(\left \{  \left \{ a \right \}, \left \{ a,b
+\right \}  \right \} = \left \{  \left \{ c \right \}, \left \{ c,d
+\right \}  \right \}\)</span> necessarily entails that <span
+class="math inline">\(\left \{ a,b \right \} = \left \{ c,d \right
+\}\)</span>, which in turn implies <span class="math inline">\(b =
+d\)</span> because we already know that <span class="math inline">\(a =
+c\)</span> and <span class="math inline">\(a \neq b\)</span>.</p>
+</div>
+<div class="exercise">
+<p>Show that the Wiener definition of pairs preserves identity. That is
+to say, prove that <span class="math inline">\(\left \{  \left \{  \left
+\{ a \right \}, \emptyset  \right \}, \left \{  \left \{ b \right
+\}  \right \}  \right \} = \left \{  \left \{  \left \{ c \right \},
+\emptyset  \right \}, \left \{  \left \{ d \right \}  \right \}  \right
+\}\)</span> iff <span class="math inline">\(a = c\)</span> and <span
+class="math inline">\(b = d\)</span>.</p>
+</div>
+<div class="exercise">
+<p>It is tempting to generalize the long Kuratowski definition from
+pairs to tuples. For instance, the triple <span
+class="math inline">\(\left \langle a,b,c \right \rangle\)</span> would
+correspond to the set <span class="math inline">\(\left \{  \left \{ a
+\right \}, \left \{ a,b \right \}, \left \{ a,b,c \right \} \right
+\}\)</span>. However, this definition does not preserve the identity
+requirement of tuples. Show that there are cases where <span
+class="math inline">\(\left \langle a,b,c \right \rangle \neq \left
+\langle d,e,f \right \rangle\)</span> yet <span
+class="math inline">\(\left \{  \left \{ a \right \}, \left \{ a,b
+\right \}, \left \{ a,b,c \right \} \right \} = \left \{  \left \{ d
+\right \}, \left \{ d,e \right \}, \left \{ d,e,f \right \} \right
+\}\)</span>.</p>
+</div>
+<h2 id="when-does-the-kuratowski-definition-work">When does the
+Kuratowski definition work?</h2>
+<p>The proof above is mathematically sound, but it relies on specific
+assumptions of set theory. For example, we assumed that it is impossible
+for both <span class="math inline">\(c \neq d\)</span> and <span
+class="math inline">\(\{a\} = \{c,d\}\)</span> to be true at the same
+time because a set with one member can never be identical to a set with
+two members. While this is intuitive enough, it means that the proof is
+tied to a notion of sets that satisfies this property. Change how sets
+work, and the long Kuratowski definition will no longer be useful as an
+alternative view of pairs.</p>
+<p>While the troubles with the long Kuratowski definition stop there,
+the short Kuratowski definition requires even more specialized
+assumptions. This definition defines <span class="math inline">\(\left
+\langle a,b \right \rangle\)</span> as <span class="math inline">\(\left
+\{  a, \left \{ a,b \right \} \right \}\)</span> instead of <span
+class="math inline">\(\left \{  \left \{ a \right \}, \left \{ a,b
+\right \} \right \}\)</span>. It is this definition in particular that
+seems to be a good fit for linguistics because of recent proposals that
+sentence structure involves sets of the shape <span
+class="math inline">\(\left \{ a, \left \{ a,b \right \} \right
+\}\)</span>.</p>
+<div class="example">
+<p>Consider the sentence <em>My cat snored</em>. It is built from the
+verb <em>snored</em> and the noun phrase <strong>my cat</strong>. One
+common proposal is that this noun phrase is built by an operation called
+<strong>Merge</strong>. Given a <strong>head</strong> <em>H</em> and
+<strong>argument</strong> <em>A</em>, Merge combines them into the set
+<span class="math inline">\(\left \{ \mathit{H}, \left \{ \mathit{H},
+\mathit{A} \right \} \right \}\)</span>. In the case at hand, Merge
+takes the head <em>my</em> and argument <em>cat</em> and combines them
+into <span class="math inline">\(\left \{ \mathit{my}, \left \{
+\mathit{my}, \mathit{cat} \right \} \right \}\)</span> (there are
+linguistic reasons for assuming <em>my</em> is the head rather than
+<em>cat</em>).</p>
+<p>Applying the short Kuratowski definition to the set <span
+class="math inline">\(\left \{ \mathit{my}, \left \{ \mathit{my},
+\mathit{cat} \right \} \right \}\)</span> yields the pair <span
+class="math inline">\(\left \langle \mathit{my}, \mathit{cat} \right
+\rangle\)</span>, which is conceptually pleasing because it corresponds
+to the string <em>my cat</em> that we actually see in the sentence
+<em>my cat snored</em>.</p>
+</div>
+<div class="exercise">
+<p>What would be the set produced by merging <span
+class="math inline">\(\left \{ \mathit{my}, \left \{ \mathit{my},
+\mathit{cat} \right \} \right \}\)</span> with <em>snored</em>, assuming
+that <em>snored</em> is the head? Does this still produce the correct
+linear order? That is to say, does the order of words in the resulting
+pair correspond to the order of words in the sentence <em>my cat
+snored</em>?</p>
+</div>
+<div class="exercise">
+<p>Many linguists would argue that <em>snored</em> is itself built up
+from smaller parts which correspond to the verb <em>snore</em> and the
+past tense marker <em>ed</em>. Assuming that the past tense marker acts
+as the head and the verb as the argument, <em>snored</em> corresponds to
+the set <span class="math inline">\(\left \{  \mathit{ed}, \left
+\{  \mathit{snore}, \mathit{ed}  \right \} \right \}\)</span>. What,
+then, would be the result of merging this set with <span
+class="math inline">\(\left \{  \mathit{my}, \left \{  \mathit{my},
+\mathit{cat}  \right \} \right \}\)</span> as in the previous exercise?
+What pair does this correspond to?</p>
+</div>
+<div class="exercise">
+<p>Consider the sentence <em>The dog hates my cat</em>. Treating
+<em>hates</em> as a single element, and assuming that it is a head that
+first combines with <em>my cat</em>, we get the set <span
+class="math inline">\(H \mathrel{\mathop:}=\left \{  \mathit{hates},
+\left \{  \mathit{hates}, \left \{  \mathit{my}, \left \{  \mathit{my},
+\mathit{cat}  \right \} \right \} \right \} \right \}\)</span>.
+Similarly, <em>the dog</em> corresponds to the set <span
+class="math inline">\(A \mathrel{\mathop:}=\left \{  \mathit{the}, \left
+\{  \mathit{the}, \mathit{dog} \right \} \right \}\)</span>. What is the
+result of combining the two if <span class="math inline">\(H\)</span> is
+the head and <span class="math inline">\(A\)</span> the argument? Can
+this set be interpreted as a pair via the short Kuratowski definition?
+If so, what is the corresponding pair?</p>
+</div>
+<p>At first glance it seems that the proof for the long Kuratowski
+definition also works for its short counterpart. But this is truly at
+first glance only. Consider the counterpart to Subcase 2.1 above. That
+is to say, we assume <span class="math inline">\(\left \{  a, \left \{
+a,b \right \}  \right \} = \left \{  c, \left \{ c,d \right \}  \right
+\}\)</span> and furthermore assume towards a contradiction that <span
+class="math inline">\(a = \{c, d\}\)</span>. The problem is that this
+does not result in a contradiction. We have two cases to consider: <span
+class="math inline">\(\left \{ a,b \right \} = c\)</span> and <span
+class="math inline">\(\left \{ a,b \right \} = \left \{ c,d \right
+\}\)</span>. If <span class="math inline">\(\left \{ a,b \right \} =
+c\)</span>, then we have</p>
+<p><span class="math display">\[\begin{align*}
+a
+    &amp;= \left \{ c, d \right \}
+        \tag{Initial assumption that $a = \left \{ c,d \right \}$}\\
+    &amp;= \left \{  \left \{ a,b \right \}, d \right \}
+        \tag{Substitute $\left \{ a,b \right \}$ for $c$}\\
+    &amp;= \left \{  \left \{  \left \{ c,d \right \} ,b \right \}, d
+\right \}
+        \tag{Initial assumption that $a = \left \{ c,d \right \}$}\\
+    &amp;= \left \{  \left \{  \left \{ \left \{ a,b \right \} ,d \right
+\} ,b \right \}, d \right \}
+        \tag{Substitute $\left \{ a,b \right \}$ for $c$}\\
+    &amp;\vdots\\
+\end{align*}\]</span></p>
+<p>And if <span class="math inline">\(\left \{ a,b \right \} = \left \{
+c, d \right \}\)</span>, then by our previous assumption that <span
+class="math inline">\(a = \left \{ c,d \right \}\)</span> we have</p>
+<p><span class="math display">\[\begin{align*}
+a
+    &amp;= \left \{ c, d \right \}
+        \tag{Initial assumption that $a = \left \{ c,d \right \}$}\\
+    &amp;= \left \{ a, b \right \}
+        \tag{Substitute\ $\left \{ a,b \right \}$ for $\left \{ c,b
+\right \}$}\\
+    &amp;= \left \{  \left \{ a,b \right \}, b \right \}
+        \tag{Substitute $\left \{ a,b \right \}$ for $a$}\\
+    &amp;= \left \{  \left \{ \left \{ a, b \right \}, b \right \}, b
+\right \}
+        \tag{Substitute $\left \{ a,b \right \}$ for $a$}\\
+    &amp;\vdots\\
+\end{align*}\]</span></p>
+<p>Either way we end up with what looks like an infinite sequence of
+substitutions, building an infinitely deep set where we never reach the
+bottom. This may strike you as highly unintuitive and quite distinct
+from how we have used sets so far. But remember what we said about sets:
+a set can contain arbitrarily complex objects, including other sets.
+This does not rule out a set that contains a set that contains a set
+that contains a set, and so on, <em>ad infinitum</em>. We can rule it
+out, of course, but we don’t have to. Mathematicians have produced many
+different definitions of sets, which are called
+<strong>axiomatizations</strong> of sets. Some axiomatizations allow
+this kind of infinite nesting, and some do not.</p>
+<div class="example">
+<p>The most commonly used axiomatization of sets is
+<strong>ZFC</strong>, which is short for <strong>Zermelo-Fraenkel with
+the axiom of choice</strong>. ZFC is very different from the naive
+notion of sets we have been using as it makes no explicit distinction
+between objects and collections of objects. In ZFC, everything is a
+set.</p>
+<p>ZFC consists of multiple axioms. One of them, the <strong>axiom of
+regularity</strong>, does indeed rule out infinitely nested sets like
+the ones we are building above. However, this axiom isn’t very important
+for ZFC. One can remove it from the axioms and almost all the
+interesting theorems that have been established for sets in ZFC still
+hold.</p>
+</div>
+<h2 id="do-we-want-infinitely-nested-sets">Do we want infinitely nested
+sets?</h2>
+<p>There are over 100 years of mathematical research on sets that allow
+such infinite nesting. This branch of mathematics is known as
+<strong>non-well-founded set theory</strong>, and these infinite sets
+are sometimes referred to as <strong>hypersets</strong>. Hypersets
+aren’t just a mathematical curiosity, they have been used in linguistics
+as the mathematical foundation of situation semantics, which models how
+humans reason over situations. This is a very natural task that billions
+of humans perform effortlessly each day. It does not look like human
+cognition struggles with the concept of hypersets. On what grounds,
+then, should we ban hypersets for sentence structure?</p>
+<div class="exercise">
+<p>Let <span class="math inline">\(S\)</span> be defined as <span
+class="math inline">\(\left \{ a, S \right \}\)</span>. This is a
+hyperset. Explain why!</p>
+</div>
+<div class="exercise">
+<p>Can you think of an argument that sentences might be hypersets?</p>
+</div>
+<p>We can do it, of course, we can rule out hypersets with the stroke of
+a pen. But it would be a stipulation whose only motivation is to save
+the short Kuratowski definition as a convenient way of serializing the
+sets we see in sentence structure. It would be tantamount to claiming
+that human cognition does not involve hypersets when it comes to
+sentence structure, but at the same time it is so deeply rooted in
+mathematical sets that it even employs the short Kuratowski definition
+of pairs. That is a peculiar claim to make.</p>
+<p>Moreover, making this claim does not tell us anything deep or
+profound about sentences. We are simply putting in place mathematical
+assumptions to get the result we want. These mathematical assumptions
+aren’t forced onto us by the empirical lay of the land. Whether we allow
+hypersets or not has no empirical consequences, it is a purely
+theory-internal decision. This does not constitute scientific progress,
+it is a mathematical mirage.</p>
+<p>To the extent that this proposal is supposed to capture a real
+property, the math is at best orthogonal to it and at worst actively
+obscures it. The exercises earlier in this unit reveal that the short
+Kuratowski definition does not map the sets built by Merge to pairs with
+an obvious linguistic interpretation. Invoking the short Kuratowski
+definition has nothing to say on the problem of how the sets built by
+Merge are mapped to the linear sequences that we call sentences, and it
+is unclear what other property of language it could possibly be
+capturing in an insightful manner. In the absence of a clear empirical
+payoff, we should not open the can of worms that is hypersets, ZFC, the
+axiom of regularity, and correspondences between sets and pairs. And if
+a linguistic proposal lacks empirical substance, then it is worthless as
+a claim about language no matter how elegantly it was derived from
+mathematical set theory.</p>
+<h2 id="recap">Recap</h2>
+</div>
+</div>
+</body>
+</html>

@@ -237,6 +237,13 @@ class="math inline">\(V_T \subseteq V\)</span> yet <span
 class="math inline">\(V_T \neq V\)</span>. Hence <span
 class="math inline">\(V_T \subsetneq V\)</span>.</p>
 </div>
+<p>Remember that it is possible for both <span class="math inline">\(A
+\subseteq B\)</span> and <span class="math inline">\(B \subseteq
+A\)</span> to be true — in this case, <span class="math inline">\(A =
+B\)</span>. But there can be no <span class="math inline">\(A\)</span>
+and <span class="math inline">\(B\)</span> such that <span
+class="math inline">\(A \subsetneq B\)</span> and <span
+class="math inline">\(B \subsetneq A\)</span>.</p>
 <div class="exercise">
 <p>Fill in <span class="math inline">\(=\)</span>, <span
 class="math inline">\(\subsetneq\)</span>, or <span
@@ -289,13 +296,19 @@ used as nouns or verbs, but many other words are used only as nouns
 only as verbs (<em>write</em>, <em>convince</em>,
 <em>admonish</em>).</p>
 </div>
-<p>Remember that it is possible for both <span class="math inline">\(A
-\subseteq B\)</span> and <span class="math inline">\(B \subseteq
-A\)</span> to be true — in this case, <span class="math inline">\(A =
-B\)</span>. But there can be no <span class="math inline">\(A\)</span>
-and <span class="math inline">\(B\)</span> such that <span
-class="math inline">\(A \subsetneq B\)</span> and <span
-class="math inline">\(B \subsetneq A\)</span>.</p>
+<p>While the concept of two disjoint sets is simple enough, it becomes
+slightly counterintuitive when we consider the empty set. By definition,
+the empty set is a subset of every set, including itself. But by the
+definition of intersection, it also holds that <span
+class="math inline">\(A \cap \emptyset = \emptyset\)</span> for any set
+<span class="math inline">\(A\)</span>. So this means that the empty set
+is a subset of every set <span class="math inline">\(A\)</span> but also
+disjoint from it. In fact, <span class="math inline">\(A\)</span> could
+even be the empty set itself, and thus the empty set is disjoint from
+itself! This is admittedly very unintuitive, and one could amend the
+definition of disjoint sets above to avoid all of this. But this edge
+case is harmless enough that it doesn’t really merit moving to a more
+complicated definition.</p>
 <div class="exercise">
 <p>For each line in the table, say whether the sets are disjoint,
 incomparable, identical, or stand in a proper subset/superset
@@ -319,6 +332,20 @@ relation.</p>
 <td style="text-align: left;"><span class="math inline">\(\left \{ a,b
 \right \} \cup (\left \{ a,c \right \} - \left \{ b,d \right
 \})\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b,c
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((\left \{ a,b
+\right \} \cup \left \{ a,c \right \}) - \left \{ b,d \right
+\}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\left \{ a,b,c
+\right \}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((\left \{ a,b
+\right \} - \left \{ a,c \right \}) \cup \left \{ b,d \right
+\}\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span
