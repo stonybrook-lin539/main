@@ -8,3 +8,4 @@ pagetitle: >-
 ## Recap
 
 <!-- fixme -->
+\includecollection{solutions}

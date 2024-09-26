@@ -82,7 +82,7 @@ Let $G'$ be the smallest set containing all strings of the form $u \stringcat g 
 1. $v \in \Sigma_E^*$, and
 1. $\length{u \stringcat g \stringcat v} = n$.
 
-We show that $L(G) = L(G')$ by showing that $s \notin L(G)$ iff $s \notin L(G')$ (this immediately entails that $s \in L(G) iff s \in L(G')$).
+We show that $L(G) = L(G')$ by showing that $s \notin L(G)$ iff $s \notin L(G')$ (this immediately entails that $s \in L(G)$ iff $s \in L(G')$, covering all possible cases).
 
 Suppose $s \notin L(G)$.
 Then by definition there must be some $k$-gram $g \in G$ with $k \leq n$ and strings $u$ and $v$ over $\Sigma_E$ such that ${{{L}}}^{k-1} s {{{R}}}^{k-1} = u \stringcat g \stringcat v$.
@@ -98,7 +98,7 @@ But then by definition of $G'$ it must hold that $u_2 \stringcat g \stringcat v_
 In the other direction, suppose $s \notin L(G')$.
 Then there is some $g \in G'$ such that ${{{L}}}^{n-1} \stringcat s \stringcat {{{R}}}^{n-1} = u \stringcat g \stringcat v$.
 But then by definition of $G'$ there must be $u'$, $g'$ and $v'$ over $\Sigma$ such that $g = u' \stringcat g' \stringcat v'$ and $g' \in G$.
-Hence $g' \in G$ is a factor of $s$, an thus $s \notin L(G)$ by definition.
+Hence $g' \in G$ is a factor of $s$, and thus $s \notin L(G)$ by definition.
 :::
 
 And there you have it.

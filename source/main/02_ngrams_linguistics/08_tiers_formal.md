@@ -6,7 +6,9 @@ pagetitle: >-
 # The mathematics of tiers
 
 :::prereqs
-- functions (domains and co-domains)
+- functions (basics, domains and co-domains)
+- sets (basic notation)
+- strings (basic notation, parts of strings)
 - tuples (pairs)
 :::
 
@@ -290,3 +292,5 @@ I've said it before and I'll say it again: math is for lazy people!
 - Each subgrammar is effectively a negative $n$-gram grammar that applies to a tier instead of the whole string.
   This makes it easy to generalize our previous findings (strict VS mixed, negative VS positive, ways of combining grammars) from $n$-gram grammars to tier $n$-gram grammars.
 - A **lemma** is a theorem that may not be all that interesting in its own right but is very useful in establishing other theorems.
+
+\includecollection{solutions}

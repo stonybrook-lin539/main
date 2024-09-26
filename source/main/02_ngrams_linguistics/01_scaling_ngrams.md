@@ -149,7 +149,6 @@ Filtering out those useless trigrams leaves us with the following:
 | ad{{{R}}}          | dd{{{R}}}         | {{{L}}}d{{{R}}}        |                           |
 |                    |                   |                        |                           |
 | a{{{R}}}{{{R}}}    | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
-|                    |                   |                        |                           |
 
 But even if we had included all useless trigrams, that would not change the fact that there are only finitely many trigrams over *a*, *d*, and the edge markers.
 :::
@@ -215,7 +214,6 @@ Let us keep track of this by marking it in bold face in our table of possible tr
 | ad{{{R}}}          | dd{{{R}}}         | {{{L}}}d{{{R}}}        |                           |
 |                    |                   |                        |                           |
 | a{{{R}}}{{{R}}}    | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
-|                    |                   |                        |                           |
 
 The only other $n$-gram in $G$ is *dd*.
 As *dd* is a bigram, we replace it with every trigram that contains the substring *dd*.
@@ -232,7 +230,6 @@ So let us go through our table of trigrams and also mark every trigram that cont
 | ad{{{R}}}          | **dd{{{R}}}**     | {{{L}}}d{{{R}}}        |                           |
 |                    |                   |                        |                           |
 | a{{{R}}}{{{R}}}    | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
-|                    |                   |                        |                           |
 
 After the replacement step, we are left with a negative grammar $G'$ that contains six forbidden $n$-grams, all of which are trigrams.
 Those are exactly the six trigrams that are marked in bold above: ada, add, dda, ddd, dd{{{R}}}, {{{L}}}dd.
@@ -252,6 +249,8 @@ Using the procedure above, construct the corresponding negative trigram grammar 
 
 ::: solution
 
+The grammar consists of all the boldfaced trigrams in the table below.
+
 |                 |                 |                       |                       | 
 | :-:             | :-:             | :-:                   | :-:                   | 
 | aaa             | **daa**         | {{{L}}}aa             | {{{L}}}{{{L}}}a       | 
@@ -263,7 +262,6 @@ Using the procedure above, construct the corresponding negative trigram grammar 
 | **ad{{{R}}}**   | **dd{{{R}}}**   | **{{{L}}}d{{{R}}}**   |                       | 
 |                 |                 |                       |                       | 
 | a{{{R}}}{{{R}}} | d{{{R}}}{{{R}}} | {{{L}}}{{{R}}}{{{R}}} |                       | 
-|                 |                 |                       |                       | 
 
 ::: solution_explained
 We take the table from the previous example and highlight all those trigrams that aren't yet highlighted but contain *d*.
@@ -293,18 +291,28 @@ Now suppose that the inventory of sounds also contains *b* in addition to *a* an
 Using the procedure above, construct the negative trigram grammar for the original grammar $G$ that contains only *dd* and *ada*.
 
 ::: solution
-|                    |                   |                        |                           |
-| :-:                | :-:               | :-:                    | :-:                       |
-| aaa                | daa               | {{{L}}}aa              | {{{L}}}{{{L}}}a           |
-| aad                | dad               | {{{L}}}ad              | {{{L}}}{{{L}}}d           |
-| aa{{{R}}}          | da{{{R}}}         | {{{L}}}a{{{R}}}        | {{{L}}}{{{L}}}{{{R}}}     |
-|                    |                   |                        |                           |
-| **ada**            | **dda**           | {{{L}}}da              |                           |
-| **add**            | **ddd**           | **{{{L}}}dd**          |                           |
-| ad{{{R}}}          | **dd{{{R}}}**     | {{{L}}}d{{{R}}}        |                           |
-|                    |                   |                        |                           |
-| a{{{R}}}{{{R}}}    | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
-|                    |                   |                        |                           |
+
+The grammar is again represented as a table with included trigrams in boldface.
+Even without the table, though, it is easy to see that the addition of *b* only adds the trigrams *bdd* and *ddb* as these are the only possible combinations of *b* with an $n$-gram in the original grammar.
+
+|                    |                   |                   |                        |                           |
+| :-:                | :-:               | :-:               | :-:                    | :-:                       |
+| aaa                | baa               | daa               | {{{L}}}aa              | {{{L}}}{{{L}}}a           |
+| aab                | bab               | dab               | {{{L}}}ab              | {{{L}}}{{{L}}}b           |
+| aad                | bad               | dad               | {{{L}}}ad              | {{{L}}}{{{L}}}d           |
+| aa{{{R}}}          | ba{{{R}}}         | da{{{R}}}         | {{{L}}}a{{{R}}}        | {{{L}}}{{{L}}}{{{R}}}     |
+|                    |                   |                   |                        |                           |
+| aba                | bba               | dba               | {{{L}}}ba              |                           |
+| abb                | bbb               | dbb               | {{{L}}}bb              |                           |
+| abd                | bbd               | dbd               | {{{L}}}bd              |                           |
+| ab{{{R}}}          | bb{{{R}}}         | db{{{R}}}         | {{{L}}}b{{{R}}}        |                           |
+|                    |                   |                   |                        |                           |
+| **ada**            | bda               | **dda**           | {{{L}}}da              |                           |
+| adb                | bdb               | **ddb**           | {{{L}}}db              |                           |
+| **add**            | **bdd**           | **ddd**           | **{{{L}}}dd**          |                           |
+| ad{{{R}}}          | bd{{{R}}}         | **dd{{{R}}}**     | {{{L}}}d{{{R}}}        |                           |
+|                    |                   |                   |                        |                           |
+| a{{{R}}}{{{R}}}    | b{{{R}}}{{{R}}}   | d{{{R}}}{{{R}}}   | {{{L}}}{{{R}}}{{{R}}}  |                           |
 
 :::
 :::
@@ -379,6 +387,18 @@ If a grammar considers a string ill-formed, indicate which forbidden $n$-grams i
 - dadda
 - dd
 
+::: solution
+
+The table below shows the answers for each string and grammar, with illicit $n$-grams after the colon.
+
+| **String** | $\mathbf{G}$                           | $\mathbf{G'}$                             |
+| --:        | :--                                    | :--                                       |
+| aadaa      | ill-formed: ada                        | ill-formed: ada                           |
+| aaaaa      | well-formed                            | well-formed                               |
+| dadda      | ill-formed: dd                         | ill-formed:   add, dda                    |
+| dd         | ill-formed: dd                         | ill-formed:   {{{L}}}dd, dd{{{R}}}        |                          
+
+:::
 :::
 
 ## Some thoughts
@@ -416,3 +436,5 @@ Specialized notation and terminology makes things easier to talk and think about
 - We can use mathematical proofs to establish results that are guaranteed to hold whenever the conditions assumed by the proof are met.
   In contrast to simulations, proofs allow us to leave some parameters unspecified, e.g. the length of the n-grams.
   In addition, we do not need to worry about accidental gaps or biases in our simulations because a proof states explicitly which assumptions it is built on.
+
+\includecollection{solutions}
