@@ -135,11 +135,11 @@ In German, it is very common for nominative, dative and accusative to take the b
 So *Papa* 'dad' could be nominative, dative, or accusative, whereas the genitive must be *Papas*.
 :::
 
-::
 German is not an ideal example because the genitive is becoming increasingly unproductive.
 Moreover, the dative allows for a special suffix *-e* for nouns that end in a consonant, so that *Mann* can be either *Mann* or *Manne* (although the latter sounds very archaic).
 it is conceivable, then, that the dative of *Papa* is underlyingly *Papae*, with the final vowel subsequently deleted by some phonological process.
 
+::: exercise
 Show that the German case pattern for *Papa* obeys the \*ABA generalization if one makes at least one of the following assumptions:
 
 1. German has no genitive case and uses a truncated version of Blake's case hierarchy without genitive.
@@ -208,7 +208,7 @@ blake_partialorder.tikz
 ~~~
 
 In this graph, the vertical axis corresponds to the order induced by $<$.
-The graph is, essentially, the result of rotation Blake' case hierarchy 90 degrees clockwise and then rearranging accusative and genitive so that they are still between nominative and dative but unordered with respect to each other.
+The graph is, essentially, the result of rotating Blake' case hierarchy 90 degrees clockwise and then rearranging accusative and genitive so that they are still between nominative and dative but unordered with respect to each other.
 More precisely, the graph encodes the following orderings of cases:
 
 1. $\mathrm{Nom} < \mathrm{Acc}$,
