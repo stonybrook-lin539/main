@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mathcommands-preproc</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a href="#exercises-with-set-operations-batch-2">Exercises with set
+operations (Batch 2)</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="exercises-with-set-operations-batch-2">Exercises with set
+operations (Batch 2)</h1>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{c\} \cap \{d, b\}) \cup (\{d, b\} - \{f, a, c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{a, b\} \cup (\{d, a, b, c\} - \{a, b\})) \cup (\{a, b\} \cap \{d, a,
+b, c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a, b, c, d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{b\} \cup (\{b\} \cup (\{f\} \cap \{b\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{b\} - \{a\}) \cup (\{b\} - \{d, f, a, e\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e\} \cup \{e\}) \cup (\{d, e, b, c\} \cup \{a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a, b, c, d, e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f\} \cup (\{f\} - (\{e, a, f\} - \{f\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e, a\} \cap (\{d\} - \{e, a\})) \cap (\{e, a\} \cap \{d\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\emptyset
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{c\} \cup \{c\}) - (\{c\} - \{c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f\} - (\{e\} - (\{a\} \cap \{e\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d\} - \{b, c\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{\{\{d, f, a\}, \{\{\{e\}, \{\{\{c\}\}, \{c\}\}\}, \{e\}\}, \{b\}\},
+\{\{\{e\}, \{\{\{c\}\}, \{c\}\}\}, \{e\}\}\} \cap (\{\{\{d, f, a\},
+\{\{\{e\}, \{\{\{c\}\}, \{c\}\}\}, \{e\}\}, \{b\}\}, \{\{\{e\},
+\{\{\{c\}\}, \{c\}\}\}, \{e\}\}\} \cap (\{\{\{d, f, a\}, \{\{\{e\},
+\{\{\{c\}\}, \{c\}\}\}, \{e\}\}, \{b\}\}, \{\{\{e\}, \{\{\{c\}\},
+\{c\}\}\}, \{e\}\}\} - \{b, c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{\{\{d, f, a\}, \{\{\{e\}, \{\{\{c\}\}, \{c\}\}\}, \{e\}\}, \{b\}\},
+\{\{\{e\}, \{\{\{c\}\}, \{c\}\}\}, \{e\}\}\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{c\} - (\{e\} - \{c\})) \cup (\{e\} \cup \{c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{a\} - (\{c\} \cup (\{a\} \cap \{c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d\} - (\{c\} - (\{d, f\} \cap \{c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{b\} \cap \{b\}) \cup (\{b\} \cup \{b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f, b, c\} \cap (\{f, b, c\} \cup \{e\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, b, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d, f, b, c\} \cap \{b\}) \cup (\{d, f, b, c\} \cup \{b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, b, c, d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{a\} \cap \{f\}) \cup (\{e\} \cup \{a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d\} \cup (\{d\} \cap \{d\})) \cup (\{d\} \cap \{d\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d, b, c\} \cap \{d, a\}) \cap (\{d, a\} \cap \{d, b, c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e\} \cup (\{e\} \cap (\{a\} \cap \{e\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d, e, c\} - \{f, a, c\}) \cap (\{f\} \cup \{d, e, c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{a\} \cap (\{a, b\} \cup (\{d, f\} \cap \emptyset))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d, f\} \cap \emptyset) \cup (\{b\} - \emptyset)
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{\{\emptyset, \{a\}, \{\{f\}, \{\{e\}, \{f\}\}\}\}, \{a\}\} - (\{e,
+c\} \cap \{\{\emptyset, \{a\}, \{\{f\}, \{\{e\}, \{f\}\}\}\}, \{a\}\}))
+- (\{e\} \cap \{\{\emptyset, \{a\}, \{\{f\}, \{\{e\}, \{f\}\}\}\},
+\{a\}\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{\{\emptyset, \{a\}, \{\{f\}, \{\{e\}, \{f\}\}\}\}, \{a\}\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f, a\} - (\{\{\{f\}, \{d, a, b\}\}, \{f\}\} \cap \{e, c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{a\} \cup \{b\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a, b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f\} \cup \{d\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f\} - (\{e\} - (\{a\} \cup \{f\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d\} - (\{d\} - (\{d\} - \{f\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{a, c\} - (\{a, c\} \cap \{d, b\})) \cap (\{c\} \cup \{d, b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f, e\} - (\{d, e, c\} \cap (\{d\} \cup \{a\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{c\} - (\{d, f\} \cup (\{d, f\} \cap \{e, c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d, c\} \cap \{\{c\}, \{\{a\}, \{c\}\}\}) \cup (\{d, c\} \cup \{\{c\},
+\{\{a\}, \{c\}\}\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, \{c\}, \{\{a\}, \{c\}\}, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d\} - \{f\}) \cup (\{c\} \cup \{d\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{b\} \cup (\{b\} \cap \{e, a, c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{c\} \cap \{f\}) \cup (\{f\} - \{c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f, a, e\} \cup (\{a, c\} \cup (\{b, c\} \cup \{a, c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, a, b, c, e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{a, \{e, a\}\} \cup \{f, e, a, c\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, a, c, e, \{e, a\}\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e\} \cap \emptyset) \cup (\{f\} - \{e\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e\} \cap \{f, e\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{f\} - \{b\}) \cup (\{f\} \cap \{e\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f\} - (\{f\} \cap (\{f\} \cap \{b\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d\} \cup \{e, b\}) \cup (\{\{\{d\}, \{e, b, c\}\}, \{d\}\} \cap \{d,
+e\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, e, b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{a\} - (\{f\} \cup (\{f\} \cup \{f\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{a\} \cup (\{c\} \cup (\{e, f\} \cap \{c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e, a, c\} - (\{d\} - (\{d, c\} - \{e, a, c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, a, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e\} - (\{e\} \cap (\{e\} \cap \emptyset))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d\} \cup \{c\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{c\} - (\{c\} \cap (\{a\} \cap \{e\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e, a\} - (\{a\} - (\{a\} \cup \{f, a\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e\} \cup \{e\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{f\} - \{c\}) \cup (\{c\} - \{f\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e, f, b, c\} \cap (\{a, c\} \cup \{e, f, b, c\})) - (\{e, f, b, c\}
+\cup \{a, c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\emptyset
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{b\} - (\{a\} \cap (\{a\} \cap \{b\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{c\} \cup \{f\}) \cup (\{f\} \cup \{a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, a, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{f, c\} \cup \{a\}) \cup (\{f, c\} \cap \{e\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, a, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{c\} - (\{e, b\} \cup (\{f\} \cap \{d, e, f, c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d, e\} \cup (\{d, b\} \cap (\{d, f\} - \{d, e\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{c\} \cup (\{c\} \cup (\{c\} - \{d, b\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{a, b\} \cup (\{b\} \cap \{a, b\})) - (\{a, b\} - \{f, a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d, a\} - (\{f\} - (\{f, e\} \cap \{b\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{b\} - (\{c\} \cap (\{c\} \cup \{b\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e\} \cup \{a\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{f\} \cap \{e, a, f\}) \cup (\{e, a, f\} \cup \{f\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, a, e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e\} - \{b\}) \cup (\{e\} - \{b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{c\} - (\{c\} \cap (\{a\} \cup \{f\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{b\} \cap \{e, a, b, f\}) \cap (\{e, a, b, f\} \cap \{b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{a\} \cup (\{a\} \cup (\{a\} \cup \{d, \{e, b, c\}\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, a, \{e, b, c\}\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e\} \cap (\{e\} \cup (\{d, f\} - \{e\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e, b\} \cup (\{e, b\} \cup \{b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{f\} - (\{f\} - \{d\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\emptyset
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{\{\{e\}, \{\{\{d\}, \{\{d\}\}\}, \{e\}\}\}, \{\{f, a\}, \{\{e\},
+\{\{\{d\}, \{\{d\}\}\}, \{e\}\}\}\}\} - (\emptyset \cap (\{a\} \cap
+\emptyset))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{\{\{f, a\}, \{\{e\}, \{\{\{d\}, \{\{d\}\}\}, \{e\}\}\}\}, \{\{e\},
+\{\{\{d\}, \{\{d\}\}\}, \{e\}\}\}\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d, f, b, e\} \cup (\{e, a\} \cup (\{d, f, b, e\} \cup \{e\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, f, a, b, e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d, e, a, f\} \cap (\{d, e, a, f\} - \{d, f\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{a\} - \{d\}) \cup (\{d\} \cup \{a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d\} - (\{d, c\} - (\{d, c\} \cup \{d\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e\} \cap \{d, a\}) - (\{d, a\} - \{e\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\emptyset
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{c\} \cup (\{e, b\} - \{c\})) - (\{e, b\} - \{c\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e\} - (\{f, a\} \cap \{f\})) \cap (\{e\} \cup \{\{d, e\}, \{\{d, e\},
+\{c\}\}\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{e, c\} \cup \{f\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, f, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e, f, c\} \cup \{a\}) \cap (\{a\} \cap \{d, a, b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e\} - (\{\{\{d, b\}, \{d, c\}\}, \{d, b\}\} \cup \{d\})) \cup (\{f,
+a\} \cap \{d\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d, f, b\} \cup \{d\}) - (\{d\} - \{d, f, b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, f, b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{f\} \cup (\{f\} - \{e, a\})) - (\{f\} \cap \{e, a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d\} \cup (\{c\} - \{d\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{f\} \cap \{d, a\}) \cup (\{d, a\} \cup \{f\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, f, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{c\} \cup (\{c\} - (\{c\} \cup \{e\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{\{e, c\}, \{\{e, c\}, \{b\}\}\} \cup (\{\{e, c\}, \{\{e, c\},
+\{b\}\}\} \cup (\{e\} \cap \{c\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{\{e, c\}, \{\{e, c\}, \{b\}\}\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{a\} \cup (\{a\} - \{e, a\})) \cup (\{e, a\} \cup \{a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{e\} \cup \{c\}) - (\{e\} - \{d\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{c\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d, b\} \cap (\{d, b\} \cup (\{d, b\} \cup \{d, a\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d, b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{b\} \cap \{e, f, b\}) \cup (\{e, f, b\} - \{b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{e, f, b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{\{d, b\}, \{\{d, b\}, \{c\}\}\} \cap \{b\}) \cup (\{\{d, b\}, \{\{d,
+b\}, \{c\}\}\} - \{b\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{\{d, b\}, \{\{d, b\}, \{c\}\}\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d\} \cup (\{d\} \cup (\{a\} - \{f, a, e\}))
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d\} \cap (\{d\} \cap \{a\})) \cup (\emptyset \cup \{d\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{b\} \cap \{d, b\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{b\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+\{d\} - \{e\}
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{d\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{a\} \cup (\{b\} \cap \{\{b\}, \{\{b\}, \{d\}\}\})) \cup (\{b\} \cap
+\{a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{a\}
+\]</span></p>
+</div>
+</div>
+<div class="exercise">
+<p>Compute the set described by the formula below.</p>
+<p><span class="math display">\[
+(\{d, f, b\} - \{d, a\}) \cup (\{d, f, b\} - \{d, a\})
+\]</span></p>
+<div class="solutiontext">
+<p><span class="math display">\[
+\{f, b\}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
