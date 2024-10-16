@@ -150,7 +150,7 @@ For clarity, let's rewrite this in the form of a table
 | no             | student                         | should ever sleep in class | well-formed |
 | no             | student who ever slept in class | should get a degree        | well-formed |
 | every          | student                         | should ever sleep in class | ill-formed  |
-| no             | student who ever slept in class | should get a degree        | well-formed |
+| every          | student who ever slept in class | should get a degree        | well-formed |
 
 When *ever* occurs in X, then it is fine with both *no* and *every*, which are both left downward entailing (i.e. downward entailing with respect to X).
 But when *ever* occurs in Y, it must be with the right downward entailing *no* rather than the right upward entailing *every*.
