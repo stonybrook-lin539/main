@@ -89,6 +89,19 @@ Highlight the cells that are syncretic (if any).
 
 Unless you're a native speaker of one of those languages, you will have to do some research to find out how their case system works.
 Try your local library, or an online resource like Wikipedia.
+
+::: solution
+I will give a boring example from German.
+German *Haus* 'house' inflects as follows:
+
+1. Nominative: *Haus*
+1. Accusative: *Haus*
+1. Genitive: *Hauses*
+1. Dative: *Haus*
+
+Nominative, accusative, and dative are syncretic to the exclusion of genitive.
+Note that the dative can also take the form *Hause*, but this is very archaic.
+:::
 :::
 
 
@@ -118,12 +131,30 @@ But since these cases do not occur between nominative and accusative in Blake's 
 The paradigm for *rex* also has syncretism of dative and ablative in the plural.
 Can a monotonic function produce this pattern from Blake's case hierarchy?
 Justify your answer.
+
+::: solution
+Ablative falls under the *others* category.
+There is no other case between *Dat* and *others*.
+A monotonic function may always map two cases to the same form as long as there is no other case between the two that gets mapped to a different form.
+Hence syncretism of dative and ablative is not problematic.
+:::
 :::
 
 ::: exercise
 Barry Blake did not actually intend his case hierarchy to be used in this manner.
 Instead, it was supposed to capture a particular typological generalization: if a language has some case $y$, then it also has every case such that $x < y$ in Blake's hierarchy.
 Show that this, too, can be understood as an instance of monotonicity.
+
+::: solution
+We can conceptualize every language as a function $f$ from Blake's hierarchy to the values $0$ and $1$, where $f(x) = 1$ means that the language has case $x$ and $f(x) = 0$ means that it does not.
+Let us assume $0 < 1$ as usual.
+Then Blake's generalization can be restated as follows: if $x < y$ and $f(y) = 1$, then it must also hold that $f(x) = 1$.
+Let us generalize this statement even more.
+Since the only two possible values are $0$ and $1$, $f(x) = 1$ is equivalent to $f(x) \geq 1 = f(y)$, i.e. $f(x) \geq f(y)$.
+And if we do not explicitly assume that $x \neq y$, then $x < y$ should be rewritten as $x \leq y$.
+This leaves us with the following claim: if $x \leq y$, then $f(x) \geq f(y)$.
+But that's exactly the definition of a monotonic decreasing function.
+:::
 :::
 
 There is a problem with the \*ABA generalization, though.
@@ -144,8 +175,21 @@ Show that the German case pattern for *Papa* obeys the \*ABA generalization if o
 
 1. German has no genitive case and uses a truncated version of Blake's case hierarchy without genitive.
 1. German has a genitive form *Papas*, but the dative is underlyingly *Papae* rather than *Papa*.
-:::
 
+::: solution
+Consider the first option, without genitive.
+Then Blake's case hierarchy for German reduces to
+$$\mathrm{Nom} <
+\mathrm{Acc} <
+\mathrm{Dat}$$,
+and we have the forms *Papa - Papa - Papa*.
+That is an A-A-A pattern, which does not violate the \*ABA generalization.
+
+Alternative, suppose that the dative is underlyingly *Papae*, mirroring the archaic dative *Hause* 'house' we encountered earlier on.
+Then the four forms for *Papa* (in the order nominative - accusative - genitive - dative) are *Papa - Papa - Papas - Papae*.
+This pattern corresponds to AABC, which does not violate the \*ABA generalization either.
+:::
+:::
 
 ::: example
 A better example comes from the Icelandic word for *father*.
@@ -166,11 +210,26 @@ $\mathrm{Nom} <
 \mathrm{Acc} <
 \mathrm{Dat} <
 \mathrm{others}$.
+
+::: solution
+We can conceptualize every language as a function $f$ from Blake's hierarchy to the values $0$ and $1$, where $f(x) = 1$ means that the language has case $x$ and $f(x) = 0$ means that it does not.
+Let us assume $0 < 1$ as usual.
+Then Blake's generalization can be restated as follows: if $x < y$ and $f(y) = 1$, then it must also hold that $f(x) = 1$.
+Let us generalize this statement even more.
+Since the only two possible values are $0$ and $1$, $f(x) = 1$ is equivalent to $f(x) \geq 1 = f(y)$, i.e. $f(x) \geq f(y)$.
+And if we do not explicitly assume that $x \neq y$, then $x < y$ should be rewritten as $x \leq y$.
+This leaves us with the following claim: if $x \leq y$, then $f(x) \geq f(y)$.
+But that's exactly the definition of a monotonic decreasing function.
+:::
 :::
 
 ::: exercise
 Icelandic also has some nouns where nominative and genitive are syncretic to the exclusion of dative and accusative.
 Which variants of Blake's hierarchy does this rule out?
+
+::: solution
+This argues against any variant of the hierarchy where accusative or dative occur between nominative and genitive.
+:::
 :::
 
 
@@ -183,6 +242,14 @@ Perhaps monotonicity provides a way out?
 
 ::: exercise
 Pick one of the problematic syncretisms pointed out above and explain why it is also problematic if we replace the \*ABA generalization with the requirement that the mapping from the Blake hierarchy to surface forms must be a monotonic function.
+
+::: solution
+Consider the Icelandic case of syncretism of accusative and dative.
+We have $f(\mathrm{Acc}) = f(\mathrm{Dat}) = A \neq B = f(\mathrm{Gen})$.
+Suppose w.l.o.g. that $A < B$.
+Then $f$ is not monotonically increasing because $\mathrm{Gen} \leq \text{Dat}$ yet $f(\text{Gen}) > f(\text{Dat})$.
+But $f$ is not monotonically decreasing either because $\mathrm{Acc} \leq \text{Gen}$ yet $f(\text{Acc}) < f(\text{Gen})$.
+:::
 :::
 
 Well, monotonicity by itself doesn't really help.
@@ -244,13 +311,25 @@ Finally, $\mathrm{Acc}$ and $\mathrm{Gen}$ are unordered with respect to each ot
 For each one of the following syncretisms, state whether it can be realized by a monotonic mapping assuming the modified Blake hierarchy (if necessary, you may assume a different linear order of output forms for each syncretism).
 Justify your answer.
 
-
 - Syncretism of nominative and genitive to the exclusion of accusative
 - Syncretism of nominative and dative to the exclusion of accusative
 - Syncretism of nominative, accusative, and dative to the exclusion of genitive
 - Syncretism of nominative, accusative, and genitive to the exclusion of dative
 - Syncretism of accusative and genitive to the exclusion of nominative and dative
 
+::: solution
+1. Yes, because accusative does not occur between nominative and genitive.
+1. No, because accusative occurs between nominative and dative.
+1. No, because genitive occurs between nominative and dative (this might suggest that German dative does indeed always have an *e* which is removed for phonological reasons, so we don't have true syncretism of all three cases there).
+1. Yes, because nominative, accusative, and genitive are all less than dative.
+1. Yes. Suppose $f(\text{Nom}) = A$, $f(\text{Acc}) = f(\text{Gen}) = B$, and $f(\text{Dat}) = C$. This is a monotonic map if $A < B < C$.
+
+::: solution_explained
+The important thing to keep in mind here is the following fact: if $x \leq y \leq z$, then $f$ cannot be monotonic if $f(x) = f(z) \neq f(y)$.
+Because $x \leq y \leq z$ implies that both $f(x) \leq f(y)$ and $f(y) \leq f(z)$ hold, and the only way to satisfy this if $f(x) = f(z)$ is for $y$ to be mapped to the same output as $x$ and $z$.
+Hence we cannot have syncretism of two cases $x$ and $z$ to the exclusion of some other case $y$ between the two.
+:::
+:::
 :::
 
 It seems, then, that monotonicity does a lot of work even in the richer domain of case syncretisms.
@@ -259,6 +338,12 @@ The crucial step is to move from a total order to a partial order.
 ::: exercise
 Actually, this insight was already implicit in the unit on NPIs, where we looked at the distribution of *ever*.
 What was the partial order that we used in this case?
+
+::: solution
+It was the subset relation between sets.
+This is not a linear order.
+For instance, $\setof{a}$ and $\setof{b}$ are both subsets of $\setof{a,b}$, but (assuming $a \neq b$) $\setof{a}$ is not a subset of $\setof{b}$, nor the other way round.
+:::
 :::
 
 ## Recap
@@ -268,3 +353,5 @@ What was the partial order that we used in this case?
 - In contrast to linguistic proposals like the No-Crossing-Branches constraint or the \*ABA generalization, monotonicity isn't limited to trichotomous orders.
   It works just as well for partial orders.
 - This makes it possible to explain highly distinct linguistic phenomena as the result of two interacting factors: the formal universal of monotonicity that holds across many domains of language, and domain-specific substantive universals, each one of which takes the form of a linear order (e.g. $1 < 2 < 3$ for pronouns or $\mathrm{positive} < \mathrm{comparative} < \mathrm{superlative}$ in adjectival gradation) or a partial order (Blake's case hierarchy).
+
+\includecollection{solutions}
