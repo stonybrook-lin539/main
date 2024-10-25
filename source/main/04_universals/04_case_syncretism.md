@@ -181,7 +181,7 @@ Consider the first option, without genitive.
 Then Blake's case hierarchy for German reduces to
 $$\mathrm{Nom} <
 \mathrm{Acc} <
-\mathrm{Dat}$$,
+\mathrm{Dat}$$
 and we have the forms *Papa - Papa - Papa*.
 That is an A-A-A pattern, which does not violate the \*ABA generalization.
 
@@ -212,14 +212,8 @@ $\mathrm{Nom} <
 \mathrm{others}$.
 
 ::: solution
-We can conceptualize every language as a function $f$ from Blake's hierarchy to the values $0$ and $1$, where $f(x) = 1$ means that the language has case $x$ and $f(x) = 0$ means that it does not.
-Let us assume $0 < 1$ as usual.
-Then Blake's generalization can be restated as follows: if $x < y$ and $f(y) = 1$, then it must also hold that $f(x) = 1$.
-Let us generalize this statement even more.
-Since the only two possible values are $0$ and $1$, $f(x) = 1$ is equivalent to $f(x) \geq 1 = f(y)$, i.e. $f(x) \geq f(y)$.
-And if we do not explicitly assume that $x \neq y$, then $x < y$ should be rewritten as $x \leq y$.
-This leaves us with the following claim: if $x \leq y$, then $f(x) \geq f(y)$.
-But that's exactly the definition of a monotonic decreasing function.
+This hierarchy predicts that nominative and accusative cannot be syncretic to the exclusion of genitive.
+But we have already seen such a syncretism with Latin *rex* 'king': *reges* is the form for both nominative plural and accusative plural, whereas the genitive plural is *regum*.
 :::
 :::
 
@@ -308,7 +302,8 @@ Finally, $\mathrm{Acc}$ and $\mathrm{Gen}$ are unordered with respect to each ot
 :::
 
 ::: exercise
-For each one of the following syncretisms, state whether it can be realized by a monotonic mapping assuming the modified Blake hierarchy (if necessary, you may assume a different linear order of output forms for each syncretism).
+For each one of the following syncretisms, state whether it can be realized by a monotonic mapping assuming the modified Blake hierarchy where accusative and genitive are unordered with respect to each other.
+If necessary, you may assume a different linear order of output forms for each syncretism.
 Justify your answer.
 
 - Syncretism of nominative and genitive to the exclusion of accusative

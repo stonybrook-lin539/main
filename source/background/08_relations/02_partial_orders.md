@@ -136,7 +136,7 @@ Here there is no way of choosing $x$, $y$, and $z$ such that we have both $x \ma
 Consequently, transitivity holds because we cannot produce any counterexample to the claim that the relation is transitive.
 :::
 
-Transitivity also does not imply that we every element is reachable from any other element in a single step.
+Transitivity also does not imply that every element is reachable from any other element in a single step.
 Nodes may still be unreachable from certain positions.
 
 ::: example
@@ -230,7 +230,7 @@ Justify your answer.
 
 ## (Ir)Reflexivity
 
-Reflexivity and irreflexivity are much easier to understand that transitivity and, in particular, antisymmetry.
+Reflexivity and irreflexivity are much easier to understand than transitivity and, in particular, antisymmetry.
 Intuitively, they are statements about the presence of self-loops.
 
 1. *Reflexivity*: "Every element must have a self-loop."

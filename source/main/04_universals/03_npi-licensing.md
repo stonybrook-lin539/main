@@ -308,9 +308,9 @@ Determine whether *some* is left downward entailing or left upward entailing.
 What does this predict for the distribution of *ever* in a sentence with *some*, and does this prediction match your intuitions?
 
 ::: solution
-Consider the sentences *Some student ran* and *Some student ran a 5k*.
-Since the latter entails the former, *some* is right upward entailing.
-Hence we expect *Some student should ever sleep in class* to be illicit, which it is indeed.
+Consider the sentences *Some student ran* and *Some sophomore ran*.
+Since the latter entails the former, *some* is left upward entailing.
+Hence we expect *Some student who ever slept in class should get a degree* to be illicit, which it is indeed.
 :::
 :::
 

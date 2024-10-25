@@ -127,7 +127,7 @@ The relation $R$, on the other hand, only defines a partial order.
 While we do still have a rough order between numbers based on their recursive digit sum, numbers with the same digit sum are unordered with respect to each other.
 This can be seen clearly in the corresponding figure.
 We are still dealing with some kind of ranking, though, as all elements in the $n$-th column of the figure are ranked higher than all the elements in the columns to their right.
-We still have a ranking of sorts, there's just a lot elements that occupy the same rank.
+We still have a ranking of sorts, there's just a lot of elements that occupy the same rank.
 
 
 ## Recap

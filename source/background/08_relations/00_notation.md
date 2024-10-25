@@ -150,9 +150,20 @@ List the following for English:
 - $R$ P
 
 ::: solution
-- export $R$ = $\setof{\text{N}, \text{V}}$
-- apple $R$ = $\setof{\text{N}}$
-- $R$ P = $\{ p \mid p \text{ is a preposition of English} \} = \{ \text{above}, \text{at}, \text{because of}, \text{before}, \text{behind}, \text{in}, \text{inside}, \text{into}, \text{near}, \text{of}, \text{off}, \text{on}, \text{onto}, \text{to}, \text{under} \}$ (and any others I might have missed)
+- export $R$ = $\setof{\mathrm{N}, \mathrm{V}}$
+- apple $R$ = $\setof{\mathrm{N}}$
+- $R$ P is the set of all words that are prepositions of English.
+  At the very least this includes *above*, *at*, *because of*, *before*, *behind*, *in*, *inside*, *into*, *near*, *of*, *off*, *on*, *onto*, *to*, and *under*, but I have probably missed a few.
+
+::: solution_explained
+- The important thing to remember here is that *export* can be a noun (*Exports are vital to our economy*) and a verb (*We export many products*).
+- One could make an argument that *apple* is also a proper name when used to refer to the company.
+  If one furthermore assumes that proper names have a separate part of speech PN, then the set should contain not only N but also PN.
+  Also, if you are a reader from the distant (or perhaps not-so-distant) future, *apple* might have also become a verb (e.g. *to instill something with an apple-like culture and design philosophy*) or an adjective (e.g. *this phone looks very apple to me*).
+  If so, add the appropriate parts of speech to the set.
+- Notice how difficult this already is for prepositions even though there are relatively few and the set of prepositions does not change much.
+  If the exercise had asked for $R$ N, I don't think anybody could agree on what that set actually looks like.
+:::
 :::
 :::
 
@@ -184,22 +195,17 @@ If you have to make additional assumptions, state them explicitly.
 - the prefix relation, where string $u$ is a prefix of string $v$ iff there is some string $w \in \Sigma^*$ such that $v = u \stringcat w$ (for example, $\String{ab}$ is a prefix of $\String{abbaaa}$)
 
 ::: solution
-- the parent-of relation is not a function since one individual can be the parent of multiple children
-- the parent-of relation in a world where the one-child policy is enforced globally is a function
-- the relation between a car's license plate and its owners is a relation assuming that a car can have multiple owners
-- the prefix relation is a relation because a string can be a substring of more than one string
-:::
-:::
-
-::: exercise
-Is the following statement true or false?
-Justify your answer.
-
-Every relation $R$ can be regarded as a function that maps $x$ to $x \mathrel{R}$.
-
-::: solution
-This statement is correct: $\tuple{x,y} \in R$ iff $y \in x \mathrel{R}$ iff $y \in f(x)$.
-In addition, $f$ is guaranteed to be a function because there can be no $x$ such that $x \mathrel{R}$ is anything but a single, invariant set.
+- The parent-of relation is not a function since one individual can be the parent of multiple children.
+- The parent-of relation in a world where the one-child policy is enforced globally is a function because now nobody can have more than one child (however, if we also consider time points from before the policy was enacted, the parent-of relation would still not be a function because at least some people would have had more than one child back then).
+- This answer depends on many factors.
+  First, does *owners* mean *current owners*?
+  If so, and if it is legally impossible for a car to have more than one current owner, then this is a function.
+  If a car can have more than one owner at a time, then it is not a function.
+  And if we take *owner* to mean *anybody who has owned this car at some point*, then this isn't a function either in any world where somebody can sell their car to another person, making them the new owner.
+- Ah, finally a nice cut-and-dry math question.
+  The prefix relation is not a function because a string can be a prefix of more than one string.
+  For example, $\String{ab}$ is also a prefix of $\String{abb}$, or even $\String{ab}$ itself.
+  In fact, every string is a prefix of infinitely many strings.
 :::
 :::
 
@@ -219,6 +225,33 @@ This means that we can apply set-theoretic operations to relations as usual.
 Suppose $R \is \setof{a \mathrel{R} b, b \mathrel{R} c}$ and $R' \is \setof{a \mathrel{R} b, c \mathrel{R} b}$.
 Then $R \cup R' = \setof{a \mathrel{R} b, b \mathrel{R} c, c \mathrel{R} b}$.
 :::
+
+::: exercise
+Is the following statement true or false?
+Justify your answer.
+
+Every relation $R$ can be regarded as a function that maps $x$ to $x \mathrel{R}$.
+
+::: solution
+This depends on what one means by *can be regarded as*.
+
+Suppose that $R$ relates $x$ to $y$ and $z$ and nothing else.
+This configuration can be expressed as a function $f_R$ such that $f_R(x) = \setof{y,z}$.
+In fact, it holds for every relation $R$ that $x \mathrel{R} y$ iff $y \in x \mathrel{R}$ iff $y \in f_R(x)$.
+So in that sense $f_R$ is equivalent to $R$.
+It is also true that $f_R$ is a function because there each $x$ is mapped to a single value, which is the set $x \mathrel{R}$.
+
+However, that does not mean that $R$ and $f_R$ are exactly the same.
+For example, given two relations $R$ and $S$, we can take their union $R \cup S$ and get another relation.
+For instance, if $R \is \setof{x \mathrel{R} y, y \mathrel{R} x}$ and $S \is \setof{x \mathrel{R} y, x \mathrel{R} z}$, then $R \cup S \is \setof{x \mathrel{R \cup S} y, x \mathrel{R \cup S} z, y \mathrel{R \cup S} x}$ as expected.
+In this case, $f_R$ would map $x$ to $\setof{y}$ and $y$ to $\setof{x}$, whereas $f_S$ would map $x$ to $\setof{y,z}$ and $y$ to $\emptyset$.
+Since every function is a relation, we have $f_R \is \setof{ x \mathrel{f_R} \setof{y} , y \mathrel{f_R} \setof{x}}$ and $f_S \is \setof{ x \mathrel{f_S} \setof{y,z}, y \mathrel{f_S} \emptyset}$.
+But then $f_R \cup f_S \is \setof{ x \mathrel{f_R \cup f_S} \setof{y}, x \mathrel{f_R \cup f_S} \setof{y,z}, y \mathrel{f_R \cup f_S} \setof{x}, y \mathrel{f_R \cup f_S} \emptyset}$, which is not a function!
+This shows that the union of two relations must be constructed differently when we treat them as functions (specifically, $f_R \cup f_S$ has to map each $x$ to $f_R(x) \cup f_S(x)$).
+So, yes, we can regard relations as functions, but then we have to be careful to use appropriate counterparts to any operation we might want to apply to relations.
+:::
+:::
+
 
 ## Recap
 

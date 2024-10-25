@@ -56,13 +56,26 @@ Complete the table below.
 
 The table looks as follows:
 
-| A             | B                 | $A \subseteq B$? | $A \supseteq B$? | 
-| :--           | :--               | :--              | :--              | 
-| $\setof{a,b}$ | $\setof{a,a,b,c}$ | Y                | N                | 
-| $\setof{a}$   | $\setof{b}$       | N                | N                | 
-| $\setof{}$    | $\setof{a}$       | Y                | N                | 
-| $\setof{a,b}$ | $\setof{a,a,b,b}$ | Y                | Y                | 
+| A                      | B                 | $A \subseteq B$? | $A \supseteq B$? | 
+| :--                    | :--               | :--              | :--              | 
+| $\setof{a,b}$          | $\setof{a,a,b,c}$ | Y                | N                | 
+| $\setof{a}$            | $\setof{b}$       | N                | N                | 
+| $\setof{}$             | $\setof{a}$       | Y                | N                | 
+| $\setof{a,b}$          | $\setof{a,a,b,b}$ | Y                | Y                | 
+| $\setof{\setof{a}, b}$ | $\setof{a,a,b,b}$ | N                | N                | 
 
+::: solution_explained
+1. Every element of $\setof{a,b}$ is an element of $\setof{a,a,b,c} = \setof{a,b,c}$: $a \in \setof{a,b,c}$ and $b in \setof{a,b,c}$.
+   But $c \notin \setof{a,b,}$, so $\setof{a,b,c}$ isn't a subset of $\setof{a,b}$.
+   (As usual, we assume that distinct symbols refer to distinct elements, e.g. that $a \neq b$.)
+1. Under our default assumption that $a \neq b$, these two sets share no elements at all, which entails that neither is a subset of the other.
+1. The empty set is a subset of every set, but no non-empty set is a subset of the empty set.
+1. Keep in mind that $\setof{a,b} = \setof{a,a,b,b}$.
+   This is the same thing as saying that $\setof{a,b} \subseteq \setof{a,a,b,b}$ and $\setof{a,a,b,b} \subseteq \setof{a,b}$.
+1. For this one, you have to remember that $\setof{a} \neq a$ (and that $\setof{a,a,b,b} = \setof{a,b}$).
+   Hence we have $\setof{a} \in \setof{\setof{a}, b}$ but $\setof{a} \notin \setof{a,b}$, and thus it cannot be the case that $\setof{ a, b } \subseteq \setof{ \setof{a},b }$.
+   Similarly, $a \in \setof{a,b}$ but $a \notin \setof{ \setof{a}, b }$ and thus it cannot be the case $\setof{ \setof{a}, b } \subseteq \setof{a,b}$.
+:::
 :::
 :::
 
@@ -139,6 +152,7 @@ But there can be no $A$ and $B$ such that $A \subsetneq B$ and $B \subsetneq A$.
 
 ::: exercise
 Fill in $=$, $\subsetneq$, or $\supsetneq$ as appropriate.
+If none of them work, put in $\neq$.
 
 - $\setof{a,b} \_ \setof{a}$
 - $\setof{a,b} \_ \setof{\setof{a}}$
@@ -148,10 +162,30 @@ Fill in $=$, $\subsetneq$, or $\supsetneq$ as appropriate.
 
 ::: solution
 - $\setof{a,b} \supsetneq \setof{a}$
+- $\setof{a,b}  \neq \setof{\setof{a}}$
 - $\setof{a,a,b,c} = \setof{b,b,a,c}$
-- $\setof{1,2,3} \supsetneq \setof{n + 5 \mid n \in \setof{-4, -3}}$
 - $\emptyset \subsetneq \setof{a}$
 - $\emptyset \subsetneq \setof{\emptyset}$
+
+::: solution_explained
+- We have $a \in \setof{a}$ and $a \in \setof{a,b}$, so all elements of $\setof{a}$ are elements of $\setof{a,b}$.
+  At the very least, then, we have $\setof{a} \subseteq \setof{a,b}$.
+  But since we always assume that $a \neq b$ in these exercises, $\setof{a} \neq \setof{a,b}$.
+  And thus we have $\setof{a} \subsetneq \setof{a,b}$.
+- Remember that $a \neq \setof{a}$.
+  Thus $\setof{a,b}$ and $\setof{ \setof{a} }$ do not share any elements.
+  That is to say, none of the following is true:
+  $\setof{a,b} = \setof{ \setof{a} }$,
+  $\setof{a,b} \subsetneq \setof{ \setof{a} }$,
+  $\setof{a,b} \supsetneq \setof{ \setof{a} }$.
+  But it is true that $\setof{a,b} \neq \setof{ \setof{a} }$.
+- Since order and numerosity do not matter for sets, we have $\setof{a,a,b,c} = \setof{a,b,c} = \setof{b,b,a,c}$.
+- The empty set is a subset of every set, so at the very least we have $\emptyset \subsetneq \setof{a}$.
+  But since $\setof{a}$ contains an element, it is necessarily distinct from the empty set, i.e. $\emptyset \neq \setof{a}$.
+  Taken together, this tells us that $\emptyset \subsetneq \setof{a}$.
+- The logic is exactly the same as before.
+  Simply assume that $a = \emptyset$.
+:::
 :::
 :::
 
@@ -182,21 +216,40 @@ For each line in the table, say whether the sets are disjoint, incomparable, ide
 
 | A               | B                                                 | 
 | :--             | :--                                               | 
-| $\setof{2,5,8}$ | the set of all odd numbers                        | 
+| $\setof{2,5,8}$ | the set $O$ of all odd numbers                    | 
 | $\setof{a,b,c}$ | $\setof{a,b} \cup (\setof{a,c} - \setof{b,d})$    | 
 | $\setof{a,b,c}$ | $(\setof{a,b} \cup \setof{a,c}) - \setof{b,d}$    | 
-| $\setof{a,b,c}$ | $(\setof{a,b} - \setof{a,c}) \cup \setof{b,d}$ | 
+| $\setof{a,b,c}$ | $(\setof{a,b} - \setof{a,c}) \cup \setof{b,d}$    | 
 | $\emptyset$     | $\setof{a,b} \cap (\setof{a,c} - \setof{b,d})$    | 
 | $\emptyset$     | $\setof{a,b} \cap (\setof{a,c} \cap \setof{b,d})$ | 
    
 ::: solution
 
-1. $A \subsetneq B$
+1. $A$ and $B$ are incomparable
 1. $A = B$
 1. $A \supsetneq B$
-1. $A$ and $B$ are disjoint
+1. $A$ and $B$ are incomparaable
 1. $A \subsetneq B$, and $A$ and $B$ are also disjoint
 1. $A = B$, and $A$ and $B$ are also disjoint
+
+::: solution_explained
+1. As the set $\setof{2,5,8}$ contains some numbers that are odd, it cannot be asubset of $O$.
+   Nor does it contain all odd numbers, so it cannot be a superset of $O$ either.
+   The question, then, is whether the two sets are disjoint or incomparable.
+   But since $\setof{2,5,8} \ni 5 \in O$, it must be the latter.
+1. This is easy once you resolve the formula for $B$:
+   $\setof{a,b} \cup (\setof{a,c} - \setof{b,d}) = \setof{a,b} \cup \setof{a,c} = \setof{a,b,c}$.
+   Obviously $\setof{a,b,c} = \setof{a,b,c}$.
+1. Again we have to compute $B$ first:
+   $(\setof{a,b} \cup \setof{a,c}) - \setof{b,d} = \setof{a,b,c} - \setof{b,d} = \setof{a,c}$, which is a proper subset of $\setof{a,b,c}$.
+1. Here we have
+   $(\setof{a,b} - \setof{a,c}) \cup \setof{b,d} = \setof{b} \cup \setof{b,d} = \setof{b,d}$.
+   Since $\setof{a,b,c} \ni a \notin \setof{b,d}$ and $\setof{b,d} \ni d \notin \setof{a,b,c}$ and $\setof{a,b,c} \ni b \in \setof{b,d}$, the two are incomparable.
+1. The empty set is disjoint from every set, including itself, so we can always say that $A$ and $B$ are disjoint.
+   But since the empty set is also a subset of every set, we also have to check whether it is a proper subset of $B$ or identical to $B$.
+   Here $B$ is $\setof{a,b} \cap (\setof{a,c} - \setof{b,d}) = \setof{a,b} \cap \setof{a,c} = \setof{a}$, which is distinct from $\emptyset$.
+1. Here $B$ is $\setof{a,b} \cap (\setof{a,c} \cap \setof{b,d}) = \setof{a,b} \cap \emptyset = \emptyset$, and thus $A = B$ (but they are also disjoint because the empty set is disjoint from every set, even itself).
+:::
 :::
 :::
 
