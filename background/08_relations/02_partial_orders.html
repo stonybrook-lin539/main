@@ -279,11 +279,16 @@ transitive? Justify your answer.</p>
 <div class="exercise">
 <p>Consider the relation <span class="math inline">\(\not\sim\)</span>
 over natural number such that <span class="math inline">\(x
-\mathrel{\not\sim} y\)</span> iff either <span
-class="math inline">\(x\)</span> is odd and <span
-class="math inline">\(y\)</span> is even or <span
-class="math inline">\(x\)</span> is even and <span
-class="math inline">\(y\)</span> is odd. Is this relation transitive?
+\mathrel{\not\sim} y\)</span> iff one of the following holds: <span
+class="math inline">\(x\)</span> is odd while <span
+class="math inline">\(y\)</span> is even, or <span
+class="math inline">\(x\)</span> is even while <span
+class="math inline">\(y\)</span> is odd. In other words, <span
+class="math inline">\(x \mathrel{\not\sim} y\)</span> iff exactly one of
+<span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> is odd and exactly one of <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> is even. Is this relation transitive?
 Justify your answer.</p>
 </div>
 <h2 id="antisymmetry">Antisymmetry</h2>
@@ -370,13 +375,24 @@ relation antisymmetric?</p>
 antisymmetric.</p>
 </div>
 <div class="exercise">
-<p>Give an example to show that <span
-class="math inline">\(\sim\)</span> as defined in a previous example is
-not antisymmetric.</p>
+<p>Recall from a previous exercise that <span class="math inline">\(x
+\sim y\)</span> iff one of the following holds: <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are both even, or <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span> are both odd. Give an example to show
+that <span class="math inline">\(\sim\)</span> is not antisymmetric.
+Justify your answer.</p>
 </div>
 <div class="exercise">
-<p>Is <span class="math inline">\(\not\sim\)</span> as defined in a
-previous example antisymmetric? Justify your answer.</p>
+<p>Recall from a previous exercise that <span class="math inline">\(x
+\not\sim y\)</span> iff one of the following holds: <span
+class="math inline">\(x\)</span> is odd while <span
+class="math inline">\(y\)</span> is even, or <span
+class="math inline">\(x\)</span> is even while <span
+class="math inline">\(y\)</span> is odd. Is <span
+class="math inline">\(\not\sim\)</span> antisymmetric? Justify your
+answer.</p>
 </div>
 <h2 id="irreflexivity">(Ir)Reflexivity</h2>
 <p>Reflexivity and irreflexivity are much easier to understand than
@@ -459,7 +475,7 @@ non-reflexive. Explain why!</p>
 <p>For each one of the following relations, say whether it is reflexive,
 irreflexive, or non-reflexive. Justify your answers! If you have to make
 additional assumptions, explain what they are.</p>
-<ul>
+<ol type="1">
 <li>the “younger than” relation</li>
 <li>the “sums to 10” relation over natural numbers (<span
 class="math inline">\(x \mathrel{R} y\)</span> iff <span
@@ -472,8 +488,9 @@ travel</li>
 \mathrel{R} y\)</span> iff <span class="math inline">\(x\)</span> is
 <span class="math inline">\(y\)</span> read backwards;
 e.g. <em>deer</em> and <em>reed</em>)</li>
-</ul>
+</ol>
 </div>
+<p>:::</p>
 <p>Note that pictures can sometimes be misleading when it comes to
 (ir)reflexivity. Consider the figure below.</p>
 <p><img src="irreflexivity_violated.svg"
