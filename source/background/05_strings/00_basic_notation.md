@@ -345,6 +345,7 @@ Assume towards a contradiction that $\String{uv} \neq \String{vu}$ yet $u = v$.
 If $u = v$, then $\String{uv} = \String{uu} = \String{vv} = \String{vu}$, which contradicts our initial assumption that $\String{uv} \neq \String{vu}$.
 :::
 :::
+:::
 
 ## Recap
 
