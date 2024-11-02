@@ -78,6 +78,13 @@ Take the set $\mathbb{Z} \is \setof{0, -1, 1, -2, 2, -3, 3, \ldots}$ of integers
 Let $x \prec y$ iff $x^2 \leq y^2$.
 Sketch or describe in words a figure of the poset $\tuple{\mathbb{Z}, \prec}$.
 Avoid all arrows that can be inferred from the general properties of $\prec$.
+
+::: solution
+Actually, this isn't a poset because $\prec$ isn't a partial order.
+To see this, note that $1 \neq -1$ yet $1^2 = 1 \leq 1 = (-1)^2$.
+Hence $\prec$ is not antisymmetric, which in turn means it's not a partial order. 
+Sigh, another thing for me to fix in the lecture notes.
+:::
 :::
 
 ::: exercise
@@ -86,4 +93,26 @@ Draw or describe in words the poset $\tuple{S, \sqsubset}$, where $\sqsubset$ is
 
 Now suppose that we used $\sqsubseteq$ instead: $x \sqsubseteq y$ iff $x \sqsubset y$ or $x = y$.
 Do you have to change anything about your figure or description?
+
+::: solution
+We get a figure with six "levels":
+
+1. poset
+1. pose, oset
+1. pos, ose, set
+1. po, os, se, et
+1. p, o, s, e, t
+1. $\emptystring$
+
+An element $e_n$ of level $n$ has an arrow connecting it to an element $e_{n+1}$ of level $n+1$ iff there is some symbol $\sigma$ such that $e_{n+1}$ is $\sigma e_n$ or $e_n \sigma$.
+
+~~~ {.include-tikz size=mid}
+poset_sqsubseteq.tikz
+~~~
+
+Note that we do not need to add any other arrows because those follow from the transitivity and reflexivity of $\sqsubseteq$.
+But for the same reason, the figure could also be depicting $\sqsubsetneq$, in which case only arrows inferable from transitivity would have been omitted.
 :::
+:::
+
+\includecollection{solutions}

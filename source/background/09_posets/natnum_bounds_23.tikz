@@ -1,0 +1,16 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows,arrows.meta,positioning}
+\begin{document}
+\begin{tikzpicture}[%
+    every node/.style = {minimum size = 2em}]
+
+    \node[draw,circle,dashed] (0) at (0,0) {0};
+    \node[draw,circle,dashed] (1) [right=2em of 0] {1};
+    \node[draw,circle,dashed] (2) [right=2em of 1] {\underline{2}};
+    \node[draw,dashed] (3) [right=2em of 2] {\underline{3}};
+    \node[draw,dashed] (4) [right=2em of 3] {4};
+
+    \foreach \Source/\Target in {0/1, 1/2, 2/3, 3/4}
+        \draw[->] (\Source) to (\Target);
+\end{tikzpicture}
+\end{document}

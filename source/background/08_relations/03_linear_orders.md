@@ -44,10 +44,43 @@ For each one of the following relations, say whether it is trichotomous.
 - the "strictly taller than" relation over humans
 - the "exactly as tall" relation over humans
 - the "strictly taller than and at least as heavy" relation over humans
+
+::: solution
+- The "strictly taller than" relation over humans is not trichotomous. 
+  We say that $x$ is strictly taller than $y$ if the height of $x$ exceeds the height of $y$.
+  But there are distinct humans that have exactly the same height.
+  In this case, we have $x \neq y$, $x \not\mathrel{R} y$, and $y \not\mathrel{R} x$.
+- The "exactly as tall" relation is not trichotomous either.
+  This time, there are distinct humans $x$ and $y$ that differ in their height and hence are not related.
+  Again we have $x \neq y$, $x \not\mathrel{R} y$, and $y \not\mathrel{R} x$.
+- The "strictly taller than and at least as heavy" relation over humans is not trichotomous.
+  The "strictly taller than and at least as heavy" relation is necessarily a subset of the "strictly taller than" relation, which we already saw is not trichotomous.
+
+::: solution_explained
+You might be wondering why none of the relations in the exercise are strict linear orders.
+It's actually fairly difficult to think of a strict linear order over humans.
+If the world still had phone books, and if somebody compiled a universal phone book of all humans, then we could define a relation "follows in the universal phone book".
+Like the order of words in a dictionary, this would be a strict total order.
+Similarly, sorting all US citizens by their social security number would yield a strict linear order (assuming that SSNs are never reused).
+:::
+:::
 :::
 
 ::: exercise
 Give another real-world example of a strict partial order that is not trichotomous and hence not a strict linear order.
+
+::: solution
+There are many options, for example:
+
+- "is (strictly) heavier than"
+- "contains (strictly) more atoms than"
+- "has (strictly) bluer eyes than"
+- "has a (strictly) more sausage-like nose than"
+- "has published (strictly) more papers than"
+- "has watched (strictly) more episodes of *Garth Marengi's Darkplace*"
+
+All of those give you some ordering statements of the form $x \mathrel{R} y$, don't allow $x \mathrel{R} x$, but also have many $x$ and $y$ that are unordered with respect to each other. 
+:::
 :::
 
 ::: remark
@@ -68,7 +101,12 @@ Third, I always confuse the terms *semi-connex* and *connex* --- which is a nice
 Trichotomy is not a meaningful restriction on weak partial orders because every weak partial order is already trichotomous by virtue of being reflexive.
 
 ::: exercise
-Explain in intuitive terms why reflexivity implies trichotomy.
+Explain in intuitive terms why reflexivity implies trichotomy/semiconnexity.
+
+::: solution
+Now that I think about it, this doesn't hold and I'll have to rewrite this unit quite a bit.
+Trichotomy works just fine with weak and strict orders.
+:::
 :::
 
 Instead, the step from a weak partial order to a weak linear order requires the stronger property of **connexity**.
@@ -111,7 +149,7 @@ Indicate in the table below which properties hold of the respective relations.
 - For some relations, you might want to justify why you think they (do not) satisfy a certain property.
 
 | **Properties**       | $\sqsubseteq$ | $\subsetneq$ | $\subseteq$ | $\prec_l$           | at least as tall as |
-| :--                  | :--           | :-:          | :-:         | :-:                 | :-:                 |
+| :--                  | :-:           | :-:          | :-:         | :-:                 | :-:                 |
 | transitive           |               |              |             |                     |                     |
 | reflexive            |               |              |             |                     |                     |
 | irreflexive          |               |              |             |                     |                     |
@@ -119,10 +157,32 @@ Indicate in the table below which properties hold of the respective relations.
 | trichotomous         |               |              |             |                     |                     |
 | connex               |               |              |             |                     |                     |
 
+::: solution
+The completed table is shown below.
+
+| **Properties**       | $\sqsubseteq$ | $\subsetneq$ | $\subseteq$ | $\prec_l$           | at least as tall as |
+| :--                  | :-:           | :-:          | :-:         | :-:                 | :-:                 |
+| transitive           | Y             | Y            | Y           | Y                   | Y                   |
+| reflexive            | Y             | N            | Y           | N                   | Y                   |
+| irreflexive          | N             | Y            | N           | Y                   | N                   |
+| antisymmetric        | Y             | Y            | Y           | Y                   | N                   |
+| trichotomous         | N             | N            | N           | Y                   | Y                   |
+| connex               | N             | N            | N           | Y                   | Y                   |
+
+:::
+
 :::
 
 ::: exercise
 Continuing the previous exercise, say for each relation whether it is a weak partial order, a weak linear order, a strict partial order, or a strict linear order.
+
+::: solution
+1. $\sqsubseteq$ is a weak partial order
+1. $\subsetneq$ is a strict partial order
+1. $\subseteq$ is a weak partial order
+1. $\prec_l$ is a strict total order
+1. "at least as tall as" is not an order at all because it isn't antisymmetric
+:::
 :::
 
 ## Recap
@@ -138,3 +198,5 @@ A binary relation $R$ over set $D$ is
 - **connex** iff for all $x$ and $y$ in $D$ at least one of the following holds: $x \mathrel{R} y$ or $y \mathrel{R} x$.
 - **trichotomous** iff for all $x$ and $y$ in $D$ at least one of the following holds: $x \mathrel{R} y$ or $y \mathrel{R} x$ or $x = y$.
 :::
+
+\includecollection{solutions}

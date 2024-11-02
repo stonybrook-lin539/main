@@ -1,0 +1,44 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{matrix}
+\providecommand{\setof}[1]{\left \{ #1 \right \}}
+\providecommand{\emptystring}{\ensuremath{\varepsilon}}
+\begin{document}
+\begin{tikzpicture}
+\matrix (m) at (0,0) [matrix of nodes, column sep = 1em, row sep=3em] {
+        &     &      &    & poset &    &      &    &    \\
+        &     & pose &    &       &    & oset &    &    \\
+        &     & pos  &    & ose   &    & set  &    &    \\
+        & po  &      & os &       & se &      & et &    \\
+    p   &     & o    &    & s     &    & e    &    & t  \\
+        &     &      &    & $\emptystring$\\
+};
+\foreach \Source/\Target in {
+    1-5/2-3,
+    1-5/2-7,
+    2-3/3-3,
+    2-3/3-5,
+    2-7/3-5,
+    2-7/3-7,
+    3-3/4-2,
+    3-3/4-4,
+    3-5/4-4,
+    3-5/4-6,
+    3-7/4-6,
+    3-7/4-8,
+    4-2/5-1,
+    4-2/5-3,
+    4-4/5-3,
+    4-4/5-5,
+    4-6/5-5,
+    4-6/5-7,
+    4-8/5-7,
+    4-8/5-9,
+    5-1/6-5,
+    5-3/6-5,
+    5-5/6-5,
+    5-7/6-5,
+    5-9/6-5%
+    }
+    \draw[<-] (m-\Source) to (m-\Target);
+\end{tikzpicture}
+\end{document}

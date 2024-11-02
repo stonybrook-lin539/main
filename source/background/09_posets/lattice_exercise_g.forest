@@ -1,0 +1,23 @@
+\documentclass[tikz]{standalone}
+\usepackage[linguistics]{forest}
+\begin{document}
+\begin{forest}
+    [Z
+        [X,name=x]
+        [Y
+            [A,name=a
+                [D,name=d]
+                [B
+                    [C,name=c]
+                ]
+            ]
+            [E,name=e]
+        ]
+    ]
+    %
+    \draw (e.south) to (c.north);
+    \draw (d.south) to (c.north);
+    \draw (x.south) to (a.north);
+    \draw (x.south) to (e.north);
+\end{forest}
+\end{document}

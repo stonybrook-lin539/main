@@ -1,0 +1,13 @@
+\documentclass[tikz]{standalone}
+\usepackage[linguistics]{forest}
+\begin{document}
+\begin{forest}
+    [A
+        [D]
+        [B
+            [C]
+        ]
+    ]
+\end{forest}
+\end{document}
+

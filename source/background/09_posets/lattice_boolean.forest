@@ -1,0 +1,8 @@
+\documentclass[tikz]{standalone}
+\usepackage[linguistics]{forest}
+\begin{document}
+\begin{forest}
+    [True [False]]
+\end{forest}
+\end{document}
+
