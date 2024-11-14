@@ -6,7 +6,7 @@ pagetitle: >-
 # Finite-state transductions as transducers
 
 Our little game may have struck you as a bit silly, but it really captures the essence of finite-state transducers (FSTs).
-If you understand how the game is played and what a valid rule sheet may look, you understand FSTs.
+If you understand how the game is played and what a valid rule sheet may look like, you understand FSTs.
 Let us take a closer look.
 
 ## From game to transducer
@@ -16,32 +16,45 @@ The differences between our game and FSTs are mostly a matter of terminology:
 - Instead of finitely many players, we have finitely many **states**.
 - Instead of a player getting the next turn, we **transition** from one state to another.
 
-One conceptual difference is that most discussions of FSTs assume that the input is fixed in advance rather than built up as part of the transduction.
+One conceptual difference to our game is that most discussions of FSTs assume that the input is fixed in advance rather than built up as part of the transduction.
 But this is immaterial because an FST only gets to look at the input string one symbol at a time, without the ability to make decisions based on what the remainder of the input string looks like.
 So the FST behaves pretty much as if the input string were built up incrementally during the transduction process.
 
 Putting these conceptual issues aside, the FST is still playing the game of building an output string based on the shape of the input string.
 We also say that the FST **rewrites** the input string as (or into) the output string.
-It moves through the input string left to right and stops immediately after reading in {{{R}}}.
+Let us be fully explicit about how this works in the special case where the FST does not have to make any choices and is always able to process the whole input.
+Later in this unit, we will discuss the more general case without these simplifying assumptions.
+
+1. The FST starts in a state that is designated as an **initial** state or **start** state.
+   (If there are multiple initial states, one is chosen at random.)
+1. The FST moves through the **input string** from left to right, reading in one input symbol at a time.
+   The current state of the transducer and the current input symbol jointly determine which transition the FST chooses. 
+   The transition causes the FST to produce a specific output symbol and switch into a new state.
+1. The FST keeps repeating the previous step until it reaches {{{R}}} in the input.
+   It takes the transition jointly picked out by {{{R}}} and its current state, and then it stops.
+1. The string that the FST has built along the way is the **output string**.
+
+As with games, we can represent FSTs as tables or graphs.
+In the table format, rows indicate the current state and columns the state we can switch to when reading a specific input $i$ and producing a corresponding output $o$ (which we write $i:o$).
+We also have two special columns that indicate for each state whether it is initial and what its **final** output is (i.e. the output when reading in {{{R}}}).
+In the graph format, states are circled **nodes** and transitions are arrows, which we also call **edges**.
+Again these edges have labels of the form $i:o$, where $i$ is the input symbol being read and $o$ a string of output symbols.
+
+One brief remark on notation: instead of writing *nothing* as in the previous unit, we will henceforth use the empty string $\emptystring$ to indicate that a transducer outputs nothing.
 
 ::: example
 Let us look at a mathematical example.
 Below is a transducer with two states, $O$ and $E$.
-Again we use the table format with rows representing the current state and columns the state we can switch to when reading a specific input and producing a corresponding output.
-Instead of writing *nothing*, we use the empty string $\emptystring$ to indicate that a transducer outputs nothing.
-And we once again indicate whether a state is initial, final, neither, or both.
 
-|           |                                    |                              |             |           |
-| --:       | :-:                                | :-:                          | :-:         | :-:       |
-|           | **E**                              | **O**                        | **Initial** | **Final** |
-| **E**     | b:cc                               | a:a                          | Yes         | No        |
-| **O**     | a:b                                | b:$\emptystring$             | No          | Yes       |
+|           |                                    |                              |             |                         |
+| --:       | :-:                                | :-:                          | :-:         | :-:                     |
+|           | **E**                              | **O**                        | **Initial** | **Final**               |
+| **E**     | b:cc                               | a:a                          | Yes         | {{{R}}}:$\emptystring$  |
+| **O**     | a:b                                | b:$\emptystring$             | No          | {{{R}}}:$\emptystring$  |
 
-Once again we can also represent this as a graph.
-Since we use $\emptystring$ instead of *nothing*, final states have an outgoing edge labeled ${{{R}}}:\emptystring$.
 
 ~~~ {.include-tikz size=mid}
-oddeven.tikz
+oddeven_total.tikz
 ~~~
 
 Suppose our input string is *abababb{{{R}}}*.
@@ -62,7 +75,7 @@ We can display this process as a table.
 | O             | {{{R}}} | $\emptystring$  | Stop      | -                      | abcca                      |
 
 Alternatively, we can construct the output string by putting our finger on an initial state and then following the path through the FST that is described by the input string.
-For example, we start in the initial state, see that the first input symbol is *a*, and hence follow the arrow with input symbol *a* to go to $O$, outputting *a* along the way.
+For example, we start in the initial state $E$, see that the first input symbol is *a*, and hence follow the arrow with input symbol *a* to go to $O$, outputting *a* along the way.
 Once in $O$, we see that the next input symbol is *b* and follow the arrow from $O$ that has *b* as an input symbol, which leads us back to $O$.
 But since the arrow is labeled $b: \emptystring$, we do not produce any output when doing this.
 We keep tracing our path through the FST, and after having read in {{{R}}}, we stop. 
@@ -71,19 +84,20 @@ Either way, you can see that the FST produces the output string *abcca* from the
 :::
 
 ::: exercise
-Using the FST from the first example of this unit, compute the output strings for all of the following inputs:
+Using the FST from the example above, compute the output strings for all of the following inputs:
 
 1. bba{{{R}}}
 1. aaaaa{{{R}}}
 1. abbb{{{R}}}
 :::
 
-Upon closer inspection of the FST, we can deduce what kind of rewrite process it is implementing:
+Upon closer inspection of the example above, we can deduce what kind of rewrite process its FST is implementing:
 
 1. The states $E$ and $O$ keep track of whether, so far, we have seen an even or an odd number of *a*s in the input.
 1. Every other *a* (i.e. every *a* after an odd number of *a*s) is rewritten as *b*.
-1. If a *b* has an odd number of *a*s, we delete it, and otherwise we replace it with *cc*.
-1. Do not change anything else.
+1. If a *b* occurs after we have seen an odd number of *a*s, we delete it.
+   If it occurs after we have seen an even number of *a*s, we replace it with *cc*.
+1. We do not change anything else.
 
 ::: exercise
 Define an FST that implements the following rewrite process, assuming that input strings may contain the symbols, *a*, *b*, or *c*:
@@ -95,40 +109,65 @@ Define an FST that implements the following rewrite process, assuming that input
 
 ## When the transduction fails
 
-The FST also enforces two secret rules that have escaped our attention so far.
+As hinted at above, our description of FSTs is more restricted than usual.
+We assume that the FST is **total** and **deterministic**.
+Let us look at total first, leaving determinism for the next section.
 
-4. The input string must only contain *a* or *b*.
-5. The input must contain an odd number of *a*s.
-
-Both secret rules follow from the fact that the transducer would get stuck in the input otherwise.
-And if a transducer cannot process the entire input, it does not produce any output at all.
-
-::: example
-Suppose that the input string in the example above weren't *abababb{{{R}}}* but rather *acbababb{{{R}}}*.
-At first things are fine.
-We start in the initial state $E$ transition to state $O$ by reading in *a* and outputting *a*.
-But then we are stuck.
-The next symbol is *c*, but there is no transition out of our current state $O$ that has *c* as its input symbol.
-Since the transducer cannot make its way through the whole input string, we discard the output string built so far.
-The input string is not given any output whatsoever, not even a partial output.
-:::
-
-The second secret rule is a consequence of the same issue.
-If the transducer is in some non-final state while reading in {{{R}}}, it gets stuck because there is no suitable edge out of that state.
-Once again the whole output string built so far is discarded.
+An FST is **total** iff there is a suitable transition for every combination of a state and an input symbol.
+This means that the FST can never find itself in a situation where it cannot take any transitions.
+To put it bluntly: total transducers cannot get stuck.
 
 ::: example
-Suppose that the input string in the example above weren't *abababb{{{R}}}* but rather *abababba{{{R}}}*.
-Rather than ending in state $O$ after the last *b*, we now have to read in one more *a*.
+Consider the minimally different FST where $E$ lacks a transition for input symbol {{{R}}}.
+
+|           |                                    |                              |             |                         |
+| --:       | :-:                                | :-:                          | :-:         | :-:                     |
+|           | **E**                              | **O**                        | **Initial** | **Final**               |
+| **E**     | b:cc                               | a:a                          | Yes         | -                       |
+| **O**     | a:b                                | b:$\emptystring$             | No          | {{{R}}}:$\emptystring$  |
+
+~~~ {.include-tikz size=mid}
+oddeven.tikz
+~~~
+
+This transducer is not total because it can get stuck.
+
+Consider what happens when this FST has to process the input string *abababba{{{R}}}*.
+This is almost exactly the same as the input *abababb{{{R}}}* from the previous example, but with an extra *a* at the end.
+Mirroring the previous example, the transducer will be in state $O$ after it processes the last *b* of *abababba{{{R}}}*.
+But now it has to read in one more *a* before it reaches {{{R}}}.
 We do have a transition out of $O$ with *a* as the input symbol, so the FST is not stuck.
 This transition causes the FST to output *b* and switch to state $E$.
 But this is where things go wrong.
 Next we read in {{{R}}}, and since $E$ is not a final state, it does not have an outgoing edge with {{{R}}} as the input symbol.
-The FST gets stuck, right before the finish line, and our beautiful output string *abccab* is simply flushed down the drain.
+The FST gets stuck and fails to process the whole input.
+<!-- The FST gets stuck, right before the finish line, and our beautiful output string *abccab* is simply flushed down the drain. -->
 :::
 
 ::: exercise
-Using the FST from the first example of this unit, compute the output strings for all the inputs below.
+Removing the {{{R}}}:$\emptystring$ transition from $E$ as in the example above imposes a specific requirement on input strings.
+What is this requirement that an input string must satisfy so that the FST produces an output for it?
+:::
+
+::: example
+Now suppose that the FST from the previous example receives the input string *acbababb{{{R}}}*, with a *c* after the first *a*.
+At first things are fine.
+We start in the initial state $E$ and transition to state $O$ by reading in *a* and outputting *a*.
+But then we are stuck.
+The next symbol in the input is *c*, but there is no transition out of our current state $O$ that has *c* as its input symbol.
+Without a valid transition, the transducer cannot continue processing the input string
+<!-- and we have to discard the output string built so far. -->
+<!-- The input string is not mapped to any output whatsoever, not even a partial output. -->
+:::
+
+If an FST gets stuck when processing some input string $i$, then it does not produce any output for $i$ at all.
+This is very important.
+It does not produce a partial output, nor does it give a warning that no output was produced, nor does it output the empty string.
+A stuck FST simply produces no output at all.
+So if an FST isn't total, there will be input strings that have no output at all.
+
+::: exercise
+Using the FST from the previous example, compute the output strings for all the inputs below.
 If no output is produced, say so.
 
 1. a{{{R}}}
@@ -136,8 +175,12 @@ If no output is produced, say so.
 1. {{{R}}}
 :::
 
-Given an FST and input string, then, it is not enough to trace the path that this input describes through the transducer, we also have to check that we do not get stuck.
-The FST produces an output string if and only if it can make it all the way through the input string without getting stuck.
+When a transducer isn't total, one often uses the term **final state** to refer to a state with a transition of the form ${{{R}}}:o$.
+But even if all states of an FST are final, that still does not mean that the FST is total.
+
+::: exercise
+Explain why this holds.
+:::
 
 ## Non-determinism
 
@@ -148,9 +191,20 @@ There are two ways non-determinism can arise.
 Either an FST has more than one initial state, or there is at least one state with two outgoing transitions that are both compatible with the current input.
 
 ::: example
-Consider once more the transducer from the first example of this unit, but suppose that both E and O are initial states.
+Consider once more the transducer from the previous example, where $E$ is not a final state, but suppose that both E and O are now initial states.
+
+|           |                                    |                              |             |                         |
+| --:       | :-:                                | :-:                          | :-:         | :-:                     |
+|           | **E**                              | **O**                        | **Initial** | **Final**               |
+| **E**     | b:cc                               | a:a                          | Yes         | -                       |
+| **O**     | a:b                                | b:$\emptystring$             | Yes         | {{{R}}}:$\emptystring$  |
+
+~~~ {.include-tikz size=mid}
+oddeven_fullyinitial.tikz
+~~~
+
 Then there are two distinct paths we could take through the FST in an effort to rewrite the input string *abababb{{{R}}}*.
-If we start in *E*, things pass out as in the first example, yielding *abcca*.
+If we start in *E*, things work out as in the first example, yielding *abcca*.
 If we start with *O*, things go differently.
 
 | Current State | Input   | Output          | New State | Remaining input string | Output string built so far |
@@ -173,13 +227,14 @@ In this case, the FST can produce two distinct outputs for *abababb{{{R}}}*, one
 :::
 
 ::: example
-Consider once more the transducer from the first example of this unit, but suppose that we add two more transitions from *O* to *E* --- one with *a:a*, the other with *b:cc*.
+Consider yet another variant of the transducer from the first example of this unit.
+Now $E$ is the only initial state and $O$ is the only final state, but there are also two more transitions from *O* to *E* --- one with *a:a*, the other with *b:cc*.
 
 |           |                                    |                              |             |           |
 | --:       | :-:                                | :-:                          | :-:         | :-:       |
 |           | **E**                              | **O**                        | **Initial** | **Final** |
-| **E**     | b:cc                               | a:a                          | Yes         | No        |
-| **O**     | a:a, a:b, b:cc                     | b:$\emptystring$             | No          | Yes       |
+| **E**     | b:cc                               | a:a                          | Yes         | -         |
+| **O**     | a:a, a:b, b:cc                     | b:$\emptystring$             | No          | {{{R}}}:$\emptystring$   |
 
 ~~~ {.include-tikz size=mid}
 oddeven_extended.tikz
@@ -194,43 +249,60 @@ For example, it now is possible to rewrite *abababb{{{R}}}* as
 
 ::: exercise
 Write down all the output strings that the FST above can produce from the input *abababb{{{R}}}*.
-Keep in mind that the FST must be in a final state when reading {{{R}}}.
+Keep in mind that the FST is not total and thus may get stuck.
 :::
 
-The examples above show that non-determinism can lead to multiple outputs for a single input string, but does not need to as some of the available choices may cause the transducer to get stuck.
+The examples above show that non-determinism can lead to multiple outputs for a single input string, but that does not always happen because some of the available choices may cause the transducer to get stuck.
 Either way you might be wondering how the FST decides which routes to pursue.
-The short answer is that it simply doesn't.
-When there are multiple choices, we assume that the FST tries each one of them.
-This is a simplification, but it is an acceptable one because we aren't really interested in practical implementations of FSTs, we want to use FSTs as a model of how underlying representation can be mapped to one or more surface forms.
-We want to know the relation between underlying representations and surface forms, not so much how one actually makes this work in practice.
+The short answer is that it doesn't really matter for us because almost all our transducers will be deterministic (more on that in a second).
 
-If you find that unsatisfying, feel free to assume the following:
-when the FST reaches a point with, say, three choices, we temporarily halt the FST, make two copies of it, and then have each one of those three FSTs try a different one of those three choices.
-When one of them reaches another choice point, we do the same thing, and so on.
-If we keep doing this, we are guaranteed for each possible output to discover it eventually.
+If you're still curious about non-determinism, read on.
+Mathematically, it is convenient to assume that the transducer doesn't make any choices at all and instead explores all options in parallel.
+Whenever there is a choice point, all possible continuations will be explored.
+For practical implementations, this requires a bit of ingenuity because the number of possible outputs can grow exponentially.
+Still, one can think of such non-deterministic FSTs as producing not a single string but rather a **prefix tree** that encodes all possible outputs.
+We will encounter **prefix trees** in a later unit when we discuss phonological parsing.
+
+<!-- ::: example -->
+<!-- Consider once more the FST from the previous example, repeated here. -->
+<!--  -->
+<!-- |           |                                    |                              |             |           | -->
+<!-- | --:       | :-:                                | :-:                          | :-:         | :-:       | -->
+<!-- |           | **E**                              | **O**                        | **Initial** | **Final** | -->
+<!-- | **E**     | b:cc                               | a:a                          | Yes         | -         | -->
+<!-- | **O**     | a:a, a:b, b:cc                     | b:$\emptystring$             | No          | {{{R}}}:$\emptystring$   | -->
+<!--  -->
+<!-- ~~~ {.include-tikz size=mid} -->
+<!-- oddeven_extended.tikz -->
+<!-- ~~~ -->
+<!--  -->
+<!-- Below is a prefix tree that encodes all the possible outputs of fixme -->
+<!-- ::: -->
 
 ## Subclasses of finite-state transducers
 
-This unit presented FSTs in full generality.
-In the next unit, we will see how FSTs allow us to capture a variety of phonological phenomena, and curiously, we won't need the full power of FSTs for that.
-In general, we will be able to work with FSTs that meet all of the following conditions:
+In contrast to the description at the beginning of this unit, the default definition of FSTs does not require them to be total or deterministic.
+But in the next unit, we will try to use FSTs to capture a variety of phonological phenomena, and we will see that these FSTs are total and deterministic.
+It is only when we push FSTs beyond the immediate task of handling phonological mappings that determinism and totality become too restrictive.
+This is a surprising state of affairs, but it once again points towards language being remarkable simple.
 
-1. They are deterministic.
-   Hence there is only one initial state, and no state has two or more outgoing edges that can simultaneously match the input.
-1. They are **total**, which means that we don't have to worry about getting stuck.
-   Every state has an outgoing edge for every possible input symbol, including {{{R}}} (which means that every state is final).
-  
-It is only when we push FSTs beyond the immediate task of handling phonological mappings that non-determinism and non-final states become essential.
-This is a surprising state of affairs that once again points towards language being remarkable simple.
+So unless stated otherwise, we will henceforth assume that our FSTs are both total and deterministic.
+This means that there is exactly one initial state and every state has exactly one outgoing edge for every input symbol (including {{{R}}}).
 
 ## Recap
 
-- A **finite-state transducer** (FST) consists of finitely many states.
+- **Finite-state transducers** (FSTs) are a formal model of how input strings can be mapped to output strings.
+  We also say that an FST **rewrites** the input string.
+- We assume that every input string ends with the distinguished symbol {{{R}}}.
+- Every FST consists of finitely many states.
   The states are connected by **transitions** of the form $i:o$, where $i$ is an input symbol (or the empty string) and $o$ is a string of 0 or more output symbols.
 - States may be initial and/or final.
-- The FST moves through an input string from left to right.
+    - **initial**: the FST can start in this state when processing a string
+    - **final**: the state has a transition of the form ${{{R}}}:o$
+- The FST processes an input string symbol by symbol, moving from left to right.
   When the FST is in state $q$ and the current input symbol is $i$, the FST follows a transition $i:o$ from $q$ and $o$ is added to the output string built so far.
 - If there is no suitable transition, the FST is stuck and no output is produced.
-- We assume that every input string ends with the distinguished symbol {{{R}}}.
 - An FST is **non-deterministic** if there are choice points (multiple initial states and/or multiple applicable transitions).
   Otherwise it is **deterministic**.
+- An FST is **total** iff it produces at least one output string for every possible input string.
+  Equivalently, the FST must have at least one initial state and every state of the FST must have a transition $i:o$ for every input symbol $i$ (including {{{R}}}).
