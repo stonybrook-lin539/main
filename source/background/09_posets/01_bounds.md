@@ -122,9 +122,9 @@ lattice_123.tikz
 The upper bounds of $\setof{1}$ and $\setof{2}$ are $\setof{1,2}$ and $\setof{1,2,3}$.
 Their only lower bound is $\emptyset$.
 In mathematical notation, this is
-$$\mathrm{lb}(\setof{ \setof{1}, \setof{2} }) = \setof{ \setof{1,2}, \setof{1,2,3} }$$
+$$\mathrm{ub}(\setof{ \setof{1}, \setof{2} }) = \setof{ \setof{1,2}, \setof{1,2,3} }$$
 and
-$$\mathrm{ub}(\setof{ \setof{1}, \setof{2} }) = \setof{ \emptyset }.$$
+$$\mathrm{lb}(\setof{ \setof{1}, \setof{2} }) = \setof{ \emptyset }.$$
 
 Yes, those are sets of sets.
 You have to keep in mind that $\mathrm{lb}$ and $\mathrm{ub}$ always apply to the set of things whose lower and upper bounds we want to compute.

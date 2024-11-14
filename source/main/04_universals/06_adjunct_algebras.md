@@ -16,7 +16,7 @@ Syntax is a smorgasbord of intriguing, somewhat odd phenomena.
 One of them is the **Adjunct Island Constraint**, or simply **AIC**.
 The AIC is a condition that holds in every natural language we currently know.
 It seems to be a universal law of natural language.
-So what it is about?
+So what is it about?
 It is about a peculiar contrast, illustrated below for English.
 
 (@) John asserted [that Mary wants to watch which movie]? (good)
