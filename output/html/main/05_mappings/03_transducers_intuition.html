@@ -57,8 +57,8 @@ finite-state transducers</a></li>
 transductions as transducers</h1>
 <p>Our little game may have struck you as a bit silly, but it really
 captures the essence of finite-state transducers (FSTs). If you
-understand how the game is played and what a valid rule sheet may look,
-you understand FSTs. Let us take a closer look.</p>
+understand how the game is played and what a valid rule sheet may look
+like, you understand FSTs. Let us take a closer look.</p>
 <h2 id="from-game-to-transducer">From game to transducer</h2>
 <p>The differences between our game and FSTs are mostly a matter of
 terminology:</p>
@@ -68,28 +68,58 @@ terminology:</p>
 <li>Instead of a player getting the next turn, we
 <strong>transition</strong> from one state to another.</li>
 </ul>
-<p>One conceptual difference is that most discussions of FSTs assume
-that the input is fixed in advance rather than built up as part of the
-transduction. But this is immaterial because an FST only gets to look at
-the input string one symbol at a time, without the ability to make
-decisions based on what the remainder of the input string looks like. So
-the FST behaves pretty much as if the input string were built up
-incrementally during the transduction process.</p>
+<p>One conceptual difference to our game is that most discussions of
+FSTs assume that the input is fixed in advance rather than built up as
+part of the transduction. But this is immaterial because an FST only
+gets to look at the input string one symbol at a time, without the
+ability to make decisions based on what the remainder of the input
+string looks like. So the FST behaves pretty much as if the input string
+were built up incrementally during the transduction process.</p>
 <p>Putting these conceptual issues aside, the FST is still playing the
 game of building an output string based on the shape of the input
 string. We also say that the FST <strong>rewrites</strong> the input
-string as (or into) the output string. It moves through the input string
-left to right and stops immediately after reading in ⋉.</p>
+string as (or into) the output string. Let us be fully explicit about
+how this works in the special case where the FST does not have to make
+any choices and is always able to process the whole input. Later in this
+unit, we will discuss the more general case without these simplifying
+assumptions.</p>
+<ol type="1">
+<li>The FST starts in a state that is designated as an
+<strong>initial</strong> state or <strong>start</strong> state. (If
+there are multiple initial states, one is chosen at random.)</li>
+<li>The FST moves through the <strong>input string</strong> from left to
+right, reading in one input symbol at a time. The current state of the
+transducer and the current input symbol jointly determine which
+transition the FST chooses. The transition causes the FST to produce a
+specific output symbol and switch into a new state.</li>
+<li>The FST keeps repeating the previous step until it reaches ⋉ in the
+input. It takes the transition jointly picked out by ⋉ and its current
+state, and then it stops.</li>
+<li>The string that the FST has built along the way is the
+<strong>output string</strong>.</li>
+</ol>
+<p>As with games, we can represent FSTs as tables or graphs. In the
+table format, rows indicate the current state and columns the state we
+can switch to when reading a specific input <span
+class="math inline">\(i\)</span> and producing a corresponding output
+<span class="math inline">\(o\)</span> (which we write <span
+class="math inline">\(i:o\)</span>). We also have two special columns
+that indicate for each state whether it is initial and what its
+<strong>final</strong> output is (i.e. the output when reading in ⋉). In
+the graph format, states are circled <strong>nodes</strong> and
+transitions are arrows, which we also call <strong>edges</strong>. Again
+these edges have labels of the form <span
+class="math inline">\(i:o\)</span>, where <span
+class="math inline">\(i\)</span> is the input symbol being read and
+<span class="math inline">\(o\)</span> a string of output symbols.</p>
+<p>One brief remark on notation: instead of writing <em>nothing</em> as
+in the previous unit, we will henceforth use the empty string <span
+class="math inline">\(\varepsilon\)</span> to indicate that a transducer
+outputs nothing.</p>
 <div class="example">
 <p>Let us look at a mathematical example. Below is a transducer with two
 states, <span class="math inline">\(O\)</span> and <span
-class="math inline">\(E\)</span>. Again we use the table format with
-rows representing the current state and columns the state we can switch
-to when reading a specific input and producing a corresponding output.
-Instead of writing <em>nothing</em>, we use the empty string <span
-class="math inline">\(\varepsilon\)</span> to indicate that a transducer
-outputs nothing. And we once again indicate whether a state is initial,
-final, neither, or both.</p>
+class="math inline">\(E\)</span>.</p>
 <table>
 <colgroup>
 <col style="width: 20%" />
@@ -111,7 +141,8 @@ final, neither, or both.</p>
 <td style="text-align: center;">b:cc</td>
 <td style="text-align: center;">a:a</td>
 <td style="text-align: center;">Yes</td>
-<td style="text-align: center;">No</td>
+<td style="text-align: center;">⋉:<span
+class="math inline">\(\varepsilon\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><strong>O</strong></td>
@@ -119,15 +150,12 @@ final, neither, or both.</p>
 <td style="text-align: center;">b:<span
 class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">⋉:<span
+class="math inline">\(\varepsilon\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Once again we can also represent this as a graph. Since we use <span
-class="math inline">\(\varepsilon\)</span> instead of <em>nothing</em>,
-final states have an outgoing edge labeled <span
-class="math inline">\({\ltimes}:\varepsilon\)</span>.</p>
-<p><img src="oddeven.svg" alt="oddeven.svg" /></p>
+<p><img src="oddeven_total.svg" alt="oddeven_total.svg" /></p>
 <p>Suppose our input string is <em>abababb⋉</em>. The transducer will
 read this string from left to right, one symbol at a time, and produce a
 corresponding output string. What output symbol is produced depends on
@@ -235,11 +263,12 @@ class="math inline">\(\varepsilon\)</span></td>
 <p>Alternatively, we can construct the output string by putting our
 finger on an initial state and then following the path through the FST
 that is described by the input string. For example, we start in the
-initial state, see that the first input symbol is <em>a</em>, and hence
-follow the arrow with input symbol <em>a</em> to go to <span
-class="math inline">\(O\)</span>, outputting <em>a</em> along the way.
-Once in <span class="math inline">\(O\)</span>, we see that the next
-input symbol is <em>b</em> and follow the arrow from <span
+initial state <span class="math inline">\(E\)</span>, see that the first
+input symbol is <em>a</em>, and hence follow the arrow with input symbol
+<em>a</em> to go to <span class="math inline">\(O\)</span>, outputting
+<em>a</em> along the way. Once in <span
+class="math inline">\(O\)</span>, we see that the next input symbol is
+<em>b</em> and follow the arrow from <span
 class="math inline">\(O\)</span> that has <em>b</em> as an input symbol,
 which leads us back to <span class="math inline">\(O\)</span>. But since
 the arrow is labeled <span class="math inline">\(b:
@@ -250,25 +279,26 @@ stop.</p>
 <em>abcca</em> from the input string <em>abababb</em>.</p>
 </div>
 <div class="exercise">
-<p>Using the FST from the first example of this unit, compute the output
-strings for all of the following inputs:</p>
+<p>Using the FST from the example above, compute the output strings for
+all of the following inputs:</p>
 <ol type="1">
 <li>bba⋉</li>
 <li>aaaaa⋉</li>
 <li>abbb⋉</li>
 </ol>
 </div>
-<p>Upon closer inspection of the FST, we can deduce what kind of rewrite
-process it is implementing:</p>
+<p>Upon closer inspection of the example above, we can deduce what kind
+of rewrite process its FST is implementing:</p>
 <ol type="1">
 <li>The states <span class="math inline">\(E\)</span> and <span
 class="math inline">\(O\)</span> keep track of whether, so far, we have
 seen an even or an odd number of <em>a</em>s in the input.</li>
 <li>Every other <em>a</em> (i.e. every <em>a</em> after an odd number of
 <em>a</em>s) is rewritten as <em>b</em>.</li>
-<li>If a <em>b</em> has an odd number of <em>a</em>s, we delete it, and
-otherwise we replace it with <em>cc</em>.</li>
-<li>Do not change anything else.</li>
+<li>If a <em>b</em> occurs after we have seen an odd number of
+<em>a</em>s, we delete it. If it occurs after we have seen an even
+number of <em>a</em>s, we replace it with <em>cc</em>.</li>
+<li>We do not change anything else.</li>
 </ol>
 <div class="exercise">
 <p>Define an FST that implements the following rewrite process, assuming
@@ -283,61 +313,114 @@ instances of <em>b</em>.</li>
 </ol>
 </div>
 <h2 id="when-the-transduction-fails">When the transduction fails</h2>
-<p>The FST also enforces two secret rules that have escaped our
-attention so far.</p>
-<ol start="4" type="1">
-<li>The input string must only contain <em>a</em> or <em>b</em>.</li>
-<li>The input must contain an odd number of <em>a</em>s.</li>
-</ol>
-<p>Both secret rules follow from the fact that the transducer would get
-stuck in the input otherwise. And if a transducer cannot process the
-entire input, it does not produce any output at all.</p>
+<p>As hinted at above, our description of FSTs is more restricted than
+usual. We assume that the FST is <strong>total</strong> and
+<strong>deterministic</strong>. Let us look at total first, leaving
+determinism for the next section.</p>
+<p>An FST is <strong>total</strong> iff there is a suitable transition
+for every combination of a state and an input symbol. This means that
+the FST can never find itself in a situation where it cannot take any
+transitions. To put it bluntly: total transducers cannot get stuck.</p>
 <div class="example">
-<p>Suppose that the input string in the example above weren’t
-<em>abababb⋉</em> but rather <em>acbababb⋉</em>. At first things are
-fine. We start in the initial state <span
-class="math inline">\(E\)</span> transition to state <span
-class="math inline">\(O\)</span> by reading in <em>a</em> and outputting
-<em>a</em>. But then we are stuck. The next symbol is <em>c</em>, but
-there is no transition out of our current state <span
-class="math inline">\(O\)</span> that has <em>c</em> as its input
-symbol. Since the transducer cannot make its way through the whole input
-string, we discard the output string built so far. The input string is
-not given any output whatsoever, not even a partial output.</p>
-</div>
-<p>The second secret rule is a consequence of the same issue. If the
-transducer is in some non-final state while reading in ⋉, it gets stuck
-because there is no suitable edge out of that state. Once again the
-whole output string built so far is discarded.</p>
-<div class="example">
-<p>Suppose that the input string in the example above weren’t
-<em>abababb⋉</em> but rather <em>abababba⋉</em>. Rather than ending in
-state <span class="math inline">\(O\)</span> after the last <em>b</em>,
-we now have to read in one more <em>a</em>. We do have a transition out
-of <span class="math inline">\(O\)</span> with <em>a</em> as the input
-symbol, so the FST is not stuck. This transition causes the FST to
+<p>Consider the minimally different FST where <span
+class="math inline">\(E\)</span> lacks a transition for input symbol
+⋉.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>E</strong></td>
+<td style="text-align: center;"><strong>O</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>E</strong></td>
+<td style="text-align: center;">b:cc</td>
+<td style="text-align: center;">a:a</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>O</strong></td>
+<td style="text-align: center;">a:b</td>
+<td style="text-align: center;">b:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">⋉:<span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><img src="oddeven.svg" alt="oddeven.svg" /></p>
+<p>This transducer is not total because it can get stuck.</p>
+<p>Consider what happens when this FST has to process the input string
+<em>abababba⋉</em>. This is almost exactly the same as the input
+<em>abababb⋉</em> from the previous example, but with an extra
+<em>a</em> at the end. Mirroring the previous example, the transducer
+will be in state <span class="math inline">\(O\)</span> after it
+processes the last <em>b</em> of <em>abababba⋉</em>. But now it has to
+read in one more <em>a</em> before it reaches ⋉. We do have a transition
+out of <span class="math inline">\(O\)</span> with <em>a</em> as the
+input symbol, so the FST is not stuck. This transition causes the FST to
 output <em>b</em> and switch to state <span
 class="math inline">\(E\)</span>. But this is where things go wrong.
 Next we read in ⋉, and since <span class="math inline">\(E\)</span> is
 not a final state, it does not have an outgoing edge with ⋉ as the input
-symbol. The FST gets stuck, right before the finish line, and our
-beautiful output string <em>abccab</em> is simply flushed down the
-drain.</p>
+symbol. The FST gets stuck and fails to process the whole input.
+<!-- The FST gets stuck, right before the finish line, and our beautiful output string *abccab* is simply flushed down the drain. --></p>
 </div>
 <div class="exercise">
-<p>Using the FST from the first example of this unit, compute the output
-strings for all the inputs below. If no output is produced, say so.</p>
+<p>Removing the ⋉:<span class="math inline">\(\varepsilon\)</span>
+transition from <span class="math inline">\(E\)</span> as in the example
+above imposes a specific requirement on input strings. What is this
+requirement that an input string must satisfy so that the FST produces
+an output for it?</p>
+</div>
+<div class="example">
+<p>Now suppose that the FST from the previous example receives the input
+string <em>acbababb⋉</em>, with a <em>c</em> after the first <em>a</em>.
+At first things are fine. We start in the initial state <span
+class="math inline">\(E\)</span> and transition to state <span
+class="math inline">\(O\)</span> by reading in <em>a</em> and outputting
+<em>a</em>. But then we are stuck. The next symbol in the input is
+<em>c</em>, but there is no transition out of our current state <span
+class="math inline">\(O\)</span> that has <em>c</em> as its input
+symbol. Without a valid transition, the transducer cannot continue
+processing the input string
+<!-- and we have to discard the output string built so far. -->
+<!-- The input string is not mapped to any output whatsoever, not even a partial output. --></p>
+</div>
+<p>If an FST gets stuck when processing some input string <span
+class="math inline">\(i\)</span>, then it does not produce any output
+for <span class="math inline">\(i\)</span> at all. This is very
+important. It does not produce a partial output, nor does it give a
+warning that no output was produced, nor does it output the empty
+string. A stuck FST simply produces no output at all. So if an FST isn’t
+total, there will be input strings that have no output at all.</p>
+<div class="exercise">
+<p>Using the FST from the previous example, compute the output strings
+for all the inputs below. If no output is produced, say so.</p>
 <ol type="1">
 <li>a⋉</li>
 <li>bb⋉</li>
 <li>⋉</li>
 </ol>
 </div>
-<p>Given an FST and input string, then, it is not enough to trace the
-path that this input describes through the transducer, we also have to
-check that we do not get stuck. The FST produces an output string if and
-only if it can make it all the way through the input string without
-getting stuck.</p>
+<p>When a transducer isn’t total, one often uses the term <strong>final
+state</strong> to refer to a state with a transition of the form <span
+class="math inline">\({\ltimes}:o\)</span>. But even if all states of an
+FST are final, that still does not mean that the FST is total.</p>
+<div class="exercise">
+<p>Explain why this holds.</p>
+</div>
 <h2 id="non-determinism">Non-determinism</h2>
 <p>You might remember that our game sometimes gave players a choice as
 to what they want to do. This is also possible with FSTs, and such an
@@ -348,12 +431,49 @@ arise. Either an FST has more than one initial state, or there is at
 least one state with two outgoing transitions that are both compatible
 with the current input.</p>
 <div class="example">
-<p>Consider once more the transducer from the first example of this
-unit, but suppose that both E and O are initial states. Then there are
-two distinct paths we could take through the FST in an effort to rewrite
-the input string <em>abababb⋉</em>. If we start in <em>E</em>, things
-pass out as in the first example, yielding <em>abcca</em>. If we start
-with <em>O</em>, things go differently.</p>
+<p>Consider once more the transducer from the previous example, where
+<span class="math inline">\(E\)</span> is not a final state, but suppose
+that both E and O are now initial states.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: center;"><strong>E</strong></td>
+<td style="text-align: center;"><strong>O</strong></td>
+<td style="text-align: center;"><strong>Initial</strong></td>
+<td style="text-align: center;"><strong>Final</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>E</strong></td>
+<td style="text-align: center;">b:cc</td>
+<td style="text-align: center;">a:a</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>O</strong></td>
+<td style="text-align: center;">a:b</td>
+<td style="text-align: center;">b:<span
+class="math inline">\(\varepsilon\)</span></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">⋉:<span
+class="math inline">\(\varepsilon\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><img src="oddeven_fullyinitial.svg"
+alt="oddeven_fullyinitial.svg" /></p>
+<p>Then there are two distinct paths we could take through the FST in an
+effort to rewrite the input string <em>abababb⋉</em>. If we start in
+<em>E</em>, things work out as in the first example, yielding
+<em>abcca</em>. If we start with <em>O</em>, things go differently.</p>
 <table style="width:100%;">
 <colgroup>
 <col style="width: 16%" />
@@ -461,8 +581,10 @@ option. In this case, the FST can produce two distinct outputs for
 <em>O</em>).</p>
 </div>
 <div class="example">
-<p>Consider once more the transducer from the first example of this
-unit, but suppose that we add two more transitions from <em>O</em> to
+<p>Consider yet another variant of the transducer from the first example
+of this unit. Now <span class="math inline">\(E\)</span> is the only
+initial state and <span class="math inline">\(O\)</span> is the only
+final state, but there are also two more transitions from <em>O</em> to
 <em>E</em> — one with <em>a:a</em>, the other with <em>b:cc</em>.</p>
 <table>
 <colgroup>
@@ -485,7 +607,7 @@ unit, but suppose that we add two more transitions from <em>O</em> to
 <td style="text-align: center;">b:cc</td>
 <td style="text-align: center;">a:a</td>
 <td style="text-align: center;">Yes</td>
-<td style="text-align: center;">No</td>
+<td style="text-align: center;">-</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><strong>O</strong></td>
@@ -493,7 +615,8 @@ unit, but suppose that we add two more transitions from <em>O</em> to
 <td style="text-align: center;">b:<span
 class="math inline">\(\varepsilon\)</span></td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">⋉:<span
+class="math inline">\(\varepsilon\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -509,71 +632,93 @@ example, it now is possible to rewrite <em>abababb⋉</em> as
 </div>
 <div class="exercise">
 <p>Write down all the output strings that the FST above can produce from
-the input <em>abababb⋉</em>. Keep in mind that the FST must be in a
-final state when reading ⋉.</p>
+the input <em>abababb⋉</em>. Keep in mind that the FST is not total and
+thus may get stuck.</p>
 </div>
 <p>The examples above show that non-determinism can lead to multiple
-outputs for a single input string, but does not need to as some of the
-available choices may cause the transducer to get stuck. Either way you
-might be wondering how the FST decides which routes to pursue. The short
-answer is that it simply doesn’t. When there are multiple choices, we
-assume that the FST tries each one of them. This is a simplification,
-but it is an acceptable one because we aren’t really interested in
-practical implementations of FSTs, we want to use FSTs as a model of how
-underlying representation can be mapped to one or more surface forms. We
-want to know the relation between underlying representations and surface
-forms, not so much how one actually makes this work in practice.</p>
-<p>If you find that unsatisfying, feel free to assume the following:
-when the FST reaches a point with, say, three choices, we temporarily
-halt the FST, make two copies of it, and then have each one of those
-three FSTs try a different one of those three choices. When one of them
-reaches another choice point, we do the same thing, and so on. If we
-keep doing this, we are guaranteed for each possible output to discover
-it eventually.</p>
+outputs for a single input string, but that does not always happen
+because some of the available choices may cause the transducer to get
+stuck. Either way you might be wondering how the FST decides which
+routes to pursue. The short answer is that it doesn’t really matter for
+us because almost all our transducers will be deterministic (more on
+that in a second).</p>
+<p>If you’re still curious about non-determinism, read on.
+Mathematically, it is convenient to assume that the transducer doesn’t
+make any choices at all and instead explores all options in parallel.
+Whenever there is a choice point, all possible continuations will be
+explored. For practical implementations, this requires a bit of
+ingenuity because the number of possible outputs can grow exponentially.
+Still, one can think of such non-deterministic FSTs as producing not a
+single string but rather a <strong>prefix tree</strong> that encodes all
+possible outputs. We will encounter <strong>prefix trees</strong> in a
+later unit when we discuss phonological parsing.</p>
+<!-- ::: example -->
+<!-- Consider once more the FST from the previous example, repeated here. -->
+<!--  -->
+<!-- |           |                                    |                              |             |           | -->
+<!-- | --:       | :-:                                | :-:                          | :-:         | :-:       | -->
+<!-- |           | **E**                              | **O**                        | **Initial** | **Final** | -->
+<!-- | **E**     | b:cc                               | a:a                          | Yes         | -         | -->
+<!-- | **O**     | a:a, a:b, b:cc                     | b:$\emptystring$             | No          | {{{R}}}:$\emptystring$   | -->
+<!--  -->
+<!-- ~~~ {.include-tikz size=mid} -->
+<!-- oddeven_extended.tikz -->
+<!-- ~~~ -->
+<!--  -->
+<!-- Below is a prefix tree that encodes all the possible outputs of fixme -->
+<!-- ::: -->
 <h2 id="subclasses-of-finite-state-transducers">Subclasses of
 finite-state transducers</h2>
-<p>This unit presented FSTs in full generality. In the next unit, we
-will see how FSTs allow us to capture a variety of phonological
-phenomena, and curiously, we won’t need the full power of FSTs for that.
-In general, we will be able to work with FSTs that meet all of the
-following conditions:</p>
-<ol type="1">
-<li>They are deterministic. Hence there is only one initial state, and
-no state has two or more outgoing edges that can simultaneously match
-the input.</li>
-<li>They are <strong>total</strong>, which means that we don’t have to
-worry about getting stuck. Every state has an outgoing edge for every
-possible input symbol, including ⋉ (which means that every state is
-final).</li>
-</ol>
-<p>It is only when we push FSTs beyond the immediate task of handling
-phonological mappings that non-determinism and non-final states become
-essential. This is a surprising state of affairs that once again points
-towards language being remarkable simple.</p>
+<p>In contrast to the description at the beginning of this unit, the
+default definition of FSTs does not require them to be total or
+deterministic. But in the next unit, we will try to use FSTs to capture
+a variety of phonological phenomena, and we will see that these FSTs are
+total and deterministic. It is only when we push FSTs beyond the
+immediate task of handling phonological mappings that determinism and
+totality become too restrictive. This is a surprising state of affairs,
+but it once again points towards language being remarkable simple.</p>
+<p>So unless stated otherwise, we will henceforth assume that our FSTs
+are both total and deterministic. This means that there is exactly one
+initial state and every state has exactly one outgoing edge for every
+input symbol (including ⋉).</p>
 <h2 id="recap">Recap</h2>
 <ul>
-<li>A <strong>finite-state transducer</strong> (FST) consists of
-finitely many states. The states are connected by
-<strong>transitions</strong> of the form <span
+<li><strong>Finite-state transducers</strong> (FSTs) are a formal model
+of how input strings can be mapped to output strings. We also say that
+an FST <strong>rewrites</strong> the input string.</li>
+<li>We assume that every input string ends with the distinguished symbol
+⋉.</li>
+<li>Every FST consists of finitely many states. The states are connected
+by <strong>transitions</strong> of the form <span
 class="math inline">\(i:o\)</span>, where <span
 class="math inline">\(i\)</span> is an input symbol (or the empty
 string) and <span class="math inline">\(o\)</span> is a string of 0 or
 more output symbols.</li>
-<li>States may be initial and/or final.</li>
-<li>The FST moves through an input string from left to right. When the
-FST is in state <span class="math inline">\(q\)</span> and the current
-input symbol is <span class="math inline">\(i\)</span>, the FST follows
-a transition <span class="math inline">\(i:o\)</span> from <span
+<li>States may be initial and/or final.
+<ul>
+<li><strong>initial</strong>: the FST can start in this state when
+processing a string</li>
+<li><strong>final</strong>: the state has a transition of the form <span
+class="math inline">\({\ltimes}:o\)</span></li>
+</ul></li>
+<li>The FST processes an input string symbol by symbol, moving from left
+to right. When the FST is in state <span
+class="math inline">\(q\)</span> and the current input symbol is <span
+class="math inline">\(i\)</span>, the FST follows a transition <span
+class="math inline">\(i:o\)</span> from <span
 class="math inline">\(q\)</span> and <span
 class="math inline">\(o\)</span> is added to the output string built so
 far.</li>
 <li>If there is no suitable transition, the FST is stuck and no output
 is produced.</li>
-<li>We assume that every input string ends with the distinguished symbol
-⋉.</li>
 <li>An FST is <strong>non-deterministic</strong> if there are choice
 points (multiple initial states and/or multiple applicable transitions).
 Otherwise it is <strong>deterministic</strong>.</li>
+<li>An FST is <strong>total</strong> iff it produces at least one output
+string for every possible input string. Equivalently, the FST must have
+at least one initial state and every state of the FST must have a
+transition <span class="math inline">\(i:o\)</span> for every input
+symbol <span class="math inline">\(i\)</span> (including ⋉).</li>
 </ul>
 </div>
 </div>
