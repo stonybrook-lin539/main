@@ -693,35 +693,39 @@ be represented as follows:</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;"><strong>Underlying
+<th style="text-align: right;"><strong>Underlying
 representation</strong></th>
 <th style="text-align: left;"><strong>Surface form</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">LLLLL</td>
+<td style="text-align: right;">LLLLL</td>
 <td style="text-align: left;">LLLLL</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">LHLLL</td>
+<td style="text-align: right;">LHLLL</td>
 <td style="text-align: left;">LHLLL</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">LLLHL</td>
+<td style="text-align: right;">LLLHL</td>
 <td style="text-align: left;">LLLHL</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">LHLHL</td>
+<td style="text-align: right;">LHLHL</td>
 <td style="text-align: left;">LHHHL</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">LHLLH</td>
+<td style="text-align: right;">LHLLH</td>
 <td style="text-align: left;">LHHHH</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">HLLLH</td>
+<td style="text-align: right;">HLLLH</td>
 <td style="text-align: left;">HHHHH</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">LHLHLLHLH</td>
+<td style="text-align: left;">LHHHHHHHH</td>
 </tr>
 </tbody>
 </table>
@@ -729,13 +733,15 @@ representation</strong></th>
 plateauing.</p>
 </div>
 <div class="exercise">
-<p>This continues the previous exercise. Total deterministic FSTs cannot
-handle <strong>circumambient</strong> phenomena such as unbounded tone
-plateauing, where changing a segment requires a trigger to the left and
-a trigger to the right and both triggers may be arbitrarily far away.
-This holds irrespective of whether they operate left-to-right or
-right-to-left, and irrespective of whether one uses delayed outputs
-and/or final emissions. Explain why!</p>
+<p>Unbounded tone plateauing is an example of a circumambient
+phenomenon. A phenomenon is circumambient iff changing a segment
+<em>s</em> requires a trigger to the left of <em>s</em> and a trigger to
+the right of <em>s</em> such that both triggers may be arbitrarily far
+away from <em>s</em>. Total deterministic FSTs cannot handle such
+circumambient phenomena. This holds irrespective of whether the total
+deterministic FST operates left-to-right or right-to-left, and
+irrespective of whether it uses delayed outputs and/or final emissions.
+Explain why!</p>
 </div>
 <h2 id="recap">Recap</h2>
 <ul>
@@ -758,7 +764,7 @@ context has been fully read in. This only works if there is a fixed
 upper bound on how long the output has to be delayed.</li>
 <li>The delayed output strategy often has to be used in conjunction with
 <strong>final emissions</strong>, which rewrite ⋉ as a sequence of 0 or
-more input symbols.</li>
+more output symbols.</li>
 </ul>
 </div>
 </div>
