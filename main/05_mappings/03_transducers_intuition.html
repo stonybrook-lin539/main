@@ -421,6 +421,7 @@ FST are final, that still does not mean that the FST is total.</p>
 <div class="exercise">
 <p>Explain why this holds.</p>
 </div>
+<!-- fixme: this definition of total only works for deterministic FSTs, for non-deterministic ones it is a lot harder to determine totality -->
 <h2 id="non-determinism">Non-determinism</h2>
 <p>You might remember that our game sometimes gave players a choice as
 to what they want to do. This is also possible with FSTs, and such an
@@ -715,10 +716,11 @@ is produced.</li>
 points (multiple initial states and/or multiple applicable transitions).
 Otherwise it is <strong>deterministic</strong>.</li>
 <li>An FST is <strong>total</strong> iff it produces at least one output
-string for every possible input string. Equivalently, the FST must have
-at least one initial state and every state of the FST must have a
-transition <span class="math inline">\(i:o\)</span> for every input
-symbol <span class="math inline">\(i\)</span> (including ⋉).</li>
+string for every possible input string.</li>
+<li>A <strong>total deterministic FST</strong> has exactly one initial
+state and every state of the FST must have a transition <span
+class="math inline">\(i:o\)</span> for every input symbol <span
+class="math inline">\(i\)</span> (including ⋉).</li>
 </ul>
 </div>
 </div>
