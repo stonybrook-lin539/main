@@ -182,6 +182,8 @@ But even if all states of an FST are final, that still does not mean that the FS
 Explain why this holds.
 :::
 
+<!-- fixme: this definition of total only works for deterministic FSTs, for non-deterministic ones it is a lot harder to determine totality -->
+
 ## Non-determinism
 
 You might remember that our game sometimes gave players a choice as to what they want to do.
@@ -305,4 +307,4 @@ This means that there is exactly one initial state and every state has exactly o
 - An FST is **non-deterministic** if there are choice points (multiple initial states and/or multiple applicable transitions).
   Otherwise it is **deterministic**.
 - An FST is **total** iff it produces at least one output string for every possible input string.
-  Equivalently, the FST must have at least one initial state and every state of the FST must have a transition $i:o$ for every input symbol $i$ (including {{{R}}}).
+- A **total deterministic FST** has exactly one initial state and every state of the FST must have a transition $i:o$ for every input symbol $i$ (including {{{R}}}).
