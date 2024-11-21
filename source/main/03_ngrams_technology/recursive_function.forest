@@ -1,5 +1,6 @@
 \documentclass[tikz]{standalone}
 \usepackage[linguistics]{forest}
+\usepackage[charter]{mathdesign}
 \providecommand{\emptystring}{\varepsilon}
 \providecommand{\stringcat}{\cdot}
 \begin{document}
