@@ -89,6 +89,12 @@ Using the FST from the example above, compute the output strings for all of the 
 1. bba{{{R}}}
 1. aaaaa{{{R}}}
 1. abbb{{{R}}}
+
+::: solution
+1. cccca
+1. ababa
+1. a
+:::
 :::
 
 Upon closer inspection of the example above, we can deduce what kind of rewrite process its FST is implementing:
@@ -105,6 +111,32 @@ Define an FST that implements the following rewrite process, assuming that input
 1. If the string starts with *a*, rewrite all subsequent instances of *a* as *aa*.
 1. If the string starts with *b*, delete all subsequent instances of *b*.
 1. Do not change anything else.
+
+::: solution
+
+The FST looks as follows
+
+|           |           |                          |                              |               |             |                              |
+| --:       | :-:       | :-:                      | :-:                          | :-:           | :-:         | :-:                          |
+|           | **0**     | **A**                    | **B**                        | **C**         | **Initial** | **Final**                    |
+| **0**     |           | a:a                      | b:b                          | c:c           | Yes         | {{{R}}}:$\emptystring$       |
+| **A**     |           | a:aa, b:b, c:c           |                              |               | No          | {{{R}}}:$\emptystring$       |
+| **B**     |           |                          | a:a, b:$\emptystring$        |               | No          | {{{R}}}:$\emptystring$       |
+| **C**     |           |                          |                              | a:a, b:b, c:c | No          | {{{R}}}:$\emptystring$       |
+
+::: solution_explained
+We have four distinct states:
+
+- *0* is the starting state.
+  Depending on the first symbol of the string, we transition into one of the other three states.
+- *A*: the first symbol was *a*; from here on out, we rewrite *a* as *aa* but do not change *b* or *c*.
+- *B*: the first symbol was *b*; from here on out, we delete *b* but do not change *a* or *c*.
+- *C*: the first symbol was *c*; from here on out, we do not change *a* or *b* or *c*.
+
+The FST can stop in any state.
+This includes *0* because this FST should be able to take the empty string as an input, too.
+:::
+:::
 :::
 
 ## When the transduction fails
@@ -147,6 +179,10 @@ The FST gets stuck and fails to process the whole input.
 ::: exercise
 Removing the {{{R}}}:$\emptystring$ transition from $E$ as in the example above imposes a specific requirement on input strings.
 What is this requirement that an input string must satisfy so that the FST produces an output for it?
+
+::: solution
+The input string must contain an odd number of *a*s.
+:::
 :::
 
 ::: example
@@ -173,6 +209,12 @@ If no output is produced, say so.
 1. a{{{R}}}
 1. bb{{{R}}}
 1. {{{R}}}
+
+::: solution
+1. a
+1. no output
+1. no output
+:::
 :::
 
 When a transducer isn't total, one often uses the term **final state** to refer to a state with a transition of the form ${{{R}}}:o$.
@@ -180,9 +222,12 @@ But even if all states of an FST are final, that still does not mean that the FS
 
 ::: exercise
 Explain why this holds.
-:::
 
-<!-- fixme: this definition of total only works for deterministic FSTs, for non-deterministic ones it is a lot harder to determine totality -->
+::: solution
+An FST can get stuck even if all states are final.
+If the current input symbol is $i$ and the FST has no transition $i:o$ from its current state, then the FST gets stuck and won't produce any output for the input. 
+:::
+:::
 
 ## Non-determinism
 
@@ -252,6 +297,24 @@ For example, it now is possible to rewrite *abababb{{{R}}}* as
 ::: exercise
 Write down all the output strings that the FST above can produce from the input *abababb{{{R}}}*.
 Keep in mind that the FST is not total and thus may get stuck.
+
+::: solution
+1. aacca
+1. abcca
+1. accacca
+
+::: solution_explained
+The easiest way to keep track of all options is via a graph that tracks each run of the non-deterministic FST.
+This graph will have the shape of a tree, where nodes correspond to states and branches represent specific transitions taken by the FST.
+
+~~~ {.include-tikz size=mid}
+nfst_treeunfolding.forest
+~~~
+
+In order to get all the outputs, one simply has to follow all the branches that lead from the top of the tree to the final transition ${{{R}}}:\emptystring$.
+For each branch, we read the output symbols from top to bottom to get the output string produced by the FST when it takes the sequence of transitions described by that branch.
+:::
+:::
 :::
 
 The examples above show that non-determinism can lead to multiple outputs for a single input string, but that does not always happen because some of the available choices may cause the transducer to get stuck.
@@ -286,7 +349,7 @@ We will encounter **prefix trees** in a later unit when we discuss phonological 
 In contrast to the description at the beginning of this unit, the default definition of FSTs does not require them to be total or deterministic.
 But in the next unit, we will try to use FSTs to capture a variety of phonological phenomena, and we will see that these FSTs are total and deterministic.
 It is only when we push FSTs beyond the immediate task of handling phonological mappings that determinism and totality become too restrictive.
-This is a surprising state of affairs, but it once again points towards language being remarkable simple.
+This is a surprising state of affairs, but it once again points towards language being remarkably simple.
 
 So unless stated otherwise, we will henceforth assume that our FSTs are both total and deterministic.
 This means that there is exactly one initial state and every state has exactly one outgoing edge for every input symbol (including {{{R}}}).
@@ -308,3 +371,5 @@ This means that there is exactly one initial state and every state has exactly o
   Otherwise it is **deterministic**.
 - An FST is **total** iff it produces at least one output string for every possible input string.
 - A **total deterministic FST** has exactly one initial state and every state of the FST must have a transition $i:o$ for every input symbol $i$ (including {{{R}}}).
+
+\includecollection{solutions}

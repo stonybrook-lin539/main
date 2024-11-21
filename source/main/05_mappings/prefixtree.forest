@@ -1,8 +1,8 @@
 \documentclass[tikz]{standalone}
 \usepackage[linguistics]{forest}
 \usepackage[charter]{mathdesign}
-\newcommand{\emptystring}{\ensuremath{\varepsilon}}
-\newcommand{\RE}{\ensuremath{\ltimes}}
+\providecommand{\emptystring}{\ensuremath{\varepsilon}}
+\providecommand{\RE}{\ensuremath{\ltimes}}
 \begin{document}
 \begin{forest}
     [$\emptystring$

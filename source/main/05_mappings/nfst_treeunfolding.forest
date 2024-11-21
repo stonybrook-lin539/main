@@ -1,0 +1,74 @@
+\documentclass[tikz]{standalone}
+\usepackage[linguistics]{forest}
+\usepackage[charter]{mathdesign}
+\providecommand{\emptystring}{\ensuremath{\varepsilon}}
+\providecommand{\RE}{\ensuremath{\ltimes}}
+\begin{document}
+\begin{forest}
+    [E, for tree={s sep=3em, s=3em}
+         [O, edge label={node[midway,left,font=\scriptsize]{$a:a$}}
+             [O, edge label={node[midway,above,font=\scriptsize]{$b:\emptystring$}}
+                 [E, edge label={node[midway,above,font=\scriptsize]{$a:a$}}
+                     [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}
+                         [O, edge label={node[midway,left,font=\scriptsize]{$a:a$}}
+                             [O, edge label={node[midway,above,font=\scriptsize]{$b:\emptystring$}}
+                                 [O, edge label={node[midway,left,font=\scriptsize]{$b:\emptystring$}}
+                                     [\phantom{a}, edge label={node[midway,left,font=\scriptsize]{$\RE:\emptystring$}}]
+                                 ]
+                                 [E, edge label={node[midway,right,font=\scriptsize]{$b:cc$}}]
+                             ]
+                             [E, edge label={node[midway,above,font=\scriptsize]{$b:cc$}}
+                                 [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}]
+                             ]
+                         ]
+                     ]
+                 ]
+                 [E, edge label={node[midway,above,font=\scriptsize]{$a:b$}}
+                     [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}
+                         [O, edge label={node[midway,left,font=\scriptsize]{$a:a$}}
+                             [O, edge label={node[midway,above,font=\scriptsize]{$b:\emptystring$}}
+                                 [O, edge label={node[midway,above,font=\scriptsize]{$b:\emptystring$}}
+                                     [\phantom{a}, edge label={node[midway,left,font=\scriptsize]{$\RE:\emptystring$}}]
+                                 ]
+                                 [E, edge label={node[midway,above,font=\scriptsize]{$b:cc$}}]
+                             ]
+                             [E, edge label={node[midway,above,font=\scriptsize]{$b:cc$}}
+                                 [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}]
+                             ]
+                         ]
+                     ]
+                 ]
+             ]
+             [E, edge label={node[midway,above,font=\scriptsize]{$b:cc$}}
+                 [O, edge label={node[midway,left,font=\scriptsize]{$a:a$}}
+                     [O, edge label={node[midway,above,font=\scriptsize]{$b:\emptystring$}}
+                         [E, edge label={node[midway,above,font=\scriptsize]{$a:a$}}
+                             [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}
+                                 [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}]
+                             ]
+                         ]
+                         [E, edge label={node[midway,above,font=\scriptsize]{$a:b$}}
+                             [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}
+                                 [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}]
+                             ]
+                         ]
+                     ]
+                     [E, edge label={node[midway,above,font=\scriptsize]{$b:cc$}}
+                        [O, edge label={node[midway,left,font=\scriptsize]{$a:a$}}
+                            [O, edge label={node[midway,above,font=\scriptsize]{$b:\emptystring$}}
+                                [O, edge label={node[midway,above,font=\scriptsize]{$b:\emptystring$}}
+                                     [\phantom{a}, edge label={node[midway,left,font=\scriptsize]{$\RE:\emptystring$}}]
+                                ]
+                                [E, edge label={node[midway,above,font=\scriptsize]{$b:cc$}}]
+                            ]
+                            [E, edge label={node[midway,above,font=\scriptsize]{$b:cc$}}
+                                [E, edge label={node[midway,left,font=\scriptsize]{$b:cc$}}]
+                            ]
+                        ]
+                    ]
+                 ]
+             ]
+         ]
+    ]
+\end{forest}
+\end{document}
