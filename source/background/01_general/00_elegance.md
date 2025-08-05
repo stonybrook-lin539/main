@@ -55,13 +55,13 @@ For example, CLL is not a well-formed Roman number, nor are CMC and IVX.
 Go ahead, do some research, then try to write down the combinatorial rules of the Roman number system --- you will need a much more elaborate definition.
 
 But obviously both systems can represent exactly the same numbers.
-There is no magical number that can be represented in the standard Roman system not in the RR-system.
+There is no magical number that can be represented in the standard Roman system but not in the RR-system.
 This is why a mathematician would prefer the simpler RR-system.
 It makes it much easier to prove essential results.
 Once the RR-system is better understood, one extends the results to the Roman number system by defining a mechanism for converting from one number system to the other.
 
-The example above is slightly silly because mathematicians have more abstract ways of talking about numbers, ways where it no longer matters how numbers are actually written.
-But the general principle is very close to mathematical practice and will be with us for the entirety of this course:
+The example above is admittedly silly because mathematicians have more abstract ways of talking about numbers, ways where it no longer matters how numbers are actually written.
+But the general principle is very close to mathematical practice and will be with us for the entirety of this book:
 
 ::: advice
 - Study simple systems.

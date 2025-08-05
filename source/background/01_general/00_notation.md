@@ -4,7 +4,7 @@ pagetitle: How to read mathematics
 
 # How to read mathematics
 
-While this book is designed to be as approachable as possible, a certain mathematical style of writing will be indispensable.
+While this book is designed to be as approachable as possible, a certain mathematical style of writing is indispensable.
 This includes special notation, some math-specific jargon, and even a particular way of interpreting English sentences.
 Mathematicians do not do this to sound smarter than they are or to isolate themselves from the uninformed layman, but because it makes it easier for them to communicate their ideas.
 This is no different from any other field of research --- a specialized field of study requires a specialized means of communication.
@@ -93,14 +93,14 @@ Math isn't all that hard, but you have to be very disciplined about it.
 With time, you will get much better at reading math and it will take you much less effort, but for the beginning I suggest that you do the following to better deal with symbol shock:
 
 - Assign colors to specific symbols and types of objects.
-  In my personal experience, I can tell pretty easily how well I understand a paper based on how I would color its math.
+  In my personal experience, I can tell pretty easily how well I understand a mathematical text based on how I would color its math.
   At first, it's all just black, but as I gain a deeper understanding of the objects and how they hang together I construct an internal coloring system for myself.
   So grammars are blue, automata green, certain variables that keep reoccurring are purple and teal, and so on.
   If you have a hardcopy of this book in front of you, you can literally add colors to all the symbols, and that way the logic of the pages will reveal itself more clearly to you.
 
 - Think about **why** certain symbols were chosen.
   Mathematicians care a great deal about good notation, and it really shows.
-  A math paper with a well-designed notation is a pleasure to read.
+  A math text with a well-designed notation is a pleasure to read.
   There's certain established conventions.
   For instance, indices are usually chosen to be $i, j, k$, variables are $x, y, z$, and functions are $f, g, h$.
   But that's just a rule of thumb.
@@ -114,7 +114,7 @@ With time, you will get much better at reading math and it will take you much le
   And go in with the expectation that you will have to read some passages multiple times, and that you'll have to go back a few pages to look up some symbol or definition.
 
 - Don't give up.
-  None of the things we cover are some super-advanced hardcore math problems that will make your head explode unless you have an IQ of 150.
+  None of the things we cover are super-advanced hardcore math problems that will make your head explode unless you have an IQ of 150.
   What we are doing is the math-equivalent of running a 5k: most college students aren't fit enough to do it on their first try, but they can reach that level with a few months of training.
   It requires tenacity and discipline, though.
 
@@ -139,8 +139,15 @@ Consider the sentence "Every blue dragon is a chain smoker".
 Is this claim true or false?
 A linguist will tell you that it is neither, and instead contains a presupposition violation (yes, linguists like their fancy terms).
 It is a presupposition violation because the sentence assumes that blue dragons exist, which they obviously do not.
-A mathematician doesn't care for such linguistic subtleties and instead considers the statement true because there is no counterexample to prove it wrong: there exists no blue dragon that isn't a chain smoker, and hence "Every blue dragon is a chain smoker" is true.
-That is perfectly fine for mathematics, but it's very different from how a layperson would interpret the sentence.
+A mathematician doesn't care for such linguistic subtleties and instead considers the statement true because there is no counterexample to prove it wrong.
+Their chain of reasoning is as follows:
+
+1. There exists no blue dragon that isn't a chain smoker.
+1. Hence there is no counterexample to the claim that every blue dragon is a chain smoker.
+1. Since there is no counterexample to the statement "Every blue dragon is a chain smoker", it isn't false.
+1. Since the statement "Every blue dragon is a chain smoker" isn't false, it is true.
+
+That reasoning is perfectly fine for mathematics, but it's very different from how a layperson would think about the statement "Every blue dragon is a chain smoker".
 Again, when dealing with math you shouldn't assume anything that isn't stated explicitly.
 
 Quite generally, you should try to identify minimal examples:
@@ -153,9 +160,12 @@ Don't assume more than what was actually said.
 ### Questioning definitions
 
 Speaking of definitions, you should always ask yourself why something is defined the way it is.
-I don't mean this in some kind of existentialist way like "What does it mean to be red?", but a utilitarian one: considering that we could have defined something in a million slightly different ways, what might be the reason that makes this the most useful, elegant or productive definition?
-Remember, definitions can't be true or false, they can only be useful or useless.
-So what is it that makes a given definition useful?
+I don't mean this in some kind of existentialist way like "What does it mean to be red?", but a utilitarian one: considering that we could have defined something in a million slightly different ways, what might be the reason that this is considered the most useful, elegant or productive definition?
+Remember, definitions cannot be true or false, they can only be useful or useless.
+According to biologists, tomatoes aren't vegetables, yet that doesn't mean that their definition of *vegetable* is false.
+It just means that their definition serves a specific use case that does not align with common usage.
+So whenever you encounter a definition, you should ask yourself what is it that makes that definition useful.
+Why did the person decide to go with this definition rather than some other conceivable alternative?
 In exploring this question, you will get a much better understanding of what the definition even defines, and that is key to studying the kind of object that is being defined.
 
 :::advice
@@ -170,46 +180,49 @@ Sometimes a definition may be so abstract and general that it is hard to see wha
 In seeking out those examples, you gain a much better idea of the defined class of objects.
 
 ::: example
-For the sake of illustration, let us skip ahead to an advanced concept we will encounter much later in this book:
+Consider the following example, which is a lot more abstract than most of the things you will encounter in this book:
+An *algebra* is a set $S$ with an operation that takes elements of $S$ as input and produces elements of $S$ as its output.
 
-An *algebra* is a set $S$ with a function $+$ that takes elements of $S$ as input and produces elements of $S$ as its output.
-We also say that $S$ is *closed under $+$*.
-That is a very general definition, and one can immediately think of tons of algebras:
+That is a very general definition, and there are tons of things that are algebras in this sense:
 
 - the natural numbers (0, 1, 2, 3, ...) with addition: you take two natural numbers, add them together, and you still have a natural number.
 - the integers (..., -3, -2, -1 0, 1, 2, 3, ...) with subtraction: you take two integers, subtract the second from the first, and you'll still have an integer
-- the real numbers with base 2 logarithm: if you don't know yet what that means, you will by the end of the class
-- the set of all possible strings with concatenation: you will know very soon what this means
+- the real numbers with base 2 logarithm: if you don't know yet what that means, rest assure that you will learn about logarithms at some point in this book
+- the set of all possible strings with concatenation: again, you will know very soon what this means
 
-But what is an example of something that is not an algebra?
+But with such a general description, what could possibly fail to be an algebra?
 Well, the natural numbers with division, for instance.
 The natural numbers are 0, 1, 2, 3, and so on, but $\frac{5}{2} = 2.5$, which is not a natural number.
 This shows that division can take two natural numbers as input and return something that is not a natural number.
 Hence the natural numbers with division is not an algebra.
 :::
 
-If you're confused ow because you don't quite remember the difference between natural numbers and integers, or what exactly a logarithm is, don't worry.
-For most of this class, we actually won't be using the things you heard about in high school and have forgotten since then.
-Where we do need them, they're slowly introduced like any other new concept.
-So don't worry about this and focus on the important insight here.
+A brief remark:
+If you're worried now because this example mentioned natural numbers, integers, logarithms, or anything else you don't quite remember from your high school days, don't despair.
+While these are convenient examples for mathematical concepts, we won't actually encounter them all that often.
+They certainly aren't the focus of this book, and high school math will rarely make an appearance.
+Where we do need these concepts, they're slowly introduced like any other new concept.
+So don't let this distract you, focus on the important insight here:
 
 ::: advice
 Whenever you see an abstract definition, think about what kind of more concrete objects would (not) fit the definition.
 :::
 
+
 ### Implication and equivalence are not the same
 
 English, as all natural languages, is pretty sloppy in how it expresses conditions.
 Consider the following lovely sentence: "If you don't give me your money, I will shoot you".
-Now the common understanding is that if you do hand over your money, you will not be shot.
+Now the common understanding is that you won't be shot as long as you hand over your money.
 But if your robber happens to be a mathematician you are very unlucky because they might still shoot you --- while you draw your final breath they will gleefully point out that they didn't say "If you don't give me your money, I will shoot you, and if you give me your money I will not shoot you."
-Your murderer took advantage of the fact that we often express a biconditional ($a$ implies $b$, and the other way round) with the same language we use for implications ($a$ implies $b$, but $b$ does not necessarily imply $a$).
+Your murderer took advantage of the fact that English often expresses a biconditional ($a$ implies $b$, and the other way round) with the same language we use for implications ($a$ implies $b$, but $b$ does not necessarily imply $a$).
 
 ::: example
 In "If you don't give me your money, I will shoot you", the *if* is a biconditional: whichever choice you make fully determines what the robber will do next.
 Not forking over your hard-earned cash implies getting shot by the robber, and getting shot by the robber implies that you chose not to fork over your hard-earned cash.
 But the very same *if* is just an implication in "If it rains, the road is wet": if it does not rain, the road may still be wet, e.g. because of a homeowner's overzealous sprinklers.
 Here the absence of rain does not imply the absence of wet roads.
+It is an implication, but not a biconditional.
 :::
 
 English does not explicitly mark the distinction between a biconditional and an implication, the reader is supposed to figure it out from context.
@@ -230,14 +243,14 @@ Never confuse the conditional *if* with the biconditional *iff*.
 ## Recap
 
 - Avoid symbol shock!
-    - don't rush, take your time
-    - break readings into chunks
-    - add colors
-    - try to understand the notation
+    - Don't rush, take your time.
+    - Break readings into chunks.
+    - Add colors.
+    - Try to understand the notation.
 - Definitions
-    - read them carefully
-    - think about what would (not) fit the definition
-    - think about why this particular definition was chosen, rather than some alternative
+    - Read them carefully.
+    - Think about what would (not) fit the definition.
+    - Think about why this particular definition was chosen, rather than some alternative.
 - Writing style
     - Don't assume implicatures.
       Read in a very literal fashion.
