@@ -51,23 +51,22 @@
 </div>
 <div class="content">
 <h1 id="how-to-read-this-book">How to read this book</h1>
-<p>Since you’re reading this, I assume that your mind already has some
-method of transferring its written symbols into meaningful sentences.
-But sentence-level comprehension is not quite enough. This book doesn’t
-follow a familiar linear structure, it is non-linear by design. Before
-venturing forth, you should get yourself acquainted with the overall
-structure.</p>
+<p>As you can tell from its title, this is a book about language,
+mathematics, and computation. Except that this isn’t really a book, at
+least not in the usual sense. This book doesn’t follow a familiar linear
+structure, it is non-linear by design. Before venturing forth, you
+should get yourself acquainted with the overall structure.</p>
 <h2 id="parts-chapters-units">Parts, chapters, units</h2>
 <p>The books is split into multiple <strong>parts</strong>: <em>Main
-units</em>, <em>Background</em>, and <em>Additional Practice
-Exercises</em>. I will have more to say on each part below.</p>
-<p>Each part consists of multiple <strong>chapters</strong>. Chapters
-correspond to broad topics such as n-gram models or finite-state
-automata. Each chapter is broken down into <strong>units</strong>, with
-each unit illustrating a core aspect of the chapter topic or one of its
-linguistic applications. The main body of each unit is interspersed with
-offset blocks for examples, exercises, or advice. The end of a unit
-usually contains a brief recap with bullet points.</p>
+units</em>, <em>Background units</em>, and <em>Additional practice
+exercises</em>. Each part consists of multiple
+<strong>chapters</strong>. Chapters correspond to broad topics such as
+n-gram models or finite-state automata. Each chapter is broken down into
+<strong>units</strong>, with each unit illustrating a core aspect of the
+chapter topic or one of its linguistic applications. The main body of
+each unit is interspersed with offset blocks for examples, exercises, or
+advice. The end of a unit usually contains a brief recap with bullet
+points.</p>
 <div class="example">
 <p>This, for example, is an example block giving you an example of what
 an example block looks like.</p>
@@ -81,23 +80,23 @@ chapters, and units.</p>
 for their length and flow.</p>
 </div>
 <p>I tried my best to keep each unit short enough that it could make for
-a comfy bedtime read. While I didn’t always succeed, I think I did so
+a comfy bedtime read. While I didn’t always succeed, I believe I did so
 most of the time.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>The real meat of this book is in the <em>Main units</em> part, which
-will introduce you to how mathematical concepts can be applied to
-language and what we can learn from doing so. But this part does not
-actually teach you said math. Instead, all information on mathematical
-topics is kept separate, for easy reference, in the <em>Background</em>
-part.</p>
+<p>The real meat of this book is in the <em>Main units</em> part.
+<em>Main</em> units show you how mathematical and computational concepts
+can be applied to language and what we can learn from doing so. But the
+<em>Main</em> units do not actually teach you said math. Instead, all
+information on mathematical topics is kept separate, for easy reference,
+in the units of the <em>Background units</em> part.</p>
 <div class="example">
-<p>The chapter on n-gram models in <em>Main units</em> uses sets and
-functions, but those concepts aren’t fully explained there. Instead you
-have to read specific units in the <em>Background</em> part.</p>
+<p>The chapter on n-gram models in the part <em>Main units</em> uses
+sets and functions, but those concepts aren’t fully explained there.
+Instead you have to read specific <em>Background</em> units.</p>
 </div>
-<p>You are not supposed to read the <em>Background</em> part in a linear
-fashion. Instead, the units in <em>Main units</em> will tell you when it
-is time to consult a unit in <em>Background</em>. If there is a specific
+<p>You are not supposed to read the <em>Background</em> units in a
+linear fashion. Instead, the <em>Main</em> units will tell you when it
+is time to consult a <em>Background</em> unit. If there is a specific
 mathematical concept that you need to be familiar with in order to fully
 appreciate a <em>Main</em> unit, that unit will start with a list of
 prerequisites, e.g.:</p>
@@ -112,27 +111,29 @@ intersection, and the typical relations that can hold between sets
 you should go to the <em>Background</em> chapter about sets and read the
 units on operations and set-relations. These units may themselves have
 prerequisites. But the book is structured in such a manner that as long
-you follow the main units from start to finish without skipping
-anything, you will also move through the background units in a linear
-fashion so that you should never have to read a background unit for
-which you don’t meet the prerequisites yet.</p>
+you follow the <em>Main</em> units from start to finish without skipping
+anything (except optional chapters, see below), you will also move
+through the <em>Background</em> units in a linear fashion so that you
+should never have to read a <em>Background</em> unit for which you don’t
+meet the prerequisites yet.</p>
 <div class="example">
 <p><a href="https://en.wikipedia.org/wiki/Georg_Cantor">Georg Ferdinand
 Luwdig Philipp Cantor</a> wants to read up on n-grams models. He picks
 the first unit and is happy to see that it has no prerequisites. But as
-the second unit is much more formal, it requires some knowledge of set
-theory and functions:</p>
+the second unit is more formal, it requires some knowledge of set theory
+and functions:</p>
 <div class="prereqs">
 <ul>
 <li>set theory (operations, set-relations)</li>
 <li>functions (notation)</li>
 </ul>
 </div>
-<p>While Cantor got the first one down, he’s a little rusty on his
-function notation. So he goes to <em>Background</em> and checks out the
-unit on function notation. The unit also requires some set theory, but
-since Cantor is on top of that he can read the unit right away. Once
-he’s done, he continues with the second unit on n-gram models.</p>
+<p>While Cantor groks sets like nobody else, he is a little rusty on his
+function notation. So he goes to the part <em>Background units</em> and
+checks out the unit on function notation. The unit also requires some
+set theory, but since Cantor is on top of that he can read the unit
+right away. Once he’s done, he continues with the second unit on n-gram
+models.</p>
 </div>
 <h2 id="optional-chapters">Optional chapters</h2>
 <p>Some chapters in <em>Main units</em> are marked as optional. This
@@ -140,34 +141,34 @@ means that they can be skipped without missing any prerequisites of
 later chapters.</p>
 <div class="example">
 <p>The chapter on n-grams in language technology introduces the concept
-of multisets. But since no other <em>Main</em> chapters use multisets,
-you can skip this optional chapter without missing any background
-material that is needed for subsequent <em>Main</em> chapters.</p>
+of multisets. But since no other <em>Main</em> units use multisets, you
+can skip this optional chapter without missing any background material
+that is needed for subsequent <em>Main</em> units.</p>
 </div>
 <h2 id="exercises">Exercises</h2>
-<p>The exercises in the <em>Main</em> and <em>Background</em> units are
-created manually and don’t come with solutions (although your instructor
-may distribute official solutions in class). The part <em>Additional
-practice exercises</em> contains automatically generated exercises, and
-those do come with solutions. These mostly test your command of very
-mechanical concepts, e.g. computing the union of two sets. The idea is
-to give you ample opportunities to practice these calculations until
-they are second nature to you. Since they are automatically generated,
-these exercises aren’t exactly fun or stimulating. To be honest, they
-are quite the grind. But that’s exactly the point: if you struggle with
-a basic concept, you can keep grinding it out one problem set at a time
-until it finally clicks for you.</p>
+<p>The exercises in <em>Main units</em> and <em>Background units</em>
+are created manually and don’t come with solutions (although your
+instructor may distribute official solutions in class). The part
+<em>Additional practice exercises</em> contains automatically generated
+exercises, and those do come with solutions. They mostly test your
+command of very mechanical concepts, e.g. computing the union of two
+sets. The idea is to give you ample opportunities to practice these
+calculations until they are second nature to you. Since they are
+automatically generated, these exercises aren’t exactly fun or
+stimulating. To be honest, they are quite the grind. But that’s the
+point: if you struggle with a basic concept, you can keep grinding it
+out one problem set at a time until it finally clicks for you.</p>
 <h2 id="recap">Recap</h2>
 <ul>
 <li>The book consists of multiple parts, each part consists of chapters,
 and chapters consist of units.</li>
-<li>Don’t read the <em>Background</em> chapters from start to finish, it
+<li>Don’t read the <em>Background</em> units from start to finish, it
 will be incredibly dull. Instead, work your way through the
 <em>Main</em> units and only check out a <em>Background</em> unit when
 it is listed as a prerequisite.</li>
-<li>Each unit comes has exercises interspersed with the main text. But
-if you want to practice more, check out the automatically generated
-exercises in <em>Additional practice exercises</em>.</li>
+<li>Each unit has exercises interspersed with the main text. But if you
+want to practice more, check out the automatically generated exercises
+in <em>Additional practice exercises</em>.</li>
 </ul>
 </div>
 </div>
