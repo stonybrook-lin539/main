@@ -442,9 +442,9 @@ final emissions.</p>
 chapter. Suppose that <em>s</em> is subject to intervocalic voicing::
 <span class="math inline">\(\mathrm{s} \rightarrow \mathrm{z} \mid
 \mathrm{V} \_ \mathrm{V}\)</span>. You may assume that the only input
-symbols are <em>s</em>, <em>z</em>, <em>x</em>, and <em>V</em> (and of
-course ⋉). Define an FST for intervocalic voicing. You may write a table
-or draw a graph.</p>
+symbols are <em>s</em>, <em>x</em>, and <em>V</em> (and of course ⋉).
+Define an FST for intervocalic voicing. You may write a table or draw a
+graph.</p>
 <p>Does your FST use the delayed output strategy? What about the final
 emission trick?</p>
 </div>
@@ -604,8 +604,8 @@ almost the same as the one for vowel harmony.</p>
 <td style="text-align: center;">s:s</td>
 <td style="text-align: center;">ʃ:ʃ</td>
 <td style="text-align: center;">Yes</td>
-<td style="text-align: center;">Yes(<span
-class="math inline">\(\varepsilon\)</span>)</td>
+<td style="text-align: center;">⋉:<span
+class="math inline">\(\varepsilon\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;"><strong>ESS</strong></td>
@@ -613,8 +613,8 @@ class="math inline">\(\varepsilon\)</span>)</td>
 <td style="text-align: center;">s:s, ʃ:s, x:x</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes(<span
-class="math inline">\(\varepsilon\)</span>)</td>
+<td style="text-align: center;">⋉:<span
+class="math inline">\(\varepsilon\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: right;"><strong>ESH</strong></td>
@@ -622,8 +622,8 @@ class="math inline">\(\varepsilon\)</span>)</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">s:ʃ, ʃ:ʃ, x:x</td>
 <td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes(<span
-class="math inline">\(\varepsilon\)</span>)</td>
+<td style="text-align: center;">⋉:<span
+class="math inline">\(\varepsilon\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -671,14 +671,14 @@ phenomena. No extra tweaks or extensions are required to capture
 locality, unboundedness, iterativity, tiers, blocking, and much more.
 They are all particular instantiations of the same basic machinery.</p>
 <div class="exercise">
-<p>The two following statements are true. Explain why.</p>
+<p>The following statements are both true. Explain why.</p>
 <p>When using total deterministic FSTs,</p>
-<ul>
+<ol type="1">
 <li>there are phenomena that can be captured by the right-to-left
 strategy but not the delayed-output strategy, and</li>
 <li>there are phenomena that can be captured by the delayed-output
 strategy but not the right-to-left strategy.</li>
-</ul>
+</ol>
 </div>
 <div class="exercise">
 <p>Many languages not only use different sounds but also different
