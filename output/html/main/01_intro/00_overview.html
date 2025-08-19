@@ -69,35 +69,122 @@ can be fruitfully applied to the study of language. This sounds
 abstract, so let us look at some brief examples.</p>
 <h2 id="example-1-building-words-from-blocks-of-sounds">Example 1:
 Building words from blocks of sounds</h2>
-<p>fixme</p>
+<p>Words are made up from sounds, but these sounds cannot be distributed
+in a random fashion. While <em>blunder</em> is an English word,
+<em>rblnuder</em> is not. In fact, no English word can ever contain the
+sound sequence <em>rbln</em>. Similarly, German words never end in
+<em>voiced fricatives</em> such as the <code>z</code> in English
+<em>zeal</em>. Voiceless fricatives such as <em>s</em> in English
+<em>seal</em>, on the other hand, are fine at the end. Linguists have
+proposed highly detailed theories to account for the behavior of sounds,
+but a surprising amount of empirical ground can be covered by an
+extremely simplistic idea: words are built from overlapping blocks of
+sounds. With the help of mathematics, we can then ask various questions
+about this simplistic system: Does it matter how large our blocks are?
+What happens if blocks are allowed to vary in length? Can we sometimes
+ignore certain parts of our blocks? Quite generally, how can we modify
+and extend this machinery, and how does that affect its empirical
+predictions? All of these questions will provide you with simple case
+studies of how mathematics allow us to gain a better understanding of
+linguistic tools, which in turns enables deeper insights into language
+itself.</p>
 <h2 id="example-2-have-you-ever-thought-about-ever">Example 2: Have you
 ever thought about <em>ever</em>?</h2>
-<p>fixme</p>
+<p>Consider the following sentence of English:</p>
+<ol class="example" type="1">
+<li>No living person has ever been to Lankhmar.</li>
+</ol>
+<p>With the exception of referencing a (formerly?) famous fantasy city,
+it is utterly unremarkable. But if we replace <em>no</em> with
+<em>every</em>, the sentence becomes ill-formed (which linguists
+indicate with an asterisk).</p>
+<ol start="2" class="example" type="1">
+<li>*Every living person has ever been to Lankhmar.</li>
+</ol>
+<p>Remove <em>ever</em>, and the sentence is fine again.</p>
+<ol start="3" class="example" type="1">
+<li>Every living person has been to Lankhmar.</li>
+</ol>
+<p>So now you might think: “Okay, <em>every</em> and <em>ever</em> don’t
+like to show up together.” But they can actually show up together.</p>
+<ol start="4" class="example" type="1">
+<li>Every living person who has ever been to Lankhmar must have been
+hallucinating.</li>
+</ol>
+<p>Based on data like this, linguists have proposed that <em>ever</em>
+can only occur in contexts that provide certain kinds of <strong>logical
+entailments</strong>. From a mathematical perspective, what is special
+about these entailments is that they correspond to <strong>monotonic
+functions</strong>. Whenever you are using <em>ever</em>, you are
+unwittingly juggling a very abstract mathematical property.</p>
+<p>What makes this even more interesting is that monotonic functions
+aren’t just connected to <em>ever</em>. Monotonic functions also play a
+major role in many other phenomena that are of interest to linguists:
+adjectival gradation, case stem syncretism, person case constraints, the
+adjunct island constraint, the ban on improper movement, and much more.
+Probably most of those terms won’t mean much to you, but the important
+point here is that they involve very different aspects of language and
+look very different in the formalisms linguists use to analyze them. It
+is only through the lens of mathematics, and particularly monotonic
+functions, that we gain a unified perspective on these seemingly
+unrelated phenomena.</p>
 <h2 id="example-3-the-limits-of-word-building">Example 3: The limits of
 word building</h2>
-<p>fixme</p>
+<p>In English, a parent of your grand parent is your <em>great grand
+parent</em>, their parent is your <em>great great grand parent</em>,
+their parent is their <em>great great great grand parent</em>, and so
+on. If you wanted to, you could refer to your <em>great great great
+great great great great great great great great great great great great
+grand parent</em>, although you probably don’t know who that is. Now
+consider German. In German, the word for tomorrow is <em>morgen</em>.
+The day after tomorrow is <em>übermorgen</em>, the day after that is
+<em>überübermorgen</em>, the day after that is
+<em>überüberübermorgen</em>, and so on. Again you could use a word like
+<em>überüberüberüberüberüberüberüberüberüberüberüberüberüberüberübermorgen</em>,
+even though nobody will really understand that you are referring to the
+day 17 days after this one. Now contrast that to Ilocáno, an
+Austronesian language with about 11 million speakers in the Philippines.
+In Ilocáno, the word for tomorrow is <em>bigat</em>, and you can
+“sandwich” it between <em>ka</em> and <em>an</em> to get
+<em>kabigatan</em>, which refers the day after tomorrow. So Ilocáno
+<em>kabigatan</em> is the counterpart to German <em>übermorgen</em>. You
+might reasonably expect, then, that we can also have
+<em>kakabigatanan</em> or <em>kakakabigatananan</em>. But that doesn’t
+seem to be possible. In fact, there seems to be no language that allows
+unbounded sandwiching of this type. Why should that be? Why is it okay
+to slap <em>über</em> at the beginning of a word as often as you want,
+but once it comes to sandwiching you can only do it once?</p>
+<p>We will look at one possible answer to this conundrum, which comes in
+the form of finite-state machines. We will see that finite-state
+machines can handle a lot of linguistic phenomena, and yes, that
+includes the addition of arbitrarily many instances of <em>great</em> or
+<em>über</em> at the beginning of a word. But they cannot do unbounded
+sandwiching. This simply is a harder problem computationally speaking.
+Mathematics thus allows us to take patterns and group them into
+difficulty classes. Patterns that go beyond a certain threshold of
+difficulty do not seem to occur across languages.</p>
 <h2 id="intended-audience-and-learning-objectives">Intended audience and
 learning objectives</h2>
 <p>The book is aimed at undergraduate and graduate students in
-Linguistics, Mathematics, or Computer Science.</p>
+linguistics, mathematics, or computer science.</p>
 <h3 id="for-linguists">For linguists</h3>
-<p>Linguistics students will gain familiarity with mathematical
-reasoning and how it can supplement and support linguistic theory
-building. The goal is not to turn these students into mathematicians or
-mathematical linguists. While they will encounter some definitions and
-proofs, the book doesn’t teach students how to produce new mathematical
-results. Instead, the focus in on teaching students how this
-mathematical view of language can be incorporated into linguistic
-research in order to gain additional insights.</p>
+<p>If your background is in linguistics, you will gain familiarity with
+mathematical reasoning and how it can supplement and support linguistic
+theory building. The goal is not to turn you into a mathematician or
+mathematical linguist. While you will encounter some definitions and
+proofs, the book doesn’t teach you how to produce new mathematical
+results. Instead, the focus is on showing you how this mathematical view
+of language can be incorporated into linguistic research in order to
+gain additional insights.</p>
 <p>With respect to the linguistics audience, then, an alternative title
 for this book could be <em>Mathematical Linguistics for Consumers</em>
 (rather than producers).</p>
 <h3 id="for-mathematicians-and-computer-scientists">For mathematicians
 and computer scientists</h3>
-<p>Students in mathematics and computer science will gain exposure to
-natural language as a rarely explored area of application for
-mathematical inquiry. Ideally, they will find this area of application
-fascinating enough to continue their journey into the study of language.
+<p>If you come from mathematics or computer science, you will gain
+exposure to natural language as a rarely explored application for
+mathematical inquiry. Ideally, you will find this area of application
+fascinating enough to continue your journey into the study of language.
 This could take the form of an introductory course on theoretical
 linguistics, or a more advanced textbook on mathematical linguistics
 (see also the discussion later on in this chapter).</p>
@@ -105,27 +192,29 @@ linguistics, or a more advanced textbook on mathematical linguistics
 scientists, then, it could be called <em>Mathematics as a gateway drug
 to language science</em>.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>The book presupposes very little mathematical training. Readers
-should be familiar with basic operations such as addition,
-multiplication, exponentiation, and numerical functions, e.g. <span
-class="math inline">\(f(x) = 2x + 5\)</span>.</p>
-<p>Similarly, readers don’t need prior training in linguistics. While we
+<p>The book presupposes very little mathematical training. You should be
+familiar with basic operations such as addition <span
+class="math inline">\((5 + 3 = 8)\)</span>, multiplication <span
+class="math inline">\((5 \times 3 = 35)\)</span>, exponentiation <span
+class="math inline">\((5^3 = 625)\)</span>, and numerical functions,
+e.g. <span class="math inline">\(f(x) = 2x + 5\)</span>.</p>
+<p>Similarly, you don’t need prior training in linguistics. While we
 will encounter many linguistic concepts throughout, care has been taken
 to introduce them in sufficient depth that everybody can follow the
 discussion. The hedge “sufficient depth” is doing a lot of heavy lifting
 here. This is not an introduction to theoretical linguistics. The
 discussion of linguistic concepts is often abridged and deliberately
 lacking in nuance. The idea is to provide enough background for
-developing a mathematical perspective, not to teach both mathematics and
-linguistics at the same time.</p>
+developing a mathematical perspective on language, not to teach both
+mathematics and linguistics at the same time.</p>
 <h2 id="information-for-instructors">Information for instructors</h2>
 <p>The book was developed to support the course <em>Mathematical Methods
 in Linguistics</em> at Stony Brook University. The course has a very
 heterogeneous audience, attracting undergraduate and graduate students
 from linguistics, mathematics, and computer science. The course lasts
 one semester, which consists of 14 weeks with two 80 minute lectures
-each week. The end of this chapter includes a suggested weekly
-progression for instructors.</p>
+each week. The end of this chapter includes suggested weekly
+progressions for such a semester format.</p>
 <h2 id="thank-you">Thank you</h2>
 <p>I have been working on this book since the first time I taught
 <em>Mathematical Methods in Linguistics</em> at Stony Brook, which was
@@ -139,21 +228,22 @@ spotting typos to extended discussions of why they found certain parts
 confusing or dull. I would like to thank all of them for going greatly
 beyond the call of duty: Abdelrahim Qaddoumi, Eric Sclafani, Jacob
 Rowen, Nikhil Vohra, Shigeto Kamano, Stephan Julien, Yutong Zhang,
-Zelalem Amera, Zhengxiang “Jack” Wang.</p>
+Zelalem Amera, and Zhengxiang “Jack” Wang.</p>
 <p>In addition, funding through NSF grant BCS-1845344 allowed me to hire
 several students to help with the project: Alina Shabaeva, Han Li,
 Kenneth Hanson, and Nazila Shafiei. They proofread finished chapters,
-creating new exercises, and drafting solutions for the exercises. I
+created new exercises, and drafted solutions for various exercises. I
 would like to particularly thank Alina for the Python code she wrote for
-the randomly generated exercises on partial orders and lattices. And
-Kenneth was essential for creating the publication infrastructure for
-this book — going from a bunch of <a
-href="https://pandoc.org/">pandoc</a> files to a beautifully formatted
-website and just as beautifully typeset PDF requires a lot of planning
-and tinkering.<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a> The original infrastructure I set up
-lacked both, and Kenneth stepped in to retool it into something that’s
-both robust and flexible enough for a project of this size.</p>
+the randomly generated exercises on partial orders and lattices, which
+would have taken up more of my time than I had to spend. And Kenneth was
+essential for creating the publication infrastructure for this book —
+going from a bunch of <a href="https://pandoc.org/">pandoc</a> files to
+a beautifully formatted website and just as beautifully typeset PDF
+requires a lot of planning and tinkering.<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The
+original infrastructure I set up lacked both, and Kenneth stepped in to
+retool it into something that’s both robust and flexible enough for a
+project of this size.</p>
 <p>Finally, I would like to thank the whole field of mathematical
 linguistics for providing me with such an infinitely stimulating and
 supportive community. This book is a work of passion, and without you
@@ -165,7 +255,7 @@ role="doc-endnotes">
 <li id="fn1" role="doc-endnote"><p>The reader might be wondering why I
 didn’t simply go with <a href="https://bookdown.org">bookdown</a> or a
 similar all-in-one solution. The answer is bad timing. When I started
-working on this project, bookdown was barely a year old and didn’t have
+working on this project, bookdown was a young project and didn’t have
 enough exposure yet to make it on my radar (this is a value judgment on
 my radar rather than bookdown). Once I became aware of it, switching
 over to it seemed like a lot more work than keeping the current system.
