@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>N-gram models of grammaticality</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a href="#n-gram-models-of-grammaticality">N-gram models of
+grammaticality</a>
+<ul>
+<li><a href="#a-simple-fact-about-english">A simple fact about
+English</a></li>
+<li><a href="#bigrams">Bigrams</a>
+<ul>
+<li><a href="#extracting-bigrams">Extracting bigrams</a></li>
+<li><a href="#adding-edge-markers">Adding edge markers</a></li>
+</ul></li>
+<li><a href="#bigram-grammars">Bigram grammars</a></li>
+<li><a href="#from-bigram-grammars-to-n-gram-grammars">From bigram
+grammars to n-gram grammars</a></li>
+<li><a href="#a-look-at-german">A look at German</a></li>
+<li><a href="#studying-formalisms-studying-language">Studying formalisms
+~ studying language</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="n-gram-models-of-grammaticality">N-gram models of
+grammaticality</h1>
+<p>This unit presents a very simple model of language. As you will see,
+even simple models can give rise to complex questions, questions that
+cannot easily be answered without math. It might not look like the math
+you know from high school, but it is still math (some might say it is
+the high school math that barely qualifies as math because it is about
+calculating rather than reasoning).</p>
+<p>If you already have some mathematical experience, you might want to
+skip two sections ahead and only come back here to see the linguistic
+motivation for the mathematics. And the trained linguist may find some
+of the content here overly simplistic, but we will move on to more
+intricate problems as our mathematical toolkit grows.</p>
+<h2 id="a-simple-fact-about-english">A simple fact about English</h2>
+<p>English has a large number of different sounds, but not all
+combinations are possible. For instance, <em>blink</em> is a word but
+<em>kbinl</em> is not. And <em>kbinl</em> will never be a word of
+English because it does not obey English <strong>phonotactics</strong>,
+i.e. the laws that govern in what order sounds may be arranged. This is
+what separates <em>kbinl</em> from <em>kobinal</em> or
+<em>karbinolium</em>. None of them are existing words of English, but
+<em>kobinal</em> and <em>karbinolium</em> are potential words. We can
+give them a meaning, start using them, and no native speaker of English
+will have a problem picking them up. These words obey the phonotactic
+laws of English, whereas <em>kbinl</em> violates the requirement that
+English words cannot start with <em>kb</em>.</p>
+<p>The knowledge of English phonotactics is what allows native speakers
+to coin new terms that fit in with the rest of the vocabulary. It is
+also what makes it hard for English speakers to learn other languages.
+German, for example, is very happy to start a word with <em>k</em> and
+<em>n</em>, as in <em>Knoblauch</em>, the German word for garlic.
+English has words that are spelled with <em>kn</em> at the start, like
+<em>knight</em>, but the <em>k</em> is never pronounced. In terms of
+pronunciation, <em>knight</em> and <em>night</em> are the same word, and
+a native speaker of English would never pronounce <em>knight</em> with a
+<em>k</em> at the beginning. Phonotactics is one of the most basic
+aspects of <strong>natural language</strong>. By natural language I mean
+languages like English, Chinese, Tongan, Inuktitut, various dialects of
+Italian, or the specific language that you grew up with. This is in
+contrast to <strong>formal languages</strong>, which includes languages
+designed by humans (e.g. Esperanto, Klingon, Quenya), programming
+languages like Python or Brainfuck (yes, seriously), or the strands of
+DNA in your body (yes, we can describe that mathematically as a
+particular kind of language). Linguists seek to gain a deeper
+understanding of the laws, principles, and regularities of natural
+languages, and this includes the laws of natural language phonotactics.
+Linguists want to do this at both the language-specific level and across
+languages, and this yields very different questions even if we consider
+just phonotactics:</p>
+<ul>
+<li><strong>Language specific</strong>: What are the phonotactics of
+English? German? Language X?</li>
+<li><strong>General</strong>: What is a possible phonotactic system?
+What shape can the laws of phonotactics take? What kind of logically
+conceivable systems of phonotactics can never occur in a natural
+language?</li>
+</ul>
+<p>In order to tackle these questions in a precise manner, we need a
+formal model of phonotactics. What might that be? One plausible
+assumption is that a word is phonotactically well-formed iff none of its
+subparts are ill-formed. So <em>kobinal</em> is a possible word because
+there is nothing wrong with a word that starts with <em>kobina</em>, has
+<em>obina</em> in the middle, and ends with <em>obinal</em>. But this
+just raises the question why <em>kobina</em> is an acceptable start, and
+<em>obina</em> is a well-formed middle, and <em>obinal</em> is an
+acceptable end. Well, because their subparts are fine. For example,
+<em>kobina</em> is fine because a word can start with <em>kobin</em> and
+have <em>obin</em> in the middle and <em>bina</em> at the end. Then why
+can a word start with <em>kobin</em>? Well, because its subparts are
+fine: a word can start with <em>kobi</em>, have <em>obi</em> in the
+middle, and <em>obin</em> at the end. As you can already see, we can
+play that game for a long time, breaking well-formed parts into smaller
+well-formed parts.</p>
+<p>But eventually, things will break down. If we want to know why
+<em>ko</em> is a good start, it’s not enough to say that words can start
+with <em>k</em> and have <em>o</em> in the middle. Because it is also
+true that words can start with <em>k</em> and have <em>b</em> in the
+middle (as in <em>kobinal</em>), yet <em>kbinal</em> is not okay even
+though it starts with <em>k</em> and has a <em>b</em> in the middle. By
+looking at individual sounds, we have decomposed things too much to
+capture the phonotactics of English. So let’s take one step up and
+consider pairs of consecutive sounds. In more technical terms, let’s
+describe English phonotactics in terms of <strong>bigrams</strong>.</p>
+<h2 id="bigrams">Bigrams</h2>
+<h3 id="extracting-bigrams">Extracting bigrams</h3>
+<p>A bigram is a string of two elements. For phonotactics, the elements
+are sounds (to all trained linguists: we do not need to distinguish
+between phones, allophones, or phonemes yet, so please don’t get your
+panties in a twist). Examples of bigrams include <em>ko</em>,
+<em>ob</em>, or <em>bn</em>. A given word’s <strong>set of
+bigrams</strong> is the collection of all bigrams that occur in it,
+without repetitions.</p>
+<div class="example">
+<p>The bigrams of <em>kobinal</em> are <em>ko</em>, <em>ob</em>,
+<em>bi</em>, <em>in</em>, <em>na</em>, and <em>al</em>. The bigrams of
+<em>banana</em> are <em>ba</em>, <em>an</em>, and <em>na</em>.</p>
+</div>
+<div class="exercise">
+<p>Consider the word <em>supercalifragilisticexpialidocious</em>. For
+each one of the following, say whether it is a bigram of the word.</p>
+<ul>
+<li>fr</li>
+<li>z</li>
+<li>doci</li>
+<li>pail</li>
+<li>sit</li>
+<li>co</li>
+<li>super</li>
+</ul>
+</div>
+<h3 id="adding-edge-markers">Adding edge markers</h3>
+<p>One shortcoming of this simple notion of bigrams is that one cannot
+tell which bigrams occurred at the beginning and the end of the word.
+For example, <em>ababa</em> and <em>babab</em> have the same bigrams,
+<em>ab</em> and <em>ba</em>.</p>
+<p>But for phonotactics it is actually important to know how a word
+starts and how it ends. We already saw that in our discussion of
+word-initial <em>kn</em> in German. English is perfectly fine with
+<em>kn</em> when it is not at the beginning of a word, e.g. in
+<em>acknowledge</em>. But at the beginning of a word English
+phonotactics bring out the banhammer and just won’t allow <em>kn</em>.
+The beginning and the end of words seems to be privileged positions, and
+our current notion of bigrams does not allow us to capture that.</p>
+<p>We have to expand our notion of bigrams a bit, then. Concretely, we
+will add edge markers to indicate the left or right edge of a word. One
+could use a single edge marker like <em>$</em>. In that case,
+<em>ababa</em> would be <em>$ababa$</em>, and <em>babab</em> would be
+<em>$babab$</em>. But once we dive deeper into the mathematics, it will
+be more convenient to have separate markers: ⋊ for the left edge and ⋉
+for the right edge. This means that <em>ababa</em> will be
+<em>⋊ababa⋉</em>, and <em>babab</em> will be <em>⋊babab⋉</em>.</p>
+<p>Now one can tell clearly which sounds occurred at the start and the
+end.</p>
+<div class="example">
+<p>To calculate the bigrams of <em>kobinal</em>, we first expand it to
+<em>⋊kobinal⋉</em>. Then we extract bigrams as usual, giving us the
+following list: <em>⋊k</em>, <em>ko</em>, <em>ob</em>, <em>bi</em>,
+<em>in</em>, <em>na</em>, <em>al</em>, <em>l⋉</em>.</p>
+</div>
+<div class="exercise">
+<p>Consider once more the word
+<em>supercalifragilisticexpialidocious</em>. Which one of the following
+is among its bigrams (with edge markers):</p>
+<ul>
+<li>fr</li>
+<li>z</li>
+<li>⋊⋉</li>
+<li>⋊s</li>
+<li>s⋉⋉</li>
+</ul>
+</div>
+<p>(For particularly observant readers: Yes, bigrams with edge markers
+are still not quite enough to detect that the consonant cluster
+<em>kn</em> occurred at the beginning of a word, but we will get there
+soon.)</p>
+<h2 id="bigram-grammars">Bigram grammars</h2>
+<p>Now that we have a firm grasp of bigrams, it is actually fairly easy
+to formulate our first hypothesis about natural language phonotactics:
+every phonotactic system is described by a set of forbidden bigrams. If
+a word contains at least one forbidden bigram, it is illicit. We call
+such a collection of forbidden bigrams a <strong>negative bigram
+grammar</strong>.</p>
+<p>If our hypothesis is correct, then it should be possible to write
+down a collection of bigrams for English so that all phonotactically
+well-formed words are allowed, and only those. Every ill-formed word
+must contain at least one forbidden bigram.</p>
+<div class="example">
+<p>Contrast the well-formed <em>kobinal</em> against the ill-formed
+<em>kbin</em>. If <em>kb</em> is a forbidden bigram of English, then
+<em>kbin</em> is ill-formed. In order for <em>kobinal</em> to be
+well-formed, none of the following bigrams may be forbidden:
+<em>⋊k</em>, <em>ko</em>, <em>ob</em>, <em>bi</em>, <em>in</em>,
+<em>na</em>, <em>al</em>, <em>l⋉</em>.</p>
+</div>
+<p>As the example above shows, forbidding the bigram <em>kb</em> rules
+out <em>kbin</em> as an illicit word for English. But there is a
+problem: <em>kb</em> does occur in some well-formed words, such as
+<em>cookbook</em> or <em>workbench</em>. Linguists might object that
+each one of them is a compound and thus, as far as phonotactics is
+concerned, might be two words rather than one. However, that does not
+solve the problem of Star Wars’s Admiral Ackbar, pronounced
+<em>akbar</em>. The problem with <em>kbin</em> is not <em>kb</em>, it’s
+<em>kb</em> at the start of the word. The forbidden sequence is not
+<em>kb</em>, but rather <em>⋊kb</em>. And the ban against starting
+English words with <em>kn</em> does not mean that <em>kn</em> is a
+forbidden sequence, it means that <em>⋊kn</em> is forbidden. These are
+not bigrams, they are <strong>trigrams</strong>.</p>
+<h2 id="from-bigram-grammars-to-n-gram-grammars">From bigram grammars to
+n-gram grammars</h2>
+<p>We can generalize the notion of bigram to sequences of arbitrary
+length. A trigram is a sequence of three elements, a 4-gram contains
+four elements, and quite generally, an <strong>n-gram</strong> consists
+of <strong>n</strong> elements.</p>
+<div class="example">
+<p>Let us first look at the bigrams, trigrams, and 4-grams of
+<em>kobinal</em> (without edge markers). The bigrams of <em>kobinal</em>
+are <em>ko</em>, <em>ob</em>, <em>bi</em>, <em>in</em>, <em>na</em>, and
+<em>al</em>. The trigrams are <em>kob</em>, <em>obi</em>, <em>bin</em>,
+<em>ina</em>, and <em>nal</em>. The 4-grams are <em>kobi</em>,
+<em>obin</em>, <em>bina</em>, and <em>inal</em>.</p>
+<p>For <em>banana</em>, the only bigrams are <em>ba</em>, <em>an</em>,
+and <em>na</em>. The trigrams are <em>ban</em>, <em>ana</em>, and
+<em>nan</em>. The 4-grams are <em>bana</em>, <em>anan</em>, and
+<em>nana</em>.</p>
+</div>
+<p>One problem with large <span class="math inline">\(n\)</span>-grams
+is that some words may be shorter than <span
+class="math inline">\(n\)</span> even after edge markers have been
+added. Just what are the 4-grams of <em>⋊a⋉</em>? There’s many ways this
+could be fixed. We will use a method that is conceptually simple even
+though may seem awkward at first: if the grammar uses <span
+class="math inline">\(n\)</span>-grams, we pad out the word with <span
+class="math inline">\(n-1\)</span> edge markers. In a later unit, you
+will see why this actually makes a lot of sense.</p>
+<div class="example">
+<p>Consider now the bigrams, trigrams, and 4-grams of <em>kobinal</em>
+with edge markers ⋊ and ⋉. For bigrams, we have to look at
+<em>⋊kobinal⋉</em>, which has the bigrams <em>⋊k</em>, <em>ko</em>,
+<em>ob</em>, <em>bi</em>, <em>in</em>, <em>na</em>, <em>al</em>, and
+<em>l⋉</em>. The trigrams are computed over <em>⋊⋊kobinal⋉⋉</em>, so
+they’re <em>⋊⋊k</em>, <em>⋊ko</em>, <em>kob</em>, <em>obi</em>,
+<em>bin</em>, <em>nal</em>, <em>al⋉</em>, and <em>l⋉⋉</em>. The 4-grams
+are computed over <em>⋊⋊⋊kobinal⋉⋉⋉</em> and thus they are
+<em>⋊⋊⋊k</em>, <em>⋊⋊ko</em>, <em>⋊kob</em>, <em>kobi</em>,
+<em>obin</em>, <em>bina</em>, <em>inal</em>, <em>nal⋉</em>,
+<em>al⋉⋉</em>, and <em>l⋉⋉</em>.</p>
+<p>For <em>banana</em>, the bigrams are now <em>⋊b</em>, <em>ba</em>,
+<em>an</em>, <em>na</em>, and <em>a⋉</em>. Its trigrams are
+<em>⋊⋊b</em>, <em>⋊ba</em>, <em>ban</em>, <em>ana</em>, <em>nan</em>,
+<em>na⋉</em>, and <em>a⋉⋉⋉</em>. The 4-grams are <em>⋊⋊⋊b</em>,
+<em>⋊⋊ba</em>, <em>⋊⋊ban</em>, <em>bana</em>, <em>anan</em>,
+<em>nana</em>, <em>ana⋉</em>, <em>na⋉⋉</em>, and <em>a⋉⋉⋉</em>.</p>
+</div>
+<div class="exercise">
+<p>For each one of the following strings with the appropriate number of
+edge markers, say whether it has been padded for use with a bigram
+grammar, a trigram grammar, or a 4-gram grammar.</p>
+<ul>
+<li>⋊⋊kbin⋉⋉</li>
+<li>⋊⋊⋊workbench⋉⋉⋉</li>
+<li>⋊akbar⋉</li>
+</ul>
+</div>
+<p>Now we can finally state clearly why <em>kobinal</em>,
+<em>workbench</em> and <em>akbar</em> are all phonotactically
+well-formed, whereas <em>kbin</em> is not: the latter contains the
+illicit trigram <em>⋊kb</em>.</p>
+<p>We also refine our original hypothesis about the phonotactics of
+natural languages: every phonotactic system is described by a set of
+forbidden <span class="math inline">\(n\)</span>-grams.</p>
+<div class="exercise">
+<p>Consider once more the word
+<em>supercalifragilisticexpialidocious</em>. For each one of the
+following, say whether it is a bigram of the word (with edge markers), a
+trigram, a 4-gram, or none of those choices.</p>
+<ul>
+<li>⋊fr</li>
+<li>z</li>
+<li>do⋉c</li>
+<li>s⋉⋉⋉</li>
+<li>sit</li>
+<li>cious</li>
+<li>⋊sup</li>
+</ul>
+</div>
+<div class="exercise">
+<p>Italian has intervocalic voicing, which means that it is impossible
+for a voiceless consonant like <em>s</em> or <em>f</em> to occur between
+two vowels. For instance, it is impossible to have a form like
+<em>asola</em>, it must be <em>azola</em> with the voiced <em>z</em>
+instead of a voiceless <em>s</em>. For the sake of simplicity, let us
+assume that Italian only has the vowels <em>a</em> and <em>o</em>, and
+the consonants <em>s</em>, <em>z</em>, and <em>l</em>. Only the
+voiceless <em>s</em> is subject to intervocalic voicing. Write a
+negative trigram grammar that captures intervocalic voicing in this
+simplified version of Italian.</p>
+</div>
+<div class="exercise">
+<p>Intervocalic voicing cannot be captured with a negative bigram
+grammar. That is because no negative bigram grammar can rule out the
+illicit <em>asola</em> without also ruling out the well-formed
+<em>alsola</em> and <em>aslola</em> (while non-existant, these words
+satisfy the phonotatic laws of Italian). Explain in detail why this is
+the case.</p>
+</div>
+<div class="exercise">
+<p>Intervocalic voicing in Italian does not always apply. The word
+<em>asociale</em>, comparable to English <em>anti-social</em>, has a
+voiceless <em>s</em> between <em>a</em> and <em>o</em>. However,
+linguists would argue that this word is more complex because it is built
+from two separate parts <em>a</em> and <em>sociale</em> that are fused
+together into a single word. In technical terms, <em>a</em> and
+<em>sociale</em> are two separate <strong>morphemes</strong>, and we
+should represent <em>asociale</em> more accurately as <em>a+sociale</em>
+with the morpheme boundary symbol <em>+</em> between <em>a</em> and
+<em>s</em>. Explain why, given this assumption, your negative trigram
+grammar for intervocalic voicing correctly predicts <em>a+sociale</em>
+to be well-formed.</p>
+</div>
+<h2 id="a-look-at-german">A look at German</h2>
+<p>Unlike English, German is perfectly fine with words that start with
+<em>kn</em>. But just like English, it does not like words that start
+with <em>rb</em>. We can capture this by writing a trigram grammar for
+German that contains the forbidden trigram <em>⋊rb</em>. But German also
+has a process known as word-final devoicing: voiced sounds become
+voiceless at the end of a word. So whereas an English speaker will
+happily pronounce <em>woods</em> with a <em>z</em> at the end, a German
+speaker turns the <em>z</em> into an <em>s</em> like in
+<em>trinkets</em>. Alright, no big deal, we just forbid <em>z⋉</em> too.
+Or do we?</p>
+<p>We now have a forbidden trigram <em>⋊rb</em> and a forbidden bigram
+<em>z⋉</em>. Are we allowed to mix bigrams and trigrams this way? More
+generally, can every negative <span
+class="math inline">\(n\)</span>-gram grammar also contain <span
+class="math inline">\(k\)</span>-grams, where <span
+class="math inline">\(k &lt; n\)</span>? Could this create
+inconsistencies, or make negative <span
+class="math inline">\(n\)</span>-gram grammars more powerful? The
+answers is not obvious at this point.</p>
+<div class="exercise">
+<p>Consider the formal language where all strings are sequences of
+<em>a</em>, <em>b</em>, and <em>c</em> such that</p>
+<ul>
+<li>every string starts with <em>a</em></li>
+<li>no string ends with <em>c</em></li>
+<li><em>a</em> and <em>c</em> are always separated by at least two
+symbols.</li>
+</ul>
+<p>Write a negative 4-gram grammar for this language.
+<strong>Caution:</strong> This will be a big grammar. Try to write down
+all the 4-grams, and once you get sick of it, you can use a template
+like “xcyc where x and y are <em>a</em> or <em>b</em> or <em>c</em>”
+(this specific template is just an example, it isn’t needed for the
+constraints above).</p>
+<p>Now that you are appropriately enraged, write an equivalent negative
+grammar that mixes bigrams, trigrams and 4-grams. Which one strikes you
+as a more direct description of the constraints above? Which one gave
+you less grief?</p>
+</div>
+<h2 id="studying-formalisms-studying-language">Studying formalisms ~
+studying language</h2>
+<p>Let’s take stock. We started out with some very profound questions:
+how can we describe the phonotactic laws we find in specific languages,
+and more generally, what separates a possible law of phonotactics from
+an impossible one? We have proposed <span
+class="math inline">\(n\)</span>-gram grammars as a model of
+phonotactics. Even though they are very simple, they seem flexible
+enough to capture quite a lot of phonotactics. We quickly realized that
+bigrams are sometimes too short to state the relevant conditions, but it
+is easy to take a step up to trigrams or 4-grams. But we also saw that
+we sometimes need to use <span class="math inline">\(n\)</span>-grams of
+different lengths, which seems quite a bit more complicated than
+grammars where all <span class="math inline">\(n\)</span>-grams have the
+same length. But that is just a hunch, we do not know whether this is
+actually true.</p>
+<p>This isn’t just a mathematical curiosity, it is a profound question
+about human cognition. If we take seriously the notion that negative
+<span class="math inline">\(n\)</span>-gram grammar provide a model of
+phonotactics, then whatever knowledge a native speaker of English has
+about English phonotactics is in some sense similar to our negative
+<span class="math inline">\(n\)</span>-gram models. Of course this
+involves numerous abstraction steps — we should not expect MRIs and
+other tools of neuroscience to find anything like the <em>negative <span
+class="math inline">\(n\)</span>-gram center</em> of the brain where
+words get broken down into their <span
+class="math inline">\(n\)</span>-grams and each <span
+class="math inline">\(n\)</span>-gram is checked for correctness. But we
+are making a cognitive commitment that phonotactics involves reasoning
+steps comparable to those of a negative <span
+class="math inline">\(n\)</span>-gram grammar and not something
+completely different, like keeping track of the number of consonants and
+penalizing words with an even number of consonants. That kind of
+“even-consonant filter” would be something completely unlike what the
+negative <span class="math inline">\(n\)</span>-gram grammars are doing,
+and it would be a fundamental change to what we think is going on in a
+speaker’s mind when they determine that, say, <em>kbinl</em> is not a
+possible word of English.</p>
+<p>But what about more innocuous changes like allowing <span
+class="math inline">\(n\)</span>-grams of various lengths? Is that just
+a matter of notational convenience, or does it fundamentally change the
+model and hence the cognitive commitments that come from adopting this
+model? Or what if we used <span class="math inline">\(n\)</span>-grams
+to encode allowed sequences rather than forbidden ones? Intuitively this
+feels like a very different kind of grammar, but is it really?</p>
+<p>Linguistics is actually full of discussions of this type. Somebody
+proposes model M and then somebody else argues that M fails to account
+for phenomenon P in language L and needs some extension X. But then
+somebody else argues that X is not needed after all because P has been
+misanalyzed and the more accurate description of P is perfectly
+compatible with the original model M. This kind of argumentation has
+proven very productive for linguistics, but it is very labor intensive
+and the results are not very transferable. One minor change to model M
+could completely change whether we need extension X after all to handle
+phenomenon P, and it can be difficult to tell what changes to M are such
+that X becomes indispensable for P. Linguistic results tend to be very
+specific and detailed, but among the many pieces of data and the
+intricate reasoning steps it can be hard to determine what is truly
+essential for the argument.</p>
+<p>Mathematics allows us to study formalisms at a more general level,
+and this in turn enables us to make discoveries that would be
+unattainable with linguistic methods. For example, we will be able to
+show that allowing <span class="math inline">\(n\)</span>-grams of
+varying length does not fundamentally change our negative <span
+class="math inline">\(n\)</span>-gram model, and this will be true no
+matter how long the <span class="math inline">\(n\)</span>-grams are. We
+can make claims that are provably correct for every negative <span
+class="math inline">\(n\)</span>-gram grammar. And we can do that even
+though there are infinitely many such grammars (because there are
+infinitely many values <span class="math inline">\(n\)</span> may take)
+and it is impossible to ever look at each one of them. Our mathematical
+proof will also tell us exactly why this fact holds and under what
+circumstances it would no longer go through. And by extension, the
+mathematics tells us that there is a whole class of models that are
+equivalent to ours in terms of what they claim about the nature of an
+English speaker’s cognitive ability to distinguish the well-formed
+<em>blink</em> from the ill-formed <em>kbinl</em>. Buckle up everyone,
+we have some mathematical analysis to do!</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>An <strong>n-gram</strong> is a sequence of <strong>n</strong>
+symbols.</li>
+<li>The special symbols ⋊ and ⋉ are <strong>edge markers</strong> for
+the left and right edge of the word, respectively.</li>
+<li>A <strong>negative <span class="math inline">\(n\)</span>-gram
+grammar</strong> is a finite collection of forbidden <span
+class="math inline">\(n\)</span>-grams.</li>
+<li>In order to determine whether a negative <span
+class="math inline">\(n\)</span>-gram grammar deems a given string
+well-formed or ill-formed, we carry out the following steps:
+<ol type="1">
+<li>Pad out the string with <span class="math inline">\(n-1\)</span>
+instances of ⋊ and <span class="math inline">\(n-1\)</span> instances of
+⋉.</li>
+<li>Look at all the <span class="math inline">\(n\)</span>-grams of the
+string augmented with edge markers.</li>
+<li>If at least one of those <span
+class="math inline">\(n\)</span>-grams is a forbidden <span
+class="math inline">\(n\)</span>-gram of our negative <span
+class="math inline">\(n\)</span>-gram grammar, the string is illicit.
+Otherwise, it is well-formed.</li>
+</ol></li>
+<li>Some linguistic phenomena can be captured with negative bigram
+grammars, some like intervocalic voicing require trigram grammars. Other
+phenomena may require even longer <span
+class="math inline">\(n\)</span>-grams.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

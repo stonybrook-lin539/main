@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Formal definition and proof of the normal form theorem</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a
+href="#formal-definition-and-proof-of-the-normal-form-theorem">Formal
+definition and proof of the normal form theorem</a>
+<ul>
+<li><a href="#formal-definition-of-negative-grammars">Formal definition
+of negative grammars</a></li>
+<li><a href="#normal-form-theorem">Normal form theorem</a></li>
+<li><a href="#linguistics-needs-more-proof-enablers">Linguistics needs
+more proof enablers</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="formal-definition-and-proof-of-the-normal-form-theorem">Formal
+definition and proof of the normal form theorem</h1>
+<div class="prereqs">
+<ul>
+<li>general (equals VS define)</li>
+<li>sets (basic notation)</li>
+<li>strings (basic notation)</li>
+</ul>
+</div>
+<p>The previous two sections introduced negative <span
+class="math inline">\(n\)</span>-gram grammars at great length and
+showed a basic normal form theorem: for every grammar with <span
+class="math inline">\(n\)</span>-grams of mixed length, there is an
+equivalent grammar where all <span
+class="math inline">\(n\)</span>-grams have the same length. The
+presentation was deliberately informal to focus on intuitions rather
+than mathematical rigor. This unit is very different. It gives the
+definitions in a mathematical format, rigorously states the normal form
+theorem, and states the proof of the theorem in a more standard
+mathematical style.</p>
+<p>I admit that this might be a lot to take in for the newbie, but it is
+illuminating to see just how much more compactly and precisely things
+can be stated with mathematical notation. While it may seem like a
+nuisance or pointless hurdle to you now, mathematical notation will make
+things a lot easier in the long run. I can’t deny, though, that there is
+a learning curve, and you might not be able to take it all in at this
+point. Try to get as far as you can, but don’t panic, this is just to
+give you a taste of the power of mathematical notation. If you can’t
+stomach any more, move on to the next unit. Once you feel more
+comfortable with this way of writing and reading, you should come back
+to this unit and contrast it to the two preceding ones. Odds are that
+this unit will feel very pleasant to you by then, whereas the two
+preceding ones will strike you as needlessly wordy and drawn out.</p>
+<p>But let me reiterate: If you’re suffering an acute case of symbol
+shock, don’t worry. We will continue this chapter at a leisurely pace,
+with optional formal sections sprinkled in to give a succinct summary of
+the more informal sections.</p>
+<h2 id="formal-definition-of-negative-grammars">Formal definition of
+negative grammars</h2>
+<div class="definition">
+<p>Let <span class="math inline">\(\Sigma\)</span> be some alphabet, and
+<span class="math inline">\(\Sigma_E\)</span> its extension with edge
+marker symbols <span class="math inline">\({\rtimes}, {\ltimes} \notin
+\Sigma\)</span>. A string drawn from <span
+class="math inline">\(\Sigma_E^n\)</span>, where <span
+class="math inline">\(n \geq 1\)</span>, is also called an <strong><span
+class="math inline">\(n\)</span>-gram</strong>. Given string <span
+class="math inline">\(s\)</span> over <span
+class="math inline">\(\Sigma\)</span>, we say that <span
+class="math inline">\(n\)</span>-gram <span
+class="math inline">\(g\)</span> is a <strong>factor</strong> of <span
+class="math inline">\(s\)</span> iff there are strings <span
+class="math inline">\(u, v \in \Sigma_E^*\)</span> such that <span
+class="math inline">\({\rtimes}^{n-1} \cdot s \cdot{\ltimes}^{n-1} = u
+\cdot g \cdot v\)</span>.</p>
+</div>
+<div class="definition">
+<p>A <strong>(strict) negative <span
+class="math inline">\(n\)</span>-gram grammar</strong> <span
+class="math inline">\(G\)</span> over alphabet <span
+class="math inline">\(\Sigma\)</span> is a finite set of strings drawn
+from <span class="math inline">\(\Sigma_E^n\)</span> (<span
+class="math inline">\(n \geq 1\)</span>). A <span
+class="math inline">\(\Sigma\)</span>-string <span
+class="math inline">\(s\)</span> is well-formed with respect to <span
+class="math inline">\(G\)</span> iff no <span class="math inline">\(g
+\in G\)</span> is a factor of <span class="math inline">\(s\)</span>.
+The <strong>stringset</strong> or <strong>language of <span
+class="math inline">\(G\)</span></strong>, denoted <span
+class="math inline">\(L(G)\)</span>, is the set of all strings that are
+well-formed with respect to <span class="math inline">\(G\)</span>, and
+only those.</p>
+</div>
+<div class="example">
+<p>Suppose <span class="math inline">\(\Sigma \mathrel{\mathop:}=\left
+\{ C, V \right \}\)</span>, where C represents consonants and V vowels.
+One string over <span class="math inline">\(\Sigma\)</span> is <span
+class="math inline">\(\mathit{CVCVCV}\)</span>, an instance of a very
+simple CV-syllable template. Assume <span
+class="math inline">\(G\)</span> contains <span
+class="math inline">\(\mathit{CC}\)</span> and <span
+class="math inline">\(\mathit{VC}\)</span> and let’s see if the string
+<span class="math inline">\(\mathit{CVCVCV}\)</span> is well-formed with
+respect to <span class="math inline">\(G\)</span>. The bigram <span
+class="math inline">\(\mathit{CC}\)</span> is not a problem since there
+are no strings <span class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> such that <span
+class="math inline">\({\rtimes}\mathit{CVCV}{\ltimes} = u
+\cdot\mathit{CC} \cdot v\)</span>, which means that <span
+class="math inline">\(\mathit{CC}\)</span> is not a factor of <span
+class="math inline">\(\mathit{CVCVCV}\)</span>. But clearly <span
+class="math inline">\({\rtimes}\mathit{CVCV}{\ltimes} =
+{\rtimes}\mathit{C} \cdot\mathit{VC} \cdot\mathit{V}{\ltimes}\)</span>.
+So <span class="math inline">\(\mathit{VC}\)</span> is a factor of <span
+class="math inline">\(\mathit{CVCV}\)</span>, and as a result the string
+is ruled out by <span class="math inline">\(G\)</span>.</p>
+</div>
+<div class="definition">
+<p>A <strong>mixed negative <span class="math inline">\(n\)</span>-gram
+grammar</strong> <span class="math inline">\(G\)</span> is a finite set
+of strings such that each string is drawn from <span
+class="math inline">\(\Sigma_E^1\)</span>, or <span
+class="math inline">\(\Sigma_E^2\)</span>, or , or <span
+class="math inline">\(\Sigma_E^n\)</span>. The well-formedness of string
+<span class="math inline">\(s\)</span> with respect to <span
+class="math inline">\(G\)</span> is defined as before, and so is <span
+class="math inline">\(L(G)\)</span>.</p>
+</div>
+<div class="example">
+<p>Continuing the previous example, suppose that <span
+class="math inline">\(G\)</span> contains <span
+class="math inline">\(\mathit{CC}\)</span> and <span
+class="math inline">\(\mathit{VVC}\)</span>. Does this grammar deem the
+string <span class="math inline">\(\mathit{CVCVVCV}\)</span>
+well-formed? There are no strings <span class="math inline">\(u\)</span>
+and <span class="math inline">\(v\)</span> such that <span
+class="math inline">\(\mathit{{\rtimes}{\rtimes}CVVVCV{\ltimes}{\ltimes}}
+= u \cdot\mathit{CC} \cdot v\)</span>, which means that <span
+class="math inline">\(\mathit{CVCVVCV}\)</span> does not contain any
+instance of the forbidden bigram <span
+class="math inline">\(\mathit{CC}\)</span>. However, <span
+class="math inline">\(\mathit{{\rtimes}{\rtimes}CVCVVCV{\ltimes}{\ltimes}}
+= \mathit{{\rtimes}{\rtimes}CVC} \cdot\mathit{VVC}
+\cdot\mathit{V{\ltimes}{\ltimes}}\)</span>. In plain English: <span
+class="math inline">\(\mathit{VVC}\)</span> is a factor of <span
+class="math inline">\(\mathit{CVCVVCV}\)</span>. As a result, the string
+is ruled out by <span class="math inline">\(G\)</span>.</p>
+</div>
+<h2 id="normal-form-theorem">Normal form theorem</h2>
+<div class="theorem">
+<p>For every mixed negative <span class="math inline">\(n\)</span>-gram
+grammar <span class="math inline">\(G\)</span>, there is a strict
+negative <span class="math inline">\(n\)</span>-gram grammar <span
+class="math inline">\(G&#39;\)</span> such that <span
+class="math inline">\(L(G) = L(G&#39;)\)</span>.</p>
+</div>
+<div class="proof">
+<p>If <span class="math inline">\(n = 1\)</span>, this is true by
+definition: as every <span class="math inline">\(n\)</span>-gram is at
+least of length of 1, all <span class="math inline">\(n\)</span>-grams
+of <span class="math inline">\(G\)</span> are members of <span
+class="math inline">\(\Sigma_E^1\)</span>, making <span
+class="math inline">\(G\)</span> a strict negative <span
+class="math inline">\(n\)</span>-gram grammar. Suppose, then, that <span
+class="math inline">\(n \geq 2\)</span>.</p>
+<p>Let <span class="math inline">\(G&#39;\)</span> be the smallest set
+containing all strings of the form <span class="math inline">\(u \cdot g
+\cdot v\)</span> such that</p>
+<ol type="1">
+<li><span class="math inline">\(g \in G\)</span>, and</li>
+<li><span class="math inline">\(u \in \Sigma_E^*\)</span>, and</li>
+<li><span class="math inline">\(v \in \Sigma_E^*\)</span>, and</li>
+<li><span class="math inline">\(\left | u \cdot g \cdot v \right | =
+n\)</span>.</li>
+</ol>
+<p>We show that <span class="math inline">\(L(G) = L(G&#39;)\)</span> by
+showing that <span class="math inline">\(s \notin L(G)\)</span> iff
+<span class="math inline">\(s \notin L(G&#39;)\)</span> (this
+immediately entails that <span class="math inline">\(s \in L(G)\)</span>
+iff <span class="math inline">\(s \in L(G&#39;)\)</span>, covering all
+possible cases).</p>
+<p>Suppose <span class="math inline">\(s \notin L(G)\)</span>. Then by
+definition there must be some <span
+class="math inline">\(k\)</span>-gram <span class="math inline">\(g \in
+G\)</span> with <span class="math inline">\(k \leq n\)</span> and
+strings <span class="math inline">\(u\)</span> and <span
+class="math inline">\(v\)</span> over <span
+class="math inline">\(\Sigma_E\)</span> such that <span
+class="math inline">\({\rtimes}^{k-1} s {\ltimes}^{k-1} = u \cdot g
+\cdot v\)</span>. This trivially entails that there are also strings
+<span class="math inline">\(u&#39;\)</span> and <span
+class="math inline">\(v&#39;\)</span> over <span
+class="math inline">\(\Sigma_E\)</span> such that <span
+class="math inline">\({\rtimes}^{n-1} s {\ltimes}^{n-1} = u&#39; \cdot g
+\cdot v&#39;\)</span>. But since <span class="math inline">\(\left |
+{\rtimes}^{n-1} s {\ltimes}^{n-1} \right | \geq n\)</span>, there must
+also be strings <span class="math inline">\(u_1, u_2, v_1, v_2\)</span>
+over <span class="math inline">\(\Sigma_E\)</span> such that</p>
+<ol type="1">
+<li><span class="math inline">\(u&#39; = u_1 \cdot u_2\)</span>,
+and</li>
+<li><span class="math inline">\(v&#39; = v_1 \cdot v_2\)</span>,
+and</li>
+<li><span class="math inline">\(\left | u_2 \cdot g \cdot v_1 \right | =
+n\)</span>.</li>
+</ol>
+<p>But then by definition of <span class="math inline">\(G&#39;\)</span>
+it must hold that <span class="math inline">\(u_2 \cdot g \cdot v_2 \in
+G&#39;\)</span>, so that <span class="math inline">\(s \notin
+L(G&#39;)\)</span>.</p>
+<p>In the other direction, suppose <span class="math inline">\(s \notin
+L(G&#39;)\)</span>. Then there is some <span class="math inline">\(g \in
+G&#39;\)</span> such that <span class="math inline">\({\rtimes}^{n-1}
+\cdot s \cdot{\ltimes}^{n-1} = u \cdot g \cdot v\)</span>. But then by
+definition of <span class="math inline">\(G&#39;\)</span> there must be
+<span class="math inline">\(u&#39;\)</span>, <span
+class="math inline">\(g&#39;\)</span> and <span
+class="math inline">\(v&#39;\)</span> over <span
+class="math inline">\(\Sigma\)</span> such that <span
+class="math inline">\(g = u&#39; \cdot g&#39; \cdot v&#39;\)</span> and
+<span class="math inline">\(g&#39; \in G\)</span>. Hence <span
+class="math inline">\(g&#39; \in G\)</span> is a factor of <span
+class="math inline">\(s\)</span>, and thus <span class="math inline">\(s
+\notin L(G)\)</span> by definition.</p>
+</div>
+<p>And there you have it. All the ground we’ve covered in dozens of
+pages so far, condensed into just a few paragraphs. That’s the power of
+math.</p>
+<h2 id="linguistics-needs-more-proof-enablers">Linguistics needs more
+proof enablers</h2>
+<p>While the proof above may be difficult for you to read or fully
+grasp, I hope you can see that with enough practice and experience it
+would be possible for you to make sense of it. This isn’t some opaque
+blackbox that is impossible to make sense of. The proof builds on a
+specific set of assumptions, formalized via the definitions above, and
+then it shows how these assumptions necessarily lead to the conclusion
+that is stated in the theorem. Each step makes sense and provides
+insights into how the whole system works. In a sense, the proof doesn’t
+just tell us that the theorem holds, it tells us <strong>why</strong> it
+holds! That’s very different from experimental models or simulations.
+Proofs give us stronger guarantees and deeper insights. That’s powerful
+stuff!</p>
+<p>In light of the unique advantages of proofs, it would be great to see
+more of them in linguistics. This does not mean that every linguist
+suddenly has to start writing proofs. Nor is it even necessary for all
+linguists to be able to read and understand existing proofs. But
+linguists should strive to state their proposals in sufficiently precise
+terms that others can study them mathematically and prove things about
+them. While writing proofs is a difficult and very specialized skill, it
+is quite easy to learn enough math to formulate linguistic ideas in
+mathematical terms. This book, hopefully, will get you very close to
+this goal.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>Proofs are a powerful tool. They give us strong guarantees that
+specific properties must hold as long as certain conditions are
+met.</li>
+<li>Proofs are transparent. While they may be difficult to read, they
+are interpretable and tell us why something holds.</li>
+<li>Unless you’re already far down the mathematical rabbit hole, odds
+are you will never write a single proof in your whole life. But you
+should still have an appreciation of why proofs are important.</li>
+<li>It does not take much effort to state a proposal in sufficiently
+precise terms that enable other researchers to prove deep theorems about
+it.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

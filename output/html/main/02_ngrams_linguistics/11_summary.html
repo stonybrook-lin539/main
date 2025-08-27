@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Summary of n-grams in linguistics</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a href="#summary-of-n-grams-in-linguistics">Summary of n-grams in
+linguistics</a>
+<ul>
+<li><a href="#some-additional-terminology">Some additional
+terminology</a></li>
+</ul></li>
+<li><a href="#extra-exercises-on-n-grams">Extra exercises on
+n-grams</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="summary-of-n-grams-in-linguistics">Summary of n-grams in
+linguistics</h1>
+<p>This unit introduced <span class="math inline">\(n\)</span>-grams as
+a fundamental concepts of computational and theoretical linguistics
+alike.</p>
+<ul>
+<li>A negative <span class="math inline">\(n\)</span>-gram grammar is a
+set of <span class="math inline">\(n\)</span>-grams.
+<ul>
+<li>A string is well-formed iff it does not contain any forbidden <span
+class="math inline">\(n\)</span>-grams.</li>
+<li>An <span class="math inline">\(n\)</span>-gram grammar is fixed if
+all <span class="math inline">\(n\)</span>-grams have the same length,
+and mixed otherwise.</li>
+</ul></li>
+<li>Every negative <span class="math inline">\(n\)</span>-gram grammar
+has an equivalent positive <span class="math inline">\(n\)</span>-gram
+grammar, and the other way round.</li>
+<li>Positive grammars must be fixed, the length of <span
+class="math inline">\(n\)</span>-grams cannot vary.</li>
+<li>The maximum size of an <span class="math inline">\(n\)</span>-gram
+grammar grows polynomially with the size of the alphabet, and
+exponentially with the value of <span
+class="math inline">\(n\)</span>.</li>
+<li>Multiple grammars can be combined into a single grammar.
+<ul>
+<li>Negative grammars: union of sets</li>
+<li>Positive grammars: intersection of sets</li>
+</ul></li>
+<li>Whereas an <span class="math inline">\(n\)</span>-gram grammar is a
+set, a bag-of-words model is a multiset.
+<ul>
+<li>The multiset counts for each word type its number of word
+tokens.</li>
+<li>Multiset sum and scalar multiplication can be used to combine and
+modify counts.</li>
+</ul></li>
+<li>Due to Zipf’s law, a small number of words make up the majority of
+each text. Very frequent words that contribute little information are
+called stop words.</li>
+<li>The function <span class="math inline">\(\mathrm{del}_S\)</span>
+removes all stop words.</li>
+<li>Mathematically, this is the same as constructing phonological
+tiers.</li>
+<li>Tiers make it possible to handle long-distance dependencies in an
+elegant fashion with much smaller grammars.</li>
+</ul>
+<h2 id="some-additional-terminology">Some additional terminology</h2>
+<p>We now have two types of <span class="math inline">\(n\)</span>-gram
+grammars: those that regulate strings, and those that regulate tiers.
+The former are commonly referred to as <strong>strictly local</strong>
+(SL) grammars, whereas the latter are <strong>tier-based strictly
+local</strong> (TSL). A TSL grammar consists of both an SL grammar <span
+class="math inline">\(G\)</span> and a set <span
+class="math inline">\(T\)</span> of tier symbols. A string <span
+class="math inline">\(s\)</span> is well-formed with respect to the TSL
+grammar iff <span class="math inline">\(\mathrm{del}_{^+T}(s)\)</span>
+is well-formed with respect to <span
+class="math inline">\(G\)</span>.</p>
+<p>By default SL and TSL grammars are negative, but positive
+counterparts can be defined as usual.</p>
+<h1 id="extra-exercises-on-n-grams">Extra exercises on n-grams</h1>
+<div class="exercise">
+<p>Write a negative grammar <span class="math inline">\(G_1\)</span>
+with alphabet <span class="math inline">\(\left \{ a,b,c \right
+\}\)</span> such that <span class="math inline">\(L(G)\)</span> contains
+all strings that start and end with an <span
+class="math inline">\(a\)</span>. Then write a another grammar <span
+class="math inline">\(G_2\)</span> over the same alphabet that only
+generates strings where each <span class="math inline">\(a\)</span> is
+immediately followed by a <span class="math inline">\(b\)</span>. After
+that, write another grammar <span class="math inline">\(G_3\)</span>
+over the same alphabet that requires <span
+class="math inline">\(b\)</span> to only occur in clusters of the form
+<span class="math inline">\(bba\)</span>. So a string like
+<em>aaaabbaaabba</em> is well-formed, but <em>aaaaba</em> or <em>bb</em>
+is not. Finally, construct a combined grammar <span
+class="math inline">\(G_{1,2,3}\)</span>. What is the language generated
+by this grammar?</p>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, fill in the cells in the table
+below with Y or N depending on whether the grammar generates the string.
+The first row has already been completed as an example.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;"><span
+class="math inline">\(G_1\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(G_2\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(G_3\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(G_{1,2,3}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><em>a</em></td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">N</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><em>b</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><em>aab</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><em>aabba</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><em>abbba</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><em>aaaaaa</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><em>aabbab</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

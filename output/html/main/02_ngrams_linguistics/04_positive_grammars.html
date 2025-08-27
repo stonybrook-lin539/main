@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Positive n-gram grammars</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a href="#positive-n-gram-grammars">Positive <span
+class="math inline">\(n\)</span>-gram grammars</a>
+<ul>
+<li><a href="#morphotactics">Morphotactics</a></li>
+<li><a href="#from-negative-to-positive-grammars">From negative to
+positive grammars…</a></li>
+<li><a
+href="#and-back-translating-between-positive-and-negative-grammars">…and
+back: Translating between positive and negative grammars</a></li>
+<li><a href="#the-moral-of-more-is-more">The moral of more is
+more</a></li>
+<li><a href="#recap">Recap</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="positive-n-gram-grammars">Positive <span
+class="math inline">\(n\)</span>-gram grammars</h1>
+<div class="prereqs">
+<ul>
+<li>basic math (factorial)</li>
+</ul>
+</div>
+<p>We now have a simple model of phonotactics, i.e. what sequences of
+sounds may occur in the words of a natural language. According to this
+model, the phonotactic well-formedness of a word can be determined from
+the chunks that said word is built from. In a trigram model, for
+instance, a word is ill-formed iff it contains one or more illicit
+trigrams. We formalize this in terms of a negative <span
+class="math inline">\(n\)</span>-gram grammar, which is a finite set of
+illicit <span class="math inline">\(n\)</span>-grams.</p>
+<div class="example">
+<p>Suppose our alphabet, i.e. the set of available symbols, is <span
+class="math inline">\(\left \{ a,b,c \right \}\)</span>. Then the
+negative trigram grammar <span class="math inline">\(\left \{
+\mathit{aac}, \mathit{abc}, \mathit{acc} \right \}\)</span> only permits
+strings where no symbol is directly sandwiched between <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(c\)</span>.</p>
+</div>
+<p>The model looks rather promising as it can handle a variety of
+phenomena that have been studied extensively by linguists: word-final
+devoicing, intervocalic voicing, local assimilation, and various stress
+rules.</p>
+<div class="exercise">
+<p>For each one of the following phenomena, write a negative <span
+class="math inline">\(n\)</span>-gram grammar that handles it correctly.
+For some of them, you have to rephrase the phenomenon as a phonotactic
+constraint first.</p>
+<ul>
+<li><strong>intervocalic voicing</strong>: voiceless fricatives (assume
+<em>s</em> and <em>f</em>) may not occur between vowels (assume
+<em>a</em>, <em>i</em>, <em>u</em>)</li>
+<li><strong>local assimilation</strong>: <em>n</em> must be <em>m</em>
+before <em>b</em> or <em>p</em></li>
+<li><strong>local dissimilation</strong>: <em>rVr</em> becomes
+<em>lVr</em>, where <em>V</em> is <em>a</em>, <em>i</em>, or
+<em>u</em></li>
+<li><strong>penultimate stress</strong>: in words with at least two
+syllables, stress falls on the last but one syllable (assume that words
+are strings of stressed syllables (<span
+class="math inline">\(\acute{\sigma}\)</span>) and unstressed syllables
+(<span class="math inline">\(\sigma\)</span>))</li>
+</ul>
+</div>
+<p>Since the model seems to work well for phonotactics, it is tempting
+to expand it to other domains of language. But as we will see next, this
+reveals certain shortcomings of the negative grammar format.</p>
+<h2 id="morphotactics">Morphotactics</h2>
+<p>Just like phonotactics regulates the linear order of sounds in a
+word, <strong>morphotactics</strong> regulates the linear order of
+<strong>morphemes</strong>. Morphemes consist of multiple sounds and are
+the building blocks of words (linguists, please keep in mind that once
+again we won’t distinguish between morphemes, morphs, and allomorphs).
+For example, <em>denaturalization</em> is built from the morphemes
+<em>de-</em>, <em>nature</em>, <em>-al</em>, <em>-ize</em>, and
+<em>-ation</em>. Morphemes cannot be combined willy-nilly, they have to
+follow a specific order. In the case of <em>denaturalization</em>, no
+other order is possible. Even though the word is built up from 5
+elements, which could be arranged in <span class="math inline">\(5! = 5
+\times 4 \times 3 \times 2 \times 1 = 120\)</span> distinct ways, only
+one of them is actually allowed by English. So morphotactics defines a
+very tight rule system for how elements may be ordered in a word, much
+tighter than phonotactics, where individual sounds have more leeway as
+to where they occur in a word.</p>
+<p>Let’s see if we can write a negative <span
+class="math inline">\(n\)</span>-gram grammar that allows for
+<em>denaturalization</em> but forbids all illicit orders,
+e.g. <em>naturedeationizal</em>. First, we have to pick the basic
+building blocks for the <span class="math inline">\(n\)</span>-grams.
+For phonotactics, we used <span class="math inline">\(n\)</span>-grams
+where each symbol is a sound, but this is too fine-grained for
+morphotactics. Instead, we will use <span
+class="math inline">\(n\)</span>-grams where each symbol is a morpheme.
+If we used sounds, then <em>-ize -ation</em> would be an 11-gram that
+consists of 8 letters, 2 hyphens, and 1 space. But since we use
+morphemes as our basic building blocks, <em>-ize -ation</em> is a
+bigram.</p>
+<div class="exercise">
+<p>For each one of the following <span
+class="math inline">\(n\)</span>-grams, say how large it is depending on
+what one chooses as the basic symbols that <span
+class="math inline">\(n\)</span>-grams are built from. Possible choices
+for building blocks are typed characters, morphemes, or words. Not all
+choices may be appropriate in each case.</p>
+<ul>
+<li><em>de-</em></li>
+<li><em>mpi</em></li>
+<li><em>John likes Mary</em></li>
+</ul>
+</div>
+<p>With each morpheme as a separate symbol, it should be
+straight-forward to design a negative grammar to generate
+<em>de-nature-al-ize-ation</em> but none of the other orders. Let’s
+first write down the conditions in plain English:</p>
+<ol type="1">
+<li>start with <em>de-</em>,</li>
+<li><em>de-</em> is followed by <em>nature</em>,</li>
+<li><em>nature</em> is followed by <em>-al</em>,</li>
+<li><em>-al</em> is followed by <em>-ize</em>,</li>
+<li><em>-ize</em> is followed by <em>-ation</em>,</li>
+<li>end with <em>-ation</em>.</li>
+</ol>
+<p>Easy peasy, so let’s write it down as a negative grammar. Here’s the
+list of the forbidden <span class="math inline">\(n\)</span>-grams that
+correspond to each one of the conditions.</p>
+<ol type="1">
+<li>start with <em>de-</em>
+<ol type="1">
+<li><em>⋊ ⋉</em></li>
+<li><em>⋊ nature</em></li>
+<li><em>⋊ -al</em></li>
+<li><em>⋊ -ize</em></li>
+<li><em>⋊ -ation</em></li>
+</ol></li>
+<li><em>de-</em> is followed by <em>nature</em>
+<ol type="1">
+<li><em>de- ⋉</em></li>
+<li><em>de- de-</em></li>
+<li><em>de- -al</em></li>
+<li><em>de- ize</em></li>
+<li><em>de -ation</em></li>
+</ol></li>
+<li><em>nature</em> is followed by <em>-al</em>
+<ol type="1">
+<li><em>nature ⋉</em></li>
+<li><em>nature de-</em></li>
+<li><em>nature nature</em></li>
+<li><em>nature -ize</em></li>
+<li><em>nature -ation</em></li>
+</ol></li>
+<li><em>-al</em> is followed by <em>-ize</em>
+<ol type="1">
+<li><em>-al ⋉</em></li>
+<li><em>-al de-</em></li>
+<li><em>-al nature</em></li>
+<li><em>-al -al</em></li>
+<li><em>-al -ation</em></li>
+</ol></li>
+<li><em>-ize</em> is followed by <em>-ation</em>
+<ol type="1">
+<li><em>-ize ⋉</em></li>
+<li><em>-ize de-</em></li>
+<li><em>-ize nature</em></li>
+<li><em>-ize -al</em></li>
+<li><em>-ize -ize</em></li>
+</ol></li>
+<li>end with <em>-ation</em>
+<ol type="1">
+<li><em>-ation de-</em></li>
+<li><em>-ation nature</em></li>
+<li><em>-ation -al</em></li>
+<li><em>-ation ize</em></li>
+<li><em>-ation -ation</em></li>
+</ol></li>
+</ol>
+<p>Hmm, that didn’t turn out as succinctly as one might have hoped.</p>
+<h2 id="from-negative-to-positive-grammars">From negative to positive
+grammars…</h2>
+<p>The negative bigram grammar above is much larger than one would
+expect. Perhaps even more problematically, it does not clearly express
+the relevant generalizations. Intuitively, it would be much more
+appealing to list what combinations are allowed, rather than
+forbidden:</p>
+<ol type="1">
+<li>start with <em>de-</em>
+<ol type="1">
+<li><em>⋊ de-</em></li>
+</ol></li>
+<li><em>de-</em> is followed by <em>nature</em>
+<ol type="1">
+<li><em>de- nature</em></li>
+</ol></li>
+<li><em>nature</em> is followed by <em>-al</em>
+<ol type="1">
+<li><em>nature -al</em></li>
+</ol></li>
+<li><em>-al</em> is followed by <em>-ize</em>
+<ol type="1">
+<li><em>-al -ize</em></li>
+</ol></li>
+<li><em>-ize</em> is followed by <em>-ation</em>
+<ol type="1">
+<li><em>-ize -ation</em></li>
+</ol></li>
+<li>end with <em>-ation</em>
+<ol type="1">
+<li><em>-ation ⋉</em></li>
+</ol></li>
+</ol>
+<p>This is a <strong>positive <span
+class="math inline">\(n\)</span>-gram grammar</strong>, where the <span
+class="math inline">\(n\)</span>-grams list what sequences are allowed,
+rather than forbidden.</p>
+<div class="example">
+<p>The list of bigrams above is <em>⋊ de-</em>, <em>de- nature</em>,
+<em>nature -al</em>, <em>-al -ize</em>, <em>-ize -ation</em>, <em>-ation
+⋉</em>. If this is interpreted as a positive bigram grammar, then only
+<em>denaturalization</em> is well-formed. A string like <em>nature -al
+-ize -ation -de</em> is illicit because it contains the bigram
+<em>-ation de-</em>, which is not part of the positive grammar and thus
+forbidden. If one adds <em>nature ⋉</em> to the grammar, then
+<em>nature</em> can also be generated.</p>
+</div>
+<p>In positive <span class="math inline">\(n\)</span>-gram grammars, all
+<span class="math inline">\(n\)</span>-grams must be of the same length
+to avoid inconsistencies. That’s because with a positive <span
+class="math inline">\(n\)</span>-gram grammar, a word is well-formed iff
+each one of its <span class="math inline">\(n\)</span>-grams is part of
+the grammar.</p>
+<div class="example">
+<p>Suppose we want to allow both <em>natural</em> and
+<em>denaturalization</em>, but not <em>denatural</em>. In order to allow
+the former, the grammar has to contain the bigrams <em>⋊ nature</em>,
+<em>nature -al</em>, and <em>-al ⋉</em>. But in combination with the
+bigrams from the previous example, this would also allow for
+<em>denatural</em>. Instead, then, one might try replacing <em>⋊
+de-</em> with the 5-gram <em>⋊ de- nature -al -ize</em>, so that the
+grammar looks as follows:</p>
+<ul>
+<li><em>⋊ de- nature -al -ize</em></li>
+<li><em>de- nature</em></li>
+<li><em>nature -al</em></li>
+<li><em>-al -ize</em></li>
+<li><em>-ize -ation</em></li>
+</ul>
+<p>But then it is unclear how the grammar should be evaluated. If we
+look at all the 5-grams of <em>⋊ de- nature -al -ize -ation</em>, then
+only <em>⋊ de -nature -al -ize</em> is part of the grammar and the
+string is incorrectly ruled out. If we instead look at all the bigrams,
+then the word is ruled out because <em>⋊ de-</em> is no longer part of
+the grammar. Either way the mixing of bigrams and 5-grams causes
+inconsistencies.</p>
+</div>
+<p>Despite the requirement to stick with one fixed length of <span
+class="math inline">\(n\)</span>-grams, positive grammars can be much
+smaller than negative ones. But the opposite is also true, in particular
+for mixed negative grammars. It depends on the specific phenomenon.</p>
+<div class="exercise">
+<p>Many languages only allow syllables of the form <em>CV</em>, where C
+is some consonant and V is a vowel. In these languages, words are of the
+from <em>CV</em>, <em>CVCV</em>, <em>CVCVCV</em>, and so on. Write both
+a positive and a negative grammar that only allows strings of this form.
+Is one grammar significantly smaller than the other?</p>
+</div>
+<div class="exercise">
+<p>Continuing the previous exercise, suppose that we use actual
+consonants and vowels instead of the abstract symbols C and V. Assume
+that the language has 5 consonants (<em>p</em>, <em>t</em>, <em>k</em>,
+<em>s</em>, <em>f</em>) and only one vowel (<em>a</em>). So this
+language allows strings like <em>papa</em> or <em>tasa</em>, but not
+<em>tas</em>, <em>psafa</em>, or <em>saaka</em>. Write both a positive
+and a negative grammar that only allows strings of this form. Is one
+grammar significantly smaller than the other?</p>
+</div>
+<div class="exercise">
+<p>For each one of the following phenomena, write a positive <span
+class="math inline">\(n\)</span>-gram grammar that handles it correctly.
+For some of them, you have to rephrase the phenomenon as a phonotactic
+constraint first. You will also have to make assumptions about the sound
+inventory of the language.</p>
+<ul>
+<li><strong>intervocalic voicing</strong>: voiceless fricatives (assume
+<em>s</em> and <em>f</em>) may not occur between vowels (assume
+<em>a</em>, <em>i</em>, <em>u</em>)</li>
+<li><strong>local assimilation</strong>: <em>n</em> must be <em>m</em>
+before <em>b</em> or <em>p</em></li>
+<li><strong>local disimilation</strong>: <em>rVr</em> becomes
+<em>lVr</em>, where <em>V</em> is <em>a</em>, <em>i</em>, or
+<em>u</em></li>
+<li><strong>penultimate stress</strong>: in words with at least two
+syllables, stress falls on the last but one syllable (assume that words
+are strings of stress syllables (<span
+class="math inline">\(\acute{\sigma}\)</span>) and unstressed syllables
+(<span class="math inline">\(\sigma\)</span>))</li>
+</ul>
+<p>Once you’re done, contrast the positive grammars against the negative
+ones from an earlier exercise. Can you identify some general guidelines
+for when a positive grammar is preferable to a negative one?</p>
+</div>
+<h2
+id="and-back-translating-between-positive-and-negative-grammars">…and
+back: Translating between positive and negative grammars</h2>
+<p>We now have two different kinds of <span
+class="math inline">\(n\)</span>-gram grammars: positive grammars, and
+negative grammars. The latter actually span two subtypes, strict
+negative grammars and mixed negative grammars, but as we have already
+proved those two are equivalent in the sense that one can freely
+translate between them. The same is in fact true for positive and
+negative grammars.</p>
+<p>The idea is very simple. Suppose that your alphabet (i.e. the set of
+symbols from which strings are built) contains only <em>a</em> and
+<em>b</em>. Then consider the language <span
+class="math inline">\((\mathit{aba})^+\)</span>, which contains
+<em>aba</em>, <em>ababa</em>, <em>abababa</em>, and so on. The negative
+grammar generating this language consists of</p>
+<ol type="1">
+<li><em>⋊⋉</em> (no string without any symbols),</li>
+<li><em>⋊b</em> (don’t start with <em>b</em>),</li>
+<li><em>aa</em> (don’t have <em>a</em> followed by <em>a</em>),</li>
+<li><em>bb</em> (don’t have <em>b</em> followed by <em>b</em>),</li>
+<li><em>b⋉</em> (don’t end with <em>b</em>).</li>
+</ol>
+<p>The positive grammar, on the other hand, contains</p>
+<ol type="1">
+<li><em>⋊a</em> (you may start with <em>a</em>),</li>
+<li><em>ab</em> (<em>a</em> may be followed by <em>b</em>),</li>
+<li><em>ba</em> (<em>b</em> may be followed by <em>a</em>),</li>
+<li><em>a⋉</em> (you may end with <em>a</em>).</li>
+</ol>
+<p>Now compare this to the list of all possible bigrams over <em>a</em>,
+<em>b</em>, and the edge markers ⋊ and ⋉. Useless bigrams such as ⋉⋊,
+which can never occur in a string, are listed in parenthesis.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">(⋊⋊)</td>
+<td style="text-align: center;">⋊a</td>
+<td style="text-align: center;">⋊b</td>
+<td style="text-align: center;">⋊⋉</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(a⋊)</td>
+<td style="text-align: center;">aa</td>
+<td style="text-align: center;">ab</td>
+<td style="text-align: center;">a⋉</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">(b⋊)</td>
+<td style="text-align: center;">ba</td>
+<td style="text-align: center;">bb</td>
+<td style="text-align: center;">b⋉</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(⋉⋊)</td>
+<td style="text-align: center;">(⋉a)</td>
+<td style="text-align: center;">(⋉b)</td>
+<td style="text-align: center;">(⋉⋉)</td>
+</tr>
+</tbody>
+</table>
+<p>Notice anything? With the exception of the useless bigrams, each
+bigram in this table is either in the negative grammar or in the
+positive one, but never in both. Here, let me highlight it for you, with
+the <span class="math inline">\(n\)</span>-grams of the negative grammar
+in <em>italics</em> and those of the positive grammar in
+<strong>boldface</strong>.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">(⋊⋊)</td>
+<td style="text-align: center;"><strong>⋊a</strong></td>
+<td style="text-align: center;"><em>⋊b</em></td>
+<td style="text-align: center;"><em>⋊⋉</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(a⋊)</td>
+<td style="text-align: center;"><em>aa</em></td>
+<td style="text-align: center;"><strong>ab</strong></td>
+<td style="text-align: center;"><strong>a⋉</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">(b⋊)</td>
+<td style="text-align: center;"><strong>ba</strong></td>
+<td style="text-align: center;"><em>bb</em></td>
+<td style="text-align: center;"><em>b⋉</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(⋉⋊)</td>
+<td style="text-align: center;">(⋉a)</td>
+<td style="text-align: center;">(⋉b)</td>
+<td style="text-align: center;">(⋉⋉)</td>
+</tr>
+</tbody>
+</table>
+<p>So in order to convert a positive grammar to a negative one, or the
+other way round, it suffices to first compute all possible <span
+class="math inline">\(n\)</span>-grams and then remove all those that
+are in the original grammar. The remainder (<em>modulo</em> useless
+<span class="math inline">\(n\)</span>-grams) is the corresponding
+grammar of the opposite polarity.</p>
+<div class="example">
+<p>Suppose our alphabet contains only <em>a</em> and that the only
+well-formed string is <em>aa</em>. This would be the case if we have a
+positive trigram grammar containing:</p>
+<ul>
+<li><em>⋊⋊a</em></li>
+<li><em>⋊aa</em></li>
+<li><em>aa⋉</em></li>
+<li><em>a⋉⋉</em></li>
+</ul>
+<p>The set of all possible (and useful) trigrams over the alphabet is as
+follows:</p>
+<ul>
+<li><em>⋊⋊a</em></li>
+<li><em>⋊⋊⋉</em></li>
+<li><em>⋊aa</em></li>
+<li><em>⋊a⋉</em></li>
+<li><em>⋊⋉⋉</em></li>
+<li><em>aaa</em></li>
+<li><em>aa⋉</em></li>
+<li><em>a⋉⋉</em></li>
+</ul>
+<p>Removing all trigrams of the positive trigram grammar leaves us with
+the following list:</p>
+<ul>
+<li><em>⋊⋊⋉</em></li>
+<li><em>⋊⋉⋉</em></li>
+<li><em>⋊a⋉</em></li>
+<li><em>aaa</em></li>
+</ul>
+<p>You can verify for yourself that a negative trigram grammar that
+contains those four trigrams (and no other <span
+class="math inline">\(n\)</span>-grams) can only generate <em>aa</em>
+over the alphabet <span class="math inline">\(\left \{ a \right
+\}\)</span>.</p>
+</div>
+<div class="exercise">
+<p>English allows for <em>nature</em>, <em>natural</em>,
+<em>naturalize</em>, <em>denature</em>, <em>denaturalize</em>,
+<em>naturalization</em>, and <em>denaturalization</em>, but not
+<em>denatural</em> or any of misordered forms like
+<em>naturizalation</em>. Write a grammar that generates all the
+well-formed forms but none of the ill-formed ones. It is up to you
+whether you want to use a positive or a negative grammar. If you use a
+negative grammar, it can be in the mixed format, with <span
+class="math inline">\(n\)</span>-grams of varying lengths.</p>
+</div>
+<h2 id="the-moral-of-more-is-more">The moral of more is more</h2>
+<p>The next section will give a formal proof that the simple conversion
+strategy laid out above will always result in an equivalent grammar. By
+“equivalent” we mean that the two grammars generate exactly the same
+strings — there is no string such that the two grammars disagree on
+whether the string is well-formed or ill-formed. This might seem like a
+mathematical curiosity to you, but it actually challenges one of the
+most fundamental assumptions of theoretical linguistics.</p>
+<p>Linguists like to talk about <strong>the</strong> grammar,
+<strong>the</strong> right description, <strong>the</strong> correct
+generalization. <strong>the</strong> feature system,
+<strong>the</strong> constraints of the grammar, as if those were
+concrete objects of a singular nature — like a chair is a chair is a
+chair. Linguistics is driven by the search for <strong>the</strong>
+correct description of linguistic knowledge. Linguists want the “source
+code” of the language program that runs in the human brain, not just any
+implementation that exhibits the same behavior. To a linguist, true
+understanding of language is achieved when we have found the one and
+only true model. If it looks like we have multiple equally viable
+analyses, descriptions, theories, or formalisms, then that just shows
+that we don’t know enough about language yet to tease them apart. Our
+mathematical findings show us that things aren’t that simple, this quest
+for <strong>the</strong> one unique correct specification does not work
+for abstract concepts. And all linguistic concepts are abstract. When
+dealing with abstract ideas, you want to be able to conceptualize them
+in as many distinct ways as possible. True understanding comes from the
+ability to describe one and the same thing in many different ways, each
+one with its unique advantages and its unique opportunities for new
+insights.</p>
+<p>Now you might say that there is more linguistic data than just what
+strings are well-formed or ill-formed, and perhaps that data will tell
+us exactly is going on with language in the human mind. For example, we
+can put native speakers into fMRI machines to get an inkling of an idea
+of what computations occur in a native speaker’s brain when they are
+asked to determine whether a word is well-formed. But the data one
+obtains this way is very different in nature from the models linguists
+operate with. The brain data has to be given a specific interpretation
+in order to link it to linguistic models, a <strong>linking
+hypothesis</strong>. Unsurprisingly, there are many plausible linking
+hypotheses to choose from. Just like there may not be such a thing as
+<strong>the</strong> correct grammar, there may not be such a thing as
+<strong>the</strong> correct linking hypothesis. We may well be living
+in a world where grammar <span class="math inline">\(G\)</span> plus
+linking hypothesis <span class="math inline">\(H\)</span> makes exactly
+the same predictions as grammar <span
+class="math inline">\(G&#39;\)</span> with linking hypothesis <span
+class="math inline">\(H&#39;\)</span>.</p>
+<p>Rather than reject this scenario or trying to argue it away, we
+should embrace it. The conventional wisdom that true understanding of
+language means having converged on exactly one way of looking at
+language has it exactly the wrong way around. True understanding of
+language means having many different ways of looking at language that we
+can effortlessly switch between depending on which view is most useful
+for the problem at hand. In some cases, a positive grammar may be
+smaller than a negative one. For some phenomena it is the other way
+round. A negative grammar also has the advantage that they can be made
+more compact by using a mixed format instead of a fixed length for all
+<span class="math inline">\(n\)</span>-grams. Then again, positive
+grammars are easier to translate to <strong>finite-state
+automata</strong>, which we will encounter in a later chapter. Each
+grammar format has its pros and cons, and there is no reason why we
+should insist that, say, mixed negative <span
+class="math inline">\(n\)</span>-gram grammars are the one right
+answer.</p>
+<p>Interdefinability results of this kind are one of the driving forces
+of mathematics. Logical formulas, for example, can be put into a normal
+form that is harder to read for humans but easier to implement for
+computers. Finite-state automata can be viewed as a special case of
+Boolean matrix multiplication (we’ll talk about this one in quite some
+detail). Interdefinability isn’t a horror scenario to avoid, it is one
+of the most powerful results possible, but in order to get to these
+results, we need mathematics.</p>
+<h2 id="recap">Recap</h2>
+<ul>
+<li>A positive <span class="math inline">\(n\)</span>-gram grammar is a
+finite list of allowed <span
+class="math inline">\(n\)</span>-grams.</li>
+<li>A string is generated by a positive <span
+class="math inline">\(n\)</span>-gram grammar iff after addition of edge
+markers, it contains only <span class="math inline">\(n\)</span>-grams
+that are allowed by the grammar.</li>
+<li>Positive grammars can be converted to negative grammars, and the
+other way round.</li>
+<li>Having multiple descriptions of the same thing is a boon, not a
+bane.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
