@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Proof: Equivalence of positive and negative grammars</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/main/style.css" />
+  <!-- Include this in HTML headers to configure and activate MathJax. -->
+  <script>
+  MathJax = {
+      loader: {
+          load: ['a11y/assistive-mml']
+      },
+      options: {
+          enableMenu: true,          // set to false to disable the menu
+          menuOptions: {
+              settings: {
+                  assistiveMml: true,   // true to enable assitive MathML
+              }
+          }
+      }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container with-sidebar">
+<div class="sidenav">
+<nav id="TOC" role="doc-toc">
+<p><a id="site-title" href="/main">Language, Math, and Computation</a></p>
+<ul>
+<li><a
+href="#proof-equivalence-of-positive-and-negative-grammars">Proof:
+Equivalence of positive and negative grammars</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="proof-equivalence-of-positive-and-negative-grammars">Proof:
+Equivalence of positive and negative grammars</h1>
+<div class="prereqs">
+<ul>
+<li>general (abbreviations[w.l.o.g.])</li>
+<li>sets (basic notation, operations)</li>
+<li>strings (basic notation)</li>
+</ul>
+</div>
+<p>This section defines both negative and positive versions of <span
+class="math inline">\(n\)</span>-gram grammars and shows that they are
+expressively equivalent. Like in the section on the equivalence of
+strict and mixed <span class="math inline">\(n\)</span>-gram grammars,
+this is accomplished by a <strong>constructive</strong> proof. A proof
+is constructive if it doesn’t just derive the existence of some object,
+but gives a concrete procedure for constructing this object. In the case
+at hand, the proof shows how to construct a positive grammar from a
+negative one, and the other way around.</p>
+<div class="definition">
+<p>A <strong>(strict) <span class="math inline">\(n\)</span>-gram
+grammar</strong> <span class="math inline">\(G\)</span> over alphabet
+<span class="math inline">\(\Sigma\)</span> is a finite set of strings
+drawn from <span class="math inline">\(\Sigma^E_n\)</span> (<span
+class="math inline">\(n \geq 1\)</span>). A <span
+class="math inline">\(\Sigma\)</span>-string <span
+class="math inline">\(s\)</span> is well-formed with respect to</p>
+<ul>
+<li>the <strong>negative</strong> interpretation of <span
+class="math inline">\(G\)</span> iff no <span
+class="math inline">\(n\)</span>-gram that is a factor of <span
+class="math inline">\(s\)</span> is a member of <span
+class="math inline">\(G\)</span>,</li>
+<li>the <strong>positive</strong> interpretation of <span
+class="math inline">\(G\)</span> iff every <span
+class="math inline">\(n\)</span>-gram that is a factor of <span
+class="math inline">\(s\)</span> is a member of <span
+class="math inline">\(G\)</span>.</li>
+</ul>
+<p>The <strong>negative stringset</strong> or <strong>negative language
+of <span class="math inline">\(G\)</span></strong>, denoted <span
+class="math inline">\(N(G)\)</span>, is the set of all strings that are
+well-formed with respect to <span class="math inline">\(G\)</span> under
+its negative interpretation. Similarly, <span
+class="math inline">\(P(G)\)</span> is the <strong>positive
+stringset/language of <span
+class="math inline">\(G\)</span></strong>.</p>
+</div>
+<p>Note that the definition above does not treat positive and negative
+as a fundamental split between types of grammars but rather as different
+ways of interpreting the same grammar. This is mostly for mathematical
+convenience, but it goes to show that there are many ways of formalizing
+the same basic idea.</p>
+<div class="theorem">
+<p>For every <span class="math inline">\(n\)</span>-gram grammar <span
+class="math inline">\(G\)</span> there exists a grammar <span
+class="math inline">\(G&#39;\)</span> such that <span
+class="math inline">\(P(G) = N(G&#39;)\)</span> and <span
+class="math inline">\(N(G) = P(G&#39;)\)</span>.</p>
+</div>
+<div class="proof">
+<p>Let <span class="math inline">\(G&#39; \mathrel{\mathop:}=\Sigma_E^n
+- G\)</span>. We show w.l.o.g. that <span class="math inline">\(P(G) =
+N(G&#39;)\)</span>.</p>
+<p>First, every <span class="math inline">\(s \in P(G)\)</span> is
+necessarily a member of <span class="math inline">\(N(G&#39;)\)</span>.
+Assume towards a contradiction that <span class="math inline">\(s \notin
+N(G&#39;)\)</span>. Then there must be some <span
+class="math inline">\(g \in G&#39;\)</span> that is a factor of <span
+class="math inline">\(s\)</span>. But since <span
+class="math inline">\(G&#39; \mathrel{\mathop:}=\Sigma_E^n - G\)</span>,
+<span class="math inline">\(g \in G&#39;\)</span> implies <span
+class="math inline">\(g \notin G\)</span>, wherefore <span
+class="math inline">\(s \notin P(G)\)</span>. As this contradicts our
+initial assumption that <span class="math inline">\(s \in P(G)\)</span>,
+it cannot be the case that <span class="math inline">\(s \notin
+N(G&#39;)\)</span>. So <span class="math inline">\(s \in
+N(G&#39;)\)</span> after all.</p>
+<p>In the other direction, suppose that <span class="math inline">\(s
+\notin P(G)\)</span>. Then by definition there must be some <span
+class="math inline">\(\Sigma_E^n \ni g \notin G\)</span> that is a
+factor of <span class="math inline">\(s\)</span>. But then <span
+class="math inline">\(g \in G&#39;\)</span>, which entails <span
+class="math inline">\(s \notin N(G&#39;)\)</span>.</p>
+<p>This shows that <span class="math inline">\(s \in P(G)\)</span> iff
+<span class="math inline">\(s \in N(G&#39;)\)</span>. As <span
+class="math inline">\(s\)</span> was arbitrary, this holds for all
+strings and establishes <span
+class="math inline">\(P(G)=N(G&#39;)\)</span>, which concludes our
+proof.</p>
+</div>
+<div class="exercise">
+<p>Explain why we do not need to show that <span
+class="math inline">\(N(G) = P(G&#39;)\)</span>.</p>
+</div>
+<p>Again you should not feel discouraged if you can’t make sense of the
+proof yet. Take a deep breath, don’t panic, and try to translate the
+symbol salad into English in your head. Try to break the proof down into
+individual chunks that you can make sense of, and then reassemble those
+chunks into the overall argument of the proof. And if you run out of
+energy, put this unit down, move on to the next one, and come back a few
+weeks later when you have built up more math endurance.</p>
+</div>
+</div>
+</body>
+</html>
