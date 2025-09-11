@@ -51,7 +51,7 @@ So $\mathit{VC}$ is a factor of $\mathit{CVCV}$, and as a result the string is r
 :::
 
 ::: definition
-A **mixed negative $n$-gram grammar** $G$ is a finite set of strings such that each string is drawn from $\Sigma_E^1$, or $\Sigma_E^2$, or \ldots, or $\Sigma_E^n$.
+A **mixed negative $n$-gram grammar** $G$ is a finite set of strings such that each string is drawn from $\Sigma_E^1$, or $\Sigma_E^2$, or ..., or $\Sigma_E^n$.
 The well-formedness of string $s$ with respect to $G$ is defined as before, and so is $L(G)$.
 :::
 
