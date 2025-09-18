@@ -9,7 +9,6 @@ pagetitle: >-
 - functions (basics, domains and co-domains)
 - sets (basic notation)
 - strings (basic notation, parts of strings)
-- tuples (pairs)
 :::
 
 Tiers are a nice linguistic metaphor, but what is going on here at a formal level?
@@ -71,10 +70,15 @@ Now that we have a formal way to specify tiers, it is very easy to graft tiers o
 The idea is that each $n$-gram now says explicitly which tier it applies to.
 
 ::: definition
-A **(strict) negative tier $n$-gram grammar** over alphabet $\Sigma$ is a finite set of pairs $\tuple{g_i, T_i}$ such that
+Let $\Sigma$ be an alphabet and $T$ a **tier alphabet**, which is a finite set of (0 or more) symbols drawn from $\Sigma$.
+A **tier n-gram** $\tuple{g, T}$ consists of
 
-- each $T_i$ is a finite set of symbols drawn from $\Sigma$, and
-- $g_i \in T_i^n$.
+- some tier alphabet $T$, and
+- an $n$-gram over $T_E$.
+:::
+
+::: definition
+A **(strict) negative tier $n$-gram grammar** over alphabet $\Sigma$ is a finite set of **tier n-grams**.
 
 We call $T$ a **tier of $G$** iff $\tuple{g, T} \in G$ for some $g$, and the set of all such $g$ is the **$T$-subgrammar $G_T$** of $G$.
 A $\Sigma$-string $s$ is well-formed with respect to $G_T$ iff no $n$-gram that is a factor of $\tau_T(s)$ is a member of $G_T$.
