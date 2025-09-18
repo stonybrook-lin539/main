@@ -58,7 +58,6 @@ changes</a></li>
 <li>functions (basics, domains and co-domains)</li>
 <li>sets (basic notation)</li>
 <li>strings (basic notation, parts of strings)</li>
-<li>tuples (pairs)</li>
 </ul>
 </div>
 <p>Tiers are a nice linguistic metaphor, but what is going on here at a
@@ -160,16 +159,23 @@ tying <span class="math inline">\(n\)</span>-grams to specific tiers.
 The idea is that each <span class="math inline">\(n\)</span>-gram now
 says explicitly which tier it applies to.</p>
 <div class="definition">
+<p>Let <span class="math inline">\(\Sigma\)</span> be an alphabet and
+<span class="math inline">\(T\)</span> a <strong>tier alphabet</strong>,
+which is a finite set of (0 or more) symbols drawn from <span
+class="math inline">\(\Sigma\)</span>. A <strong>tier n-gram</strong>
+<span class="math inline">\(\left \langle g, T \right \rangle\)</span>
+consists of</p>
+<ul>
+<li>some tier alphabet <span class="math inline">\(T\)</span>, and</li>
+<li>an <span class="math inline">\(n\)</span>-gram over <span
+class="math inline">\(T_E\)</span>.</li>
+</ul>
+</div>
+<div class="definition">
 <p>A <strong>(strict) negative tier <span
 class="math inline">\(n\)</span>-gram grammar</strong> over alphabet
-<span class="math inline">\(\Sigma\)</span> is a finite set of pairs
-<span class="math inline">\(\left \langle g_i, T_i \right
-\rangle\)</span> such that</p>
-<ul>
-<li>each <span class="math inline">\(T_i\)</span> is a finite set of
-symbols drawn from <span class="math inline">\(\Sigma\)</span>, and</li>
-<li><span class="math inline">\(g_i \in T_i^n\)</span>.</li>
-</ul>
+<span class="math inline">\(\Sigma\)</span> is a finite set of
+<strong>tier n-grams</strong>.</p>
 <p>We call <span class="math inline">\(T\)</span> a <strong>tier of
 <span class="math inline">\(G\)</span></strong> iff <span
 class="math inline">\(\left \langle g, T \right \rangle \in G\)</span>
